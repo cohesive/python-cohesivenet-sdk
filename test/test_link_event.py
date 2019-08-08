@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.models.link_event import LinkEvent  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.models.link_event import LinkEvent  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestLinkEvent(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestLinkEvent(unittest.TestCase):
     def testLinkEvent(self):
         """Test LinkEvent"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = openapi_client.models.link_event.LinkEvent()  # noqa: E501
+        # model = vns3api.models.link_event.LinkEvent()  # noqa: E501
         pass
 
 

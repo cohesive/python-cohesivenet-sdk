@@ -1,4 +1,4 @@
-# openapi_client.BGPApi
+# vns3api.BGPApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -22,10 +22,10 @@ Delete BGP Peer connection
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -33,7 +33,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.BGPApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.BGPApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | numerical ID for IPsec endpoint
 bgp_peer_id = 56 # int | numerical ID for BGP peer
 
@@ -87,10 +87,10 @@ Create BGP peer connection
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -98,9 +98,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.BGPApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.BGPApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID for IPsec endpoint
-inline_object32 = openapi_client.InlineObject32() # InlineObject32 | 
+inline_object32 = vns3api.InlineObject32() # InlineObject32 | 
 
 try:
     api_response = api_instance.post_create_ipsec_endpoint_bgp_peer(endpoint_id, inline_object32)
@@ -152,10 +152,10 @@ Edit BGP peer connection parameters
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -163,10 +163,10 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.BGPApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.BGPApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID for IPsec endpoint
 bgp_peer_id = 56 # int | ID for BGP peer
-inline_object33 = openapi_client.InlineObject33() # InlineObject33 | 
+inline_object33 = vns3api.InlineObject33() # InlineObject33 | 
 
 try:
     api_response = api_instance.put_edit_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id, inline_object33)

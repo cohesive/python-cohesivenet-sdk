@@ -1,4 +1,4 @@
-# openapi_client.PeeringApi
+# vns3api.PeeringApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -25,10 +25,10 @@ Breaks a peering relationship from a manager to another manager.  The peering ca
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -36,7 +36,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.PeeringApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
 peer_id = 56 # int | Peer ID for controller peer
 
 try:
@@ -88,10 +88,10 @@ Provides the status of whether a Controller is peered to other Controllers
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -99,7 +99,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.PeeringApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_peering_status()
@@ -146,10 +146,10 @@ Creates a peering relationship from a manager to another manager.  The peering c
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -157,8 +157,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.PeeringApi(openapi_client.ApiClient(configuration))
-inline_object25 = openapi_client.InlineObject25() # InlineObject25 | 
+api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
+inline_object25 = vns3api.InlineObject25() # InlineObject25 | 
 
 try:
     api_response = api_instance.post_peer(inline_object25)
@@ -209,10 +209,10 @@ Edits a peering relationship from a manager to another manager.  The peering cal
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -220,8 +220,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.PeeringApi(openapi_client.ApiClient(configuration))
-inline_object24 = openapi_client.InlineObject24() # InlineObject24 | 
+api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
+inline_object24 = vns3api.InlineObject24() # InlineObject24 | 
 
 try:
     api_response = api_instance.put_peer(inline_object24)
@@ -272,10 +272,10 @@ Reconfigure peered controllers
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -283,8 +283,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.PeeringApi(openapi_client.ApiClient(configuration))
-inline_object22 = openapi_client.InlineObject22() # InlineObject22 | 
+api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
+inline_object22 = vns3api.InlineObject22() # InlineObject22 | 
 
 try:
     api_response = api_instance.put_reconfigure_peers(inline_object22)
@@ -335,10 +335,10 @@ Sets the Controller ID of a controller so that it can be peered within a topolog
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -346,8 +346,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.PeeringApi(openapi_client.ApiClient(configuration))
-inline_object23 = openapi_client.InlineObject23() # InlineObject23 | 
+api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
+inline_object23 = vns3api.InlineObject23() # InlineObject23 | 
 
 try:
     api_response = api_instance.put_self_peering_id(inline_object23)

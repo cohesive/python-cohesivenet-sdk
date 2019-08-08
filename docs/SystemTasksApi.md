@@ -1,4 +1,4 @@
-# openapi_client.SystemTasksApi
+# vns3api.SystemTasksApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -20,10 +20,10 @@ Describe task status details
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -31,8 +31,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.SystemTasksApi(openapi_client.ApiClient(configuration))
-task_token = openapi_client.TaskToken() # TaskToken | 
+api_instance = vns3api.SystemTasksApi(vns3api.ApiClient(configuration))
+task_token = vns3api.TaskToken() # TaskToken | 
 
 try:
     api_response = api_instance.get_task_status(task_token)

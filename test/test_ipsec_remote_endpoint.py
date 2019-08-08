@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.models.ipsec_remote_endpoint import IpsecRemoteEndpoint  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.models.ipsec_remote_endpoint import IpsecRemoteEndpoint  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestIpsecRemoteEndpoint(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestIpsecRemoteEndpoint(unittest.TestCase):
     def testIpsecRemoteEndpoint(self):
         """Test IpsecRemoteEndpoint"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = openapi_client.models.ipsec_remote_endpoint.IpsecRemoteEndpoint()  # noqa: E501
+        # model = vns3api.models.ipsec_remote_endpoint.IpsecRemoteEndpoint()  # noqa: E501
         pass
 
 

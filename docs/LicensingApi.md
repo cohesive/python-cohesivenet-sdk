@@ -1,4 +1,4 @@
-# openapi_client.LicensingApi
+# vns3api.LicensingApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -23,10 +23,10 @@ Get license details
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -34,7 +34,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.LicensingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.LicensingApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_license()
@@ -81,10 +81,10 @@ Upload new license to controller
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -92,7 +92,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.LicensingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.LicensingApi(vns3api.ApiClient(configuration))
 body = '/path/to/file' # file | License file
 
 try:
@@ -143,10 +143,10 @@ Set and accept license parameters. Triggers reboot. Irreversible operation.
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -154,8 +154,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.LicensingApi(openapi_client.ApiClient(configuration))
-inline_object9 = openapi_client.InlineObject9() # InlineObject9 | 
+api_instance = vns3api.LicensingApi(vns3api.ApiClient(configuration))
+inline_object9 = vns3api.InlineObject9() # InlineObject9 | 
 
 try:
     api_response = api_instance.put_set_license_parameters(inline_object9)
@@ -206,10 +206,10 @@ License a VNS3 Controller to be a part of a specific topology. Must not be licen
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -217,7 +217,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.LicensingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.LicensingApi(vns3api.ApiClient(configuration))
 body = '/path/to/file' # file | License file
 
 try:

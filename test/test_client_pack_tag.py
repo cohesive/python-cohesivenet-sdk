@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.models.client_pack_tag import ClientPackTag  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.models.client_pack_tag import ClientPackTag  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestClientPackTag(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestClientPackTag(unittest.TestCase):
     def testClientPackTag(self):
         """Test ClientPackTag"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = openapi_client.models.client_pack_tag.ClientPackTag()  # noqa: E501
+        # model = vns3api.models.client_pack_tag.ClientPackTag()  # noqa: E501
         pass
 
 

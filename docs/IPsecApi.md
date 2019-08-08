@@ -1,4 +1,4 @@
-# openapi_client.IPsecApi
+# vns3api.IPsecApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -31,10 +31,10 @@ Delete IPsec endpoint
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -42,7 +42,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID of the IPsec endpoint
 
 try:
@@ -94,10 +94,10 @@ Delete IPsec tunnel
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -105,7 +105,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID for IPsec endpoint
 tunnel_id = 56 # int | numerical ID for tunnel
 
@@ -159,10 +159,10 @@ Get details for all IPsec endpoints/subnets
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -170,7 +170,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_ipsec()
@@ -217,10 +217,10 @@ Get IPsec endpoint information
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -228,7 +228,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID of the IPsec endpoint
 
 try:
@@ -279,10 +279,10 @@ Describe ipsec tunnels status
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -290,7 +290,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_ipsec_status()
@@ -338,10 +338,10 @@ Provides information about the connection history of the subnet or tunnel
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -349,8 +349,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
-inline_object13 = openapi_client.InlineObject13() # InlineObject13 |  (optional)
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
+inline_object13 = vns3api.InlineObject13() # InlineObject13 |  (optional)
 
 try:
     api_response = api_instance.get_link_history(inline_object13=inline_object13)
@@ -402,10 +402,10 @@ Create IPsec connection to the defined remote gateway
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -413,8 +413,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
-inline_object28 = openapi_client.InlineObject28() # InlineObject28 | 
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
+inline_object28 = vns3api.InlineObject28() # InlineObject28 | 
 
 try:
     api_response = api_instance.post_create_ipsec_endpoint(inline_object28)
@@ -465,10 +465,10 @@ Create IPsec endpoint tunnel
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -476,9 +476,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID of ipsec endpoint
-inline_object30 = openapi_client.InlineObject30() # InlineObject30 | 
+inline_object30 = vns3api.InlineObject30() # InlineObject30 | 
 
 try:
     api_response = api_instance.post_create_ipsec_endpoint_tunnel(endpoint_id, inline_object30)
@@ -531,10 +531,10 @@ Restart ipsec subystem
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -542,8 +542,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
-inline_object27 = openapi_client.InlineObject27() # InlineObject27 | 
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
+inline_object27 = vns3api.InlineObject27() # InlineObject27 | 
 
 try:
     api_response = api_instance.post_restart_ipsec_action(inline_object27)
@@ -594,10 +594,10 @@ Edit IPsec connection
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -605,9 +605,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID of the IPsec endpoint
-inline_object29 = openapi_client.InlineObject29() # InlineObject29 | 
+inline_object29 = vns3api.InlineObject29() # InlineObject29 | 
 
 try:
     api_response = api_instance.put_edit_ipsec_endpoint(endpoint_id, inline_object29)
@@ -659,10 +659,10 @@ Edit IPsec endpoint tunnel
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -670,10 +670,10 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID for IPsec endpoint
 tunnel_id = 56 # int | ID for tunnel
-inline_object31 = openapi_client.InlineObject31() # InlineObject31 | 
+inline_object31 = vns3api.InlineObject31() # InlineObject31 | 
 
 try:
     api_response = api_instance.put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, inline_object31)
@@ -726,10 +726,10 @@ Edit Ipsec Configuration on device. Note, This is device wide and must be set be
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -737,8 +737,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.IPsecApi(openapi_client.ApiClient(configuration))
-inline_object26 = openapi_client.InlineObject26() # InlineObject26 | 
+api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
+inline_object26 = vns3api.InlineObject26() # InlineObject26 | 
 
 try:
     api_response = api_instance.put_ipsec_config(inline_object26)

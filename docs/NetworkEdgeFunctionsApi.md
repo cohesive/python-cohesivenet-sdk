@@ -1,4 +1,4 @@
-# openapi_client.NetworkEdgeFunctionsApi
+# vns3api.NetworkEdgeFunctionsApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -33,10 +33,10 @@ Delete a container
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -44,7 +44,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | UUID for allocated container
 
 try:
@@ -96,10 +96,10 @@ Delete container image
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -107,7 +107,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | UUID for container image
 force = False # bool | force delete image by removing running containers (optional) (default to False)
 
@@ -161,10 +161,10 @@ Fetch containers log messages
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -172,9 +172,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | UUID for allocated container
-inline_object53 = openapi_client.InlineObject53() # InlineObject53 | 
+inline_object53 = vns3api.InlineObject53() # InlineObject53 | 
 
 try:
     api_response = api_instance.get_container_logs(uuid, inline_object53)
@@ -225,10 +225,10 @@ Retrieve IP address list for current container network configuration
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -236,7 +236,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_container_system_i_ps()
@@ -284,10 +284,10 @@ Get list of existing container system images
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -295,7 +295,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | ID of image (optional)
 
 try:
@@ -348,10 +348,10 @@ Provides description information for one or all allocated containers
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -359,7 +359,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 show_all = True # bool | Displays all allocated containers when true (optional) (default to True)
 uuid = 'uuid_example' # str | Container id for filtering (optional)
 
@@ -413,10 +413,10 @@ Retrieve status of container system
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -424,7 +424,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_container_system_status()
@@ -472,10 +472,10 @@ Take action on container system
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -483,8 +483,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
-inline_object50 = openapi_client.InlineObject50() # InlineObject50 | 
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
+inline_object50 = vns3api.InlineObject50() # InlineObject50 | 
 
 try:
     api_response = api_instance.post_action_container_system(inline_object50)
@@ -536,10 +536,10 @@ Creates a new container image from a running container
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -547,9 +547,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | UUID for allocated container
-inline_object52 = openapi_client.InlineObject52() # InlineObject52 | 
+inline_object52 = vns3api.InlineObject52() # InlineObject52 | 
 
 try:
     api_response = api_instance.post_commit_container(uuid, inline_object52)
@@ -601,10 +601,10 @@ Create new container image
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -612,8 +612,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
-unknown_base_type = openapi_client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
+unknown_base_type = vns3api.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
     api_response = api_instance.post_create_container_image(unknown_base_type)
@@ -665,10 +665,10 @@ Create (allocate) a new container or start an existing one
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -676,8 +676,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
-unknown_base_type = openapi_client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
+unknown_base_type = vns3api.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
     api_response = api_instance.post_start_container(unknown_base_type)
@@ -729,10 +729,10 @@ Configures the container network.
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -740,8 +740,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
-inline_object49 = openapi_client.InlineObject49() # InlineObject49 | 
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
+inline_object49 = vns3api.InlineObject49() # InlineObject49 | 
 
 try:
     api_response = api_instance.put_configure_container_system(inline_object49)
@@ -792,10 +792,10 @@ Edits container image
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -803,9 +803,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | UUID for container image
-inline_object51 = openapi_client.InlineObject51() # InlineObject51 | 
+inline_object51 = vns3api.InlineObject51() # InlineObject51 | 
 
 try:
     api_response = api_instance.put_edit_container_image(uuid, inline_object51)
@@ -858,10 +858,10 @@ Stops a running container
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -869,7 +869,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.NetworkEdgeFunctionsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | UUID for allocated container
 
 try:

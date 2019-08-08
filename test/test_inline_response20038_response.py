@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.models.inline_response20038_response import InlineResponse20038Response  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.models.inline_response20038_response import InlineResponse20038Response  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestInlineResponse20038Response(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestInlineResponse20038Response(unittest.TestCase):
     def testInlineResponse20038Response(self):
         """Test InlineResponse20038Response"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = openapi_client.models.inline_response20038_response.InlineResponse20038Response()  # noqa: E501
+        # model = vns3api.models.inline_response20038_response.InlineResponse20038Response()  # noqa: E501
         pass
 
 

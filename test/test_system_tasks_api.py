@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.api.system_tasks_api import SystemTasksApi  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.system_tasks_api import SystemTasksApi  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestSystemTasksApi(unittest.TestCase):
     """SystemTasksApi unit test stubs"""
 
     def setUp(self):
-        self.api = openapi_client.api.system_tasks_api.SystemTasksApi()  # noqa: E501
+        self.api = vns3api.system_tasks_api.SystemTasksApi()  # noqa: E501
 
     def tearDown(self):
         pass

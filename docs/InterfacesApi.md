@@ -1,4 +1,4 @@
-# openapi_client.InterfacesApi
+# vns3api.InterfacesApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -31,10 +31,10 @@ Delete GRE Interface
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -42,7 +42,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of GRE interface
 
 try:
@@ -94,10 +94,10 @@ Delete System Interface
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -105,7 +105,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of system interface
 
 try:
@@ -157,10 +157,10 @@ Describe system edge GRE endpoints
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -168,7 +168,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_edge_gre_endpoints()
@@ -215,10 +215,10 @@ Get GRE interface details by id or name
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -226,7 +226,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of interface
 
 try:
@@ -278,10 +278,10 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -289,7 +289,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_interfaces()
@@ -336,10 +336,10 @@ Get interface details by name
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -347,7 +347,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of interface
 
 try:
@@ -399,10 +399,10 @@ Describe system interfaces
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -410,7 +410,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_system_interfaces()
@@ -457,10 +457,10 @@ Take action on interfaces. Only one action can be taken per request.
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -468,8 +468,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
-inline_object43 = openapi_client.InlineObject43() # InlineObject43 | 
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
+inline_object43 = vns3api.InlineObject43() # InlineObject43 | 
 
 try:
     api_response = api_instance.post_action_interfaces(inline_object43)
@@ -520,10 +520,10 @@ Create new edge GRE interface
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -531,8 +531,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
-gre_endpoint_params = openapi_client.GREEndpointParams() # GREEndpointParams | 
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
+gre_endpoint_params = vns3api.GREEndpointParams() # GREEndpointParams | 
 
 try:
     api_response = api_instance.post_create_gre_endpoint(gre_endpoint_params)
@@ -583,10 +583,10 @@ Create new system interface
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -594,8 +594,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
-system_interface = openapi_client.SystemInterface() # SystemInterface | 
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
+system_interface = vns3api.SystemInterface() # SystemInterface | 
 
 try:
     api_response = api_instance.post_create_system_interface(system_interface)
@@ -646,10 +646,10 @@ Update GRE interface
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -657,9 +657,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of interface
-gre_endpoint_params = openapi_client.GREEndpointParams() # GREEndpointParams | 
+gre_endpoint_params = vns3api.GREEndpointParams() # GREEndpointParams | 
 
 try:
     api_response = api_instance.put_update_gre_endpoint(id, gre_endpoint_params)
@@ -711,10 +711,10 @@ Update system interface
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -722,9 +722,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.InterfacesApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of interface
-system_interface = openapi_client.SystemInterface() # SystemInterface | 
+system_interface = vns3api.SystemInterface() # SystemInterface | 
 
 try:
     api_response = api_instance.put_update_system_interface(id, system_interface)

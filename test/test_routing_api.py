@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.api.routing_api import RoutingApi  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.routing_api import RoutingApi  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestRoutingApi(unittest.TestCase):
     """RoutingApi unit test stubs"""
 
     def setUp(self):
-        self.api = openapi_client.api.routing_api.RoutingApi()  # noqa: E501
+        self.api = vns3api.routing_api.RoutingApi()  # noqa: E501
 
     def tearDown(self):
         pass

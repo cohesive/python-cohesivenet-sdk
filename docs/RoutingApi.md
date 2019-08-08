@@ -1,4 +1,4 @@
-# openapi_client.RoutingApi
+# vns3api.RoutingApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -22,10 +22,10 @@ Delete Route
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -33,7 +33,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.RoutingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.RoutingApi(vns3api.ApiClient(configuration))
 id = 56 # int | numerical ID for route
 
 try:
@@ -85,10 +85,10 @@ Describes routes that this manager has access to via its network interfaces (vir
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -96,7 +96,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.RoutingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.RoutingApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_routes()
@@ -143,10 +143,10 @@ Pushes routes that this manager has access to via its network interfaces (virtua
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -154,8 +154,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.RoutingApi(openapi_client.ApiClient(configuration))
-inline_object42 = openapi_client.InlineObject42() # InlineObject42 | 
+api_instance = vns3api.RoutingApi(vns3api.ApiClient(configuration))
+inline_object42 = vns3api.InlineObject42() # InlineObject42 | 
 
 try:
     api_response = api_instance.post_create_route(inline_object42)

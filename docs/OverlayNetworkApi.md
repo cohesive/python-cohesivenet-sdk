@@ -1,4 +1,4 @@
-# openapi_client.OverlayNetworkApi
+# vns3api.OverlayNetworkApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -33,10 +33,10 @@ For deleting individual clientpack tags
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -44,9 +44,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object21 = openapi_client.InlineObject21() # InlineObject21 | 
+inline_object21 = vns3api.InlineObject21() # InlineObject21 | 
 
 try:
     api_response = api_instance.delete_clientpack_tag(name, inline_object21)
@@ -99,10 +99,10 @@ Returns detailed information about all of the clientpacks in the topology.  If m
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -110,7 +110,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | Filter client packs by name
 
 try:
@@ -162,10 +162,10 @@ Returns detailed information about all of the clientpacks in the topology. If ma
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -173,7 +173,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 sorted = False # bool | Sort by IP address (optional) (default to False)
 
 try:
@@ -225,10 +225,10 @@ Describe overlay clients
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -236,7 +236,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_clients_status()
@@ -284,10 +284,10 @@ Provides information about any connected subnets.
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -295,7 +295,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 extended_output = False # bool | Receive verbose information about the connected subnets. (optional) (default to False)
 
 try:
@@ -345,10 +345,10 @@ Returns clientpack file. Clientpacks are files with the necessary information an
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -356,8 +356,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
-inline_object16 = openapi_client.InlineObject16() # InlineObject16 | 
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+inline_object16 = vns3api.InlineObject16() # InlineObject16 | 
 
 try:
     api_response = api_instance.get_download_clientpack(inline_object16)
@@ -408,10 +408,10 @@ Get next sequential client pack. Provides sufficient information to call GET /cl
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -419,8 +419,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
-inline_object17 = openapi_client.InlineObject17() # InlineObject17 |  (optional)
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+inline_object17 = vns3api.InlineObject17() # InlineObject17 |  (optional)
 
 try:
     api_response = api_instance.post_calc_next_clientpack(inline_object17=inline_object17)
@@ -471,10 +471,10 @@ For tagging individual clientpacks.
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -482,9 +482,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object20 = openapi_client.InlineObject20() # InlineObject20 | 
+inline_object20 = vns3api.InlineObject20() # InlineObject20 | 
 
 try:
     api_response = api_instance.post_clientpack_tag(name, inline_object20)
@@ -537,10 +537,10 @@ For resetting all of the connections of clients connected to the VNS3 Controller
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -548,7 +548,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.post_reset_all_clients()
@@ -596,10 +596,10 @@ For resetting the connection of a client to a VNS3 Controller
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -607,8 +607,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
-inline_object18 = openapi_client.InlineObject18() # InlineObject18 | 
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+inline_object18 = vns3api.InlineObject18() # InlineObject18 | 
 
 try:
     api_response = api_instance.post_reset_client(inline_object18)
@@ -659,10 +659,10 @@ Incrementally add new clientpacks for use
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -670,8 +670,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
-inline_object15 = openapi_client.InlineObject15() # InlineObject15 | 
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+inline_object15 = vns3api.InlineObject15() # InlineObject15 | 
 
 try:
     api_response = api_instance.put_add_clientpacks(inline_object15)
@@ -722,10 +722,10 @@ Change properties of clientpacks; enabling or disabling, checking in or out, or 
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -733,8 +733,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
-unknown_base_type = openapi_client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+unknown_base_type = vns3api.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
     api_response = api_instance.put_clientpack(unknown_base_type)
@@ -786,10 +786,10 @@ Force disconnect client for named clientpack
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -797,9 +797,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object19 = openapi_client.InlineObject19() # InlineObject19 | 
+inline_object19 = vns3api.InlineObject19() # InlineObject19 | 
 
 try:
     api_response = api_instance.put_disconnect_clientpack(name, inline_object19)
@@ -852,10 +852,10 @@ For bulk set of the enabled (true/false) state for all clientpacks and the check
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -863,8 +863,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.OverlayNetworkApi(openapi_client.ApiClient(configuration))
-inline_object14 = openapi_client.InlineObject14() # InlineObject14 | 
+api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+inline_object14 = vns3api.InlineObject14() # InlineObject14 | 
 
 try:
     api_response = api_instance.put_update_clientpacks(inline_object14)

@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.models.bgp_peer import BGPPeer  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.models.bgp_peer import BGPPeer  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestBGPPeer(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestBGPPeer(unittest.TestCase):
     def testBGPPeer(self):
         """Test BGPPeer"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = openapi_client.models.bgp_peer.BGPPeer()  # noqa: E501
+        # model = vns3api.models.bgp_peer.BGPPeer()  # noqa: E501
         pass
 
 

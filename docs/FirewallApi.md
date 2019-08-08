@@ -1,4 +1,4 @@
-# openapi_client.FirewallApi
+# vns3api.FirewallApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -31,10 +31,10 @@ Delete Firewall FWSet by name or rules
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -42,8 +42,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object41 = openapi_client.InlineObject41() # InlineObject41 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object41 = vns3api.InlineObject41() # InlineObject41 | 
 
 try:
     api_response = api_instance.delete_firewall_fw_set(inline_object41)
@@ -95,10 +95,10 @@ Delete Firewall Rule
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -106,7 +106,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
 position = 56 # int | index position for firewall rule, 0 is first
 
 try:
@@ -159,10 +159,10 @@ Delete firewall rule
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -170,8 +170,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object35 = openapi_client.InlineObject35() # InlineObject35 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object35 = vns3api.InlineObject35() # InlineObject35 | 
 
 try:
     api_response = api_instance.delete_firewall_rule_by_rule(inline_object35)
@@ -223,10 +223,10 @@ Delete Firewall subgroup by name or rules
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -234,8 +234,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object38 = openapi_client.InlineObject38() # InlineObject38 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object38 = vns3api.InlineObject38() # InlineObject38 | 
 
 try:
     api_response = api_instance.delete_firewall_subgroup(inline_object38)
@@ -288,10 +288,10 @@ Get a list of current firewall rule sets. These are IPsets that allow for faster
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -299,7 +299,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of subgroup (optional)
 verbose = True # bool | True for verbose output on firewall fwsets (optional) (default to True)
 
@@ -353,10 +353,10 @@ Get a list of current firewall rules at subgroup (chained rules)
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -364,7 +364,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of subgroup (optional)
 verbose = True # bool | True for verbose output on firewall rules subgroup (optional) (default to True)
 
@@ -418,10 +418,10 @@ Get a list of current firewall rules
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -429,7 +429,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_firewall_rules()
@@ -477,10 +477,10 @@ Create a new firewall FWSet for fast rule matching
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -488,8 +488,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object40 = openapi_client.InlineObject40() # InlineObject40 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object40 = vns3api.InlineObject40() # InlineObject40 | 
 
 try:
     api_response = api_instance.post_create_firewall_fw_set(inline_object40)
@@ -541,10 +541,10 @@ Adds a firewall rule to the VNS3 Controller's firewall
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -552,8 +552,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object34 = openapi_client.InlineObject34() # InlineObject34 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object34 = vns3api.InlineObject34() # InlineObject34 | 
 
 try:
     api_response = api_instance.post_create_firewall_rule(inline_object34)
@@ -605,10 +605,10 @@ Create a new firewall subgroup rules (rule chain)
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -616,8 +616,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object37 = openapi_client.InlineObject37() # InlineObject37 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object37 = vns3api.InlineObject37() # InlineObject37 | 
 
 try:
     api_response = api_instance.post_create_firewall_subgroup_rule(inline_object37)
@@ -669,10 +669,10 @@ Reinitialize all Firewall FWSet
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -680,8 +680,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object39 = openapi_client.InlineObject39() # InlineObject39 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object39 = vns3api.InlineObject39() # InlineObject39 | 
 
 try:
     api_instance.put_reinitialize_fw_sets(inline_object39)
@@ -731,10 +731,10 @@ Reinitialize Firewall subgroups
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -742,8 +742,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.FirewallApi(openapi_client.ApiClient(configuration))
-inline_object36 = openapi_client.InlineObject36() # InlineObject36 | 
+api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+inline_object36 = vns3api.InlineObject36() # InlineObject36 | 
 
 try:
     api_instance.put_reinitialize_subgroups(inline_object36)

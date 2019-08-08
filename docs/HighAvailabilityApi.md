@@ -1,4 +1,4 @@
-# openapi_client.HighAvailabilityApi
+# vns3api.HighAvailabilityApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -27,10 +27,10 @@ Get the unique ID this controller in HA configuration
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -38,7 +38,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_ha_id()
@@ -85,10 +85,10 @@ Get HA status for given ID
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -96,7 +96,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | ID for controller in HA configuration
 
 try:
@@ -148,10 +148,10 @@ Download sync file from HA Primary
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -159,7 +159,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | ID for controller in HA configuration
 sync_uuid = 'sync_uuid_example' # str | ID for HA sync
 
@@ -214,10 +214,10 @@ Get HA sync status for given ID
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -225,7 +225,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | ID for controller in HA configuration
 sync_uuid = 'sync_uuid_example' # str | ID for HA sync
 
@@ -280,10 +280,10 @@ Initialise HA
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -291,8 +291,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
-inline_object44 = openapi_client.InlineObject44() # InlineObject44 | 
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
+inline_object44 = vns3api.InlineObject44() # InlineObject44 | 
 
 try:
     api_response = api_instance.post_init_ha(inline_object44)
@@ -344,10 +344,10 @@ Initiate a sync creation on HA Primary
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -355,8 +355,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
-inline_object45 = openapi_client.InlineObject45() # InlineObject45 | 
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
+inline_object45 = vns3api.InlineObject45() # InlineObject45 | 
 
 try:
     api_response = api_instance.post_sync_ha(inline_object45)
@@ -408,10 +408,10 @@ Activate the HA switchover
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -419,8 +419,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
-inline_object46 = openapi_client.InlineObject46() # InlineObject46 | 
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
+inline_object46 = vns3api.InlineObject46() # InlineObject46 | 
 
 try:
     api_response = api_instance.put_ha_activate(inline_object46)
@@ -471,10 +471,10 @@ Upload a sync file to HA Backup
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -482,7 +482,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.HighAvailabilityApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
 body = '/path/to/file' # file | Sync file
 
 try:

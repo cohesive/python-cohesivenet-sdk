@@ -1,4 +1,4 @@
-# openapi_client.MonitoringAndAlertingApi
+# vns3api.MonitoringAndAlertingApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -26,10 +26,10 @@ Delete defined alert
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -37,7 +37,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.MonitoringAndAlertingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
 id = 56 # int | ID of alert
 
 try:
@@ -88,10 +88,10 @@ Retrieve details for single alert
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -99,7 +99,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.MonitoringAndAlertingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
 id = 56 # int | ID of alert
 
 try:
@@ -150,10 +150,10 @@ Retrieve all alerts
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -161,7 +161,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.MonitoringAndAlertingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_alerts()
@@ -208,10 +208,10 @@ Define new alert
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -219,8 +219,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.MonitoringAndAlertingApi(openapi_client.ApiClient(configuration))
-inline_object47 = openapi_client.InlineObject47() # InlineObject47 | 
+api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
+inline_object47 = vns3api.InlineObject47() # InlineObject47 | 
 
 try:
     api_response = api_instance.post_define_new_alert(inline_object47)
@@ -271,10 +271,10 @@ Send test alert for this defined alert
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -282,7 +282,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.MonitoringAndAlertingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
 id = 56 # int | ID of alert
 
 try:
@@ -333,10 +333,10 @@ Toggle enabled property on alert
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -344,7 +344,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.MonitoringAndAlertingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
 id = 56 # int | ID of alert
 
 try:
@@ -395,10 +395,10 @@ Edit defined alert
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -406,9 +406,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.MonitoringAndAlertingApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
 id = 56 # int | ID of alert
-inline_object48 = openapi_client.InlineObject48() # InlineObject48 | 
+inline_object48 = vns3api.InlineObject48() # InlineObject48 | 
 
 try:
     api_response = api_instance.put_update_alert(id, inline_object48)

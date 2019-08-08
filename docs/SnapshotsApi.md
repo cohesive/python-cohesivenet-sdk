@@ -1,4 +1,4 @@
-# openapi_client.SnapshotsApi
+# vns3api.SnapshotsApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -24,10 +24,10 @@ Delete named snapshot
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -35,7 +35,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.SnapshotsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.SnapshotsApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | Unique name for snapshot
 
 try:
@@ -88,10 +88,10 @@ Download snapshot file
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -99,7 +99,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.SnapshotsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.SnapshotsApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | Unique name for snapshot
 
 try:
@@ -152,10 +152,10 @@ get list of snapshots
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -163,7 +163,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.SnapshotsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.SnapshotsApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_snapshots()
@@ -211,10 +211,10 @@ Create a new snapshot
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -222,8 +222,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.SnapshotsApi(openapi_client.ApiClient(configuration))
-inline_object54 = openapi_client.InlineObject54() # InlineObject54 |  (optional)
+api_instance = vns3api.SnapshotsApi(vns3api.ApiClient(configuration))
+inline_object54 = vns3api.InlineObject54() # InlineObject54 |  (optional)
 
 try:
     api_response = api_instance.post_create_snapshot(inline_object54=inline_object54)
@@ -274,10 +274,10 @@ Import snapshot into the manager and triggers a reboot for the Configuration to 
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -285,7 +285,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.SnapshotsApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.SnapshotsApi(vns3api.ApiClient(configuration))
 body = '/path/to/file' # file | Snapshot file
 
 try:

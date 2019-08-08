@@ -1,4 +1,4 @@
-# openapi_client.ConfigurationApi
+# vns3api.ConfigurationApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -29,10 +29,10 @@ Describe Runtime Configuration for VNS3 Controller
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -40,7 +40,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_config()
@@ -87,10 +87,10 @@ Returns status of whether cryptographic credentials, which are used to provide  
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -98,7 +98,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_keyset()
@@ -145,10 +145,10 @@ Alias for GET /config
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -156,7 +156,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_runtime()
@@ -202,10 +202,10 @@ Get status for ssl installation task
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -213,7 +213,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
 uuid = 'uuid_example' # str | uuid of install task
 
 try:
@@ -265,10 +265,10 @@ Provides general information about the manager's topology, license state and  ch
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -276,8 +276,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
-inline_object8 = openapi_client.InlineObject8() # InlineObject8 | 
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+inline_object8 = vns3api.InlineObject8() # InlineObject8 | 
 
 try:
     api_response = api_instance.put_config(inline_object8)
@@ -328,10 +328,10 @@ Install new SSL cert and key pair
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -339,7 +339,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
 
 try:
     api_response = api_instance.put_install_ssl_keypair()
@@ -387,10 +387,10 @@ Generates or fetches cryptographic credentials which are used to provide overlay
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -398,8 +398,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
-inline_object11 = openapi_client.InlineObject11() # InlineObject11 | 
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+inline_object11 = vns3api.InlineObject11() # InlineObject11 | 
 
 try:
     api_response = api_instance.put_keyset(inline_object11)
@@ -450,10 +450,10 @@ Update Admin UI settings. Enable/Disable and set credentials.
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -461,8 +461,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
-inline_object5 = openapi_client.InlineObject5() # InlineObject5 | 
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+inline_object5 = vns3api.InlineObject5() # InlineObject5 | 
 
 try:
     api_response = api_instance.put_update_admin_ui(inline_object5)
@@ -513,10 +513,10 @@ Allows you to change the API password/secret key.  To change the Web UI password
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -524,8 +524,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
-inline_object7 = openapi_client.InlineObject7() # InlineObject7 | 
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+inline_object7 = vns3api.InlineObject7() # InlineObject7 | 
 
 try:
     api_response = api_instance.put_update_api_password(inline_object7)
@@ -576,10 +576,10 @@ Upload new SSL cert and key pair
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.rest import ApiException
 from pprint import pprint
-configuration = openapi_client.Configuration()
+configuration = vns3api.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -587,8 +587,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = openapi_client.ConfigurationApi(openapi_client.ApiClient(configuration))
-inline_object10 = openapi_client.InlineObject10() # InlineObject10 | 
+api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+inline_object10 = vns3api.InlineObject10() # InlineObject10 | 
 
 try:
     api_response = api_instance.put_upload_ssl_keypair(inline_object10)

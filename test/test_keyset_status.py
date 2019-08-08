@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import openapi_client
-from openapi_client.models.keyset_status import KeysetStatus  # noqa: E501
-from openapi_client.rest import ApiException
+import vns3api
+from vns3api.models.keyset_status import KeysetStatus  # noqa: E501
+from vns3api.rest import ApiException
 
 
 class TestKeysetStatus(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestKeysetStatus(unittest.TestCase):
     def testKeysetStatus(self):
         """Test KeysetStatus"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = openapi_client.models.keyset_status.KeysetStatus()  # noqa: E501
+        # model = vns3api.models.keyset_status.KeysetStatus()  # noqa: E501
         pass
 
 
