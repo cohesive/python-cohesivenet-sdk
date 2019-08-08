@@ -18,21 +18,21 @@ from __future__ import absolute_import
 __version__ = "1.0.0"
 
 # import apis into sdk package
-from openapi_client.api.bgp_api import BGPApi
-from openapi_client.api.configuration_api import ConfigurationApi
-from openapi_client.api.firewall_api import FirewallApi
-from openapi_client.api.high_availability_api import HighAvailabilityApi
-from openapi_client.api.i_psec_api import IPsecApi
-from openapi_client.api.interfaces_api import InterfacesApi
-from openapi_client.api.licensing_api import LicensingApi
-from openapi_client.api.monitoring_and_alerting_api import MonitoringAndAlertingApi
-from openapi_client.api.network_edge_functions_api import NetworkEdgeFunctionsApi
-from openapi_client.api.overlay_network_api import OverlayNetworkApi
-from openapi_client.api.peering_api import PeeringApi
-from openapi_client.api.routing_api import RoutingApi
-from openapi_client.api.snapshots_api import SnapshotsApi
-from openapi_client.api.system_administration_api import SystemAdministrationApi
-from openapi_client.api.system_tasks_api import SystemTasksApi
+from vns3api.bgp_api import BGPApi
+from vns3api.configuration_api import ConfigurationApi
+from vns3api.firewall_api import FirewallApi
+from vns3api.high_availability_api import HighAvailabilityApi
+from vns3api.i_psec_api import IPsecApi
+from vns3api.interfaces_api import InterfacesApi
+from vns3api.licensing_api import LicensingApi
+from vns3api.monitoring_and_alerting_api import MonitoringAndAlertingApi
+from vns3api.network_edge_functions_api import NetworkEdgeFunctionsApi
+from vns3api.overlay_network_api import OverlayNetworkApi
+from vns3api.peering_api import PeeringApi
+from vns3api.routing_api import RoutingApi
+from vns3api.snapshots_api import SnapshotsApi
+from vns3api.system_administration_api import SystemAdministrationApi
+from vns3api.system_tasks_api import SystemTasksApi
 
 # import ApiClient
 from openapi_client.api_client import ApiClient
