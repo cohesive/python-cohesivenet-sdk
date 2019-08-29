@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **get_license**
-> InlineResponse20013 get_license()
+> InlineResponse20021 get_license()
 
 
 
@@ -48,7 +48,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**InlineResponse20021**](InlineResponse20021.md)
 
 ### Authorization
 
@@ -69,7 +69,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_license_upgrade**
-> InlineResponse20016 put_license_upgrade(body)
+> InlineResponse20024 put_license_upgrade(body)
 
 
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**InlineResponse20024**](InlineResponse20024.md)
 
 ### Authorization
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_set_license_parameters**
-> InlineResponse20015 put_set_license_parameters(inline_object9)
+> InlineResponse20023 put_set_license_parameters(inline_object13)
 
 
 
@@ -155,10 +155,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.LicensingApi(vns3api.ApiClient(configuration))
-inline_object9 = vns3api.InlineObject9() # InlineObject9 | 
+inline_object13 = vns3api.InlineObject13() # InlineObject13 | 
 
 try:
-    api_response = api_instance.put_set_license_parameters(inline_object9)
+    api_response = api_instance.put_set_license_parameters(inline_object13)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling LicensingApi->put_set_license_parameters: %s\n" % e)
@@ -168,11 +168,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object9** | [**InlineObject9**](InlineObject9.md)|  | 
+ **inline_object13** | [**InlineObject13**](InlineObject13.md)|  | 
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**InlineResponse20023**](InlineResponse20023.md)
 
 ### Authorization
 
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_license**
-> InlineResponse20014 upload_license(body)
+> InlineResponse20022 upload_license(body)
 
 
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**InlineResponse20022**](InlineResponse20022.md)
 
 ### Authorization
 

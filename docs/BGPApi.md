@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **delete_ipsec_endpoint_bgp_peer**
-> InlineResponse20045 delete_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id)
+> InlineResponse20030 delete_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id)
 
 
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_ipsec_endpoint_bgp_peer**
-> InlineResponse20045 post_create_ipsec_endpoint_bgp_peer(endpoint_id, inline_object32)
+> InlineResponse20030 post_create_ipsec_endpoint_bgp_peer(endpoint_id, inline_object50)
 
 
 
@@ -100,10 +100,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.BGPApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID for IPsec endpoint
-inline_object32 = vns3api.InlineObject32() # InlineObject32 | 
+inline_object50 = vns3api.InlineObject50() # InlineObject50 | 
 
 try:
-    api_response = api_instance.post_create_ipsec_endpoint_bgp_peer(endpoint_id, inline_object32)
+    api_response = api_instance.post_create_ipsec_endpoint_bgp_peer(endpoint_id, inline_object50)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BGPApi->post_create_ipsec_endpoint_bgp_peer: %s\n" % e)
@@ -114,11 +114,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **int**| ID for IPsec endpoint | 
- **inline_object32** | [**InlineObject32**](InlineObject32.md)|  | 
+ **inline_object50** | [**InlineObject50**](InlineObject50.md)|  | 
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_edit_ipsec_endpoint_bgp_peer**
-> InlineResponse20045 put_edit_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id, inline_object33)
+> InlineResponse20030 put_edit_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id, inline_object51)
 
 
 
@@ -166,10 +166,10 @@ configuration.host = "https://vns3-host:8000/api"
 api_instance = vns3api.BGPApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID for IPsec endpoint
 bgp_peer_id = 56 # int | ID for BGP peer
-inline_object33 = vns3api.InlineObject33() # InlineObject33 | 
+inline_object51 = vns3api.InlineObject51() # InlineObject51 | 
 
 try:
-    api_response = api_instance.put_edit_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id, inline_object33)
+    api_response = api_instance.put_edit_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id, inline_object51)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BGPApi->put_edit_ipsec_endpoint_bgp_peer: %s\n" % e)
@@ -181,11 +181,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **int**| ID for IPsec endpoint | 
  **bgp_peer_id** | **int**| ID for BGP peer | 
- **inline_object33** | [**InlineObject33**](InlineObject33.md)|  | 
+ **inline_object51** | [**InlineObject51**](InlineObject51.md)|  | 
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 

@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **delete_clientpack_tag**
-> InlineResponse20038 delete_clientpack_tag(name, inline_object21)
+> InlineResponse20055 delete_clientpack_tag(name, inline_object37)
 
 
 
@@ -46,10 +46,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object21 = vns3api.InlineObject21() # InlineObject21 | 
+inline_object37 = vns3api.InlineObject37() # InlineObject37 | 
 
 try:
-    api_response = api_instance.delete_clientpack_tag(name, inline_object21)
+    api_response = api_instance.delete_clientpack_tag(name, inline_object37)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->delete_clientpack_tag: %s\n" % e)
@@ -60,11 +60,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of clientpack, typically IP address snake cased | 
- **inline_object21** | [**InlineObject21**](InlineObject21.md)|  | 
+ **inline_object37** | [**InlineObject37**](InlineObject37.md)|  | 
 
 ### Return type
 
-[**InlineResponse20038**](InlineResponse20038.md)
+[**InlineResponse20055**](InlineResponse20055.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clientpack**
-> InlineResponse20032 get_clientpack(name)
+> InlineResponse20049 get_clientpack(name)
 
 
 
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**InlineResponse20049**](InlineResponse20049.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clientpacks**
-> InlineResponse20029 get_clientpacks(sorted=sorted)
+> InlineResponse20046 get_clientpacks(sorted=sorted)
 
 
 
@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20029**](InlineResponse20029.md)
+[**InlineResponse20046**](InlineResponse20046.md)
 
 ### Authorization
 
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clients_status**
-> InlineResponse20025 get_clients_status()
+> InlineResponse20044 get_clients_status()
 
 
 
@@ -250,7 +250,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**InlineResponse20044**](InlineResponse20044.md)
 
 ### Authorization
 
@@ -265,14 +265,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_connected_subnets**
-> InlineResponse20028 get_connected_subnets(extended_output=extended_output)
+> InlineResponse20045 get_connected_subnets(extended_output=extended_output)
 
 
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20028**](InlineResponse20028.md)
+[**InlineResponse20045**](InlineResponse20045.md)
 
 ### Authorization
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_download_clientpack**
-> file get_download_clientpack(inline_object16)
+> file get_download_clientpack(inline_object32)
 
 
 
@@ -357,10 +357,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object16 = vns3api.InlineObject16() # InlineObject16 | 
+inline_object32 = vns3api.InlineObject32() # InlineObject32 | 
 
 try:
-    api_response = api_instance.get_download_clientpack(inline_object16)
+    api_response = api_instance.get_download_clientpack(inline_object32)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->get_download_clientpack: %s\n" % e)
@@ -370,7 +370,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object16** | [**InlineObject16**](InlineObject16.md)|  | 
+ **inline_object32** | [**InlineObject32**](InlineObject32.md)|  | 
 
 ### Return type
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_calc_next_clientpack**
-> InlineResponse20033 post_calc_next_clientpack(inline_object17=inline_object17)
+> InlineResponse20050 post_calc_next_clientpack(inline_object33=inline_object33)
 
 
 
@@ -420,10 +420,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object17 = vns3api.InlineObject17() # InlineObject17 |  (optional)
+inline_object33 = vns3api.InlineObject33() # InlineObject33 |  (optional)
 
 try:
-    api_response = api_instance.post_calc_next_clientpack(inline_object17=inline_object17)
+    api_response = api_instance.post_calc_next_clientpack(inline_object33=inline_object33)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->post_calc_next_clientpack: %s\n" % e)
@@ -433,11 +433,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object17** | [**InlineObject17**](InlineObject17.md)|  | [optional] 
+ **inline_object33** | [**InlineObject33**](InlineObject33.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20033**](InlineResponse20033.md)
+[**InlineResponse20050**](InlineResponse20050.md)
 
 ### Authorization
 
@@ -459,7 +459,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_clientpack_tag**
-> InlineResponse20037 post_clientpack_tag(name, inline_object20)
+> InlineResponse20054 post_clientpack_tag(name, inline_object36)
 
 
 
@@ -484,10 +484,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object20 = vns3api.InlineObject20() # InlineObject20 | 
+inline_object36 = vns3api.InlineObject36() # InlineObject36 | 
 
 try:
-    api_response = api_instance.post_clientpack_tag(name, inline_object20)
+    api_response = api_instance.post_clientpack_tag(name, inline_object36)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->post_clientpack_tag: %s\n" % e)
@@ -498,11 +498,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of clientpack, typically IP address snake cased | 
- **inline_object20** | [**InlineObject20**](InlineObject20.md)|  | 
+ **inline_object36** | [**InlineObject36**](InlineObject36.md)|  | 
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**InlineResponse20054**](InlineResponse20054.md)
 
 ### Authorization
 
@@ -525,7 +525,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_reset_all_clients**
-> InlineResponse20035 post_reset_all_clients()
+> InlineResponse20052 post_reset_all_clients()
 
 
 
@@ -562,7 +562,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20035**](InlineResponse20035.md)
+[**InlineResponse20052**](InlineResponse20052.md)
 
 ### Authorization
 
@@ -584,7 +584,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_reset_client**
-> InlineResponse20034 post_reset_client(inline_object18)
+> InlineResponse20051 post_reset_client(inline_object34)
 
 
 
@@ -608,10 +608,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object18 = vns3api.InlineObject18() # InlineObject18 | 
+inline_object34 = vns3api.InlineObject34() # InlineObject34 | 
 
 try:
-    api_response = api_instance.post_reset_client(inline_object18)
+    api_response = api_instance.post_reset_client(inline_object34)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->post_reset_client: %s\n" % e)
@@ -621,11 +621,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object18** | [**InlineObject18**](InlineObject18.md)|  | 
+ **inline_object34** | [**InlineObject34**](InlineObject34.md)|  | 
 
 ### Return type
 
-[**InlineResponse20034**](InlineResponse20034.md)
+[**InlineResponse20051**](InlineResponse20051.md)
 
 ### Authorization
 
@@ -647,7 +647,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_add_clientpacks**
-> InlineResponse20031 put_add_clientpacks(inline_object15)
+> InlineResponse20048 put_add_clientpacks(inline_object31)
 
 
 
@@ -671,10 +671,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object15 = vns3api.InlineObject15() # InlineObject15 | 
+inline_object31 = vns3api.InlineObject31() # InlineObject31 | 
 
 try:
-    api_response = api_instance.put_add_clientpacks(inline_object15)
+    api_response = api_instance.put_add_clientpacks(inline_object31)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->put_add_clientpacks: %s\n" % e)
@@ -684,11 +684,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object15** | [**InlineObject15**](InlineObject15.md)|  | 
+ **inline_object31** | [**InlineObject31**](InlineObject31.md)|  | 
 
 ### Return type
 
-[**InlineResponse20031**](InlineResponse20031.md)
+[**InlineResponse20048**](InlineResponse20048.md)
 
 ### Authorization
 
@@ -774,7 +774,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_disconnect_clientpack**
-> InlineResponse20036 put_disconnect_clientpack(name, inline_object19)
+> InlineResponse20053 put_disconnect_clientpack(name, inline_object35)
 
 
 
@@ -799,10 +799,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
 name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object19 = vns3api.InlineObject19() # InlineObject19 | 
+inline_object35 = vns3api.InlineObject35() # InlineObject35 | 
 
 try:
-    api_response = api_instance.put_disconnect_clientpack(name, inline_object19)
+    api_response = api_instance.put_disconnect_clientpack(name, inline_object35)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->put_disconnect_clientpack: %s\n" % e)
@@ -813,11 +813,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of clientpack, typically IP address snake cased | 
- **inline_object19** | [**InlineObject19**](InlineObject19.md)|  | 
+ **inline_object35** | [**InlineObject35**](InlineObject35.md)|  | 
 
 ### Return type
 
-[**InlineResponse20036**](InlineResponse20036.md)
+[**InlineResponse20053**](InlineResponse20053.md)
 
 ### Authorization
 
@@ -840,7 +840,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_clientpacks**
-> InlineResponse20030 put_update_clientpacks(inline_object14)
+> InlineResponse20047 put_update_clientpacks(inline_object30)
 
 
 
@@ -864,10 +864,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object14 = vns3api.InlineObject14() # InlineObject14 | 
+inline_object30 = vns3api.InlineObject30() # InlineObject30 | 
 
 try:
-    api_response = api_instance.put_update_clientpacks(inline_object14)
+    api_response = api_instance.put_update_clientpacks(inline_object30)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->put_update_clientpacks: %s\n" % e)
@@ -877,11 +877,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object14** | [**InlineObject14**](InlineObject14.md)|  | 
+ **inline_object30** | [**InlineObject30**](InlineObject30.md)|  | 
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**InlineResponse20047**](InlineResponse20047.md)
 
 ### Authorization
 

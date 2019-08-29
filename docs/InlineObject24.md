@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Manager ID as an integer of the the manager you are peering with,  NOT the id of the one you are calling from  | 
-**name** | **str** | IP address or host name of the one you are peering with. | 
-**overlay_mtu** | **int** | link MTU between 500 and 4800 | [optional] 
-**force** | **bool** | Setting false will NOT finalize the peering operation.  A peer \&quot;reconfigure\&quot; call would then be required. Default is true  | [optional] 
+**rules** | **str** | Chained firewall rules seperated by \\n | [optional] 
+**name** | **str** | &#39;name of the subgroup. Must be valid chain that begins with one of the following: PRE_C_, PST_C_, FWD_C_, INP_C_, OUT_C_.&#39;   | [optional] 
+**position** | **int** | Position which the chain will be inserted in the list of Firewall rules.  Default is 0, which is first in the ruleset  | [optional] 
+**flush** | **bool** |  | [optional] [default to True]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

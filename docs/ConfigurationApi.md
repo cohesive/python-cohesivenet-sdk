@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **get_config**
-> InlineResponse20011 get_config()
+> InlineResponse20013 get_config()
 
 
 
@@ -54,7 +54,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_keyset**
-> InlineResponse20020 get_keyset()
+> InlineResponse20019 get_keyset()
 
 
 
@@ -112,7 +112,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**InlineResponse20019**](InlineResponse20019.md)
 
 ### Authorization
 
@@ -133,7 +133,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_runtime**
-> InlineResponse20011 get_runtime()
+> InlineResponse20015 get_runtime()
 
 
 
@@ -170,7 +170,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse20015**](InlineResponse20015.md)
 
 ### Authorization
 
@@ -190,7 +190,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ssl_install_status**
-> InlineResponse20019 get_ssl_install_status(uuid)
+> InlineResponse20018 get_ssl_install_status(uuid)
 
 
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**InlineResponse20018**](InlineResponse20018.md)
 
 ### Authorization
 
@@ -246,14 +246,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_config**
-> InlineResponse20012 put_config(inline_object8)
+> InlineResponse20014 put_config(inline_object10)
 
 
 
@@ -277,10 +277,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object8 = vns3api.InlineObject8() # InlineObject8 | 
+inline_object10 = vns3api.InlineObject10() # InlineObject10 | 
 
 try:
-    api_response = api_instance.put_config(inline_object8)
+    api_response = api_instance.put_config(inline_object10)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_config: %s\n" % e)
@@ -290,11 +290,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object8** | [**InlineObject8**](InlineObject8.md)|  | 
+ **inline_object10** | [**InlineObject10**](InlineObject10.md)|  | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**InlineResponse20014**](InlineResponse20014.md)
 
 ### Authorization
 
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_install_ssl_keypair**
-> InlineResponse20018 put_install_ssl_keypair()
+> InlineResponse20017 put_install_ssl_keypair()
 
 
 
@@ -353,7 +353,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**InlineResponse20017**](InlineResponse20017.md)
 
 ### Authorization
 
@@ -375,7 +375,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_keyset**
-> InlineResponse20021 put_keyset(inline_object11)
+> InlineResponse20020 put_keyset(inline_object12)
 
 
 
@@ -399,10 +399,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object11 = vns3api.InlineObject11() # InlineObject11 | 
+inline_object12 = vns3api.InlineObject12() # InlineObject12 | 
 
 try:
-    api_response = api_instance.put_keyset(inline_object11)
+    api_response = api_instance.put_keyset(inline_object12)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_keyset: %s\n" % e)
@@ -412,11 +412,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object11** | [**InlineObject11**](InlineObject11.md)|  | 
+ **inline_object12** | [**InlineObject12**](InlineObject12.md)|  | 
 
 ### Return type
 
-[**InlineResponse20021**](InlineResponse20021.md)
+[**InlineResponse20020**](InlineResponse20020.md)
 
 ### Authorization
 
@@ -438,7 +438,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_admin_ui**
-> InlineResponse2008 put_update_admin_ui(inline_object5)
+> InlineResponse20011 put_update_admin_ui(inline_object8)
 
 
 
@@ -462,10 +462,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object5 = vns3api.InlineObject5() # InlineObject5 | 
+inline_object8 = vns3api.InlineObject8() # InlineObject8 | 
 
 try:
-    api_response = api_instance.put_update_admin_ui(inline_object5)
+    api_response = api_instance.put_update_admin_ui(inline_object8)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_update_admin_ui: %s\n" % e)
@@ -475,11 +475,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object5** | [**InlineObject5**](InlineObject5.md)|  | 
+ **inline_object8** | [**InlineObject8**](InlineObject8.md)|  | 
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_api_password**
-> InlineResponse20010 put_update_api_password(inline_object7)
+> InlineResponse20012 put_update_api_password(inline_object9)
 
 
 
@@ -525,10 +525,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object7 = vns3api.InlineObject7() # InlineObject7 | 
+inline_object9 = vns3api.InlineObject9() # InlineObject9 | 
 
 try:
-    api_response = api_instance.put_update_api_password(inline_object7)
+    api_response = api_instance.put_update_api_password(inline_object9)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_update_api_password: %s\n" % e)
@@ -538,11 +538,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object7** | [**InlineObject7**](InlineObject7.md)|  | 
+ **inline_object9** | [**InlineObject9**](InlineObject9.md)|  | 
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse20012**](InlineResponse20012.md)
 
 ### Authorization
 
@@ -564,7 +564,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_upload_ssl_keypair**
-> InlineResponse20017 put_upload_ssl_keypair(inline_object10)
+> InlineResponse20016 put_upload_ssl_keypair(inline_object11)
 
 
 
@@ -588,10 +588,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object10 = vns3api.InlineObject10() # InlineObject10 | 
+inline_object11 = vns3api.InlineObject11() # InlineObject11 | 
 
 try:
-    api_response = api_instance.put_upload_ssl_keypair(inline_object10)
+    api_response = api_instance.put_upload_ssl_keypair(inline_object11)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_upload_ssl_keypair: %s\n" % e)
@@ -601,11 +601,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object10** | [**InlineObject10**](InlineObject10.md)|  | 
+ **inline_object11** | [**InlineObject11**](InlineObject11.md)|  | 
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**InlineResponse20016**](InlineResponse20016.md)
 
 ### Authorization
 

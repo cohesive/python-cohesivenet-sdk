@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **delete_route**
-> InlineResponse20067 delete_route(id)
+> InlineResponse20043 delete_route(id)
 
 
 
@@ -51,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20067**](InlineResponse20067.md)
+[**InlineResponse20043**](InlineResponse20043.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_routes**
-> InlineResponse20055 get_routes()
+> InlineResponse20041 get_routes()
 
 
 
@@ -110,7 +110,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20055**](InlineResponse20055.md)
+[**InlineResponse20041**](InlineResponse20041.md)
 
 ### Authorization
 
@@ -131,7 +131,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_route**
-> InlineResponse20056 post_create_route(inline_object42)
+> InlineResponse20042 post_create_route(inline_object29)
 
 
 
@@ -155,10 +155,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.RoutingApi(vns3api.ApiClient(configuration))
-inline_object42 = vns3api.InlineObject42() # InlineObject42 | 
+inline_object29 = vns3api.InlineObject29() # InlineObject29 | 
 
 try:
-    api_response = api_instance.post_create_route(inline_object42)
+    api_response = api_instance.post_create_route(inline_object29)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RoutingApi->post_create_route: %s\n" % e)
@@ -168,11 +168,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object42** | [**InlineObject42**](InlineObject42.md)|  | 
+ **inline_object29** | [**InlineObject29**](InlineObject29.md)|  | 
 
 ### Return type
 
-[**InlineResponse20056**](InlineResponse20056.md)
+[**InlineResponse20042**](InlineResponse20042.md)
 
 ### Authorization
 

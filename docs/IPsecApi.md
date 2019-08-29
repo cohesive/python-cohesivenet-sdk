@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **delete_ipsec_endpoint**
-> InlineResponse20043 delete_ipsec_endpoint(endpoint_id)
+> InlineResponse20031 delete_ipsec_endpoint(endpoint_id)
 
 
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**InlineResponse20031**](InlineResponse20031.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_ipsec_endpoint_tunnel**
-> InlineResponse20045 delete_ipsec_endpoint_tunnel(endpoint_id, tunnel_id)
+> InlineResponse20030 delete_ipsec_endpoint_tunnel(endpoint_id, tunnel_id)
 
 
 
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipsec**
-> InlineResponse20042 get_ipsec()
+> InlineResponse20027 get_ipsec()
 
 
 
@@ -184,7 +184,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**InlineResponse20027**](InlineResponse20027.md)
 
 ### Authorization
 
@@ -205,7 +205,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipsec_endpoint**
-> InlineResponse20045 get_ipsec_endpoint(endpoint_id)
+> InlineResponse20030 get_ipsec_endpoint(endpoint_id)
 
 
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipsec_status**
-> InlineResponse20024 get_ipsec_status()
+> InlineResponse20025 get_ipsec_status()
 
 
 
@@ -304,7 +304,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20024**](InlineResponse20024.md)
+[**InlineResponse20025**](InlineResponse20025.md)
 
 ### Authorization
 
@@ -319,14 +319,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_link_history**
-> InlineResponse20027 get_link_history(inline_object13=inline_object13)
+> InlineResponse20026 get_link_history(inline_object14=inline_object14)
 
 
 
@@ -350,10 +350,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object13 = vns3api.InlineObject13() # InlineObject13 |  (optional)
+inline_object14 = vns3api.InlineObject14() # InlineObject14 |  (optional)
 
 try:
-    api_response = api_instance.get_link_history(inline_object13=inline_object13)
+    api_response = api_instance.get_link_history(inline_object14=inline_object14)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->get_link_history: %s\n" % e)
@@ -363,11 +363,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object13** | [**InlineObject13**](InlineObject13.md)|  | [optional] 
+ **inline_object14** | [**InlineObject14**](InlineObject14.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20027**](InlineResponse20027.md)
+[**InlineResponse20026**](InlineResponse20026.md)
 
 ### Authorization
 
@@ -383,14 +383,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_ipsec_endpoint**
-> InlineResponse20045 post_create_ipsec_endpoint(inline_object28)
+> InlineResponse20030 post_create_ipsec_endpoint(inline_object17)
 
 
 
@@ -414,10 +414,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object28 = vns3api.InlineObject28() # InlineObject28 | 
+inline_object17 = vns3api.InlineObject17() # InlineObject17 | 
 
 try:
-    api_response = api_instance.post_create_ipsec_endpoint(inline_object28)
+    api_response = api_instance.post_create_ipsec_endpoint(inline_object17)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->post_create_ipsec_endpoint: %s\n" % e)
@@ -427,11 +427,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object28** | [**InlineObject28**](InlineObject28.md)|  | 
+ **inline_object17** | [**InlineObject17**](InlineObject17.md)|  | 
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -453,7 +453,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_ipsec_endpoint_tunnel**
-> InlineResponse20045 post_create_ipsec_endpoint_tunnel(endpoint_id, inline_object30)
+> InlineResponse20030 post_create_ipsec_endpoint_tunnel(endpoint_id, inline_object19)
 
 
 
@@ -478,10 +478,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID of ipsec endpoint
-inline_object30 = vns3api.InlineObject30() # InlineObject30 | 
+inline_object19 = vns3api.InlineObject19() # InlineObject19 | 
 
 try:
-    api_response = api_instance.post_create_ipsec_endpoint_tunnel(endpoint_id, inline_object30)
+    api_response = api_instance.post_create_ipsec_endpoint_tunnel(endpoint_id, inline_object19)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->post_create_ipsec_endpoint_tunnel: %s\n" % e)
@@ -492,11 +492,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **int**| ID of ipsec endpoint | 
- **inline_object30** | [**InlineObject30**](InlineObject30.md)|  | 
+ **inline_object19** | [**InlineObject19**](InlineObject19.md)|  | 
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -512,14 +512,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**403** | Permission denied. Max number of tunnels reach |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Permission denied. Max number of tunnels reach |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_restart_ipsec_action**
-> InlineResponse20044 post_restart_ipsec_action(inline_object27)
+> InlineResponse20029 post_restart_ipsec_action(inline_object16)
 
 
 
@@ -543,10 +543,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object27 = vns3api.InlineObject27() # InlineObject27 | 
+inline_object16 = vns3api.InlineObject16() # InlineObject16 | 
 
 try:
-    api_response = api_instance.post_restart_ipsec_action(inline_object27)
+    api_response = api_instance.post_restart_ipsec_action(inline_object16)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->post_restart_ipsec_action: %s\n" % e)
@@ -556,11 +556,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object27** | [**InlineObject27**](InlineObject27.md)|  | 
+ **inline_object16** | [**InlineObject16**](InlineObject16.md)|  | 
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**InlineResponse20029**](InlineResponse20029.md)
 
 ### Authorization
 
@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_edit_ipsec_endpoint**
-> InlineResponse20045 put_edit_ipsec_endpoint(endpoint_id, inline_object29)
+> InlineResponse20030 put_edit_ipsec_endpoint(endpoint_id, inline_object18)
 
 
 
@@ -607,10 +607,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID of the IPsec endpoint
-inline_object29 = vns3api.InlineObject29() # InlineObject29 | 
+inline_object18 = vns3api.InlineObject18() # InlineObject18 | 
 
 try:
-    api_response = api_instance.put_edit_ipsec_endpoint(endpoint_id, inline_object29)
+    api_response = api_instance.put_edit_ipsec_endpoint(endpoint_id, inline_object18)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->put_edit_ipsec_endpoint: %s\n" % e)
@@ -621,11 +621,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **int**| ID of the IPsec endpoint | 
- **inline_object29** | [**InlineObject29**](InlineObject29.md)|  | 
+ **inline_object18** | [**InlineObject18**](InlineObject18.md)|  | 
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -647,7 +647,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_edit_ipsec_endpoint_tunnel**
-> InlineResponse20046 put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, inline_object31)
+> InlineResponse20032 put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, inline_object20)
 
 
 
@@ -673,10 +673,10 @@ configuration.host = "https://vns3-host:8000/api"
 api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
 endpoint_id = 56 # int | ID for IPsec endpoint
 tunnel_id = 56 # int | ID for tunnel
-inline_object31 = vns3api.InlineObject31() # InlineObject31 | 
+inline_object20 = vns3api.InlineObject20() # InlineObject20 | 
 
 try:
-    api_response = api_instance.put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, inline_object31)
+    api_response = api_instance.put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, inline_object20)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->put_edit_ipsec_endpoint_tunnel: %s\n" % e)
@@ -688,11 +688,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpoint_id** | **int**| ID for IPsec endpoint | 
  **tunnel_id** | **int**| ID for tunnel | 
- **inline_object31** | [**InlineObject31**](InlineObject31.md)|  | 
+ **inline_object20** | [**InlineObject20**](InlineObject20.md)|  | 
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**InlineResponse20032**](InlineResponse20032.md)
 
 ### Authorization
 
@@ -714,7 +714,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_ipsec_config**
-> InlineResponse20043 put_ipsec_config(inline_object26)
+> InlineResponse20028 put_ipsec_config(inline_object15)
 
 
 
@@ -738,10 +738,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object26 = vns3api.InlineObject26() # InlineObject26 | 
+inline_object15 = vns3api.InlineObject15() # InlineObject15 | 
 
 try:
-    api_response = api_instance.put_ipsec_config(inline_object26)
+    api_response = api_instance.put_ipsec_config(inline_object15)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->put_ipsec_config: %s\n" % e)
@@ -751,11 +751,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object26** | [**InlineObject26**](InlineObject26.md)|  | 
+ **inline_object15** | [**InlineObject15**](InlineObject15.md)|  | 
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**InlineResponse20028**](InlineResponse20028.md)
 
 ### Authorization
 

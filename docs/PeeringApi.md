@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **delete_peer**
-> InlineResponse20039 delete_peer(peer_id)
+> InlineResponse20059 delete_peer(peer_id)
 
 
 
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**InlineResponse20059**](InlineResponse20059.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_peering_status**
-> InlineResponse20039 get_peering_status()
+> InlineResponse20056 get_peering_status()
 
 
 
@@ -113,7 +113,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**InlineResponse20056**](InlineResponse20056.md)
 
 ### Authorization
 
@@ -134,7 +134,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_peer**
-> InlineResponse20039 post_peer(inline_object25)
+> InlineResponse20059 post_peer(inline_object41)
 
 
 
@@ -158,10 +158,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object25 = vns3api.InlineObject25() # InlineObject25 | 
+inline_object41 = vns3api.InlineObject41() # InlineObject41 | 
 
 try:
-    api_response = api_instance.post_peer(inline_object25)
+    api_response = api_instance.post_peer(inline_object41)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->post_peer: %s\n" % e)
@@ -171,11 +171,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object25** | [**InlineObject25**](InlineObject25.md)|  | 
+ **inline_object41** | [**InlineObject41**](InlineObject41.md)|  | 
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**InlineResponse20059**](InlineResponse20059.md)
 
 ### Authorization
 
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_peer**
-> InlineResponse20039 put_peer(inline_object24)
+> InlineResponse20059 put_peer(inline_object40)
 
 
 
@@ -221,10 +221,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object24 = vns3api.InlineObject24() # InlineObject24 | 
+inline_object40 = vns3api.InlineObject40() # InlineObject40 | 
 
 try:
-    api_response = api_instance.put_peer(inline_object24)
+    api_response = api_instance.put_peer(inline_object40)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->put_peer: %s\n" % e)
@@ -234,11 +234,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object24** | [**InlineObject24**](InlineObject24.md)|  | 
+ **inline_object40** | [**InlineObject40**](InlineObject40.md)|  | 
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**InlineResponse20059**](InlineResponse20059.md)
 
 ### Authorization
 
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_reconfigure_peers**
-> InlineResponse20040 put_reconfigure_peers(inline_object22)
+> InlineResponse20057 put_reconfigure_peers(inline_object38)
 
 
 
@@ -284,10 +284,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object22 = vns3api.InlineObject22() # InlineObject22 | 
+inline_object38 = vns3api.InlineObject38() # InlineObject38 | 
 
 try:
-    api_response = api_instance.put_reconfigure_peers(inline_object22)
+    api_response = api_instance.put_reconfigure_peers(inline_object38)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->put_reconfigure_peers: %s\n" % e)
@@ -297,11 +297,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object22** | [**InlineObject22**](InlineObject22.md)|  | 
+ **inline_object38** | [**InlineObject38**](InlineObject38.md)|  | 
 
 ### Return type
 
-[**InlineResponse20040**](InlineResponse20040.md)
+[**InlineResponse20057**](InlineResponse20057.md)
 
 ### Authorization
 
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_self_peering_id**
-> InlineResponse20041 put_self_peering_id(inline_object23)
+> InlineResponse20058 put_self_peering_id(inline_object39)
 
 
 
@@ -347,10 +347,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object23 = vns3api.InlineObject23() # InlineObject23 | 
+inline_object39 = vns3api.InlineObject39() # InlineObject39 | 
 
 try:
-    api_response = api_instance.put_self_peering_id(inline_object23)
+    api_response = api_instance.put_self_peering_id(inline_object39)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->put_self_peering_id: %s\n" % e)
@@ -360,11 +360,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object23** | [**InlineObject23**](InlineObject23.md)|  | 
+ **inline_object39** | [**InlineObject39**](InlineObject39.md)|  | 
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**InlineResponse20058**](InlineResponse20058.md)
 
 ### Authorization
 

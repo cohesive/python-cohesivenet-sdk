@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **delete_gre_endpoint**
-> InlineResponse20066 delete_gre_endpoint(id)
+> InlineResponse20069 delete_gre_endpoint(id)
 
 
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20066**](InlineResponse20066.md)
+[**InlineResponse20069**](InlineResponse20069.md)
 
 ### Authorization
 
@@ -75,14 +75,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_system_interface**
-> InlineResponse20063 delete_system_interface(id)
+> InlineResponse20066 delete_system_interface(id)
 
 
 
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20063**](InlineResponse20063.md)
+[**InlineResponse20066**](InlineResponse20066.md)
 
 ### Authorization
 
@@ -138,14 +138,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_edge_gre_endpoints**
-> InlineResponse20064 get_edge_gre_endpoints()
+> InlineResponse20067 get_edge_gre_endpoints()
 
 
 
@@ -182,7 +182,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20064**](InlineResponse20064.md)
+[**InlineResponse20067**](InlineResponse20067.md)
 
 ### Authorization
 
@@ -203,7 +203,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_gre_endpoint_details**
-> InlineResponse20065 get_gre_endpoint_details(id)
+> InlineResponse20068 get_gre_endpoint_details(id)
 
 
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20065**](InlineResponse20065.md)
+[**InlineResponse20068**](InlineResponse20068.md)
 
 ### Authorization
 
@@ -259,14 +259,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_interfaces**
-> InlineResponse20057 get_interfaces()
+> InlineResponse20060 get_interfaces()
 
 
 
@@ -303,7 +303,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20057**](InlineResponse20057.md)
+[**InlineResponse20060**](InlineResponse20060.md)
 
 ### Authorization
 
@@ -324,7 +324,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_system_interface_details**
-> InlineResponse20061 get_system_interface_details(id)
+> InlineResponse20064 get_system_interface_details(id)
 
 
 
@@ -365,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20061**](InlineResponse20061.md)
+[**InlineResponse20064**](InlineResponse20064.md)
 
 ### Authorization
 
@@ -380,14 +380,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_system_interfaces**
-> InlineResponse20059 get_system_interfaces()
+> InlineResponse20062 get_system_interfaces()
 
 
 
@@ -424,7 +424,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20059**](InlineResponse20059.md)
+[**InlineResponse20062**](InlineResponse20062.md)
 
 ### Authorization
 
@@ -445,7 +445,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_action_interfaces**
-> InlineResponse20058 post_action_interfaces(inline_object43)
+> InlineResponse20061 post_action_interfaces(inline_object42)
 
 
 
@@ -469,10 +469,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-inline_object43 = vns3api.InlineObject43() # InlineObject43 | 
+inline_object42 = vns3api.InlineObject42() # InlineObject42 | 
 
 try:
-    api_response = api_instance.post_action_interfaces(inline_object43)
+    api_response = api_instance.post_action_interfaces(inline_object42)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->post_action_interfaces: %s\n" % e)
@@ -482,11 +482,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object43** | [**InlineObject43**](InlineObject43.md)|  | 
+ **inline_object42** | [**InlineObject42**](InlineObject42.md)|  | 
 
 ### Return type
 
-[**InlineResponse20058**](InlineResponse20058.md)
+[**InlineResponse20061**](InlineResponse20061.md)
 
 ### Authorization
 
@@ -508,7 +508,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_gre_endpoint**
-> InlineResponse20065 post_create_gre_endpoint(gre_endpoint_params)
+> InlineResponse20068 post_create_gre_endpoint(inline_object43)
 
 
 
@@ -532,10 +532,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-gre_endpoint_params = vns3api.GREEndpointParams() # GREEndpointParams | 
+inline_object43 = vns3api.InlineObject43() # InlineObject43 | 
 
 try:
-    api_response = api_instance.post_create_gre_endpoint(gre_endpoint_params)
+    api_response = api_instance.post_create_gre_endpoint(inline_object43)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->post_create_gre_endpoint: %s\n" % e)
@@ -545,11 +545,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **gre_endpoint_params** | [**GREEndpointParams**](GREEndpointParams.md)|  | 
+ **inline_object43** | [**InlineObject43**](InlineObject43.md)|  | 
 
 ### Return type
 
-[**InlineResponse20065**](InlineResponse20065.md)
+[**InlineResponse20068**](InlineResponse20068.md)
 
 ### Authorization
 
@@ -571,7 +571,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_system_interface**
-> InlineResponse20060 post_create_system_interface(system_interface)
+> InlineResponse20063 post_create_system_interface(body)
 
 
 
@@ -595,10 +595,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-system_interface = vns3api.SystemInterface() # SystemInterface | 
+body = None # object | 
 
 try:
-    api_response = api_instance.post_create_system_interface(system_interface)
+    api_response = api_instance.post_create_system_interface(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->post_create_system_interface: %s\n" % e)
@@ -608,11 +608,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **system_interface** | [**SystemInterface**](SystemInterface.md)|  | 
+ **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20060**](InlineResponse20060.md)
+[**InlineResponse20063**](InlineResponse20063.md)
 
 ### Authorization
 
@@ -634,7 +634,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_gre_endpoint**
-> InlineResponse20065 put_update_gre_endpoint(id, gre_endpoint_params)
+> InlineResponse20068 put_update_gre_endpoint(id, body)
 
 
 
@@ -659,10 +659,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of interface
-gre_endpoint_params = vns3api.GREEndpointParams() # GREEndpointParams | 
+body = None # object | 
 
 try:
-    api_response = api_instance.put_update_gre_endpoint(id, gre_endpoint_params)
+    api_response = api_instance.put_update_gre_endpoint(id, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->put_update_gre_endpoint: %s\n" % e)
@@ -673,11 +673,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| name or id of interface | 
- **gre_endpoint_params** | [**GREEndpointParams**](GREEndpointParams.md)|  | 
+ **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20065**](InlineResponse20065.md)
+[**InlineResponse20068**](InlineResponse20068.md)
 
 ### Authorization
 
@@ -699,7 +699,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_system_interface**
-> InlineResponse20062 put_update_system_interface(id, system_interface)
+> InlineResponse20065 put_update_system_interface(id, body)
 
 
 
@@ -724,10 +724,10 @@ configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
 id = 'id_example' # str | name or id of interface
-system_interface = vns3api.SystemInterface() # SystemInterface | 
+body = None # object | 
 
 try:
-    api_response = api_instance.put_update_system_interface(id, system_interface)
+    api_response = api_instance.put_update_system_interface(id, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->put_update_system_interface: %s\n" % e)
@@ -738,11 +738,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| name or id of interface | 
- **system_interface** | [**SystemInterface**](SystemInterface.md)|  | 
+ **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20062**](InlineResponse20062.md)
+[**InlineResponse20065**](InlineResponse20065.md)
 
 ### Authorization
 

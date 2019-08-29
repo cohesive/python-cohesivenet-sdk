@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **delete_snapshot**
-> InlineResponse20093 delete_snapshot(name)
+> InlineResponse20072 delete_snapshot(name)
 
 
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20093**](InlineResponse20093.md)
+[**InlineResponse20072**](InlineResponse20072.md)
 
 ### Authorization
 
@@ -68,9 +68,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
+**401** | Authentication information missing or invalid |  -  |
 **403** | Operation not allowed |  -  |
 **404** | Not found |  -  |
-**401** | Authentication information missing or invalid |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -132,15 +132,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**401** | Authentication information missing or invalid |  -  |
 **403** | Operation not allowed |  -  |
 **404** | Not found |  -  |
-**401** | Authentication information missing or invalid |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_snapshots**
-> InlineResponse20091 get_snapshots()
+> InlineResponse20070 get_snapshots()
 
 
 
@@ -177,7 +177,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20091**](InlineResponse20091.md)
+[**InlineResponse20070**](InlineResponse20070.md)
 
 ### Authorization
 
@@ -192,14 +192,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**403** | Controller must be licensed first |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Controller must be licensed first |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_snapshot**
-> InlineResponse20092 post_create_snapshot(inline_object54=inline_object54)
+> InlineResponse20071 post_create_snapshot(inline_object44=inline_object44)
 
 
 
@@ -223,10 +223,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.SnapshotsApi(vns3api.ApiClient(configuration))
-inline_object54 = vns3api.InlineObject54() # InlineObject54 |  (optional)
+inline_object44 = vns3api.InlineObject44() # InlineObject44 |  (optional)
 
 try:
-    api_response = api_instance.post_create_snapshot(inline_object54=inline_object54)
+    api_response = api_instance.post_create_snapshot(inline_object44=inline_object44)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SnapshotsApi->post_create_snapshot: %s\n" % e)
@@ -236,11 +236,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object54** | [**InlineObject54**](InlineObject54.md)|  | [optional] 
+ **inline_object44** | [**InlineObject44**](InlineObject44.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20092**](InlineResponse20092.md)
+[**InlineResponse20071**](InlineResponse20071.md)
 
 ### Authorization
 
@@ -255,14 +255,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_import_snapshot**
-> InlineResponse20094 put_import_snapshot(body)
+> InlineResponse20073 put_import_snapshot(body)
 
 
 
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20094**](InlineResponse20094.md)
+[**InlineResponse20073**](InlineResponse20073.md)
 
 ### Authorization
 
@@ -318,8 +318,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

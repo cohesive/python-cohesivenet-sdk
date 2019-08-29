@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **delete_firewall_fw_set**
-> InlineResponse20054 delete_firewall_fw_set(inline_object41)
+> InlineResponse20040 delete_firewall_fw_set(inline_object28)
 
 
 
@@ -43,10 +43,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object41 = vns3api.InlineObject41() # InlineObject41 | 
+inline_object28 = vns3api.InlineObject28() # InlineObject28 | 
 
 try:
-    api_response = api_instance.delete_firewall_fw_set(inline_object41)
+    api_response = api_instance.delete_firewall_fw_set(inline_object28)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->delete_firewall_fw_set: %s\n" % e)
@@ -56,11 +56,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object41** | [**InlineObject41**](InlineObject41.md)|  | 
+ **inline_object28** | [**InlineObject28**](InlineObject28.md)|  | 
 
 ### Return type
 
-[**InlineResponse20054**](InlineResponse20054.md)
+[**InlineResponse20040**](InlineResponse20040.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_firewall_rule_by_position**
-> InlineResponse20050 delete_firewall_rule_by_position(position)
+> InlineResponse20036 delete_firewall_rule_by_position(position)
 
 
 
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20050**](InlineResponse20050.md)
+[**InlineResponse20036**](InlineResponse20036.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_firewall_rule_by_rule**
-> InlineResponse20049 delete_firewall_rule_by_rule(inline_object35)
+> InlineResponse20035 delete_firewall_rule_by_rule(inline_object22)
 
 
 
@@ -171,10 +171,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object35 = vns3api.InlineObject35() # InlineObject35 | 
+inline_object22 = vns3api.InlineObject22() # InlineObject22 | 
 
 try:
-    api_response = api_instance.delete_firewall_rule_by_rule(inline_object35)
+    api_response = api_instance.delete_firewall_rule_by_rule(inline_object22)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->delete_firewall_rule_by_rule: %s\n" % e)
@@ -184,11 +184,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object35** | [**InlineObject35**](InlineObject35.md)|  | 
+ **inline_object22** | [**InlineObject22**](InlineObject22.md)|  | 
 
 ### Return type
 
-[**InlineResponse20049**](InlineResponse20049.md)
+[**InlineResponse20035**](InlineResponse20035.md)
 
 ### Authorization
 
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_firewall_subgroup**
-> InlineResponse20052 delete_firewall_subgroup(inline_object38)
+> InlineResponse20038 delete_firewall_subgroup(inline_object25)
 
 
 
@@ -235,10 +235,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object38 = vns3api.InlineObject38() # InlineObject38 | 
+inline_object25 = vns3api.InlineObject25() # InlineObject25 | 
 
 try:
-    api_response = api_instance.delete_firewall_subgroup(inline_object38)
+    api_response = api_instance.delete_firewall_subgroup(inline_object25)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->delete_firewall_subgroup: %s\n" % e)
@@ -248,11 +248,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object38** | [**InlineObject38**](InlineObject38.md)|  | 
+ **inline_object25** | [**InlineObject25**](InlineObject25.md)|  | 
 
 ### Return type
 
-[**InlineResponse20052**](InlineResponse20052.md)
+[**InlineResponse20038**](InlineResponse20038.md)
 
 ### Authorization
 
@@ -267,16 +267,16 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
-**410** | Resource gone |  -  |
 **401** | Authentication information missing or invalid |  -  |
 **403** | Operation not allowed |  -  |
+**404** | Not found |  -  |
+**410** | Resource gone |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_firewall_fw_sets**
-> InlineResponse20053 get_firewall_fw_sets(name=name, verbose=verbose)
+> InlineResponse20039 get_firewall_fw_sets(name=name, verbose=verbose)
 
 
 
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20053**](InlineResponse20053.md)
+[**InlineResponse20039**](InlineResponse20039.md)
 
 ### Authorization
 
@@ -341,7 +341,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_firewall_rule_subgroups**
-> InlineResponse20051 get_firewall_rule_subgroups(name=name, verbose=verbose)
+> InlineResponse20037 get_firewall_rule_subgroups(name=name, verbose=verbose)
 
 
 
@@ -384,7 +384,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20051**](InlineResponse20051.md)
+[**InlineResponse20037**](InlineResponse20037.md)
 
 ### Authorization
 
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_firewall_rules**
-> InlineResponse20047 get_firewall_rules()
+> InlineResponse20033 get_firewall_rules()
 
 
 
@@ -443,7 +443,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20047**](InlineResponse20047.md)
+[**InlineResponse20033**](InlineResponse20033.md)
 
 ### Authorization
 
@@ -465,7 +465,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_firewall_fw_set**
-> OneOfarrayobject post_create_firewall_fw_set(inline_object40)
+> OneOfarrayobject post_create_firewall_fw_set(inline_object27)
 
 
 
@@ -489,10 +489,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object40 = vns3api.InlineObject40() # InlineObject40 | 
+inline_object27 = vns3api.InlineObject27() # InlineObject27 | 
 
 try:
-    api_response = api_instance.post_create_firewall_fw_set(inline_object40)
+    api_response = api_instance.post_create_firewall_fw_set(inline_object27)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->post_create_firewall_fw_set: %s\n" % e)
@@ -502,7 +502,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object40** | [**InlineObject40**](InlineObject40.md)|  | 
+ **inline_object27** | [**InlineObject27**](InlineObject27.md)|  | 
 
 ### Return type
 
@@ -529,7 +529,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_firewall_rule**
-> InlineResponse20048 post_create_firewall_rule(inline_object34)
+> InlineResponse20034 post_create_firewall_rule(inline_object21)
 
 
 
@@ -553,10 +553,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object34 = vns3api.InlineObject34() # InlineObject34 | 
+inline_object21 = vns3api.InlineObject21() # InlineObject21 | 
 
 try:
-    api_response = api_instance.post_create_firewall_rule(inline_object34)
+    api_response = api_instance.post_create_firewall_rule(inline_object21)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->post_create_firewall_rule: %s\n" % e)
@@ -566,11 +566,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object34** | [**InlineObject34**](InlineObject34.md)|  | 
+ **inline_object21** | [**InlineObject21**](InlineObject21.md)|  | 
 
 ### Return type
 
-[**InlineResponse20048**](InlineResponse20048.md)
+[**InlineResponse20034**](InlineResponse20034.md)
 
 ### Authorization
 
@@ -593,7 +593,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_firewall_subgroup_rule**
-> OneOfarrayobject post_create_firewall_subgroup_rule(inline_object37)
+> OneOfarrayobject post_create_firewall_subgroup_rule(inline_object24)
 
 
 
@@ -617,10 +617,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object37 = vns3api.InlineObject37() # InlineObject37 | 
+inline_object24 = vns3api.InlineObject24() # InlineObject24 | 
 
 try:
-    api_response = api_instance.post_create_firewall_subgroup_rule(inline_object37)
+    api_response = api_instance.post_create_firewall_subgroup_rule(inline_object24)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->post_create_firewall_subgroup_rule: %s\n" % e)
@@ -630,7 +630,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object37** | [**InlineObject37**](InlineObject37.md)|  | 
+ **inline_object24** | [**InlineObject24**](InlineObject24.md)|  | 
 
 ### Return type
 
@@ -657,7 +657,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_reinitialize_fw_sets**
-> put_reinitialize_fw_sets(inline_object39)
+> put_reinitialize_fw_sets(inline_object26)
 
 
 
@@ -681,10 +681,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object39 = vns3api.InlineObject39() # InlineObject39 | 
+inline_object26 = vns3api.InlineObject26() # InlineObject26 | 
 
 try:
-    api_instance.put_reinitialize_fw_sets(inline_object39)
+    api_instance.put_reinitialize_fw_sets(inline_object26)
 except ApiException as e:
     print("Exception when calling FirewallApi->put_reinitialize_fw_sets: %s\n" % e)
 ```
@@ -693,7 +693,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object39** | [**InlineObject39**](InlineObject39.md)|  | 
+ **inline_object26** | [**InlineObject26**](InlineObject26.md)|  | 
 
 ### Return type
 
@@ -719,7 +719,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_reinitialize_subgroups**
-> put_reinitialize_subgroups(inline_object36)
+> put_reinitialize_subgroups(inline_object23)
 
 
 
@@ -743,10 +743,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object36 = vns3api.InlineObject36() # InlineObject36 | 
+inline_object23 = vns3api.InlineObject23() # InlineObject23 | 
 
 try:
-    api_instance.put_reinitialize_subgroups(inline_object36)
+    api_instance.put_reinitialize_subgroups(inline_object23)
 except ApiException as e:
     print("Exception when calling FirewallApi->put_reinitialize_subgroups: %s\n" % e)
 ```
@@ -755,7 +755,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object36** | [**InlineObject36**](InlineObject36.md)|  | 
+ **inline_object23** | [**InlineObject23**](InlineObject23.md)|  | 
 
 ### Return type
 

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **get_ha_id**
-> InlineResponse20068 get_ha_id()
+> InlineResponse20088 get_ha_id()
 
 
 
@@ -52,7 +52,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20068**](InlineResponse20068.md)
+[**InlineResponse20088**](InlineResponse20088.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ha_status**
-> InlineResponse20072 get_ha_status(uuid)
+> InlineResponse20092 get_ha_status(uuid)
 
 
 
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20072**](InlineResponse20072.md)
+[**InlineResponse20092**](InlineResponse20092.md)
 
 ### Authorization
 
@@ -194,15 +194,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Bad request |  -  |
 **401** | Authentication information missing or invalid |  -  |
 **403** | Operation not allowed |  -  |
+**404** | Bad request |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ha_sync_status**
-> InlineResponse20070 get_ha_sync_status(uuid, sync_uuid)
+> InlineResponse20090 get_ha_sync_status(uuid, sync_uuid)
 
 
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20070**](InlineResponse20070.md)
+[**InlineResponse20090**](InlineResponse20090.md)
 
 ### Authorization
 
@@ -261,14 +261,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_init_ha**
-> InlineResponse20069 post_init_ha(inline_object44)
+> InlineResponse20089 post_init_ha(inline_object52)
 
 
 
@@ -292,10 +292,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-inline_object44 = vns3api.InlineObject44() # InlineObject44 | 
+inline_object52 = vns3api.InlineObject52() # InlineObject52 | 
 
 try:
-    api_response = api_instance.post_init_ha(inline_object44)
+    api_response = api_instance.post_init_ha(inline_object52)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->post_init_ha: %s\n" % e)
@@ -305,11 +305,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object44** | [**InlineObject44**](InlineObject44.md)|  | 
+ **inline_object52** | [**InlineObject52**](InlineObject52.md)|  | 
 
 ### Return type
 
-[**InlineResponse20069**](InlineResponse20069.md)
+[**InlineResponse20089**](InlineResponse20089.md)
 
 ### Authorization
 
@@ -325,14 +325,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_sync_ha**
-> InlineResponse20071 post_sync_ha(inline_object45)
+> InlineResponse20091 post_sync_ha(inline_object53)
 
 
 
@@ -356,10 +356,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-inline_object45 = vns3api.InlineObject45() # InlineObject45 | 
+inline_object53 = vns3api.InlineObject53() # InlineObject53 | 
 
 try:
-    api_response = api_instance.post_sync_ha(inline_object45)
+    api_response = api_instance.post_sync_ha(inline_object53)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->post_sync_ha: %s\n" % e)
@@ -369,11 +369,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object45** | [**InlineObject45**](InlineObject45.md)|  | 
+ **inline_object53** | [**InlineObject53**](InlineObject53.md)|  | 
 
 ### Return type
 
-[**InlineResponse20071**](InlineResponse20071.md)
+[**InlineResponse20091**](InlineResponse20091.md)
 
 ### Authorization
 
@@ -389,14 +389,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_ha_activate**
-> InlineResponse20073 put_ha_activate(inline_object46)
+> InlineResponse20093 put_ha_activate(inline_object54)
 
 
 
@@ -420,10 +420,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-inline_object46 = vns3api.InlineObject46() # InlineObject46 | 
+inline_object54 = vns3api.InlineObject54() # InlineObject54 | 
 
 try:
-    api_response = api_instance.put_ha_activate(inline_object46)
+    api_response = api_instance.put_ha_activate(inline_object54)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->put_ha_activate: %s\n" % e)
@@ -433,11 +433,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object46** | [**InlineObject46**](InlineObject46.md)|  | 
+ **inline_object54** | [**InlineObject54**](InlineObject54.md)|  | 
 
 ### Return type
 
-[**InlineResponse20073**](InlineResponse20073.md)
+[**InlineResponse20093**](InlineResponse20093.md)
 
 ### Authorization
 
@@ -459,7 +459,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_ha_push_file**
-> InlineResponse20052 put_ha_push_file(body)
+> InlineResponse20038 put_ha_push_file(body)
 
 
 
@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20052**](InlineResponse20052.md)
+[**InlineResponse20038**](InlineResponse20038.md)
 
 ### Authorization
 

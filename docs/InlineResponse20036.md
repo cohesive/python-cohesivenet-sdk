@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response** | [**InlineResponse20036Response**](InlineResponse20036Response.md) |  | [optional] 
+**response** | [**InlineResponse20035Response**](InlineResponse20035Response.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

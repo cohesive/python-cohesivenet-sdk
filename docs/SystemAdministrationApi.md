@@ -13,9 +13,9 @@ Method | HTTP request | Description
 [**get_api_access_tokens**](SystemAdministrationApi.md#get_api_access_tokens) | **GET** /access/tokens | 
 [**get_cloud_data**](SystemAdministrationApi.md#get_cloud_data) | **GET** /cloud_data | 
 [**get_ping_system**](SystemAdministrationApi.md#get_ping_system) | **GET** /system/ping | 
-[**get_remote_support_details**](SystemAdministrationApi.md#get_remote_support_details) | **GET** /remote_support | 
 [**get_status**](SystemAdministrationApi.md#get_status) | **GET** /status | 
 [**get_system_status**](SystemAdministrationApi.md#get_system_status) | **GET** /status/system | 
+[**get_task_status**](SystemAdministrationApi.md#get_task_status) | **GET** /status/task | 
 [**post_create_access_url**](SystemAdministrationApi.md#post_create_access_url) | **POST** /access/url | 
 [**post_create_api_access_token**](SystemAdministrationApi.md#post_create_api_access_token) | **POST** /access/token | 
 [**post_generate_keypair**](SystemAdministrationApi.md#post_generate_keypair) | **POST** /remote_support/keypair | 
@@ -26,7 +26,7 @@ Method | HTTP request | Description
 
 
 # **delete_access_url**
-> InlineResponse2006 delete_access_url(unknown_base_type=unknown_base_type)
+> InlineResponse2005 delete_access_url(unknown_base_type=unknown_base_type)
 
 
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 
@@ -82,14 +82,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_access_url_by_id**
-> InlineResponse2006 delete_access_url_by_id(access_url_id)
+> InlineResponse2005 delete_access_url_by_id(access_url_id)
 
 
 
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 
@@ -145,14 +145,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_api_access_token**
-> InlineResponse2004 delete_api_access_token(token_id)
+> InlineResponse2003 delete_api_access_token(token_id)
 
 
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -208,14 +208,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_access_ur_ls**
-> InlineResponse2005 get_access_ur_ls()
+> InlineResponse2004 get_access_ur_ls()
 
 
 
@@ -252,7 +252,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 
@@ -329,8 +329,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -392,14 +392,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_api_access_tokens**
-> InlineResponse2003 get_api_access_tokens()
+> InlineResponse2002 get_api_access_tokens()
 
 
 
@@ -436,7 +436,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -457,7 +457,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cloud_data**
-> InlineResponse2007 get_cloud_data()
+> InlineResponse2006 get_cloud_data()
 
 
 
@@ -494,7 +494,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**InlineResponse2006**](InlineResponse2006.md)
 
 ### Authorization
 
@@ -571,66 +571,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_remote_support_details**
-> InlineResponse2001 get_remote_support_details()
-
-
-
-Get remote support information
-
-### Example
-
-* Basic Authentication (basicAuth):
-```python
-from __future__ import print_function
-import time
-import vns3api
-from vns3api.rest import ApiException
-from pprint import pprint
-configuration = vns3api.Configuration()
-# Configure HTTP basic authorization: basicAuth
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-
-# Defining host is optional and default to https://vns3-host:8000/api
-configuration.host = "https://vns3-host:8000/api"
-# Create an instance of the API class
-api_instance = vns3api.SystemAdministrationApi(vns3api.ApiClient(configuration))
-
-try:
-    api_response = api_instance.get_remote_support_details()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling SystemAdministrationApi->get_remote_support_details: %s\n" % e)
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**InlineResponse2001**](InlineResponse2001.md)
-
-### Authorization
-
-[basicAuth](../README.md#basicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Created |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_status**
-> InlineResponse20022 get_status()
+> InlineResponse2008 get_status()
 
 
 
@@ -667,7 +609,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -689,7 +631,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_system_status**
-> InlineResponse20026 get_system_status(inline_object12=inline_object12)
+> InlineResponse2009 get_system_status(inline_object6=inline_object6)
 
 
 
@@ -713,10 +655,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.SystemAdministrationApi(vns3api.ApiClient(configuration))
-inline_object12 = vns3api.InlineObject12() # InlineObject12 |  (optional)
+inline_object6 = vns3api.InlineObject6() # InlineObject6 |  (optional)
 
 try:
-    api_response = api_instance.get_system_status(inline_object12=inline_object12)
+    api_response = api_instance.get_system_status(inline_object6=inline_object6)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SystemAdministrationApi->get_system_status: %s\n" % e)
@@ -726,11 +668,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object12** | [**InlineObject12**](InlineObject12.md)|  | [optional] 
+ **inline_object6** | [**InlineObject6**](InlineObject6.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20026**](InlineResponse20026.md)
+[**InlineResponse2009**](InlineResponse2009.md)
 
 ### Authorization
 
@@ -745,8 +687,72 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**403** | Operation not allowed |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
+**0** | unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_task_status**
+> InlineResponse20010 get_task_status(inline_object7)
+
+
+
+Describe task status details
+
+### Example
+
+* Basic Authentication (basicAuth):
+```python
+from __future__ import print_function
+import time
+import vns3api
+from vns3api.rest import ApiException
+from pprint import pprint
+configuration = vns3api.Configuration()
+# Configure HTTP basic authorization: basicAuth
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
+# Defining host is optional and default to https://vns3-host:8000/api
+configuration.host = "https://vns3-host:8000/api"
+# Create an instance of the API class
+api_instance = vns3api.SystemAdministrationApi(vns3api.ApiClient(configuration))
+inline_object7 = vns3api.InlineObject7() # InlineObject7 | 
+
+try:
+    api_response = api_instance.get_task_status(inline_object7)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling SystemAdministrationApi->get_task_status: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inline_object7** | [**InlineObject7**](InlineObject7.md)|  | 
+
+### Return type
+
+[**InlineResponse20010**](InlineResponse20010.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad request |  -  |
+**401** | Authentication information missing or invalid |  -  |
+**403** | Operation not allowed |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -999,8 +1005,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1064,14 +1070,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**404** | Not found |  -  |
 **401** | Authentication information missing or invalid |  -  |
+**404** | Not found |  -  |
 **0** | unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_remote_support**
-> InlineResponse2002 put_remote_support(inline_object=inline_object)
+> InlineResponse2001 put_remote_support(inline_object=inline_object)
 
 
 
@@ -1112,7 +1118,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -1134,7 +1140,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_server_action**
-> InlineResponse2009 put_server_action(inline_object6=inline_object6)
+> InlineResponse2007 put_server_action(inline_object5=inline_object5)
 
 
 
@@ -1158,10 +1164,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = vns3api.SystemAdministrationApi(vns3api.ApiClient(configuration))
-inline_object6 = vns3api.InlineObject6() # InlineObject6 |  (optional)
+inline_object5 = vns3api.InlineObject5() # InlineObject5 |  (optional)
 
 try:
-    api_response = api_instance.put_server_action(inline_object6=inline_object6)
+    api_response = api_instance.put_server_action(inline_object5=inline_object5)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SystemAdministrationApi->put_server_action: %s\n" % e)
@@ -1171,11 +1177,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object6** | [**InlineObject6**](InlineObject6.md)|  | [optional] 
+ **inline_object5** | [**InlineObject5**](InlineObject5.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse2007**](InlineResponse2007.md)
 
 ### Authorization
 
