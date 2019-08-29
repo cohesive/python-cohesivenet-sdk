@@ -22,7 +22,7 @@ from vns3api.api.bgp_api import BGPApi
 from vns3api.api.configuration_api import ConfigurationApi
 from vns3api.api.firewall_api import FirewallApi
 from vns3api.api.high_availability_api import HighAvailabilityApi
-from vns3api.api.i_psec_api import IPsecApi
+from vns3api.api.ipsec_api import IPsecApi
 from vns3api.api.interfaces_api import InterfacesApi
 from vns3api.api.licensing_api import LicensingApi
 from vns3api.api.monitoring_and_alerting_api import MonitoringAndAlertingApi

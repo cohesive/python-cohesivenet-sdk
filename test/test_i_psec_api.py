@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import vns3api
-from vns3api.api.i_psec_api import IPsecApi  # noqa: E501
+from vns3api.api.ipsec_api import IPsecApi  # noqa: E501
 from vns3api.rest import ApiException
 
 
@@ -24,7 +24,7 @@ class TestIPsecApi(unittest.TestCase):
     """IPsecApi unit test stubs"""
 
     def setUp(self):
-        self.api = vns3api.api.i_psec_api.IPsecApi()  # noqa: E501
+        self.api = vns3api.api.ipsec_api.IPsecApi()  # noqa: E501
 
     def tearDown(self):
         pass

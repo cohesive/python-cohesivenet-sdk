@@ -36,5 +36,13 @@ setup(
     include_package_data=True,
     long_description="""\
     Cohesive networks VNS3 API providing complete control of your network&#39;s addresses, routes, rules and edge  # noqa: E501
-    """
+    """,
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6.9",
+        "Development Status :: 2 - Pre-Alpha",
+        "License :: OSI Approved :: MIT License",
+        "Topic :: System :: Networking",
+        "Operating System :: OS Independent",
+    ],
 )
