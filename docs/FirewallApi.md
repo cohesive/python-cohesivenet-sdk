@@ -1,4 +1,4 @@
-# vns3api.FirewallApi
+# cohesivenet.FirewallApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**get_firewall_fw_sets**](FirewallApi.md#get_firewall_fw_sets) | **GET** /firewall/fwsets | 
 [**get_firewall_rule_subgroups**](FirewallApi.md#get_firewall_rule_subgroups) | **GET** /firewall/rules/subgroup | 
 [**get_firewall_rules**](FirewallApi.md#get_firewall_rules) | **GET** /firewall/rules | 
-[**post_create_firewall_fw_set**](FirewallApi.md#post_create_firewall_fw_set) | **POST** /firewall/fwsets | 
 [**post_create_firewall_rule**](FirewallApi.md#post_create_firewall_rule) | **POST** /firewall/rules | 
 [**post_create_firewall_subgroup_rule**](FirewallApi.md#post_create_firewall_subgroup_rule) | **POST** /firewall/rules/subgroup | 
 [**put_reinitialize_fw_sets**](FirewallApi.md#put_reinitialize_fw_sets) | **PUT** /firewall/fwsets | 
@@ -19,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **delete_firewall_fw_set**
-> InlineResponse20040 delete_firewall_fw_set(inline_object28)
+> object delete_firewall_fw_set(body)
 
 
 
@@ -31,10 +30,10 @@ Delete Firewall FWSet by name or rules
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -42,11 +41,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object28 = vns3api.InlineObject28() # InlineObject28 | 
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+body = None # object | 
 
 try:
-    api_response = api_instance.delete_firewall_fw_set(inline_object28)
+    api_response = api_instance.delete_firewall_fw_set(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->delete_firewall_fw_set: %s\n" % e)
@@ -56,11 +55,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object28** | [**InlineObject28**](InlineObject28.md)|  | 
+ **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20040**](InlineResponse20040.md)
+**object**
 
 ### Authorization
 
@@ -76,14 +75,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_firewall_rule_by_position**
-> InlineResponse20036 delete_firewall_rule_by_position(position)
+> object delete_firewall_rule_by_position(position)
 
 
 
@@ -95,10 +94,10 @@ Delete Firewall Rule
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -106,7 +105,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
 position = 56 # int | index position for firewall rule, 0 is first
 
 try:
@@ -124,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20036**](InlineResponse20036.md)
+**object**
 
 ### Authorization
 
@@ -140,14 +139,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_firewall_rule_by_rule**
-> InlineResponse20035 delete_firewall_rule_by_rule(inline_object22)
+> object delete_firewall_rule_by_rule(delete_firewall_rule_request)
 
 
 
@@ -159,10 +158,10 @@ Delete firewall rule
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -170,11 +169,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object22 = vns3api.InlineObject22() # InlineObject22 | 
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+delete_firewall_rule_request = cohesivenet.DeleteFirewallRuleRequest() # DeleteFirewallRuleRequest | 
 
 try:
-    api_response = api_instance.delete_firewall_rule_by_rule(inline_object22)
+    api_response = api_instance.delete_firewall_rule_by_rule(delete_firewall_rule_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->delete_firewall_rule_by_rule: %s\n" % e)
@@ -184,11 +183,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object22** | [**InlineObject22**](InlineObject22.md)|  | 
+ **delete_firewall_rule_request** | [**DeleteFirewallRuleRequest**](DeleteFirewallRuleRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20035**](InlineResponse20035.md)
+**object**
 
 ### Authorization
 
@@ -204,14 +203,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_firewall_subgroup**
-> InlineResponse20038 delete_firewall_subgroup(inline_object25)
+> object delete_firewall_subgroup(firewall_fw_set)
 
 
 
@@ -223,10 +222,10 @@ Delete Firewall subgroup by name or rules
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -234,11 +233,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object25 = vns3api.InlineObject25() # InlineObject25 | 
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+firewall_fw_set = cohesivenet.FirewallFWSet() # FirewallFWSet | 
 
 try:
-    api_response = api_instance.delete_firewall_subgroup(inline_object25)
+    api_response = api_instance.delete_firewall_subgroup(firewall_fw_set)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->delete_firewall_subgroup: %s\n" % e)
@@ -248,11 +247,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object25** | [**InlineObject25**](InlineObject25.md)|  | 
+ **firewall_fw_set** | [**FirewallFWSet**](FirewallFWSet.md)|  | 
 
 ### Return type
 
-[**InlineResponse20038**](InlineResponse20038.md)
+**object**
 
 ### Authorization
 
@@ -267,16 +266,16 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
 **404** | Not found |  -  |
 **410** | Resource gone |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_firewall_fw_sets**
-> InlineResponse20039 get_firewall_fw_sets(name=name, verbose=verbose)
+> FirewallFWSetListResponse get_firewall_fw_sets()
 
 
 
@@ -288,10 +287,10 @@ Get a list of current firewall rule sets. These are IPsets that allow for faster
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -299,27 +298,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-name = 'name_example' # str | name of subgroup (optional)
-verbose = True # bool | True for verbose output on firewall fwsets (optional) (default to True)
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.get_firewall_fw_sets(name=name, verbose=verbose)
+    api_response = api_instance.get_firewall_fw_sets()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->get_firewall_fw_sets: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **str**| name of subgroup | [optional] 
- **verbose** | **bool**| True for verbose output on firewall fwsets | [optional] [default to True]
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**FirewallFWSetListResponse**](FirewallFWSetListResponse.md)
 
 ### Authorization
 
@@ -334,14 +327,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_firewall_rule_subgroups**
-> InlineResponse20037 get_firewall_rule_subgroups(name=name, verbose=verbose)
+> FirewallSubgroupListResponse get_firewall_rule_subgroups(name=name, verbose=verbose)
 
 
 
@@ -353,10 +346,10 @@ Get a list of current firewall rules at subgroup (chained rules)
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -364,9 +357,9 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-name = 'name_example' # str | name of subgroup (optional)
-verbose = True # bool | True for verbose output on firewall rules subgroup (optional) (default to True)
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+name = 'name_example' # str | name of resource (optional)
+verbose = True # bool | True for verbose output (optional) (default to True)
 
 try:
     api_response = api_instance.get_firewall_rule_subgroups(name=name, verbose=verbose)
@@ -379,12 +372,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name of subgroup | [optional] 
- **verbose** | **bool**| True for verbose output on firewall rules subgroup | [optional] [default to True]
+ **name** | **str**| name of resource | [optional] 
+ **verbose** | **bool**| True for verbose output | [optional] [default to True]
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**FirewallSubgroupListResponse**](FirewallSubgroupListResponse.md)
 
 ### Authorization
 
@@ -399,14 +392,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_firewall_rules**
-> InlineResponse20033 get_firewall_rules()
+> FirewallRuleListResponse get_firewall_rules()
 
 
 
@@ -418,10 +411,10 @@ Get a list of current firewall rules
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -429,7 +422,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_firewall_rules()
@@ -443,7 +436,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20033**](InlineResponse20033.md)
+[**FirewallRuleListResponse**](FirewallRuleListResponse.md)
 
 ### Authorization
 
@@ -458,78 +451,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_create_firewall_fw_set**
-> OneOfarrayobject post_create_firewall_fw_set(inline_object27)
-
-
-
-Create a new firewall FWSet for fast rule matching
-
-### Example
-
-* Basic Authentication (basicAuth):
-```python
-from __future__ import print_function
-import time
-import vns3api
-from vns3api.rest import ApiException
-from pprint import pprint
-configuration = vns3api.Configuration()
-# Configure HTTP basic authorization: basicAuth
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
-
-# Defining host is optional and default to https://vns3-host:8000/api
-configuration.host = "https://vns3-host:8000/api"
-# Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object27 = vns3api.InlineObject27() # InlineObject27 | 
-
-try:
-    api_response = api_instance.post_create_firewall_fw_set(inline_object27)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling FirewallApi->post_create_firewall_fw_set: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **inline_object27** | [**InlineObject27**](InlineObject27.md)|  | 
-
-### Return type
-
-[**OneOfarrayobject**](OneOfarrayobject.md)
-
-### Authorization
-
-[basicAuth](../README.md#basicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Accepted |  -  |
-**400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_firewall_rule**
-> InlineResponse20034 post_create_firewall_rule(inline_object21)
+> FirewallRuleOperationResponse post_create_firewall_rule(create_firewall_rule_request)
 
 
 
@@ -541,10 +470,10 @@ Adds a firewall rule to the VNS3 Controller's firewall
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -552,11 +481,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object21 = vns3api.InlineObject21() # InlineObject21 | 
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+create_firewall_rule_request = cohesivenet.CreateFirewallRuleRequest() # CreateFirewallRuleRequest | 
 
 try:
-    api_response = api_instance.post_create_firewall_rule(inline_object21)
+    api_response = api_instance.post_create_firewall_rule(create_firewall_rule_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->post_create_firewall_rule: %s\n" % e)
@@ -566,11 +495,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object21** | [**InlineObject21**](InlineObject21.md)|  | 
+ **create_firewall_rule_request** | [**CreateFirewallRuleRequest**](CreateFirewallRuleRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20034**](InlineResponse20034.md)
+[**FirewallRuleOperationResponse**](FirewallRuleOperationResponse.md)
 
 ### Authorization
 
@@ -586,14 +515,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_firewall_subgroup_rule**
-> OneOfarrayobject post_create_firewall_subgroup_rule(inline_object24)
+> OneOfobjectobject post_create_firewall_subgroup_rule(create_fw_subgroup_request)
 
 
 
@@ -605,10 +534,10 @@ Create a new firewall subgroup rules (rule chain)
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -616,11 +545,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object24 = vns3api.InlineObject24() # InlineObject24 | 
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+create_fw_subgroup_request = cohesivenet.CreateFWSubgroupRequest() # CreateFWSubgroupRequest | 
 
 try:
-    api_response = api_instance.post_create_firewall_subgroup_rule(inline_object24)
+    api_response = api_instance.post_create_firewall_subgroup_rule(create_fw_subgroup_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FirewallApi->post_create_firewall_subgroup_rule: %s\n" % e)
@@ -630,11 +559,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object24** | [**InlineObject24**](InlineObject24.md)|  | 
+ **create_fw_subgroup_request** | [**CreateFWSubgroupRequest**](CreateFWSubgroupRequest.md)|  | 
 
 ### Return type
 
-[**OneOfarrayobject**](OneOfarrayobject.md)
+[**OneOfobjectobject**](OneOfobjectobject.md)
 
 ### Authorization
 
@@ -650,14 +579,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_reinitialize_fw_sets**
-> put_reinitialize_fw_sets(inline_object26)
+> put_reinitialize_fw_sets(reinit_firewall_request)
 
 
 
@@ -669,10 +598,10 @@ Reinitialize all Firewall FWSet
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -680,11 +609,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object26 = vns3api.InlineObject26() # InlineObject26 | 
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+reinit_firewall_request = cohesivenet.ReinitFirewallRequest() # ReinitFirewallRequest | 
 
 try:
-    api_instance.put_reinitialize_fw_sets(inline_object26)
+    api_instance.put_reinitialize_fw_sets(reinit_firewall_request)
 except ApiException as e:
     print("Exception when calling FirewallApi->put_reinitialize_fw_sets: %s\n" % e)
 ```
@@ -693,7 +622,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object26** | [**InlineObject26**](InlineObject26.md)|  | 
+ **reinit_firewall_request** | [**ReinitFirewallRequest**](ReinitFirewallRequest.md)|  | 
 
 ### Return type
 
@@ -712,14 +641,14 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_reinitialize_subgroups**
-> put_reinitialize_subgroups(inline_object23)
+> put_reinitialize_subgroups(reinit_request)
 
 
 
@@ -731,10 +660,10 @@ Reinitialize Firewall subgroups
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -742,11 +671,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.FirewallApi(vns3api.ApiClient(configuration))
-inline_object23 = vns3api.InlineObject23() # InlineObject23 | 
+api_instance = cohesivenet.FirewallApi(cohesivenet.VNS3Client(configuration))
+reinit_request = cohesivenet.ReinitRequest() # ReinitRequest | 
 
 try:
-    api_instance.put_reinitialize_subgroups(inline_object23)
+    api_instance.put_reinitialize_subgroups(reinit_request)
 except ApiException as e:
     print("Exception when calling FirewallApi->put_reinitialize_subgroups: %s\n" % e)
 ```
@@ -755,7 +684,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object23** | [**InlineObject23**](InlineObject23.md)|  | 
+ **reinit_request** | [**ReinitRequest**](ReinitRequest.md)|  | 
 
 ### Return type
 
@@ -774,9 +703,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

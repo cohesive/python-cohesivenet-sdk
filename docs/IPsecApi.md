@@ -1,4 +1,4 @@
-# vns3api.IPsecApi
+# cohesivenet.IPsecApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **delete_ipsec_endpoint**
-> InlineResponse20031 delete_ipsec_endpoint(endpoint_id)
+> object delete_ipsec_endpoint()
 
 
 
@@ -31,10 +31,10 @@ Delete IPsec endpoint
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -42,25 +42,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-endpoint_id = 56 # int | ID of the IPsec endpoint
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.delete_ipsec_endpoint(endpoint_id)
+    api_response = api_instance.delete_ipsec_endpoint()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->delete_ipsec_endpoint: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **endpoint_id** | **int**| ID of the IPsec endpoint | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20031**](InlineResponse20031.md)
+**object**
 
 ### Authorization
 
@@ -76,13 +72,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_ipsec_endpoint_tunnel**
-> InlineResponse20030 delete_ipsec_endpoint_tunnel(endpoint_id, tunnel_id)
+> object delete_ipsec_endpoint_tunnel()
 
 
 
@@ -94,10 +90,10 @@ Delete IPsec tunnel
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -105,27 +101,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-endpoint_id = 56 # int | ID for IPsec endpoint
-tunnel_id = 56 # int | numerical ID for tunnel
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.delete_ipsec_endpoint_tunnel(endpoint_id, tunnel_id)
+    api_response = api_instance.delete_ipsec_endpoint_tunnel()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->delete_ipsec_endpoint_tunnel: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **endpoint_id** | **int**| ID for IPsec endpoint | 
- **tunnel_id** | **int**| numerical ID for tunnel | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+**object**
 
 ### Authorization
 
@@ -141,13 +131,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipsec**
-> InlineResponse20027 get_ipsec()
+> IpsecSystemDetail get_ipsec()
 
 
 
@@ -159,10 +149,10 @@ Get details for all IPsec endpoints/subnets
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -170,7 +160,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_ipsec()
@@ -184,7 +174,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20027**](InlineResponse20027.md)
+[**IpsecSystemDetail**](IpsecSystemDetail.md)
 
 ### Authorization
 
@@ -199,13 +189,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipsec_endpoint**
-> InlineResponse20030 get_ipsec_endpoint(endpoint_id)
+> object get_ipsec_endpoint(endpoint_id)
 
 
 
@@ -217,10 +207,10 @@ Get IPsec endpoint information
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -228,8 +218,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-endpoint_id = 56 # int | ID of the IPsec endpoint
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
+endpoint_id = 56 # int | ID for IPsec endpoint
 
 try:
     api_response = api_instance.get_ipsec_endpoint(endpoint_id)
@@ -242,11 +232,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **endpoint_id** | **int**| ID of the IPsec endpoint | 
+ **endpoint_id** | **int**| ID for IPsec endpoint | 
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+**object**
 
 ### Authorization
 
@@ -261,13 +251,13 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ipsec_status**
-> InlineResponse20025 get_ipsec_status()
+> IpsecTunnelListResponseKeyValue get_ipsec_status()
 
 
 
@@ -279,10 +269,10 @@ Describe ipsec tunnels status
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -290,7 +280,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_ipsec_status()
@@ -304,7 +294,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**IpsecTunnelListResponseKeyValue**](IpsecTunnelListResponseKeyValue.md)
 
 ### Authorization
 
@@ -319,14 +309,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_link_history**
-> InlineResponse20026 get_link_history(inline_object14=inline_object14)
+> LinkHistoryDetail get_link_history(remote=remote, local=local, tunnelid=tunnelid)
 
 
 
@@ -338,10 +328,10 @@ Provides information about the connection history of the subnet or tunnel
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -349,11 +339,13 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object14 = vns3api.InlineObject14() # InlineObject14 |  (optional)
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
+remote = 'remote_example' # str | Address string in CIDR format to display link history to a remote endpoint. (optional)
+local = 'local_example' # str | Address string in CIDR format which will display status of the local route (optional)
+tunnelid = 56 # int | Will display link history of just the tunnel specified, which may be only one tunnel to a remote endpoint. (optional)
 
 try:
-    api_response = api_instance.get_link_history(inline_object14=inline_object14)
+    api_response = api_instance.get_link_history(remote=remote, local=local, tunnelid=tunnelid)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->get_link_history: %s\n" % e)
@@ -363,11 +355,13 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object14** | [**InlineObject14**](InlineObject14.md)|  | [optional] 
+ **remote** | **str**| Address string in CIDR format to display link history to a remote endpoint. | [optional] 
+ **local** | **str**| Address string in CIDR format which will display status of the local route | [optional] 
+ **tunnelid** | **int**| Will display link history of just the tunnel specified, which may be only one tunnel to a remote endpoint. | [optional] 
 
 ### Return type
 
-[**InlineResponse20026**](InlineResponse20026.md)
+[**LinkHistoryDetail**](LinkHistoryDetail.md)
 
 ### Authorization
 
@@ -375,7 +369,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
@@ -383,14 +377,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_ipsec_endpoint**
-> InlineResponse20030 post_create_ipsec_endpoint(inline_object17)
+> IpsecRemoteEndpointDetail post_create_ipsec_endpoint(create_ipsec_endpoint_request)
 
 
 
@@ -402,10 +396,10 @@ Create IPsec connection to the defined remote gateway
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -413,11 +407,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object17 = vns3api.InlineObject17() # InlineObject17 | 
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
+create_ipsec_endpoint_request = cohesivenet.CreateIpsecEndpointRequest() # CreateIpsecEndpointRequest | 
 
 try:
-    api_response = api_instance.post_create_ipsec_endpoint(inline_object17)
+    api_response = api_instance.post_create_ipsec_endpoint(create_ipsec_endpoint_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->post_create_ipsec_endpoint: %s\n" % e)
@@ -427,11 +421,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object17** | [**InlineObject17**](InlineObject17.md)|  | 
+ **create_ipsec_endpoint_request** | [**CreateIpsecEndpointRequest**](CreateIpsecEndpointRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**IpsecRemoteEndpointDetail**](IpsecRemoteEndpointDetail.md)
 
 ### Authorization
 
@@ -447,13 +441,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_ipsec_endpoint_tunnel**
-> InlineResponse20030 post_create_ipsec_endpoint_tunnel(endpoint_id, inline_object19)
+> object post_create_ipsec_endpoint_tunnel(create_ipsec_tunnel_request)
 
 
 
@@ -465,10 +459,10 @@ Create IPsec endpoint tunnel
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -476,12 +470,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-endpoint_id = 56 # int | ID of ipsec endpoint
-inline_object19 = vns3api.InlineObject19() # InlineObject19 | 
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
+create_ipsec_tunnel_request = cohesivenet.CreateIpsecTunnelRequest() # CreateIpsecTunnelRequest | 
 
 try:
-    api_response = api_instance.post_create_ipsec_endpoint_tunnel(endpoint_id, inline_object19)
+    api_response = api_instance.post_create_ipsec_endpoint_tunnel(create_ipsec_tunnel_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->post_create_ipsec_endpoint_tunnel: %s\n" % e)
@@ -491,12 +484,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **endpoint_id** | **int**| ID of ipsec endpoint | 
- **inline_object19** | [**InlineObject19**](InlineObject19.md)|  | 
+ **create_ipsec_tunnel_request** | [**CreateIpsecTunnelRequest**](CreateIpsecTunnelRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+**object**
 
 ### Authorization
 
@@ -512,14 +504,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
+**401** |  |  -  |
 **403** | Permission denied. Max number of tunnels reach |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_restart_ipsec_action**
-> InlineResponse20029 post_restart_ipsec_action(inline_object16)
+> RestartStatus post_restart_ipsec_action(restart_request)
 
 
 
@@ -531,10 +523,10 @@ Restart ipsec subystem
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -542,11 +534,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object16 = vns3api.InlineObject16() # InlineObject16 | 
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
+restart_request = cohesivenet.RestartRequest() # RestartRequest | 
 
 try:
-    api_response = api_instance.post_restart_ipsec_action(inline_object16)
+    api_response = api_instance.post_restart_ipsec_action(restart_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->post_restart_ipsec_action: %s\n" % e)
@@ -556,11 +548,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object16** | [**InlineObject16**](InlineObject16.md)|  | 
+ **restart_request** | [**RestartRequest**](RestartRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20029**](InlineResponse20029.md)
+[**RestartStatus**](RestartStatus.md)
 
 ### Authorization
 
@@ -576,13 +568,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_edit_ipsec_endpoint**
-> InlineResponse20030 put_edit_ipsec_endpoint(endpoint_id, inline_object18)
+> object put_edit_ipsec_endpoint(update_ipsec_connection_request)
 
 
 
@@ -594,10 +586,10 @@ Edit IPsec connection
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -605,12 +597,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-endpoint_id = 56 # int | ID of the IPsec endpoint
-inline_object18 = vns3api.InlineObject18() # InlineObject18 | 
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
+update_ipsec_connection_request = cohesivenet.UpdateIpsecConnectionRequest() # UpdateIpsecConnectionRequest | 
 
 try:
-    api_response = api_instance.put_edit_ipsec_endpoint(endpoint_id, inline_object18)
+    api_response = api_instance.put_edit_ipsec_endpoint(update_ipsec_connection_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->put_edit_ipsec_endpoint: %s\n" % e)
@@ -620,12 +611,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **endpoint_id** | **int**| ID of the IPsec endpoint | 
- **inline_object18** | [**InlineObject18**](InlineObject18.md)|  | 
+ **update_ipsec_connection_request** | [**UpdateIpsecConnectionRequest**](UpdateIpsecConnectionRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+**object**
 
 ### Authorization
 
@@ -641,13 +631,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_edit_ipsec_endpoint_tunnel**
-> InlineResponse20032 put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, inline_object20)
+> IpsecTunnelDetail put_edit_ipsec_endpoint_tunnel(tunnel_id, update_ipsec_tunnel_request)
 
 
 
@@ -659,10 +649,10 @@ Edit IPsec endpoint tunnel
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -670,13 +660,12 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-endpoint_id = 56 # int | ID for IPsec endpoint
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
 tunnel_id = 56 # int | ID for tunnel
-inline_object20 = vns3api.InlineObject20() # InlineObject20 | 
+update_ipsec_tunnel_request = cohesivenet.UpdateIpsecTunnelRequest() # UpdateIpsecTunnelRequest | 
 
 try:
-    api_response = api_instance.put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, inline_object20)
+    api_response = api_instance.put_edit_ipsec_endpoint_tunnel(tunnel_id, update_ipsec_tunnel_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->put_edit_ipsec_endpoint_tunnel: %s\n" % e)
@@ -686,13 +675,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **endpoint_id** | **int**| ID for IPsec endpoint | 
  **tunnel_id** | **int**| ID for tunnel | 
- **inline_object20** | [**InlineObject20**](InlineObject20.md)|  | 
+ **update_ipsec_tunnel_request** | [**UpdateIpsecTunnelRequest**](UpdateIpsecTunnelRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**IpsecTunnelDetail**](IpsecTunnelDetail.md)
 
 ### Authorization
 
@@ -708,13 +696,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_ipsec_config**
-> InlineResponse20028 put_ipsec_config(inline_object15)
+> object put_ipsec_config(update_ipsec_address_request)
 
 
 
@@ -726,10 +714,10 @@ Edit Ipsec Configuration on device. Note, This is device wide and must be set be
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -737,11 +725,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.IPsecApi(vns3api.ApiClient(configuration))
-inline_object15 = vns3api.InlineObject15() # InlineObject15 | 
+api_instance = cohesivenet.IPsecApi(cohesivenet.VNS3Client(configuration))
+update_ipsec_address_request = cohesivenet.UpdateIpsecAddressRequest() # UpdateIpsecAddressRequest | 
 
 try:
-    api_response = api_instance.put_ipsec_config(inline_object15)
+    api_response = api_instance.put_ipsec_config(update_ipsec_address_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling IPsecApi->put_ipsec_config: %s\n" % e)
@@ -751,11 +739,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object15** | [**InlineObject15**](InlineObject15.md)|  | 
+ **update_ipsec_address_request** | [**UpdateIpsecAddressRequest**](UpdateIpsecAddressRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20028**](InlineResponse20028.md)
+**object**
 
 ### Authorization
 
@@ -771,8 +759,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

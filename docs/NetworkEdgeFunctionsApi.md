@@ -1,27 +1,27 @@
-# vns3api.NetworkEdgeFunctionsApi
+# cohesivenet.NetworkEdgePluginsApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_container**](NetworkEdgeFunctionsApi.md#delete_container) | **DELETE** /container_system/containers/{uuid} | 
-[**delete_container_image**](NetworkEdgeFunctionsApi.md#delete_container_image) | **DELETE** /container_system/images/{uuid} | 
-[**get_container_logs**](NetworkEdgeFunctionsApi.md#get_container_logs) | **GET** /container_system/containers/{uuid}/logs | 
-[**get_container_system_i_ps**](NetworkEdgeFunctionsApi.md#get_container_system_i_ps) | **GET** /container_system/ip_addresses | 
-[**get_container_system_images**](NetworkEdgeFunctionsApi.md#get_container_system_images) | **GET** /container_system/images | 
-[**get_container_system_running_containers**](NetworkEdgeFunctionsApi.md#get_container_system_running_containers) | **GET** /container_system/containers | 
-[**get_container_system_status**](NetworkEdgeFunctionsApi.md#get_container_system_status) | **GET** /container_system | 
-[**post_action_container_system**](NetworkEdgeFunctionsApi.md#post_action_container_system) | **POST** /container_system | 
-[**post_commit_container**](NetworkEdgeFunctionsApi.md#post_commit_container) | **POST** /container_system/containers/{uuid}/commit | 
-[**post_create_container_image**](NetworkEdgeFunctionsApi.md#post_create_container_image) | **POST** /container_system/images | 
-[**post_start_container**](NetworkEdgeFunctionsApi.md#post_start_container) | **POST** /container_system/containers | 
-[**put_configure_container_system**](NetworkEdgeFunctionsApi.md#put_configure_container_system) | **PUT** /container_system | 
-[**put_edit_container_image**](NetworkEdgeFunctionsApi.md#put_edit_container_image) | **PUT** /container_system/images/{uuid} | 
-[**put_stop_container**](NetworkEdgeFunctionsApi.md#put_stop_container) | **PUT** /container_system/containers/{uuid} | 
+[**delete_container**](NetworkEdgePluginsApi.md#delete_container) | **DELETE** /container_system/containers/{uuid} | 
+[**delete_container_image**](NetworkEdgePluginsApi.md#delete_container_image) | **DELETE** /container_system/images/{uuid} | 
+[**get_container_logs**](NetworkEdgePluginsApi.md#get_container_logs) | **GET** /container_system/containers/{uuid}/logs | 
+[**get_container_system_i_ps**](NetworkEdgePluginsApi.md#get_container_system_i_ps) | **GET** /container_system/ip_addresses | 
+[**get_container_system_images**](NetworkEdgePluginsApi.md#get_container_system_images) | **GET** /container_system/images | 
+[**get_container_system_running_containers**](NetworkEdgePluginsApi.md#get_container_system_running_containers) | **GET** /container_system/containers | 
+[**get_container_system_status**](NetworkEdgePluginsApi.md#get_container_system_status) | **GET** /container_system | 
+[**post_action_container_system**](NetworkEdgePluginsApi.md#post_action_container_system) | **POST** /container_system | 
+[**post_commit_container**](NetworkEdgePluginsApi.md#post_commit_container) | **POST** /container_system/containers/{uuid}/commit | 
+[**post_create_container_image**](NetworkEdgePluginsApi.md#post_create_container_image) | **POST** /container_system/images | 
+[**post_start_container**](NetworkEdgePluginsApi.md#post_start_container) | **POST** /container_system/containers | 
+[**put_configure_container_system**](NetworkEdgePluginsApi.md#put_configure_container_system) | **PUT** /container_system | 
+[**put_edit_container_image**](NetworkEdgePluginsApi.md#put_edit_container_image) | **PUT** /container_system/images/{uuid} | 
+[**put_stop_container**](NetworkEdgePluginsApi.md#put_stop_container) | **PUT** /container_system/containers/{uuid} | 
 
 
 # **delete_container**
-> InlineResponse20085 delete_container(uuid)
+> DeleteContainerDetailResponse delete_container()
 
 
 
@@ -33,10 +33,10 @@ Delete a container
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -44,25 +44,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | UUID for allocated container
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.delete_container(uuid)
+    api_response = api_instance.delete_container()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->delete_container: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->delete_container: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| UUID for allocated container | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20085**](InlineResponse20085.md)
+[**DeleteContainerDetailResponse**](DeleteContainerDetailResponse.md)
 
 ### Authorization
 
@@ -77,14 +73,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Controller must be licensed first |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_container_image**
-> InlineResponse20081 delete_container_image(uuid, force=force)
+> DeleteContainerImageDetailResponse delete_container_image(force=force)
 
 
 
@@ -96,10 +92,10 @@ Delete container image
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -107,27 +103,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | UUID for container image
-force = False # bool | force delete image by removing running containers (optional) (default to False)
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+force = False # bool | force operation with cleanup (optional) (default to False)
 
 try:
-    api_response = api_instance.delete_container_image(uuid, force=force)
+    api_response = api_instance.delete_container_image(force=force)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->delete_container_image: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->delete_container_image: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| UUID for container image | 
- **force** | **bool**| force delete image by removing running containers | [optional] [default to False]
+ **force** | **bool**| force operation with cleanup | [optional] [default to False]
 
 ### Return type
 
-[**InlineResponse20081**](InlineResponse20081.md)
+[**DeleteContainerImageDetailResponse**](DeleteContainerImageDetailResponse.md)
 
 ### Authorization
 
@@ -142,14 +136,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_container_logs**
-> InlineResponse20087 get_container_logs(uuid, inline_object49)
+> ContainerLogsResponse get_container_logs(lines)
 
 
 
@@ -161,10 +155,10 @@ Fetch containers log messages
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -172,27 +166,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | UUID for allocated container
-inline_object49 = vns3api.InlineObject49() # InlineObject49 | 
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+lines = 56 # int | Number of log lines to fetch
 
 try:
-    api_response = api_instance.get_container_logs(uuid, inline_object49)
+    api_response = api_instance.get_container_logs(lines)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->get_container_logs: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->get_container_logs: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| UUID for allocated container | 
- **inline_object49** | [**InlineObject49**](InlineObject49.md)|  | 
+ **lines** | **int**| Number of log lines to fetch | 
 
 ### Return type
 
-[**InlineResponse20087**](InlineResponse20087.md)
+[**ContainerLogsResponse**](ContainerLogsResponse.md)
 
 ### Authorization
 
@@ -200,20 +192,20 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_container_system_i_ps**
-> InlineResponse20077 get_container_system_i_ps()
+> ContainerSystemIPListResponse get_container_system_i_ps()
 
 
 
@@ -225,10 +217,10 @@ Retrieve IP address list for current container network configuration
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -236,13 +228,13 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_container_system_i_ps()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->get_container_system_i_ps: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->get_container_system_i_ps: %s\n" % e)
 ```
 
 ### Parameters
@@ -250,7 +242,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20077**](InlineResponse20077.md)
+[**ContainerSystemIPListResponse**](ContainerSystemIPListResponse.md)
 
 ### Authorization
 
@@ -265,14 +257,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_container_system_images**
-> InlineResponse20078 get_container_system_images(uuid=uuid)
+> ContainerImageListResponse get_container_system_images(uuid=uuid)
 
 
 
@@ -284,10 +276,10 @@ Get list of existing container system images
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -295,25 +287,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | ID of image (optional)
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+uuid = 'uuid_example' # str | UUID for resource (optional)
 
 try:
     api_response = api_instance.get_container_system_images(uuid=uuid)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->get_container_system_images: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->get_container_system_images: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| ID of image | [optional] 
+ **uuid** | **str**| UUID for resource | [optional] 
 
 ### Return type
 
-[**InlineResponse20078**](InlineResponse20078.md)
+[**ContainerImageListResponse**](ContainerImageListResponse.md)
 
 ### Authorization
 
@@ -328,15 +320,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
 **500** | Invalid server state |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_container_system_running_containers**
-> InlineResponse20082 get_container_system_running_containers(show_all=show_all, uuid=uuid)
+> RunningContainersDetailResponse get_container_system_running_containers(show_all=show_all)
 
 
 
@@ -348,10 +340,10 @@ Provides description information for one or all allocated containers
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -359,27 +351,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-show_all = True # bool | Displays all allocated containers when true (optional) (default to True)
-uuid = 'uuid_example' # str | Container id for filtering (optional)
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+show_all = True # bool | Boolean for full list output (optional) (default to True)
 
 try:
-    api_response = api_instance.get_container_system_running_containers(show_all=show_all, uuid=uuid)
+    api_response = api_instance.get_container_system_running_containers(show_all=show_all)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->get_container_system_running_containers: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->get_container_system_running_containers: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **show_all** | **bool**| Displays all allocated containers when true | [optional] [default to True]
- **uuid** | **str**| Container id for filtering | [optional] 
+ **show_all** | **bool**| Boolean for full list output | [optional] [default to True]
 
 ### Return type
 
-[**InlineResponse20082**](InlineResponse20082.md)
+[**RunningContainersDetailResponse**](RunningContainersDetailResponse.md)
 
 ### Authorization
 
@@ -394,14 +384,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_container_system_status**
-> InlineResponse20074 get_container_system_status()
+> ContainerSystemStatusDetailResponse get_container_system_status()
 
 
 
@@ -413,10 +403,10 @@ Retrieve status of container system
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -424,13 +414,13 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_container_system_status()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->get_container_system_status: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->get_container_system_status: %s\n" % e)
 ```
 
 ### Parameters
@@ -438,7 +428,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20074**](InlineResponse20074.md)
+[**ContainerSystemStatusDetailResponse**](ContainerSystemStatusDetailResponse.md)
 
 ### Authorization
 
@@ -453,14 +443,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_action_container_system**
-> InlineResponse20076 post_action_container_system(inline_object46)
+> object post_action_container_system(container_system_action_request)
 
 
 
@@ -472,10 +462,10 @@ Take action on container system
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -483,25 +473,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-inline_object46 = vns3api.InlineObject46() # InlineObject46 | 
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+container_system_action_request = cohesivenet.ContainerSystemActionRequest() # ContainerSystemActionRequest | 
 
 try:
-    api_response = api_instance.post_action_container_system(inline_object46)
+    api_response = api_instance.post_action_container_system(container_system_action_request)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->post_action_container_system: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->post_action_container_system: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object46** | [**InlineObject46**](InlineObject46.md)|  | 
+ **container_system_action_request** | [**ContainerSystemActionRequest**](ContainerSystemActionRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20076**](InlineResponse20076.md)
+**object**
 
 ### Authorization
 
@@ -517,14 +507,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_commit_container**
-> InlineResponse20086 post_commit_container(uuid, inline_object48)
+> CreateContainerImageResponse post_commit_container(commit_container_request)
 
 
 
@@ -536,10 +526,10 @@ Creates a new container image from a running container
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -547,27 +537,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | UUID for allocated container
-inline_object48 = vns3api.InlineObject48() # InlineObject48 | 
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+commit_container_request = cohesivenet.CommitContainerRequest() # CommitContainerRequest | 
 
 try:
-    api_response = api_instance.post_commit_container(uuid, inline_object48)
+    api_response = api_instance.post_commit_container(commit_container_request)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->post_commit_container: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->post_commit_container: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| UUID for allocated container | 
- **inline_object48** | [**InlineObject48**](InlineObject48.md)|  | 
+ **commit_container_request** | [**CommitContainerRequest**](CommitContainerRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20086**](InlineResponse20086.md)
+[**CreateContainerImageResponse**](CreateContainerImageResponse.md)
 
 ### Authorization
 
@@ -582,14 +570,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_container_image**
-> InlineResponse20079 post_create_container_image(unknown_base_type)
+> CreateImageDetailResponse post_create_container_image(unknown_base_type)
 
 
 
@@ -601,10 +589,10 @@ Create new container image
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -612,14 +600,14 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-unknown_base_type = vns3api.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+unknown_base_type = cohesivenet.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
     api_response = api_instance.post_create_container_image(unknown_base_type)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->post_create_container_image: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->post_create_container_image: %s\n" % e)
 ```
 
 ### Parameters
@@ -630,7 +618,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20079**](InlineResponse20079.md)
+[**CreateImageDetailResponse**](CreateImageDetailResponse.md)
 
 ### Authorization
 
@@ -646,14 +634,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_start_container**
-> InlineResponse20083 post_start_container(unknown_base_type)
+> RunContainerDetailResponse post_start_container(unknown_base_type)
 
 
 
@@ -665,10 +653,10 @@ Create (allocate) a new container or start an existing one
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -676,14 +664,14 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-unknown_base_type = vns3api.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+unknown_base_type = cohesivenet.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
     api_response = api_instance.post_start_container(unknown_base_type)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->post_start_container: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->post_start_container: %s\n" % e)
 ```
 
 ### Parameters
@@ -694,7 +682,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20083**](InlineResponse20083.md)
+[**RunContainerDetailResponse**](RunContainerDetailResponse.md)
 
 ### Authorization
 
@@ -710,14 +698,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_configure_container_system**
-> InlineResponse20075 put_configure_container_system(inline_object45)
+> object put_configure_container_system(update_configure_container_system_request)
 
 
 
@@ -729,10 +717,10 @@ Configures the container network.
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -740,25 +728,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-inline_object45 = vns3api.InlineObject45() # InlineObject45 | 
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+update_configure_container_system_request = cohesivenet.UpdateConfigureContainerSystemRequest() # UpdateConfigureContainerSystemRequest | 
 
 try:
-    api_response = api_instance.put_configure_container_system(inline_object45)
+    api_response = api_instance.put_configure_container_system(update_configure_container_system_request)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->put_configure_container_system: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->put_configure_container_system: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object45** | [**InlineObject45**](InlineObject45.md)|  | 
+ **update_configure_container_system_request** | [**UpdateConfigureContainerSystemRequest**](UpdateConfigureContainerSystemRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20075**](InlineResponse20075.md)
+**object**
 
 ### Authorization
 
@@ -773,14 +761,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_edit_container_image**
-> InlineResponse20080 put_edit_container_image(uuid, inline_object47)
+> UpdateContainerImageDetailResponse put_edit_container_image(update_container_image_request)
 
 
 
@@ -792,10 +780,10 @@ Edits container image
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -803,27 +791,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | UUID for container image
-inline_object47 = vns3api.InlineObject47() # InlineObject47 | 
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
+update_container_image_request = cohesivenet.UpdateContainerImageRequest() # UpdateContainerImageRequest | 
 
 try:
-    api_response = api_instance.put_edit_container_image(uuid, inline_object47)
+    api_response = api_instance.put_edit_container_image(update_container_image_request)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->put_edit_container_image: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->put_edit_container_image: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| UUID for container image | 
- **inline_object47** | [**InlineObject47**](InlineObject47.md)|  | 
+ **update_container_image_request** | [**UpdateContainerImageRequest**](UpdateContainerImageRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20080**](InlineResponse20080.md)
+[**UpdateContainerImageDetailResponse**](UpdateContainerImageDetailResponse.md)
 
 ### Authorization
 
@@ -839,14 +825,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_stop_container**
-> InlineResponse20084 put_stop_container(uuid)
+> StopContainerDetailResponse put_stop_container()
 
 
 
@@ -858,10 +844,10 @@ Stops a running container
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -869,25 +855,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.NetworkEdgeFunctionsApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | UUID for allocated container
+api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.put_stop_container(uuid)
+    api_response = api_instance.put_stop_container()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling NetworkEdgeFunctionsApi->put_stop_container: %s\n" % e)
+    print("Exception when calling NetworkEdgePluginsApi->put_stop_container: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| UUID for allocated container | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20084**](InlineResponse20084.md)
+[**StopContainerDetailResponse**](StopContainerDetailResponse.md)
 
 ### Authorization
 
@@ -902,9 +884,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Controller must be licensed first |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

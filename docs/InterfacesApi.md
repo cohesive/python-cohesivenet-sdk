@@ -1,4 +1,4 @@
-# vns3api.InterfacesApi
+# cohesivenet.InterfacesApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **delete_gre_endpoint**
-> InlineResponse20069 delete_gre_endpoint(id)
+> object delete_gre_endpoint()
 
 
 
@@ -31,10 +31,10 @@ Delete GRE Interface
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -42,25 +42,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-id = 'id_example' # str | name or id of GRE interface
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.delete_gre_endpoint(id)
+    api_response = api_instance.delete_gre_endpoint()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->delete_gre_endpoint: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| name or id of GRE interface | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20069**](InlineResponse20069.md)
+**object**
 
 ### Authorization
 
@@ -75,14 +71,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
+**401** |  |  -  |
 **404** | Not found |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_system_interface**
-> InlineResponse20066 delete_system_interface(id)
+> object delete_system_interface()
 
 
 
@@ -94,10 +90,10 @@ Delete System Interface
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -105,25 +101,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-id = 'id_example' # str | name or id of system interface
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.delete_system_interface(id)
+    api_response = api_instance.delete_system_interface()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->delete_system_interface: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| name or id of system interface | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20066**](InlineResponse20066.md)
+**object**
 
 ### Authorization
 
@@ -138,14 +130,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
+**401** |  |  -  |
 **404** | Not found |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_edge_gre_endpoints**
-> InlineResponse20067 get_edge_gre_endpoints()
+> GREEndpointListResponse get_edge_gre_endpoints()
 
 
 
@@ -157,10 +149,10 @@ Describe system edge GRE endpoints
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -168,7 +160,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_edge_gre_endpoints()
@@ -182,7 +174,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20067**](InlineResponse20067.md)
+[**GREEndpointListResponse**](GREEndpointListResponse.md)
 
 ### Authorization
 
@@ -197,13 +189,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_gre_endpoint_details**
-> InlineResponse20068 get_gre_endpoint_details(id)
+> GREEndpointDetail get_gre_endpoint_details()
 
 
 
@@ -215,10 +207,10 @@ Get GRE interface details by id or name
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -226,25 +218,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-id = 'id_example' # str | name or id of interface
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.get_gre_endpoint_details(id)
+    api_response = api_instance.get_gre_endpoint_details()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->get_gre_endpoint_details: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| name or id of interface | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20068**](InlineResponse20068.md)
+[**GREEndpointDetail**](GREEndpointDetail.md)
 
 ### Authorization
 
@@ -259,14 +247,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
+**401** |  |  -  |
 **404** | Not found |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_interfaces**
-> InlineResponse20060 get_interfaces()
+> SystemInterfaceListResponse get_interfaces()
 
 
 
@@ -278,10 +266,10 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -289,7 +277,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_interfaces()
@@ -303,7 +291,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20060**](InlineResponse20060.md)
+[**SystemInterfaceListResponse**](SystemInterfaceListResponse.md)
 
 ### Authorization
 
@@ -318,13 +306,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_system_interface_details**
-> InlineResponse20064 get_system_interface_details(id)
+> object get_system_interface_details(id)
 
 
 
@@ -336,10 +324,10 @@ Get interface details by name
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -347,8 +335,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-id = 'id_example' # str | name or id of interface
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
+id = 'id_example' # str | Resource ID or unique Name
 
 try:
     api_response = api_instance.get_system_interface_details(id)
@@ -361,11 +349,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| name or id of interface | 
+ **id** | **str**| Resource ID or unique Name | 
 
 ### Return type
 
-[**InlineResponse20064**](InlineResponse20064.md)
+**object**
 
 ### Authorization
 
@@ -380,14 +368,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
+**401** |  |  -  |
 **404** | Not found |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_system_interfaces**
-> InlineResponse20062 get_system_interfaces()
+> object get_system_interfaces()
 
 
 
@@ -399,10 +387,10 @@ Describe system interfaces
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -410,7 +398,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_system_interfaces()
@@ -424,7 +412,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20062**](InlineResponse20062.md)
+**object**
 
 ### Authorization
 
@@ -439,13 +427,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_action_interfaces**
-> InlineResponse20061 post_action_interfaces(inline_object42)
+> list[str] post_action_interfaces(interface_action_request)
 
 
 
@@ -457,10 +445,10 @@ Take action on interfaces. Only one action can be taken per request.
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -468,11 +456,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-inline_object42 = vns3api.InlineObject42() # InlineObject42 | 
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
+interface_action_request = cohesivenet.InterfaceActionRequest() # InterfaceActionRequest | 
 
 try:
-    api_response = api_instance.post_action_interfaces(inline_object42)
+    api_response = api_instance.post_action_interfaces(interface_action_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->post_action_interfaces: %s\n" % e)
@@ -482,11 +470,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object42** | [**InlineObject42**](InlineObject42.md)|  | 
+ **interface_action_request** | [**InterfaceActionRequest**](InterfaceActionRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20061**](InlineResponse20061.md)
+**list[str]**
 
 ### Authorization
 
@@ -502,13 +490,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_gre_endpoint**
-> InlineResponse20068 post_create_gre_endpoint(inline_object43)
+> object post_create_gre_endpoint(body)
 
 
 
@@ -520,10 +508,10 @@ Create new edge GRE interface
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -531,11 +519,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-inline_object43 = vns3api.InlineObject43() # InlineObject43 | 
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
+body = None # object | 
 
 try:
-    api_response = api_instance.post_create_gre_endpoint(inline_object43)
+    api_response = api_instance.post_create_gre_endpoint(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->post_create_gre_endpoint: %s\n" % e)
@@ -545,11 +533,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object43** | [**InlineObject43**](InlineObject43.md)|  | 
+ **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20068**](InlineResponse20068.md)
+**object**
 
 ### Authorization
 
@@ -565,13 +553,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_system_interface**
-> InlineResponse20063 post_create_system_interface(body)
+> SystemInterfaceDetail post_create_system_interface(body)
 
 
 
@@ -583,10 +571,10 @@ Create new system interface
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -594,7 +582,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 body = None # object | 
 
 try:
@@ -612,7 +600,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20063**](InlineResponse20063.md)
+[**SystemInterfaceDetail**](SystemInterfaceDetail.md)
 
 ### Authorization
 
@@ -628,13 +616,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_gre_endpoint**
-> InlineResponse20068 put_update_gre_endpoint(id, body)
+> object put_update_gre_endpoint(body)
 
 
 
@@ -646,10 +634,10 @@ Update GRE interface
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -657,12 +645,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-id = 'id_example' # str | name or id of interface
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 body = None # object | 
 
 try:
-    api_response = api_instance.put_update_gre_endpoint(id, body)
+    api_response = api_instance.put_update_gre_endpoint(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->put_update_gre_endpoint: %s\n" % e)
@@ -672,12 +659,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| name or id of interface | 
  **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20068**](InlineResponse20068.md)
+**object**
 
 ### Authorization
 
@@ -693,13 +679,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Updated |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_system_interface**
-> InlineResponse20065 put_update_system_interface(id, body)
+> object put_update_system_interface(body)
 
 
 
@@ -711,10 +697,10 @@ Update system interface
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -722,12 +708,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.InterfacesApi(vns3api.ApiClient(configuration))
-id = 'id_example' # str | name or id of interface
+api_instance = cohesivenet.InterfacesApi(cohesivenet.VNS3Client(configuration))
 body = None # object | 
 
 try:
-    api_response = api_instance.put_update_system_interface(id, body)
+    api_response = api_instance.put_update_system_interface(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InterfacesApi->put_update_system_interface: %s\n" % e)
@@ -737,12 +722,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| name or id of interface | 
  **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20065**](InlineResponse20065.md)
+**object**
 
 ### Authorization
 
@@ -758,8 +742,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Updated |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1,4 +1,4 @@
-# vns3api.PeeringApi
+# cohesivenet.PeeringApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **delete_peer**
-> InlineResponse20059 delete_peer(peer_id)
+> object delete_peer(peer_id)
 
 
 
@@ -25,10 +25,10 @@ Breaks a peering relationship from a manager to another manager.  The peering ca
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -36,7 +36,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.PeeringApi(cohesivenet.VNS3Client(configuration))
 peer_id = 56 # int | Peer ID for controller peer
 
 try:
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20059**](InlineResponse20059.md)
+**object**
 
 ### Authorization
 
@@ -70,13 +70,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Delete Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_peering_status**
-> InlineResponse20056 get_peering_status()
+> PeersDetailResponse get_peering_status()
 
 
 
@@ -88,10 +88,10 @@ Provides the status of whether a Controller is peered to other Controllers
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -99,7 +99,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.PeeringApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_peering_status()
@@ -113,7 +113,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20056**](InlineResponse20056.md)
+[**PeersDetailResponse**](PeersDetailResponse.md)
 
 ### Authorization
 
@@ -128,13 +128,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_peer**
-> InlineResponse20059 post_peer(inline_object41)
+> object post_peer(create_peer_request)
 
 
 
@@ -146,10 +146,10 @@ Creates a peering relationship from a manager to another manager.  The peering c
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -157,11 +157,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object41 = vns3api.InlineObject41() # InlineObject41 | 
+api_instance = cohesivenet.PeeringApi(cohesivenet.VNS3Client(configuration))
+create_peer_request = cohesivenet.CreatePeerRequest() # CreatePeerRequest | 
 
 try:
-    api_response = api_instance.post_peer(inline_object41)
+    api_response = api_instance.post_peer(create_peer_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->post_peer: %s\n" % e)
@@ -171,11 +171,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object41** | [**InlineObject41**](InlineObject41.md)|  | 
+ **create_peer_request** | [**CreatePeerRequest**](CreatePeerRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20059**](InlineResponse20059.md)
+**object**
 
 ### Authorization
 
@@ -191,13 +191,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_peer**
-> InlineResponse20059 put_peer(inline_object40)
+> object put_peer(update_peer_request)
 
 
 
@@ -209,10 +209,10 @@ Edits a peering relationship from a manager to another manager.  The peering cal
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -220,11 +220,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object40 = vns3api.InlineObject40() # InlineObject40 | 
+api_instance = cohesivenet.PeeringApi(cohesivenet.VNS3Client(configuration))
+update_peer_request = cohesivenet.UpdatePeerRequest() # UpdatePeerRequest | 
 
 try:
-    api_response = api_instance.put_peer(inline_object40)
+    api_response = api_instance.put_peer(update_peer_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->put_peer: %s\n" % e)
@@ -234,11 +234,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object40** | [**InlineObject40**](InlineObject40.md)|  | 
+ **update_peer_request** | [**UpdatePeerRequest**](UpdatePeerRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20059**](InlineResponse20059.md)
+**object**
 
 ### Authorization
 
@@ -254,13 +254,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Updated |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_reconfigure_peers**
-> InlineResponse20057 put_reconfigure_peers(inline_object38)
+> object put_reconfigure_peers(configure_peer_request)
 
 
 
@@ -272,10 +272,10 @@ Reconfigure peered controllers
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -283,11 +283,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object38 = vns3api.InlineObject38() # InlineObject38 | 
+api_instance = cohesivenet.PeeringApi(cohesivenet.VNS3Client(configuration))
+configure_peer_request = cohesivenet.ConfigurePeerRequest() # ConfigurePeerRequest | 
 
 try:
-    api_response = api_instance.put_reconfigure_peers(inline_object38)
+    api_response = api_instance.put_reconfigure_peers(configure_peer_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->put_reconfigure_peers: %s\n" % e)
@@ -297,11 +297,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object38** | [**InlineObject38**](InlineObject38.md)|  | 
+ **configure_peer_request** | [**ConfigurePeerRequest**](ConfigurePeerRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20057**](InlineResponse20057.md)
+**object**
 
 ### Authorization
 
@@ -317,13 +317,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_self_peering_id**
-> InlineResponse20058 put_self_peering_id(inline_object39)
+> object put_self_peering_id(peer_self_request)
 
 
 
@@ -335,10 +335,10 @@ Sets the Controller ID of a controller so that it can be peered within a topolog
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -346,11 +346,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.PeeringApi(vns3api.ApiClient(configuration))
-inline_object39 = vns3api.InlineObject39() # InlineObject39 | 
+api_instance = cohesivenet.PeeringApi(cohesivenet.VNS3Client(configuration))
+peer_self_request = cohesivenet.PeerSelfRequest() # PeerSelfRequest | 
 
 try:
-    api_response = api_instance.put_self_peering_id(inline_object39)
+    api_response = api_instance.put_self_peering_id(peer_self_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->put_self_peering_id: %s\n" % e)
@@ -360,11 +360,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object39** | [**InlineObject39**](InlineObject39.md)|  | 
+ **peer_self_request** | [**PeerSelfRequest**](PeerSelfRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20058**](InlineResponse20058.md)
+**object**
 
 ### Authorization
 
@@ -380,8 +380,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

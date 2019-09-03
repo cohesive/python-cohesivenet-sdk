@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    VNS3 Controller API
+    Cohesive Networks SDK
 
-    Cohesive networks VNS3 API providing complete control of your network's addresses, routes, rules and edge  # noqa: E501
+    Cohesive Networks SDK is a thin wrapper around our product APIs providing complete control of your network's addresses, routes, rules and edge  # noqa: E501
 
     The version of the OpenAPI document: 4.8
     Contact: solutions@cohesive.net
@@ -13,7 +13,7 @@
 
 from setuptools import setup, find_packages  # noqa: H301
 
-NAME = "vns3api"
+NAME = "cohesivenet"
 VERSION = "1.0.0"
 # To install the library, run the following
 #
@@ -27,22 +27,24 @@ REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
 setup(
     name=NAME,
     version=VERSION,
-    description="VNS3 Controller API",
+    description="Cohesive Networks SDK",
     author_email="solutions@cohesive.net",
     url="",
-    keywords=["OpenAPI", "OpenAPI-Generator", "VNS3 Controller API"],
+    keywords=["OpenAPI", "OpenAPI-Generator", "Cohesive Networks SDK"],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
-    long_description="""\
-    Cohesive networks VNS3 API providing complete control of your network&#39;s addresses, routes, rules and edge  # noqa: E501
-    """,
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6.9",
         "Development Status :: 2 - Pre-Alpha",
-        "License :: OSI Approved :: MIT License",
+        "Intended Audience :: Developers",
         "Topic :: System :: Networking",
-        "Operating System :: OS Independent",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
     ],
+    long_description="""\
+    Cohesive networks SDK providing complete control of your network&#39;s addresses, routes, rules and edge  # noqa: E501
+    """
 )

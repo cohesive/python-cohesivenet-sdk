@@ -1,4 +1,4 @@
-# vns3api.HighAvailabilityApi
+# cohesivenet.HighAvailabilityApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **get_ha_id**
-> InlineResponse20088 get_ha_id()
+> HaUUID get_ha_id()
 
 
 
@@ -27,10 +27,10 @@ Get the unique ID this controller in HA configuration
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -38,7 +38,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_ha_id()
@@ -52,7 +52,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20088**](InlineResponse20088.md)
+[**HaUUID**](HaUUID.md)
 
 ### Authorization
 
@@ -67,13 +67,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ha_status**
-> InlineResponse20092 get_ha_status(uuid)
+> HaDetail get_ha_status()
 
 
 
@@ -85,10 +85,10 @@ Get HA status for given ID
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -96,25 +96,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | ID for controller in HA configuration
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.get_ha_status(uuid)
+    api_response = api_instance.get_ha_status()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->get_ha_status: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| ID for controller in HA configuration | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20092**](InlineResponse20092.md)
+[**HaDetail**](HaDetail.md)
 
 ### Authorization
 
@@ -130,13 +126,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ha_sync_file**
-> file get_ha_sync_file(uuid, sync_uuid)
+> file get_ha_sync_file()
 
 
 
@@ -148,10 +144,10 @@ Download sync file from HA Primary
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -159,23 +155,17 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | ID for controller in HA configuration
-sync_uuid = 'sync_uuid_example' # str | ID for HA sync
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.get_ha_sync_file(uuid, sync_uuid)
+    api_response = api_instance.get_ha_sync_file()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->get_ha_sync_file: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| ID for controller in HA configuration | 
- **sync_uuid** | **str**| ID for HA sync | 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -194,15 +184,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**404** | Bad request |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**404** | Not found |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ha_sync_status**
-> InlineResponse20090 get_ha_sync_status(uuid, sync_uuid)
+> object get_ha_sync_status(uuid, sync_uuid)
 
 
 
@@ -214,10 +204,10 @@ Get HA sync status for given ID
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -225,8 +215,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | ID for controller in HA configuration
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
+uuid = 'uuid_example' # str | UUID for resource
 sync_uuid = 'sync_uuid_example' # str | ID for HA sync
 
 try:
@@ -240,12 +230,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| ID for controller in HA configuration | 
+ **uuid** | **str**| UUID for resource | 
  **sync_uuid** | **str**| ID for HA sync | 
 
 ### Return type
 
-[**InlineResponse20090**](InlineResponse20090.md)
+**object**
 
 ### Authorization
 
@@ -261,14 +251,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_init_ha**
-> InlineResponse20089 post_init_ha(inline_object52)
+> object post_init_ha(init_ha_request)
 
 
 
@@ -280,10 +270,10 @@ Initialise HA
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -291,11 +281,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-inline_object52 = vns3api.InlineObject52() # InlineObject52 | 
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
+init_ha_request = cohesivenet.InitHaRequest() # InitHaRequest | 
 
 try:
-    api_response = api_instance.post_init_ha(inline_object52)
+    api_response = api_instance.post_init_ha(init_ha_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->post_init_ha: %s\n" % e)
@@ -305,11 +295,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object52** | [**InlineObject52**](InlineObject52.md)|  | 
+ **init_ha_request** | [**InitHaRequest**](InitHaRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20089**](InlineResponse20089.md)
+**object**
 
 ### Authorization
 
@@ -325,14 +315,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_sync_ha**
-> InlineResponse20091 post_sync_ha(inline_object53)
+> HaSyncStatusResponse post_sync_ha(body)
 
 
 
@@ -344,10 +334,10 @@ Initiate a sync creation on HA Primary
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -355,11 +345,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-inline_object53 = vns3api.InlineObject53() # InlineObject53 | 
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
+body = None # object | 
 
 try:
-    api_response = api_instance.post_sync_ha(inline_object53)
+    api_response = api_instance.post_sync_ha(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->post_sync_ha: %s\n" % e)
@@ -369,11 +359,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object53** | [**InlineObject53**](InlineObject53.md)|  | 
+ **body** | **object**|  | 
 
 ### Return type
 
-[**InlineResponse20091**](InlineResponse20091.md)
+[**HaSyncStatusResponse**](HaSyncStatusResponse.md)
 
 ### Authorization
 
@@ -389,14 +379,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_ha_activate**
-> InlineResponse20093 put_ha_activate(inline_object54)
+> object put_ha_activate(activate_ha_request)
 
 
 
@@ -408,10 +398,10 @@ Activate the HA switchover
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -419,11 +409,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
-inline_object54 = vns3api.InlineObject54() # InlineObject54 | 
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
+activate_ha_request = cohesivenet.ActivateHaRequest() # ActivateHaRequest | 
 
 try:
-    api_response = api_instance.put_ha_activate(inline_object54)
+    api_response = api_instance.put_ha_activate(activate_ha_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HighAvailabilityApi->put_ha_activate: %s\n" % e)
@@ -433,11 +423,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object54** | [**InlineObject54**](InlineObject54.md)|  | 
+ **activate_ha_request** | [**ActivateHaRequest**](ActivateHaRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20093**](InlineResponse20093.md)
+**object**
 
 ### Authorization
 
@@ -452,14 +442,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_ha_push_file**
-> InlineResponse20038 put_ha_push_file(body)
+> object put_ha_push_file(body)
 
 
 
@@ -471,10 +461,10 @@ Upload a sync file to HA Backup
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -482,7 +472,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.HighAvailabilityApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.HighAvailabilityApi(cohesivenet.VNS3Client(configuration))
 body = '/path/to/file' # file | Sync file
 
 try:
@@ -500,7 +490,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20038**](InlineResponse20038.md)
+**object**
 
 ### Authorization
 
@@ -515,9 +505,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1,4 +1,4 @@
-# vns3api.RoutingApi
+# cohesivenet.RoutingApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **delete_route**
-> InlineResponse20043 delete_route(id)
+> object delete_route(id)
 
 
 
@@ -22,10 +22,10 @@ Delete Route
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -33,8 +33,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.RoutingApi(vns3api.ApiClient(configuration))
-id = 56 # int | numerical ID for route
+api_instance = cohesivenet.RoutingApi(cohesivenet.VNS3Client(configuration))
+id = 56 # int | Resource ID
 
 try:
     api_response = api_instance.delete_route(id)
@@ -47,11 +47,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| numerical ID for route | 
+ **id** | **int**| Resource ID | 
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+**object**
 
 ### Authorization
 
@@ -67,13 +67,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_routes**
-> InlineResponse20041 get_routes()
+> RoutesListResponse get_routes()
 
 
 
@@ -85,10 +85,10 @@ Describes routes that this manager has access to via its network interfaces (vir
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -96,7 +96,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.RoutingApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.RoutingApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_routes()
@@ -110,7 +110,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**RoutesListResponse**](RoutesListResponse.md)
 
 ### Authorization
 
@@ -125,13 +125,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_route**
-> InlineResponse20042 post_create_route(inline_object29)
+> object post_create_route(create_route_request)
 
 
 
@@ -143,10 +143,10 @@ Pushes routes that this manager has access to via its network interfaces (virtua
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -154,11 +154,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.RoutingApi(vns3api.ApiClient(configuration))
-inline_object29 = vns3api.InlineObject29() # InlineObject29 | 
+api_instance = cohesivenet.RoutingApi(cohesivenet.VNS3Client(configuration))
+create_route_request = cohesivenet.CreateRouteRequest() # CreateRouteRequest | 
 
 try:
-    api_response = api_instance.post_create_route(inline_object29)
+    api_response = api_instance.post_create_route(create_route_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RoutingApi->post_create_route: %s\n" % e)
@@ -168,11 +168,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object29** | [**InlineObject29**](InlineObject29.md)|  | 
+ **create_route_request** | [**CreateRouteRequest**](CreateRouteRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+**object**
 
 ### Authorization
 
@@ -188,8 +188,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Created |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

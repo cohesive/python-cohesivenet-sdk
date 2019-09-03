@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import vns3api
-from vns3api.api.overlay_network_api import OverlayNetworkApi  # noqa: E501
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.api.overlay_network_api import OverlayNetworkApi  # noqa: E501
+from cohesivenet.rest import ApiException
 
 
 class TestOverlayNetworkApi(unittest.TestCase):
     """OverlayNetworkApi unit test stubs"""
 
     def setUp(self):
-        self.api = vns3api.api.overlay_network_api.OverlayNetworkApi()  # noqa: E501
+        self.api = cohesivenet.api.overlay_network_api.OverlayNetworkApi()  # noqa: E501
 
     def tearDown(self):
         pass

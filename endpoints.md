@@ -1,4 +1,5 @@
-# Documentation for API Endpoints
+
+## Documentation for API Endpoints
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -24,7 +25,6 @@ Class | Method | HTTP request | Description
 *FirewallApi* | [**get_firewall_fw_sets**](docs/FirewallApi.md#get_firewall_fw_sets) | **GET** /firewall/fwsets | 
 *FirewallApi* | [**get_firewall_rule_subgroups**](docs/FirewallApi.md#get_firewall_rule_subgroups) | **GET** /firewall/rules/subgroup | 
 *FirewallApi* | [**get_firewall_rules**](docs/FirewallApi.md#get_firewall_rules) | **GET** /firewall/rules | 
-*FirewallApi* | [**post_create_firewall_fw_set**](docs/FirewallApi.md#post_create_firewall_fw_set) | **POST** /firewall/fwsets | 
 *FirewallApi* | [**post_create_firewall_rule**](docs/FirewallApi.md#post_create_firewall_rule) | **POST** /firewall/rules | 
 *FirewallApi* | [**post_create_firewall_subgroup_rule**](docs/FirewallApi.md#post_create_firewall_subgroup_rule) | **POST** /firewall/rules/subgroup | 
 *FirewallApi* | [**put_reinitialize_fw_sets**](docs/FirewallApi.md#put_reinitialize_fw_sets) | **PUT** /firewall/fwsets | 
@@ -65,27 +65,27 @@ Class | Method | HTTP request | Description
 *LicensingApi* | [**put_license_upgrade**](docs/LicensingApi.md#put_license_upgrade) | **PUT** /license/upgrade | 
 *LicensingApi* | [**put_set_license_parameters**](docs/LicensingApi.md#put_set_license_parameters) | **PUT** /license/parameters | 
 *LicensingApi* | [**upload_license**](docs/LicensingApi.md#upload_license) | **PUT** /license | 
-*MonitoringAndAlertingApi* | [**delete_alert**](docs/MonitoringAndAlertingApi.md#delete_alert) | **DELETE** /alert/{id} | 
-*MonitoringAndAlertingApi* | [**get_alert**](docs/MonitoringAndAlertingApi.md#get_alert) | **GET** /alert/{id} | 
-*MonitoringAndAlertingApi* | [**get_alerts**](docs/MonitoringAndAlertingApi.md#get_alerts) | **GET** /alerts | 
-*MonitoringAndAlertingApi* | [**post_define_new_alert**](docs/MonitoringAndAlertingApi.md#post_define_new_alert) | **POST** /alert | 
-*MonitoringAndAlertingApi* | [**post_test_alert**](docs/MonitoringAndAlertingApi.md#post_test_alert) | **POST** /alert/{id}/test | 
-*MonitoringAndAlertingApi* | [**post_toggle_enabled_alert**](docs/MonitoringAndAlertingApi.md#post_toggle_enabled_alert) | **POST** /alert/{id}/toggle_enabled | 
-*MonitoringAndAlertingApi* | [**put_update_alert**](docs/MonitoringAndAlertingApi.md#put_update_alert) | **PUT** /alert/{id} | 
-*NetworkEdgeFunctionsApi* | [**delete_container**](docs/NetworkEdgeFunctionsApi.md#delete_container) | **DELETE** /container_system/containers/{uuid} | 
-*NetworkEdgeFunctionsApi* | [**delete_container_image**](docs/NetworkEdgeFunctionsApi.md#delete_container_image) | **DELETE** /container_system/images/{uuid} | 
-*NetworkEdgeFunctionsApi* | [**get_container_logs**](docs/NetworkEdgeFunctionsApi.md#get_container_logs) | **GET** /container_system/containers/{uuid}/logs | 
-*NetworkEdgeFunctionsApi* | [**get_container_system_i_ps**](docs/NetworkEdgeFunctionsApi.md#get_container_system_i_ps) | **GET** /container_system/ip_addresses | 
-*NetworkEdgeFunctionsApi* | [**get_container_system_images**](docs/NetworkEdgeFunctionsApi.md#get_container_system_images) | **GET** /container_system/images | 
-*NetworkEdgeFunctionsApi* | [**get_container_system_running_containers**](docs/NetworkEdgeFunctionsApi.md#get_container_system_running_containers) | **GET** /container_system/containers | 
-*NetworkEdgeFunctionsApi* | [**get_container_system_status**](docs/NetworkEdgeFunctionsApi.md#get_container_system_status) | **GET** /container_system | 
-*NetworkEdgeFunctionsApi* | [**post_action_container_system**](docs/NetworkEdgeFunctionsApi.md#post_action_container_system) | **POST** /container_system | 
-*NetworkEdgeFunctionsApi* | [**post_commit_container**](docs/NetworkEdgeFunctionsApi.md#post_commit_container) | **POST** /container_system/containers/{uuid}/commit | 
-*NetworkEdgeFunctionsApi* | [**post_create_container_image**](docs/NetworkEdgeFunctionsApi.md#post_create_container_image) | **POST** /container_system/images | 
-*NetworkEdgeFunctionsApi* | [**post_start_container**](docs/NetworkEdgeFunctionsApi.md#post_start_container) | **POST** /container_system/containers | 
-*NetworkEdgeFunctionsApi* | [**put_configure_container_system**](docs/NetworkEdgeFunctionsApi.md#put_configure_container_system) | **PUT** /container_system | 
-*NetworkEdgeFunctionsApi* | [**put_edit_container_image**](docs/NetworkEdgeFunctionsApi.md#put_edit_container_image) | **PUT** /container_system/images/{uuid} | 
-*NetworkEdgeFunctionsApi* | [**put_stop_container**](docs/NetworkEdgeFunctionsApi.md#put_stop_container) | **PUT** /container_system/containers/{uuid} | 
+*MonitoringAlertingApi* | [**delete_alert**](docs/MonitoringAlertingApi.md#delete_alert) | **DELETE** /alert/{id} | 
+*MonitoringAlertingApi* | [**get_alert**](docs/MonitoringAlertingApi.md#get_alert) | **GET** /alert/{id} | 
+*MonitoringAlertingApi* | [**get_alerts**](docs/MonitoringAlertingApi.md#get_alerts) | **GET** /alerts | 
+*MonitoringAlertingApi* | [**post_define_new_alert**](docs/MonitoringAlertingApi.md#post_define_new_alert) | **POST** /alert | 
+*MonitoringAlertingApi* | [**post_test_alert**](docs/MonitoringAlertingApi.md#post_test_alert) | **POST** /alert/{id}/test | 
+*MonitoringAlertingApi* | [**post_toggle_enabled_alert**](docs/MonitoringAlertingApi.md#post_toggle_enabled_alert) | **POST** /alert/{id}/toggle_enabled | 
+*MonitoringAlertingApi* | [**put_update_alert**](docs/MonitoringAlertingApi.md#put_update_alert) | **PUT** /alert/{id} | 
+*NetworkEdgePluginsApi* | [**delete_container**](docs/NetworkEdgePluginsApi.md#delete_container) | **DELETE** /container_system/containers/{uuid} | 
+*NetworkEdgePluginsApi* | [**delete_container_image**](docs/NetworkEdgePluginsApi.md#delete_container_image) | **DELETE** /container_system/images/{uuid} | 
+*NetworkEdgePluginsApi* | [**get_container_logs**](docs/NetworkEdgePluginsApi.md#get_container_logs) | **GET** /container_system/containers/{uuid}/logs | 
+*NetworkEdgePluginsApi* | [**get_container_system_i_ps**](docs/NetworkEdgePluginsApi.md#get_container_system_i_ps) | **GET** /container_system/ip_addresses | 
+*NetworkEdgePluginsApi* | [**get_container_system_images**](docs/NetworkEdgePluginsApi.md#get_container_system_images) | **GET** /container_system/images | 
+*NetworkEdgePluginsApi* | [**get_container_system_running_containers**](docs/NetworkEdgePluginsApi.md#get_container_system_running_containers) | **GET** /container_system/containers | 
+*NetworkEdgePluginsApi* | [**get_container_system_status**](docs/NetworkEdgePluginsApi.md#get_container_system_status) | **GET** /container_system | 
+*NetworkEdgePluginsApi* | [**post_action_container_system**](docs/NetworkEdgePluginsApi.md#post_action_container_system) | **POST** /container_system | 
+*NetworkEdgePluginsApi* | [**post_commit_container**](docs/NetworkEdgePluginsApi.md#post_commit_container) | **POST** /container_system/containers/{uuid}/commit | 
+*NetworkEdgePluginsApi* | [**post_create_container_image**](docs/NetworkEdgePluginsApi.md#post_create_container_image) | **POST** /container_system/images | 
+*NetworkEdgePluginsApi* | [**post_start_container**](docs/NetworkEdgePluginsApi.md#post_start_container) | **POST** /container_system/containers | 
+*NetworkEdgePluginsApi* | [**put_configure_container_system**](docs/NetworkEdgePluginsApi.md#put_configure_container_system) | **PUT** /container_system | 
+*NetworkEdgePluginsApi* | [**put_edit_container_image**](docs/NetworkEdgePluginsApi.md#put_edit_container_image) | **PUT** /container_system/images/{uuid} | 
+*NetworkEdgePluginsApi* | [**put_stop_container**](docs/NetworkEdgePluginsApi.md#put_stop_container) | **PUT** /container_system/containers/{uuid} | 
 *OverlayNetworkApi* | [**delete_clientpack_tag**](docs/OverlayNetworkApi.md#delete_clientpack_tag) | **DELETE** /clientpack/{name} | 
 *OverlayNetworkApi* | [**get_clientpack**](docs/OverlayNetworkApi.md#get_clientpack) | **GET** /clientpacks/{name} | 
 *OverlayNetworkApi* | [**get_clientpacks**](docs/OverlayNetworkApi.md#get_clientpacks) | **GET** /clientpacks | 
@@ -133,3 +133,194 @@ Class | Method | HTTP request | Description
 *SystemAdministrationApi* | [**put_expire_api_access_token**](docs/SystemAdministrationApi.md#put_expire_api_access_token) | **PUT** /access/token/{token_id} | 
 *SystemAdministrationApi* | [**put_remote_support**](docs/SystemAdministrationApi.md#put_remote_support) | **PUT** /remote_support | 
 *SystemAdministrationApi* | [**put_server_action**](docs/SystemAdministrationApi.md#put_server_action) | **PUT** /server | 
+
+
+## Documentation For Models
+
+ - [AccessToken](docs/AccessToken.md)
+ - [AccessTokenDetail](docs/AccessTokenDetail.md)
+ - [AccessTokenListResponse](docs/AccessTokenListResponse.md)
+ - [AccessUrl](docs/AccessUrl.md)
+ - [AccessUrlDetail](docs/AccessUrlDetail.md)
+ - [AccessUrlListResponse](docs/AccessUrlListResponse.md)
+ - [ActivateHaRequest](docs/ActivateHaRequest.md)
+ - [AddClientpackRequest](docs/AddClientpackRequest.md)
+ - [AdminUISettingsDetail](docs/AdminUISettingsDetail.md)
+ - [AdminUISettingsDetailResponse](docs/AdminUISettingsDetailResponse.md)
+ - [Alert](docs/Alert.md)
+ - [AlertDetailResponse](docs/AlertDetailResponse.md)
+ - [AlertsListResponse](docs/AlertsListResponse.md)
+ - [BGPPeer](docs/BGPPeer.md)
+ - [BulkClientResetStatus](docs/BulkClientResetStatus.md)
+ - [BulkClientResetStatusResponse](docs/BulkClientResetStatusResponse.md)
+ - [CalculateNextClientpackRequest](docs/CalculateNextClientpackRequest.md)
+ - [ClientPack](docs/ClientPack.md)
+ - [ClientpackDetail](docs/ClientpackDetail.md)
+ - [ClientpackDetailResponse](docs/ClientpackDetailResponse.md)
+ - [ClientpackListResponse](docs/ClientpackListResponse.md)
+ - [ClientpackStatus](docs/ClientpackStatus.md)
+ - [ClientpackStatusResponse](docs/ClientpackStatusResponse.md)
+ - [ClientpackTagKeyRequest](docs/ClientpackTagKeyRequest.md)
+ - [ClientpackTags](docs/ClientpackTags.md)
+ - [ClientpackTagsResponse](docs/ClientpackTagsResponse.md)
+ - [CloudInfo](docs/CloudInfo.md)
+ - [CloudInfoDetail](docs/CloudInfoDetail.md)
+ - [CommitContainerRequest](docs/CommitContainerRequest.md)
+ - [ConfigDetail](docs/ConfigDetail.md)
+ - [ConfigurePeerRequest](docs/ConfigurePeerRequest.md)
+ - [ConnectedSubnetsDetailResponse](docs/ConnectedSubnetsDetailResponse.md)
+ - [Container](docs/Container.md)
+ - [ContainerImage](docs/ContainerImage.md)
+ - [ContainerImageList](docs/ContainerImageList.md)
+ - [ContainerImageListResponse](docs/ContainerImageListResponse.md)
+ - [ContainerLogs](docs/ContainerLogs.md)
+ - [ContainerLogsResponse](docs/ContainerLogsResponse.md)
+ - [ContainerSystemActionRequest](docs/ContainerSystemActionRequest.md)
+ - [ContainerSystemIP](docs/ContainerSystemIP.md)
+ - [ContainerSystemIPList](docs/ContainerSystemIPList.md)
+ - [ContainerSystemIPListResponse](docs/ContainerSystemIPListResponse.md)
+ - [ContainerSystemStatus](docs/ContainerSystemStatus.md)
+ - [ContainerSystemStatusDetailResponse](docs/ContainerSystemStatusDetailResponse.md)
+ - [CreateAPITokenRequest](docs/CreateAPITokenRequest.md)
+ - [CreateAccessURLRequest](docs/CreateAccessURLRequest.md)
+ - [CreateAlertRequest](docs/CreateAlertRequest.md)
+ - [CreateBGPPeerRequest](docs/CreateBGPPeerRequest.md)
+ - [CreateClientpackTagRequest](docs/CreateClientpackTagRequest.md)
+ - [CreateContainerImageDetail](docs/CreateContainerImageDetail.md)
+ - [CreateContainerImageResponse](docs/CreateContainerImageResponse.md)
+ - [CreateFWSubgroupRequest](docs/CreateFWSubgroupRequest.md)
+ - [CreateFirewallRuleRequest](docs/CreateFirewallRuleRequest.md)
+ - [CreateImageDetail](docs/CreateImageDetail.md)
+ - [CreateImageDetailResponse](docs/CreateImageDetailResponse.md)
+ - [CreateIpsecEndpointRequest](docs/CreateIpsecEndpointRequest.md)
+ - [CreateIpsecTunnelRequest](docs/CreateIpsecTunnelRequest.md)
+ - [CreatePeerRequest](docs/CreatePeerRequest.md)
+ - [CreateRouteRequest](docs/CreateRouteRequest.md)
+ - [CreateSnapshotRequest](docs/CreateSnapshotRequest.md)
+ - [DeleteContainerDetail](docs/DeleteContainerDetail.md)
+ - [DeleteContainerDetailResponse](docs/DeleteContainerDetailResponse.md)
+ - [DeleteContainerImageDetail](docs/DeleteContainerImageDetail.md)
+ - [DeleteContainerImageDetailResponse](docs/DeleteContainerImageDetailResponse.md)
+ - [DeleteFirewallRuleRequest](docs/DeleteFirewallRuleRequest.md)
+ - [DisconnetClientRequest](docs/DisconnetClientRequest.md)
+ - [DownloadClientpackRequest](docs/DownloadClientpackRequest.md)
+ - [Error](docs/Error.md)
+ - [ErrorError](docs/ErrorError.md)
+ - [ExpireRequest](docs/ExpireRequest.md)
+ - [FirewallFWSet](docs/FirewallFWSet.md)
+ - [FirewallFWSetListResponse](docs/FirewallFWSetListResponse.md)
+ - [FirewallRuleListResponse](docs/FirewallRuleListResponse.md)
+ - [FirewallRuleOperationData](docs/FirewallRuleOperationData.md)
+ - [FirewallRuleOperationResponse](docs/FirewallRuleOperationResponse.md)
+ - [FirewallSubgroupListResponse](docs/FirewallSubgroupListResponse.md)
+ - [GREEndpointDetail](docs/GREEndpointDetail.md)
+ - [GREEndpointListResponse](docs/GREEndpointListResponse.md)
+ - [HaConfig](docs/HaConfig.md)
+ - [HaDetail](docs/HaDetail.md)
+ - [HaSyncStatus](docs/HaSyncStatus.md)
+ - [HaSyncStatusResponse](docs/HaSyncStatusResponse.md)
+ - [HaUUID](docs/HaUUID.md)
+ - [Haid](docs/Haid.md)
+ - [InitHaRequest](docs/InitHaRequest.md)
+ - [InitLicenseDetail](docs/InitLicenseDetail.md)
+ - [InterfaceActionRequest](docs/InterfaceActionRequest.md)
+ - [IpsecLocalEndpoint](docs/IpsecLocalEndpoint.md)
+ - [IpsecRemoteEndpoint](docs/IpsecRemoteEndpoint.md)
+ - [IpsecRemoteEndpointDetail](docs/IpsecRemoteEndpointDetail.md)
+ - [IpsecSystemDetail](docs/IpsecSystemDetail.md)
+ - [IpsecSystemDetailResponse](docs/IpsecSystemDetailResponse.md)
+ - [IpsecTunnel](docs/IpsecTunnel.md)
+ - [IpsecTunnelDetail](docs/IpsecTunnelDetail.md)
+ - [IpsecTunnelListResponseKeyValue](docs/IpsecTunnelListResponseKeyValue.md)
+ - [IpsecTunnelParams](docs/IpsecTunnelParams.md)
+ - [KeysetDetail](docs/KeysetDetail.md)
+ - [KeysetStatus](docs/KeysetStatus.md)
+ - [License](docs/License.md)
+ - [LicenseContainerDetails](docs/LicenseContainerDetails.md)
+ - [LicenseDetail](docs/LicenseDetail.md)
+ - [LicenseInitial](docs/LicenseInitial.md)
+ - [LicenseParameters](docs/LicenseParameters.md)
+ - [LicenseParametersDetail](docs/LicenseParametersDetail.md)
+ - [LicenseParametersState](docs/LicenseParametersState.md)
+ - [LinkEvent](docs/LinkEvent.md)
+ - [LinkHistory](docs/LinkHistory.md)
+ - [LinkHistoryDetail](docs/LinkHistoryDetail.md)
+ - [OverlayClient](docs/OverlayClient.md)
+ - [OverlayClientsListResponse](docs/OverlayClientsListResponse.md)
+ - [OverlayIPAddress](docs/OverlayIPAddress.md)
+ - [PasswordResetResponse](docs/PasswordResetResponse.md)
+ - [PasswordResetResponseResponse](docs/PasswordResetResponseResponse.md)
+ - [PeerSelfRequest](docs/PeerSelfRequest.md)
+ - [PeersDetail](docs/PeersDetail.md)
+ - [PeersDetailResponse](docs/PeersDetailResponse.md)
+ - [RebootRequest](docs/RebootRequest.md)
+ - [ReinitFirewallRequest](docs/ReinitFirewallRequest.md)
+ - [ReinitRequest](docs/ReinitRequest.md)
+ - [RemoteSupportStatus](docs/RemoteSupportStatus.md)
+ - [RemoteSupportStatusResponse](docs/RemoteSupportStatusResponse.md)
+ - [ResetOverlayClientRequest](docs/ResetOverlayClientRequest.md)
+ - [RestartRequest](docs/RestartRequest.md)
+ - [RestartStatus](docs/RestartStatus.md)
+ - [RestartStatusResponse](docs/RestartStatusResponse.md)
+ - [Route](docs/Route.md)
+ - [RoutesListResponse](docs/RoutesListResponse.md)
+ - [RunContainerDetail](docs/RunContainerDetail.md)
+ - [RunContainerDetailResponse](docs/RunContainerDetailResponse.md)
+ - [RunningContainersDetail](docs/RunningContainersDetail.md)
+ - [RunningContainersDetailNetworkSettings](docs/RunningContainersDetailNetworkSettings.md)
+ - [RunningContainersDetailResponse](docs/RunningContainersDetailResponse.md)
+ - [RunningContainersDetailState](docs/RunningContainersDetailState.md)
+ - [RuntimeConfig](docs/RuntimeConfig.md)
+ - [RuntimeStatus](docs/RuntimeStatus.md)
+ - [RuntimeStatusDetail](docs/RuntimeStatusDetail.md)
+ - [ServerSSLDetail](docs/ServerSSLDetail.md)
+ - [ServerSSLDetailResponse](docs/ServerSSLDetailResponse.md)
+ - [SimpleBooleanResponse](docs/SimpleBooleanResponse.md)
+ - [SimpleStatusResponse](docs/SimpleStatusResponse.md)
+ - [SimpleStatusResponseResponse](docs/SimpleStatusResponseResponse.md)
+ - [SimpleStringResponse](docs/SimpleStringResponse.md)
+ - [Snapshot](docs/Snapshot.md)
+ - [SnapshotImportStatus](docs/SnapshotImportStatus.md)
+ - [SnapshotImportStatusResponse](docs/SnapshotImportStatusResponse.md)
+ - [SnapshotsDetailResponse](docs/SnapshotsDetailResponse.md)
+ - [SnapshotsList](docs/SnapshotsList.md)
+ - [SnapshotsListResponse](docs/SnapshotsListResponse.md)
+ - [StopContainerDetail](docs/StopContainerDetail.md)
+ - [StopContainerDetailResponse](docs/StopContainerDetailResponse.md)
+ - [SystemInterface](docs/SystemInterface.md)
+ - [SystemInterfaceDetail](docs/SystemInterfaceDetail.md)
+ - [SystemInterfaceListResponse](docs/SystemInterfaceListResponse.md)
+ - [SystemPing](docs/SystemPing.md)
+ - [SystemPingDetail](docs/SystemPingDetail.md)
+ - [SystemStatus](docs/SystemStatus.md)
+ - [SystemStatusDetail](docs/SystemStatusDetail.md)
+ - [TaskStatus](docs/TaskStatus.md)
+ - [TaskStatusDetail](docs/TaskStatusDetail.md)
+ - [Topology](docs/Topology.md)
+ - [Topology1](docs/Topology1.md)
+ - [UpdateAdminUISettingsRequest](docs/UpdateAdminUISettingsRequest.md)
+ - [UpdateAlertRequest](docs/UpdateAlertRequest.md)
+ - [UpdateBGPPeerConnectionRequest](docs/UpdateBGPPeerConnectionRequest.md)
+ - [UpdateClientpacksStatus](docs/UpdateClientpacksStatus.md)
+ - [UpdateClientpacksStatusResponse](docs/UpdateClientpacksStatusResponse.md)
+ - [UpdateConfigClientpackRequest](docs/UpdateConfigClientpackRequest.md)
+ - [UpdateConfigRequest](docs/UpdateConfigRequest.md)
+ - [UpdateConfigureContainerSystemRequest](docs/UpdateConfigureContainerSystemRequest.md)
+ - [UpdateContainerImageDetail](docs/UpdateContainerImageDetail.md)
+ - [UpdateContainerImageDetailResponse](docs/UpdateContainerImageDetailResponse.md)
+ - [UpdateContainerImageRequest](docs/UpdateContainerImageRequest.md)
+ - [UpdateIpsecAddressRequest](docs/UpdateIpsecAddressRequest.md)
+ - [UpdateIpsecConnectionRequest](docs/UpdateIpsecConnectionRequest.md)
+ - [UpdateIpsecTunnelRequest](docs/UpdateIpsecTunnelRequest.md)
+ - [UpdateKeysetRequest](docs/UpdateKeysetRequest.md)
+ - [UpdateLicenseParametersRequest](docs/UpdateLicenseParametersRequest.md)
+ - [UpdatePasswordRequest](docs/UpdatePasswordRequest.md)
+ - [UpdatePeerRequest](docs/UpdatePeerRequest.md)
+ - [UpdateRemoteSupportConfigRequest](docs/UpdateRemoteSupportConfigRequest.md)
+ - [UpdateServerSSLRequest](docs/UpdateServerSSLRequest.md)
+ - [UpgradeLicenseResponse](docs/UpgradeLicenseResponse.md)
+ - [UpgradeLicenseResponseResponse](docs/UpgradeLicenseResponseResponse.md)
+ - [VNS3Controller](docs/VNS3Controller.md)
+ - [VNS3Controller1](docs/VNS3Controller1.md)
+ - [VNS3ControllerPeer](docs/VNS3ControllerPeer.md)
+

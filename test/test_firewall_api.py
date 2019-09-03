@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import vns3api
-from vns3api.api.firewall_api import FirewallApi  # noqa: E501
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.api.firewall_api import FirewallApi  # noqa: E501
+from cohesivenet.rest import ApiException
 
 
 class TestFirewallApi(unittest.TestCase):
     """FirewallApi unit test stubs"""
 
     def setUp(self):
-        self.api = vns3api.api.firewall_api.FirewallApi()  # noqa: E501
+        self.api = cohesivenet.api.firewall_api.FirewallApi()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -67,12 +67,6 @@ class TestFirewallApi(unittest.TestCase):
 
     def test_get_firewall_rules(self):
         """Test case for get_firewall_rules
-
-        """
-        pass
-
-    def test_post_create_firewall_fw_set(self):
-        """Test case for post_create_firewall_fw_set
 
         """
         pass

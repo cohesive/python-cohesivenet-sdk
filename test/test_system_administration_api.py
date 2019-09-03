@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import vns3api
-from vns3api.api.system_administration_api import SystemAdministrationApi  # noqa: E501
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.api.system_administration_api import SystemAdministrationApi  # noqa: E501
+from cohesivenet.rest import ApiException
 
 
 class TestSystemAdministrationApi(unittest.TestCase):
     """SystemAdministrationApi unit test stubs"""
 
     def setUp(self):
-        self.api = vns3api.api.system_administration_api.SystemAdministrationApi()  # noqa: E501
+        self.api = cohesivenet.api.system_administration_api.SystemAdministrationApi()  # noqa: E501
 
     def tearDown(self):
         pass

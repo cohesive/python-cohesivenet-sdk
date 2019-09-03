@@ -1,4 +1,4 @@
-# vns3api.ConfigurationApi
+# cohesivenet.ConfigurationApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **get_config**
-> InlineResponse20013 get_config()
+> ConfigDetail get_config()
 
 
 
@@ -29,10 +29,10 @@ Describe Runtime Configuration for VNS3 Controller
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -40,7 +40,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_config()
@@ -54,7 +54,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**ConfigDetail**](ConfigDetail.md)
 
 ### Authorization
 
@@ -69,13 +69,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Get runtime Configuration details |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_keyset**
-> InlineResponse20019 get_keyset()
+> KeysetDetail get_keyset()
 
 
 
@@ -87,10 +87,10 @@ Returns status of whether cryptographic credentials, which are used to provide  
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -98,7 +98,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_keyset()
@@ -112,7 +112,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**KeysetDetail**](KeysetDetail.md)
 
 ### Authorization
 
@@ -127,13 +127,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_runtime**
-> InlineResponse20015 get_runtime()
+> object get_runtime()
 
 
 
@@ -145,10 +145,10 @@ Alias for GET /config
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -156,7 +156,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_runtime()
@@ -170,7 +170,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+**object**
 
 ### Authorization
 
@@ -185,12 +185,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Get runtime Configuration details |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ssl_install_status**
-> InlineResponse20018 get_ssl_install_status(uuid)
+> object get_ssl_install_status(uuid)
 
 
 
@@ -202,10 +203,10 @@ Get status for ssl installation task
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -213,8 +214,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-uuid = 'uuid_example' # str | uuid of install task
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
+uuid = 'uuid_example' # str | uuid of resource
 
 try:
     api_response = api_instance.get_ssl_install_status(uuid)
@@ -227,11 +228,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| uuid of install task | 
+ **uuid** | **str**| uuid of resource | 
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+**object**
 
 ### Authorization
 
@@ -246,14 +247,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
+**401** |  |  -  |
 **404** | Not found |  -  |
-**0** | unexpected error |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_config**
-> InlineResponse20014 put_config(inline_object10)
+> object put_config(update_config_request)
 
 
 
@@ -265,10 +266,10 @@ Provides general information about the manager's topology, license state and  ch
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -276,11 +277,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object10 = vns3api.InlineObject10() # InlineObject10 | 
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
+update_config_request = cohesivenet.UpdateConfigRequest() # UpdateConfigRequest | 
 
 try:
-    api_response = api_instance.put_config(inline_object10)
+    api_response = api_instance.put_config(update_config_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_config: %s\n" % e)
@@ -290,11 +291,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object10** | [**InlineObject10**](InlineObject10.md)|  | 
+ **update_config_request** | [**UpdateConfigRequest**](UpdateConfigRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+**object**
 
 ### Authorization
 
@@ -310,13 +311,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_install_ssl_keypair**
-> InlineResponse20017 put_install_ssl_keypair()
+> ServerSSLDetailResponse put_install_ssl_keypair()
 
 
 
@@ -328,10 +329,10 @@ Install new SSL cert and key pair
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -339,7 +340,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.put_install_ssl_keypair()
@@ -353,7 +354,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**ServerSSLDetailResponse**](ServerSSLDetailResponse.md)
 
 ### Authorization
 
@@ -369,13 +370,13 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_keyset**
-> InlineResponse20020 put_keyset(inline_object12)
+> object put_keyset(update_keyset_request)
 
 
 
@@ -387,10 +388,10 @@ Generates or fetches cryptographic credentials which are used to provide overlay
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -398,11 +399,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object12 = vns3api.InlineObject12() # InlineObject12 | 
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
+update_keyset_request = cohesivenet.UpdateKeysetRequest() # UpdateKeysetRequest | 
 
 try:
-    api_response = api_instance.put_keyset(inline_object12)
+    api_response = api_instance.put_keyset(update_keyset_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_keyset: %s\n" % e)
@@ -412,11 +413,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object12** | [**InlineObject12**](InlineObject12.md)|  | 
+ **update_keyset_request** | [**UpdateKeysetRequest**](UpdateKeysetRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+**object**
 
 ### Authorization
 
@@ -432,13 +433,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_admin_ui**
-> InlineResponse20011 put_update_admin_ui(inline_object8)
+> AdminUISettingsDetail put_update_admin_ui(update_admin_ui_settings_request)
 
 
 
@@ -450,10 +451,10 @@ Update Admin UI settings. Enable/Disable and set credentials.
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -461,11 +462,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object8 = vns3api.InlineObject8() # InlineObject8 | 
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
+update_admin_ui_settings_request = cohesivenet.UpdateAdminUISettingsRequest() # UpdateAdminUISettingsRequest | 
 
 try:
-    api_response = api_instance.put_update_admin_ui(inline_object8)
+    api_response = api_instance.put_update_admin_ui(update_admin_ui_settings_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_update_admin_ui: %s\n" % e)
@@ -475,11 +476,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object8** | [**InlineObject8**](InlineObject8.md)|  | 
+ **update_admin_ui_settings_request** | [**UpdateAdminUISettingsRequest**](UpdateAdminUISettingsRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**AdminUISettingsDetail**](AdminUISettingsDetail.md)
 
 ### Authorization
 
@@ -495,13 +496,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_api_password**
-> InlineResponse20012 put_update_api_password(inline_object9)
+> PasswordResetResponse put_update_api_password(update_password_request)
 
 
 
@@ -513,10 +514,10 @@ Allows you to change the API password/secret key.  To change the Web UI password
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -524,11 +525,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object9 = vns3api.InlineObject9() # InlineObject9 | 
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
+update_password_request = cohesivenet.UpdatePasswordRequest() # UpdatePasswordRequest | 
 
 try:
-    api_response = api_instance.put_update_api_password(inline_object9)
+    api_response = api_instance.put_update_api_password(update_password_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_update_api_password: %s\n" % e)
@@ -538,11 +539,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object9** | [**InlineObject9**](InlineObject9.md)|  | 
+ **update_password_request** | [**UpdatePasswordRequest**](UpdatePasswordRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**PasswordResetResponse**](PasswordResetResponse.md)
 
 ### Authorization
 
@@ -558,13 +559,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_upload_ssl_keypair**
-> InlineResponse20016 put_upload_ssl_keypair(inline_object11)
+> object put_upload_ssl_keypair(update_server_ssl_request)
 
 
 
@@ -576,10 +577,10 @@ Upload new SSL cert and key pair
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -587,11 +588,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.ConfigurationApi(vns3api.ApiClient(configuration))
-inline_object11 = vns3api.InlineObject11() # InlineObject11 | 
+api_instance = cohesivenet.ConfigurationApi(cohesivenet.VNS3Client(configuration))
+update_server_ssl_request = cohesivenet.UpdateServerSSLRequest() # UpdateServerSSLRequest | 
 
 try:
-    api_response = api_instance.put_upload_ssl_keypair(inline_object11)
+    api_response = api_instance.put_upload_ssl_keypair(update_server_ssl_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConfigurationApi->put_upload_ssl_keypair: %s\n" % e)
@@ -601,11 +602,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object11** | [**InlineObject11**](InlineObject11.md)|  | 
+ **update_server_ssl_request** | [**UpdateServerSSLRequest**](UpdateServerSSLRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+**object**
 
 ### Authorization
 
@@ -621,8 +622,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

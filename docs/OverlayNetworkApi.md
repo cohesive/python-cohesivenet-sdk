@@ -1,4 +1,4 @@
-# vns3api.OverlayNetworkApi
+# cohesivenet.OverlayNetworkApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **delete_clientpack_tag**
-> InlineResponse20055 delete_clientpack_tag(name, inline_object37)
+> object delete_clientpack_tag(clientpack_tag_key_request)
 
 
 
@@ -33,10 +33,10 @@ For deleting individual clientpack tags
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -44,12 +44,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object37 = vns3api.InlineObject37() # InlineObject37 | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+clientpack_tag_key_request = cohesivenet.ClientpackTagKeyRequest() # ClientpackTagKeyRequest | 
 
 try:
-    api_response = api_instance.delete_clientpack_tag(name, inline_object37)
+    api_response = api_instance.delete_clientpack_tag(clientpack_tag_key_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->delete_clientpack_tag: %s\n" % e)
@@ -59,12 +58,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name of clientpack, typically IP address snake cased | 
- **inline_object37** | [**InlineObject37**](InlineObject37.md)|  | 
+ **clientpack_tag_key_request** | [**ClientpackTagKeyRequest**](ClientpackTagKeyRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20055**](InlineResponse20055.md)
+**object**
 
 ### Authorization
 
@@ -80,14 +78,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clientpack**
-> InlineResponse20049 get_clientpack(name)
+> ClientpackDetailResponse get_clientpack(name)
 
 
 
@@ -99,10 +97,10 @@ Returns detailed information about all of the clientpacks in the topology.  If m
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -110,8 +108,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-name = 'name_example' # str | Filter client packs by name
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+name = 'name_example' # str | name of resource
 
 try:
     api_response = api_instance.get_clientpack(name)
@@ -124,11 +122,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Filter client packs by name | 
+ **name** | **str**| name of resource | 
 
 ### Return type
 
-[**InlineResponse20049**](InlineResponse20049.md)
+[**ClientpackDetailResponse**](ClientpackDetailResponse.md)
 
 ### Authorization
 
@@ -144,13 +142,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** | Error occurred |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clientpacks**
-> InlineResponse20046 get_clientpacks(sorted=sorted)
+> ClientpackListResponse get_clientpacks(sorted=sorted)
 
 
 
@@ -162,10 +160,10 @@ Returns detailed information about all of the clientpacks in the topology. If ma
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -173,8 +171,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-sorted = False # bool | Sort by IP address (optional) (default to False)
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+sorted = False # bool | Sort resources (optional) (default to False)
 
 try:
     api_response = api_instance.get_clientpacks(sorted=sorted)
@@ -187,11 +185,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sorted** | **bool**| Sort by IP address | [optional] [default to False]
+ **sorted** | **bool**| Sort resources | [optional] [default to False]
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**ClientpackListResponse**](ClientpackListResponse.md)
 
 ### Authorization
 
@@ -206,14 +204,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_clients_status**
-> InlineResponse20044 get_clients_status()
+> OverlayClientsListResponse get_clients_status()
 
 
 
@@ -225,10 +223,10 @@ Describe overlay clients
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -236,7 +234,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_clients_status()
@@ -250,7 +248,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**OverlayClientsListResponse**](OverlayClientsListResponse.md)
 
 ### Authorization
 
@@ -265,14 +263,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_connected_subnets**
-> InlineResponse20045 get_connected_subnets(extended_output=extended_output)
+> ConnectedSubnetsDetailResponse get_connected_subnets(extended_output=extended_output)
 
 
 
@@ -284,10 +282,10 @@ Provides information about any connected subnets.
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -295,8 +293,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-extended_output = False # bool | Receive verbose information about the connected subnets. (optional) (default to False)
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+extended_output = False # bool | Receive verbose information about resources (optional) (default to False)
 
 try:
     api_response = api_instance.get_connected_subnets(extended_output=extended_output)
@@ -309,11 +307,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **extended_output** | **bool**| Receive verbose information about the connected subnets. | [optional] [default to False]
+ **extended_output** | **bool**| Receive verbose information about resources | [optional] [default to False]
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**ConnectedSubnetsDetailResponse**](ConnectedSubnetsDetailResponse.md)
 
 ### Authorization
 
@@ -328,12 +326,13 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_download_clientpack**
-> file get_download_clientpack(inline_object32)
+> file get_download_clientpack(download_clientpack_request)
 
 
 
@@ -345,10 +344,10 @@ Returns clientpack file. Clientpacks are files with the necessary information an
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -356,11 +355,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object32 = vns3api.InlineObject32() # InlineObject32 | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+download_clientpack_request = cohesivenet.DownloadClientpackRequest() # DownloadClientpackRequest | 
 
 try:
-    api_response = api_instance.get_download_clientpack(inline_object32)
+    api_response = api_instance.get_download_clientpack(download_clientpack_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->get_download_clientpack: %s\n" % e)
@@ -370,7 +369,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object32** | [**InlineObject32**](InlineObject32.md)|  | 
+ **download_clientpack_request** | [**DownloadClientpackRequest**](DownloadClientpackRequest.md)|  | 
 
 ### Return type
 
@@ -389,14 +388,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Clientpack file |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_calc_next_clientpack**
-> InlineResponse20050 post_calc_next_clientpack(inline_object33=inline_object33)
+> object post_calc_next_clientpack(calculate_next_clientpack_request=calculate_next_clientpack_request)
 
 
 
@@ -408,10 +407,10 @@ Get next sequential client pack. Provides sufficient information to call GET /cl
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -419,11 +418,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object33 = vns3api.InlineObject33() # InlineObject33 |  (optional)
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+calculate_next_clientpack_request = cohesivenet.CalculateNextClientpackRequest() # CalculateNextClientpackRequest |  (optional)
 
 try:
-    api_response = api_instance.post_calc_next_clientpack(inline_object33=inline_object33)
+    api_response = api_instance.post_calc_next_clientpack(calculate_next_clientpack_request=calculate_next_clientpack_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->post_calc_next_clientpack: %s\n" % e)
@@ -433,11 +432,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object33** | [**InlineObject33**](InlineObject33.md)|  | [optional] 
+ **calculate_next_clientpack_request** | [**CalculateNextClientpackRequest**](CalculateNextClientpackRequest.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20050**](InlineResponse20050.md)
+**object**
 
 ### Authorization
 
@@ -452,14 +451,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_clientpack_tag**
-> InlineResponse20054 post_clientpack_tag(name, inline_object36)
+> ClientpackTagsResponse post_clientpack_tag(create_clientpack_tag_request)
 
 
 
@@ -471,10 +470,10 @@ For tagging individual clientpacks.
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -482,12 +481,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object36 = vns3api.InlineObject36() # InlineObject36 | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+create_clientpack_tag_request = cohesivenet.CreateClientpackTagRequest() # CreateClientpackTagRequest | 
 
 try:
-    api_response = api_instance.post_clientpack_tag(name, inline_object36)
+    api_response = api_instance.post_clientpack_tag(create_clientpack_tag_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->post_clientpack_tag: %s\n" % e)
@@ -497,12 +495,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name of clientpack, typically IP address snake cased | 
- **inline_object36** | [**InlineObject36**](InlineObject36.md)|  | 
+ **create_clientpack_tag_request** | [**CreateClientpackTagRequest**](CreateClientpackTagRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20054**](InlineResponse20054.md)
+[**ClientpackTagsResponse**](ClientpackTagsResponse.md)
 
 ### Authorization
 
@@ -518,14 +515,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_reset_all_clients**
-> InlineResponse20052 post_reset_all_clients()
+> BulkClientResetStatusResponse post_reset_all_clients()
 
 
 
@@ -537,10 +534,10 @@ For resetting all of the connections of clients connected to the VNS3 Controller
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -548,7 +545,7 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.post_reset_all_clients()
@@ -562,7 +559,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20052**](InlineResponse20052.md)
+[**BulkClientResetStatusResponse**](BulkClientResetStatusResponse.md)
 
 ### Authorization
 
@@ -577,14 +574,14 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_reset_client**
-> InlineResponse20051 post_reset_client(inline_object34)
+> ClientpackStatusResponse post_reset_client(reset_overlay_client_request)
 
 
 
@@ -596,10 +593,10 @@ For resetting the connection of a client to a VNS3 Controller
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -607,11 +604,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object34 = vns3api.InlineObject34() # InlineObject34 | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+reset_overlay_client_request = cohesivenet.ResetOverlayClientRequest() # ResetOverlayClientRequest | 
 
 try:
-    api_response = api_instance.post_reset_client(inline_object34)
+    api_response = api_instance.post_reset_client(reset_overlay_client_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->post_reset_client: %s\n" % e)
@@ -621,11 +618,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object34** | [**InlineObject34**](InlineObject34.md)|  | 
+ **reset_overlay_client_request** | [**ResetOverlayClientRequest**](ResetOverlayClientRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20051**](InlineResponse20051.md)
+[**ClientpackStatusResponse**](ClientpackStatusResponse.md)
 
 ### Authorization
 
@@ -640,14 +637,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_add_clientpacks**
-> InlineResponse20048 put_add_clientpacks(inline_object31)
+> object put_add_clientpacks(add_clientpack_request)
 
 
 
@@ -659,10 +656,10 @@ Incrementally add new clientpacks for use
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -670,11 +667,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object31 = vns3api.InlineObject31() # InlineObject31 | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+add_clientpack_request = cohesivenet.AddClientpackRequest() # AddClientpackRequest | 
 
 try:
-    api_response = api_instance.put_add_clientpacks(inline_object31)
+    api_response = api_instance.put_add_clientpacks(add_clientpack_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->put_add_clientpacks: %s\n" % e)
@@ -684,11 +681,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object31** | [**InlineObject31**](InlineObject31.md)|  | 
+ **add_clientpack_request** | [**AddClientpackRequest**](AddClientpackRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20048**](InlineResponse20048.md)
+**object**
 
 ### Authorization
 
@@ -703,9 +700,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -722,10 +719,10 @@ Change properties of clientpacks; enabling or disabling, checking in or out, or 
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -733,8 +730,8 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-unknown_base_type = vns3api.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+unknown_base_type = cohesivenet.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
     api_response = api_instance.put_clientpack(unknown_base_type)
@@ -767,14 +764,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_disconnect_clientpack**
-> InlineResponse20053 put_disconnect_clientpack(name, inline_object35)
+> object put_disconnect_clientpack(disconnet_client_request)
 
 
 
@@ -786,10 +783,10 @@ Force disconnect client for named clientpack
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -797,12 +794,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-name = 'name_example' # str | name of clientpack, typically IP address snake cased
-inline_object35 = vns3api.InlineObject35() # InlineObject35 | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+disconnet_client_request = cohesivenet.DisconnetClientRequest() # DisconnetClientRequest | 
 
 try:
-    api_response = api_instance.put_disconnect_clientpack(name, inline_object35)
+    api_response = api_instance.put_disconnect_clientpack(disconnet_client_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->put_disconnect_clientpack: %s\n" % e)
@@ -812,12 +808,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name of clientpack, typically IP address snake cased | 
- **inline_object35** | [**InlineObject35**](InlineObject35.md)|  | 
+ **disconnet_client_request** | [**DisconnetClientRequest**](DisconnetClientRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20053**](InlineResponse20053.md)
+**object**
 
 ### Authorization
 
@@ -833,14 +828,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_clientpacks**
-> InlineResponse20047 put_update_clientpacks(inline_object30)
+> UpdateClientpacksStatusResponse put_update_clientpacks(update_config_clientpack_request)
 
 
 
@@ -852,10 +847,10 @@ For bulk set of the enabled (true/false) state for all clientpacks and the check
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -863,11 +858,11 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.OverlayNetworkApi(vns3api.ApiClient(configuration))
-inline_object30 = vns3api.InlineObject30() # InlineObject30 | 
+api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
+update_config_clientpack_request = cohesivenet.UpdateConfigClientpackRequest() # UpdateConfigClientpackRequest | 
 
 try:
-    api_response = api_instance.put_update_clientpacks(inline_object30)
+    api_response = api_instance.put_update_clientpacks(update_config_clientpack_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->put_update_clientpacks: %s\n" % e)
@@ -877,11 +872,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object30** | [**InlineObject30**](InlineObject30.md)|  | 
+ **update_config_clientpack_request** | [**UpdateConfigClientpackRequest**](UpdateConfigClientpackRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20047**](InlineResponse20047.md)
+[**UpdateClientpacksStatusResponse**](UpdateClientpacksStatusResponse.md)
 
 ### Authorization
 
@@ -897,9 +892,9 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**403** | Operation not allowed |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**403** | Request Forbidden - operation not allowed |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

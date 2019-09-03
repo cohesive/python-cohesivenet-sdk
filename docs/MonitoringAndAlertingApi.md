@@ -1,20 +1,20 @@
-# vns3api.MonitoringAndAlertingApi
+# cohesivenet.MonitoringAlertingApi
 
 All URIs are relative to *https://vns3-host:8000/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_alert**](MonitoringAndAlertingApi.md#delete_alert) | **DELETE** /alert/{id} | 
-[**get_alert**](MonitoringAndAlertingApi.md#get_alert) | **GET** /alert/{id} | 
-[**get_alerts**](MonitoringAndAlertingApi.md#get_alerts) | **GET** /alerts | 
-[**post_define_new_alert**](MonitoringAndAlertingApi.md#post_define_new_alert) | **POST** /alert | 
-[**post_test_alert**](MonitoringAndAlertingApi.md#post_test_alert) | **POST** /alert/{id}/test | 
-[**post_toggle_enabled_alert**](MonitoringAndAlertingApi.md#post_toggle_enabled_alert) | **POST** /alert/{id}/toggle_enabled | 
-[**put_update_alert**](MonitoringAndAlertingApi.md#put_update_alert) | **PUT** /alert/{id} | 
+[**delete_alert**](MonitoringAlertingApi.md#delete_alert) | **DELETE** /alert/{id} | 
+[**get_alert**](MonitoringAlertingApi.md#get_alert) | **GET** /alert/{id} | 
+[**get_alerts**](MonitoringAlertingApi.md#get_alerts) | **GET** /alerts | 
+[**post_define_new_alert**](MonitoringAlertingApi.md#post_define_new_alert) | **POST** /alert | 
+[**post_test_alert**](MonitoringAlertingApi.md#post_test_alert) | **POST** /alert/{id}/test | 
+[**post_toggle_enabled_alert**](MonitoringAlertingApi.md#post_toggle_enabled_alert) | **POST** /alert/{id}/toggle_enabled | 
+[**put_update_alert**](MonitoringAlertingApi.md#put_update_alert) | **PUT** /alert/{id} | 
 
 
 # **delete_alert**
-> InlineResponse20048 delete_alert(id)
+> object delete_alert()
 
 
 
@@ -26,10 +26,10 @@ Delete defined alert
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -37,25 +37,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
-id = 56 # int | ID of alert
+api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.delete_alert(id)
+    api_response = api_instance.delete_alert()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling MonitoringAndAlertingApi->delete_alert: %s\n" % e)
+    print("Exception when calling MonitoringAlertingApi->delete_alert: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of alert | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20048**](InlineResponse20048.md)
+**object**
 
 ### Authorization
 
@@ -70,13 +66,13 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_alert**
-> InlineResponse20095 get_alert(id)
+> object get_alert()
 
 
 
@@ -88,10 +84,10 @@ Retrieve details for single alert
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -99,25 +95,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
-id = 56 # int | ID of alert
+api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.get_alert(id)
+    api_response = api_instance.get_alert()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling MonitoringAndAlertingApi->get_alert: %s\n" % e)
+    print("Exception when calling MonitoringAlertingApi->get_alert: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of alert | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20095**](InlineResponse20095.md)
+**object**
 
 ### Authorization
 
@@ -132,13 +124,13 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_alerts**
-> InlineResponse20094 get_alerts()
+> AlertsListResponse get_alerts()
 
 
 
@@ -150,10 +142,10 @@ Retrieve all alerts
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -161,13 +153,13 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
+api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configuration))
 
 try:
     api_response = api_instance.get_alerts()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling MonitoringAndAlertingApi->get_alerts: %s\n" % e)
+    print("Exception when calling MonitoringAlertingApi->get_alerts: %s\n" % e)
 ```
 
 ### Parameters
@@ -175,7 +167,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20094**](InlineResponse20094.md)
+[**AlertsListResponse**](AlertsListResponse.md)
 
 ### Authorization
 
@@ -190,13 +182,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_define_new_alert**
-> InlineResponse20095 post_define_new_alert(inline_object55)
+> AlertDetailResponse post_define_new_alert(create_alert_request)
 
 
 
@@ -208,10 +200,10 @@ Define new alert
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -219,25 +211,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
-inline_object55 = vns3api.InlineObject55() # InlineObject55 | 
+api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configuration))
+create_alert_request = cohesivenet.CreateAlertRequest() # CreateAlertRequest | 
 
 try:
-    api_response = api_instance.post_define_new_alert(inline_object55)
+    api_response = api_instance.post_define_new_alert(create_alert_request)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling MonitoringAndAlertingApi->post_define_new_alert: %s\n" % e)
+    print("Exception when calling MonitoringAlertingApi->post_define_new_alert: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object55** | [**InlineObject55**](InlineObject55.md)|  | 
+ **create_alert_request** | [**CreateAlertRequest**](CreateAlertRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20095**](InlineResponse20095.md)
+[**AlertDetailResponse**](AlertDetailResponse.md)
 
 ### Authorization
 
@@ -253,13 +245,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_test_alert**
-> InlineResponse20096 post_test_alert(id)
+> SimpleBooleanResponse post_test_alert()
 
 
 
@@ -271,10 +263,10 @@ Send test alert for this defined alert
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -282,25 +274,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
-id = 56 # int | ID of alert
+api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.post_test_alert(id)
+    api_response = api_instance.post_test_alert()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling MonitoringAndAlertingApi->post_test_alert: %s\n" % e)
+    print("Exception when calling MonitoringAlertingApi->post_test_alert: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of alert | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20096**](InlineResponse20096.md)
+[**SimpleBooleanResponse**](SimpleBooleanResponse.md)
 
 ### Authorization
 
@@ -315,13 +303,13 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_toggle_enabled_alert**
-> InlineResponse20095 post_toggle_enabled_alert(id)
+> object post_toggle_enabled_alert()
 
 
 
@@ -333,10 +321,10 @@ Toggle enabled property on alert
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -344,25 +332,21 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
-id = 56 # int | ID of alert
+api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.post_toggle_enabled_alert(id)
+    api_response = api_instance.post_toggle_enabled_alert()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling MonitoringAndAlertingApi->post_toggle_enabled_alert: %s\n" % e)
+    print("Exception when calling MonitoringAlertingApi->post_toggle_enabled_alert: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of alert | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20095**](InlineResponse20095.md)
+**object**
 
 ### Authorization
 
@@ -377,13 +361,13 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_alert**
-> InlineResponse20095 put_update_alert(id, inline_object56)
+> object put_update_alert(update_alert_request)
 
 
 
@@ -395,10 +379,10 @@ Edit defined alert
 ```python
 from __future__ import print_function
 import time
-import vns3api
-from vns3api.rest import ApiException
+import cohesivenet
+from cohesivenet.rest import ApiException
 from pprint import pprint
-configuration = vns3api.Configuration()
+configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
@@ -406,27 +390,25 @@ configuration.password = 'YOUR_PASSWORD'
 # Defining host is optional and default to https://vns3-host:8000/api
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
-api_instance = vns3api.MonitoringAndAlertingApi(vns3api.ApiClient(configuration))
-id = 56 # int | ID of alert
-inline_object56 = vns3api.InlineObject56() # InlineObject56 | 
+api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configuration))
+update_alert_request = cohesivenet.UpdateAlertRequest() # UpdateAlertRequest | 
 
 try:
-    api_response = api_instance.put_update_alert(id, inline_object56)
+    api_response = api_instance.put_update_alert(update_alert_request)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling MonitoringAndAlertingApi->put_update_alert: %s\n" % e)
+    print("Exception when calling MonitoringAlertingApi->put_update_alert: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of alert | 
- **inline_object56** | [**InlineObject56**](InlineObject56.md)|  | 
+ **update_alert_request** | [**UpdateAlertRequest**](UpdateAlertRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse20095**](InlineResponse20095.md)
+**object**
 
 ### Authorization
 
@@ -442,8 +424,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Accepted |  -  |
 **400** | Bad request |  -  |
-**401** | Authentication information missing or invalid |  -  |
-**0** | unexpected error |  -  |
+**401** |  |  -  |
+**0** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
