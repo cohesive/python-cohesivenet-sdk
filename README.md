@@ -1,4 +1,4 @@
-# cohesivenet
+# Python cohesivenet
 Cohesive Networks SDK is a wrapper around our product APIs providing complete control of your network's addresses, routes, rules and edge
 
 [![contact][contact-image]][contact-url]

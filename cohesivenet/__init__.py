@@ -202,7 +202,6 @@ from cohesivenet.models.system_status_detail import SystemStatusDetail
 from cohesivenet.models.task_status import TaskStatus
 from cohesivenet.models.task_status_detail import TaskStatusDetail
 from cohesivenet.models.topology import Topology
-from cohesivenet.models.topology1 import Topology1
 from cohesivenet.models.update_admin_ui_settings_request import UpdateAdminUISettingsRequest
 from cohesivenet.models.update_alert_request import UpdateAlertRequest
 from cohesivenet.models.update_bgp_peer_connection_request import UpdateBGPPeerConnectionRequest
@@ -226,6 +225,5 @@ from cohesivenet.models.update_server_ssl_request import UpdateServerSSLRequest
 from cohesivenet.models.upgrade_license_response import UpgradeLicenseResponse
 from cohesivenet.models.upgrade_license_response_response import UpgradeLicenseResponseResponse
 from cohesivenet.models.vns3_controller import VNS3Controller
-from cohesivenet.models.vns3_controller1 import VNS3Controller1
 from cohesivenet.models.vns3_controller_peer import VNS3ControllerPeer
 

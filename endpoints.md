@@ -297,7 +297,6 @@ Class | Method | HTTP request | Description
  - [TaskStatus](docs/TaskStatus.md)
  - [TaskStatusDetail](docs/TaskStatusDetail.md)
  - [Topology](docs/Topology.md)
- - [Topology1](docs/Topology1.md)
  - [UpdateAdminUISettingsRequest](docs/UpdateAdminUISettingsRequest.md)
  - [UpdateAlertRequest](docs/UpdateAlertRequest.md)
  - [UpdateBGPPeerConnectionRequest](docs/UpdateBGPPeerConnectionRequest.md)
@@ -321,6 +320,5 @@ Class | Method | HTTP request | Description
  - [UpgradeLicenseResponse](docs/UpgradeLicenseResponse.md)
  - [UpgradeLicenseResponseResponse](docs/UpgradeLicenseResponseResponse.md)
  - [VNS3Controller](docs/VNS3Controller.md)
- - [VNS3Controller1](docs/VNS3Controller1.md)
  - [VNS3ControllerPeer](docs/VNS3ControllerPeer.md)
 

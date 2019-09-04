@@ -36,7 +36,7 @@ class LicenseInitial(object):
         'finalized': 'bool',
         'license': 'str',
         'license_present': 'bool',
-        'default_topology': 'Topology1'
+        'default_topology': 'Topology'
     }
 
     attribute_map = {
@@ -162,7 +162,7 @@ class LicenseInitial(object):
 
 
         :return: The default_topology of this LicenseInitial.  # noqa: E501
-        :rtype: Topology1
+        :rtype: Topology
         """
         return self._default_topology
 
@@ -172,7 +172,7 @@ class LicenseInitial(object):
 
 
         :param default_topology: The default_topology of this LicenseInitial.  # noqa: E501
-        :type: Topology1
+        :type: Topology
         """
 
         self._default_topology = default_topology

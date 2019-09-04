@@ -50,7 +50,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
     :param password: Password for HTTP basic authentication
     """
 
-    def __init__(self, host="https://vns3-host:8000/api",
+    def __init__(self, host="",
                  api_key={}, api_key_prefix={},
                  username="", password=""):
         """Constructor
@@ -136,6 +136,19 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         self.retries = None
         """Adding retries to override urllib3 default value 3
         """
+
+    @property
+    def host(self):
+        return self._host
+    
+    @host.setter
+    def host(self, value):
+        candidate = value
+        if value.startswith('http://'):
+            raise ValueError("Invalid host %s. Only https supported." % value)
+        elif not value.startswith('https://'):
+            value = 'https://%s' % value
+        self._host = value.strip('/')
 
     @property
     def logger_file(self):
