@@ -41,6 +41,7 @@ from cohesivenet.exceptions import ApiTypeError
 from cohesivenet.exceptions import ApiValueError
 from cohesivenet.exceptions import ApiKeyError
 from cohesivenet.exceptions import ApiException
+
 # import models into sdk package
 from cohesivenet.models.access_token import AccessToken
 from cohesivenet.models.access_token_detail import AccessTokenDetail

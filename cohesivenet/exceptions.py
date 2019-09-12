@@ -12,6 +12,7 @@
 
 
 import six
+import json
 
 
 class OpenApiException(Exception):
@@ -108,6 +109,17 @@ class ApiException(OpenApiException):
             error_message += "HTTP response body: {0}\n".format(self.body)
 
         return error_message
+
+    @property
+    def error(self):
+        if not self.body:
+            return {}
+        try:
+            return json.loads(self.body)
+        except json.decoder.JSONDecodeError:
+            return {
+                'error': self.body
+            }
 
 
 def render_path(path_to_item):

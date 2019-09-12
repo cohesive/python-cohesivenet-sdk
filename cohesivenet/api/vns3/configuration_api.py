@@ -20,7 +20,8 @@ import six
 
 from cohesivenet.exceptions import (
     ApiTypeError,
-    ApiValueError
+    ApiValueError,
+    ApiException
 )
 
 
@@ -1104,3 +1105,23 @@ class ConfigurationApi(object):
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
+
+    def wait_for_keyset(self, retry_timeout=1.0, timeout=60):
+        """wait_for_keyset
+
+        Wait for keyset to be generated on server
+        """
+        import time
+        start_time = time.time()
+
+        latest_response = None
+        while time.time() - start_time < timeout:
+            try:
+                keyset_response = self.get_keyset()
+                if keyset_response.response.in_progress:
+                    time.sleep(retry_timeout)
+                    continue
+                return keyset_response.response
+            except ApiException as e:
+                raise e
+        raise ApiException(reason='Failed to fetch keyset')

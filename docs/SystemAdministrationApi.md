@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**delete_access_url**](SystemAdministrationApi.md#delete_access_url) | **DELETE** /access/url | 
 [**delete_access_url_by_id**](SystemAdministrationApi.md#delete_access_url_by_id) | **DELETE** /access/url/{access_url_id} | 
 [**delete_api_access_token**](SystemAdministrationApi.md#delete_api_access_token) | **DELETE** /access/token/{token_id} | 
-[**get_access_ur_ls**](SystemAdministrationApi.md#get_access_ur_ls) | **GET** /access/urls | 
+[**get_access_urls**](SystemAdministrationApi.md#get_access_urls) | **GET** /access/urls | 
 [**get_access_url**](SystemAdministrationApi.md#get_access_url) | **GET** /access/url/{access_url_id} | 
 [**get_api_access_token**](SystemAdministrationApi.md#get_api_access_token) | **GET** /access/token/{token_id} | 
 [**get_api_access_tokens**](SystemAdministrationApi.md#get_api_access_tokens) | **GET** /access/tokens | 
@@ -206,8 +206,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_access_ur_ls**
-> AccessUrlListResponse get_access_ur_ls()
+# **get_access_urls**
+> AccessUrlListResponse get_access_urls()
 
 
 
@@ -233,10 +233,10 @@ configuration.host = "https://vns3-host:8000/api"
 api_instance = cohesivenet.SystemAdministrationApi(cohesivenet.VNS3Client(configuration))
 
 try:
-    api_response = api_instance.get_access_ur_ls()
+    api_response = api_instance.get_access_urls()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling SystemAdministrationApi->get_access_ur_ls: %s\n" % e)
+    print("Exception when calling SystemAdministrationApi->get_access_urls: %s\n" % e)
 ```
 
 ### Parameters

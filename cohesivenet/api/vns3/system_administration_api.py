@@ -17,10 +17,13 @@ import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
 import six
+import urllib3.exceptions
+
 
 from cohesivenet.exceptions import (
     ApiTypeError,
-    ApiValueError
+    ApiValueError,
+    ApiException
 )
 
 
@@ -361,13 +364,13 @@ class SystemAdministrationApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_access_ur_ls(self, **kwargs):  # noqa: E501
-        """get_access_ur_ls  # noqa: E501
+    def get_access_urls(self, **kwargs):  # noqa: E501
+        """get_access_urls  # noqa: E501
 
         Retrieve list of users' access urls, including expired ones  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_access_ur_ls(async_req=True)
+        >>> thread = api.get_access_urls(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -383,15 +386,15 @@ class SystemAdministrationApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.get_access_ur_ls_with_http_info(**kwargs)  # noqa: E501
+        return self.get_access_urls_with_http_info(**kwargs)  # noqa: E501
 
-    def get_access_ur_ls_with_http_info(self, **kwargs):  # noqa: E501
-        """get_access_ur_ls  # noqa: E501
+    def get_access_urls_with_http_info(self, **kwargs):  # noqa: E501
+        """get_access_urls  # noqa: E501
 
         Retrieve list of users' access urls, including expired ones  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_access_ur_ls_with_http_info(async_req=True)
+        >>> thread = api.get_access_urls_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -421,7 +424,7 @@ class SystemAdministrationApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_access_ur_ls" % key
+                    " to method get_access_urls" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -2068,3 +2071,31 @@ class SystemAdministrationApi(object):
             _preload_content=local_var_params.get('_preload_content', True),
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
+
+    def wait_for_api(self, delay=10, retry_timeout=2, timeout=60, **kwargs):  # noqa: E501
+        """wait_for_api  # noqa: E501
+
+        Wait for api availability. This method makes a synchronous HTTP request for API status
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: SimpleStatusResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        import time
+        start_time = time.time()
+        if delay:
+            time.sleep(delay)
+
+        while time.time() - start_time < timeout:
+            try:
+                return self.get_ping_system(_request_timeout=retry_timeout)
+            except ApiException as e:
+                return e.error
+            except (urllib3.exceptions.ConnectTimeoutError,
+                    urllib3.exceptions.NewConnectionError,
+                    urllib3.exceptions.ConnectionRefusedError,
+                    urllib3.exceptions.MaxRetryError):
+                continue

@@ -57,7 +57,6 @@ configuration = cohesivenet.Configuration()
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'YOUR_USERNAME'
 configuration.password = 'YOUR_PASSWORD'
-
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 vns3_controller = cohesivenet.VNS3Client(configuration)

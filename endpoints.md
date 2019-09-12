@@ -117,7 +117,7 @@ Class | Method | HTTP request | Description
 *SystemAdministrationApi* | [**delete_access_url**](docs/SystemAdministrationApi.md#delete_access_url) | **DELETE** /access/url | 
 *SystemAdministrationApi* | [**delete_access_url_by_id**](docs/SystemAdministrationApi.md#delete_access_url_by_id) | **DELETE** /access/url/{access_url_id} | 
 *SystemAdministrationApi* | [**delete_api_access_token**](docs/SystemAdministrationApi.md#delete_api_access_token) | **DELETE** /access/token/{token_id} | 
-*SystemAdministrationApi* | [**get_access_ur_ls**](docs/SystemAdministrationApi.md#get_access_ur_ls) | **GET** /access/urls | 
+*SystemAdministrationApi* | [**get_access_urls**](docs/SystemAdministrationApi.md#get_access_urls) | **GET** /access/urls | 
 *SystemAdministrationApi* | [**get_access_url**](docs/SystemAdministrationApi.md#get_access_url) | **GET** /access/url/{access_url_id} | 
 *SystemAdministrationApi* | [**get_api_access_token**](docs/SystemAdministrationApi.md#get_api_access_token) | **GET** /access/token/{token_id} | 
 *SystemAdministrationApi* | [**get_api_access_tokens**](docs/SystemAdministrationApi.md#get_api_access_tokens) | **GET** /access/tokens | 

@@ -14,7 +14,6 @@ from __future__ import absolute_import
 import datetime
 import json
 import mimetypes
-from multiprocessing.pool import ThreadPool
 import os
 import re
 import tempfile
@@ -27,6 +26,10 @@ from cohesivenet.configuration import Configuration
 import cohesivenet.models
 from cohesivenet import rest
 from cohesivenet.exceptions import ApiValueError
+
+
+async def apply_async(func, args=(), kwargs={}):
+    return func(*args, **kwargs)
 
 
 class APIClient(object):
@@ -47,10 +50,9 @@ class APIClient(object):
         the API.
     :param cookie: a cookie to include in the header when making calls
         to the API
-    :param pool_threads: The number of threads to use for async requests
-        to the API. More threads means more concurrent API requests.
     """
     BASE_PATH = None
+    DEF_REQ_TIMEOUT = None
 
     PRIMITIVE_TYPES = (float, bool, bytes, six.text_type) + six.integer_types
     NATIVE_TYPES_MAPPING = {
@@ -63,13 +65,9 @@ class APIClient(object):
         'datetime': datetime.datetime,
         'object': object,
     }
-    _pool = None
-    _api_cache = {}
 
 
-    def __init__(self, configuration=None, header_name=None, header_value=None,
-                 cookie=None, pool_threads=1):
-        self.pool_threads = pool_threads
+    def __init__(self, configuration=None, header_name=None, header_value=None, cookie=None):
         self.configuration = configuration  # see configuration.setter
         self.default_headers = {}
         if header_name is not None:
@@ -78,12 +76,7 @@ class APIClient(object):
         # Set default User-Agent.
         self.user_agent = 'OpenAPI-Generator/1.0.0/python'
         self._base_path = '/%s' % self.BASE_PATH.strip('/') if self.BASE_PATH else ''
-
-    def __del__(self):
-        if self._pool:
-            self._pool.close()
-            self._pool.join()
-            self._pool = None
+        self._api_cache = {}
 
     @property
     def configuration(self):
@@ -98,14 +91,6 @@ class APIClient(object):
         self._api_cache = {}
         self.rest_client = rest.RESTClientObject(self.configuration)
 
-    @property
-    def pool(self):
-        """Create thread pool on first request
-         avoids instantiating unused threadpool for blocking clients.
-        """
-        if self._pool is None:
-            self._pool = ThreadPool(self.pool_threads)
-        return self._pool
 
     @property
     def user_agent(self):
@@ -173,7 +158,7 @@ class APIClient(object):
 
         # request url
         if _host is None:
-            url = self.configuration.host + self._base_path + resource_path
+            url = self.configuration.endpoint + self._base_path + resource_path
         else:
             # use server/host defined in path or operation instead
             url = _host + self._base_path + resource_path
@@ -183,7 +168,7 @@ class APIClient(object):
             method, url, query_params=query_params, headers=header_params,
             post_params=post_params, body=body,
             _preload_content=_preload_content,
-            _request_timeout=_request_timeout)
+            _request_timeout=(_request_timeout or self.DEF_REQ_TIMEOUT))
 
         self.last_response = response_data
 
@@ -354,17 +339,17 @@ class APIClient(object):
                                    _return_http_data_only, collection_formats,
                                    _preload_content, _request_timeout, _host)
         else:
-            thread = self.pool.apply_async(self.__call_api, (resource_path,
-                                           method, path_params, query_params,
-                                           header_params, body,
-                                           post_params, files,
-                                           response_type, auth_settings,
-                                           _return_http_data_only,
-                                           collection_formats,
-                                           _preload_content,
-                                           _request_timeout,
-                                           _host))
-        return thread
+            # return coroutine
+            return apply_async(self.__call_api, (resource_path,
+                method, path_params, query_params,
+                header_params, body,
+                post_params, files,
+                response_type, auth_settings,
+                _return_http_data_only,
+                collection_formats,
+                _preload_content,
+                _request_timeout,
+                _host))
 
     def request(self, method, url, query_params=None, headers=None,
                 post_params=None, body=None, _preload_content=True,
@@ -660,16 +645,19 @@ def prop_setter_exception(name):
     _raise.__name__ = 'raise_set_%s_exception' % name
     return _raise
 
-def prop_get_api(name, api_class, cache):
+def prop_get_api(name, api_class):
     def _get_api(client):
-        if name in cache:
-            return cache[name]
+        if not hasattr(client, '_api_cache'):
+            return api_class(client)
+        elif name in client._api_cache:
+            return client._api_cache[name]
+
         _api = api_class(client)
-        cache[name] = _api
+        client._api_cache[name] = _api
         return _api
     _get_api.__name__ = 'get_%s_api' % name
     return _get_api
 
-def api_as_property(name, api_class, cache):
-    return property(prop_get_api(name, api_class, cache), prop_setter_exception(name))
+def api_as_property(name, api_class):
+    return property(prop_get_api(name, api_class), prop_setter_exception(name))
 

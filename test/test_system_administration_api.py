@@ -47,8 +47,8 @@ class TestSystemAdministrationApi(unittest.TestCase):
         """
         pass
 
-    def test_get_access_ur_ls(self):
-        """Test case for get_access_ur_ls
+    def test_get_access_urls(self):
+        """Test case for get_access_urls
 
         """
         pass

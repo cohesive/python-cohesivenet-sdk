@@ -67,20 +67,20 @@ class VNS3Client(APIClient):
         to the API. More threads means more concurrent API requests.
     """
     BASE_PATH = 'api'
-    _api_cache = {} 
+    DEF_REQ_TIMEOUT = 15.0
 
     # Client API Groups available as attributes: e.g. vns3_client.peering.delete_peer(4)
-    bgp = api_as_property('bgp', BGPApi,  _api_cache)
-    config = api_as_property('config', ConfigurationApi,  _api_cache)
-    firewall = api_as_property('firewall', FirewallApi,  _api_cache)
-    high_availability = api_as_property('high_availability', HighAvailabilityApi,  _api_cache)
-    ipsec = api_as_property('ipsec', IPsecApi,  _api_cache)
-    interfaces = api_as_property('interfaces', InterfacesApi,  _api_cache)
-    licensing = api_as_property('licensing', LicensingApi,  _api_cache)
-    monitoring = api_as_property('monitoring', MonitoringAlertingApi,  _api_cache)
-    network_edge_plugins = api_as_property('network_edge_plugins', NetworkEdgePluginsApi,  _api_cache)
-    overlay_network = api_as_property('overlay_network', OverlayNetworkApi,  _api_cache)
-    peering = api_as_property('peering', PeeringApi,  _api_cache)
-    routing = api_as_property('routing', RoutingApi,  _api_cache)
-    snapshots = api_as_property('snapshots', SnapshotsApi,  _api_cache)
-    sys_admin = api_as_property('sys_admin', SystemAdministrationApi,  _api_cache)
+    bgp = api_as_property('bgp', BGPApi)
+    config = api_as_property('config', ConfigurationApi)
+    firewall = api_as_property('firewall', FirewallApi)
+    high_availability = api_as_property('high_availability', HighAvailabilityApi)
+    ipsec = api_as_property('ipsec', IPsecApi)
+    interfaces = api_as_property('interfaces', InterfacesApi)
+    licensing = api_as_property('licensing', LicensingApi)
+    monitoring = api_as_property('monitoring', MonitoringAlertingApi)
+    network_edge_plugins = api_as_property('network_edge_plugins', NetworkEdgePluginsApi)
+    overlay_network = api_as_property('overlay_network', OverlayNetworkApi)
+    peering = api_as_property('peering', PeeringApi)
+    routing = api_as_property('routing', RoutingApi)
+    snapshots = api_as_property('snapshots', SnapshotsApi)
+    sys_admin = api_as_property('sys_admin', SystemAdministrationApi)

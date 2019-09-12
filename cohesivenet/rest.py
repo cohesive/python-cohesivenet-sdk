@@ -154,8 +154,6 @@ class RESTClientObject(object):
 
         try:
             # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
-            print(url)
-            print(headers)
             if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
                 if query_params:
                     url += '?' + urlencode(query_params)
