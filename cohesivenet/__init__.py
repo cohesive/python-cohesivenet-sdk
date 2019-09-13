@@ -15,7 +15,13 @@
 
 from __future__ import absolute_import
 
+
 __version__ = "1.0.0"
+
+import logging
+from logging import NullHandler
+
+logging.getLogger(__name__).addHandler(NullHandler())
 
 # import apis into sdk package
 from cohesivenet.api.vns3.bgp_api import BGPApi

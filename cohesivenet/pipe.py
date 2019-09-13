@@ -3,7 +3,7 @@ import logging
 from copy import deepcopy
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
 
-Logger = logging.getLogger('cohesivenet')
+Logger = logging.getLogger(__name__)
 
 
 def run_parallel(*coroutines):

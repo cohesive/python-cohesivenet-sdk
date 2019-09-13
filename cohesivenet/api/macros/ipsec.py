@@ -30,7 +30,7 @@ def create_tunnel_endpoint(client, tunnel_name, tunnel_secret, target_ip, target
         'secret': tunnel_secret,
         'pfs': True,
         'ike_version': 2,
-        'nat_t_enabled': False,    
+        'nat_t_enabled': 'False',
         'extra_config': 'local-peer-id=%s' % client.configuration.host_ip,
         'vpn_type': 'vti',
         'route_based_int_address': str(vti_block),
@@ -41,7 +41,7 @@ def create_tunnel_endpoint(client, tunnel_name, tunnel_secret, target_ip, target
     routes = client.routing.post_create_route(dict({
         'cidr': target_network_cidr,
         'description': 'Route to %s via tunnel' % target_network_name or target_network_cidr,
-        'tunnel': 1,
+        'tunnel': list(ipsec_endpoint.response.tunnels.keys())[0],
         'advertise': 'False',
         'gateway': '',
         'metric': 0

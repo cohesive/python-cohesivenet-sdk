@@ -1,5 +1,3 @@
-import functools
-
 import cohesivenet
 import cohesivenet.pipe as pipe
 import cohesivenet.data_types as data_types
@@ -7,7 +5,19 @@ import cohesivenet.data_types as data_types
 from cohesivenet import VNS3Client, Configuration
 
 
-def try_api_call(api_call, *args, **kwargs):
+def try_call_client(client, call, *args, **kwargs):
+    try:
+        response = call(client, *args, **kwargs)
+        return data_types.OperationResult(client, response)
+    except cohesivenet.ApiException as e:
+        return data_types.ClientExceptionResult(client, e)
+
+
+async def try_call_client_async(client, call, *args, **kwargs):
+    return try_call_client(client, call, *args, **kwargs)
+
+
+def try_api_call(api_call, *args, should_raise=False, **kwargs):
     """try_api_call Wrapper for api call to catch errors
     
     Arguments:
@@ -16,11 +26,13 @@ def try_api_call(api_call, *args, **kwargs):
     Returns:
         [OperationResult or ClientExceptionResult]
     """
+
     try:
-        response = api_call(*args, **kwargs)
-        return data_types.OperationResult(client, response)
+        return api_call(*args, **kwargs)
     except cohesivenet.ApiException as e:
-        return data_types.ClientExceptionResult(client, e)
+        if should_raise:
+            raise e
+        return e
 
 
 async def try_api_call_async(api_call, *args, **kwargs):
@@ -32,11 +44,7 @@ async def try_api_call_async(api_call, *args, **kwargs):
     Returns:
         [Coroutine -> [OperationResult or ClientExceptionResult]]
     """
-    try:
-        response = api_call(*args, **kwargs)
-        return data_types.OperationResult(client, response)
-    except cohesivenet.ApiException as e:
-        return data_types.ClientExceptionResult(client, e)
+    return try_api_call(api_call, *args, **kwargs)
 
 
 def __bulk_call_api_sync(clients, call_client_func) -> data_types.BulkOperationResult:
@@ -52,8 +60,7 @@ def __bulk_call_api_sync(clients, call_client_func) -> data_types.BulkOperationR
     succeeded = []
     failed = []
     for client in clients:
-        call_client = functools.partial(call_client_func, client)
-        result = try_api_call(call_client)
+        result = try_call_client(client, call_client_func)
         if isinstance(result, data_types.ClientExceptionResult):
             failed.append(result)
         else:
@@ -72,7 +79,7 @@ def __bulk_call_api_parallel(clients, call_client_func) -> data_types.BulkOperat
         data_types.BulkOperationResult
     """
     results = pipe.run_parallel(*(
-        try_api_call_async(functools.partial(call_client_func, client)) for client in clients
+        try_call_client_async(client, call_client_func) for client in clients
     ))
 
     succeeded = []

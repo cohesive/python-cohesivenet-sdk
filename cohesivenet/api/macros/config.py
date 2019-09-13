@@ -1,11 +1,11 @@
 import logging
 import os
-
 from typing import Dict
+
 from cohesivenet import VNS3Client, data_types, ApiException, ApiValueError
 from cohesivenet.api.macros import api_operations
 
-Logger = logging.getLogger('cohesivenet.api.macros')
+Logger = logging.getLogger(__name__)
 
 
 def license_clients(clients, license_file_path) -> data_types.BulkOperationResult:
@@ -53,7 +53,7 @@ def accept_clients_license(clients, license_parameters) -> data_types.BulkOperat
 
 def setup_controller(client: VNS3Client, topology_name: str, license_file: str,
                      license_parameters: Dict, keyset_parameters: Dict, peering_id: int = 1):
-    """setup_controller Set the topology name, set up controller license, keyset and peering ID if provided
+    """setup_controller Set the topology name, controller license, keyset and peering ID if provided
 
     Arguments:
         client {VNS3Client} -- [description]
@@ -77,38 +77,57 @@ def setup_controller(client: VNS3Client, topology_name: str, license_file: str,
         'error': None
     }
     try:
-        topology_response = client.config.put_config({
-            'topology_name': topology_name
-        })
-        setup_response.update(topology_response=topology_response['response']['topology_name'])
-        Logger.info('Topology Name updated')
+        current_config = client.config.get_config().response
+        if current_config.topology_name != topology_name:
+            topology_response = client.config.put_config({
+                'topology_name': topology_name
+            })
+            Logger.info('Topology Name updated')
+        else:
+            Logger.info('Controller already has topology name. Skipping.')
+        setup_response.update(topology_name=topology_name)
 
-        if not os.path.isfile(license_file):
-            Logger.info('License file does not exist')
-            setup_response.update(error=ApiValueError('License File %s does not exist' % license_file))
-            return setup_response
+        if not current_config.licensed:
+            if not os.path.isfile(license_file):
+                Logger.info('License file does not exist')
+                setup_response.update(error=ApiValueError('License File %s does not exist' % license_file))
+                return setup_response
 
-        license_file = open(license_file).read().strip()
-        upload_response = client.licensing.upload_license(license_file)
-        setup_response.update(license=upload_response.response)
-        Logger.info('License uploaded')
+            license_file = open(license_file).read().strip()
+            upload_response = client.licensing.upload_license(license_file)
+            Logger.info('License uploaded')
+        else:
+            setup_response.update(license=current_config.topology_name)
+            Logger.info('Controller is already licensed. Skipping.')
 
-        accept_license_response = client.licensing.put_set_license_parameters(license_parameters)
-        Logger.info('License accepted. Controller rebooting. Waiting for api availability.')
-        setup_response.update(license_parameters=accept_license_response.response.parameters)
-        client.sys_admin.wait_for_api(timeout=90)
+        current_license = client.licensing.get_license().response
+        if not current_license.finalized:
+            accept_license_response = client.licensing.put_set_license_parameters(license_parameters)
+            Logger.info('License accepted. Controller rebooting. Waiting for api availability.')
+            setup_response.update(license_parameters=accept_license_response.response.parameters)
+            client.sys_admin.wait_for_api(timeout=90)
+        else:
+            Logger.info('License is already accepted. Skipping.')
+        setup_response.update(license=current_license)
 
-        generate_keyset_response = client.config.put_keyset(keyset_parameters)
-        Logger.info('Keyset generating. Waiting for keyset availability.')
-        keyset_detail = client.config.wait_for_keyset(timeout=90)
-        setup_response.update(keyset=keyset_detail)
+        current_keyset = client.config.get_keyset().response
+        if not current_keyset.keyset_present and not current_keyset.in_progress:
+            generate_keyset_response = client.config.put_keyset(keyset_parameters)
+            Logger.info('Keyset generating. Waiting for keyset availability.')
+            keyset_detail = client.config.wait_for_keyset(timeout=90)
+            setup_response.update(keyset=keyset_detail)
+        else:
+            setup_response.update(keyset=current_keyset)
+            Logger.info('Keyset is already present [in_progress=%s]. Skipping.' % current_keyset.in_progress)
 
-        if peering_id:
+        current_peering_status = client.peering.get_peering_status().response
+        setup_response.update(peering=current_peering_status)
+        if not current_peering_status.id and peering_id:
             peering_response = client.peering.put_self_peering_id({'id': peering_id})
             setup_response.update(peering=peering_response.response)
             Logger.info('Peering ID set.')
 
-        return data_types.OperationResult(client, setup_response)
+        return setup_response
     except ApiException as e:
         setup_response.update(error=e)
         return setup_response

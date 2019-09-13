@@ -24,4 +24,4 @@ def create_local_gateway_route(client, local_cidr, **route_kwargs):
         'advertise': 'False',
         'metric': 0
     }, **route_kwargs)
-    return api_operations.try_api_call(client.routing.post_create_route, route)
+    return api_operations.try_api_call(client.routing.post_create_route, route, should_raise=True)

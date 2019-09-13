@@ -110,6 +110,12 @@ class ApiException(OpenApiException):
 
         return error_message
 
+    def get_error_message(self):
+        error_obj = self.error.get('error')
+        if type(error_obj) is dict:
+            return error_obj.get('message')
+        return self.body
+
     @property
     def error(self):
         if not self.body:
