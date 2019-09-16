@@ -19,6 +19,10 @@ class OpenApiException(Exception):
     """The base exception class for all OpenAPIExceptions"""
 
 
+class CohesiveSDKException(Exception):
+    """The base exception class for SDK Client exceptions"""
+
+
 class ApiTypeError(OpenApiException, TypeError):
     def __init__(self, msg, path_to_item=None, valid_classes=None,
                  key_type=None):

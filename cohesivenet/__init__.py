@@ -16,7 +16,7 @@
 from __future__ import absolute_import
 
 
-__version__ = "1.0.0"
+__version__ = "0.1.0"
 
 import logging
 from logging import NullHandler
@@ -47,6 +47,7 @@ from cohesivenet.exceptions import ApiTypeError
 from cohesivenet.exceptions import ApiValueError
 from cohesivenet.exceptions import ApiKeyError
 from cohesivenet.exceptions import ApiException
+from cohesivenet.exceptions import CohesiveSDKException
 
 # import models into sdk package
 from cohesivenet.models.access_token import AccessToken

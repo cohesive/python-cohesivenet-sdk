@@ -1,6 +1,6 @@
 from cohesivenet import data_types, VNS3Client, ApiException
 from cohesivenet.clouds import networkmath
-from cohesivenet.api.macros import api_operations
+from cohesivenet.macros import api_operations
 
 
 def create_local_gateway_route(client, local_cidr, **route_kwargs):

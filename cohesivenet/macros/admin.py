@@ -2,7 +2,7 @@ from typing import List, Dict
 
 import cohesivenet
 from cohesivenet import VNS3Client, data_types
-from cohesivenet.api.macros import api_operations
+from cohesivenet.macros import api_operations
 
 
 def roll_api_password(new_password, clients) -> data_types.BulkOperationResult:

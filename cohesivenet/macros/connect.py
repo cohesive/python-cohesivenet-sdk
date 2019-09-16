@@ -1,7 +1,7 @@
 from typing import List
 
 from cohesivenet import VNS3Client, Configuration, data_types
-from cohesivenet.api.macros import api_operations
+from cohesivenet.macros import api_operations
 
 
 def get_client(host, username, password, verify=False):
