@@ -17,6 +17,7 @@ import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
 import six
+import urllib3.exceptions
 
 from cohesivenet.exceptions import (
     ApiTypeError,
@@ -1106,7 +1107,7 @@ class ConfigurationApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def wait_for_keyset(self, retry_timeout=1.0, timeout=60):
+    def wait_for_keyset(self, retry_timeout=2.0, timeout=60):
         """wait_for_keyset
 
         Wait for keyset to be generated on server
@@ -1117,11 +1118,13 @@ class ConfigurationApi(object):
         latest_response = None
         while time.time() - start_time < timeout:
             try:
-                keyset_response = self.get_keyset()
-                if keyset_response.response.in_progress:
-                    time.sleep(retry_timeout)
-                    continue
-                return keyset_response.response
-            except ApiException as e:
-                raise e
-        raise ApiException(reason='Failed to fetch keyset')
+                keyset_response = self.get_keyset().response
+                if all([keyset_response, not keyset_response.in_progress, keyset_response.keyset_present]):
+                    return keyset_response
+                time.sleep(retry_timeout)
+            except (urllib3.exceptions.ConnectTimeoutError,
+                    urllib3.exceptions.NewConnectionError,
+                    urllib3.exceptions.MaxRetryError):
+                time.sleep(retry_timeout)
+                continue
+        raise ApiException(reason='Failed to fetch keyset. Timeout %s seconds.' % timeout)

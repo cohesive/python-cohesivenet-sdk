@@ -114,6 +114,10 @@ class ApiException(OpenApiException):
 
         return error_message
 
+    def __repr__(self):
+        return '%s(status=%s,reason=%s,http_resp.body=%s)' % (
+            self.__class__.__name__, self.status, self.reason, self.body)
+
     def get_error_message(self):
         error_obj = self.error.get('error')
         if type(error_obj) is dict:

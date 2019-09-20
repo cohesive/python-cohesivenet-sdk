@@ -2,7 +2,7 @@ import cohesivenet
 import cohesivenet.pipe as pipe
 import cohesivenet.data_types as data_types
 
-from cohesivenet import VNS3Client, Configuration
+from cohesivenet import VNS3Client, Configuration, ApiException
 
 
 def try_call_client(client, call, *args, **kwargs):

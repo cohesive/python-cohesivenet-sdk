@@ -2072,7 +2072,23 @@ class SystemAdministrationApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def wait_for_api(self, delay=10, retry_timeout=2, timeout=60, **kwargs):  # noqa: E501
+    def _wait_for_down(self, retry_timeout=2, timeout=30, sleep_time=0):
+        import time
+        start_time = time.time()
+
+        while time.time() - start_time < timeout:
+            try:
+                response = self.get_ping_system(_request_timeout=retry_timeout)
+                if sleep_time:
+                    time.sleep(sleep_time)
+            except (urllib3.exceptions.ConnectTimeoutError,
+                    urllib3.exceptions.NewConnectionError,
+                    urllib3.exceptions.MaxRetryError):
+                return True
+        raise ApiException('API failed to go down [timeout=%sseconds]' % timeout)
+
+
+    def wait_for_api(self, retry_timeout=2, timeout=60, wait_for_reboot=False, **kwargs):  # noqa: E501
         """wait_for_api  # noqa: E501
 
         Wait for api availability. This method makes a synchronous HTTP request for API status
@@ -2086,16 +2102,19 @@ class SystemAdministrationApi(object):
         """
         import time
         start_time = time.time()
-        if delay:
-            time.sleep(delay)
+
+        if wait_for_reboot:
+            self._wait_for_down(sleep_time=1, timeout=timeout)
 
         while time.time() - start_time < timeout:
             try:
-                return self.get_ping_system(_request_timeout=retry_timeout)
-            except ApiException as e:
-                return e.error
+                ping = self.get_ping_system(_request_timeout=retry_timeout)
+                if ping.response and 'Alive' in ping.response.message:
+                    return ping.response
             except (urllib3.exceptions.ConnectTimeoutError,
                     urllib3.exceptions.NewConnectionError,
-                    urllib3.exceptions.ConnectionRefusedError,
                     urllib3.exceptions.MaxRetryError):
                 continue
+            except ApiException as e:
+                return e
+        raise ApiException('API timeout [timeout=%sseconds]' % timeout)
