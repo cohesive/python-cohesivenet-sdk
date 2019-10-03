@@ -2,6 +2,7 @@ import os
 import logging
 import sys
 import urllib3
+import pprint
 
 from cohesivenet import constants, ApiException, CohesiveSDKException
 from cohesivenet.clouds import networkmath
@@ -13,15 +14,6 @@ Logger.handlers = []
 Logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 Logger.addHandler(ch)
-
-def update_clients(master_password, aws_client, azure_client):
-    reset_ps_response = admin.roll_api_password(master_password, [aws_client, azure_client])
-    enable_ui_response = admin.roll_ui_credentials(
-        {'username': 'vnscubed', 'password': master_password},
-        [aws_client, azure_client], 
-        enable_ui=True)
-    return aws_client, azure_client
-
 
 
 def setup_clients(update_passwords=False):
@@ -52,86 +44,126 @@ def setup_clients(update_passwords=False):
     }
 
     aws_client, azure_client = connect.get_clients(aws_client_data, azure_client_data)
-    if update_passwords:
-        return update_clients(master_password, aws_client, azure_client)
+    if not update_passwords:
+        return aws_client, azure_client
+
+    admin.roll_api_password(master_password, [aws_client, azure_client])
+    admin.roll_ui_credentials({
+        'username': 'vnscubed',
+        'password': master_password
+    }, [aws_client, azure_client], enable_ui=True)
+
     return aws_client, azure_client
 
 
-def configure_multicloud_bridge_aws(aws_client, tunnel_endpoint, tunnel_name, tunnel_vti):
-    license_file = os.getenv('LICENSE')
-    keyset_token = os.getenv('KEYSET_TOKEN')
-    aws_cidr = os.getenv('AWS_CIDR')
-    azure_cidr = os.getenv('AZURE_CIDR')
-    ipsec_shared_secret = os.getenv('IPSEC_PSK')
+def configure_multicloud_bridge_client(**bridge_kwargs):
+    """Configure client for multicloud IPsec bridge
+    
+    Arguments:
+        target_client {VNS3Client} - client to be configured
+        target_topology_name {str}
+        peer_endpoint {str} - controller endpoint on otherside of bridge
+        endpoint_name {str} - name for the IPsec endpoint
+        tunnel_vti {str} - CIDR to be used for VTI interface
 
-    assert license_file, 'License must be provided. [env=LICENSE]'
-    assert keyset_token, 'Keyset token must be provided. [env=KEYSET_TOKEN]'
-    assert aws_cidr, 'AWS network CIDR must be provided. [env=AWS_CIDR]'
-    assert azure_cidr, 'Azure network CIDR must be provided. [env=AZURE_CIDR]'
-    assert ipsec_shared_secret, 'Ipsec tunnel shared key must be provided. [env=IPSEC_PSK]'
+        license_file {str} - full path to license file
+        target_cidr {str} - cidr for this clients network
+        peer_cidr {str} - cidr accessible on other side of bridge
+        tunnel_psk {str} -- Preshared key for IPsec tunnel
+
+    Returns:
+        Dict - {
+            endpoint: IpsecRemoteEndpoint,
+            routes: Dict
+        } OR Exception
+    """
+    required_kwargs = [
+        'target_client', 'target_topology_name', 'peer_endpoint',
+        'endpoint_name', 'tunnel_vti', 'license_file', 'keyset_token',
+        'target_cidr', 'peer_cidr', 'tunnel_psk'
+    ]
+
+    missing_kwargs = [a for a in required_kwargs if a not in bridge_kwargs]
+    if len(missing_kwargs) > 0:
+        return CohesiveSDKException('Missing args for bridge %s' % missing_kwargs)
 
     try:
-        Logger.info('Setup on AWS....')
+        target_client = bridge_kwargs['target_client']
+        topology_name = bridge_kwargs['target_topology_name']
+        Logger.info('Setup for %s...' % topology_name)
         config.setup_controller(
-            aws_client, 
-            'MultiCloud - AWS Controller',
-            license_file,
+            target_client, 
+            topology_name,
+            bridge_kwargs['license_file'],
             license_parameters={'default': True},
-            keyset_parameters={'token': keyset_token},
+            keyset_parameters={'token': bridge_kwargs['keyset_token']},
             reboot_timeout=240,
             keyset_timeout=240)
 
-        Logger.info('Creating local gateway routes')
-        routes.create_local_gateway_route(aws_client, aws_cidr)
+        target_cidr = bridge_kwargs['target_cidr']
+        Logger.info('Creating local gateway routes for %s' % target_cidr)
+        routes.create_local_gateway_route(target_client, target_cidr)
 
-        Logger.info('Creating tunnel: AWS')
-        aws_response = ipsec.create_tunnel_endpoint(
-            aws_client, tunnel_name, ipsec_shared_secret, 
-            tunnel_endpoint, azure_cidr, 
-            tunnel_vti, target_network_name='Azure')
-        Logger.info(aws_response)
-    except (ApiException, CohesiveSDKException)as e:
-        return e
-
-
-def configure_multicloud_bridge_azure(azure_client, tunnel_endpoint, tunnel_name, tunnel_vti):
-    license_file = os.getenv('LICENSE')
-    keyset_token = os.getenv('KEYSET_TOKEN')
-    aws_cidr = os.getenv('AWS_CIDR')
-    azure_cidr = os.getenv('AZURE_CIDR')
-    ipsec_shared_secret = os.getenv('IPSEC_PSK')
-
-    assert license_file, 'License must be provided. [env=LICENSE]'
-    assert keyset_token, 'Keyset token must be provided. [env=KEYSET_TOKEN]'
-    assert aws_cidr, 'AWS network CIDR must be provided. [env=AWS_CIDR]'
-    assert azure_cidr, 'Azure network CIDR must be provided. [env=AZURE_CIDR]'
-    assert ipsec_shared_secret, 'Ipsec tunnel shared key must be provided. [env=IPSEC_PSK]'
-
-    try:
-        Logger.info('Setup on AZURE....')
-        config.setup_controller(
-            azure_client, 
-            'MultiCloud - Azure Controller',
-            license_file,
-            license_parameters={'default': True},
-            keyset_parameters={'token': keyset_token},
-            reboot_timeout=240,
-            keyset_timeout=240)
-
-        Logger.info('Creating local gateway routes')
-        # routes.create_local_gateway_route(azure_client, azure_cidr)
-
-        Logger.info('Creating tunnel: Azure')
-        azure_resp = ipsec.create_tunnel_endpoint(
-            azure_client, tunnel_name, ipsec_shared_secret, 
-            tunnel_endpoint, aws_cidr, 
-            tunnel_vti, target_network_name='AWS')
-        Logger.info(azure_resp)
+        endpoint_name = bridge_kwargs['endpoint_name']
+        Logger.info('Creating tunnel: %s' % endpoint_name)
+        return ipsec.create_tunnel_endpoint(
+            target_client, endpoint_name, bridge_kwargs['tunnel_psk'],
+            bridge_kwargs['peer_endpoint'], bridge_kwargs['peer_cidr'], 
+            bridge_kwargs['tunnel_vti'])
     except (ApiException, CohesiveSDKException) as e:
         return e
 
-def run():
-    ipsec_tunnel_name = 'aws_azure_vns3_tunnel'
+
+def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
+    """Fetch variables from environment for clients, configure controllers
+       and build IPsec endpoint
+    
+    Returns:
+        [List[Dict]]
+    """
+    ipsec_endpoint_name = 'aws_azure_vns3_tunnel'
     vti_blocks = networkmath.calculate_next_subnets(
         prefix_length=30, take=2, cidr=constants.VTI_RANGE_LINK_LOCAL)
-    return ipsec_tunnel_name, vti_blocks
+
+    aws_client, azure_client = setup_clients(update_passwords=True)
+    aws_response = configure_multicloud_bridge_client(
+        target_client=aws_client,
+        target_topology_name='MultiCloud - AWS Controller',
+        peer_endpoint=azure_client.configuration.host_ip,
+        endpoint_name=ipsec_endpoint_name,
+        tunnel_vti=vti_blocks[0],
+        license_file=license_file,
+        keyset_token=keyset_token,
+        target_cidr=aws_cidr,
+        peer_cidr=azure_cidr,
+        tunnel_psk=ipsec_shared_secret)
+
+    azure_response = configure_multicloud_bridge_client(
+        target_client=azure_client,
+        target_topology_name='MultiCloud - Azure Controller',
+        peer_endpoint=aws_client.configuration.host_ip,
+        endpoint_name=ipsec_endpoint_name,
+        tunnel_vti=vti_blocks[1],  # Non-overlapping VTI blocks
+        license_file=license_file,
+        keyset_token=keyset_token,
+        target_cidr=azure_cidr,
+        peer_cidr=aws_cidr,
+        tunnel_psk=ipsec_shared_secret)
+
+    return [aws_response, azure_response]
+
+
+if __name__ == "__main__":
+    license_file = os.getenv('LICENSE')
+    keyset_token = os.getenv('KEYSET_TOKEN')
+    aws_cidr = os.getenv('AWS_CIDR')
+    azure_cidr = os.getenv('AZURE_CIDR')
+    ipsec_shared_secret = os.getenv('IPSEC_PSK')
+
+    responses = run(license_file,
+        keyset_token,
+        aws_cidr,
+        azure_cidr,
+        ipsec_psk)
+
+    pprint(responses)

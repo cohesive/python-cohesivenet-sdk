@@ -25,7 +25,7 @@ def roll_api_password(new_password, clients) -> data_types.BulkOperationResult:
         _client.configuration.password = new_password
         return resp
 
-    return api_operations.__bulk_call_api(clients, _update_password)
+    return api_operations.__bulk_call_client(clients, _update_password)
 
 
 def disable_uis(clients):
@@ -44,7 +44,7 @@ def disable_uis(clients):
             'enabled': False
         })
 
-    return api_operations.__bulk_call_api(clients, _disable_ui)
+    return api_operations.__bulk_call_client(clients, _disable_ui)
 
 
 def roll_ui_credentials(new_credentials: dict, clients: List[cohesivenet.VNS3Client], enable_ui=False):
@@ -68,4 +68,4 @@ def roll_ui_credentials(new_credentials: dict, clients: List[cohesivenet.VNS3Cli
             'enabled': enable_ui
         })
 
-    return api_operations.__bulk_call_api(clients, _update_ui_credentials)
+    return api_operations.__bulk_call_client(clients, _update_ui_credentials)

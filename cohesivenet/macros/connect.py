@@ -70,4 +70,4 @@ def verify_client_connectivity(clients: List[VNS3Client]) -> data_types.BulkOper
     """
     def _ping_api(_client):
         return _client.sys_admin.get_ping_system()
-    return api_operations.__bulk_call_api(clients, _ping_api)
+    return api_operations.__bulk_call_client(clients, _ping_api)

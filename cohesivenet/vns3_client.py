@@ -84,3 +84,29 @@ class VNS3Client(APIClient):
     routing = api_as_property('routing', RoutingApi)
     snapshots = api_as_property('snapshots', SnapshotsApi)
     sys_admin = api_as_property('sys_admin', SystemAdministrationApi)
+
+    @property
+    def private_ip(self):
+        private_ip = getattr(self, '_private_ip', None)
+        if private_ip:
+            return private_ip
+        private_ip = self.config.get_config().response.private_ipaddress
+        setattr(self, '_private_ip', private_ip)
+        return private_ip
+
+    @property
+    def state(self):
+        state = getattr(self, '_state', None)
+        if state is None:
+            state = {}
+            setattr(self, '_state', state)
+            return state
+        return state
+
+    def add_to_state(self, key, value):
+        self.state[key] = value
+        return self.state
+
+    @property
+    def host_ip(self):
+        return self.configuration.host_ip

@@ -1,8 +1,9 @@
 import collections
 import cohesivenet
 
-from cohesivenet import VNS3Client, ApiException, constants as cohesive_constants, pipe
+from cohesivenet import VNS3Client, ApiException, constants as cohesive_constants
 from cohesivenet.clouds import networkmath
+
 
 def create_tunnel_endpoint(client, tunnel_name, tunnel_secret, target_ip, target_network_cidr,
                            vti_block, target_network_name=None, tunnel_parameters={}, route_parameters={}):
@@ -47,4 +48,7 @@ def create_tunnel_endpoint(client, tunnel_name, tunnel_secret, target_ip, target
         'metric': 0
     }, **route_parameters))
 
-    return ipsec_endpoint, routes
+    return {
+        'endpoint': ipsec_endpoint,
+        'routes': routes
+    }

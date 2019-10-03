@@ -32,11 +32,11 @@ def run_pipe(init_data, steps: List[Tuple[str, Callable]]):
 
 def run_pipe_async(init_data, steps: List[Tuple[str, Union[Callable, List[Awaitable]]]]):
     """Run pipeline of step functions, running in parallel if 
-    
+
     Arguments:
         init_data {[type]} -- [description]
         steps {List[Tuple[str, Union[Callable, List[Awaitable]]]]} -- [description]
-    
+
     Returns:
         [type] -- [description]
     """
@@ -196,22 +196,3 @@ def map_dict_keypaths(key_map, data_dict):
     }
     return {**data_dict, **updates}
 
-
-def function_pipe(*functions):
-    """Creating a compound function f(g(x))
-
-    pipe(
-        func1,
-        func2,
-        func3
-    )(data): data -> func1 -> func2 -> func3 -> output of func3
-
-    Returns:
-        [callable]
-    """
-    funcs_reversed = functions[::-1]
-
-    def _pipe_2(f, g):
-        return lambda x: f(g(x))
-
-    return reduce(_pipe_2, funcs_reversed, lambda x: x)

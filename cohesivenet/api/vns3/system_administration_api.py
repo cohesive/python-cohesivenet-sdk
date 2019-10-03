@@ -2088,7 +2088,7 @@ class SystemAdministrationApi(object):
         raise ApiException('API failed to go down [timeout=%sseconds]' % timeout)
 
 
-    def wait_for_api(self, retry_timeout=2, timeout=60, wait_for_reboot=False, **kwargs):  # noqa: E501
+    def wait_for_api(self, retry_timeout=2, timeout=60, wait_for_reboot=False, healthy_ping_count=5, **kwargs):  # noqa: E501
         """wait_for_api  # noqa: E501
 
         Wait for api availability. This method makes a synchronous HTTP request for API status
@@ -2106,11 +2106,14 @@ class SystemAdministrationApi(object):
         if wait_for_reboot:
             self._wait_for_down(sleep_time=1, timeout=timeout)
 
+        successful_pings = 0
         while time.time() - start_time < timeout:
             try:
                 ping = self.get_ping_system(_request_timeout=retry_timeout)
                 if ping.response and 'Alive' in ping.response.message:
-                    return ping.response
+                    successful_pings = successful_pings + 1
+                    if successful_pings >= healthy_ping_count:
+                        return ping.response
             except (urllib3.exceptions.ConnectTimeoutError,
                     urllib3.exceptions.NewConnectionError,
                     urllib3.exceptions.MaxRetryError):

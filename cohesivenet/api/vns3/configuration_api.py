@@ -1119,12 +1119,13 @@ class ConfigurationApi(object):
         while time.time() - start_time < timeout:
             try:
                 keyset_response = self.get_keyset().response
-                if all([keyset_response, not keyset_response.in_progress, keyset_response.keyset_present]):
+                if keyset_response and (not keyset_response.in_progress) and keyset_response.keyset_present:
                     return keyset_response
                 time.sleep(retry_timeout)
             except (urllib3.exceptions.ConnectTimeoutError,
                     urllib3.exceptions.NewConnectionError,
                     urllib3.exceptions.MaxRetryError):
+                print('keyset error')
                 time.sleep(retry_timeout)
                 continue
         raise ApiException(reason='Failed to fetch keyset. Timeout %s seconds.' % timeout)
