@@ -70,5 +70,5 @@ solutions@cohesive.net
 
 <!-- Markdown links -->
 
-[contact-image]: https://img.shields.io/badge/contact-support-blue.svg
+[contact-image]: https://img.shields.io/badge/contact-support-blue.svg?style=flat-square
 [contact-url]: https://support.cohesive.net/support/home
