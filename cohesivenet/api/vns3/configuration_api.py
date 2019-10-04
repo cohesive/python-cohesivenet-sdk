@@ -19,6 +19,8 @@ import re  # noqa: F401
 import six
 import urllib3.exceptions
 
+
+from cohesivenet import Logger
 from cohesivenet.exceptions import (
     ApiTypeError,
     ApiValueError,
@@ -1116,6 +1118,7 @@ class ConfigurationApi(object):
         start_time = time.time()
 
         latest_response = None
+        target_host = self.api_client.host_ip
         while time.time() - start_time < timeout:
             try:
                 keyset_response = self.get_keyset().response
@@ -1125,7 +1128,7 @@ class ConfigurationApi(object):
             except (urllib3.exceptions.ConnectTimeoutError,
                     urllib3.exceptions.NewConnectionError,
                     urllib3.exceptions.MaxRetryError):
-                print('keyset error')
+                Logger.debug('API connection error fetching keyset', host=target_host)
                 time.sleep(retry_timeout)
                 continue
         raise ApiException(reason='Failed to fetch keyset. Timeout %s seconds.' % timeout)

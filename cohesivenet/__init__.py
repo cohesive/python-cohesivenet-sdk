@@ -19,11 +19,13 @@ from __future__ import absolute_import
 __version__ = "0.1.0"
 
 import logging
-from logging import NullHandler
+import os
+from cohesivenet.log_util import Logger
 
-logging.getLogger('cohesivenet').addHandler(NullHandler())
-# setup logging if configured by env
-from cohesivenet import log_util
+COHESIVE_LOG_LEVEL = os.environ.get('COHESIVE_LOG_LEVEL', '').lower()
+Logger.set_null()
+if COHESIVE_LOG_LEVEL:
+    Logger.set_stream_handler(COHESIVE_LOG_LEVEL)
 
 # import apis into sdk package
 from cohesivenet.api.vns3.bgp_api import BGPApi

@@ -5,12 +5,11 @@ import urllib3
 import pprint
 from itertools import combinations
 
-from cohesivenet import constants, ApiException, CohesiveSDKException, VNS3Client, functional_util, log_util
+from cohesivenet import constants, ApiException, CohesiveSDKException, VNS3Client, functional_util, Logger
 from cohesivenet.clouds import networkmath
-from cohesivenet.macros import connect, config, routes, ipsec, admin, peering, routing
+from cohesivenet.macros import connect, config, routes, ipsec, admin, peering, routing, state
 
-urllib3.disable_warnings()
-logging.getLogger("urllib3").propagate = False
+Logger.silence_urllib3()
 
 def setup_clients(host_password_dicts):
     """setup_clients Connect to clients
@@ -67,6 +66,9 @@ def get_env():
     Returns:
         Dict -- Parsed data for configuring a mesh network
     """
+    license_file = os.getenv('LICENSE')
+    keyset_token = os.getenv('KEYSET_TOKEN')
+    master_set = os.getenv('MASTER_SET', 'False').lower() not in ('0', 'false')
     controller_hosts = os.getenv('CONTROLLER_HOSTS_CSV').split(',')
     controller_passwords = os.getenv('CONTROLLER_PASSWORDS_CSV').split(',')
     controller_subnets = os.getenv('CONTROLLER_SUBNETS').split(',')
@@ -88,9 +90,6 @@ def get_env():
         host_password_dict.pop(root_controller_host)
 
 
-    license_file = os.getenv('LICENSE')
-    keyset_token = os.getenv('KEYSET_TOKEN')
-    master_set = os.getenv('MASTER_SET', 'False').lower() not in ('0', 'false')
     return {
         'controllers': [{
             'host': host + ':8000',
@@ -121,39 +120,42 @@ def create_clients(**parameters):
     return root_client, peer_clients
 
 def build_mesh(root_client, peer_clients, parameters):
-    try:
-        print('Configuring root controller with license and keyset')
-        keyset_token = parameters['keyset_token']
-        resp1 = config.setup_controller(
-            root_client,
-            parameters['topology_name'],
-            parameters['license'],
-            license_parameters={'default': True},
-            keyset_parameters={'token': keyset_token},
-            reboot_timeout=240,
-            keyset_timeout=240)
-        print(resp1)
-        root_config = root_client.config.get_config()
-        print('Fetching keysets')
-        root_controller_private_ip = root_config.response.private_ipaddress
-        success, failed = config.fetch_keysets(peer_clients, root_controller_private_ip, keyset_token)
-        print('succeeded---')
-        print(success)
-        print('failed------')
-        print(failed)
-        if failed:
-            return failed
-        # set peering ids for clients
-        print('Setting peering Ids')
-        resp2  = peering.set_peer_ids(peer_clients)
-        print(resp2)
-        print('Creating peering mesh')
-        resp3 = peering.peer_mesh([root_client] + peer_clients, use_private_ip=True)
-        print(resp3)
-        print('Creating route advertisements')
-        ordered_subnets = [parameters['root_controller']['subnet']] + [c['subnet'] for c in parameters['controllers']]
-        resp4 = routing.create_route_advertisements([root_client] + peer_clients, ordered_subnets)
-        print(resp4)
+    """Run configure and create peering mesh and route advertisements
+    
+    Arguments:
+        root_client {VNS3Client}
+        peer_clients {List[VNS3Client]}
+        parameters {Dict} - values from get_env
+    """
+    print('Configuring root controller with license and keyset')
+    keyset_token = parameters['keyset_token']
+    config.setup_controller(
+        root_client,
+        parameters['topology_name'],
+        parameters['license'],
+        license_parameters={'default': True},
+        keyset_parameters={'token': keyset_token},
+        reboot_timeout=240,
+        keyset_timeout=240)
 
-    except (ApiException, CohesiveSDKException, Exception) as e:
-        return e
+    print('Fetching keysets')
+    config.fetch_keysets(
+        peer_clients,
+        state.get_primary_private_ip(root_client),
+        keyset_token)
+
+    print('Setting peering Ids')
+    peering.set_peer_ids(peer_clients, ids=[2, 3, 4])
+    print('Creating peering mesh')
+    peering.peer_mesh([root_client] + peer_clients)
+    print('Creating route advertisements')
+    ordered_subnets = [parameters['root_controller']['subnet']] + [c['subnet'] for c in parameters['controllers']]
+    routing.create_route_advertisements([root_client] + peer_clients, ordered_subnets)
+
+
+def run():
+    """Run create peering mesh.
+    """
+    parameters = get_env()
+    root_client, peer_clients = create_clients(**parameters)
+    build_mesh(root_client, peer_clients, parameters)

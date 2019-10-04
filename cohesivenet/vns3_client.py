@@ -86,26 +86,17 @@ class VNS3Client(APIClient):
     sys_admin = api_as_property('sys_admin', SystemAdministrationApi)
 
     @property
-    def private_ip(self):
-        private_ip = getattr(self, '_private_ip', None)
-        if private_ip:
-            return private_ip
-        private_ip = self.config.get_config().response.private_ipaddress
-        setattr(self, '_private_ip', private_ip)
-        return private_ip
-
-    @property
-    def state(self):
-        state = getattr(self, '_state', None)
-        if state is None:
-            state = {}
-            setattr(self, '_state', state)
-            return state
-        return state
+    def controller_state(self):
+        return getattr(self, '_state', {})
 
     def add_to_state(self, key, value):
-        self.state[key] = value
-        return self.state
+        state = getattr(self, '_state', {})
+        state[key] = value
+        setattr(self, '_state', state)
+        return None
+
+    def query_state(self, key):
+        return self.controller_state.get(key)
 
     @property
     def host_ip(self):

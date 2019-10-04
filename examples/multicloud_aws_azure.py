@@ -1,5 +1,4 @@
 import os
-import logging
 import sys
 import urllib3
 import pprint
@@ -9,11 +8,6 @@ from cohesivenet.clouds import networkmath
 from cohesivenet.macros import connect, config, routes, ipsec, admin
 
 urllib3.disable_warnings()
-Logger = logging.getLogger()
-Logger.handlers = []
-Logger.setLevel(logging.DEBUG)
-ch = logging.StreamHandler()
-Logger.addHandler(ch)
 
 
 def setup_clients(update_passwords=False):
@@ -90,7 +84,7 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
     try:
         target_client = bridge_kwargs['target_client']
         topology_name = bridge_kwargs['target_topology_name']
-        Logger.info('Setup for %s...' % topology_name)
+        print('Setup for %s...' % topology_name)
         config.setup_controller(
             target_client, 
             topology_name,
@@ -101,11 +95,11 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
             keyset_timeout=240)
 
         target_cidr = bridge_kwargs['target_cidr']
-        Logger.info('Creating local gateway routes for %s' % target_cidr)
+        print('Creating local gateway routes for %s' % target_cidr)
         routes.create_local_gateway_route(target_client, target_cidr)
 
         endpoint_name = bridge_kwargs['endpoint_name']
-        Logger.info('Creating tunnel: %s' % endpoint_name)
+        print('Creating tunnel: %s' % endpoint_name)
         return ipsec.create_tunnel_endpoint(
             target_client, endpoint_name, bridge_kwargs['tunnel_psk'],
             bridge_kwargs['peer_endpoint'], bridge_kwargs['peer_cidr'], 

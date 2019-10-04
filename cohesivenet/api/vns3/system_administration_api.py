@@ -20,6 +20,7 @@ import six
 import urllib3.exceptions
 
 
+from cohesivenet import Logger
 from cohesivenet.exceptions import (
     ApiTypeError,
     ApiValueError,
@@ -2107,6 +2108,7 @@ class SystemAdministrationApi(object):
             self._wait_for_down(sleep_time=1, timeout=timeout)
 
         successful_pings = 0
+        target_host = self.api_client.host_ip
         while time.time() - start_time < timeout:
             try:
                 ping = self.get_ping_system(_request_timeout=retry_timeout)
@@ -2117,6 +2119,7 @@ class SystemAdministrationApi(object):
             except (urllib3.exceptions.ConnectTimeoutError,
                     urllib3.exceptions.NewConnectionError,
                     urllib3.exceptions.MaxRetryError):
+                Logger.debug('API connection error on API ping. Retrying.', host=target_host)
                 continue
             except ApiException as e:
                 return e

@@ -1,8 +1,7 @@
-import logging
 import os
 from typing import Dict
 
-from cohesivenet import VNS3Client, data_types, CohesiveSDKException, ApiValueError, ApiException, log_util
+from cohesivenet import VNS3Client, data_types, CohesiveSDKException, ApiValueError, ApiException, Logger
 from cohesivenet.macros import api_operations
 
 
@@ -23,7 +22,7 @@ def license_clients(clients, license_file_path) -> data_types.BulkOperationResul
     return api_operations.__bulk_call_client(clients, _upload_license)
 
 
-def fetch_keysets(clients, root_host, keyset_token, keyset_timeout=60):
+def fetch_keysets(clients, root_host, keyset_token, keyset_timeout=60, reboot_timeout=120):
     """fetch_keysets Fetch keysets for all clients from root_host
     
     Arguments:
@@ -39,7 +38,7 @@ def fetch_keysets(clients, root_host, keyset_token, keyset_timeout=60):
             'source': root_host,
             'token': keyset_token
         })
-        _client.sys_admin.wait_for_api(timeout=keyset_timeout, wait_for_reboot=True)
+        _client.sys_admin.wait_for_api(timeout=reboot_timeout, wait_for_reboot=True)
         return _client.config.wait_for_keyset(timeout=keyset_timeout)
     return api_operations.__bulk_call_client(clients, _fetch_keyset, parallelize=True)
 
@@ -88,9 +87,8 @@ def setup_controller(client: VNS3Client, topology_name: str, license_file: str,
     Returns:
         OperationResult
     """
-    logger = logging.getLogger(__name__)
     current_config = client.config.get_config().response
-    log_util.log_debug('Setting topology name', name=topology_name)
+    Logger.debug('Setting topology name', name=topology_name)
     if current_config.topology_name != topology_name:
         topology_response = client.config.put_config({
             'topology_name': topology_name
@@ -100,9 +98,9 @@ def setup_controller(client: VNS3Client, topology_name: str, license_file: str,
         if not os.path.isfile(license_file):
             raise CohesiveSDKException('License file does not exist')
 
-        license_file = open(license_file).read().strip()
-        log_util.log_debug('Uploading license file', path=license_file)
-        upload_response = client.licensing.upload_license(license_file)
+        license_file_data = open(license_file).read().strip()
+        Logger.debug('Uploading license file', path=license_file)
+        upload_response = client.licensing.upload_license(license_file_data)
 
     accept_license = False
     try:
@@ -115,13 +113,14 @@ def setup_controller(client: VNS3Client, topology_name: str, license_file: str,
             raise e
 
     if accept_license:
-        log_util.log_debug('Accepting license', parameters=license_parameters)
+        Logger.debug('Accepting license', parameters=license_parameters)
         accept_license_response = client.licensing.put_set_license_parameters(license_parameters)
+        Logger.debug('Waiting for server reboot.')
         client.sys_admin.wait_for_api(timeout=reboot_timeout, wait_for_reboot=True)
 
     current_keyset = api_operations.retry_call(client.config.get_keyset, max_attempts=20).response
     if not current_keyset.keyset_present and not current_keyset.in_progress:
-        log_util.log_debug('Generating keyset', parameters=keyset_parameters)
+        Logger.debug('Generating keyset', parameters=keyset_parameters)
         generate_keyset_response = client.config.put_keyset(keyset_parameters)
         client.config.wait_for_keyset(timeout=keyset_timeout)
     elif current_keyset.in_progress:
@@ -129,6 +128,6 @@ def setup_controller(client: VNS3Client, topology_name: str, license_file: str,
 
     current_peering_status = client.peering.get_peering_status().response
     if not current_peering_status.id and peering_id:
-        log_util.log_debug('Setting peering id', id=peering_id)
+        Logger.debug('Setting peering id', id=peering_id)
         peering_response = client.peering.put_self_peering_id({'id': peering_id})
     return client

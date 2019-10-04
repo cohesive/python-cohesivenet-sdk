@@ -193,3 +193,13 @@ def __bulk_call_api(api_calls, parallelize=False) -> data_types.BulkOperationRes
         return __bulk_call_api_parallel(api_calls)
     else:
         return __bulk_call_api_sync(api_calls)
+
+
+def bulk_operation_failed(result: data_types.BulkOperationResult):
+    failures = result[1]
+    return len(failures) > 1
+
+
+def stringify_bulk_result_exception(result: data_types.BulkOperationResult):
+    exceptions = result[1]
+    return '.'.join([str(e) for e in exceptions])

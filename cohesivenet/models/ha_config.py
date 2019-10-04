@@ -49,7 +49,7 @@ class HaConfig(object):
         'backup_ip': 'backup_ip'
     }
 
-    def __init__(self, type=None, status=None, last_sync=None, last_sync_update=None, primary_ip=None, backup_ip=None):  # noqa: E501
+    def __init__(self, type_str=None, status=None, last_sync=None, last_sync_update=None, primary_ip=None, backup_ip=None):  # noqa: E501
         """HaConfig - a model defined in OpenAPI"""  # noqa: E501
 
         self._type = None
@@ -60,8 +60,8 @@ class HaConfig(object):
         self._backup_ip = None
         self.discriminator = None
 
-        if type is not None:
-            self.type = type
+        if type_str is not None:
+            self.type = type_str
         if status is not None:
             self.status = status
         self.last_sync = last_sync
@@ -81,7 +81,7 @@ class HaConfig(object):
         return self._type
 
     @type.setter
-    def type(self, type):
+    def type(self, type_str):
         """Sets the type of this HaConfig.
 
         primary or backup  # noqa: E501
@@ -89,8 +89,7 @@ class HaConfig(object):
         :param type: The type of this HaConfig.  # noqa: E501
         :type: str
         """
-
-        self._type = type
+        self._type = type_str
 
     @property
     def status(self):

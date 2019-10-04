@@ -33,7 +33,7 @@ class CloudInfo(object):
     """
     openapi_types = {
         'cloud_type': 'str',
-        'cloud_data': 'OneOfmapmap'
+        'cloud_data': 'dict(str, object)'
     }
 
     attribute_map = {

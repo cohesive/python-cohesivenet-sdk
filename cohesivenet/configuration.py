@@ -78,26 +78,6 @@ class Configuration(object):
         self.password = password
         """Password for HTTP basic authentication
         """
-        self.logger = {}
-        """Logging Settings
-        """
-        self.logger["package_logger"] = logging.getLogger("cohesivenet")
-        self.logger["urllib3_logger"] = logging.getLogger("urllib3")
-        self.logger_format = '%(asctime)s %(levelname)s %(message)s'
-        """Log format
-        """
-        self.logger_stream_handler = None
-        """Log stream handler
-        """
-        self.logger_file_handler = None
-        """Log file handler
-        """
-        self.logger_file = None
-        """Debug file location
-        """
-        self.debug = False
-        """Debug switch
-        """
 
         self.verify_ssl = verify_ssl
         """SSL/TLS verification
@@ -161,91 +141,6 @@ class Configuration(object):
             return ''
         parts = self.host.split(':') # remove port if exists
         return parts[0]
-
-    @property
-    def logger_file(self):
-        """The logger file.
-
-        If the logger_file is None, then add stream handler and remove file
-        handler. Otherwise, add file handler and remove stream handler.
-
-        :param value: The logger_file path.
-        :type: str
-        """
-        return self.__logger_file
-
-    @logger_file.setter
-    def logger_file(self, value):
-        """The logger file.
-
-        If the logger_file is None, then add stream handler and remove file
-        handler. Otherwise, add file handler and remove stream handler.
-
-        :param value: The logger_file path.
-        :type: str
-        """
-        self.__logger_file = value
-        if self.__logger_file:
-            # If set logging file,
-            # then add file handler and remove stream handler.
-            self.logger_file_handler = logging.FileHandler(self.__logger_file)
-            self.logger_file_handler.setFormatter(self.logger_formatter)
-            for _, logger in six.iteritems(self.logger):
-                logger.addHandler(self.logger_file_handler)
-
-    @property
-    def debug(self):
-        """Debug status
-
-        :param value: The debug status, True or False.
-        :type: bool
-        """
-        return self.__debug
-
-    @debug.setter
-    def debug(self, value):
-        """Debug status
-
-        :param value: The debug status, True or False.
-        :type: bool
-        """
-        self.__debug = value
-        if self.__debug:
-            # if debug status is True, turn on debug logging
-            for _, logger in six.iteritems(self.logger):
-                logger.setLevel(logging.DEBUG)
-            # turn on httplib debug
-            httplib.HTTPConnection.debuglevel = 1
-        else:
-            # if debug status is False, turn off debug logging,
-            # setting log level to default `logging.WARNING`
-            for _, logger in six.iteritems(self.logger):
-                logger.setLevel(logging.WARNING)
-            # turn off httplib debug
-            httplib.HTTPConnection.debuglevel = 0
-
-    @property
-    def logger_format(self):
-        """The logger format.
-
-        The logger_formatter will be updated when sets logger_format.
-
-        :param value: The format string.
-        :type: str
-        """
-        return self.__logger_format
-
-    @logger_format.setter
-    def logger_format(self, value):
-        """The logger format.
-
-        The logger_formatter will be updated when sets logger_format.
-
-        :param value: The format string.
-        :type: str
-        """
-        self.__logger_format = value
-        self.logger_formatter = logging.Formatter(self.__logger_format)
 
     def get_api_key_with_prefix(self, identifier):
         """Gets API key (with prefix if set).
