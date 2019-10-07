@@ -1,5 +1,6 @@
 # Python Cohesive Networks SDK
 [![contact][contact-image]][contact-url]
+
 Cohesive Networks SDK is Python tool providing access to the VNS3 API from applications written in Python. It also includes common pipelines and macro functions
 for building network topologies.
 
@@ -22,25 +23,8 @@ python setup.py install --user
 (or `sudo python setup.py install` to install the package for all users)
 
 ## Usage
-View all endpoints [documented here](./endpoints.md)
 
 ### Configuring a Client
-
-### IPsec Configuration
-
-### Overlay Networking Configuration
-
-### Policy Firewall and Routing
-
-### Alerting
-Define and retrieve alerts from VNS3. Alerts can be configured to send to 
-Slack, Ops Genie, ... EDIT ME, or any any webhook endpoint for your monitoring systems
-
-### Network Edge Plugins 
-Want to run a proxy on your network edge? Or maybe some network intrusion detection? The VNS3 Plugin system allows you to 
-easily plug in a container with privileged access to VNS3 runtime and interfaces.
-
-### System Administration
 
 ```python
 import time
@@ -48,7 +32,11 @@ import cohesivenet
 from cohesivenet.rest import ApiException
 from pprint import pprint
 
-configuration = cohesivenet.Configuration()
+configuration = cohesivenet.Configuration(
+    host='https://[vns3-host]:8000',
+    username='api',         
+    password='YOUR_PASSWORD',
+    verify_ssl=False) # Local cert is used by default. Can add your own cert.
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'api'
 configuration.password = 'YOUR_PASSWORD'
@@ -57,11 +45,31 @@ configuration.host = "https://[vns3-host]:8000"
 vns3_controller = cohesivenet.VNS3Client(configuration)
 
 try:
-    api_response = vns3_controller.ipsec.delete_ipsec_endpoint(10)
+    api_response = vns3_controller.config.get_config()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling IPsecAPI->delete_ipsec_endpoint: %s\n" % e)
+    print("Exception fetching VNS3 Configuration get_config(): %s\n" % e)
+```
 
+### Methods
+All endpoints are documented [here](./endpoints.md). Each sub-api is available from the VNS3Client instance as follows:
+
+```python
+
+vns3_client.config                # ConfigurationApi provides VNS3 config methods
+vns3_client.bgp                   # BGPApi for Border Gateway Protocol methods
+vns3_client.firewall              # FirewallApi for configuring VNS3 policies
+vns3_client.high_availability     # HighAvailabilityApi for configuration HA for VNS3
+vns3_client.ipsec                 # IPsecApi for IPsec tunnel methods
+vns3_client.interfaces            # InterfacesApi for viewing VNS3 interfaces
+vns3_client.monitoring            # MonitoringAlertingApi
+vns3_client.network_edge_plugins  # NetworkEdgePluginsApi
+vns3_client.overlay_network       # OverlayNetworkApi for managing the overlay network
+vns3_client.peering               # PeeringApi for peering VNS3 controllers
+vns3_client.routing               # RoutingApi for configuring routing
+vns3_client.snapshots             # SnapshotsApi for managing backups
+vns3_client.sys_admin             # SystemAdministrationApi for access and sys admin tasks
+vns3_client.licensing             # LicensingApi for controller licensing 
 ```
 
 ## Author
