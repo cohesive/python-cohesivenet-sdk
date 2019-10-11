@@ -2108,7 +2108,7 @@ class SystemAdministrationApi(object):
             self._wait_for_down(sleep_time=1, timeout=timeout)
 
         successful_pings = 0
-        target_host = self.api_client.host_ip
+        target_host = self.api_client.host_uri
         while time.time() - start_time < timeout:
             try:
                 ping = self.get_ping_system(_request_timeout=retry_timeout)

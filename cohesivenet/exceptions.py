@@ -13,6 +13,13 @@
 
 import six
 import json
+import urllib3
+
+
+UrlLib3ConnExceptions = (
+    urllib3.exceptions.ConnectTimeoutError,
+    urllib3.exceptions.NewConnectionError,
+    urllib3.exceptions.MaxRetryError)
 
 
 class OpenApiException(Exception):

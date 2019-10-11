@@ -123,7 +123,7 @@ def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
     aws_response = configure_multicloud_bridge_client(
         target_client=aws_client,
         target_topology_name='MultiCloud - AWS Controller',
-        peer_endpoint=azure_client.configuration.host_ip,
+        peer_endpoint=azure_client.configuration.host_uri,
         endpoint_name=ipsec_endpoint_name,
         tunnel_vti=vti_blocks[0],
         license_file=license_file,
@@ -135,7 +135,7 @@ def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
     azure_response = configure_multicloud_bridge_client(
         target_client=azure_client,
         target_topology_name='MultiCloud - Azure Controller',
-        peer_endpoint=aws_client.configuration.host_ip,
+        peer_endpoint=aws_client.configuration.host_uri,
         endpoint_name=ipsec_endpoint_name,
         tunnel_vti=vti_blocks[1],  # Non-overlapping VTI blocks
         license_file=license_file,

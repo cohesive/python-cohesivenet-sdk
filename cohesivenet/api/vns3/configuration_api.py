@@ -17,6 +17,7 @@ import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
 import six
+import time
 import urllib3.exceptions
 
 
@@ -24,7 +25,8 @@ from cohesivenet import Logger
 from cohesivenet.exceptions import (
     ApiTypeError,
     ApiValueError,
-    ApiException
+    ApiException,
+    CohesiveSDKException
 )
 
 
@@ -1109,6 +1111,7 @@ class ConfigurationApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+
     def wait_for_keyset(self, retry_timeout=2.0, timeout=60):
         """wait_for_keyset
 
@@ -1118,17 +1121,19 @@ class ConfigurationApi(object):
         start_time = time.time()
 
         latest_response = None
-        target_host = self.api_client.host_ip
+        target_host = self.api_client.host_uri
         while time.time() - start_time < timeout:
             try:
-                keyset_response = self.get_keyset().response
+                keyset_data = self.get_keyset()
+                keyset_response = keyset_data.response
                 if keyset_response and (not keyset_response.in_progress) and keyset_response.keyset_present:
-                    return keyset_response
+                    return keyset_data
+                Logger.debug('Keyset not present. Retrying.', host=target_host)
                 time.sleep(retry_timeout)
             except (urllib3.exceptions.ConnectTimeoutError,
                     urllib3.exceptions.NewConnectionError,
                     urllib3.exceptions.MaxRetryError):
-                Logger.debug('API connection error fetching keyset', host=target_host)
+                Logger.debug('API connection error fetching keyset. Retrying.', host=target_host)
                 time.sleep(retry_timeout)
                 continue
         raise ApiException(reason='Failed to fetch keyset. Timeout %s seconds.' % timeout)

@@ -72,6 +72,26 @@ vns3_client.sys_admin             # SystemAdministrationApi for access and sys a
 vns3_client.licensing             # LicensingApi for controller licensing 
 ```
 
+### Logging
+The SDK can be configured to emit logs for better visibility into what it's doing. The SDK supports INFO, DEBUG, and ERROR logging.
+
+There are two ways to enable it:
+
+1. Set the environment variable `COHESIVE_LOG_LEVEL` to the value `debug`, `info` or `error`
+
+   ```sh
+   $ export COHESIVE_LOG_LEVEL=debug
+   ```
+
+2. Enable it through Python's logging module:
+
+   ```python
+   import logging
+   logging.basicConfig()
+   logging.getLogger('cohesivenet').setLevel(logging.DEBUG)
+
+
+
 ## Author
 
 solutions@cohesive.net

@@ -32,7 +32,7 @@ def create_tunnel_endpoint(client, tunnel_name, tunnel_secret, target_ip, target
         'pfs': True,
         'ike_version': 2,
         'nat_t_enabled': 'False', # # older versions of VNS3 required string parameters.
-        'extra_config': 'local-peer-id=%s' % client.configuration.host_ip,
+        'extra_config': 'local-peer-id=%s' % client.configuration.host_uri,
         'vpn_type': 'vti',
         'route_based_int_address': str(vti_block),
         'route_based_local': '0.0.0.0/0',

@@ -136,7 +136,7 @@ class Configuration(object):
         return self.protocol + '://' + self.host
 
     @property
-    def host_ip(self):
+    def host_uri(self):
         if not self.host:
             return ''
         parts = self.host.split(':') # remove port if exists

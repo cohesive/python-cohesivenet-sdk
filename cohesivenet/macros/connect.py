@@ -71,3 +71,7 @@ def verify_client_connectivity(clients: List[VNS3Client]) -> data_types.BulkOper
     def _ping_api(_client):
         return _client.sys_admin.get_ping_system()
     return api_operations.__bulk_call_client(clients, _ping_api)
+
+
+def connect_overlay_clients(vns3: VNS3Client, overlay_client_hosts):
+    response = vns3.overlay_network.post_calc_next_clientpack()

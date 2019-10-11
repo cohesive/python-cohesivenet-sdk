@@ -288,3 +288,13 @@ class RESTClientObject(object):
                             _preload_content=_preload_content,
                             _request_timeout=_request_timeout,
                             body=body)
+
+
+class HTTPStatus(object):
+    OK = 200
+    ACCEPTED = 202
+    CREATED = 201
+    BAD_REQUEST = 400
+    NOT_FOUND = 404
+    SERVER_ERROR = 500
+    SERVICE_UNAVAILABLE = 503

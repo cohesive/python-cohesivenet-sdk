@@ -5,18 +5,16 @@ import cohesivenet
 import cohesivenet.functional_util as pipe
 import cohesivenet.data_types as data_types
 
-from cohesivenet import VNS3Client, Configuration, ApiException
+from cohesivenet import VNS3Client, Configuration, ApiException, UrlLib3ConnExceptions
 
 
 def retry_call(call_api, args=(), kwargs={}, attempt=0, max_attempts=10, sleep=2):
     try:
         return call_api(*args, **kwargs)
-    except (urllib3.exceptions.ConnectTimeoutError,
-            urllib3.exceptions.NewConnectionError,
-            urllib3.exceptions.MaxRetryError) as e:
+    except UrlLib3ConnExceptions as e:
         attempt = attempt + 1
         if attempt >= max_attempts:
-            raise e
+            raise e 
         time.sleep(sleep)
         return retry_call(call_api, args, kwargs, attempt=attempt, max_attempts=max_attempts, sleep=sleep)
         

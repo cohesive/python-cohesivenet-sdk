@@ -99,5 +99,5 @@ class VNS3Client(APIClient):
         return self.controller_state.get(key)
 
     @property
-    def host_ip(self):
-        return self.configuration.host_ip
+    def host_uri(self):
+        return self.configuration.host_uri
