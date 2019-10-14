@@ -1,10 +1,20 @@
 from itertools import combinations, permutations
 from functools import partial as bind
 
-from cohesivenet import data_types, VNS3Client, ApiException, CohesiveSDKException, Logger
+from cohesivenet import (
+    data_types,
+    VNS3Client,
+    ApiException,
+    CohesiveSDKException,
+    Logger,
+)
 from cohesivenet.clouds import networkmath
 from cohesivenet.macros import api_operations as api_ops
-from cohesivenet.macros.state import VNS3Attr, fetch_state_attribute, attribute_supported
+from cohesivenet.macros.state import (
+    VNS3Attr,
+    fetch_state_attribute,
+    attribute_supported,
+)
 
 
 def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
@@ -18,9 +28,7 @@ def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
     """
 
     def _set_peer_id(_client, i):
-        resp = _client.peering.put_self_peering_id({
-            'id': i
-        })
+        resp = _client.peering.put_self_peering_id({"id": i})
         _client.add_to_state(VNS3Attr.peer_id, i)
         return resp
 
@@ -31,7 +39,7 @@ def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
         for index, client in enumerate(clients)
     ]
 
-    Logger.debug('Setting peer IDS: %s' % ordered_ids)
+    Logger.debug("Setting peer IDS: %s" % ordered_ids)
     return api_ops.__bulk_call_api(bound_api_calls, parallelize=True)
 
 
@@ -62,16 +70,24 @@ def _construct_peer_address_mapping(clients, address_type):
         this_client_peer_id = this_client.query_state(VNS3Attr.peer_id)
         other_clients_indexes = client_indexes_set - {index}
         other_clients = [clients[i] for i in other_clients_indexes]
-        client_peers =  {
+        client_peers = {
             c.query_state(VNS3Attr.peer_id): c.query_state(address_type)
             for c in other_clients
         }
-        assert all(client_peers.values()), ('Could not determine %s for some clients' % address_type)
+        assert all(client_peers.values()), (
+            "Could not determine %s for some clients" % address_type
+        )
         peer_address_mapping.append((this_client, client_peers))
     return peer_address_mapping
 
 
-def peer_mesh(clients, peer_address_map=None, address_type=VNS3Attr.primary_private_ip, delay_configure=False, mtu=None):
+def peer_mesh(
+    clients,
+    peer_address_map=None,
+    address_type=VNS3Attr.primary_private_ip,
+    delay_configure=False,
+    mtu=None,
+):
     """peer_mesh Create a peering mesh by adding each client as peer for other clients.
        The order of the list of clients is the assumed peering id, i.e. client at clients[0] 
        has peering id of 1, clients[1] has peering id of 2. Each TLS connection between peers
@@ -102,22 +118,23 @@ def peer_mesh(clients, peer_address_map=None, address_type=VNS3Attr.primary_priv
     ensure_peer_ids_result = fetch_state_attribute(clients, VNS3Attr.peer_id)
     if api_ops.bulk_operation_failed(ensure_peer_ids_result):
         errors_str = api_ops.stringify_bulk_result_exception(ensure_peer_ids_result)
-        Logger.error('Failed to fetch peering Ids for all clients', errors=errors_str)
-        raise CohesiveSDKException('Failed to fetch peering Ids for all clients: %s' % errors_str)
+        Logger.error("Failed to fetch peering Ids for all clients", errors=errors_str)
+        raise CohesiveSDKException(
+            "Failed to fetch peering Ids for all clients: %s" % errors_str
+        )
 
     # constructu peer address mapping
     if peer_address_map is not None:
-        Logger.debug('Using address map passed for peering mesh.')
-        peer_id_to_client = {
-            c.query_state(VNS3Attr.peer_id): c
-            for c in clients
-        }
+        Logger.debug("Using address map passed for peering mesh.")
+        peer_id_to_client = {c.query_state(VNS3Attr.peer_id): c for c in clients}
         peer_address_mapping_tuples = [
             (peer_id_to_client[from_peer_id], to_peers_map)
             for from_peer_id, to_peers_map in peer_address_map.items()
         ]
     else:
-        peer_address_mapping_tuples = _construct_peer_address_mapping(clients, address_type)
+        peer_address_mapping_tuples = _construct_peer_address_mapping(
+            clients, address_type
+        )
 
     common_peer_kwargs = {}
     if delay_configure:
@@ -135,9 +152,14 @@ def peer_mesh(clients, peer_address_map=None, address_type=VNS3Attr.primary_priv
     # bind api function calls for peer creations
     for vns3_client, peer_mapping in peer_address_mapping_tuples:
         run_peering_funcs.append(
-            bind(create_all_peers_for_client, vns3_client, [{
-                'id': peer_id,
-                'name': peer_address
-            } for peer_id, peer_address in peer_mapping.items()]))
+            bind(
+                create_all_peers_for_client,
+                vns3_client,
+                [
+                    {"id": peer_id, "name": peer_address}
+                    for peer_id, peer_address in peer_mapping.items()
+                ],
+            )
+        )
 
     return api_ops.__bulk_call_api(run_peering_funcs, parallelize=True)

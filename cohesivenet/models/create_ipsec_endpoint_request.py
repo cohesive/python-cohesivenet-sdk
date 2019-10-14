@@ -32,40 +32,56 @@ class CreateIpsecEndpointRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'name': 'str',
-        'ipaddress': 'str',
-        'secret': 'str',
-        'pfs': 'bool',
-        'ike_version': 'int',
-        'nat_t_enabled': 'bool',
-        'extra_config': 'str',
-        'private_ipaddress': 'str',
-        'gre': 'bool',
-        'gre_interface_address': 'str',
-        'vpn_type': 'str',
-        'route_based_int_address': 'str',
-        'route_based_local': 'str',
-        'route_based_remote': 'str'
+        "name": "str",
+        "ipaddress": "str",
+        "secret": "str",
+        "pfs": "bool",
+        "ike_version": "int",
+        "nat_t_enabled": "bool",
+        "extra_config": "str",
+        "private_ipaddress": "str",
+        "gre": "bool",
+        "gre_interface_address": "str",
+        "vpn_type": "str",
+        "route_based_int_address": "str",
+        "route_based_local": "str",
+        "route_based_remote": "str",
     }
 
     attribute_map = {
-        'name': 'name',
-        'ipaddress': 'ipaddress',
-        'secret': 'secret',
-        'pfs': 'pfs',
-        'ike_version': 'ike_version',
-        'nat_t_enabled': 'nat_t_enabled',
-        'extra_config': 'extra_config',
-        'private_ipaddress': 'private_ipaddress',
-        'gre': 'gre',
-        'gre_interface_address': 'gre_interface_address',
-        'vpn_type': 'vpn_type',
-        'route_based_int_address': 'route_based_int_address',
-        'route_based_local': 'route_based_local',
-        'route_based_remote': 'route_based_remote'
+        "name": "name",
+        "ipaddress": "ipaddress",
+        "secret": "secret",
+        "pfs": "pfs",
+        "ike_version": "ike_version",
+        "nat_t_enabled": "nat_t_enabled",
+        "extra_config": "extra_config",
+        "private_ipaddress": "private_ipaddress",
+        "gre": "gre",
+        "gre_interface_address": "gre_interface_address",
+        "vpn_type": "vpn_type",
+        "route_based_int_address": "route_based_int_address",
+        "route_based_local": "route_based_local",
+        "route_based_remote": "route_based_remote",
     }
 
-    def __init__(self, name=None, ipaddress=None, secret=None, pfs=True, ike_version=1, nat_t_enabled=True, extra_config=None, private_ipaddress=None, gre=None, gre_interface_address=None, vpn_type=None, route_based_int_address=None, route_based_local=None, route_based_remote=None):  # noqa: E501
+    def __init__(
+        self,
+        name=None,
+        ipaddress=None,
+        secret=None,
+        pfs=True,
+        ike_version=1,
+        nat_t_enabled=True,
+        extra_config=None,
+        private_ipaddress=None,
+        gre=None,
+        gre_interface_address=None,
+        vpn_type=None,
+        route_based_int_address=None,
+        route_based_local=None,
+        route_based_remote=None,
+    ):  # noqa: E501
         """CreateIpsecEndpointRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._name = None
@@ -131,7 +147,9 @@ class CreateIpsecEndpointRequest(object):
         :type: str
         """
         if name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `name`, must not be `None`"
+            )  # noqa: E501
 
         self._name = name
 
@@ -156,7 +174,9 @@ class CreateIpsecEndpointRequest(object):
         :type: str
         """
         if ipaddress is None:
-            raise ValueError("Invalid value for `ipaddress`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `ipaddress`, must not be `None`"
+            )  # noqa: E501
 
         self._ipaddress = ipaddress
 
@@ -181,7 +201,9 @@ class CreateIpsecEndpointRequest(object):
         :type: str
         """
         if secret is None:
-            raise ValueError("Invalid value for `secret`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `secret`, must not be `None`"
+            )  # noqa: E501
 
         self._secret = secret
 
@@ -231,8 +253,9 @@ class CreateIpsecEndpointRequest(object):
         allowed_values = [1, 2]  # noqa: E501
         if ike_version not in allowed_values:
             raise ValueError(
-                "Invalid value for `ike_version` ({0}), must be one of {1}"  # noqa: E501
-                .format(ike_version, allowed_values)
+                "Invalid value for `ike_version` ({0}), must be one of {1}".format(  # noqa: E501
+                    ike_version, allowed_values
+                )
             )
 
         self._ike_version = ike_version
@@ -445,18 +468,20 @@ class CreateIpsecEndpointRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

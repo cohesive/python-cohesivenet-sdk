@@ -18,10 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class LicensingApi(object):
@@ -34,6 +31,7 @@ class LicensingApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
@@ -58,7 +56,7 @@ class LicensingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_license_with_http_info(**kwargs)  # noqa: E501
 
     def get_license_with_http_info(self, **kwargs):  # noqa: E501
@@ -88,19 +86,19 @@ class LicensingApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_license" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -115,27 +113,32 @@ class LicensingApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/license', 'GET',
+            "/license",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LicenseDetail',  # noqa: E501
+            response_type="LicenseDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_license_upgrade(self, body, **kwargs):  # noqa: E501
         """put_license_upgrade  # noqa: E501
@@ -159,7 +162,7 @@ class LicensingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.put_license_upgrade_with_http_info(body, **kwargs)  # noqa: E501
 
     def put_license_upgrade_with_http_info(self, body, **kwargs):  # noqa: E501
@@ -189,24 +192,25 @@ class LicensingApi(object):
 
         local_var_params = locals()
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_license_upgrade" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in local_var_params or
-                local_var_params['body'] is None):
-            raise ApiValueError("Missing the required parameter `body` when calling `put_license_upgrade`")  # noqa: E501
+        if "body" not in local_var_params or local_var_params["body"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `body` when calling `put_license_upgrade`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -220,36 +224,46 @@ class LicensingApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        if "body" in local_var_params:
+            body_params = local_var_params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['text/plain'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["text/plain"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/license/upgrade', 'PUT',
+            "/license/upgrade",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UpgradeLicenseResponse',  # noqa: E501
+            response_type="UpgradeLicenseResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_set_license_parameters(self, update_license_parameters_request, **kwargs):  # noqa: E501
+    def put_set_license_parameters(
+        self, update_license_parameters_request, **kwargs
+    ):  # noqa: E501
         """put_set_license_parameters  # noqa: E501
 
         Set and accept license parameters. Triggers reboot. Irreversible operation.  # noqa: E501
@@ -271,10 +285,14 @@ class LicensingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_set_license_parameters_with_http_info(update_license_parameters_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_set_license_parameters_with_http_info(
+            update_license_parameters_request, **kwargs
+        )  # noqa: E501
 
-    def put_set_license_parameters_with_http_info(self, update_license_parameters_request, **kwargs):  # noqa: E501
+    def put_set_license_parameters_with_http_info(
+        self, update_license_parameters_request, **kwargs
+    ):  # noqa: E501
         """put_set_license_parameters  # noqa: E501
 
         Set and accept license parameters. Triggers reboot. Irreversible operation.  # noqa: E501
@@ -301,24 +319,28 @@ class LicensingApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_license_parameters_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_license_parameters_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_set_license_parameters" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_license_parameters_request' is set
-        if ('update_license_parameters_request' not in local_var_params or
-                local_var_params['update_license_parameters_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_license_parameters_request` when calling `put_set_license_parameters`")  # noqa: E501
+        if (
+            "update_license_parameters_request" not in local_var_params
+            or local_var_params["update_license_parameters_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_license_parameters_request` when calling `put_set_license_parameters`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -332,34 +354,42 @@ class LicensingApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_license_parameters_request' in local_var_params:
-            body_params = local_var_params['update_license_parameters_request']
+        if "update_license_parameters_request" in local_var_params:
+            body_params = local_var_params["update_license_parameters_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/license/parameters', 'PUT',
+            "/license/parameters",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LicenseParametersDetail',  # noqa: E501
+            response_type="LicenseParametersDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def upload_license(self, body, **kwargs):  # noqa: E501
         """upload_license  # noqa: E501
@@ -383,7 +413,7 @@ class LicensingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.upload_license_with_http_info(body, **kwargs)  # noqa: E501
 
     def upload_license_with_http_info(self, body, **kwargs):  # noqa: E501
@@ -413,24 +443,25 @@ class LicensingApi(object):
 
         local_var_params = locals()
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method upload_license" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in local_var_params or
-                local_var_params['body'] is None):
-            raise ApiValueError("Missing the required parameter `body` when calling `upload_license`")  # noqa: E501
+        if "body" not in local_var_params or local_var_params["body"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `body` when calling `upload_license`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -444,31 +475,39 @@ class LicensingApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        if "body" in local_var_params:
+            body_params = local_var_params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['text/plain'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["text/plain"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/license', 'PUT',
+            "/license",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InitLicenseDetail',  # noqa: E501
+            response_type="InitLicenseDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

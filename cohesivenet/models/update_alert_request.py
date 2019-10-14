@@ -32,24 +32,32 @@ class UpdateAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'description': 'str',
-        'url': 'str',
-        'webhook_id': 'int',
-        'events': 'list[str]',
-        'custom_properties': 'dict(str, str)',
-        'enabled': 'bool'
+        "description": "str",
+        "url": "str",
+        "webhook_id": "int",
+        "events": "list[str]",
+        "custom_properties": "dict(str, str)",
+        "enabled": "bool",
     }
 
     attribute_map = {
-        'description': 'description',
-        'url': 'url',
-        'webhook_id': 'webhook_id',
-        'events': 'events',
-        'custom_properties': 'custom_properties',
-        'enabled': 'enabled'
+        "description": "description",
+        "url": "url",
+        "webhook_id": "webhook_id",
+        "events": "events",
+        "custom_properties": "custom_properties",
+        "enabled": "enabled",
     }
 
-    def __init__(self, description=None, url=None, webhook_id=None, events=None, custom_properties=None, enabled=True):  # noqa: E501
+    def __init__(
+        self,
+        description=None,
+        url=None,
+        webhook_id=None,
+        events=None,
+        custom_properties=None,
+        enabled=True,
+    ):  # noqa: E501
         """UpdateAlertRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._description = None
@@ -206,18 +214,20 @@ class UpdateAlertRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

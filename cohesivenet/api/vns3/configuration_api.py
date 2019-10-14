@@ -26,7 +26,7 @@ from cohesivenet.exceptions import (
     ApiTypeError,
     ApiValueError,
     ApiException,
-    CohesiveSDKException
+    CohesiveSDKException,
 )
 
 
@@ -40,6 +40,7 @@ class ConfigurationApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
@@ -64,7 +65,7 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_config_with_http_info(**kwargs)  # noqa: E501
 
     def get_config_with_http_info(self, **kwargs):  # noqa: E501
@@ -94,19 +95,19 @@ class ConfigurationApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_config" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -121,27 +122,32 @@ class ConfigurationApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/config', 'GET',
+            "/config",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConfigDetail',  # noqa: E501
+            response_type="ConfigDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_keyset(self, **kwargs):  # noqa: E501
         """get_keyset  # noqa: E501
@@ -164,7 +170,7 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_keyset_with_http_info(**kwargs)  # noqa: E501
 
     def get_keyset_with_http_info(self, **kwargs):  # noqa: E501
@@ -194,19 +200,19 @@ class ConfigurationApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_keyset" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -221,27 +227,32 @@ class ConfigurationApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/keyset', 'GET',
+            "/keyset",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='KeysetDetail',  # noqa: E501
+            response_type="KeysetDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_runtime(self, **kwargs):  # noqa: E501
         """get_runtime  # noqa: E501
@@ -264,7 +275,7 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_runtime_with_http_info(**kwargs)  # noqa: E501
 
     def get_runtime_with_http_info(self, **kwargs):  # noqa: E501
@@ -294,19 +305,19 @@ class ConfigurationApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_runtime" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -321,27 +332,32 @@ class ConfigurationApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/runtime', 'GET',
+            "/runtime",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_ssl_install_status(self, uuid, **kwargs):  # noqa: E501
         """get_ssl_install_status  # noqa: E501
@@ -365,7 +381,7 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_ssl_install_status_with_http_info(uuid, **kwargs)  # noqa: E501
 
     def get_ssl_install_status_with_http_info(self, uuid, **kwargs):  # noqa: E501
@@ -395,30 +411,31 @@ class ConfigurationApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_ssl_install_status" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'uuid' is set
-        if ('uuid' not in local_var_params or
-                local_var_params['uuid'] is None):
-            raise ApiValueError("Missing the required parameter `uuid` when calling `get_ssl_install_status`")  # noqa: E501
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `get_ssl_install_status`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uuid' in local_var_params:
-            path_params['uuid'] = local_var_params['uuid']  # noqa: E501
+        if "uuid" in local_var_params:
+            path_params["uuid"] = local_var_params["uuid"]  # noqa: E501
 
         query_params = []
 
@@ -429,27 +446,32 @@ class ConfigurationApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/system/ssl/install/{uuid}', 'GET',
+            "/system/ssl/install/{uuid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_config(self, update_config_request, **kwargs):  # noqa: E501
         """put_config  # noqa: E501
@@ -473,8 +495,10 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_config_with_http_info(update_config_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_config_with_http_info(
+            update_config_request, **kwargs
+        )  # noqa: E501
 
     def put_config_with_http_info(self, update_config_request, **kwargs):  # noqa: E501
         """put_config  # noqa: E501
@@ -503,24 +527,28 @@ class ConfigurationApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_config_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_config_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_config" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_config_request' is set
-        if ('update_config_request' not in local_var_params or
-                local_var_params['update_config_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_config_request` when calling `put_config`")  # noqa: E501
+        if (
+            "update_config_request" not in local_var_params
+            or local_var_params["update_config_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_config_request` when calling `put_config`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -534,34 +562,42 @@ class ConfigurationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_config_request' in local_var_params:
-            body_params = local_var_params['update_config_request']
+        if "update_config_request" in local_var_params:
+            body_params = local_var_params["update_config_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/config', 'PUT',
+            "/config",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_install_ssl_keypair(self, **kwargs):  # noqa: E501
         """put_install_ssl_keypair  # noqa: E501
@@ -584,7 +620,7 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.put_install_ssl_keypair_with_http_info(**kwargs)  # noqa: E501
 
     def put_install_ssl_keypair_with_http_info(self, **kwargs):  # noqa: E501
@@ -614,19 +650,19 @@ class ConfigurationApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_install_ssl_keypair" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -641,27 +677,32 @@ class ConfigurationApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/system/ssl/install', 'PUT',
+            "/system/ssl/install",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ServerSSLDetailResponse',  # noqa: E501
+            response_type="ServerSSLDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_keyset(self, update_keyset_request, **kwargs):  # noqa: E501
         """put_keyset  # noqa: E501
@@ -685,8 +726,10 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_keyset_with_http_info(update_keyset_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_keyset_with_http_info(
+            update_keyset_request, **kwargs
+        )  # noqa: E501
 
     def put_keyset_with_http_info(self, update_keyset_request, **kwargs):  # noqa: E501
         """put_keyset  # noqa: E501
@@ -715,24 +758,28 @@ class ConfigurationApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_keyset_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_keyset_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_keyset" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_keyset_request' is set
-        if ('update_keyset_request' not in local_var_params or
-                local_var_params['update_keyset_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_keyset_request` when calling `put_keyset`")  # noqa: E501
+        if (
+            "update_keyset_request" not in local_var_params
+            or local_var_params["update_keyset_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_keyset_request` when calling `put_keyset`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -746,36 +793,46 @@ class ConfigurationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_keyset_request' in local_var_params:
-            body_params = local_var_params['update_keyset_request']
+        if "update_keyset_request" in local_var_params:
+            body_params = local_var_params["update_keyset_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/keyset', 'PUT',
+            "/keyset",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_update_admin_ui(self, update_admin_ui_settings_request, **kwargs):  # noqa: E501
+    def put_update_admin_ui(
+        self, update_admin_ui_settings_request, **kwargs
+    ):  # noqa: E501
         """put_update_admin_ui  # noqa: E501
 
         Update Admin UI settings. Enable/Disable and set credentials.   # noqa: E501
@@ -797,10 +854,14 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_update_admin_ui_with_http_info(update_admin_ui_settings_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_update_admin_ui_with_http_info(
+            update_admin_ui_settings_request, **kwargs
+        )  # noqa: E501
 
-    def put_update_admin_ui_with_http_info(self, update_admin_ui_settings_request, **kwargs):  # noqa: E501
+    def put_update_admin_ui_with_http_info(
+        self, update_admin_ui_settings_request, **kwargs
+    ):  # noqa: E501
         """put_update_admin_ui  # noqa: E501
 
         Update Admin UI settings. Enable/Disable and set credentials.   # noqa: E501
@@ -827,24 +888,28 @@ class ConfigurationApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_admin_ui_settings_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_admin_ui_settings_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_update_admin_ui" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_admin_ui_settings_request' is set
-        if ('update_admin_ui_settings_request' not in local_var_params or
-                local_var_params['update_admin_ui_settings_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_admin_ui_settings_request` when calling `put_update_admin_ui`")  # noqa: E501
+        if (
+            "update_admin_ui_settings_request" not in local_var_params
+            or local_var_params["update_admin_ui_settings_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_admin_ui_settings_request` when calling `put_update_admin_ui`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -858,34 +923,42 @@ class ConfigurationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_admin_ui_settings_request' in local_var_params:
-            body_params = local_var_params['update_admin_ui_settings_request']
+        if "update_admin_ui_settings_request" in local_var_params:
+            body_params = local_var_params["update_admin_ui_settings_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/admin_ui', 'PUT',
+            "/admin_ui",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AdminUISettingsDetail',  # noqa: E501
+            response_type="AdminUISettingsDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_update_api_password(self, update_password_request, **kwargs):  # noqa: E501
         """put_update_api_password  # noqa: E501
@@ -909,10 +982,14 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_update_api_password_with_http_info(update_password_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_update_api_password_with_http_info(
+            update_password_request, **kwargs
+        )  # noqa: E501
 
-    def put_update_api_password_with_http_info(self, update_password_request, **kwargs):  # noqa: E501
+    def put_update_api_password_with_http_info(
+        self, update_password_request, **kwargs
+    ):  # noqa: E501
         """put_update_api_password  # noqa: E501
 
         Allows you to change the API password/secret key.  To change the Web UI password (or username) use PUT admin_ui.   # noqa: E501
@@ -939,24 +1016,28 @@ class ConfigurationApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_password_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_password_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_update_api_password" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_password_request' is set
-        if ('update_password_request' not in local_var_params or
-                local_var_params['update_password_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_password_request` when calling `put_update_api_password`")  # noqa: E501
+        if (
+            "update_password_request" not in local_var_params
+            or local_var_params["update_password_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_password_request` when calling `put_update_api_password`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -970,34 +1051,42 @@ class ConfigurationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_password_request' in local_var_params:
-            body_params = local_var_params['update_password_request']
+        if "update_password_request" in local_var_params:
+            body_params = local_var_params["update_password_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/api_password', 'PUT',
+            "/api_password",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PasswordResetResponse',  # noqa: E501
+            response_type="PasswordResetResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_upload_ssl_keypair(self, update_server_ssl_request, **kwargs):  # noqa: E501
         """put_upload_ssl_keypair  # noqa: E501
@@ -1021,10 +1110,14 @@ class ConfigurationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_upload_ssl_keypair_with_http_info(update_server_ssl_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_upload_ssl_keypair_with_http_info(
+            update_server_ssl_request, **kwargs
+        )  # noqa: E501
 
-    def put_upload_ssl_keypair_with_http_info(self, update_server_ssl_request, **kwargs):  # noqa: E501
+    def put_upload_ssl_keypair_with_http_info(
+        self, update_server_ssl_request, **kwargs
+    ):  # noqa: E501
         """put_upload_ssl_keypair  # noqa: E501
 
         Upload new SSL cert and key pair  # noqa: E501
@@ -1051,24 +1144,28 @@ class ConfigurationApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_server_ssl_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_server_ssl_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_upload_ssl_keypair" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_server_ssl_request' is set
-        if ('update_server_ssl_request' not in local_var_params or
-                local_var_params['update_server_ssl_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_server_ssl_request` when calling `put_upload_ssl_keypair`")  # noqa: E501
+        if (
+            "update_server_ssl_request" not in local_var_params
+            or local_var_params["update_server_ssl_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_server_ssl_request` when calling `put_upload_ssl_keypair`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1082,35 +1179,42 @@ class ConfigurationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_server_ssl_request' in local_var_params:
-            body_params = local_var_params['update_server_ssl_request']
+        if "update_server_ssl_request" in local_var_params:
+            body_params = local_var_params["update_server_ssl_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/system/ssl/keypair', 'PUT',
+            "/system/ssl/keypair",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def wait_for_keyset(self, retry_timeout=2.0, timeout=60):
         """wait_for_keyset
@@ -1118,6 +1222,7 @@ class ConfigurationApi(object):
         Wait for keyset to be generated on server
         """
         import time
+
         start_time = time.time()
 
         latest_response = None
@@ -1126,14 +1231,24 @@ class ConfigurationApi(object):
             try:
                 keyset_data = self.get_keyset()
                 keyset_response = keyset_data.response
-                if keyset_response and (not keyset_response.in_progress) and keyset_response.keyset_present:
+                if (
+                    keyset_response
+                    and (not keyset_response.in_progress)
+                    and keyset_response.keyset_present
+                ):
                     return keyset_data
-                Logger.debug('Keyset not present. Retrying.', host=target_host)
+                Logger.debug("Keyset not present. Retrying.", host=target_host)
                 time.sleep(retry_timeout)
-            except (urllib3.exceptions.ConnectTimeoutError,
-                    urllib3.exceptions.NewConnectionError,
-                    urllib3.exceptions.MaxRetryError):
-                Logger.debug('API connection error fetching keyset. Retrying.', host=target_host)
+            except (
+                urllib3.exceptions.ConnectTimeoutError,
+                urllib3.exceptions.NewConnectionError,
+                urllib3.exceptions.MaxRetryError,
+            ):
+                Logger.debug(
+                    "API connection error fetching keyset. Retrying.", host=target_host
+                )
                 time.sleep(retry_timeout)
                 continue
-        raise ApiException(reason='Failed to fetch keyset. Timeout %s seconds.' % timeout)
+        raise ApiException(
+            reason="Failed to fetch keyset. Timeout %s seconds." % timeout
+        )

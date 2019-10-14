@@ -32,20 +32,22 @@ class RunContainerDetail(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'uuid': 'str',
-        'container_started': 'bool',
-        'ip_addr': 'str',
-        'status': 'str'
+        "uuid": "str",
+        "container_started": "bool",
+        "ip_addr": "str",
+        "status": "str",
     }
 
     attribute_map = {
-        'uuid': 'uuid',
-        'container_started': 'container_started',
-        'ip_addr': 'ip_addr',
-        'status': 'status'
+        "uuid": "uuid",
+        "container_started": "container_started",
+        "ip_addr": "ip_addr",
+        "status": "status",
     }
 
-    def __init__(self, uuid=None, container_started=None, ip_addr=None, status=None):  # noqa: E501
+    def __init__(
+        self, uuid=None, container_started=None, ip_addr=None, status=None
+    ):  # noqa: E501
         """RunContainerDetail - a model defined in OpenAPI"""  # noqa: E501
 
         self._uuid = None
@@ -156,18 +158,20 @@ class RunContainerDetail(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

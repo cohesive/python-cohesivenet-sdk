@@ -18,10 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class InterfacesApi(object):
@@ -34,6 +31,7 @@ class InterfacesApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
@@ -58,7 +56,7 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.delete_gre_endpoint_with_http_info(**kwargs)  # noqa: E501
 
     def delete_gre_endpoint_with_http_info(self, **kwargs):  # noqa: E501
@@ -88,19 +86,19 @@ class InterfacesApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_gre_endpoint" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -115,27 +113,32 @@ class InterfacesApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/edge_gre/{interface_id}', 'DELETE',
+            "/interfaces/edge_gre/{interface_id}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def delete_system_interface(self, interface_id, **kwargs):  # noqa: E501
         """delete_system_interface  # noqa: E501
@@ -159,10 +162,14 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.delete_system_interface_with_http_info(interface_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.delete_system_interface_with_http_info(
+            interface_id, **kwargs
+        )  # noqa: E501
 
-    def delete_system_interface_with_http_info(self, interface_id, **kwargs):  # noqa: E501
+    def delete_system_interface_with_http_info(
+        self, interface_id, **kwargs
+    ):  # noqa: E501
         """delete_system_interface  # noqa: E501
 
         Delete System Interface  # noqa: E501
@@ -189,30 +196,34 @@ class InterfacesApi(object):
 
         local_var_params = locals()
 
-        all_params = ['interface_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["interface_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_system_interface" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'interface_id' is set
-        if ('interface_id' not in local_var_params or
-                local_var_params['interface_id'] is None):
-            raise ApiValueError("Missing the required parameter `interface_id` when calling `delete_system_interface`")  # noqa: E501
+        if (
+            "interface_id" not in local_var_params
+            or local_var_params["interface_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `interface_id` when calling `delete_system_interface`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'interface_id' in local_var_params:
-            path_params['interface_id'] = local_var_params['interface_id']  # noqa: E501
+        if "interface_id" in local_var_params:
+            path_params["interface_id"] = local_var_params["interface_id"]  # noqa: E501
 
         query_params = []
 
@@ -223,27 +234,32 @@ class InterfacesApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/system/{interface_id}', 'DELETE',
+            "/interfaces/system/{interface_id}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_edge_gre_endpoints(self, **kwargs):  # noqa: E501
         """get_edge_gre_endpoints  # noqa: E501
@@ -266,7 +282,7 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_edge_gre_endpoints_with_http_info(**kwargs)  # noqa: E501
 
     def get_edge_gre_endpoints_with_http_info(self, **kwargs):  # noqa: E501
@@ -296,19 +312,19 @@ class InterfacesApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_edge_gre_endpoints" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -323,27 +339,32 @@ class InterfacesApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/edge_gre', 'GET',
+            "/interfaces/edge_gre",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GREEndpointListResponse',  # noqa: E501
+            response_type="GREEndpointListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_gre_endpoint_details(self, interface_id, **kwargs):  # noqa: E501
         """get_gre_endpoint_details  # noqa: E501
@@ -367,10 +388,14 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.get_gre_endpoint_details_with_http_info(interface_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.get_gre_endpoint_details_with_http_info(
+            interface_id, **kwargs
+        )  # noqa: E501
 
-    def get_gre_endpoint_details_with_http_info(self, interface_id, **kwargs):  # noqa: E501
+    def get_gre_endpoint_details_with_http_info(
+        self, interface_id, **kwargs
+    ):  # noqa: E501
         """get_gre_endpoint_details  # noqa: E501
 
         Get GRE interface details by id or name  # noqa: E501
@@ -397,30 +422,34 @@ class InterfacesApi(object):
 
         local_var_params = locals()
 
-        all_params = ['interface_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["interface_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_gre_endpoint_details" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'interface_id' is set
-        if ('interface_id' not in local_var_params or
-                local_var_params['interface_id'] is None):
-            raise ApiValueError("Missing the required parameter `interface_id` when calling `get_gre_endpoint_details`")  # noqa: E501
+        if (
+            "interface_id" not in local_var_params
+            or local_var_params["interface_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `interface_id` when calling `get_gre_endpoint_details`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'interface_id' in local_var_params:
-            path_params['interface_id'] = local_var_params['interface_id']  # noqa: E501
+        if "interface_id" in local_var_params:
+            path_params["interface_id"] = local_var_params["interface_id"]  # noqa: E501
 
         query_params = []
 
@@ -431,27 +460,32 @@ class InterfacesApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/edge_gre/{interface_id}', 'GET',
+            "/interfaces/edge_gre/{interface_id}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GREEndpointDetail',  # noqa: E501
+            response_type="GREEndpointDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_interfaces(self, **kwargs):  # noqa: E501
         """get_interfaces  # noqa: E501
@@ -474,7 +508,7 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_interfaces_with_http_info(**kwargs)  # noqa: E501
 
     def get_interfaces_with_http_info(self, **kwargs):  # noqa: E501
@@ -504,19 +538,19 @@ class InterfacesApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_interfaces" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -531,27 +565,32 @@ class InterfacesApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces', 'GET',
+            "/interfaces",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SystemInterfaceListResponse',  # noqa: E501
+            response_type="SystemInterfaceListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_system_interface_details(self, **kwargs):  # noqa: E501
         """get_system_interface_details  # noqa: E501
@@ -574,7 +613,7 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_system_interface_details_with_http_info(**kwargs)  # noqa: E501
 
     def get_system_interface_details_with_http_info(self, **kwargs):  # noqa: E501
@@ -604,19 +643,19 @@ class InterfacesApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_system_interface_details" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -631,27 +670,32 @@ class InterfacesApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/system/{interface_id}', 'GET',
+            "/interfaces/system/{interface_id}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_system_interfaces(self, **kwargs):  # noqa: E501
         """get_system_interfaces  # noqa: E501
@@ -674,7 +718,7 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_system_interfaces_with_http_info(**kwargs)  # noqa: E501
 
     def get_system_interfaces_with_http_info(self, **kwargs):  # noqa: E501
@@ -704,19 +748,19 @@ class InterfacesApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_system_interfaces" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -731,27 +775,32 @@ class InterfacesApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/system', 'GET',
+            "/interfaces/system",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_action_interfaces(self, interface_action_request, **kwargs):  # noqa: E501
         """post_action_interfaces  # noqa: E501
@@ -775,10 +824,14 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_action_interfaces_with_http_info(interface_action_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_action_interfaces_with_http_info(
+            interface_action_request, **kwargs
+        )  # noqa: E501
 
-    def post_action_interfaces_with_http_info(self, interface_action_request, **kwargs):  # noqa: E501
+    def post_action_interfaces_with_http_info(
+        self, interface_action_request, **kwargs
+    ):  # noqa: E501
         """post_action_interfaces  # noqa: E501
 
         Take action on interfaces. Only one action can be taken per request.  # noqa: E501
@@ -805,24 +858,28 @@ class InterfacesApi(object):
 
         local_var_params = locals()
 
-        all_params = ['interface_action_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["interface_action_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_action_interfaces" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'interface_action_request' is set
-        if ('interface_action_request' not in local_var_params or
-                local_var_params['interface_action_request'] is None):
-            raise ApiValueError("Missing the required parameter `interface_action_request` when calling `post_action_interfaces`")  # noqa: E501
+        if (
+            "interface_action_request" not in local_var_params
+            or local_var_params["interface_action_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `interface_action_request` when calling `post_action_interfaces`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -836,34 +893,42 @@ class InterfacesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'interface_action_request' in local_var_params:
-            body_params = local_var_params['interface_action_request']
+        if "interface_action_request" in local_var_params:
+            body_params = local_var_params["interface_action_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/action', 'POST',
+            "/interfaces/action",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='list[str]',  # noqa: E501
+            response_type="list[str]",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_create_gre_endpoint(self, body, **kwargs):  # noqa: E501
         """post_create_gre_endpoint  # noqa: E501
@@ -887,8 +952,10 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_gre_endpoint_with_http_info(body, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_gre_endpoint_with_http_info(
+            body, **kwargs
+        )  # noqa: E501
 
     def post_create_gre_endpoint_with_http_info(self, body, **kwargs):  # noqa: E501
         """post_create_gre_endpoint  # noqa: E501
@@ -917,24 +984,25 @@ class InterfacesApi(object):
 
         local_var_params = locals()
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_gre_endpoint" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in local_var_params or
-                local_var_params['body'] is None):
-            raise ApiValueError("Missing the required parameter `body` when calling `post_create_gre_endpoint`")  # noqa: E501
+        if "body" not in local_var_params or local_var_params["body"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `body` when calling `post_create_gre_endpoint`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -948,34 +1016,42 @@ class InterfacesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        if "body" in local_var_params:
+            body_params = local_var_params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/edge_gre', 'POST',
+            "/interfaces/edge_gre",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_create_system_interface(self, body, **kwargs):  # noqa: E501
         """post_create_system_interface  # noqa: E501
@@ -999,8 +1075,10 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_system_interface_with_http_info(body, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_system_interface_with_http_info(
+            body, **kwargs
+        )  # noqa: E501
 
     def post_create_system_interface_with_http_info(self, body, **kwargs):  # noqa: E501
         """post_create_system_interface  # noqa: E501
@@ -1029,24 +1107,25 @@ class InterfacesApi(object):
 
         local_var_params = locals()
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_system_interface" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in local_var_params or
-                local_var_params['body'] is None):
-            raise ApiValueError("Missing the required parameter `body` when calling `post_create_system_interface`")  # noqa: E501
+        if "body" not in local_var_params or local_var_params["body"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `body` when calling `post_create_system_interface`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1060,34 +1139,42 @@ class InterfacesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        if "body" in local_var_params:
+            body_params = local_var_params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/system', 'POST',
+            "/interfaces/system",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SystemInterfaceDetail',  # noqa: E501
+            response_type="SystemInterfaceDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_update_gre_endpoint(self, body, **kwargs):  # noqa: E501
         """put_update_gre_endpoint  # noqa: E501
@@ -1111,7 +1198,7 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.put_update_gre_endpoint_with_http_info(body, **kwargs)  # noqa: E501
 
     def put_update_gre_endpoint_with_http_info(self, body, **kwargs):  # noqa: E501
@@ -1141,24 +1228,25 @@ class InterfacesApi(object):
 
         local_var_params = locals()
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_update_gre_endpoint" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in local_var_params or
-                local_var_params['body'] is None):
-            raise ApiValueError("Missing the required parameter `body` when calling `put_update_gre_endpoint`")  # noqa: E501
+        if "body" not in local_var_params or local_var_params["body"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `body` when calling `put_update_gre_endpoint`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1172,34 +1260,42 @@ class InterfacesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        if "body" in local_var_params:
+            body_params = local_var_params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/edge_gre/{interface_id}', 'PUT',
+            "/interfaces/edge_gre/{interface_id}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_update_system_interface(self, body, **kwargs):  # noqa: E501
         """put_update_system_interface  # noqa: E501
@@ -1223,8 +1319,10 @@ class InterfacesApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_update_system_interface_with_http_info(body, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_update_system_interface_with_http_info(
+            body, **kwargs
+        )  # noqa: E501
 
     def put_update_system_interface_with_http_info(self, body, **kwargs):  # noqa: E501
         """put_update_system_interface  # noqa: E501
@@ -1253,24 +1351,25 @@ class InterfacesApi(object):
 
         local_var_params = locals()
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_update_system_interface" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in local_var_params or
-                local_var_params['body'] is None):
-            raise ApiValueError("Missing the required parameter `body` when calling `put_update_system_interface`")  # noqa: E501
+        if "body" not in local_var_params or local_var_params["body"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `body` when calling `put_update_system_interface`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1284,31 +1383,39 @@ class InterfacesApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        if "body" in local_var_params:
+            body_params = local_var_params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/interfaces/system/{interface_id}', 'PUT',
+            "/interfaces/system/{interface_id}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

@@ -14,10 +14,16 @@ def retry_call(call_api, args=(), kwargs={}, attempt=0, max_attempts=10, sleep=2
     except UrlLib3ConnExceptions as e:
         attempt = attempt + 1
         if attempt >= max_attempts:
-            raise e 
+            raise e
         time.sleep(sleep)
-        return retry_call(call_api, args, kwargs, attempt=attempt, max_attempts=max_attempts, sleep=sleep)
-        
+        return retry_call(
+            call_api,
+            args,
+            kwargs,
+            attempt=attempt,
+            max_attempts=max_attempts,
+            sleep=sleep,
+        )
 
 
 def gather_results(results):
@@ -100,7 +106,9 @@ async def try_call_api_async(api_call, *args, **kwargs):
     return try_call_api(api_call, *args, **kwargs)
 
 
-def __bulk_call_client_sync(clients, call_client_func) -> data_types.BulkOperationResult:
+def __bulk_call_client_sync(
+    clients, call_client_func
+) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
     
     Arguments:
@@ -110,12 +118,14 @@ def __bulk_call_client_sync(clients, call_client_func) -> data_types.BulkOperati
     Returns:
         data_types.BulkOperationResult -- [description]
     """
-    return gather_results([
-        try_call_client(client, call_client_func) for client in clients
-    ])
+    return gather_results(
+        [try_call_client(client, call_client_func) for client in clients]
+    )
 
 
-def __bulk_call_client_parallel(clients, call_client_func) -> data_types.BulkOperationResult:
+def __bulk_call_client_parallel(
+    clients, call_client_func
+) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
     
     Arguments:
@@ -126,13 +136,15 @@ def __bulk_call_client_parallel(clients, call_client_func) -> data_types.BulkOpe
         data_types.BulkOperationResult
     """
     return gather_results(
-        pipe.run_parallel(*(
-            try_call_client_async(client, call_client_func) for client in clients
-        ))
+        pipe.run_parallel(
+            *(try_call_client_async(client, call_client_func) for client in clients)
+        )
     )
 
 
-def __bulk_call_client(clients, call_client_func, parallelize=False) -> data_types.BulkOperationResult:
+def __bulk_call_client(
+    clients, call_client_func, parallelize=False
+) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
     
     Arguments:
@@ -157,9 +169,7 @@ def __bulk_call_api_sync(bound_api_calls) -> data_types.BulkOperationResult:
     Returns:
         data_types.BulkOperationResult -- [description]
     """
-    return gather_results([
-        try_call_api(api_call) for api_call in bound_api_calls
-    ])
+    return gather_results([try_call_api(api_call) for api_call in bound_api_calls])
 
 
 def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
@@ -172,9 +182,9 @@ def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
         data_types.BulkOperationResult
     """
     return gather_results(
-        pipe.run_parallel(*(
-            try_call_api_async(api_call) for api_call in bound_api_calls
-        ))
+        pipe.run_parallel(
+            *(try_call_api_async(api_call) for api_call in bound_api_calls)
+        )
     )
 
 
@@ -200,4 +210,4 @@ def bulk_operation_failed(result: data_types.BulkOperationResult):
 
 def stringify_bulk_result_exception(result: data_types.BulkOperationResult):
     exceptions = result[1]
-    return '.'.join([str(e) for e in exceptions])
+    return ".".join([str(e) for e in exceptions])

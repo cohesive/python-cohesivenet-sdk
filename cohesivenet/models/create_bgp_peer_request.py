@@ -32,20 +32,22 @@ class CreateBGPPeerRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'ipaddress': 'str',
-        'asn': 'int',
-        'access_list': 'str',
-        'bgp_password': 'str'
+        "ipaddress": "str",
+        "asn": "int",
+        "access_list": "str",
+        "bgp_password": "str",
     }
 
     attribute_map = {
-        'ipaddress': 'ipaddress',
-        'asn': 'asn',
-        'access_list': 'access_list',
-        'bgp_password': 'bgp_password'
+        "ipaddress": "ipaddress",
+        "asn": "asn",
+        "access_list": "access_list",
+        "bgp_password": "bgp_password",
     }
 
-    def __init__(self, ipaddress=None, asn=None, access_list=None, bgp_password=None):  # noqa: E501
+    def __init__(
+        self, ipaddress=None, asn=None, access_list=None, bgp_password=None
+    ):  # noqa: E501
         """CreateBGPPeerRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._ipaddress = None
@@ -83,7 +85,9 @@ class CreateBGPPeerRequest(object):
         :type: str
         """
         if ipaddress is None:
-            raise ValueError("Invalid value for `ipaddress`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `ipaddress`, must not be `None`"
+            )  # noqa: E501
 
         self._ipaddress = ipaddress
 
@@ -163,18 +167,20 @@ class CreateBGPPeerRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -16,7 +16,9 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.models.bulk_client_reset_status import BulkClientResetStatus  # noqa: E501
+from cohesivenet.models.bulk_client_reset_status import (
+    BulkClientResetStatus,
+)  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -36,5 +38,5 @@ class TestBulkClientResetStatus(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

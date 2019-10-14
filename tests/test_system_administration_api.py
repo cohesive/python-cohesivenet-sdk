@@ -16,7 +16,9 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.system_administration_api import SystemAdministrationApi  # noqa: E501
+from cohesivenet.api.system_administration_api import (
+    SystemAdministrationApi,
+)  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -24,7 +26,9 @@ class TestSystemAdministrationApi(unittest.TestCase):
     """SystemAdministrationApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.system_administration_api.SystemAdministrationApi()  # noqa: E501
+        self.api = (
+            cohesivenet.api.system_administration_api.SystemAdministrationApi()
+        )  # noqa: E501
 
     def tearDown(self):
         pass
@@ -144,5 +148,5 @@ class TestSystemAdministrationApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

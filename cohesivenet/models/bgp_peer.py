@@ -32,20 +32,22 @@ class BGPPeer(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'asn': 'int',
-        'ipaddress': 'str',
-        'id': 'int',
-        'bgp_password': 'str'
+        "asn": "int",
+        "ipaddress": "str",
+        "id": "int",
+        "bgp_password": "str",
     }
 
     attribute_map = {
-        'asn': 'asn',
-        'ipaddress': 'ipaddress',
-        'id': 'id',
-        'bgp_password': 'bgp_password'
+        "asn": "asn",
+        "ipaddress": "ipaddress",
+        "id": "id",
+        "bgp_password": "bgp_password",
     }
 
-    def __init__(self, asn=None, ipaddress=None, id=None, bgp_password=None):  # noqa: E501
+    def __init__(
+        self, asn=None, ipaddress=None, id=None, bgp_password=None
+    ):  # noqa: E501
         """BGPPeer - a model defined in OpenAPI"""  # noqa: E501
 
         self._asn = None
@@ -154,18 +156,20 @@ class BGPPeer(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

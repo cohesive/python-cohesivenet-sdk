@@ -32,46 +32,65 @@ class IpsecRemoteEndpoint(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'name': 'str',
-        'ipaddress': 'str',
-        'nat_t_enabled': 'bool',
-        'ike_version': 'str',
-        'pfs': 'bool',
-        'private_ipaddress': 'str',
-        'extra_config': 'list[str]',
-        'tunnels': 'dict(str, IpsecTunnel)',
-        'bgp_peers': 'dict(str, BGPPeer)',
-        'type': 'str',
-        'vpn_type': 'str',
-        'gre_interface_address': 'str',
-        'route_based_int_address': 'str',
-        'route_based_local': 'str',
-        'route_based_remote': 'str',
-        'psk': 'str'
+        "id": "int",
+        "name": "str",
+        "ipaddress": "str",
+        "nat_t_enabled": "bool",
+        "ike_version": "str",
+        "pfs": "bool",
+        "private_ipaddress": "str",
+        "extra_config": "list[str]",
+        "tunnels": "dict(str, IpsecTunnel)",
+        "bgp_peers": "dict(str, BGPPeer)",
+        "type": "str",
+        "vpn_type": "str",
+        "gre_interface_address": "str",
+        "route_based_int_address": "str",
+        "route_based_local": "str",
+        "route_based_remote": "str",
+        "psk": "str",
     }
 
     attribute_map = {
-        'id': 'id',
-        'name': 'name',
-        'ipaddress': 'ipaddress',
-        'nat_t_enabled': 'nat_t_enabled',
-        'ike_version': 'ike_version',
-        'pfs': 'pfs',
-        'private_ipaddress': 'private_ipaddress',
-        'extra_config': 'extra_config',
-        'tunnels': 'tunnels',
-        'bgp_peers': 'bgp_peers',
-        'type': 'type',
-        'vpn_type': 'vpn_type',
-        'gre_interface_address': 'gre_interface_address',
-        'route_based_int_address': 'route_based_int_address',
-        'route_based_local': 'route_based_local',
-        'route_based_remote': 'route_based_remote',
-        'psk': 'psk'
+        "id": "id",
+        "name": "name",
+        "ipaddress": "ipaddress",
+        "nat_t_enabled": "nat_t_enabled",
+        "ike_version": "ike_version",
+        "pfs": "pfs",
+        "private_ipaddress": "private_ipaddress",
+        "extra_config": "extra_config",
+        "tunnels": "tunnels",
+        "bgp_peers": "bgp_peers",
+        "type": "type",
+        "vpn_type": "vpn_type",
+        "gre_interface_address": "gre_interface_address",
+        "route_based_int_address": "route_based_int_address",
+        "route_based_local": "route_based_local",
+        "route_based_remote": "route_based_remote",
+        "psk": "psk",
     }
 
-    def __init__(self, id=None, name=None, ipaddress=None, nat_t_enabled=None, ike_version=None, pfs=None, private_ipaddress=None, extra_config=None, tunnels=None, bgp_peers=None, type=None, vpn_type=None, gre_interface_address=None, route_based_int_address=None, route_based_local=None, route_based_remote=None, psk=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        ipaddress=None,
+        nat_t_enabled=None,
+        ike_version=None,
+        pfs=None,
+        private_ipaddress=None,
+        extra_config=None,
+        tunnels=None,
+        bgp_peers=None,
+        type=None,
+        vpn_type=None,
+        gre_interface_address=None,
+        route_based_int_address=None,
+        route_based_local=None,
+        route_based_remote=None,
+        psk=None,
+    ):  # noqa: E501
         """IpsecRemoteEndpoint - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -496,18 +515,20 @@ class IpsecRemoteEndpoint(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

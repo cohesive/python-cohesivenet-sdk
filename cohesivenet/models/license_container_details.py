@@ -31,17 +31,16 @@ class LicenseContainerDetails(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {
-        'containers_run_count': 'int',
-        'containers_image_count': 'int'
-    }
+    openapi_types = {"containers_run_count": "int", "containers_image_count": "int"}
 
     attribute_map = {
-        'containers_run_count': 'containers_run_count',
-        'containers_image_count': 'containers_image_count'
+        "containers_run_count": "containers_run_count",
+        "containers_image_count": "containers_image_count",
     }
 
-    def __init__(self, containers_run_count=None, containers_image_count=None):  # noqa: E501
+    def __init__(
+        self, containers_run_count=None, containers_image_count=None
+    ):  # noqa: E501
         """LicenseContainerDetails - a model defined in OpenAPI"""  # noqa: E501
 
         self._containers_run_count = None
@@ -102,18 +101,20 @@ class LicenseContainerDetails(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -12,8 +12,6 @@ def load_terraform_outputs_file(file_path):
     """
     try:
         state = json.loads(open(file_path).read().strip())
-        return {
-            k: data['value'] for k, data in state.items()
-        }
+        return {k: data["value"] for k, data in state.items()}
     except json.decoder.JSONDecodeError:
         return {}

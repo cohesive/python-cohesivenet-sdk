@@ -19,12 +19,18 @@ def setup_clients(host_password_dicts):
     Returns:
         List[VNS3Client]
     """
-    assert type(host_password_dicts) is list, 'setup_clients expects list as input.'
+    assert type(host_password_dicts) is list, "setup_clients expects list as input."
 
-    return connect.get_clients(*[
-        dict(util.take_keys(['host', 'password'], connect_args), verify=False, username='api')
-        for connect_args in host_password_dicts
-    ])
+    return connect.get_clients(
+        *[
+            dict(
+                util.take_keys(["host", "password"], connect_args),
+                verify=False,
+                username="api",
+            )
+            for connect_args in host_password_dicts
+        ]
+    )
 
 
 def update_client_passwords(clients, master_password):
@@ -38,10 +44,9 @@ def update_client_passwords(clients, master_password):
         List[VNS3Client]
     """
     api_roll_resp = admin.roll_api_password(master_password, clients)
-    ui_toggle_resp = admin.roll_ui_credentials({
-        'username': 'vnscubed',
-        'password': master_password
-    }, clients, enable_ui=True)
+    ui_toggle_resp = admin.roll_ui_credentials(
+        {"username": "vnscubed", "password": master_password}, clients, enable_ui=True
+    )
     return api_roll_resp, ui_toggle_resp
 
 
@@ -60,45 +65,54 @@ def get_env():
     Returns:
         Dict -- Parsed data for configuring a mesh network
     """
-    license_file = os.getenv('LICENSE')
-    keyset_token = os.getenv('KEYSET_TOKEN')
-    master_password = os.getenv('MASTER_PASSWORD')
-    master_set = os.getenv('MASTER_SET', 'False').lower() not in ('0', 'false')
+    license_file = os.getenv("LICENSE")
+    keyset_token = os.getenv("KEYSET_TOKEN")
+    master_password = os.getenv("MASTER_PASSWORD")
+    master_set = os.getenv("MASTER_SET", "False").lower() not in ("0", "false")
 
-    controller_hosts = os.getenv('CONTROLLER_HOSTS_CSV').split(',')
-    controller_passwords = os.getenv('CONTROLLER_PASSWORDS_CSV').split(',')
-    controller_subnets = os.getenv('CONTROLLER_SUBNETS').split(',')
-    assert len(controller_hosts) == len(controller_passwords) == len(controller_subnets) , (
-        'CONTROLLER_HOSTS_CSV, CONTROLLER_PASSWORDS_CSV '
-        'and CONTROLLER_SUBNETS must have same number of elements')
+    controller_hosts = os.getenv("CONTROLLER_HOSTS_CSV").split(",")
+    controller_passwords = os.getenv("CONTROLLER_PASSWORDS_CSV").split(",")
+    controller_subnets = os.getenv("CONTROLLER_SUBNETS").split(",")
+    assert (
+        len(controller_hosts) == len(controller_passwords) == len(controller_subnets)
+    ), (
+        "CONTROLLER_HOSTS_CSV, CONTROLLER_PASSWORDS_CSV "
+        "and CONTROLLER_SUBNETS must have same number of elements"
+    )
 
     return {
-        'controllers': [{
-                'host': host + ':8000',
-                'password': controller_passwords[i] if not master_set else master_password,
-                'subnet': controller_subnets[i],
-            } for i, host in enumerate(controller_hosts)
+        "controllers": [
+            {
+                "host": host + ":8000",
+                "password": controller_passwords[i]
+                if not master_set
+                else master_password,
+                "subnet": controller_subnets[i],
+            }
+            for i, host in enumerate(controller_hosts)
         ],
-        'master_password': master_password,
-        'topology_name': 'VNS3 Overlay Net Example',
-        'license': license_file,
-        'keyset_token': keyset_token
+        "master_password": master_password,
+        "topology_name": "VNS3 Overlay Net Example",
+        "license": license_file,
+        "keyset_token": keyset_token,
     }
 
 
 def create_clients(**parameters):
-    clients = setup_clients(parameters['controllers'])
+    clients = setup_clients(parameters["controllers"])
 
-    if not parameters.get('master_set'):
-        print('Setting master')
-        [_, api_failures], [_, ui_failures] = update_client_passwords(clients, parameters.get('master_password'))
+    if not parameters.get("master_set"):
+        print("Setting master")
+        [_, api_failures], [_, ui_failures] = update_client_passwords(
+            clients, parameters.get("master_password")
+        )
         if len(ui_failures) or len(api_failures):
-            print('Failure updating master passwords:')
-            print('UI: %s' % '.'.join([str(e) for e in ui_failures]))
-            print('API: %s' % '.'.join([str(e) for e in api_failures]))
+            print("Failure updating master passwords:")
+            print("UI: %s" % ".".join([str(e) for e in ui_failures]))
+            print("API: %s" % ".".join([str(e) for e in api_failures]))
     else:
         for client in clients:
-            client.configuration.password = parameters.get('master_password')
+            client.configuration.password = parameters.get("master_password")
 
     return clients
 
@@ -106,12 +120,13 @@ def create_clients(**parameters):
 def setup_overlay(client, parameters):
     return config.setup_controller(
         client,
-        parameters['topology_name'],
-        parameters['license'],
-        license_parameters={'default': True},
-        keyset_parameters={'token': parameters['keyset_token']},
+        parameters["topology_name"],
+        parameters["license"],
+        license_parameters={"default": True},
+        keyset_parameters={"token": parameters["keyset_token"]},
         reboot_timeout=240,
-        keyset_timeout=240)
+        keyset_timeout=240,
+    )
 
 
 def peer_controllers(root_client, peer_client, parameters):
@@ -122,16 +137,16 @@ def peer_controllers(root_client, peer_client, parameters):
         peer_client {VNS3Client}
         parameters {Dict} - values from get_env
     """
-    keyset_token = parameters['keyset_token']
-    print('Setting peer Id')
-    peering_response = peer.peering.put_self_peering_id({
-        'id': 2
-    })
+    keyset_token = parameters["keyset_token"]
+    print("Setting peer Id")
+    peering_response = peer.peering.put_self_peering_id({"id": 2})
     peering.set_peer_ids(peer_clients, ids=[2, 3, 4])
-    print('Creating peering mesh')
+    print("Creating peering mesh")
     peering.peer_mesh([root_client] + peer_clients)
-    print('Creating route advertisements')
-    ordered_subnets = [parameters['root_controller']['subnet']] + [c['subnet'] for c in parameters['controllers']]
+    print("Creating route advertisements")
+    ordered_subnets = [parameters["root_controller"]["subnet"]] + [
+        c["subnet"] for c in parameters["controllers"]
+    ]
     routing.create_route_advertisements([root_client] + peer_clients, ordered_subnets)
 
 
@@ -142,10 +157,11 @@ def run():
     clients = create_clients(**parameters)
 
     # only building a simple overlay topology with 2 controllers
-    assert len(clients) == 2, 'More controllers provided by env than expected. Expected 2 in overlay.'
+    assert (
+        len(clients) == 2
+    ), "More controllers provided by env than expected. Expected 2 in overlay."
     root, peer = clients
     config_response = setup_overlay(root, parameters)
     return config.fetch_keysets(
-        [peer_client],
-        root.host_uri,
-        parameters['keyset_token'])
+        [peer_client], root.host_uri, parameters["keyset_token"]
+    )

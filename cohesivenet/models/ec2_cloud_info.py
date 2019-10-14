@@ -27,54 +27,72 @@ class EC2CloudInfo(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
+
     openapi_types = {
-        'account_id': 'str',
-        'availability_zone': 'str',
-        'ramdisk_id': 'str',
-        'kernel_id': 'str',
-        'pending_time': 'str',
-        'architecture': 'str',
-        'private_ip': 'str',
-        'devpay_product_codes': 'str',
-        'marketplace_product_codes': 'str',
-        'version': 'str',
-        'region': 'str',
-        'image_id': 'str',
-        'billing_products': 'str',
-        'instance_id': 'str',
-        'instance_type': 'str',
+        "account_id": "str",
+        "availability_zone": "str",
+        "ramdisk_id": "str",
+        "kernel_id": "str",
+        "pending_time": "str",
+        "architecture": "str",
+        "private_ip": "str",
+        "devpay_product_codes": "str",
+        "marketplace_product_codes": "str",
+        "version": "str",
+        "region": "str",
+        "image_id": "str",
+        "billing_products": "str",
+        "instance_id": "str",
+        "instance_type": "str",
     }
 
     attribute_map = {
-        'account_id': 'accountId',
-        'availability_zone': 'availabilityZone',
-        'ramdisk_id': 'ramdiskId',
-        'kernel_id': 'kernelId',
-        'pending_time': 'pendingTime',
-        'architecture': 'architecture',
-        'private_ip': 'privateIp',
-        'devpay_product_codes': 'devpayProductCodes',
-        'marketplace_product_codes': 'marketplaceProductCodes',
-        'version': 'version',
-        'region': 'region',
-        'image_id': 'imageId',
-        'billing_products': 'billingProducts',
-        'instance_id': 'instanceId',
-        'instance_type': 'instanceType'
+        "account_id": "accountId",
+        "availability_zone": "availabilityZone",
+        "ramdisk_id": "ramdiskId",
+        "kernel_id": "kernelId",
+        "pending_time": "pendingTime",
+        "architecture": "architecture",
+        "private_ip": "privateIp",
+        "devpay_product_codes": "devpayProductCodes",
+        "marketplace_product_codes": "marketplaceProductCodes",
+        "version": "version",
+        "region": "region",
+        "image_id": "imageId",
+        "billing_products": "billingProducts",
+        "instance_id": "instanceId",
+        "instance_type": "instanceType",
     }
 
-    def __init__(self, account_id=None, availability_zone=None, ramdisk_id=None, kernel_id=None, pending_time=None, architecture=None, private_ip=None, devpay_product_codes=None, marketplace_product_codes=None, version=None, region=None, image_id=None, billing_products=None, instance_id=None, instance_type=None):  # noqa: E501
+    def __init__(
+        self,
+        account_id=None,
+        availability_zone=None,
+        ramdisk_id=None,
+        kernel_id=None,
+        pending_time=None,
+        architecture=None,
+        private_ip=None,
+        devpay_product_codes=None,
+        marketplace_product_codes=None,
+        version=None,
+        region=None,
+        image_id=None,
+        billing_products=None,
+        instance_id=None,
+        instance_type=None,
+    ):  # noqa: E501
         """EC2CloudInfo - a model defined in OpenAPI"""  # noqa: E501
 
         self._account_id = None
         self._availability_zone = None
-        self._ramdisk_id = None # nullable
-        self._kernel_id = None # nullable
+        self._ramdisk_id = None  # nullable
+        self._kernel_id = None  # nullable
         self._pending_time = None
         self._architecture = None
         self._private_ip = None
-        self._devpay_product_codes = None # nullable
-        self._marketplace_product_codes = None # nullable
+        self._devpay_product_codes = None  # nullable
+        self._marketplace_product_codes = None  # nullable
         self._version = None
         self._region = None
         self._image_id = None
@@ -83,14 +101,13 @@ class EC2CloudInfo(object):
         self._instance_type = None
         self.discriminator = None
 
-
         if account_id is not None:
             self.account_id = account_id
         if availability_zone is not None:
             self.availability_zone = availability_zone
 
-        self.ramdisk_id = ramdisk_id # nullable
-        self.kernel_id = kernel_id # nullable
+        self.ramdisk_id = ramdisk_id  # nullable
+        self.kernel_id = kernel_id  # nullable
 
         if pending_time is not None:
             self.pending_time = pending_time
@@ -99,8 +116,8 @@ class EC2CloudInfo(object):
         if private_ip is not None:
             self.private_ip = private_ip
 
-        self.devpay_product_codes = devpay_product_codes # nullable
-        self.marketplace_product_codes = marketplace_product_codes # nullable
+        self.devpay_product_codes = devpay_product_codes  # nullable
+        self.marketplace_product_codes = marketplace_product_codes  # nullable
 
         if version is not None:
             self.version = version
@@ -392,18 +409,20 @@ class EC2CloudInfo(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -32,26 +32,35 @@ class CreateIpsecTunnelRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'description': 'str',
-        'remote_subnet': 'str',
-        'local_subnet': 'str',
-        'ping_ipaddress': 'str',
-        'ping_interval': 'int',
-        'ping_interface': 'str',
-        'enabled': 'bool'
+        "description": "str",
+        "remote_subnet": "str",
+        "local_subnet": "str",
+        "ping_ipaddress": "str",
+        "ping_interval": "int",
+        "ping_interface": "str",
+        "enabled": "bool",
     }
 
     attribute_map = {
-        'description': 'description',
-        'remote_subnet': 'remote_subnet',
-        'local_subnet': 'local_subnet',
-        'ping_ipaddress': 'ping_ipaddress',
-        'ping_interval': 'ping_interval',
-        'ping_interface': 'ping_interface',
-        'enabled': 'enabled'
+        "description": "description",
+        "remote_subnet": "remote_subnet",
+        "local_subnet": "local_subnet",
+        "ping_ipaddress": "ping_ipaddress",
+        "ping_interval": "ping_interval",
+        "ping_interface": "ping_interface",
+        "enabled": "enabled",
     }
 
-    def __init__(self, description=None, remote_subnet=None, local_subnet=None, ping_ipaddress=None, ping_interval=None, ping_interface=None, enabled=True):  # noqa: E501
+    def __init__(
+        self,
+        description=None,
+        remote_subnet=None,
+        local_subnet=None,
+        ping_ipaddress=None,
+        ping_interval=None,
+        ping_interface=None,
+        enabled=True,
+    ):  # noqa: E501
         """CreateIpsecTunnelRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._description = None
@@ -119,7 +128,9 @@ class CreateIpsecTunnelRequest(object):
         :type: str
         """
         if remote_subnet is None:
-            raise ValueError("Invalid value for `remote_subnet`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `remote_subnet`, must not be `None`"
+            )  # noqa: E501
 
         self._remote_subnet = remote_subnet
 
@@ -245,18 +256,20 @@ class CreateIpsecTunnelRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

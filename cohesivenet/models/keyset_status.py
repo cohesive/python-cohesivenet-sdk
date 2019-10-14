@@ -32,30 +32,41 @@ class KeysetStatus(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'in_progress': 'bool',
-        'running': 'int',
-        'keyset_present': 'bool',
-        'checksum': 'str',
-        'created_at': 'str',
-        'created_at_i': 'int',
-        'started_at': 'str',
-        'started_at_i': 'int',
-        'uuid': 'str'
+        "in_progress": "bool",
+        "running": "int",
+        "keyset_present": "bool",
+        "checksum": "str",
+        "created_at": "str",
+        "created_at_i": "int",
+        "started_at": "str",
+        "started_at_i": "int",
+        "uuid": "str",
     }
 
     attribute_map = {
-        'in_progress': 'in_progress',
-        'running': 'running',
-        'keyset_present': 'keyset_present',
-        'checksum': 'checksum',
-        'created_at': 'created_at',
-        'created_at_i': 'created_at_i',
-        'started_at': 'started_at',
-        'started_at_i': 'started_at_i',
-        'uuid': 'uuid'
+        "in_progress": "in_progress",
+        "running": "running",
+        "keyset_present": "keyset_present",
+        "checksum": "checksum",
+        "created_at": "created_at",
+        "created_at_i": "created_at_i",
+        "started_at": "started_at",
+        "started_at_i": "started_at_i",
+        "uuid": "uuid",
     }
 
-    def __init__(self, in_progress=None, running=None, keyset_present=None, checksum=None, created_at=None, created_at_i=None, started_at=None, started_at_i=None, uuid=None):  # noqa: E501
+    def __init__(
+        self,
+        in_progress=None,
+        running=None,
+        keyset_present=None,
+        checksum=None,
+        created_at=None,
+        created_at_i=None,
+        started_at=None,
+        started_at_i=None,
+        uuid=None,
+    ):  # noqa: E501
         """KeysetStatus - a model defined in OpenAPI"""  # noqa: E501
 
         self._in_progress = None
@@ -284,18 +295,20 @@ class KeysetStatus(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -32,24 +32,32 @@ class IpsecLocalEndpoint(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'nat_traversal': 'bool',
-        'ipaddress': 'str',
-        'overlay_subnet': 'str',
-        'private_ipaddress': 'str',
-        'ipsec_local_ipaddress': 'str',
-        'asn': 'int'
+        "nat_traversal": "bool",
+        "ipaddress": "str",
+        "overlay_subnet": "str",
+        "private_ipaddress": "str",
+        "ipsec_local_ipaddress": "str",
+        "asn": "int",
     }
 
     attribute_map = {
-        'nat_traversal': 'nat_traversal',
-        'ipaddress': 'ipaddress',
-        'overlay_subnet': 'overlay_subnet',
-        'private_ipaddress': 'private_ipaddress',
-        'ipsec_local_ipaddress': 'ipsec_local_ipaddress',
-        'asn': 'asn'
+        "nat_traversal": "nat_traversal",
+        "ipaddress": "ipaddress",
+        "overlay_subnet": "overlay_subnet",
+        "private_ipaddress": "private_ipaddress",
+        "ipsec_local_ipaddress": "ipsec_local_ipaddress",
+        "asn": "asn",
     }
 
-    def __init__(self, nat_traversal=None, ipaddress=None, overlay_subnet=None, private_ipaddress=None, ipsec_local_ipaddress=None, asn=None):  # noqa: E501
+    def __init__(
+        self,
+        nat_traversal=None,
+        ipaddress=None,
+        overlay_subnet=None,
+        private_ipaddress=None,
+        ipsec_local_ipaddress=None,
+        asn=None,
+    ):  # noqa: E501
         """IpsecLocalEndpoint - a model defined in OpenAPI"""  # noqa: E501
 
         self._nat_traversal = None
@@ -206,18 +214,20 @@ class IpsecLocalEndpoint(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -32,32 +32,44 @@ class License(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'capabilities': 'list[str]',
-        'finalized': 'bool',
-        'license': 'str',
-        'license_present': 'bool',
-        'sha1_checksum': 'str',
-        'uploaded_at': 'str',
-        'custom_addressing': 'bool',
-        'uploaded_at_i': 'int',
-        'container_details': 'LicenseContainerDetails',
-        'topology': 'Topology'
+        "capabilities": "list[str]",
+        "finalized": "bool",
+        "license": "str",
+        "license_present": "bool",
+        "sha1_checksum": "str",
+        "uploaded_at": "str",
+        "custom_addressing": "bool",
+        "uploaded_at_i": "int",
+        "container_details": "LicenseContainerDetails",
+        "topology": "Topology",
     }
 
     attribute_map = {
-        'capabilities': 'capabilities',
-        'finalized': 'finalized',
-        'license': 'license',
-        'license_present': 'license_present',
-        'sha1_checksum': 'sha1_checksum',
-        'uploaded_at': 'uploaded_at',
-        'custom_addressing': 'custom_addressing',
-        'uploaded_at_i': 'uploaded_at_i',
-        'container_details': 'container_details',
-        'topology': 'topology'
+        "capabilities": "capabilities",
+        "finalized": "finalized",
+        "license": "license",
+        "license_present": "license_present",
+        "sha1_checksum": "sha1_checksum",
+        "uploaded_at": "uploaded_at",
+        "custom_addressing": "custom_addressing",
+        "uploaded_at_i": "uploaded_at_i",
+        "container_details": "container_details",
+        "topology": "topology",
     }
 
-    def __init__(self, capabilities=None, finalized=None, license=None, license_present=None, sha1_checksum=None, uploaded_at=None, custom_addressing=None, uploaded_at_i=None, container_details=None, topology=None):  # noqa: E501
+    def __init__(
+        self,
+        capabilities=None,
+        finalized=None,
+        license=None,
+        license_present=None,
+        sha1_checksum=None,
+        uploaded_at=None,
+        custom_addressing=None,
+        uploaded_at_i=None,
+        container_details=None,
+        topology=None,
+    ):  # noqa: E501
         """License - a model defined in OpenAPI"""  # noqa: E501
 
         self._capabilities = None
@@ -314,18 +326,20 @@ class License(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

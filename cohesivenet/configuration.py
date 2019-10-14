@@ -45,11 +45,19 @@ class Configuration(object):
     :param username: Username for HTTP basic authentication
     :param password: Password for HTTP basic authentication
     """
-    DEFAULT_PROTOCOL = 'https'
 
-    def __init__(self, host="",
-                 api_key={}, api_key_prefix={},
-                 username="", password="", protocol=None, verify_ssl=True):
+    DEFAULT_PROTOCOL = "https"
+
+    def __init__(
+        self,
+        host="",
+        api_key={},
+        api_key_prefix={},
+        username="",
+        password="",
+        protocol=None,
+        verify_ssl=True,
+    ):
         """Constructor
         """
         self.host = host
@@ -111,7 +119,7 @@ class Configuration(object):
         self.proxy_headers = None
         """Proxy headers
         """
-        self.safe_chars_for_path_param = ''
+        self.safe_chars_for_path_param = ""
         """Safe chars for path_param
         """
         self.retries = None
@@ -121,25 +129,26 @@ class Configuration(object):
     @property
     def host(self):
         return self._host
-    
+
     @host.setter
     def host(self, value):
         candidate = value
-        if value.startswith('http'):
+        if value.startswith("http"):
             raise ValueError(
-                'Host must not contain protocol information. '
-                'Please set configuration "protocol" attribute.')
-        self._host = value.strip('/')
+                "Host must not contain protocol information. "
+                'Please set configuration "protocol" attribute.'
+            )
+        self._host = value.strip("/")
 
     @property
     def endpoint(self):
-        return self.protocol + '://' + self.host
+        return self.protocol + "://" + self.host
 
     @property
     def host_uri(self):
         if not self.host:
-            return ''
-        parts = self.host.split(':') # remove port if exists
+            return ""
+        parts = self.host.split(":")  # remove port if exists
         return parts[0]
 
     def get_api_key_with_prefix(self, identifier):
@@ -164,8 +173,8 @@ class Configuration(object):
         :return: The token for basic HTTP authentication.
         """
         return urllib3.util.make_headers(
-            basic_auth=self.username + ':' + self.password
-        ).get('authorization')
+            basic_auth=self.username + ":" + self.password
+        ).get("authorization")
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.
@@ -173,13 +182,12 @@ class Configuration(object):
         :return: The Auth Settings information dict.
         """
         return {
-            'basicAuth':
-                {
-                    'type': 'basic',
-                    'in': 'header',
-                    'key': 'Authorization',
-                    'value': self.get_basic_auth_token()
-                },
+            "basicAuth": {
+                "type": "basic",
+                "in": "header",
+                "key": "Authorization",
+                "value": self.get_basic_auth_token(),
+            }
         }
 
     def to_debug_report(self):
@@ -187,12 +195,13 @@ class Configuration(object):
 
         :return: The report for debugging.
         """
-        return "Python SDK Debug Report:\n"\
-               "OS: {env}\n"\
-               "Python Version: {pyversion}\n"\
-               "Version of the API: 4.8\n"\
-               "SDK Package Version: 1.0.0".\
-               format(env=sys.platform, pyversion=sys.version)
+        return (
+            "Python SDK Debug Report:\n"
+            "OS: {env}\n"
+            "Python Version: {pyversion}\n"
+            "Version of the API: 4.8\n"
+            "SDK Package Version: 1.0.0".format(env=sys.platform, pyversion=sys.version)
+        )
 
     def get_host_settings(self):
         """Gets an array of host settings
@@ -200,10 +209,7 @@ class Configuration(object):
         :return: An array of host settings
         """
         return [
-            {
-                'url': "vns3-host:8000",
-                'description': "Host URI for VNS3 Controller",
-            }
+            {"url": "vns3-host:8000", "description": "Host URI for VNS3 Controller"}
         ]
 
     def get_host_from_settings(self, index, variables={}):
@@ -218,29 +224,37 @@ class Configuration(object):
         # check array index out of bound
         if index < 0 or index >= len(servers):
             raise ValueError(
-                "Invalid index {} when selecting the host settings. Must be less than {}"  # noqa: E501
-                .format(index, len(servers)))
+                "Invalid index {} when selecting the host settings. Must be less than {}".format(  # noqa: E501
+                    index, len(servers)
+                )
+            )
 
         server = servers[index]
-        url = server['url']
+        url = server["url"]
 
         # go through variable and assign a value
-        for variable_name in server['variables']:
+        for variable_name in server["variables"]:
             if variable_name in variables:
-                if variables[variable_name] in server['variables'][
-                        variable_name]['enum_values']:
-                    url = url.replace("{" + variable_name + "}",
-                                      variables[variable_name])
+                if (
+                    variables[variable_name]
+                    in server["variables"][variable_name]["enum_values"]
+                ):
+                    url = url.replace(
+                        "{" + variable_name + "}", variables[variable_name]
+                    )
                 else:
                     raise ValueError(
-                        "The variable `{}` in the host URL has invalid value {}. Must be {}."  # noqa: E501
-                        .format(
-                            variable_name, variables[variable_name],
-                            server['variables'][variable_name]['enum_values']))
+                        "The variable `{}` in the host URL has invalid value {}. Must be {}.".format(  # noqa: E501
+                            variable_name,
+                            variables[variable_name],
+                            server["variables"][variable_name]["enum_values"],
+                        )
+                    )
             else:
                 # use default value
                 url = url.replace(
                     "{" + variable_name + "}",
-                    server['variables'][variable_name]['default_value'])
+                    server["variables"][variable_name]["default_value"],
+                )
 
         return url

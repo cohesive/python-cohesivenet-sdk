@@ -31,15 +31,9 @@ class UpdateServerSSLRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {
-        'cert': 'str',
-        'key': 'str'
-    }
+    openapi_types = {"cert": "str", "key": "str"}
 
-    attribute_map = {
-        'cert': 'cert',
-        'key': 'key'
-    }
+    attribute_map = {"cert": "cert", "key": "key"}
 
     def __init__(self, cert=None, key=None):  # noqa: E501
         """UpdateServerSSLRequest - a model defined in OpenAPI"""  # noqa: E501
@@ -70,7 +64,9 @@ class UpdateServerSSLRequest(object):
         :type: str
         """
         if cert is None:
-            raise ValueError("Invalid value for `cert`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `cert`, must not be `None`"
+            )  # noqa: E501
 
         self._cert = cert
 
@@ -93,7 +89,9 @@ class UpdateServerSSLRequest(object):
         :type: str
         """
         if key is None:
-            raise ValueError("Invalid value for `key`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `key`, must not be `None`"
+            )  # noqa: E501
 
         self._key = key
 
@@ -104,18 +102,20 @@ class UpdateServerSSLRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

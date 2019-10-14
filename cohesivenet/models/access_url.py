@@ -32,32 +32,44 @@ class AccessUrl(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'url': 'str',
-        'created_at': 'str',
-        'created_ip': 'str',
-        'description': 'str',
-        'expires_at': 'int',
-        'lifetime': 'str',
-        'expired': 'bool',
-        'last_access_at': 'str',
-        'last_accessed_ip': 'str'
+        "id": "int",
+        "url": "str",
+        "created_at": "str",
+        "created_ip": "str",
+        "description": "str",
+        "expires_at": "int",
+        "lifetime": "str",
+        "expired": "bool",
+        "last_access_at": "str",
+        "last_accessed_ip": "str",
     }
 
     attribute_map = {
-        'id': 'id',
-        'url': 'url',
-        'created_at': 'created_at',
-        'created_ip': 'created_ip',
-        'description': 'description',
-        'expires_at': 'expires_at',
-        'lifetime': 'lifetime',
-        'expired': 'expired',
-        'last_access_at': 'last_access_at',
-        'last_accessed_ip': 'last_accessed_ip'
+        "id": "id",
+        "url": "url",
+        "created_at": "created_at",
+        "created_ip": "created_ip",
+        "description": "description",
+        "expires_at": "expires_at",
+        "lifetime": "lifetime",
+        "expired": "expired",
+        "last_access_at": "last_access_at",
+        "last_accessed_ip": "last_accessed_ip",
     }
 
-    def __init__(self, id=None, url=None, created_at=None, created_ip=None, description=None, expires_at=None, lifetime=None, expired=None, last_access_at=None, last_accessed_ip=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        url=None,
+        created_at=None,
+        created_ip=None,
+        description=None,
+        expires_at=None,
+        lifetime=None,
+        expired=None,
+        last_access_at=None,
+        last_accessed_ip=None,
+    ):  # noqa: E501
         """AccessUrl - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -310,18 +322,20 @@ class AccessUrl(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

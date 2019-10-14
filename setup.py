@@ -62,13 +62,17 @@ setup(
     python_requires=">=3.5.0",
     url="https://github.com/cohesive/python-cohesivenet-sdk",
     keywords=[
-        "OpenAPI", "Cohesive Networks SDK",
-        "Cohesive Networks", "Secops", "Networkops", "networking"
+        "OpenAPI",
+        "Cohesive Networks SDK",
+        "Cohesive Networks",
+        "Secops",
+        "Networkops",
+        "networking",
     ],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests", "docs", "examples"]),
     include_package_data=True,
-    package_data={NAME: ['version']},
+    package_data={NAME: ["version"]},
     license="MIT",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
@@ -80,5 +84,5 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
-    ]
+    ],
 )

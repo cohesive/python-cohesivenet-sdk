@@ -32,26 +32,35 @@ class CreateRouteRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'cidr': 'str',
-        'description': 'str',
-        'interface': 'str',
-        'gateway': 'str',
-        'tunnel': 'int',
-        'advertise': 'bool',
-        'metric': 'int'
+        "cidr": "str",
+        "description": "str",
+        "interface": "str",
+        "gateway": "str",
+        "tunnel": "int",
+        "advertise": "bool",
+        "metric": "int",
     }
 
     attribute_map = {
-        'cidr': 'cidr',
-        'description': 'description',
-        'interface': 'interface',
-        'gateway': 'gateway',
-        'tunnel': 'tunnel',
-        'advertise': 'advertise',
-        'metric': 'metric'
+        "cidr": "cidr",
+        "description": "description",
+        "interface": "interface",
+        "gateway": "gateway",
+        "tunnel": "tunnel",
+        "advertise": "advertise",
+        "metric": "metric",
     }
 
-    def __init__(self, cidr=None, description=None, interface=None, gateway=None, tunnel=None, advertise=None, metric=None):  # noqa: E501
+    def __init__(
+        self,
+        cidr=None,
+        description=None,
+        interface=None,
+        gateway=None,
+        tunnel=None,
+        advertise=None,
+        metric=None,
+    ):  # noqa: E501
         """CreateRouteRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._cidr = None
@@ -98,7 +107,9 @@ class CreateRouteRequest(object):
         :type: str
         """
         if cidr is None:
-            raise ValueError("Invalid value for `cidr`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `cidr`, must not be `None`"
+            )  # noqa: E501
 
         self._cidr = cidr
 
@@ -245,18 +256,20 @@ class CreateRouteRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -16,7 +16,9 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.models.snapshot_import_status_response import SnapshotImportStatusResponse  # noqa: E501
+from cohesivenet.models.snapshot_import_status_response import (
+    SnapshotImportStatusResponse,
+)  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -36,5 +38,5 @@ class TestSnapshotImportStatusResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

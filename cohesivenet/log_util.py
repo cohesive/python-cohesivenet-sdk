@@ -8,9 +8,9 @@ from typing import Dict, List
 
 # Log handler is configured if provided in ENV. Configured end of file (EOF)
 
-DEBUG = 'debug'
-INFO = 'info'
-ERROR = 'error'
+DEBUG = "debug"
+INFO = "info"
+ERROR = "error"
 
 
 def logfmt(props):
@@ -33,6 +33,7 @@ def logfmt(props):
 
     return u" ".join([fmt(key, val) for key, val in props.items()])
 
+
 def _format_msg(message, **params):
     props = OrderedDict(message=message)
     props.update(params)
@@ -40,25 +41,24 @@ def _format_msg(message, **params):
 
 
 def scrub_sensitive(data: Dict, secrets: List[str]):
-    return {
-        k: v if k not in secrets else '****'
-        for k, v in data.items()
-    }
+    return {k: v if k not in secrets else "****" for k, v in data.items()}
+
 
 def silence_urllib3(warnings_only=False):
     import urllib3
+
     urllib3.disable_warnings()
     if warnings_only:
         return
 
-    logging.getLogger('urllib3').propagate = False
+    logging.getLogger("urllib3").propagate = False
 
 
 class _Logger(object):
-    DEFAULT_LOG_FORMAT = '[%(asctime)s] [%(name)s] [%(levelname)s] [%(message)s]'
+    DEFAULT_LOG_FORMAT = "[%(asctime)s] [%(name)s] [%(levelname)s] [%(message)s]"
 
     def __init__(self):
-        self._logger = logging.getLogger('cohesivenet')
+        self._logger = logging.getLogger("cohesivenet")
         self.format = self.DEFAULT_LOG_FORMAT
 
     def debug(self, message, **params):
@@ -78,11 +78,11 @@ class _Logger(object):
             return
 
         valid_level = None
-        if log_level == 'debug':
+        if log_level == "debug":
             valid_level = logging.DEBUG
-        elif log_level == 'info':
+        elif log_level == "info":
             valid_level = logging.INFO
-        elif log_level == 'error':
+        elif log_level == "error":
             valid_level = logging.ERROR
 
         if valid_level:
@@ -94,11 +94,13 @@ class _Logger(object):
             self._logger.setLevel(valid_level)
             return True
         else:
-            print('!!! LOG SETUP ERROR - Level must be one of debug,info or error. No logging configured.')
+            print(
+                "!!! LOG SETUP ERROR - Level must be one of debug,info or error. No logging configured."
+            )
             return False
-        
 
     def silence_urllib3(self, warnings_only=False):
         silence_urllib3(warnings_only=warnings_only)
+
 
 Logger = _Logger()

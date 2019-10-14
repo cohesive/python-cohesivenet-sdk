@@ -18,10 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class FirewallApi(object):
@@ -34,6 +31,7 @@ class FirewallApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
@@ -59,7 +57,7 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.delete_firewall_fw_set_with_http_info(body, **kwargs)  # noqa: E501
 
     def delete_firewall_fw_set_with_http_info(self, body, **kwargs):  # noqa: E501
@@ -89,24 +87,25 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_firewall_fw_set" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in local_var_params or
-                local_var_params['body'] is None):
-            raise ApiValueError("Missing the required parameter `body` when calling `delete_firewall_fw_set`")  # noqa: E501
+        if "body" not in local_var_params or local_var_params["body"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `body` when calling `delete_firewall_fw_set`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -120,34 +119,42 @@ class FirewallApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in local_var_params:
-            body_params = local_var_params['body']
+        if "body" in local_var_params:
+            body_params = local_var_params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/fwsets', 'DELETE',
+            "/firewall/fwsets",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def delete_firewall_rule_by_position(self, position, **kwargs):  # noqa: E501
         """delete_firewall_rule_by_position  # noqa: E501
@@ -171,10 +178,14 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.delete_firewall_rule_by_position_with_http_info(position, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.delete_firewall_rule_by_position_with_http_info(
+            position, **kwargs
+        )  # noqa: E501
 
-    def delete_firewall_rule_by_position_with_http_info(self, position, **kwargs):  # noqa: E501
+    def delete_firewall_rule_by_position_with_http_info(
+        self, position, **kwargs
+    ):  # noqa: E501
         """delete_firewall_rule_by_position  # noqa: E501
 
         Delete Firewall Rule  # noqa: E501
@@ -201,30 +212,31 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['position']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["position"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_firewall_rule_by_position" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'position' is set
-        if ('position' not in local_var_params or
-                local_var_params['position'] is None):
-            raise ApiValueError("Missing the required parameter `position` when calling `delete_firewall_rule_by_position`")  # noqa: E501
+        if "position" not in local_var_params or local_var_params["position"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `position` when calling `delete_firewall_rule_by_position`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'position' in local_var_params:
-            path_params['position'] = local_var_params['position']  # noqa: E501
+        if "position" in local_var_params:
+            path_params["position"] = local_var_params["position"]  # noqa: E501
 
         query_params = []
 
@@ -235,29 +247,36 @@ class FirewallApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules/{position}', 'DELETE',
+            "/firewall/rules/{position}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_firewall_rule_by_rule(self, delete_firewall_rule_request, **kwargs):  # noqa: E501
+    def delete_firewall_rule_by_rule(
+        self, delete_firewall_rule_request, **kwargs
+    ):  # noqa: E501
         """delete_firewall_rule_by_rule  # noqa: E501
 
         Delete firewall rule  # noqa: E501
@@ -279,10 +298,14 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.delete_firewall_rule_by_rule_with_http_info(delete_firewall_rule_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.delete_firewall_rule_by_rule_with_http_info(
+            delete_firewall_rule_request, **kwargs
+        )  # noqa: E501
 
-    def delete_firewall_rule_by_rule_with_http_info(self, delete_firewall_rule_request, **kwargs):  # noqa: E501
+    def delete_firewall_rule_by_rule_with_http_info(
+        self, delete_firewall_rule_request, **kwargs
+    ):  # noqa: E501
         """delete_firewall_rule_by_rule  # noqa: E501
 
         Delete firewall rule  # noqa: E501
@@ -309,24 +332,28 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['delete_firewall_rule_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["delete_firewall_rule_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_firewall_rule_by_rule" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'delete_firewall_rule_request' is set
-        if ('delete_firewall_rule_request' not in local_var_params or
-                local_var_params['delete_firewall_rule_request'] is None):
-            raise ApiValueError("Missing the required parameter `delete_firewall_rule_request` when calling `delete_firewall_rule_by_rule`")  # noqa: E501
+        if (
+            "delete_firewall_rule_request" not in local_var_params
+            or local_var_params["delete_firewall_rule_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `delete_firewall_rule_request` when calling `delete_firewall_rule_by_rule`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -340,34 +367,42 @@ class FirewallApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'delete_firewall_rule_request' in local_var_params:
-            body_params = local_var_params['delete_firewall_rule_request']
+        if "delete_firewall_rule_request" in local_var_params:
+            body_params = local_var_params["delete_firewall_rule_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules', 'DELETE',
+            "/firewall/rules",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def delete_firewall_subgroup(self, firewall_fw_set, **kwargs):  # noqa: E501
         """delete_firewall_subgroup  # noqa: E501
@@ -391,10 +426,14 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.delete_firewall_subgroup_with_http_info(firewall_fw_set, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.delete_firewall_subgroup_with_http_info(
+            firewall_fw_set, **kwargs
+        )  # noqa: E501
 
-    def delete_firewall_subgroup_with_http_info(self, firewall_fw_set, **kwargs):  # noqa: E501
+    def delete_firewall_subgroup_with_http_info(
+        self, firewall_fw_set, **kwargs
+    ):  # noqa: E501
         """delete_firewall_subgroup  # noqa: E501
 
         Delete Firewall subgroup by name or rules  # noqa: E501
@@ -421,24 +460,28 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['firewall_fw_set']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["firewall_fw_set"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_firewall_subgroup" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'firewall_fw_set' is set
-        if ('firewall_fw_set' not in local_var_params or
-                local_var_params['firewall_fw_set'] is None):
-            raise ApiValueError("Missing the required parameter `firewall_fw_set` when calling `delete_firewall_subgroup`")  # noqa: E501
+        if (
+            "firewall_fw_set" not in local_var_params
+            or local_var_params["firewall_fw_set"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `firewall_fw_set` when calling `delete_firewall_subgroup`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -452,34 +495,42 @@ class FirewallApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'firewall_fw_set' in local_var_params:
-            body_params = local_var_params['firewall_fw_set']
+        if "firewall_fw_set" in local_var_params:
+            body_params = local_var_params["firewall_fw_set"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules/subgroup', 'DELETE',
+            "/firewall/rules/subgroup",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_firewall_fw_sets(self, **kwargs):  # noqa: E501
         """get_firewall_fw_sets  # noqa: E501
@@ -502,7 +553,7 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_firewall_fw_sets_with_http_info(**kwargs)  # noqa: E501
 
     def get_firewall_fw_sets_with_http_info(self, **kwargs):  # noqa: E501
@@ -532,19 +583,19 @@ class FirewallApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_firewall_fw_sets" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -559,27 +610,32 @@ class FirewallApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/fwsets', 'GET',
+            "/firewall/fwsets",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FirewallFWSetListResponse',  # noqa: E501
+            response_type="FirewallFWSetListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_firewall_rule_subgroups(self, **kwargs):  # noqa: E501
         """get_firewall_rule_subgroups  # noqa: E501
@@ -604,7 +660,7 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_firewall_rule_subgroups_with_http_info(**kwargs)  # noqa: E501
 
     def get_firewall_rule_subgroups_with_http_info(self, **kwargs):  # noqa: E501
@@ -635,30 +691,30 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'verbose']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["name", "verbose"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_firewall_rule_subgroups" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in local_var_params:
-            query_params.append(('name', local_var_params['name']))  # noqa: E501
-        if 'verbose' in local_var_params:
-            query_params.append(('verbose', local_var_params['verbose']))  # noqa: E501
+        if "name" in local_var_params:
+            query_params.append(("name", local_var_params["name"]))  # noqa: E501
+        if "verbose" in local_var_params:
+            query_params.append(("verbose", local_var_params["verbose"]))  # noqa: E501
 
         header_params = {}
 
@@ -667,27 +723,32 @@ class FirewallApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules/subgroup', 'GET',
+            "/firewall/rules/subgroup",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FirewallSubgroupListResponse',  # noqa: E501
+            response_type="FirewallSubgroupListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_firewall_rules(self, **kwargs):  # noqa: E501
         """get_firewall_rules  # noqa: E501
@@ -710,7 +771,7 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_firewall_rules_with_http_info(**kwargs)  # noqa: E501
 
     def get_firewall_rules_with_http_info(self, **kwargs):  # noqa: E501
@@ -740,19 +801,19 @@ class FirewallApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_firewall_rules" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -767,29 +828,36 @@ class FirewallApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules', 'GET',
+            "/firewall/rules",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FirewallRuleListResponse',  # noqa: E501
+            response_type="FirewallRuleListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def post_create_firewall_rule(self, create_firewall_rule_request, **kwargs):  # noqa: E501
+    def post_create_firewall_rule(
+        self, create_firewall_rule_request, **kwargs
+    ):  # noqa: E501
         """post_create_firewall_rule  # noqa: E501
 
         Adds a firewall rule to the VNS3 Controller's firewall  # noqa: E501
@@ -811,10 +879,14 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_firewall_rule_with_http_info(create_firewall_rule_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_firewall_rule_with_http_info(
+            create_firewall_rule_request, **kwargs
+        )  # noqa: E501
 
-    def post_create_firewall_rule_with_http_info(self, create_firewall_rule_request, **kwargs):  # noqa: E501
+    def post_create_firewall_rule_with_http_info(
+        self, create_firewall_rule_request, **kwargs
+    ):  # noqa: E501
         """post_create_firewall_rule  # noqa: E501
 
         Adds a firewall rule to the VNS3 Controller's firewall  # noqa: E501
@@ -841,24 +913,28 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['create_firewall_rule_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["create_firewall_rule_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_firewall_rule" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'create_firewall_rule_request' is set
-        if ('create_firewall_rule_request' not in local_var_params or
-                local_var_params['create_firewall_rule_request'] is None):
-            raise ApiValueError("Missing the required parameter `create_firewall_rule_request` when calling `post_create_firewall_rule`")  # noqa: E501
+        if (
+            "create_firewall_rule_request" not in local_var_params
+            or local_var_params["create_firewall_rule_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `create_firewall_rule_request` when calling `post_create_firewall_rule`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -872,36 +948,46 @@ class FirewallApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'create_firewall_rule_request' in local_var_params:
-            body_params = local_var_params['create_firewall_rule_request']
+        if "create_firewall_rule_request" in local_var_params:
+            body_params = local_var_params["create_firewall_rule_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules', 'POST',
+            "/firewall/rules",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FirewallRuleOperationResponse',  # noqa: E501
+            response_type="FirewallRuleOperationResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def post_create_firewall_subgroup_rule(self, create_fw_subgroup_request, **kwargs):  # noqa: E501
+    def post_create_firewall_subgroup_rule(
+        self, create_fw_subgroup_request, **kwargs
+    ):  # noqa: E501
         """post_create_firewall_subgroup_rule  # noqa: E501
 
         Create a new firewall subgroup rules (rule chain)  # noqa: E501
@@ -923,10 +1009,14 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_firewall_subgroup_rule_with_http_info(create_fw_subgroup_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_firewall_subgroup_rule_with_http_info(
+            create_fw_subgroup_request, **kwargs
+        )  # noqa: E501
 
-    def post_create_firewall_subgroup_rule_with_http_info(self, create_fw_subgroup_request, **kwargs):  # noqa: E501
+    def post_create_firewall_subgroup_rule_with_http_info(
+        self, create_fw_subgroup_request, **kwargs
+    ):  # noqa: E501
         """post_create_firewall_subgroup_rule  # noqa: E501
 
         Create a new firewall subgroup rules (rule chain)  # noqa: E501
@@ -953,24 +1043,28 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['create_fw_subgroup_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["create_fw_subgroup_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_firewall_subgroup_rule" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'create_fw_subgroup_request' is set
-        if ('create_fw_subgroup_request' not in local_var_params or
-                local_var_params['create_fw_subgroup_request'] is None):
-            raise ApiValueError("Missing the required parameter `create_fw_subgroup_request` when calling `post_create_firewall_subgroup_rule`")  # noqa: E501
+        if (
+            "create_fw_subgroup_request" not in local_var_params
+            or local_var_params["create_fw_subgroup_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `create_fw_subgroup_request` when calling `post_create_firewall_subgroup_rule`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -984,34 +1078,42 @@ class FirewallApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'create_fw_subgroup_request' in local_var_params:
-            body_params = local_var_params['create_fw_subgroup_request']
+        if "create_fw_subgroup_request" in local_var_params:
+            body_params = local_var_params["create_fw_subgroup_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules/subgroup', 'POST',
+            "/firewall/rules/subgroup",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='OneOfobjectobject',  # noqa: E501
+            response_type="OneOfobjectobject",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_reinitialize_fw_sets(self, reinit_firewall_request, **kwargs):  # noqa: E501
         """put_reinitialize_fw_sets  # noqa: E501
@@ -1035,10 +1137,14 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_reinitialize_fw_sets_with_http_info(reinit_firewall_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_reinitialize_fw_sets_with_http_info(
+            reinit_firewall_request, **kwargs
+        )  # noqa: E501
 
-    def put_reinitialize_fw_sets_with_http_info(self, reinit_firewall_request, **kwargs):  # noqa: E501
+    def put_reinitialize_fw_sets_with_http_info(
+        self, reinit_firewall_request, **kwargs
+    ):  # noqa: E501
         """put_reinitialize_fw_sets  # noqa: E501
 
         Reinitialize all Firewall FWSet  # noqa: E501
@@ -1065,24 +1171,28 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['reinit_firewall_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["reinit_firewall_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_reinitialize_fw_sets" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'reinit_firewall_request' is set
-        if ('reinit_firewall_request' not in local_var_params or
-                local_var_params['reinit_firewall_request'] is None):
-            raise ApiValueError("Missing the required parameter `reinit_firewall_request` when calling `put_reinitialize_fw_sets`")  # noqa: E501
+        if (
+            "reinit_firewall_request" not in local_var_params
+            or local_var_params["reinit_firewall_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `reinit_firewall_request` when calling `put_reinitialize_fw_sets`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1096,21 +1206,26 @@ class FirewallApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'reinit_firewall_request' in local_var_params:
-            body_params = local_var_params['reinit_firewall_request']
+        if "reinit_firewall_request" in local_var_params:
+            body_params = local_var_params["reinit_firewall_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/fwsets', 'PUT',
+            "/firewall/fwsets",
+            "PUT",
             path_params,
             query_params,
             header_params,
@@ -1119,11 +1234,14 @@ class FirewallApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_reinitialize_subgroups(self, reinit_request, **kwargs):  # noqa: E501
         """put_reinitialize_subgroups  # noqa: E501
@@ -1147,10 +1265,14 @@ class FirewallApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_reinitialize_subgroups_with_http_info(reinit_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_reinitialize_subgroups_with_http_info(
+            reinit_request, **kwargs
+        )  # noqa: E501
 
-    def put_reinitialize_subgroups_with_http_info(self, reinit_request, **kwargs):  # noqa: E501
+    def put_reinitialize_subgroups_with_http_info(
+        self, reinit_request, **kwargs
+    ):  # noqa: E501
         """put_reinitialize_subgroups  # noqa: E501
 
         Reinitialize Firewall subgroups  # noqa: E501
@@ -1177,24 +1299,28 @@ class FirewallApi(object):
 
         local_var_params = locals()
 
-        all_params = ['reinit_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["reinit_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_reinitialize_subgroups" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'reinit_request' is set
-        if ('reinit_request' not in local_var_params or
-                local_var_params['reinit_request'] is None):
-            raise ApiValueError("Missing the required parameter `reinit_request` when calling `put_reinitialize_subgroups`")  # noqa: E501
+        if (
+            "reinit_request" not in local_var_params
+            or local_var_params["reinit_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `reinit_request` when calling `put_reinitialize_subgroups`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1208,21 +1334,26 @@ class FirewallApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'reinit_request' in local_var_params:
-            body_params = local_var_params['reinit_request']
+        if "reinit_request" in local_var_params:
+            body_params = local_var_params["reinit_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/firewall/rules/subgroup', 'PUT',
+            "/firewall/rules/subgroup",
+            "PUT",
             path_params,
             query_params,
             header_params,
@@ -1231,8 +1362,11 @@ class FirewallApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

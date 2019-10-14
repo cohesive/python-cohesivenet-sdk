@@ -31,13 +31,9 @@ class DeleteFirewallRuleRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {
-        'rule': 'str'
-    }
+    openapi_types = {"rule": "str"}
 
-    attribute_map = {
-        'rule': 'rule'
-    }
+    attribute_map = {"rule": "rule"}
 
     def __init__(self, rule=None):  # noqa: E501
         """DeleteFirewallRuleRequest - a model defined in OpenAPI"""  # noqa: E501
@@ -68,7 +64,9 @@ class DeleteFirewallRuleRequest(object):
         :type: str
         """
         if rule is None:
-            raise ValueError("Invalid value for `rule`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `rule`, must not be `None`"
+            )  # noqa: E501
 
         self._rule = rule
 
@@ -79,18 +77,20 @@ class DeleteFirewallRuleRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

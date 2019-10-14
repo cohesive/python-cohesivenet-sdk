@@ -24,7 +24,9 @@ class TestNetworkEdgePluginsApi(unittest.TestCase):
     """NetworkEdgePluginsApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.network_edge_plugins_api.NetworkEdgePluginsApi()  # noqa: E501
+        self.api = (
+            cohesivenet.api.network_edge_plugins_api.NetworkEdgePluginsApi()
+        )  # noqa: E501
 
     def tearDown(self):
         pass
@@ -114,5 +116,5 @@ class TestNetworkEdgePluginsApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

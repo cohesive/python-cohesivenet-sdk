@@ -18,10 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class IPsecApi(object):
@@ -34,6 +31,7 @@ class IPsecApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
@@ -59,8 +57,10 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.delete_ipsec_endpoint_with_http_info(endpoint_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.delete_ipsec_endpoint_with_http_info(
+            endpoint_id, **kwargs
+        )  # noqa: E501
 
     def delete_ipsec_endpoint_with_http_info(self, endpoint_id, **kwargs):  # noqa: E501
         """delete_ipsec_endpoint  # noqa: E501
@@ -89,32 +89,40 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['endpoint_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["endpoint_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_ipsec_endpoint" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'endpoint_id' is set
-        if ('endpoint_id' not in local_var_params or
-                local_var_params['endpoint_id'] is None):
-            raise ApiValueError("Missing the required parameter `endpoint_id` when calling `delete_ipsec_endpoint`")  # noqa: E501
+        if (
+            "endpoint_id" not in local_var_params
+            or local_var_params["endpoint_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `endpoint_id` when calling `delete_ipsec_endpoint`"
+            )  # noqa: E501
 
-        if 'endpoint_id' in local_var_params and local_var_params['endpoint_id'] < 0:  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `endpoint_id` when calling `delete_ipsec_endpoint`, must be a value greater than or equal to `0`")  # noqa: E501
+        if (
+            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `endpoint_id` when calling `delete_ipsec_endpoint`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
-        if 'endpoint_id' in local_var_params:
-            path_params['endpoint_id'] = local_var_params['endpoint_id']  # noqa: E501
+        if "endpoint_id" in local_var_params:
+            path_params["endpoint_id"] = local_var_params["endpoint_id"]  # noqa: E501
 
         query_params = []
 
@@ -125,29 +133,36 @@ class IPsecApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec/endpoints/{endpoint_id}', 'DELETE',
+            "/ipsec/endpoints/{endpoint_id}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_ipsec_endpoint_tunnel(self, endpoint_id, tunnel_id, **kwargs):  # noqa: E501
+    def delete_ipsec_endpoint_tunnel(
+        self, endpoint_id, tunnel_id, **kwargs
+    ):  # noqa: E501
         """delete_ipsec_endpoint_tunnel  # noqa: E501
 
         Delete IPsec tunnel  # noqa: E501
@@ -170,10 +185,14 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.delete_ipsec_endpoint_tunnel_with_http_info(endpoint_id, tunnel_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.delete_ipsec_endpoint_tunnel_with_http_info(
+            endpoint_id, tunnel_id, **kwargs
+        )  # noqa: E501
 
-    def delete_ipsec_endpoint_tunnel_with_http_info(self, endpoint_id, tunnel_id, **kwargs):  # noqa: E501
+    def delete_ipsec_endpoint_tunnel_with_http_info(
+        self, endpoint_id, tunnel_id, **kwargs
+    ):  # noqa: E501
         """delete_ipsec_endpoint_tunnel  # noqa: E501
 
         Delete IPsec tunnel  # noqa: E501
@@ -201,38 +220,47 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['endpoint_id', 'tunnel_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["endpoint_id", "tunnel_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_ipsec_endpoint_tunnel" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'endpoint_id' is set
-        if ('endpoint_id' not in local_var_params or
-                local_var_params['endpoint_id'] is None):
-            raise ApiValueError("Missing the required parameter `endpoint_id` when calling `delete_ipsec_endpoint_tunnel`")  # noqa: E501
+        if (
+            "endpoint_id" not in local_var_params
+            or local_var_params["endpoint_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `endpoint_id` when calling `delete_ipsec_endpoint_tunnel`"
+            )  # noqa: E501
         # verify the required parameter 'tunnel_id' is set
-        if ('tunnel_id' not in local_var_params or
-                local_var_params['tunnel_id'] is None):
-            raise ApiValueError("Missing the required parameter `tunnel_id` when calling `delete_ipsec_endpoint_tunnel`")  # noqa: E501
+        if "tunnel_id" not in local_var_params or local_var_params["tunnel_id"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `tunnel_id` when calling `delete_ipsec_endpoint_tunnel`"
+            )  # noqa: E501
 
-        if 'endpoint_id' in local_var_params and local_var_params['endpoint_id'] < 0:  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `endpoint_id` when calling `delete_ipsec_endpoint_tunnel`, must be a value greater than or equal to `0`")  # noqa: E501
+        if (
+            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `endpoint_id` when calling `delete_ipsec_endpoint_tunnel`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
-        if 'endpoint_id' in local_var_params:
-            path_params['endpoint_id'] = local_var_params['endpoint_id']  # noqa: E501
-        if 'tunnel_id' in local_var_params:
-            path_params['tunnel_id'] = local_var_params['tunnel_id']  # noqa: E501
+        if "endpoint_id" in local_var_params:
+            path_params["endpoint_id"] = local_var_params["endpoint_id"]  # noqa: E501
+        if "tunnel_id" in local_var_params:
+            path_params["tunnel_id"] = local_var_params["tunnel_id"]  # noqa: E501
 
         query_params = []
 
@@ -243,27 +271,32 @@ class IPsecApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec/endpoints/{endpoint_id}/tunnels/{tunnel_id}', 'DELETE',
+            "/ipsec/endpoints/{endpoint_id}/tunnels/{tunnel_id}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_ipsec(self, **kwargs):  # noqa: E501
         """get_ipsec  # noqa: E501
@@ -286,7 +319,7 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_ipsec_with_http_info(**kwargs)  # noqa: E501
 
     def get_ipsec_with_http_info(self, **kwargs):  # noqa: E501
@@ -316,19 +349,19 @@ class IPsecApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_ipsec" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -343,27 +376,32 @@ class IPsecApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec', 'GET',
+            "/ipsec",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='IpsecSystemDetail',  # noqa: E501
+            response_type="IpsecSystemDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_ipsec_endpoint(self, endpoint_id, **kwargs):  # noqa: E501
         """get_ipsec_endpoint  # noqa: E501
@@ -387,8 +425,10 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.get_ipsec_endpoint_with_http_info(endpoint_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.get_ipsec_endpoint_with_http_info(
+            endpoint_id, **kwargs
+        )  # noqa: E501
 
     def get_ipsec_endpoint_with_http_info(self, endpoint_id, **kwargs):  # noqa: E501
         """get_ipsec_endpoint  # noqa: E501
@@ -417,32 +457,40 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['endpoint_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["endpoint_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_ipsec_endpoint" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'endpoint_id' is set
-        if ('endpoint_id' not in local_var_params or
-                local_var_params['endpoint_id'] is None):
-            raise ApiValueError("Missing the required parameter `endpoint_id` when calling `get_ipsec_endpoint`")  # noqa: E501
+        if (
+            "endpoint_id" not in local_var_params
+            or local_var_params["endpoint_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `endpoint_id` when calling `get_ipsec_endpoint`"
+            )  # noqa: E501
 
-        if 'endpoint_id' in local_var_params and local_var_params['endpoint_id'] < 0:  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `endpoint_id` when calling `get_ipsec_endpoint`, must be a value greater than or equal to `0`")  # noqa: E501
+        if (
+            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `endpoint_id` when calling `get_ipsec_endpoint`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
-        if 'endpoint_id' in local_var_params:
-            path_params['endpoint_id'] = local_var_params['endpoint_id']  # noqa: E501
+        if "endpoint_id" in local_var_params:
+            path_params["endpoint_id"] = local_var_params["endpoint_id"]  # noqa: E501
 
         query_params = []
 
@@ -453,27 +501,32 @@ class IPsecApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec/endpoints/{endpoint_id}', 'GET',
+            "/ipsec/endpoints/{endpoint_id}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_ipsec_status(self, **kwargs):  # noqa: E501
         """get_ipsec_status  # noqa: E501
@@ -496,7 +549,7 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_ipsec_status_with_http_info(**kwargs)  # noqa: E501
 
     def get_ipsec_status_with_http_info(self, **kwargs):  # noqa: E501
@@ -526,19 +579,19 @@ class IPsecApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_ipsec_status" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -553,27 +606,32 @@ class IPsecApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/status/ipsec', 'GET',
+            "/status/ipsec",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='IpsecTunnelListResponseKeyValue',  # noqa: E501
+            response_type="IpsecTunnelListResponseKeyValue",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_link_history(self, **kwargs):  # noqa: E501
         """get_link_history  # noqa: E501
@@ -599,7 +657,7 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_link_history_with_http_info(**kwargs)  # noqa: E501
 
     def get_link_history_with_http_info(self, **kwargs):  # noqa: E501
@@ -631,32 +689,34 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['remote', 'local', 'tunnelid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["remote", "local", "tunnelid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_link_history" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'remote' in local_var_params:
-            query_params.append(('remote', local_var_params['remote']))  # noqa: E501
-        if 'local' in local_var_params:
-            query_params.append(('local', local_var_params['local']))  # noqa: E501
-        if 'tunnelid' in local_var_params:
-            query_params.append(('tunnelid', local_var_params['tunnelid']))  # noqa: E501
+        if "remote" in local_var_params:
+            query_params.append(("remote", local_var_params["remote"]))  # noqa: E501
+        if "local" in local_var_params:
+            query_params.append(("local", local_var_params["local"]))  # noqa: E501
+        if "tunnelid" in local_var_params:
+            query_params.append(
+                ("tunnelid", local_var_params["tunnelid"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -665,29 +725,36 @@ class IPsecApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/status/link_history', 'GET',
+            "/status/link_history",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LinkHistoryDetail',  # noqa: E501
+            response_type="LinkHistoryDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def post_create_ipsec_endpoint(self, create_ipsec_endpoint_request, **kwargs):  # noqa: E501
+    def post_create_ipsec_endpoint(
+        self, create_ipsec_endpoint_request, **kwargs
+    ):  # noqa: E501
         """post_create_ipsec_endpoint  # noqa: E501
 
         Create IPsec connection to the defined remote gateway  # noqa: E501
@@ -709,10 +776,14 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_ipsec_endpoint_with_http_info(create_ipsec_endpoint_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_ipsec_endpoint_with_http_info(
+            create_ipsec_endpoint_request, **kwargs
+        )  # noqa: E501
 
-    def post_create_ipsec_endpoint_with_http_info(self, create_ipsec_endpoint_request, **kwargs):  # noqa: E501
+    def post_create_ipsec_endpoint_with_http_info(
+        self, create_ipsec_endpoint_request, **kwargs
+    ):  # noqa: E501
         """post_create_ipsec_endpoint  # noqa: E501
 
         Create IPsec connection to the defined remote gateway  # noqa: E501
@@ -739,24 +810,28 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['create_ipsec_endpoint_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["create_ipsec_endpoint_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_ipsec_endpoint" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'create_ipsec_endpoint_request' is set
-        if ('create_ipsec_endpoint_request' not in local_var_params or
-                local_var_params['create_ipsec_endpoint_request'] is None):
-            raise ApiValueError("Missing the required parameter `create_ipsec_endpoint_request` when calling `post_create_ipsec_endpoint`")  # noqa: E501
+        if (
+            "create_ipsec_endpoint_request" not in local_var_params
+            or local_var_params["create_ipsec_endpoint_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `create_ipsec_endpoint_request` when calling `post_create_ipsec_endpoint`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -770,36 +845,46 @@ class IPsecApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'create_ipsec_endpoint_request' in local_var_params:
-            body_params = local_var_params['create_ipsec_endpoint_request']
+        if "create_ipsec_endpoint_request" in local_var_params:
+            body_params = local_var_params["create_ipsec_endpoint_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec/endpoints', 'POST',
+            "/ipsec/endpoints",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='IpsecRemoteEndpointDetail',  # noqa: E501
+            response_type="IpsecRemoteEndpointDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def post_create_ipsec_endpoint_tunnel(self, endpoint_id, create_ipsec_tunnel_request, **kwargs):  # noqa: E501
+    def post_create_ipsec_endpoint_tunnel(
+        self, endpoint_id, create_ipsec_tunnel_request, **kwargs
+    ):  # noqa: E501
         """post_create_ipsec_endpoint_tunnel  # noqa: E501
 
         Create IPsec endpoint tunnel  # noqa: E501
@@ -822,10 +907,14 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_ipsec_endpoint_tunnel_with_http_info(endpoint_id, create_ipsec_tunnel_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_ipsec_endpoint_tunnel_with_http_info(
+            endpoint_id, create_ipsec_tunnel_request, **kwargs
+        )  # noqa: E501
 
-    def post_create_ipsec_endpoint_tunnel_with_http_info(self, endpoint_id, create_ipsec_tunnel_request, **kwargs):  # noqa: E501
+    def post_create_ipsec_endpoint_tunnel_with_http_info(
+        self, endpoint_id, create_ipsec_tunnel_request, **kwargs
+    ):  # noqa: E501
         """post_create_ipsec_endpoint_tunnel  # noqa: E501
 
         Create IPsec endpoint tunnel  # noqa: E501
@@ -853,36 +942,48 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['endpoint_id', 'create_ipsec_tunnel_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["endpoint_id", "create_ipsec_tunnel_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_ipsec_endpoint_tunnel" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'endpoint_id' is set
-        if ('endpoint_id' not in local_var_params or
-                local_var_params['endpoint_id'] is None):
-            raise ApiValueError("Missing the required parameter `endpoint_id` when calling `post_create_ipsec_endpoint_tunnel`")  # noqa: E501
+        if (
+            "endpoint_id" not in local_var_params
+            or local_var_params["endpoint_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `endpoint_id` when calling `post_create_ipsec_endpoint_tunnel`"
+            )  # noqa: E501
         # verify the required parameter 'create_ipsec_tunnel_request' is set
-        if ('create_ipsec_tunnel_request' not in local_var_params or
-                local_var_params['create_ipsec_tunnel_request'] is None):
-            raise ApiValueError("Missing the required parameter `create_ipsec_tunnel_request` when calling `post_create_ipsec_endpoint_tunnel`")  # noqa: E501
+        if (
+            "create_ipsec_tunnel_request" not in local_var_params
+            or local_var_params["create_ipsec_tunnel_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `create_ipsec_tunnel_request` when calling `post_create_ipsec_endpoint_tunnel`"
+            )  # noqa: E501
 
-        if 'endpoint_id' in local_var_params and local_var_params['endpoint_id'] < 0:  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `endpoint_id` when calling `post_create_ipsec_endpoint_tunnel`, must be a value greater than or equal to `0`")  # noqa: E501
+        if (
+            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `endpoint_id` when calling `post_create_ipsec_endpoint_tunnel`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
-        if 'endpoint_id' in local_var_params:
-            path_params['endpoint_id'] = local_var_params['endpoint_id']  # noqa: E501
+        if "endpoint_id" in local_var_params:
+            path_params["endpoint_id"] = local_var_params["endpoint_id"]  # noqa: E501
 
         query_params = []
 
@@ -892,34 +993,42 @@ class IPsecApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'create_ipsec_tunnel_request' in local_var_params:
-            body_params = local_var_params['create_ipsec_tunnel_request']
+        if "create_ipsec_tunnel_request" in local_var_params:
+            body_params = local_var_params["create_ipsec_tunnel_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec/endpoints/{endpoint_id}/tunnels', 'POST',
+            "/ipsec/endpoints/{endpoint_id}/tunnels",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_restart_ipsec_action(self, restart_request, **kwargs):  # noqa: E501
         """post_restart_ipsec_action  # noqa: E501
@@ -943,10 +1052,14 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_restart_ipsec_action_with_http_info(restart_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_restart_ipsec_action_with_http_info(
+            restart_request, **kwargs
+        )  # noqa: E501
 
-    def post_restart_ipsec_action_with_http_info(self, restart_request, **kwargs):  # noqa: E501
+    def post_restart_ipsec_action_with_http_info(
+        self, restart_request, **kwargs
+    ):  # noqa: E501
         """post_restart_ipsec_action  # noqa: E501
 
         Restart ipsec subystem  # noqa: E501
@@ -973,24 +1086,28 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['restart_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["restart_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_restart_ipsec_action" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'restart_request' is set
-        if ('restart_request' not in local_var_params or
-                local_var_params['restart_request'] is None):
-            raise ApiValueError("Missing the required parameter `restart_request` when calling `post_restart_ipsec_action`")  # noqa: E501
+        if (
+            "restart_request" not in local_var_params
+            or local_var_params["restart_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `restart_request` when calling `post_restart_ipsec_action`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1004,36 +1121,46 @@ class IPsecApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'restart_request' in local_var_params:
-            body_params = local_var_params['restart_request']
+        if "restart_request" in local_var_params:
+            body_params = local_var_params["restart_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec', 'POST',
+            "/ipsec",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RestartStatus',  # noqa: E501
+            response_type="RestartStatus",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_edit_ipsec_endpoint(self, endpoint_id, update_ipsec_connection_request, **kwargs):  # noqa: E501
+    def put_edit_ipsec_endpoint(
+        self, endpoint_id, update_ipsec_connection_request, **kwargs
+    ):  # noqa: E501
         """put_edit_ipsec_endpoint  # noqa: E501
 
         Edit IPsec connection  # noqa: E501
@@ -1056,10 +1183,14 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_edit_ipsec_endpoint_with_http_info(endpoint_id, update_ipsec_connection_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_edit_ipsec_endpoint_with_http_info(
+            endpoint_id, update_ipsec_connection_request, **kwargs
+        )  # noqa: E501
 
-    def put_edit_ipsec_endpoint_with_http_info(self, endpoint_id, update_ipsec_connection_request, **kwargs):  # noqa: E501
+    def put_edit_ipsec_endpoint_with_http_info(
+        self, endpoint_id, update_ipsec_connection_request, **kwargs
+    ):  # noqa: E501
         """put_edit_ipsec_endpoint  # noqa: E501
 
         Edit IPsec connection  # noqa: E501
@@ -1087,36 +1218,48 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['endpoint_id', 'update_ipsec_connection_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["endpoint_id", "update_ipsec_connection_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_edit_ipsec_endpoint" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'endpoint_id' is set
-        if ('endpoint_id' not in local_var_params or
-                local_var_params['endpoint_id'] is None):
-            raise ApiValueError("Missing the required parameter `endpoint_id` when calling `put_edit_ipsec_endpoint`")  # noqa: E501
+        if (
+            "endpoint_id" not in local_var_params
+            or local_var_params["endpoint_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `endpoint_id` when calling `put_edit_ipsec_endpoint`"
+            )  # noqa: E501
         # verify the required parameter 'update_ipsec_connection_request' is set
-        if ('update_ipsec_connection_request' not in local_var_params or
-                local_var_params['update_ipsec_connection_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_ipsec_connection_request` when calling `put_edit_ipsec_endpoint`")  # noqa: E501
+        if (
+            "update_ipsec_connection_request" not in local_var_params
+            or local_var_params["update_ipsec_connection_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_ipsec_connection_request` when calling `put_edit_ipsec_endpoint`"
+            )  # noqa: E501
 
-        if 'endpoint_id' in local_var_params and local_var_params['endpoint_id'] < 0:  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `endpoint_id` when calling `put_edit_ipsec_endpoint`, must be a value greater than or equal to `0`")  # noqa: E501
+        if (
+            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `endpoint_id` when calling `put_edit_ipsec_endpoint`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
-        if 'endpoint_id' in local_var_params:
-            path_params['endpoint_id'] = local_var_params['endpoint_id']  # noqa: E501
+        if "endpoint_id" in local_var_params:
+            path_params["endpoint_id"] = local_var_params["endpoint_id"]  # noqa: E501
 
         query_params = []
 
@@ -1126,36 +1269,46 @@ class IPsecApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_ipsec_connection_request' in local_var_params:
-            body_params = local_var_params['update_ipsec_connection_request']
+        if "update_ipsec_connection_request" in local_var_params:
+            body_params = local_var_params["update_ipsec_connection_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec/endpoints/{endpoint_id}', 'PUT',
+            "/ipsec/endpoints/{endpoint_id}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_edit_ipsec_endpoint_tunnel(self, endpoint_id, tunnel_id, update_ipsec_tunnel_request, **kwargs):  # noqa: E501
+    def put_edit_ipsec_endpoint_tunnel(
+        self, endpoint_id, tunnel_id, update_ipsec_tunnel_request, **kwargs
+    ):  # noqa: E501
         """put_edit_ipsec_endpoint_tunnel  # noqa: E501
 
         Edit IPsec endpoint tunnel  # noqa: E501
@@ -1179,10 +1332,14 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_edit_ipsec_endpoint_tunnel_with_http_info(endpoint_id, tunnel_id, update_ipsec_tunnel_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_edit_ipsec_endpoint_tunnel_with_http_info(
+            endpoint_id, tunnel_id, update_ipsec_tunnel_request, **kwargs
+        )  # noqa: E501
 
-    def put_edit_ipsec_endpoint_tunnel_with_http_info(self, endpoint_id, tunnel_id, update_ipsec_tunnel_request, **kwargs):  # noqa: E501
+    def put_edit_ipsec_endpoint_tunnel_with_http_info(
+        self, endpoint_id, tunnel_id, update_ipsec_tunnel_request, **kwargs
+    ):  # noqa: E501
         """put_edit_ipsec_endpoint_tunnel  # noqa: E501
 
         Edit IPsec endpoint tunnel  # noqa: E501
@@ -1211,42 +1368,59 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['endpoint_id', 'tunnel_id', 'update_ipsec_tunnel_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "endpoint_id",
+            "tunnel_id",
+            "update_ipsec_tunnel_request",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_edit_ipsec_endpoint_tunnel" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'endpoint_id' is set
-        if ('endpoint_id' not in local_var_params or
-                local_var_params['endpoint_id'] is None):
-            raise ApiValueError("Missing the required parameter `endpoint_id` when calling `put_edit_ipsec_endpoint_tunnel`")  # noqa: E501
+        if (
+            "endpoint_id" not in local_var_params
+            or local_var_params["endpoint_id"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `endpoint_id` when calling `put_edit_ipsec_endpoint_tunnel`"
+            )  # noqa: E501
         # verify the required parameter 'tunnel_id' is set
-        if ('tunnel_id' not in local_var_params or
-                local_var_params['tunnel_id'] is None):
-            raise ApiValueError("Missing the required parameter `tunnel_id` when calling `put_edit_ipsec_endpoint_tunnel`")  # noqa: E501
+        if "tunnel_id" not in local_var_params or local_var_params["tunnel_id"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `tunnel_id` when calling `put_edit_ipsec_endpoint_tunnel`"
+            )  # noqa: E501
         # verify the required parameter 'update_ipsec_tunnel_request' is set
-        if ('update_ipsec_tunnel_request' not in local_var_params or
-                local_var_params['update_ipsec_tunnel_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_ipsec_tunnel_request` when calling `put_edit_ipsec_endpoint_tunnel`")  # noqa: E501
+        if (
+            "update_ipsec_tunnel_request" not in local_var_params
+            or local_var_params["update_ipsec_tunnel_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_ipsec_tunnel_request` when calling `put_edit_ipsec_endpoint_tunnel`"
+            )  # noqa: E501
 
-        if 'endpoint_id' in local_var_params and local_var_params['endpoint_id'] < 0:  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `endpoint_id` when calling `put_edit_ipsec_endpoint_tunnel`, must be a value greater than or equal to `0`")  # noqa: E501
+        if (
+            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `endpoint_id` when calling `put_edit_ipsec_endpoint_tunnel`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
-        if 'endpoint_id' in local_var_params:
-            path_params['endpoint_id'] = local_var_params['endpoint_id']  # noqa: E501
-        if 'tunnel_id' in local_var_params:
-            path_params['tunnel_id'] = local_var_params['tunnel_id']  # noqa: E501
+        if "endpoint_id" in local_var_params:
+            path_params["endpoint_id"] = local_var_params["endpoint_id"]  # noqa: E501
+        if "tunnel_id" in local_var_params:
+            path_params["tunnel_id"] = local_var_params["tunnel_id"]  # noqa: E501
 
         query_params = []
 
@@ -1256,34 +1430,42 @@ class IPsecApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_ipsec_tunnel_request' in local_var_params:
-            body_params = local_var_params['update_ipsec_tunnel_request']
+        if "update_ipsec_tunnel_request" in local_var_params:
+            body_params = local_var_params["update_ipsec_tunnel_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec/endpoints/{endpoint_id}/tunnels/{tunnel_id}', 'PUT',
+            "/ipsec/endpoints/{endpoint_id}/tunnels/{tunnel_id}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='IpsecTunnelDetail',  # noqa: E501
+            response_type="IpsecTunnelDetail",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_ipsec_config(self, update_ipsec_address_request, **kwargs):  # noqa: E501
         """put_ipsec_config  # noqa: E501
@@ -1307,10 +1489,14 @@ class IPsecApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_ipsec_config_with_http_info(update_ipsec_address_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_ipsec_config_with_http_info(
+            update_ipsec_address_request, **kwargs
+        )  # noqa: E501
 
-    def put_ipsec_config_with_http_info(self, update_ipsec_address_request, **kwargs):  # noqa: E501
+    def put_ipsec_config_with_http_info(
+        self, update_ipsec_address_request, **kwargs
+    ):  # noqa: E501
         """put_ipsec_config  # noqa: E501
 
         Edit Ipsec Configuration on device. Note, This is device wide and must be set before  any remote endpoint definitions are created. If it needs to be changed, all remote endpoint  information and tunnel information must be deleted first.   # noqa: E501
@@ -1337,24 +1523,28 @@ class IPsecApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_ipsec_address_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_ipsec_address_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_ipsec_config" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_ipsec_address_request' is set
-        if ('update_ipsec_address_request' not in local_var_params or
-                local_var_params['update_ipsec_address_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_ipsec_address_request` when calling `put_ipsec_config`")  # noqa: E501
+        if (
+            "update_ipsec_address_request" not in local_var_params
+            or local_var_params["update_ipsec_address_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_ipsec_address_request` when calling `put_ipsec_config`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1368,31 +1558,39 @@ class IPsecApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_ipsec_address_request' in local_var_params:
-            body_params = local_var_params['update_ipsec_address_request']
+        if "update_ipsec_address_request" in local_var_params:
+            body_params = local_var_params["update_ipsec_address_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/ipsec', 'PUT',
+            "/ipsec",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

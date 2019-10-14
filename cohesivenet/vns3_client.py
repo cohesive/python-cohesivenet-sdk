@@ -66,33 +66,36 @@ class VNS3Client(APIClient):
     :param pool_threads: The number of threads to use for async requests
         to the API. More threads means more concurrent API requests.
     """
-    BASE_PATH = 'api'
+
+    BASE_PATH = "api"
     DEF_REQ_TIMEOUT = 15.0
 
     # Client API Groups available as attributes: e.g. vns3_client.peering.delete_peer(4)
-    bgp = api_as_property('bgp', BGPApi)
-    config = api_as_property('config', ConfigurationApi)
-    firewall = api_as_property('firewall', FirewallApi)
-    high_availability = api_as_property('high_availability', HighAvailabilityApi)
-    ipsec = api_as_property('ipsec', IPsecApi)
-    interfaces = api_as_property('interfaces', InterfacesApi)
-    licensing = api_as_property('licensing', LicensingApi)
-    monitoring = api_as_property('monitoring', MonitoringAlertingApi)
-    network_edge_plugins = api_as_property('network_edge_plugins', NetworkEdgePluginsApi)
-    overlay_network = api_as_property('overlay_network', OverlayNetworkApi)
-    peering = api_as_property('peering', PeeringApi)
-    routing = api_as_property('routing', RoutingApi)
-    snapshots = api_as_property('snapshots', SnapshotsApi)
-    sys_admin = api_as_property('sys_admin', SystemAdministrationApi)
+    bgp = api_as_property("bgp", BGPApi)
+    config = api_as_property("config", ConfigurationApi)
+    firewall = api_as_property("firewall", FirewallApi)
+    high_availability = api_as_property("high_availability", HighAvailabilityApi)
+    ipsec = api_as_property("ipsec", IPsecApi)
+    interfaces = api_as_property("interfaces", InterfacesApi)
+    licensing = api_as_property("licensing", LicensingApi)
+    monitoring = api_as_property("monitoring", MonitoringAlertingApi)
+    network_edge_plugins = api_as_property(
+        "network_edge_plugins", NetworkEdgePluginsApi
+    )
+    overlay_network = api_as_property("overlay_network", OverlayNetworkApi)
+    peering = api_as_property("peering", PeeringApi)
+    routing = api_as_property("routing", RoutingApi)
+    snapshots = api_as_property("snapshots", SnapshotsApi)
+    sys_admin = api_as_property("sys_admin", SystemAdministrationApi)
 
     @property
     def controller_state(self):
-        return getattr(self, '_state', {})
+        return getattr(self, "_state", {})
 
     def add_to_state(self, key, value):
-        state = getattr(self, '_state', {})
+        state = getattr(self, "_state", {})
         state[key] = value
-        setattr(self, '_state', state)
+        setattr(self, "_state", state)
         return None
 
     def query_state(self, key):

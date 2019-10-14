@@ -19,7 +19,8 @@ import urllib3
 UrlLib3ConnExceptions = (
     urllib3.exceptions.ConnectTimeoutError,
     urllib3.exceptions.NewConnectionError,
-    urllib3.exceptions.MaxRetryError)
+    urllib3.exceptions.MaxRetryError,
+)
 
 
 class OpenApiException(Exception):
@@ -31,8 +32,7 @@ class CohesiveSDKException(Exception):
 
 
 class ApiTypeError(OpenApiException, TypeError):
-    def __init__(self, msg, path_to_item=None, valid_classes=None,
-                 key_type=None):
+    def __init__(self, msg, path_to_item=None, valid_classes=None, key_type=None):
         """ Raises an exception for TypeErrors
 
         Args:
@@ -95,7 +95,6 @@ class ApiKeyError(OpenApiException, KeyError):
 
 
 class ApiException(OpenApiException):
-
     def __init__(self, status=None, reason=None, http_resp=None):
         if http_resp:
             self.status = http_resp.status
@@ -110,11 +109,9 @@ class ApiException(OpenApiException):
 
     def __str__(self):
         """Custom error messages for exception"""
-        error_message = "({0})\n"\
-                        "Reason: {1}\n".format(self.status, self.reason)
+        error_message = "({0})\n" "Reason: {1}\n".format(self.status, self.reason)
         if self.headers:
-            error_message += "HTTP response headers: {0}\n".format(
-                self.headers)
+            error_message += "HTTP response headers: {0}\n".format(self.headers)
 
         if self.body:
             error_message += "HTTP response body: {0}\n".format(self.body)
@@ -122,13 +119,17 @@ class ApiException(OpenApiException):
         return error_message
 
     def __repr__(self):
-        return '%s(status=%s,reason=%s,http_resp.body=%s)' % (
-            self.__class__.__name__, self.status, self.reason, self.body)
+        return "%s(status=%s,reason=%s,http_resp.body=%s)" % (
+            self.__class__.__name__,
+            self.status,
+            self.reason,
+            self.body,
+        )
 
     def get_error_message(self):
-        error_obj = self.error.get('error')
+        error_obj = self.error.get("error")
         if type(error_obj) is dict:
-            return error_obj.get('message')
+            return error_obj.get("message")
         return self.body
 
     @property
@@ -138,9 +139,7 @@ class ApiException(OpenApiException):
         try:
             return json.loads(self.body)
         except json.decoder.JSONDecodeError:
-            return {
-                'error': self.body
-            }
+            return {"error": self.body}
 
 
 def render_path(path_to_item):

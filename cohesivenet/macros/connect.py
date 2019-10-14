@@ -20,10 +20,10 @@ def get_client(host, username, password, verify=False):
     """
     return VNS3Client(
         Configuration(
-        host=host,
-        username=username,
-        password=password,
-        verify_ssl=verify))
+            host=host, username=username, password=password, verify_ssl=verify
+        )
+    )
+
 
 def get_clients(*hosts):
     """Create VNS3Clients for host information
@@ -59,7 +59,9 @@ def get_clients_common_creds(hosts, common_username, common_password, verify=Fal
     return [get_client(host, username, password, verify) for host in hosts]
 
 
-def verify_client_connectivity(clients: List[VNS3Client]) -> data_types.BulkOperationResult:
+def verify_client_connectivity(
+    clients: List[VNS3Client]
+) -> data_types.BulkOperationResult:
     """Verify the connectivty of provided clients by pinging API
     
     Arguments:
@@ -68,8 +70,10 @@ def verify_client_connectivity(clients: List[VNS3Client]) -> data_types.BulkOper
     Returns:
         data_types.BulkOperationResult
     """
+
     def _ping_api(_client):
         return _client.sys_admin.get_ping_system()
+
     return api_operations.__bulk_call_client(clients, _ping_api)
 
 

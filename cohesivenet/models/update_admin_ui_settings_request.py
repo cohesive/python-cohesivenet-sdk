@@ -32,18 +32,20 @@ class UpdateAdminUISettingsRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'enabled': 'bool',
-        'admin_username': 'str',
-        'admin_password': 'str'
+        "enabled": "bool",
+        "admin_username": "str",
+        "admin_password": "str",
     }
 
     attribute_map = {
-        'enabled': 'enabled',
-        'admin_username': 'admin_username',
-        'admin_password': 'admin_password'
+        "enabled": "enabled",
+        "admin_username": "admin_username",
+        "admin_password": "admin_password",
     }
 
-    def __init__(self, enabled=None, admin_username=None, admin_password=None):  # noqa: E501
+    def __init__(
+        self, enabled=None, admin_username=None, admin_password=None
+    ):  # noqa: E501
         """UpdateAdminUISettingsRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._enabled = None
@@ -128,18 +130,20 @@ class UpdateAdminUISettingsRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

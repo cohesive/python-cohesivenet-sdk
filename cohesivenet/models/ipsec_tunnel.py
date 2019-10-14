@@ -32,36 +32,50 @@ class IpsecTunnel(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'local_subnet': 'str',
-        'remote_subnet': 'str',
-        'endpoint_id': 'int',
-        'endpoint_name': 'str',
-        'active': 'bool',
-        'description': 'str',
-        'connected': 'bool',
-        'ping_interface': 'str',
-        'ping_interval': 'int',
-        'ping_ipaddress': 'str',
-        'tunnel_params': 'IpsecTunnelParams'
+        "id": "int",
+        "local_subnet": "str",
+        "remote_subnet": "str",
+        "endpoint_id": "int",
+        "endpoint_name": "str",
+        "active": "bool",
+        "description": "str",
+        "connected": "bool",
+        "ping_interface": "str",
+        "ping_interval": "int",
+        "ping_ipaddress": "str",
+        "tunnel_params": "IpsecTunnelParams",
     }
 
     attribute_map = {
-        'id': 'id',
-        'local_subnet': 'local_subnet',
-        'remote_subnet': 'remote_subnet',
-        'endpoint_id': 'endpoint_id',
-        'endpoint_name': 'endpoint_name',
-        'active': 'active',
-        'description': 'description',
-        'connected': 'connected',
-        'ping_interface': 'ping_interface',
-        'ping_interval': 'ping_interval',
-        'ping_ipaddress': 'ping_ipaddress',
-        'tunnel_params': 'tunnel_params'
+        "id": "id",
+        "local_subnet": "local_subnet",
+        "remote_subnet": "remote_subnet",
+        "endpoint_id": "endpoint_id",
+        "endpoint_name": "endpoint_name",
+        "active": "active",
+        "description": "description",
+        "connected": "connected",
+        "ping_interface": "ping_interface",
+        "ping_interval": "ping_interval",
+        "ping_ipaddress": "ping_ipaddress",
+        "tunnel_params": "tunnel_params",
     }
 
-    def __init__(self, id=None, local_subnet=None, remote_subnet=None, endpoint_id=None, endpoint_name=None, active=None, description=None, connected=None, ping_interface=None, ping_interval=None, ping_ipaddress=None, tunnel_params=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        local_subnet=None,
+        remote_subnet=None,
+        endpoint_id=None,
+        endpoint_name=None,
+        active=None,
+        description=None,
+        connected=None,
+        ping_interface=None,
+        ping_interval=None,
+        ping_ipaddress=None,
+        tunnel_params=None,
+    ):  # noqa: E501
         """IpsecTunnel - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -292,8 +306,9 @@ class IpsecTunnel(object):
         allowed_values = ["eth0", "tun0"]  # noqa: E501
         if ping_interface not in allowed_values:
             raise ValueError(
-                "Invalid value for `ping_interface` ({0}), must be one of {1}"  # noqa: E501
-                .format(ping_interface, allowed_values)
+                "Invalid value for `ping_interface` ({0}), must be one of {1}".format(  # noqa: E501
+                    ping_interface, allowed_values
+                )
             )
 
         self._ping_interface = ping_interface
@@ -370,18 +385,20 @@ class IpsecTunnel(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -32,46 +32,65 @@ class Container(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'str',
-        'created': 'str',
-        'path': 'str',
-        'args': 'list[str]',
-        'config': 'dict(str, object)',
-        'state': 'RunningContainersDetailState',
-        'image': 'str',
-        'network_settings': 'RunningContainersDetailNetworkSettings',
-        'resolv_conf_path': 'str',
-        'hostname_path': 'str',
-        'hosts_path': 'str',
-        'name': 'str',
-        'driver': 'str',
-        'exec_driver': 'str',
-        'volumes': 'dict(str, object)',
-        'volumes_rw': 'dict(str, object)',
-        'host_config': 'dict(str, object)'
+        "id": "str",
+        "created": "str",
+        "path": "str",
+        "args": "list[str]",
+        "config": "dict(str, object)",
+        "state": "RunningContainersDetailState",
+        "image": "str",
+        "network_settings": "RunningContainersDetailNetworkSettings",
+        "resolv_conf_path": "str",
+        "hostname_path": "str",
+        "hosts_path": "str",
+        "name": "str",
+        "driver": "str",
+        "exec_driver": "str",
+        "volumes": "dict(str, object)",
+        "volumes_rw": "dict(str, object)",
+        "host_config": "dict(str, object)",
     }
 
     attribute_map = {
-        'id': 'ID',
-        'created': 'Created',
-        'path': 'Path',
-        'args': 'Args',
-        'config': 'Config',
-        'state': 'State',
-        'image': 'Image',
-        'network_settings': 'NetworkSettings',
-        'resolv_conf_path': 'ResolvConfPath',
-        'hostname_path': 'HostnamePath',
-        'hosts_path': 'HostsPath',
-        'name': 'Name',
-        'driver': 'Driver',
-        'exec_driver': 'ExecDriver',
-        'volumes': 'Volumes',
-        'volumes_rw': 'VolumesRW',
-        'host_config': 'HostConfig'
+        "id": "ID",
+        "created": "Created",
+        "path": "Path",
+        "args": "Args",
+        "config": "Config",
+        "state": "State",
+        "image": "Image",
+        "network_settings": "NetworkSettings",
+        "resolv_conf_path": "ResolvConfPath",
+        "hostname_path": "HostnamePath",
+        "hosts_path": "HostsPath",
+        "name": "Name",
+        "driver": "Driver",
+        "exec_driver": "ExecDriver",
+        "volumes": "Volumes",
+        "volumes_rw": "VolumesRW",
+        "host_config": "HostConfig",
     }
 
-    def __init__(self, id=None, created=None, path=None, args=None, config=None, state=None, image=None, network_settings=None, resolv_conf_path=None, hostname_path=None, hosts_path=None, name=None, driver=None, exec_driver=None, volumes=None, volumes_rw=None, host_config=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        created=None,
+        path=None,
+        args=None,
+        config=None,
+        state=None,
+        image=None,
+        network_settings=None,
+        resolv_conf_path=None,
+        hostname_path=None,
+        hosts_path=None,
+        name=None,
+        driver=None,
+        exec_driver=None,
+        volumes=None,
+        volumes_rw=None,
+        host_config=None,
+    ):  # noqa: E501
         """Container - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -489,18 +508,20 @@ class Container(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

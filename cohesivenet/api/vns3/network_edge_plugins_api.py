@@ -18,10 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class NetworkEdgePluginsApi(object):
@@ -34,6 +31,7 @@ class NetworkEdgePluginsApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
@@ -59,7 +57,7 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.delete_container_with_http_info(uuid, **kwargs)  # noqa: E501
 
     def delete_container_with_http_info(self, uuid, **kwargs):  # noqa: E501
@@ -89,30 +87,31 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_container" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'uuid' is set
-        if ('uuid' not in local_var_params or
-                local_var_params['uuid'] is None):
-            raise ApiValueError("Missing the required parameter `uuid` when calling `delete_container`")  # noqa: E501
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `delete_container`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uuid' in local_var_params:
-            path_params['uuid'] = local_var_params['uuid']  # noqa: E501
+        if "uuid" in local_var_params:
+            path_params["uuid"] = local_var_params["uuid"]  # noqa: E501
 
         query_params = []
 
@@ -123,27 +122,32 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/containers/{uuid}', 'DELETE',
+            "/container_system/containers/{uuid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='DeleteContainerDetailResponse',  # noqa: E501
+            response_type="DeleteContainerDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def delete_container_image(self, uuid, **kwargs):  # noqa: E501
         """delete_container_image  # noqa: E501
@@ -168,7 +172,7 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.delete_container_image_with_http_info(uuid, **kwargs)  # noqa: E501
 
     def delete_container_image_with_http_info(self, uuid, **kwargs):  # noqa: E501
@@ -199,34 +203,35 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid", "force"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_container_image" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'uuid' is set
-        if ('uuid' not in local_var_params or
-                local_var_params['uuid'] is None):
-            raise ApiValueError("Missing the required parameter `uuid` when calling `delete_container_image`")  # noqa: E501
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `delete_container_image`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uuid' in local_var_params:
-            path_params['uuid'] = local_var_params['uuid']  # noqa: E501
+        if "uuid" in local_var_params:
+            path_params["uuid"] = local_var_params["uuid"]  # noqa: E501
 
         query_params = []
-        if 'force' in local_var_params:
-            query_params.append(('force', local_var_params['force']))  # noqa: E501
+        if "force" in local_var_params:
+            query_params.append(("force", local_var_params["force"]))  # noqa: E501
 
         header_params = {}
 
@@ -235,27 +240,32 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/images/{uuid}', 'DELETE',
+            "/container_system/images/{uuid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='DeleteContainerImageDetailResponse',  # noqa: E501
+            response_type="DeleteContainerImageDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_container_logs(self, uuid, lines, **kwargs):  # noqa: E501
         """get_container_logs  # noqa: E501
@@ -280,8 +290,10 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.get_container_logs_with_http_info(uuid, lines, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.get_container_logs_with_http_info(
+            uuid, lines, **kwargs
+        )  # noqa: E501
 
     def get_container_logs_with_http_info(self, uuid, lines, **kwargs):  # noqa: E501
         """get_container_logs  # noqa: E501
@@ -311,38 +323,40 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid', 'lines']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid", "lines"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_container_logs" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'uuid' is set
-        if ('uuid' not in local_var_params or
-                local_var_params['uuid'] is None):
-            raise ApiValueError("Missing the required parameter `uuid` when calling `get_container_logs`")  # noqa: E501
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `get_container_logs`"
+            )  # noqa: E501
         # verify the required parameter 'lines' is set
-        if ('lines' not in local_var_params or
-                local_var_params['lines'] is None):
-            raise ApiValueError("Missing the required parameter `lines` when calling `get_container_logs`")  # noqa: E501
+        if "lines" not in local_var_params or local_var_params["lines"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `lines` when calling `get_container_logs`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uuid' in local_var_params:
-            path_params['uuid'] = local_var_params['uuid']  # noqa: E501
+        if "uuid" in local_var_params:
+            path_params["uuid"] = local_var_params["uuid"]  # noqa: E501
 
         query_params = []
-        if 'lines' in local_var_params:
-            query_params.append(('lines', local_var_params['lines']))  # noqa: E501
+        if "lines" in local_var_params:
+            query_params.append(("lines", local_var_params["lines"]))  # noqa: E501
 
         header_params = {}
 
@@ -351,27 +365,32 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/containers/{uuid}/logs', 'GET',
+            "/container_system/containers/{uuid}/logs",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ContainerLogsResponse',  # noqa: E501
+            response_type="ContainerLogsResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_container_system_i_ps(self, **kwargs):  # noqa: E501
         """get_container_system_i_ps  # noqa: E501
@@ -394,7 +413,7 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_container_system_i_ps_with_http_info(**kwargs)  # noqa: E501
 
     def get_container_system_i_ps_with_http_info(self, **kwargs):  # noqa: E501
@@ -424,19 +443,19 @@ class NetworkEdgePluginsApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_container_system_i_ps" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -451,27 +470,32 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/ip_addresses', 'GET',
+            "/container_system/ip_addresses",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ContainerSystemIPListResponse',  # noqa: E501
+            response_type="ContainerSystemIPListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_container_system_images(self, **kwargs):  # noqa: E501
         """get_container_system_images  # noqa: E501
@@ -495,7 +519,7 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_container_system_images_with_http_info(**kwargs)  # noqa: E501
 
     def get_container_system_images_with_http_info(self, **kwargs):  # noqa: E501
@@ -525,28 +549,28 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_container_system_images" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'uuid' in local_var_params:
-            query_params.append(('uuid', local_var_params['uuid']))  # noqa: E501
+        if "uuid" in local_var_params:
+            query_params.append(("uuid", local_var_params["uuid"]))  # noqa: E501
 
         header_params = {}
 
@@ -555,27 +579,32 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/images', 'GET',
+            "/container_system/images",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ContainerImageListResponse',  # noqa: E501
+            response_type="ContainerImageListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_container_system_running_containers(self, **kwargs):  # noqa: E501
         """get_container_system_running_containers  # noqa: E501
@@ -599,10 +628,14 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.get_container_system_running_containers_with_http_info(**kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.get_container_system_running_containers_with_http_info(
+            **kwargs
+        )  # noqa: E501
 
-    def get_container_system_running_containers_with_http_info(self, **kwargs):  # noqa: E501
+    def get_container_system_running_containers_with_http_info(
+        self, **kwargs
+    ):  # noqa: E501
         """get_container_system_running_containers  # noqa: E501
 
         Provides description information for one or all allocated containers  # noqa: E501
@@ -629,28 +662,30 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['show_all']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["show_all"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_container_system_running_containers" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'show_all' in local_var_params:
-            query_params.append(('show_all', local_var_params['show_all']))  # noqa: E501
+        if "show_all" in local_var_params:
+            query_params.append(
+                ("show_all", local_var_params["show_all"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -659,27 +694,32 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/containers', 'GET',
+            "/container_system/containers",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RunningContainersDetailResponse',  # noqa: E501
+            response_type="RunningContainersDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_container_system_status(self, **kwargs):  # noqa: E501
         """get_container_system_status  # noqa: E501
@@ -702,7 +742,7 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_container_system_status_with_http_info(**kwargs)  # noqa: E501
 
     def get_container_system_status_with_http_info(self, **kwargs):  # noqa: E501
@@ -732,19 +772,19 @@ class NetworkEdgePluginsApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_container_system_status" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -759,29 +799,36 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system', 'GET',
+            "/container_system",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ContainerSystemStatusDetailResponse',  # noqa: E501
+            response_type="ContainerSystemStatusDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def post_action_container_system(self, container_system_action_request, **kwargs):  # noqa: E501
+    def post_action_container_system(
+        self, container_system_action_request, **kwargs
+    ):  # noqa: E501
         """post_action_container_system  # noqa: E501
 
         Take action on container system  # noqa: E501
@@ -803,10 +850,14 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_action_container_system_with_http_info(container_system_action_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_action_container_system_with_http_info(
+            container_system_action_request, **kwargs
+        )  # noqa: E501
 
-    def post_action_container_system_with_http_info(self, container_system_action_request, **kwargs):  # noqa: E501
+    def post_action_container_system_with_http_info(
+        self, container_system_action_request, **kwargs
+    ):  # noqa: E501
         """post_action_container_system  # noqa: E501
 
         Take action on container system  # noqa: E501
@@ -833,24 +884,28 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['container_system_action_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["container_system_action_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_action_container_system" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'container_system_action_request' is set
-        if ('container_system_action_request' not in local_var_params or
-                local_var_params['container_system_action_request'] is None):
-            raise ApiValueError("Missing the required parameter `container_system_action_request` when calling `post_action_container_system`")  # noqa: E501
+        if (
+            "container_system_action_request" not in local_var_params
+            or local_var_params["container_system_action_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `container_system_action_request` when calling `post_action_container_system`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -864,36 +919,46 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'container_system_action_request' in local_var_params:
-            body_params = local_var_params['container_system_action_request']
+        if "container_system_action_request" in local_var_params:
+            body_params = local_var_params["container_system_action_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system', 'POST',
+            "/container_system",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def post_commit_container(self, uuid, commit_container_request, **kwargs):  # noqa: E501
+    def post_commit_container(
+        self, uuid, commit_container_request, **kwargs
+    ):  # noqa: E501
         """post_commit_container  # noqa: E501
 
         Creates a new container image from a running container  # noqa: E501
@@ -916,10 +981,14 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_commit_container_with_http_info(uuid, commit_container_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_commit_container_with_http_info(
+            uuid, commit_container_request, **kwargs
+        )  # noqa: E501
 
-    def post_commit_container_with_http_info(self, uuid, commit_container_request, **kwargs):  # noqa: E501
+    def post_commit_container_with_http_info(
+        self, uuid, commit_container_request, **kwargs
+    ):  # noqa: E501
         """post_commit_container  # noqa: E501
 
         Creates a new container image from a running container  # noqa: E501
@@ -947,34 +1016,39 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid', 'commit_container_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid", "commit_container_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_commit_container" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'uuid' is set
-        if ('uuid' not in local_var_params or
-                local_var_params['uuid'] is None):
-            raise ApiValueError("Missing the required parameter `uuid` when calling `post_commit_container`")  # noqa: E501
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `post_commit_container`"
+            )  # noqa: E501
         # verify the required parameter 'commit_container_request' is set
-        if ('commit_container_request' not in local_var_params or
-                local_var_params['commit_container_request'] is None):
-            raise ApiValueError("Missing the required parameter `commit_container_request` when calling `post_commit_container`")  # noqa: E501
+        if (
+            "commit_container_request" not in local_var_params
+            or local_var_params["commit_container_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `commit_container_request` when calling `post_commit_container`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uuid' in local_var_params:
-            path_params['uuid'] = local_var_params['uuid']  # noqa: E501
+        if "uuid" in local_var_params:
+            path_params["uuid"] = local_var_params["uuid"]  # noqa: E501
 
         query_params = []
 
@@ -984,34 +1058,42 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'commit_container_request' in local_var_params:
-            body_params = local_var_params['commit_container_request']
+        if "commit_container_request" in local_var_params:
+            body_params = local_var_params["commit_container_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/containers/{uuid}/commit', 'POST',
+            "/container_system/containers/{uuid}/commit",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CreateContainerImageResponse',  # noqa: E501
+            response_type="CreateContainerImageResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_create_container_image(self, unknown_base_type, **kwargs):  # noqa: E501
         """post_create_container_image  # noqa: E501
@@ -1035,10 +1117,14 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_container_image_with_http_info(unknown_base_type, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_container_image_with_http_info(
+            unknown_base_type, **kwargs
+        )  # noqa: E501
 
-    def post_create_container_image_with_http_info(self, unknown_base_type, **kwargs):  # noqa: E501
+    def post_create_container_image_with_http_info(
+        self, unknown_base_type, **kwargs
+    ):  # noqa: E501
         """post_create_container_image  # noqa: E501
 
         Create new container image  # noqa: E501
@@ -1065,24 +1151,28 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['unknown_base_type']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["unknown_base_type"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_container_image" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'unknown_base_type' is set
-        if ('unknown_base_type' not in local_var_params or
-                local_var_params['unknown_base_type'] is None):
-            raise ApiValueError("Missing the required parameter `unknown_base_type` when calling `post_create_container_image`")  # noqa: E501
+        if (
+            "unknown_base_type" not in local_var_params
+            or local_var_params["unknown_base_type"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `unknown_base_type` when calling `post_create_container_image`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1096,34 +1186,42 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'unknown_base_type' in local_var_params:
-            body_params = local_var_params['unknown_base_type']
+        if "unknown_base_type" in local_var_params:
+            body_params = local_var_params["unknown_base_type"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/images', 'POST',
+            "/container_system/images",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CreateImageDetailResponse',  # noqa: E501
+            response_type="CreateImageDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_start_container(self, unknown_base_type, **kwargs):  # noqa: E501
         """post_start_container  # noqa: E501
@@ -1147,10 +1245,14 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_start_container_with_http_info(unknown_base_type, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_start_container_with_http_info(
+            unknown_base_type, **kwargs
+        )  # noqa: E501
 
-    def post_start_container_with_http_info(self, unknown_base_type, **kwargs):  # noqa: E501
+    def post_start_container_with_http_info(
+        self, unknown_base_type, **kwargs
+    ):  # noqa: E501
         """post_start_container  # noqa: E501
 
         Create (allocate) a new container or start an existing one  # noqa: E501
@@ -1177,24 +1279,28 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['unknown_base_type']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["unknown_base_type"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_start_container" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'unknown_base_type' is set
-        if ('unknown_base_type' not in local_var_params or
-                local_var_params['unknown_base_type'] is None):
-            raise ApiValueError("Missing the required parameter `unknown_base_type` when calling `post_start_container`")  # noqa: E501
+        if (
+            "unknown_base_type" not in local_var_params
+            or local_var_params["unknown_base_type"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `unknown_base_type` when calling `post_start_container`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1208,36 +1314,46 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'unknown_base_type' in local_var_params:
-            body_params = local_var_params['unknown_base_type']
+        if "unknown_base_type" in local_var_params:
+            body_params = local_var_params["unknown_base_type"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/containers', 'POST',
+            "/container_system/containers",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RunContainerDetailResponse',  # noqa: E501
+            response_type="RunContainerDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_configure_container_system(self, update_configure_container_system_request, **kwargs):  # noqa: E501
+    def put_configure_container_system(
+        self, update_configure_container_system_request, **kwargs
+    ):  # noqa: E501
         """put_configure_container_system  # noqa: E501
 
         Configures the container network.  # noqa: E501
@@ -1259,10 +1375,14 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_configure_container_system_with_http_info(update_configure_container_system_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_configure_container_system_with_http_info(
+            update_configure_container_system_request, **kwargs
+        )  # noqa: E501
 
-    def put_configure_container_system_with_http_info(self, update_configure_container_system_request, **kwargs):  # noqa: E501
+    def put_configure_container_system_with_http_info(
+        self, update_configure_container_system_request, **kwargs
+    ):  # noqa: E501
         """put_configure_container_system  # noqa: E501
 
         Configures the container network.  # noqa: E501
@@ -1289,24 +1409,28 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_configure_container_system_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_configure_container_system_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_configure_container_system" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_configure_container_system_request' is set
-        if ('update_configure_container_system_request' not in local_var_params or
-                local_var_params['update_configure_container_system_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_configure_container_system_request` when calling `put_configure_container_system`")  # noqa: E501
+        if (
+            "update_configure_container_system_request" not in local_var_params
+            or local_var_params["update_configure_container_system_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_configure_container_system_request` when calling `put_configure_container_system`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1320,36 +1444,46 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_configure_container_system_request' in local_var_params:
-            body_params = local_var_params['update_configure_container_system_request']
+        if "update_configure_container_system_request" in local_var_params:
+            body_params = local_var_params["update_configure_container_system_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system', 'PUT',
+            "/container_system",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_edit_container_image(self, uuid, update_container_image_request, **kwargs):  # noqa: E501
+    def put_edit_container_image(
+        self, uuid, update_container_image_request, **kwargs
+    ):  # noqa: E501
         """put_edit_container_image  # noqa: E501
 
         Edits container image  # noqa: E501
@@ -1372,10 +1506,14 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_edit_container_image_with_http_info(uuid, update_container_image_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_edit_container_image_with_http_info(
+            uuid, update_container_image_request, **kwargs
+        )  # noqa: E501
 
-    def put_edit_container_image_with_http_info(self, uuid, update_container_image_request, **kwargs):  # noqa: E501
+    def put_edit_container_image_with_http_info(
+        self, uuid, update_container_image_request, **kwargs
+    ):  # noqa: E501
         """put_edit_container_image  # noqa: E501
 
         Edits container image  # noqa: E501
@@ -1403,34 +1541,39 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid', 'update_container_image_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid", "update_container_image_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_edit_container_image" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'uuid' is set
-        if ('uuid' not in local_var_params or
-                local_var_params['uuid'] is None):
-            raise ApiValueError("Missing the required parameter `uuid` when calling `put_edit_container_image`")  # noqa: E501
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `put_edit_container_image`"
+            )  # noqa: E501
         # verify the required parameter 'update_container_image_request' is set
-        if ('update_container_image_request' not in local_var_params or
-                local_var_params['update_container_image_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_container_image_request` when calling `put_edit_container_image`")  # noqa: E501
+        if (
+            "update_container_image_request" not in local_var_params
+            or local_var_params["update_container_image_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_container_image_request` when calling `put_edit_container_image`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uuid' in local_var_params:
-            path_params['uuid'] = local_var_params['uuid']  # noqa: E501
+        if "uuid" in local_var_params:
+            path_params["uuid"] = local_var_params["uuid"]  # noqa: E501
 
         query_params = []
 
@@ -1440,34 +1583,42 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_container_image_request' in local_var_params:
-            body_params = local_var_params['update_container_image_request']
+        if "update_container_image_request" in local_var_params:
+            body_params = local_var_params["update_container_image_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/images/{uuid}', 'PUT',
+            "/container_system/images/{uuid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UpdateContainerImageDetailResponse',  # noqa: E501
+            response_type="UpdateContainerImageDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_stop_container(self, uuid, **kwargs):  # noqa: E501
         """put_stop_container  # noqa: E501
@@ -1491,7 +1642,7 @@ class NetworkEdgePluginsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.put_stop_container_with_http_info(uuid, **kwargs)  # noqa: E501
 
     def put_stop_container_with_http_info(self, uuid, **kwargs):  # noqa: E501
@@ -1521,30 +1672,31 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['uuid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uuid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_stop_container" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'uuid' is set
-        if ('uuid' not in local_var_params or
-                local_var_params['uuid'] is None):
-            raise ApiValueError("Missing the required parameter `uuid` when calling `put_stop_container`")  # noqa: E501
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `put_stop_container`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uuid' in local_var_params:
-            path_params['uuid'] = local_var_params['uuid']  # noqa: E501
+        if "uuid" in local_var_params:
+            path_params["uuid"] = local_var_params["uuid"]  # noqa: E501
 
         query_params = []
 
@@ -1555,24 +1707,29 @@ class NetworkEdgePluginsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/container_system/containers/{uuid}', 'PUT',
+            "/container_system/containers/{uuid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='StopContainerDetailResponse',  # noqa: E501
+            response_type="StopContainerDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

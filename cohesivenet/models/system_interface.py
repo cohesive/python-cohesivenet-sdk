@@ -32,38 +32,53 @@ class SystemInterface(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'name': 'str',
-        'interface_type': 'str',
-        'description': 'str',
-        'ip_internal': 'str',
-        'mtu': 'int',
-        'enabled': 'bool',
-        'status': 'str',
-        'mask_bits': 'str',
-        'gateway': 'str',
-        'system_default': 'bool',
-        'ip_external': 'str',
-        'tags': 'list[str]'
+        "id": "int",
+        "name": "str",
+        "interface_type": "str",
+        "description": "str",
+        "ip_internal": "str",
+        "mtu": "int",
+        "enabled": "bool",
+        "status": "str",
+        "mask_bits": "str",
+        "gateway": "str",
+        "system_default": "bool",
+        "ip_external": "str",
+        "tags": "list[str]",
     }
 
     attribute_map = {
-        'id': 'id',
-        'name': 'name',
-        'interface_type': 'interface_type',
-        'description': 'description',
-        'ip_internal': 'ip_internal',
-        'mtu': 'mtu',
-        'enabled': 'enabled',
-        'status': 'status',
-        'mask_bits': 'mask_bits',
-        'gateway': 'gateway',
-        'system_default': 'system_default',
-        'ip_external': 'ip_external',
-        'tags': 'tags'
+        "id": "id",
+        "name": "name",
+        "interface_type": "interface_type",
+        "description": "description",
+        "ip_internal": "ip_internal",
+        "mtu": "mtu",
+        "enabled": "enabled",
+        "status": "status",
+        "mask_bits": "mask_bits",
+        "gateway": "gateway",
+        "system_default": "system_default",
+        "ip_external": "ip_external",
+        "tags": "tags",
     }
 
-    def __init__(self, id=None, name=None, interface_type=None, description=None, ip_internal=None, mtu=None, enabled=None, status=None, mask_bits=None, gateway=None, system_default=None, ip_external=None, tags=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        interface_type=None,
+        description=None,
+        ip_internal=None,
+        mtu=None,
+        enabled=None,
+        status=None,
+        mask_bits=None,
+        gateway=None,
+        system_default=None,
+        ip_external=None,
+        tags=None,
+    ):  # noqa: E501
         """SystemInterface - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -390,18 +405,20 @@ class SystemInterface(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

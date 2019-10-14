@@ -24,7 +24,9 @@ class TestHighAvailabilityApi(unittest.TestCase):
     """HighAvailabilityApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.high_availability_api.HighAvailabilityApi()  # noqa: E501
+        self.api = (
+            cohesivenet.api.high_availability_api.HighAvailabilityApi()
+        )  # noqa: E501
 
     def tearDown(self):
         pass
@@ -78,5 +80,5 @@ class TestHighAvailabilityApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

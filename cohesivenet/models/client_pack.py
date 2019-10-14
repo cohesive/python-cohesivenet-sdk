@@ -32,50 +32,71 @@ class ClientPack(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'name': 'str',
-        'overlay_ipaddress': 'str',
-        'linux_onefile': 'str',
-        'enabled': 'bool',
-        'conf_sha1': 'str',
-        'windows_onefile': 'str',
-        'ovpn_sha1': 'str',
-        'tarball_file': 'str',
-        'tarball_sha1': 'str',
-        'sequential_id': 'int',
-        'checked_out': 'bool',
-        'zip_sha1': 'str',
-        'zip_file': 'str',
-        'last_connect': 'str',
-        'last_disconnect': 'str',
-        'connected': 'bool',
-        'manager_id': 'str',
-        'ipaddress': 'str',
-        'tags': 'dict(str, str)'
+        "name": "str",
+        "overlay_ipaddress": "str",
+        "linux_onefile": "str",
+        "enabled": "bool",
+        "conf_sha1": "str",
+        "windows_onefile": "str",
+        "ovpn_sha1": "str",
+        "tarball_file": "str",
+        "tarball_sha1": "str",
+        "sequential_id": "int",
+        "checked_out": "bool",
+        "zip_sha1": "str",
+        "zip_file": "str",
+        "last_connect": "str",
+        "last_disconnect": "str",
+        "connected": "bool",
+        "manager_id": "str",
+        "ipaddress": "str",
+        "tags": "dict(str, str)",
     }
 
     attribute_map = {
-        'name': 'name',
-        'overlay_ipaddress': 'overlay_ipaddress',
-        'linux_onefile': 'linux_onefile',
-        'enabled': 'enabled',
-        'conf_sha1': 'conf_sha1',
-        'windows_onefile': 'windows_onefile',
-        'ovpn_sha1': 'ovpn_sha1',
-        'tarball_file': 'tarball_file',
-        'tarball_sha1': 'tarball_sha1',
-        'sequential_id': 'sequential_id',
-        'checked_out': 'checked_out',
-        'zip_sha1': 'zip_sha1',
-        'zip_file': 'zip_file',
-        'last_connect': 'last_connect',
-        'last_disconnect': 'last_disconnect',
-        'connected': 'connected',
-        'manager_id': 'manager_id',
-        'ipaddress': 'ipaddress',
-        'tags': 'tags'
+        "name": "name",
+        "overlay_ipaddress": "overlay_ipaddress",
+        "linux_onefile": "linux_onefile",
+        "enabled": "enabled",
+        "conf_sha1": "conf_sha1",
+        "windows_onefile": "windows_onefile",
+        "ovpn_sha1": "ovpn_sha1",
+        "tarball_file": "tarball_file",
+        "tarball_sha1": "tarball_sha1",
+        "sequential_id": "sequential_id",
+        "checked_out": "checked_out",
+        "zip_sha1": "zip_sha1",
+        "zip_file": "zip_file",
+        "last_connect": "last_connect",
+        "last_disconnect": "last_disconnect",
+        "connected": "connected",
+        "manager_id": "manager_id",
+        "ipaddress": "ipaddress",
+        "tags": "tags",
     }
 
-    def __init__(self, name=None, overlay_ipaddress=None, linux_onefile=None, enabled=None, conf_sha1=None, windows_onefile=None, ovpn_sha1=None, tarball_file=None, tarball_sha1=None, sequential_id=None, checked_out=None, zip_sha1=None, zip_file=None, last_connect=None, last_disconnect=None, connected=None, manager_id=None, ipaddress=None, tags=None):  # noqa: E501
+    def __init__(
+        self,
+        name=None,
+        overlay_ipaddress=None,
+        linux_onefile=None,
+        enabled=None,
+        conf_sha1=None,
+        windows_onefile=None,
+        ovpn_sha1=None,
+        tarball_file=None,
+        tarball_sha1=None,
+        sequential_id=None,
+        checked_out=None,
+        zip_sha1=None,
+        zip_file=None,
+        last_connect=None,
+        last_disconnect=None,
+        connected=None,
+        manager_id=None,
+        ipaddress=None,
+        tags=None,
+    ):  # noqa: E501
         """ClientPack - a model defined in OpenAPI"""  # noqa: E501
 
         self._name = None
@@ -546,18 +567,20 @@ class ClientPack(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

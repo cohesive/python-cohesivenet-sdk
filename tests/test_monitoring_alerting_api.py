@@ -24,7 +24,9 @@ class TestMonitoringAlertingApi(unittest.TestCase):
     """MonitoringAlertingApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.monitoring_alerting_api.MonitoringAlertingApi()  # noqa: E501
+        self.api = (
+            cohesivenet.api.monitoring_alerting_api.MonitoringAlertingApi()
+        )  # noqa: E501
 
     def tearDown(self):
         pass
@@ -72,5 +74,5 @@ class TestMonitoringAlertingApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -32,20 +32,22 @@ class PeersDetail(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'peered': 'bool',
-        'managers': 'dict(str, VNS3ControllerPeer)',
-        'controllers': 'dict(str, object)'
+        "id": "int",
+        "peered": "bool",
+        "managers": "dict(str, VNS3ControllerPeer)",
+        "controllers": "dict(str, object)",
     }
 
     attribute_map = {
-        'id': 'id',
-        'peered': 'peered',
-        'managers': 'managers',
-        'controllers': 'controllers'
+        "id": "id",
+        "peered": "peered",
+        "managers": "managers",
+        "controllers": "controllers",
     }
 
-    def __init__(self, id=None, peered=None, managers=None, controllers=None):  # noqa: E501
+    def __init__(
+        self, id=None, peered=None, managers=None, controllers=None
+    ):  # noqa: E501
         """PeersDetail - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -154,18 +156,20 @@ class PeersDetail(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

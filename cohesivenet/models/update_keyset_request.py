@@ -32,20 +32,22 @@ class UpdateKeysetRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'source': 'str',
-        'token': 'str',
-        'topology_name': 'str',
-        'sealed_network': 'bool'
+        "source": "str",
+        "token": "str",
+        "topology_name": "str",
+        "sealed_network": "bool",
     }
 
     attribute_map = {
-        'source': 'source',
-        'token': 'token',
-        'topology_name': 'topology_name',
-        'sealed_network': 'sealed_network'
+        "source": "source",
+        "token": "token",
+        "topology_name": "topology_name",
+        "sealed_network": "sealed_network",
     }
 
-    def __init__(self, source=None, token=None, topology_name=None, sealed_network=None):  # noqa: E501
+    def __init__(
+        self, source=None, token=None, topology_name=None, sealed_network=None
+    ):  # noqa: E501
         """UpdateKeysetRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._source = None
@@ -106,7 +108,9 @@ class UpdateKeysetRequest(object):
         :type: str
         """
         if token is None:
-            raise ValueError("Invalid value for `token`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `token`, must not be `None`"
+            )  # noqa: E501
 
         self._token = token
 
@@ -163,18 +167,20 @@ class UpdateKeysetRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

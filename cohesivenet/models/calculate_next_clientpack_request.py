@@ -31,16 +31,12 @@ class CalculateNextClientpackRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {
-        'low_ip': 'str',
-        'high_ip': 'str',
-        'include_disabled': 'bool'
-    }
+    openapi_types = {"low_ip": "str", "high_ip": "str", "include_disabled": "bool"}
 
     attribute_map = {
-        'low_ip': 'low_ip',
-        'high_ip': 'high_ip',
-        'include_disabled': 'include_disabled'
+        "low_ip": "low_ip",
+        "high_ip": "high_ip",
+        "include_disabled": "include_disabled",
     }
 
     def __init__(self, low_ip=None, high_ip=None, include_disabled=False):  # noqa: E501
@@ -134,18 +130,20 @@ class CalculateNextClientpackRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

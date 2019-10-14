@@ -15,19 +15,23 @@ def run_parallel(*coroutines):
 def run_pipe(init_data, steps: List[Tuple[str, Callable]]):
     data = deepcopy(init_data)
     total_steps = len(steps)
-    print('Running pipe [steps=%s] [inputs=%s]' % (total_steps, clean_data(init_data)))
+    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, clean_data(init_data)))
 
     for step_i, (step_name, func) in enumerate(steps):
         step_num = step_i + 1
-        print('Running step [step=%s/%s] [name=%s]' % (step_num, total_steps, step_name))
+        print(
+            "Running step [step=%s/%s] [name=%s]" % (step_num, total_steps, step_name)
+        )
         response = func(data)
-        outputs = response.get('outputs', {})
+        outputs = response.get("outputs", {})
         data.update(outputs)
-        print('Step %s/%s finished. Outputs: %s' % (step_num, total_steps, outputs))
+        print("Step %s/%s finished. Outputs: %s" % (step_num, total_steps, outputs))
     return data
 
 
-def run_pipe_async(init_data, steps: List[Tuple[str, Union[Callable, List[Awaitable]]]]):
+def run_pipe_async(
+    init_data, steps: List[Tuple[str, Union[Callable, List[Awaitable]]]]
+):
     """Run pipeline of step functions, running in parallel if 
 
     Arguments:
@@ -39,21 +43,24 @@ def run_pipe_async(init_data, steps: List[Tuple[str, Union[Callable, List[Awaita
     """
     data = deepcopy(init_data)
     total_steps = len(steps)
-    print('Running pipe [steps=%s] [inputs=%s]' % (total_steps, clean_data(init_data)))
+    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, clean_data(init_data)))
     for step_i, (step_name, step_func) in enumerate(steps):
         step_num = step_i + 1
-        print('Running pipe step [step=%s/%s] [name=%s]' % (step_num, total_steps, step_name))
+        print(
+            "Running pipe step [step=%s/%s] [name=%s]"
+            % (step_num, total_steps, step_name)
+        )
         if type(step_func) is list:
-            print('Running async substeps')
+            print("Running async substeps")
             step_responses = run_parallel(*(func(data) for func in step_func))
-            print('Substeps finished. Outputs: %s' % step_responses)
+            print("Substeps finished. Outputs: %s" % step_responses)
             for response in step_responses:
-                data.update(response.get('outputs', {}))
+                data.update(response.get("outputs", {}))
         else:
             response = step_func(data)
-            outputs = response.get('outputs', {})
+            outputs = response.get("outputs", {})
             data.update(outputs)
-            print('Step %s/%s finished. Outputs: %s' % (step_num, total_steps, outputs))
+            print("Step %s/%s finished. Outputs: %s" % (step_num, total_steps, outputs))
     return data
 
 
@@ -70,7 +77,7 @@ def take_keys(keys: List[str], data_dict):
     return {k: v for k, v in data_dict.items() if k in keys}
 
 
-def flatten_dict(d, prefix=None, joinchar='__'):
+def flatten_dict(d, prefix=None, joinchar="__"):
     """flatten_dict Flatten nested dictionary, joining paths into single string key
     
     Arguments:
@@ -84,16 +91,18 @@ def flatten_dict(d, prefix=None, joinchar='__'):
         [Dict] -- Dict of depth 1
     """
     key_value_pairs = {}
-    _prefix = lambda k: k if not prefix else '%s%s%s' % (prefix, joinchar, k)
+    _prefix = lambda k: k if not prefix else "%s%s%s" % (prefix, joinchar, k)
     for k, v in d.items():
         if type(v) is dict:
-            key_value_pairs.update(flatten_dict(v, prefix=_prefix(k), joinchar=joinchar))
+            key_value_pairs.update(
+                flatten_dict(v, prefix=_prefix(k), joinchar=joinchar)
+            )
         else:
             key_value_pairs[_prefix(k)] = v
     return key_value_pairs
 
 
-def unflatten_dict(d, splitchar='__'):
+def unflatten_dict(d, splitchar="__"):
     """unflatten_dict Build nested dictionary based on keys
     
     Arguments:
@@ -123,13 +132,13 @@ def map_type(s, expected_type, strict=True):
     try:
         if type(s) is list:
             return s
-        elif 'list' in str(expected_type).lower():
+        elif "list" in str(expected_type).lower():
             _def_return_val = []
             return json.loads(s)
-        elif not s or s.lower() in ('none', ''):
+        elif not s or s.lower() in ("none", ""):
             return None
         elif expected_type is bool:
-            return s.lower() == 'true'
+            return s.lower() == "true"
 
         return expected_type(s)
     except ValueError:
@@ -143,13 +152,16 @@ def duck_type_dict(datacls, data: dict, strict_types=True):
         return None
 
     fields = {f.name: f.type for f in get_fields(datacls)}
-    return datacls(**{
-        k: (
-            map_type(data.get(k), value_type, strict=strict_types)
-            if not is_dataclass(value_type)
-            else duck_type_dict(value_type, data.get(k), strict_types=strict_types)
-        ) for k, value_type in fields.items()
-    })
+    return datacls(
+        **{
+            k: (
+                map_type(data.get(k), value_type, strict=strict_types)
+                if not is_dataclass(value_type)
+                else duck_type_dict(value_type, data.get(k), strict_types=strict_types)
+            )
+            for k, value_type in fields.items()
+        }
+    )
 
 
 def get_path(data_dict, key_path, fail=False):
@@ -169,7 +181,7 @@ def get_path(data_dict, key_path, fail=False):
         [any] -- value at key path
     """
     _target = data_dict
-    steps = key_path if type(key_path) is list else key_path.split('.')
+    steps = key_path if type(key_path) is list else key_path.split(".")
     for step in steps:
         if type(_target) is not dict or step not in _target:
             if fail:
@@ -180,16 +192,12 @@ def get_path(data_dict, key_path, fail=False):
 
 
 def map_dict_values(func_map, data_dict):
-    return {
-        k: func_map.get(k, lambda x: x)(v)
-        for k, v in data_dict.items()
-    }
+    return {k: func_map.get(k, lambda x: x)(v) for k, v in data_dict.items()}
 
 
 def map_dict_keypaths(key_map, data_dict):
     updates = {
-        new_key: get_path(data_dict, key_path)
-        for key_path, new_key in key_map.items()
+        new_key: get_path(data_dict, key_path) for key_path, new_key in key_map.items()
     }
     return {**data_dict, **updates}
 
@@ -214,7 +222,8 @@ def partition_list_groups(object_list, number_partitions):
     rounded_list = object_list[:-leftovers] if leftovers else object_list
 
     return [
-        rounded_list[i*partition_size:(i+1)*partition_size] + ([leftover_set[i]] if len(leftover_set) > i else [])
+        rounded_list[i * partition_size : (i + 1) * partition_size]
+        + ([leftover_set[i]] if len(leftover_set) > i else [])
         for i in range(number_partitions)
     ]
 
@@ -233,16 +242,16 @@ def partition_list_ratios(object_list, partition_ratios):
             '0.30': [...]
         }
     """
-    assert math.isclose(sum(partition_ratios), 1.0), 'Ratios must sum to 1'
+    assert math.isclose(sum(partition_ratios), 1.0), "Ratios must sum to 1"
 
-    number_partitions =  len(partition_ratios)
+    number_partitions = len(partition_ratios)
     if number_partitions <= 1:
         return object_list
 
-    partition_sizes = [round(r*len(object_list)) for r in partition_ratios]
+    partition_sizes = [round(r * len(object_list)) for r in partition_ratios]
     _cursor = 0
     partitions = {}
     for i, size in enumerate(partition_sizes):
-        partitions[str(partition_ratios[i])] = object_list[_cursor:(_cursor+size)]
+        partitions[str(partition_ratios[i])] = object_list[_cursor : (_cursor + size)]
         _cursor += size
     return partitions

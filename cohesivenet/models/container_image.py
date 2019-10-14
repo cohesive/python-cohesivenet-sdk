@@ -32,32 +32,44 @@ class ContainerImage(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'str',
-        'image_name': 'str',
-        'status': 'str',
-        'status_msg': 'str',
-        'import_id': 'str',
-        'created': 'datetime',
-        'description': 'str',
-        'tag_name': 'str',
-        'comment': 'str',
-        'container_config': 'dict(str, object)'
+        "id": "str",
+        "image_name": "str",
+        "status": "str",
+        "status_msg": "str",
+        "import_id": "str",
+        "created": "datetime",
+        "description": "str",
+        "tag_name": "str",
+        "comment": "str",
+        "container_config": "dict(str, object)",
     }
 
     attribute_map = {
-        'id': 'id',
-        'image_name': 'image_name',
-        'status': 'status',
-        'status_msg': 'status_msg',
-        'import_id': 'import_id',
-        'created': 'created',
-        'description': 'description',
-        'tag_name': 'tag_name',
-        'comment': 'comment',
-        'container_config': 'container_config'
+        "id": "id",
+        "image_name": "image_name",
+        "status": "status",
+        "status_msg": "status_msg",
+        "import_id": "import_id",
+        "created": "created",
+        "description": "description",
+        "tag_name": "tag_name",
+        "comment": "comment",
+        "container_config": "container_config",
     }
 
-    def __init__(self, id=None, image_name=None, status=None, status_msg=None, import_id=None, created=None, description=None, tag_name=None, comment=None, container_config=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        image_name=None,
+        status=None,
+        status_msg=None,
+        import_id=None,
+        created=None,
+        description=None,
+        tag_name=None,
+        comment=None,
+        container_config=None,
+    ):  # noqa: E501
         """ContainerImage - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -309,18 +321,20 @@ class ContainerImage(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

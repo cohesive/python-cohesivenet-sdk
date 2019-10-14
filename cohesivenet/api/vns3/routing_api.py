@@ -18,10 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class RoutingApi(object):
@@ -34,6 +31,7 @@ class RoutingApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
@@ -59,7 +57,7 @@ class RoutingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.delete_route_with_http_info(route_id, **kwargs)  # noqa: E501
 
     def delete_route_with_http_info(self, route_id, **kwargs):  # noqa: E501
@@ -89,32 +87,37 @@ class RoutingApi(object):
 
         local_var_params = locals()
 
-        all_params = ['route_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["route_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_route" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'route_id' is set
-        if ('route_id' not in local_var_params or
-                local_var_params['route_id'] is None):
-            raise ApiValueError("Missing the required parameter `route_id` when calling `delete_route`")  # noqa: E501
+        if "route_id" not in local_var_params or local_var_params["route_id"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `route_id` when calling `delete_route`"
+            )  # noqa: E501
 
-        if 'route_id' in local_var_params and local_var_params['route_id'] < 0:  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `route_id` when calling `delete_route`, must be a value greater than or equal to `0`")  # noqa: E501
+        if (
+            "route_id" in local_var_params and local_var_params["route_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `route_id` when calling `delete_route`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
-        if 'route_id' in local_var_params:
-            path_params['route_id'] = local_var_params['route_id']  # noqa: E501
+        if "route_id" in local_var_params:
+            path_params["route_id"] = local_var_params["route_id"]  # noqa: E501
 
         query_params = []
 
@@ -125,27 +128,32 @@ class RoutingApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/routes/{route_id}', 'DELETE',
+            "/routes/{route_id}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_routes(self, **kwargs):  # noqa: E501
         """get_routes  # noqa: E501
@@ -168,7 +176,7 @@ class RoutingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_routes_with_http_info(**kwargs)  # noqa: E501
 
     def get_routes_with_http_info(self, **kwargs):  # noqa: E501
@@ -198,19 +206,19 @@ class RoutingApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_routes" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -225,27 +233,32 @@ class RoutingApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/routes', 'GET',
+            "/routes",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RoutesListResponse',  # noqa: E501
+            response_type="RoutesListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_create_route(self, create_route_request, **kwargs):  # noqa: E501
         """post_create_route  # noqa: E501
@@ -269,10 +282,14 @@ class RoutingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_create_route_with_http_info(create_route_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_create_route_with_http_info(
+            create_route_request, **kwargs
+        )  # noqa: E501
 
-    def post_create_route_with_http_info(self, create_route_request, **kwargs):  # noqa: E501
+    def post_create_route_with_http_info(
+        self, create_route_request, **kwargs
+    ):  # noqa: E501
         """post_create_route  # noqa: E501
 
         Pushes routes that this manager has access to via its network interfaces (virtual or otherwise)   # noqa: E501
@@ -299,24 +316,28 @@ class RoutingApi(object):
 
         local_var_params = locals()
 
-        all_params = ['create_route_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["create_route_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_create_route" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'create_route_request' is set
-        if ('create_route_request' not in local_var_params or
-                local_var_params['create_route_request'] is None):
-            raise ApiValueError("Missing the required parameter `create_route_request` when calling `post_create_route`")  # noqa: E501
+        if (
+            "create_route_request" not in local_var_params
+            or local_var_params["create_route_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `create_route_request` when calling `post_create_route`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -330,31 +351,39 @@ class RoutingApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'create_route_request' in local_var_params:
-            body_params = local_var_params['create_route_request']
+        if "create_route_request" in local_var_params:
+            body_params = local_var_params["create_route_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/routes', 'POST',
+            "/routes",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RoutesListResponse',  # noqa: E501
+            response_type="RoutesListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

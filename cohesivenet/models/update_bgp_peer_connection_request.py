@@ -32,26 +32,35 @@ class UpdateBGPPeerConnectionRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'ipaddress': 'str',
-        'asn': 'int',
-        'access_list': 'str',
-        'bgp_password': 'str',
-        'add_network_distance': 'bool',
-        'add_network_distance_direction': 'str',
-        'add_network_distance_hops': 'int'
+        "ipaddress": "str",
+        "asn": "int",
+        "access_list": "str",
+        "bgp_password": "str",
+        "add_network_distance": "bool",
+        "add_network_distance_direction": "str",
+        "add_network_distance_hops": "int",
     }
 
     attribute_map = {
-        'ipaddress': 'ipaddress',
-        'asn': 'asn',
-        'access_list': 'access_list',
-        'bgp_password': 'bgp_password',
-        'add_network_distance': 'add_network_distance',
-        'add_network_distance_direction': 'add_network_distance_direction',
-        'add_network_distance_hops': 'add_network_distance_hops'
+        "ipaddress": "ipaddress",
+        "asn": "asn",
+        "access_list": "access_list",
+        "bgp_password": "bgp_password",
+        "add_network_distance": "add_network_distance",
+        "add_network_distance_direction": "add_network_distance_direction",
+        "add_network_distance_hops": "add_network_distance_hops",
     }
 
-    def __init__(self, ipaddress=None, asn=None, access_list=None, bgp_password=None, add_network_distance=None, add_network_distance_direction=None, add_network_distance_hops=None):  # noqa: E501
+    def __init__(
+        self,
+        ipaddress=None,
+        asn=None,
+        access_list=None,
+        bgp_password=None,
+        add_network_distance=None,
+        add_network_distance_direction=None,
+        add_network_distance_hops=None,
+    ):  # noqa: E501
         """UpdateBGPPeerConnectionRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._ipaddress = None
@@ -97,7 +106,9 @@ class UpdateBGPPeerConnectionRequest(object):
         :type: str
         """
         if ipaddress is None:
-            raise ValueError("Invalid value for `ipaddress`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `ipaddress`, must not be `None`"
+            )  # noqa: E501
 
         self._ipaddress = ipaddress
 
@@ -122,7 +133,9 @@ class UpdateBGPPeerConnectionRequest(object):
         :type: int
         """
         if asn is None:
-            raise ValueError("Invalid value for `asn`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `asn`, must not be `None`"
+            )  # noqa: E501
 
         self._asn = asn
 
@@ -248,18 +261,20 @@ class UpdateBGPPeerConnectionRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

@@ -32,28 +32,38 @@ class UpdateIpsecTunnelRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'bounce': 'bool',
-        'description': 'str',
-        'remote_subnet': 'str',
-        'local_subnet': 'str',
-        'ping_ipaddress': 'str',
-        'ping_interval': 'int',
-        'ping_interface': 'str',
-        'enabled': 'bool'
+        "bounce": "bool",
+        "description": "str",
+        "remote_subnet": "str",
+        "local_subnet": "str",
+        "ping_ipaddress": "str",
+        "ping_interval": "int",
+        "ping_interface": "str",
+        "enabled": "bool",
     }
 
     attribute_map = {
-        'bounce': 'bounce',
-        'description': 'description',
-        'remote_subnet': 'remote_subnet',
-        'local_subnet': 'local_subnet',
-        'ping_ipaddress': 'ping_ipaddress',
-        'ping_interval': 'ping_interval',
-        'ping_interface': 'ping_interface',
-        'enabled': 'enabled'
+        "bounce": "bounce",
+        "description": "description",
+        "remote_subnet": "remote_subnet",
+        "local_subnet": "local_subnet",
+        "ping_ipaddress": "ping_ipaddress",
+        "ping_interval": "ping_interval",
+        "ping_interface": "ping_interface",
+        "enabled": "enabled",
     }
 
-    def __init__(self, bounce=False, description=None, remote_subnet=None, local_subnet=None, ping_ipaddress=None, ping_interval=None, ping_interface=None, enabled=None):  # noqa: E501
+    def __init__(
+        self,
+        bounce=False,
+        description=None,
+        remote_subnet=None,
+        local_subnet=None,
+        ping_ipaddress=None,
+        ping_interval=None,
+        ping_interface=None,
+        enabled=None,
+    ):  # noqa: E501
         """UpdateIpsecTunnelRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._bounce = None
@@ -272,18 +282,20 @@ class UpdateIpsecTunnelRequest(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

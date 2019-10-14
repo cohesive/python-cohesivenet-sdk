@@ -32,20 +32,22 @@ class LicenseParameters(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'subnet': 'str',
-        'controllers': 'list[str]',
-        'clients': 'list[str]',
-        'my_manager_vip': 'str'
+        "subnet": "str",
+        "controllers": "list[str]",
+        "clients": "list[str]",
+        "my_manager_vip": "str",
     }
 
     attribute_map = {
-        'subnet': 'subnet',
-        'controllers': 'controllers',
-        'clients': 'clients',
-        'my_manager_vip': 'my_manager_vip'
+        "subnet": "subnet",
+        "controllers": "controllers",
+        "clients": "clients",
+        "my_manager_vip": "my_manager_vip",
     }
 
-    def __init__(self, subnet=None, controllers=None, clients=None, my_manager_vip=None):  # noqa: E501
+    def __init__(
+        self, subnet=None, controllers=None, clients=None, my_manager_vip=None
+    ):  # noqa: E501
         """LicenseParameters - a model defined in OpenAPI"""  # noqa: E501
 
         self._subnet = None
@@ -158,18 +160,20 @@ class LicenseParameters(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

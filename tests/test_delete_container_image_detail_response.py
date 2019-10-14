@@ -16,7 +16,9 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.models.delete_container_image_detail_response import DeleteContainerImageDetailResponse  # noqa: E501
+from cohesivenet.models.delete_container_image_detail_response import (
+    DeleteContainerImageDetailResponse,
+)  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -36,5 +38,5 @@ class TestDeleteContainerImageDetailResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

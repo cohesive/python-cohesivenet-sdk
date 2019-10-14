@@ -10,7 +10,9 @@ def get_default_gateway(subnet_cidr: str) -> str:
     return str(next(ipaddress.ip_network(subnet_cidr).hosts()))
 
 
-def calculate_next_subnets(prefix_length: int, take: int, cidr: str, after_subnet: str = None) -> List[str]:
+def calculate_next_subnets(
+    prefix_length: int, take: int, cidr: str, after_subnet: str = None
+) -> List[str]:
     """Calculate the next {take} subnets of prefix length {prefix_length} for network cidr {cidr}
 
     Arguments:
@@ -30,15 +32,17 @@ def calculate_next_subnets(prefix_length: int, take: int, cidr: str, after_subne
             next(sn for sn in subnets if sn == ipaddress.ip_network(after_subnet))
         except (StopIteration, ValueError):
             raise NetworkMathException(
-                'Subnet %s not found in subnets of prefix '
-                'length %s for parent network %s.' % (after_subnet, prefix_length, cidr))
+                "Subnet %s not found in subnets of prefix "
+                "length %s for parent network %s." % (after_subnet, prefix_length, cidr)
+            )
 
     try:
         return [next(subnets) for _ in range(take)]
     except StopIteration:
         raise NetworkMathException(
-            'Cant take %s subnets [prefix:%s] from parent '
-            'net %s [after subnet:%s]' % (take, prefix_length, cidr, after_subnet))
+            "Cant take %s subnets [prefix:%s] from parent "
+            "net %s [after subnet:%s]" % (take, prefix_length, cidr, after_subnet)
+        )
 
 
 def subnet_contains_ipv4(ip_address: str, subnet: str):

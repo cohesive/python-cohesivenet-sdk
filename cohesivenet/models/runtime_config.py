@@ -32,36 +32,50 @@ class RuntimeConfig(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'asn': 'int',
-        'topology_name': 'str',
-        'topology_checksum': 'str',
-        'manager_id': 'int',
-        'ntp_hosts': 'str',
-        'vns3_version': 'str',
-        'licensed': 'bool',
-        'overlay_ipaddress': 'str',
-        'peered': 'bool',
-        'public_ipaddress': 'str',
-        'private_ipaddress': 'str',
-        'security_token': 'str'
+        "asn": "int",
+        "topology_name": "str",
+        "topology_checksum": "str",
+        "manager_id": "int",
+        "ntp_hosts": "str",
+        "vns3_version": "str",
+        "licensed": "bool",
+        "overlay_ipaddress": "str",
+        "peered": "bool",
+        "public_ipaddress": "str",
+        "private_ipaddress": "str",
+        "security_token": "str",
     }
 
     attribute_map = {
-        'asn': 'asn',
-        'topology_name': 'topology_name',
-        'topology_checksum': 'topology_checksum',
-        'manager_id': 'manager_id',
-        'ntp_hosts': 'ntp_hosts',
-        'vns3_version': 'vns3_version',
-        'licensed': 'licensed',
-        'overlay_ipaddress': 'overlay_ipaddress',
-        'peered': 'peered',
-        'public_ipaddress': 'public_ipaddress',
-        'private_ipaddress': 'private_ipaddress',
-        'security_token': 'security_token'
+        "asn": "asn",
+        "topology_name": "topology_name",
+        "topology_checksum": "topology_checksum",
+        "manager_id": "manager_id",
+        "ntp_hosts": "ntp_hosts",
+        "vns3_version": "vns3_version",
+        "licensed": "licensed",
+        "overlay_ipaddress": "overlay_ipaddress",
+        "peered": "peered",
+        "public_ipaddress": "public_ipaddress",
+        "private_ipaddress": "private_ipaddress",
+        "security_token": "security_token",
     }
 
-    def __init__(self, asn=None, topology_name=None, topology_checksum=None, manager_id=None, ntp_hosts=None, vns3_version=None, licensed=None, overlay_ipaddress=None, peered=None, public_ipaddress=None, private_ipaddress=None, security_token=None):  # noqa: E501
+    def __init__(
+        self,
+        asn=None,
+        topology_name=None,
+        topology_checksum=None,
+        manager_id=None,
+        ntp_hosts=None,
+        vns3_version=None,
+        licensed=None,
+        overlay_ipaddress=None,
+        peered=None,
+        public_ipaddress=None,
+        private_ipaddress=None,
+        security_token=None,
+    ):  # noqa: E501
         """RuntimeConfig - a model defined in OpenAPI"""  # noqa: E501
 
         self._asn = None
@@ -372,18 +386,20 @@ class RuntimeConfig(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

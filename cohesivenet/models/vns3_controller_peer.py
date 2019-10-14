@@ -32,26 +32,35 @@ class VNS3ControllerPeer(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'not_set': 'bool',
-        '_self': 'bool',
-        'mtu': 'int',
-        'reachable': 'bool',
-        'address': 'str',
-        'overlay_ipaddress': 'str'
+        "id": "int",
+        "not_set": "bool",
+        "_self": "bool",
+        "mtu": "int",
+        "reachable": "bool",
+        "address": "str",
+        "overlay_ipaddress": "str",
     }
 
     attribute_map = {
-        'id': 'id',
-        'not_set': 'not_set',
-        '_self': 'self',
-        'mtu': 'mtu',
-        'reachable': 'reachable',
-        'address': 'address',
-        'overlay_ipaddress': 'overlay_ipaddress'
+        "id": "id",
+        "not_set": "not_set",
+        "_self": "self",
+        "mtu": "mtu",
+        "reachable": "reachable",
+        "address": "address",
+        "overlay_ipaddress": "overlay_ipaddress",
     }
 
-    def __init__(self, id=None, not_set=None, _self=None, mtu=None, reachable=None, address=None, overlay_ipaddress=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        not_set=None,
+        _self=None,
+        mtu=None,
+        reachable=None,
+        address=None,
+        overlay_ipaddress=None,
+    ):  # noqa: E501
         """VNS3ControllerPeer - a model defined in OpenAPI"""  # noqa: E501
 
         self._id = None
@@ -232,18 +241,20 @@ class VNS3ControllerPeer(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

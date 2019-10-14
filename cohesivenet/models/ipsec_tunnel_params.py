@@ -32,38 +32,53 @@ class IpsecTunnelParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'phase2': 'str',
-        'outbound_spi': 'str',
-        'inbound_spi': 'str',
-        'esp_time_remaining': 'str',
-        'esp_port': 'str',
-        'phase2_algo': 'str',
-        'phase2_hash': 'str',
-        'nat_t': 'str',
-        'dpd': 'str',
-        'phase1': 'str',
-        'isakmp_port': 'str',
-        'phase1_prf': 'str',
-        'phase1_dh_group': 'int'
+        "phase2": "str",
+        "outbound_spi": "str",
+        "inbound_spi": "str",
+        "esp_time_remaining": "str",
+        "esp_port": "str",
+        "phase2_algo": "str",
+        "phase2_hash": "str",
+        "nat_t": "str",
+        "dpd": "str",
+        "phase1": "str",
+        "isakmp_port": "str",
+        "phase1_prf": "str",
+        "phase1_dh_group": "int",
     }
 
     attribute_map = {
-        'phase2': 'phase2',
-        'outbound_spi': 'outbound_spi',
-        'inbound_spi': 'inbound_spi',
-        'esp_time_remaining': 'esp_time_remaining',
-        'esp_port': 'esp_port',
-        'phase2_algo': 'phase2_algo',
-        'phase2_hash': 'phase2_hash',
-        'nat_t': 'nat_t',
-        'dpd': 'dpd',
-        'phase1': 'phase1',
-        'isakmp_port': 'isakmp_port',
-        'phase1_prf': 'phase1_prf',
-        'phase1_dh_group': 'phase1_dh_group'
+        "phase2": "phase2",
+        "outbound_spi": "outbound_spi",
+        "inbound_spi": "inbound_spi",
+        "esp_time_remaining": "esp_time_remaining",
+        "esp_port": "esp_port",
+        "phase2_algo": "phase2_algo",
+        "phase2_hash": "phase2_hash",
+        "nat_t": "nat_t",
+        "dpd": "dpd",
+        "phase1": "phase1",
+        "isakmp_port": "isakmp_port",
+        "phase1_prf": "phase1_prf",
+        "phase1_dh_group": "phase1_dh_group",
     }
 
-    def __init__(self, phase2=None, outbound_spi=None, inbound_spi=None, esp_time_remaining=None, esp_port=None, phase2_algo=None, phase2_hash=None, nat_t=None, dpd=None, phase1=None, isakmp_port=None, phase1_prf=None, phase1_dh_group=None):  # noqa: E501
+    def __init__(
+        self,
+        phase2=None,
+        outbound_spi=None,
+        inbound_spi=None,
+        esp_time_remaining=None,
+        esp_port=None,
+        phase2_algo=None,
+        phase2_hash=None,
+        nat_t=None,
+        dpd=None,
+        phase1=None,
+        isakmp_port=None,
+        phase1_prf=None,
+        phase1_dh_group=None,
+    ):  # noqa: E501
         """IpsecTunnelParams - a model defined in OpenAPI"""  # noqa: E501
 
         self._phase2 = None
@@ -388,18 +403,20 @@ class IpsecTunnelParams(object):
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
 

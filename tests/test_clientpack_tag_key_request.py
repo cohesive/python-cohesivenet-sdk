@@ -16,7 +16,9 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.models.clientpack_tag_key_request import ClientpackTagKeyRequest  # noqa: E501
+from cohesivenet.models.clientpack_tag_key_request import (
+    ClientpackTagKeyRequest,
+)  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -36,5 +38,5 @@ class TestClientpackTagKeyRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

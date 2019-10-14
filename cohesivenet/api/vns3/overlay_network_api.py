@@ -18,10 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class OverlayNetworkApi(object):
@@ -34,10 +31,13 @@ class OverlayNetworkApi(object):
     def __init__(self, api_client=None):
         if api_client is None:
             from cohesivenet.vns3_client import VNS3Client
+
             api_client = VNS3Client()
         self.api_client = api_client
 
-    def delete_clientpack_tag(self, clientpack_name, clientpack_tag_key_request, **kwargs):  # noqa: E501
+    def delete_clientpack_tag(
+        self, clientpack_name, clientpack_tag_key_request, **kwargs
+    ):  # noqa: E501
         """delete_clientpack_tag  # noqa: E501
 
         For deleting individual clientpack tags  # noqa: E501
@@ -60,10 +60,14 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.delete_clientpack_tag_with_http_info(clientpack_name, clientpack_tag_key_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.delete_clientpack_tag_with_http_info(
+            clientpack_name, clientpack_tag_key_request, **kwargs
+        )  # noqa: E501
 
-    def delete_clientpack_tag_with_http_info(self, clientpack_name, clientpack_tag_key_request, **kwargs):  # noqa: E501
+    def delete_clientpack_tag_with_http_info(
+        self, clientpack_name, clientpack_tag_key_request, **kwargs
+    ):  # noqa: E501
         """delete_clientpack_tag  # noqa: E501
 
         For deleting individual clientpack tags  # noqa: E501
@@ -91,34 +95,44 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['clientpack_name', 'clientpack_tag_key_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["clientpack_name", "clientpack_tag_key_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_clientpack_tag" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'clientpack_name' is set
-        if ('clientpack_name' not in local_var_params or
-                local_var_params['clientpack_name'] is None):
-            raise ApiValueError("Missing the required parameter `clientpack_name` when calling `delete_clientpack_tag`")  # noqa: E501
+        if (
+            "clientpack_name" not in local_var_params
+            or local_var_params["clientpack_name"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `clientpack_name` when calling `delete_clientpack_tag`"
+            )  # noqa: E501
         # verify the required parameter 'clientpack_tag_key_request' is set
-        if ('clientpack_tag_key_request' not in local_var_params or
-                local_var_params['clientpack_tag_key_request'] is None):
-            raise ApiValueError("Missing the required parameter `clientpack_tag_key_request` when calling `delete_clientpack_tag`")  # noqa: E501
+        if (
+            "clientpack_tag_key_request" not in local_var_params
+            or local_var_params["clientpack_tag_key_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `clientpack_tag_key_request` when calling `delete_clientpack_tag`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'clientpack_name' in local_var_params:
-            path_params['clientpack_name'] = local_var_params['clientpack_name']  # noqa: E501
+        if "clientpack_name" in local_var_params:
+            path_params["clientpack_name"] = local_var_params[
+                "clientpack_name"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -128,34 +142,42 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'clientpack_tag_key_request' in local_var_params:
-            body_params = local_var_params['clientpack_tag_key_request']
+        if "clientpack_tag_key_request" in local_var_params:
+            body_params = local_var_params["clientpack_tag_key_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpack/{name}', 'DELETE',
+            "/clientpack/{name}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_clientpack(self, clientpack_name, **kwargs):  # noqa: E501
         """get_clientpack  # noqa: E501
@@ -179,8 +201,10 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.get_clientpack_with_http_info(clientpack_name, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.get_clientpack_with_http_info(
+            clientpack_name, **kwargs
+        )  # noqa: E501
 
     def get_clientpack_with_http_info(self, clientpack_name, **kwargs):  # noqa: E501
         """get_clientpack  # noqa: E501
@@ -209,30 +233,36 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['clientpack_name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["clientpack_name"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_clientpack" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'clientpack_name' is set
-        if ('clientpack_name' not in local_var_params or
-                local_var_params['clientpack_name'] is None):
-            raise ApiValueError("Missing the required parameter `clientpack_name` when calling `get_clientpack`")  # noqa: E501
+        if (
+            "clientpack_name" not in local_var_params
+            or local_var_params["clientpack_name"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `clientpack_name` when calling `get_clientpack`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'clientpack_name' in local_var_params:
-            path_params['clientpack_name'] = local_var_params['clientpack_name']  # noqa: E501
+        if "clientpack_name" in local_var_params:
+            path_params["clientpack_name"] = local_var_params[
+                "clientpack_name"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -243,27 +273,32 @@ class OverlayNetworkApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpacks/{name}', 'GET',
+            "/clientpacks/{name}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ClientpackDetailResponse',  # noqa: E501
+            response_type="ClientpackDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_clientpacks(self, **kwargs):  # noqa: E501
         """get_clientpacks  # noqa: E501
@@ -287,7 +322,7 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_clientpacks_with_http_info(**kwargs)  # noqa: E501
 
     def get_clientpacks_with_http_info(self, **kwargs):  # noqa: E501
@@ -317,28 +352,28 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['sorted']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["sorted"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_clientpacks" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'sorted' in local_var_params:
-            query_params.append(('sorted', local_var_params['sorted']))  # noqa: E501
+        if "sorted" in local_var_params:
+            query_params.append(("sorted", local_var_params["sorted"]))  # noqa: E501
 
         header_params = {}
 
@@ -347,27 +382,32 @@ class OverlayNetworkApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpacks', 'GET',
+            "/clientpacks",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ClientpackListResponse',  # noqa: E501
+            response_type="ClientpackListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_clients_status(self, **kwargs):  # noqa: E501
         """get_clients_status  # noqa: E501
@@ -390,7 +430,7 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_clients_status_with_http_info(**kwargs)  # noqa: E501
 
     def get_clients_status_with_http_info(self, **kwargs):  # noqa: E501
@@ -420,19 +460,19 @@ class OverlayNetworkApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_clients_status" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -447,27 +487,32 @@ class OverlayNetworkApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/status/clients', 'GET',
+            "/status/clients",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='OverlayClientsListResponse',  # noqa: E501
+            response_type="OverlayClientsListResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def get_connected_subnets(self, **kwargs):  # noqa: E501
         """get_connected_subnets  # noqa: E501
@@ -491,7 +536,7 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.get_connected_subnets_with_http_info(**kwargs)  # noqa: E501
 
     def get_connected_subnets_with_http_info(self, **kwargs):  # noqa: E501
@@ -521,28 +566,30 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['extended_output']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["extended_output"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_connected_subnets" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'extended_output' in local_var_params:
-            query_params.append(('extended_output', local_var_params['extended_output']))  # noqa: E501
+        if "extended_output" in local_var_params:
+            query_params.append(
+                ("extended_output", local_var_params["extended_output"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -551,29 +598,36 @@ class OverlayNetworkApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/status/connected_subnets', 'GET',
+            "/status/connected_subnets",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConnectedSubnetsDetailResponse',  # noqa: E501
+            response_type="ConnectedSubnetsDetailResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_download_clientpack(self, download_clientpack_request, **kwargs):  # noqa: E501
+    def get_download_clientpack(
+        self, download_clientpack_request, **kwargs
+    ):  # noqa: E501
         """get_download_clientpack  # noqa: E501
 
         Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
@@ -595,10 +649,14 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.get_download_clientpack_with_http_info(download_clientpack_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.get_download_clientpack_with_http_info(
+            download_clientpack_request, **kwargs
+        )  # noqa: E501
 
-    def get_download_clientpack_with_http_info(self, download_clientpack_request, **kwargs):  # noqa: E501
+    def get_download_clientpack_with_http_info(
+        self, download_clientpack_request, **kwargs
+    ):  # noqa: E501
         """get_download_clientpack  # noqa: E501
 
         Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
@@ -625,24 +683,28 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['download_clientpack_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["download_clientpack_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_download_clientpack" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'download_clientpack_request' is set
-        if ('download_clientpack_request' not in local_var_params or
-                local_var_params['download_clientpack_request'] is None):
-            raise ApiValueError("Missing the required parameter `download_clientpack_request` when calling `get_download_clientpack`")  # noqa: E501
+        if (
+            "download_clientpack_request" not in local_var_params
+            or local_var_params["download_clientpack_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `download_clientpack_request` when calling `get_download_clientpack`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -656,34 +718,42 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'download_clientpack_request' in local_var_params:
-            body_params = local_var_params['download_clientpack_request']
+        if "download_clientpack_request" in local_var_params:
+            body_params = local_var_params["download_clientpack_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain', 'application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["text/plain", "application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpack', 'GET',
+            "/clientpack",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='file',  # noqa: E501
+            response_type="file",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_calc_next_clientpack(self, **kwargs):  # noqa: E501
         """post_calc_next_clientpack  # noqa: E501
@@ -707,7 +777,7 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.post_calc_next_clientpack_with_http_info(**kwargs)  # noqa: E501
 
     def post_calc_next_clientpack_with_http_info(self, **kwargs):  # noqa: E501
@@ -737,20 +807,20 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['calculate_next_clientpack_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["calculate_next_clientpack_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_calc_next_clientpack" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -764,36 +834,46 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'calculate_next_clientpack_request' in local_var_params:
-            body_params = local_var_params['calculate_next_clientpack_request']
+        if "calculate_next_clientpack_request" in local_var_params:
+            body_params = local_var_params["calculate_next_clientpack_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpacks/next_available', 'POST',
+            "/clientpacks/next_available",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def post_clientpack_tag(self, clientpack_name, create_clientpack_tag_request, **kwargs):  # noqa: E501
+    def post_clientpack_tag(
+        self, clientpack_name, create_clientpack_tag_request, **kwargs
+    ):  # noqa: E501
         """post_clientpack_tag  # noqa: E501
 
         For tagging individual clientpacks.  # noqa: E501
@@ -816,10 +896,14 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_clientpack_tag_with_http_info(clientpack_name, create_clientpack_tag_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_clientpack_tag_with_http_info(
+            clientpack_name, create_clientpack_tag_request, **kwargs
+        )  # noqa: E501
 
-    def post_clientpack_tag_with_http_info(self, clientpack_name, create_clientpack_tag_request, **kwargs):  # noqa: E501
+    def post_clientpack_tag_with_http_info(
+        self, clientpack_name, create_clientpack_tag_request, **kwargs
+    ):  # noqa: E501
         """post_clientpack_tag  # noqa: E501
 
         For tagging individual clientpacks.  # noqa: E501
@@ -847,34 +931,44 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['clientpack_name', 'create_clientpack_tag_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["clientpack_name", "create_clientpack_tag_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_clientpack_tag" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'clientpack_name' is set
-        if ('clientpack_name' not in local_var_params or
-                local_var_params['clientpack_name'] is None):
-            raise ApiValueError("Missing the required parameter `clientpack_name` when calling `post_clientpack_tag`")  # noqa: E501
+        if (
+            "clientpack_name" not in local_var_params
+            or local_var_params["clientpack_name"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `clientpack_name` when calling `post_clientpack_tag`"
+            )  # noqa: E501
         # verify the required parameter 'create_clientpack_tag_request' is set
-        if ('create_clientpack_tag_request' not in local_var_params or
-                local_var_params['create_clientpack_tag_request'] is None):
-            raise ApiValueError("Missing the required parameter `create_clientpack_tag_request` when calling `post_clientpack_tag`")  # noqa: E501
+        if (
+            "create_clientpack_tag_request" not in local_var_params
+            or local_var_params["create_clientpack_tag_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `create_clientpack_tag_request` when calling `post_clientpack_tag`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'clientpack_name' in local_var_params:
-            path_params['clientpack_name'] = local_var_params['clientpack_name']  # noqa: E501
+        if "clientpack_name" in local_var_params:
+            path_params["clientpack_name"] = local_var_params[
+                "clientpack_name"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -884,34 +978,42 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'create_clientpack_tag_request' in local_var_params:
-            body_params = local_var_params['create_clientpack_tag_request']
+        if "create_clientpack_tag_request" in local_var_params:
+            body_params = local_var_params["create_clientpack_tag_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpack/{name}', 'POST',
+            "/clientpack/{name}",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ClientpackTagsResponse',  # noqa: E501
+            response_type="ClientpackTagsResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_reset_all_clients(self, **kwargs):  # noqa: E501
         """post_reset_all_clients  # noqa: E501
@@ -934,7 +1036,7 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
+        kwargs["_return_http_data_only"] = True
         return self.post_reset_all_clients_with_http_info(**kwargs)  # noqa: E501
 
     def post_reset_all_clients_with_http_info(self, **kwargs):  # noqa: E501
@@ -964,19 +1066,19 @@ class OverlayNetworkApi(object):
         local_var_params = locals()
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_reset_all_clients" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
 
         collection_formats = {}
 
@@ -991,27 +1093,32 @@ class OverlayNetworkApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clients/reset_all', 'POST',
+            "/clients/reset_all",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BulkClientResetStatusResponse',  # noqa: E501
+            response_type="BulkClientResetStatusResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def post_reset_client(self, reset_overlay_client_request, **kwargs):  # noqa: E501
         """post_reset_client  # noqa: E501
@@ -1035,10 +1142,14 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.post_reset_client_with_http_info(reset_overlay_client_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.post_reset_client_with_http_info(
+            reset_overlay_client_request, **kwargs
+        )  # noqa: E501
 
-    def post_reset_client_with_http_info(self, reset_overlay_client_request, **kwargs):  # noqa: E501
+    def post_reset_client_with_http_info(
+        self, reset_overlay_client_request, **kwargs
+    ):  # noqa: E501
         """post_reset_client  # noqa: E501
 
         For resetting the connection of a client to a VNS3 Controller  # noqa: E501
@@ -1065,24 +1176,28 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['reset_overlay_client_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["reset_overlay_client_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method post_reset_client" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'reset_overlay_client_request' is set
-        if ('reset_overlay_client_request' not in local_var_params or
-                local_var_params['reset_overlay_client_request'] is None):
-            raise ApiValueError("Missing the required parameter `reset_overlay_client_request` when calling `post_reset_client`")  # noqa: E501
+        if (
+            "reset_overlay_client_request" not in local_var_params
+            or local_var_params["reset_overlay_client_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `reset_overlay_client_request` when calling `post_reset_client`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1096,34 +1211,42 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'reset_overlay_client_request' in local_var_params:
-            body_params = local_var_params['reset_overlay_client_request']
+        if "reset_overlay_client_request" in local_var_params:
+            body_params = local_var_params["reset_overlay_client_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/client/reset', 'POST',
+            "/client/reset",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ClientpackStatusResponse',  # noqa: E501
+            response_type="ClientpackStatusResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_add_clientpacks(self, add_clientpack_request, **kwargs):  # noqa: E501
         """put_add_clientpacks  # noqa: E501
@@ -1147,10 +1270,14 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_add_clientpacks_with_http_info(add_clientpack_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_add_clientpacks_with_http_info(
+            add_clientpack_request, **kwargs
+        )  # noqa: E501
 
-    def put_add_clientpacks_with_http_info(self, add_clientpack_request, **kwargs):  # noqa: E501
+    def put_add_clientpacks_with_http_info(
+        self, add_clientpack_request, **kwargs
+    ):  # noqa: E501
         """put_add_clientpacks  # noqa: E501
 
         Incrementally add new clientpacks for use  # noqa: E501
@@ -1177,24 +1304,28 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['add_clientpack_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["add_clientpack_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_add_clientpacks" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'add_clientpack_request' is set
-        if ('add_clientpack_request' not in local_var_params or
-                local_var_params['add_clientpack_request'] is None):
-            raise ApiValueError("Missing the required parameter `add_clientpack_request` when calling `put_add_clientpacks`")  # noqa: E501
+        if (
+            "add_clientpack_request" not in local_var_params
+            or local_var_params["add_clientpack_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `add_clientpack_request` when calling `put_add_clientpacks`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1208,34 +1339,42 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'add_clientpack_request' in local_var_params:
-            body_params = local_var_params['add_clientpack_request']
+        if "add_clientpack_request" in local_var_params:
+            body_params = local_var_params["add_clientpack_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpacks/add_clientpacks', 'PUT',
+            "/clientpacks/add_clientpacks",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
     def put_clientpack(self, unknown_base_type, **kwargs):  # noqa: E501
         """put_clientpack  # noqa: E501
@@ -1259,8 +1398,10 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_clientpack_with_http_info(unknown_base_type, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_clientpack_with_http_info(
+            unknown_base_type, **kwargs
+        )  # noqa: E501
 
     def put_clientpack_with_http_info(self, unknown_base_type, **kwargs):  # noqa: E501
         """put_clientpack  # noqa: E501
@@ -1289,24 +1430,28 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['unknown_base_type']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["unknown_base_type"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_clientpack" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'unknown_base_type' is set
-        if ('unknown_base_type' not in local_var_params or
-                local_var_params['unknown_base_type'] is None):
-            raise ApiValueError("Missing the required parameter `unknown_base_type` when calling `put_clientpack`")  # noqa: E501
+        if (
+            "unknown_base_type" not in local_var_params
+            or local_var_params["unknown_base_type"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `unknown_base_type` when calling `put_clientpack`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1320,36 +1465,46 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'unknown_base_type' in local_var_params:
-            body_params = local_var_params['unknown_base_type']
+        if "unknown_base_type" in local_var_params:
+            body_params = local_var_params["unknown_base_type"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpack', 'PUT',
+            "/clientpack",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='OneOfobjectobject',  # noqa: E501
+            response_type="OneOfobjectobject",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_disconnect_clientpack(self, clientpack_name, disconnet_client_request, **kwargs):  # noqa: E501
+    def put_disconnect_clientpack(
+        self, clientpack_name, disconnet_client_request, **kwargs
+    ):  # noqa: E501
         """put_disconnect_clientpack  # noqa: E501
 
         Force disconnect client for named clientpack  # noqa: E501
@@ -1372,10 +1527,14 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_disconnect_clientpack_with_http_info(clientpack_name, disconnet_client_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_disconnect_clientpack_with_http_info(
+            clientpack_name, disconnet_client_request, **kwargs
+        )  # noqa: E501
 
-    def put_disconnect_clientpack_with_http_info(self, clientpack_name, disconnet_client_request, **kwargs):  # noqa: E501
+    def put_disconnect_clientpack_with_http_info(
+        self, clientpack_name, disconnet_client_request, **kwargs
+    ):  # noqa: E501
         """put_disconnect_clientpack  # noqa: E501
 
         Force disconnect client for named clientpack  # noqa: E501
@@ -1403,34 +1562,44 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['clientpack_name', 'disconnet_client_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["clientpack_name", "disconnet_client_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_disconnect_clientpack" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'clientpack_name' is set
-        if ('clientpack_name' not in local_var_params or
-                local_var_params['clientpack_name'] is None):
-            raise ApiValueError("Missing the required parameter `clientpack_name` when calling `put_disconnect_clientpack`")  # noqa: E501
+        if (
+            "clientpack_name" not in local_var_params
+            or local_var_params["clientpack_name"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `clientpack_name` when calling `put_disconnect_clientpack`"
+            )  # noqa: E501
         # verify the required parameter 'disconnet_client_request' is set
-        if ('disconnet_client_request' not in local_var_params or
-                local_var_params['disconnet_client_request'] is None):
-            raise ApiValueError("Missing the required parameter `disconnet_client_request` when calling `put_disconnect_clientpack`")  # noqa: E501
+        if (
+            "disconnet_client_request" not in local_var_params
+            or local_var_params["disconnet_client_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `disconnet_client_request` when calling `put_disconnect_clientpack`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'clientpack_name' in local_var_params:
-            path_params['clientpack_name'] = local_var_params['clientpack_name']  # noqa: E501
+        if "clientpack_name" in local_var_params:
+            path_params["clientpack_name"] = local_var_params[
+                "clientpack_name"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1440,36 +1609,46 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'disconnet_client_request' in local_var_params:
-            body_params = local_var_params['disconnet_client_request']
+        if "disconnet_client_request" in local_var_params:
+            body_params = local_var_params["disconnet_client_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpack/{name}', 'PUT',
+            "/clientpack/{name}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def put_update_clientpacks(self, update_config_clientpack_request, **kwargs):  # noqa: E501
+    def put_update_clientpacks(
+        self, update_config_clientpack_request, **kwargs
+    ):  # noqa: E501
         """put_update_clientpacks  # noqa: E501
 
         For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.  This enables a variety of work flows by calling these functions after key generation,  but before general provisioning of addresses to devivces   # noqa: E501
@@ -1491,10 +1670,14 @@ class OverlayNetworkApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        return self.put_update_clientpacks_with_http_info(update_config_clientpack_request, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        return self.put_update_clientpacks_with_http_info(
+            update_config_clientpack_request, **kwargs
+        )  # noqa: E501
 
-    def put_update_clientpacks_with_http_info(self, update_config_clientpack_request, **kwargs):  # noqa: E501
+    def put_update_clientpacks_with_http_info(
+        self, update_config_clientpack_request, **kwargs
+    ):  # noqa: E501
         """put_update_clientpacks  # noqa: E501
 
         For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.  This enables a variety of work flows by calling these functions after key generation,  but before general provisioning of addresses to devivces   # noqa: E501
@@ -1521,24 +1704,28 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ['update_config_clientpack_request']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["update_config_clientpack_request"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
+        for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method put_update_clientpacks" % key
                 )
             local_var_params[key] = val
-        del local_var_params['kwargs']
+        del local_var_params["kwargs"]
         # verify the required parameter 'update_config_clientpack_request' is set
-        if ('update_config_clientpack_request' not in local_var_params or
-                local_var_params['update_config_clientpack_request'] is None):
-            raise ApiValueError("Missing the required parameter `update_config_clientpack_request` when calling `put_update_clientpacks`")  # noqa: E501
+        if (
+            "update_config_clientpack_request" not in local_var_params
+            or local_var_params["update_config_clientpack_request"] is None
+        ):
+            raise ApiValueError(
+                "Missing the required parameter `update_config_clientpack_request` when calling `put_update_clientpacks`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -1552,31 +1739,39 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'update_config_clientpack_request' in local_var_params:
-            body_params = local_var_params['update_config_clientpack_request']
+        if "update_config_clientpack_request" in local_var_params:
+            body_params = local_var_params["update_config_clientpack_request"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['basicAuth']  # noqa: E501
+        auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            '/clientpacks', 'PUT',
+            "/clientpacks",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UpdateClientpacksStatusResponse',  # noqa: E501
+            response_type="UpdateClientpacksStatusResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=local_var_params.get("async_req"),
+            _return_http_data_only=local_var_params.get(
+                "_return_http_data_only"
+            ),  # noqa: E501
+            _preload_content=local_var_params.get("_preload_content", True),
+            _request_timeout=local_var_params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

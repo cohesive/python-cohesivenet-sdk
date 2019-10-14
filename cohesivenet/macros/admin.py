@@ -18,14 +18,15 @@ def roll_api_password(new_password, clients) -> data_types.BulkOperationResult:
         BulkOperationResult - tuple containing the clients that 
         succeeded and the clients that failed with their exceptions
     """
+
     def _update_password(_client):
-        resp = _client.config.put_update_api_password({
-            'password': new_password
-        })
+        resp = _client.config.put_update_api_password({"password": new_password})
         _client.configuration.password = new_password
         return resp
 
-    return api_operations.__bulk_call_client(clients, _update_password, parallelize=True)
+    return api_operations.__bulk_call_client(
+        clients, _update_password, parallelize=True
+    )
 
 
 def disable_uis(clients):
@@ -39,15 +40,16 @@ def disable_uis(clients):
     Returns:
         BulkOperationResult
     """
+
     def _disable_ui(_client):
-        return _client.config.put_update_admin_ui({
-            'enabled': False
-        })
+        return _client.config.put_update_admin_ui({"enabled": False})
 
     return api_operations.__bulk_call_client(clients, _disable_ui)
 
 
-def roll_ui_credentials(new_credentials: dict, clients: List[cohesivenet.VNS3Client], enable_ui=False):
+def roll_ui_credentials(
+    new_credentials: dict, clients: List[cohesivenet.VNS3Client], enable_ui=False
+):
     """Update UI credentials to common credentials
     
     Arguments:
@@ -58,14 +60,18 @@ def roll_ui_credentials(new_credentials: dict, clients: List[cohesivenet.VNS3Cli
     Returns:
         BulkOperationResult
     """
-    assert 'username' in new_credentials, '"username" required in new_credentials arg'
-    assert 'password' in new_credentials, '"password" required in new_credentials arg'
+    assert "username" in new_credentials, '"username" required in new_credentials arg'
+    assert "password" in new_credentials, '"password" required in new_credentials arg'
 
     def _update_ui_credentials(_client):
-        return _client.config.put_update_admin_ui({
-            'admin_username': new_credentials.get('username'),
-            'admin_password': new_credentials.get('password'),
-            'enabled': enable_ui
-        })
+        return _client.config.put_update_admin_ui(
+            {
+                "admin_username": new_credentials.get("username"),
+                "admin_password": new_credentials.get("password"),
+                "enabled": enable_ui,
+            }
+        )
 
-    return api_operations.__bulk_call_client(clients, _update_ui_credentials, parallelize=True)
+    return api_operations.__bulk_call_client(
+        clients, _update_ui_credentials, parallelize=True
+    )
