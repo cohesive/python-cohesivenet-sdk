@@ -15,7 +15,7 @@ def setup_clients(host_password_dicts):
             host: str,
             password: str
         }
-    
+
     Returns:
         List[VNS3Client]
     """
@@ -35,11 +35,11 @@ def setup_clients(host_password_dicts):
 
 def update_client_passwords(clients, master_password):
     """[summary]
-    
+
     Arguments:
         clients {List[VNS3Client]}
         master_password {str}
-    
+
     Returns:
         List[VNS3Client]
     """
@@ -58,10 +58,10 @@ def get_env():
     MASTER_PASSWORD: master password to be used for API
     LICENSE: path to license file
     KEYSET_TOKEN: secret token to be used for keyset
-    
+
     Raises:
         RuntimeError: Raise runtime error if environment is not properly configured
-    
+
     Returns:
         Dict -- Parsed data for configuring a mesh network
     """
@@ -131,7 +131,7 @@ def setup_overlay(client, parameters):
 
 def peer_controllers(root_client, peer_client, parameters):
     """Run configure and create peering mesh and route advertisements
-    
+
     Arguments:
         root_client {VNS3Client}
         peer_client {VNS3Client}

@@ -66,11 +66,11 @@ def run_pipe_async(
 
 def take_keys(keys: List[str], data_dict):
     """Take keys from dict
-    
+
     Arguments:
         keys {List[str]} -- Keys it include in output dict
         data_dict {Dict}
-    
+
     Returns:
         [Dict]
     """
@@ -79,19 +79,19 @@ def take_keys(keys: List[str], data_dict):
 
 def flatten_dict(d, prefix=None, joinchar="__"):
     """flatten_dict Flatten nested dictionary, joining paths into single string key
-    
+
     Arguments:
         d {[type]} -- [description]
-    
+
     Keyword Arguments:
         prefix {str} -- Prefix string for joining keys (default: {None})
         joinchar {str} -- String for joining nested keys (default: {'__'})
-    
+
     Returns:
         [Dict] -- Dict of depth 1
     """
     key_value_pairs = {}
-    _prefix = lambda k: k if not prefix else "%s%s%s" % (prefix, joinchar, k)
+    def _prefix(k): return k if not prefix else "%s%s%s" % (prefix, joinchar, k)
     for k, v in d.items():
         if type(v) is dict:
             key_value_pairs.update(
@@ -104,13 +104,13 @@ def flatten_dict(d, prefix=None, joinchar="__"):
 
 def unflatten_dict(d, splitchar="__"):
     """unflatten_dict Build nested dictionary based on keys
-    
+
     Arguments:
         d {Dict}
-    
+
     Keyword Arguments:
         splitchar {str} -- str marking nested dictionary (default: {'__'})
-    
+
     Returns:
         [Dict]
     """
@@ -166,17 +166,17 @@ def duck_type_dict(datacls, data: dict, strict_types=True):
 
 def get_path(data_dict, key_path, fail=False):
     """get_path
-    
+
     Arguments:
         data_dict {dict} -- [description]
         key_path {str or List of strings} -- a.b.c or ['a', 'b', 'c']
-    
+
     Keyword Arguments:
         fail {bool} -- Raise exception if does not exist (default: {False})
-    
+
     Raises:
         Exception: Generic not found exception
-    
+
     Returns:
         [any] -- value at key path
     """
@@ -204,11 +204,11 @@ def map_dict_keypaths(key_map, data_dict):
 
 def partition_list_groups(object_list, number_partitions):
     """Partition list of objects into  
-    
+
     Arguments:
         object_list {List[Any]}
         number_partitions {int} -- [description]
-    
+
     Returns:
         [List[List[Any]]]
     """
@@ -222,7 +222,7 @@ def partition_list_groups(object_list, number_partitions):
     rounded_list = object_list[:-leftovers] if leftovers else object_list
 
     return [
-        rounded_list[i * partition_size : (i + 1) * partition_size]
+        rounded_list[i * partition_size: (i + 1) * partition_size]
         + ([leftover_set[i]] if len(leftover_set) > i else [])
         for i in range(number_partitions)
     ]
@@ -230,7 +230,7 @@ def partition_list_groups(object_list, number_partitions):
 
 def partition_list_ratios(object_list, partition_ratios):
     """Partition list of objects into groups based on ratios list
-    
+
     Arguments:
         object_list {List[Any]}
         partition_ratios {List[float]}
@@ -252,6 +252,6 @@ def partition_list_ratios(object_list, partition_ratios):
     _cursor = 0
     partitions = {}
     for i, size in enumerate(partition_sizes):
-        partitions[str(partition_ratios[i])] = object_list[_cursor : (_cursor + size)]
+        partitions[str(partition_ratios[i])] = object_list[_cursor: (_cursor + size)]
         _cursor += size
     return partitions

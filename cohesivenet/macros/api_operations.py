@@ -28,10 +28,10 @@ def retry_call(call_api, args=(), kwargs={}, attempt=0, max_attempts=10, sleep=2
 
 def gather_results(results):
     """Group results if by success and exception
-    
+
     Arguments:
         results {List[ClientExceptionResult or Any]}
-    
+
     Returns:
         Tuple[List[Any], List[ClientExceptionResult]]
     """
@@ -48,11 +48,11 @@ def gather_results(results):
 
 def try_call_client(client, call, *args, **kwargs):
     """Try call method call(client, *args, **kwargs) catch exception
-    
+
     Arguments:
         client {VNS3Client}
         call {Callable} - function that accepts client as first arg
-    
+
     Returns:
         [OperationResult or ClientExceptionResult]
     """
@@ -65,11 +65,11 @@ def try_call_client(client, call, *args, **kwargs):
 
 async def try_call_client_async(client, call, *args, **kwargs):
     """Async call client wrapper
-    
+
     Arguments:
         client {VNS3Client}
         call {Callable} - function that accepts client as first arg
-    
+
     Returns:
         [OperationResult or ClientExceptionResult]
     """
@@ -78,10 +78,10 @@ async def try_call_client_async(client, call, *args, **kwargs):
 
 def try_call_api(api_call, *args, should_raise=False, **kwargs):
     """try_api_call Wrapper for api call to catch errors
-    
+
     Arguments:
         api_call {callable}
-    
+
     Returns:
         [OperationResult or ClientExceptionResult]
     """
@@ -96,10 +96,10 @@ def try_call_api(api_call, *args, should_raise=False, **kwargs):
 
 async def try_call_api_async(api_call, *args, **kwargs):
     """try_api_call_async Async Wrapper for api call to catch errors
-    
+
     Arguments:
         api_call {callable}
-    
+
     Returns:
         [Coroutine -> [OperationResult or ClientExceptionResult]]
     """
@@ -110,11 +110,11 @@ def __bulk_call_client_sync(
     clients, call_client_func
 ) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
-    
+
     Arguments:
         clients {List[VNS3Client]}
         call_client_func {callable} - func: VNS3Client -> response
-    
+
     Returns:
         data_types.BulkOperationResult -- [description]
     """
@@ -127,11 +127,11 @@ def __bulk_call_client_parallel(
     clients, call_client_func
 ) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
-    
+
     Arguments:
         clients {List[VNS3Client]}
         call_client_func {callable} - func: VNS3Client -> response
-    
+
     Returns:
         data_types.BulkOperationResult
     """
@@ -146,11 +146,11 @@ def __bulk_call_client(
     clients, call_client_func, parallelize=False
 ) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
-    
+
     Arguments:
         clients {List[VNS3Client]}
         call_client_func {callable} - func: VNS3Client -> response
-    
+
     Returns:
         data_types.BulkOperationResult
     """
@@ -162,10 +162,10 @@ def __bulk_call_client(
 
 def __bulk_call_api_sync(bound_api_calls) -> data_types.BulkOperationResult:
     """__bulk_call_api_sync Bulk operation for bound api methods, call synchronously
-    
+
     Arguments:
         bound_api_calls {List[Callable]}
-    
+
     Returns:
         data_types.BulkOperationResult -- [description]
     """
@@ -174,10 +174,10 @@ def __bulk_call_api_sync(bound_api_calls) -> data_types.BulkOperationResult:
 
 def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
     """__bulk_call_api_parallel Bulk operation for bound api methods, called asynchronously
-    
+
     Arguments:
         bound_api_calls {List[Callable]}
-    
+
     Returns:
         data_types.BulkOperationResult
     """
@@ -190,10 +190,10 @@ def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
 
 def __bulk_call_api(api_calls, parallelize=False) -> data_types.BulkOperationResult:
     """Bulk operation for bound api method interface
-    
+
     Arguments:
         api_calls {callable} - bound function that accepts no args.
-    
+
     Returns:
         data_types.BulkOperationResult
     """

@@ -17,7 +17,7 @@ def create_tunnel_endpoint(
     route_parameters={},
 ):
     """create_tunnel_endpoint Create IPsec endpoint and route to target network
-    
+
     Arguments:
         client {VNS3Client} -- VNS3 Api client
         tunnel_name {str} -- Name to be used for tunnel
@@ -25,12 +25,12 @@ def create_tunnel_endpoint(
         target_ip {str} -- IP address of target endpoint
         target_network_cidr {str or ipaddress.IPv4Network} -- CIDR of target network for routing
         vti_block {str} -- CIDR to use for network interface
-    
+
     Keyword Arguments:
         target_network_name {str} -- [description] (default: {None})
         tunnel_parameters {dict} -- parameters to use for IPsec endpoint (default: {{}})
         route_parameters {dict} -- parameters to use for route (default: {{}})
-    
+
     Returns:
         [Tuple[IpsecRemoteEndpoint, Dict]] -- 
     """

@@ -19,10 +19,10 @@ from cohesivenet.macros.state import (
 
 def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
     """Set peer ids for all clients. Assume order of clients passed as ids
-    
+
     Arguments:
         clients {List[VNS3Client]}
-    
+
     Returns:
         BulkOperationResult
     """
@@ -45,11 +45,11 @@ def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
 
 def _construct_peer_address_mapping(clients, address_type):
     """[summary]
-    
+
     Arguments:
         clients {List[VNS3Client]}
         address_type {str} - one of primary_private_ip, secondary_private_ip, public_ip, public_dns
-    
+
     Returns:
         List[Tuple[VNS3Client, Dict]] -- [
             (client,  {
@@ -95,7 +95,7 @@ def peer_mesh(
 
     Arguments:
         clients {List[VNS3Client]}
-    
+
     Keyword Arguments:
         peer_address_map {Dict} - Optional map for peering addresses {
             [from_peer_id: str]: {
@@ -107,10 +107,10 @@ def peer_mesh(
         address_type {str} - which address to use. Options: primary_private_ip, secondary_private_ip, public_ip or public_dns
         delay_configure {bool} -- delay automatic negotiation of peer (default: False)
         mtu {int} -- Override MTU for the peering TLS connection. VNS3 defaults to 1500. (default: {None})
-    
+
     Raises:
         CohesiveSDKException
-    
+
     Returns:
         data_types.BulkOperationResult
     """

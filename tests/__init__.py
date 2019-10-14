@@ -22,11 +22,11 @@ def example():
 
 def assert_types(response_dict, types_dict):
     """Assert on types for dictionary or raise Assertion error
-    
+
     Arguments:
         response_dict {dict}
         types_dict {dict} -- str -> TypeInfo
-    
+
     Returns:
         [bool|Exception]
     """

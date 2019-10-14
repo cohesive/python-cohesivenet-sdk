@@ -9,11 +9,11 @@ def create_route_advertisements(
     clients, local_subnets
 ) -> data_types.BulkOperationResult:
     """create_route_advertisements Create a route advertisement for controllers network
-    
+
     Arguments:
         clients {List[VNS3Client]}
         local_subnets {List[str]} - order should correspond with clients list
-    
+
     Returns:
         data_types.BulkOperationResult
     """

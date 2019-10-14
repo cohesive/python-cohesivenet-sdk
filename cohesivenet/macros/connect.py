@@ -6,15 +6,15 @@ from cohesivenet.macros import api_operations
 
 def get_client(host, username, password, verify=False):
     """Get VNS3 API Client for host
-    
+
     Arguments:
         host {str}
         username {str}
         password {str}
-    
+
     Keyword Arguments:
         verify {bool} -- Verify SSL certificate (default: {False})
-    
+
     Returns:
         [VNS3Client]
     """
@@ -35,7 +35,7 @@ def get_clients(*hosts):
             password: str,
             verify: bool (Optional)
         }
-    
+
     Returns:
         [List[VNS3Client]]
     """
@@ -44,15 +44,15 @@ def get_clients(*hosts):
 
 def get_clients_common_creds(hosts, common_username, common_password, verify=False):
     """Construct clients for each host
-    
+
     Arguments:
         hosts {List[str]} -- list of host strings
         common_username {str}
         common_password {str}
-    
+
     Keyword Arguments:
         verify {bool} -- verify SSL for client
-    
+
     Returns:
         [List[VNS3Clients]]
     """
@@ -63,10 +63,10 @@ def verify_client_connectivity(
     clients: List[VNS3Client]
 ) -> data_types.BulkOperationResult:
     """Verify the connectivty of provided clients by pinging API
-    
+
     Arguments:
         clients {List[VNS3Client]}
-    
+
     Returns:
         data_types.BulkOperationResult
     """

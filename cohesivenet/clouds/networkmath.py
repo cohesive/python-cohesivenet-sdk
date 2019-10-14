@@ -47,11 +47,11 @@ def calculate_next_subnets(
 
 def subnet_contains_ipv4(ip_address: str, subnet: str):
     """subnet_contains Check if ip address in subnet
-    
+
     Arguments:
         ip_address {str} -- string
         subnet {str}
-    
+
     Returns:
         bool
     """

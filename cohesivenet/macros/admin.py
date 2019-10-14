@@ -7,13 +7,13 @@ from cohesivenet.macros import api_operations
 
 def roll_api_password(new_password, clients) -> data_types.BulkOperationResult:
     """roll_api_password 
-    
+
     Update all passwords for clients
-    
+
     Arguments:
         new_password {str}
         clients {List[VNS3Client]}
-    
+
     Returns:
         BulkOperationResult - tuple containing the clients that 
         succeeded and the clients that failed with their exceptions
@@ -33,10 +33,10 @@ def disable_uis(clients):
     """disable_uis
 
     Disable all UIs for clients
-    
+
     Arguments:
         clients {List} -- List of VNS3Clients
-    
+
     Returns:
         BulkOperationResult
     """
@@ -51,12 +51,12 @@ def roll_ui_credentials(
     new_credentials: dict, clients: List[cohesivenet.VNS3Client], enable_ui=False
 ):
     """Update UI credentials to common credentials
-    
+
     Arguments:
         new_credentials {dict} -- {username: str, password: str}
         clients {List} -- List of VNS3 clients
         enable_ui {Bool} -- whether to enable UI
-    
+
     Returns:
         BulkOperationResult
     """

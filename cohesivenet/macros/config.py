@@ -25,12 +25,12 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
                 if a new successful put returns: that indicates failure to download from source. return 400
                 if timeout: that indicates controller is rebooting, return wait for keyset
         if keyset already exists: return keyset details
-    
+
     Arguments:
         source {str} - host controller to fetch keyset from
         token {str} - secret token used when generating keyset
         wait_timeout {float} - timeout for waiting for keyset and while polling for download failure (default: 1 min)
-    
+
     Raises:
         e: [description]
     """
@@ -38,8 +38,8 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
         "Failed to fetch keyset for source. This typically due to a misconfigured "
         "firewall or routing issue between source and client controllers."
     )
-    is_in_progress_err = lambda r: type(r) is str and "Keyset setup in progress" in r
-    keyset_exists_err = lambda r: type(r) is str and "Keyset already exists" in r
+    def is_in_progress_err(r): return type(r) is str and "Keyset setup in progress" in r
+    def keyset_exists_err(r): return type(r) is str and "Keyset already exists" in r
     get_start_time = (
         lambda r: None
         if not type(r) is dict
@@ -186,11 +186,11 @@ def setup_controller(
 def license_clients(clients, license_file_path) -> data_types.BulkOperationResult:
     """Upload license file to all clients. These will have DIFFERENT keysets. See keyset operations
        if all controllers are to be in the same clientpack topology 
-    
+
     Arguments:
         clients {List[VNS3Client]}
         license_file_path {str} - full path to license file
-    
+
     Returns:
         BulkOperationResult
     """
@@ -208,7 +208,7 @@ def accept_clients_license(
     """Accept licenses for all. These will have DIFFERENT keysets. See keyset operations
        if all controllers are to be in the same clientpack topology. Assumes same license
        parameters will be accepted for all clients
-    
+
     Arguments:
         clients {List[VNS3Client]}
         license_parameters {UpdateLicenseParametersRequest} - dict {
@@ -219,7 +219,7 @@ def accept_clients_license(
             'my_manager_vip': 'str',
             'default': 'bool'
         }
-    
+
     Returns:
         BulkOperationResult
     """
@@ -233,12 +233,12 @@ def accept_clients_license(
 
 def fetch_keysets(clients, root_host, keyset_token, wait_timeout=80.0):
     """fetch_keysets Fetch keysets for all clients from root_host
-    
+
     Arguments:
         clients {List[VNS3Client]}
         root_host {str}
         keyset_token {str}
-    
+
     Returns:
         BulkOperationResult
     """

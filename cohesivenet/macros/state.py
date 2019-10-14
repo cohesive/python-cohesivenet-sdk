@@ -77,14 +77,14 @@ def fetch_state_attribute(
     clients, attribute, bust_cache=False
 ) -> data_types.BulkOperationResult:
     """Fetch state attribute for all clients
-    
+
     Arguments:
         clients {List[VNS3Client]}
         attribute {str}
-    
+
     Keyword Arguments:
         bust_cache {bool}
-    
+
     Returns:
         [BulkOperationResult] -- [description]
     """

@@ -7,14 +7,14 @@ from cohesivenet.macros import api_operations
 
 def segment_overlay_clients(client, groups=None, number_groups=None, group_ratios=None):
     """[summary]
-    
+
     Arguments:
         client {[type]} -- [description]
         local_cidr {[type]} -- [description]
-    
+
     Keyword Arguments:
         gateway {[type]} -- [description] (default: {None})
-    
+
     Returns:
         Dict - {
             '[group-name-1]': [],
