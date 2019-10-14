@@ -1,4 +1,10 @@
 # coding: utf-8
+# To install the library, run the following
+#
+# python setup.py install
+#
+# prerequisite: setuptools
+# http://pypi.python.org/pypi/setuptools
 
 """
     Cohesive Networks SDK
@@ -17,13 +23,9 @@ from setuptools.command.test import test as TestCommand
 
 NAME = "cohesivenet"
 VERSION = "0.1.0"
+DEPENDENDIES = ["urllib3 >= 1.15", "certifi >=  14.05.14", "python-dateutil >= 2.5.3"]
+
 DIR = os.path.abspath(os.path.dirname(__file__))
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
 
 
 class PyTest(TestCommand):
@@ -39,17 +41,17 @@ class PyTest(TestCommand):
         # import here, cause outside the eggs aren't loaded
         import pytest
 
+        print('HERE\n\n\n')
+
         errno = pytest.main(shlex.split(self.pytest_args))
         sys.exit(errno)
 
 
 def load_long_description():
-    with open("README.md", "r") as fh:
+    with open(os.path.join(DIR, "README.md"), "r") as fh:
         long_description = fh.read()
     return long_description
 
-
-REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
 
 setup(
     name=NAME,
@@ -62,17 +64,23 @@ setup(
     python_requires=">=3.5.0",
     url="https://github.com/cohesive/python-cohesivenet-sdk",
     keywords=[
-        "OpenAPI",
         "Cohesive Networks SDK",
         "Cohesive Networks",
         "Secops",
+        "SDN",
+        "Software Defined Networking",
         "Networkops",
         "networking",
+        "Openapi"
     ],
-    install_requires=REQUIRES,
-    packages=find_packages(exclude=["test", "tests", "docs", "examples"]),
+    install_requires=DEPENDENDIES,
+    tests_require=[
+        "pytest >= 4.6.2"
+    ],
+    packages=find_packages(exclude=["tests", "docs", "examples"]),
     include_package_data=True,
     package_data={NAME: ["version"]},
+    cmdclass={"test": PyTest},
     license="MIT",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",

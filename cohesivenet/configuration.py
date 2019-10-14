@@ -14,13 +14,9 @@
 from __future__ import absolute_import
 
 import copy
-import logging
 import multiprocessing
 import sys
 import urllib3
-
-import six
-from six.moves import http_client as httplib
 
 
 class TypeWithDefault(type):
@@ -132,7 +128,6 @@ class Configuration(object):
 
     @host.setter
     def host(self, value):
-        candidate = value
         if value.startswith("http"):
             raise ValueError(
                 "Host must not contain protocol information. "

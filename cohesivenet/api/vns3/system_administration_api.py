@@ -2240,7 +2240,7 @@ class SystemAdministrationApi(object):
 
         while time.time() - start_time < timeout:
             try:
-                response = self.get_ping_system(_request_timeout=retry_timeout)
+                self.get_ping_system(_request_timeout=retry_timeout)
                 if sleep_time:
                     time.sleep(sleep_time)
             except (

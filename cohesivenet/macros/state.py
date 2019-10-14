@@ -1,4 +1,3 @@
-from typing import Callable
 from functools import partial as bind
 
 from cohesivenet import data_types
@@ -8,7 +7,6 @@ from cohesivenet.macros import api_operations as api_op
 class VNS3Attr(object):
     """State Attributes - more to be added
     """
-
     primary_private_ip = "primary_private_ip"
     secondary_private_ip = "secondary_private_ip"
     public_ip = "public_ip"

@@ -1,8 +1,5 @@
-from typing import Tuple, List, Dict
+from typing import Tuple, List
 from collections import namedtuple
-
-from cohesivenet import VNS3Client
-
 
 ClientExceptionResult = namedtuple("ClientExceptionResult", "client exception")
 OperationResult = namedtuple("OperationResult", "client result")

@@ -89,8 +89,7 @@ There are two ways to enable it:
    import logging
    logging.basicConfig()
    logging.getLogger('cohesivenet').setLevel(logging.DEBUG)
-
-
+   ```
 
 ## Author
 

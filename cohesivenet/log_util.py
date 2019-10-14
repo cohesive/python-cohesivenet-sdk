@@ -1,8 +1,6 @@
 import logging
-import os
 import re
 import six
-import sys
 from collections import OrderedDict
 from typing import Dict, List
 

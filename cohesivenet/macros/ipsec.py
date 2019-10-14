@@ -1,8 +1,3 @@
-import collections
-import cohesivenet
-
-from cohesivenet import VNS3Client, ApiException, constants as cohesive_constants
-from cohesivenet.clouds import networkmath
 
 
 def create_tunnel_endpoint(
@@ -32,7 +27,7 @@ def create_tunnel_endpoint(
         route_parameters {dict} -- parameters to use for route (default: {{}})
 
     Returns:
-        [Tuple[IpsecRemoteEndpoint, Dict]] -- 
+        [Tuple[IpsecRemoteEndpoint, Dict]]
     """
     ipsec_endpoint = client.ipsec.post_create_ipsec_endpoint(
         dict(

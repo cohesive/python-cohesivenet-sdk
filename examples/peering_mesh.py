@@ -1,24 +1,12 @@
 import os
-import logging
-import sys
-import urllib3
-import pprint
-from itertools import combinations
 
 from cohesivenet import (
-    constants,
-    ApiException,
-    CohesiveSDKException,
-    VNS3Client,
     util,
     Logger,
 )
-from cohesivenet.clouds import networkmath
 from cohesivenet.macros import (
     connect,
     config,
-    routes,
-    ipsec,
     admin,
     peering,
     routing,
@@ -111,7 +99,6 @@ def get_env():
     if not root_controller_host:
         root_controller_host = controller_hosts.pop()
         root_controller_password = host_password_dict[root_controller_host]
-        root_controller_subnet = host_subnet_dict[root_controller_host]
         host_password_dict.pop(root_controller_host)
 
     return {

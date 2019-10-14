@@ -56,7 +56,7 @@ def get_clients_common_creds(hosts, common_username, common_password, verify=Fal
     Returns:
         [List[VNS3Clients]]
     """
-    return [get_client(host, username, password, verify) for host in hosts]
+    return [get_client(host, common_username, common_password, verify) for host in hosts]
 
 
 def verify_client_connectivity(
@@ -75,7 +75,3 @@ def verify_client_connectivity(
         return _client.sys_admin.get_ping_system()
 
     return api_operations.__bulk_call_client(clients, _ping_api)
-
-
-def connect_overlay_clients(vns3: VNS3Client, overlay_client_hosts):
-    response = vns3.overlay_network.post_calc_next_clientpack()

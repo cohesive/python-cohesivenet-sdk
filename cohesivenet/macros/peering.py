@@ -1,14 +1,10 @@
-from itertools import combinations, permutations
 from functools import partial as bind
 
 from cohesivenet import (
     data_types,
-    VNS3Client,
-    ApiException,
     CohesiveSDKException,
     Logger,
 )
-from cohesivenet.clouds import networkmath
 from cohesivenet.macros import api_operations as api_ops
 from cohesivenet.macros.state import (
     VNS3Attr,
@@ -67,7 +63,6 @@ def _construct_peer_address_mapping(clients, address_type):
     peer_address_mapping = []
     for index in client_indexes:
         this_client = clients[index]
-        this_client_peer_id = this_client.query_state(VNS3Attr.peer_id)
         other_clients_indexes = client_indexes_set - {index}
         other_clients = [clients[i] for i in other_clients_indexes]
         client_peers = {
@@ -89,7 +84,7 @@ def peer_mesh(
     mtu=None,
 ):
     """peer_mesh Create a peering mesh by adding each client as peer for other clients.
-       The order of the list of clients is the assumed peering id, i.e. client at clients[0] 
+       The order of the list of clients is the assumed peering id, i.e. client at clients[0]
        has peering id of 1, clients[1] has peering id of 2. Each TLS connection between peers
        is then automatically negotiated.
 

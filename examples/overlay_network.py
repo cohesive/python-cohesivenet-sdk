@@ -1,10 +1,22 @@
 import os
 
 from cohesivenet import Logger
-from cohesivenet.clouds import networkmath
 from cohesivenet.macros import connect, config, admin, peering, routing
 
 Logger.silence_urllib3()
+
+
+def take_keys(keys, data_dict):
+    """Take keys from dict
+
+    Arguments:
+        keys {List[str]} -- Keys it include in output dict
+        data_dict {Dict}
+
+    Returns:
+        [Dict]
+    """
+    return {k: v for k, v in data_dict.items() if k in keys}
 
 
 def setup_clients(host_password_dicts):
@@ -24,7 +36,7 @@ def setup_clients(host_password_dicts):
     return connect.get_clients(
         *[
             dict(
-                util.take_keys(["host", "password"], connect_args),
+                take_keys(["host", "password"], connect_args),
                 verify=False,
                 username="api",
             )
@@ -137,17 +149,15 @@ def peer_controllers(root_client, peer_client, parameters):
         peer_client {VNS3Client}
         parameters {Dict} - values from get_env
     """
-    keyset_token = parameters["keyset_token"]
     print("Setting peer Id")
-    peering_response = peer.peering.put_self_peering_id({"id": 2})
-    peering.set_peer_ids(peer_clients, ids=[2, 3, 4])
+    peer_client.peering.put_self_peering_id({"id": 2})
     print("Creating peering mesh")
-    peering.peer_mesh([root_client] + peer_clients)
+    peering.peer_mesh([root_client, peer_client])
     print("Creating route advertisements")
     ordered_subnets = [parameters["root_controller"]["subnet"]] + [
         c["subnet"] for c in parameters["controllers"]
     ]
-    routing.create_route_advertisements([root_client] + peer_clients, ordered_subnets)
+    routing.create_route_advertisements([root_client, peer_client], ordered_subnets)
 
 
 def run():
@@ -161,7 +171,7 @@ def run():
         len(clients) == 2
     ), "More controllers provided by env than expected. Expected 2 in overlay."
     root, peer = clients
-    config_response = setup_overlay(root, parameters)
+    setup_overlay(root, parameters)
     return config.fetch_keysets(
-        [peer_client], root.host_uri, parameters["keyset_token"]
+        [peer], root.host_uri, parameters["keyset_token"]
     )

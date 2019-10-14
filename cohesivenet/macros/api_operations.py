@@ -1,11 +1,8 @@
 import time
-import urllib3.exceptions
 
-import cohesivenet
 import cohesivenet.util as pipe
 import cohesivenet.data_types as data_types
-
-from cohesivenet import VNS3Client, Configuration, ApiException, UrlLib3ConnExceptions
+from cohesivenet import ApiException, UrlLib3ConnExceptions
 
 
 def retry_call(call_api, args=(), kwargs={}, attempt=0, max_attempts=10, sleep=2):
@@ -59,7 +56,7 @@ def try_call_client(client, call, *args, **kwargs):
     try:
         response = call(client, *args, **kwargs)
         return data_types.OperationResult(client, response)
-    except cohesivenet.ApiException as e:
+    except ApiException as e:
         return data_types.ClientExceptionResult(client, e)
 
 
@@ -88,7 +85,7 @@ def try_call_api(api_call, *args, should_raise=False, **kwargs):
 
     try:
         return api_call(*args, **kwargs)
-    except cohesivenet.ApiException as e:
+    except ApiException as e:
         if should_raise:
             raise e
         return e

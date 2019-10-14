@@ -292,9 +292,10 @@ from cohesivenet.api.vns3.high_availability_api import HighAvailabilityApi
 from cohesivenet.api.vns3.firewall_api import FirewallApi
 from cohesivenet.api.vns3.configuration_api import ConfigurationApi
 from cohesivenet.api.vns3.bgp_api import BGPApi
+from cohesivenet.log_util import Logger
+
 import logging
 import os
-from cohesivenet.log_util import Logger
 
 COHESIVE_LOG_LEVEL = os.environ.get("COHESIVE_LOG_LEVEL", "").lower()
 Logger.set_null()

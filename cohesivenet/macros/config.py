@@ -38,8 +38,13 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
         "Failed to fetch keyset for source. This typically due to a misconfigured "
         "firewall or routing issue between source and client controllers."
     )
-    def is_in_progress_err(r): return type(r) is str and "Keyset setup in progress" in r
-    def keyset_exists_err(r): return type(r) is str and "Keyset already exists" in r
+
+    def is_in_progress_err(r):
+        return type(r) is str and "Keyset setup in progress" in r
+
+    def keyset_exists_err(r):
+        return type(r) is str and "Keyset already exists" in r
+
     get_start_time = (
         lambda r: None
         if not type(r) is dict
@@ -135,7 +140,7 @@ def setup_controller(
     current_config = client.config.get_config().response
     Logger.info("Setting topology name", name=topology_name)
     if current_config.topology_name != topology_name:
-        topology_response = client.config.put_config({"topology_name": topology_name})
+        client.config.put_config({"topology_name": topology_name})
 
     if not current_config.licensed:
         if not os.path.isfile(license_file):
@@ -143,7 +148,7 @@ def setup_controller(
 
         license_file_data = open(license_file).read().strip()
         Logger.info("Uploading license file", path=license_file)
-        upload_response = client.licensing.upload_license(license_file_data)
+        client.licensing.upload_license(license_file_data)
 
     accept_license = False
     try:
@@ -157,7 +162,7 @@ def setup_controller(
 
     if accept_license:
         Logger.info("Accepting license", parameters=license_parameters)
-        accept_license_response = client.licensing.put_set_license_parameters(
+        client.licensing.put_set_license_parameters(
             license_parameters
         )
         Logger.info("Waiting for server reboot.")
@@ -168,7 +173,7 @@ def setup_controller(
     ).response
     if not current_keyset.keyset_present and not current_keyset.in_progress:
         Logger.info("Generating keyset", parameters=keyset_parameters)
-        generate_keyset_response = api_operations.retry_call(
+        api_operations.retry_call(
             client.config.put_keyset, args=(keyset_parameters,)
         )
         Logger.info("Waiting for keyset ready")
@@ -179,13 +184,13 @@ def setup_controller(
     current_peering_status = client.peering.get_peering_status().response
     if not current_peering_status.id and peering_id:
         Logger.info("Setting peering id", id=peering_id)
-        peering_response = client.peering.put_self_peering_id({"id": peering_id})
+        client.peering.put_self_peering_id({"id": peering_id})
     return client
 
 
 def license_clients(clients, license_file_path) -> data_types.BulkOperationResult:
     """Upload license file to all clients. These will have DIFFERENT keysets. See keyset operations
-       if all controllers are to be in the same clientpack topology 
+       if all controllers are to be in the same clientpack topology
 
     Arguments:
         clients {List[VNS3Client]}
@@ -223,8 +228,6 @@ def accept_clients_license(
     Returns:
         BulkOperationResult
     """
-    license_file = open(license_file_path).read().strip()
-
     def _accept_license(_client):
         return _client.licensing.put_set_license_parameters(license_parameters)
 

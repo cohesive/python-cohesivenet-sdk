@@ -5,6 +5,8 @@ import math
 from copy import deepcopy
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
 
+from cohesivenet.log_util import scrub_sensitive
+
 
 def run_parallel(*coroutines):
     loop = asyncio.get_event_loop()
@@ -15,7 +17,7 @@ def run_parallel(*coroutines):
 def run_pipe(init_data, steps: List[Tuple[str, Callable]]):
     data = deepcopy(init_data)
     total_steps = len(steps)
-    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, clean_data(init_data)))
+    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, scrub_sensitive(init_data)))
 
     for step_i, (step_name, func) in enumerate(steps):
         step_num = step_i + 1
@@ -32,7 +34,7 @@ def run_pipe(init_data, steps: List[Tuple[str, Callable]]):
 def run_pipe_async(
     init_data, steps: List[Tuple[str, Union[Callable, List[Awaitable]]]]
 ):
-    """Run pipeline of step functions, running in parallel if 
+    """Run pipeline of step functions, running in parallel if
 
     Arguments:
         init_data {[type]} -- [description]
@@ -43,7 +45,7 @@ def run_pipe_async(
     """
     data = deepcopy(init_data)
     total_steps = len(steps)
-    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, clean_data(init_data)))
+    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, scrub_sensitive(init_data)))
     for step_i, (step_name, step_func) in enumerate(steps):
         step_num = step_i + 1
         print(
@@ -64,7 +66,7 @@ def run_pipe_async(
     return data
 
 
-def take_keys(keys: List[str], data_dict):
+def take_keys(keys: List[str], data_dict: Dict):
     """Take keys from dict
 
     Arguments:
@@ -91,7 +93,10 @@ def flatten_dict(d, prefix=None, joinchar="__"):
         [Dict] -- Dict of depth 1
     """
     key_value_pairs = {}
-    def _prefix(k): return k if not prefix else "%s%s%s" % (prefix, joinchar, k)
+
+    def _prefix(k):
+        return k if not prefix else "%s%s%s" % (prefix, joinchar, k)
+
     for k, v in d.items():
         if type(v) is dict:
             key_value_pairs.update(
@@ -147,23 +152,6 @@ def map_type(s, expected_type, strict=True):
         raise
 
 
-def duck_type_dict(datacls, data: dict, strict_types=True):
-    if not data:
-        return None
-
-    fields = {f.name: f.type for f in get_fields(datacls)}
-    return datacls(
-        **{
-            k: (
-                map_type(data.get(k), value_type, strict=strict_types)
-                if not is_dataclass(value_type)
-                else duck_type_dict(value_type, data.get(k), strict_types=strict_types)
-            )
-            for k, value_type in fields.items()
-        }
-    )
-
-
 def get_path(data_dict, key_path, fail=False):
     """get_path
 
@@ -203,7 +191,7 @@ def map_dict_keypaths(key_map, data_dict):
 
 
 def partition_list_groups(object_list, number_partitions):
-    """Partition list of objects into  
+    """Partition list of objects into groups
 
     Arguments:
         object_list {List[Any]}

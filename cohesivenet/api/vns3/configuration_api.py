@@ -17,7 +17,6 @@ import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
 import six
-import time
 import urllib3.exceptions
 
 
@@ -26,7 +25,6 @@ from cohesivenet.exceptions import (
     ApiTypeError,
     ApiValueError,
     ApiException,
-    CohesiveSDKException,
 )
 
 
@@ -1225,7 +1223,6 @@ class ConfigurationApi(object):
 
         start_time = time.time()
 
-        latest_response = None
         target_host = self.api_client.host_uri
         while time.time() - start_time < timeout:
             try:

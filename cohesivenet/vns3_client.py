@@ -11,23 +11,7 @@
 
 from __future__ import absolute_import
 
-import datetime
-import json
-import mimetypes
-from multiprocessing.pool import ThreadPool
-import os
-import re
-import tempfile
-
-# python 2 and python 3 compatibility library
-import six
-from six.moves.urllib.parse import quote
-
 from cohesivenet.api_client import APIClient, api_as_property
-from cohesivenet.configuration import Configuration
-import cohesivenet.models
-from cohesivenet import rest
-from cohesivenet.exceptions import ApiValueError
 
 from cohesivenet.api.vns3 import BGPApi
 from cohesivenet.api.vns3 import ConfigurationApi

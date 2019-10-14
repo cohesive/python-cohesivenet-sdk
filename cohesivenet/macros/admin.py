@@ -1,12 +1,11 @@
-from typing import List, Dict
+from typing import Dict, List
 
-import cohesivenet
 from cohesivenet import VNS3Client, data_types
 from cohesivenet.macros import api_operations
 
 
-def roll_api_password(new_password, clients) -> data_types.BulkOperationResult:
-    """roll_api_password 
+def roll_api_password(new_password, clients: List[VNS3Client]) -> data_types.BulkOperationResult:
+    """roll_api_password
 
     Update all passwords for clients
 
@@ -15,7 +14,7 @@ def roll_api_password(new_password, clients) -> data_types.BulkOperationResult:
         clients {List[VNS3Client]}
 
     Returns:
-        BulkOperationResult - tuple containing the clients that 
+        BulkOperationResult - tuple containing the clients that
         succeeded and the clients that failed with their exceptions
     """
 
@@ -29,7 +28,7 @@ def roll_api_password(new_password, clients) -> data_types.BulkOperationResult:
     )
 
 
-def disable_uis(clients):
+def disable_uis(clients: List[VNS3Client]):
     """disable_uis
 
     Disable all UIs for clients
@@ -48,7 +47,7 @@ def disable_uis(clients):
 
 
 def roll_ui_credentials(
-    new_credentials: dict, clients: List[cohesivenet.VNS3Client], enable_ui=False
+    new_credentials: Dict, clients: List[VNS3Client], enable_ui=False
 ):
     """Update UI credentials to common credentials
 

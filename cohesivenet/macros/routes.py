@@ -1,4 +1,3 @@
-from cohesivenet import data_types, VNS3Client, ApiException
 from cohesivenet.clouds import networkmath
 from cohesivenet.macros import api_operations
 

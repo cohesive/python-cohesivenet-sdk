@@ -1,8 +1,4 @@
-import math
-
-from cohesivenet import data_types, VNS3Client, ApiException, util
-from cohesivenet.clouds import networkmath
-from cohesivenet.macros import api_operations
+from cohesivenet import util
 
 
 def segment_overlay_clients(client, groups=None, number_groups=None, group_ratios=None):
