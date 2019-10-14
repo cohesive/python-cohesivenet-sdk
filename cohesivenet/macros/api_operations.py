@@ -2,7 +2,7 @@ import time
 import urllib3.exceptions
 
 import cohesivenet
-import cohesivenet.functional_util as pipe
+import cohesivenet.util as pipe
 import cohesivenet.data_types as data_types
 
 from cohesivenet import VNS3Client, Configuration, ApiException, UrlLib3ConnExceptions

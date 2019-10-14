@@ -1,5 +1,4 @@
 import os
-import sys
 import urllib3
 import pprint
 
@@ -11,9 +10,9 @@ urllib3.disable_warnings()
 
 
 def setup_clients(update_passwords=False):
-    """Setup clients for AWS and Azure VNS3 Controllers. 
+    """Setup clients for AWS and Azure VNS3 Controllers.
        Reset password to master password and enable Admin UI
-    
+
     Returns:
         Tuple[VNS3Client, VNS3Client]
     """
@@ -52,7 +51,7 @@ def setup_clients(update_passwords=False):
 
 def configure_multicloud_bridge_client(**bridge_kwargs):
     """Configure client for multicloud IPsec bridge
-    
+
     Arguments:
         target_client {VNS3Client} - client to be configured
         target_topology_name {str}
@@ -86,7 +85,7 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
         topology_name = bridge_kwargs['target_topology_name']
         print('Setup for %s...' % topology_name)
         config.setup_controller(
-            target_client, 
+            target_client,
             topology_name,
             bridge_kwargs['license_file'],
             license_parameters={'default': True},
@@ -102,7 +101,7 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
         print('Creating tunnel: %s' % endpoint_name)
         return ipsec.create_tunnel_endpoint(
             target_client, endpoint_name, bridge_kwargs['tunnel_psk'],
-            bridge_kwargs['peer_endpoint'], bridge_kwargs['peer_cidr'], 
+            bridge_kwargs['peer_endpoint'], bridge_kwargs['peer_cidr'],
             bridge_kwargs['tunnel_vti'])
     except (ApiException, CohesiveSDKException) as e:
         return e
@@ -111,7 +110,7 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
 def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
     """Fetch variables from environment for clients, configure controllers
        and build IPsec endpoint
-    
+
     Returns:
         [List[Dict]]
     """
@@ -154,10 +153,11 @@ if __name__ == "__main__":
     azure_cidr = os.getenv('AZURE_CIDR')
     ipsec_shared_secret = os.getenv('IPSEC_PSK')
 
-    responses = run(license_file,
+    responses = run(
+        license_file,
         keyset_token,
         aws_cidr,
         azure_cidr,
-        ipsec_psk)
+        ipsec_shared_secret)
 
     pprint(responses)

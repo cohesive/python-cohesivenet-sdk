@@ -5,7 +5,7 @@ import urllib3
 import pprint
 from itertools import combinations
 
-from cohesivenet import constants, ApiException, CohesiveSDKException, VNS3Client, functional_util, Logger
+from cohesivenet import constants, ApiException, CohesiveSDKException, VNS3Client, util, Logger
 from cohesivenet.clouds import networkmath
 from cohesivenet.macros import connect, config, routes, ipsec, admin, peering, routing, state
 
@@ -26,7 +26,7 @@ def setup_clients(host_password_dicts):
     assert type(host_password_dicts) is list, 'setup_clients expects list as input.'
 
     return connect.get_clients(*[
-        dict(functional_util.take_keys(['host', 'password'], connect_args), verify=False, username='api')
+        dict(util.take_keys(['host', 'password'], connect_args), verify=False, username='api')
         for connect_args in host_password_dicts
     ])
 

@@ -1,5 +1,6 @@
 import asyncio
 import json
+import math
 
 from copy import deepcopy
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
@@ -192,3 +193,56 @@ def map_dict_keypaths(key_map, data_dict):
     }
     return {**data_dict, **updates}
 
+
+def partition_list_groups(object_list, number_partitions):
+    """Partition list of objects into  
+    
+    Arguments:
+        object_list {List[Any]}
+        number_partitions {int} -- [description]
+    
+    Returns:
+        [List[List[Any]]]
+    """
+    if number_partitions <= 1:
+        return object_list
+
+    object_count = len(object_list)
+    partition_size = math.floor(object_count / number_partitions)
+    leftovers = object_count % number_partitions
+    leftover_set = object_list[-leftovers:] if leftovers else []
+    rounded_list = object_list[:-leftovers] if leftovers else object_list
+
+    return [
+        rounded_list[i*partition_size:(i+1)*partition_size] + ([leftover_set[i]] if len(leftover_set) > i else [])
+        for i in range(number_partitions)
+    ]
+
+
+def partition_list_ratios(object_list, partition_ratios):
+    """Partition list of objects into groups based on ratios list
+    
+    Arguments:
+        object_list {List[Any]}
+        partition_ratios {List[float]}
+
+    Returns:
+        Dict[str, List[Any]] - {
+            '0.45': [...],
+            '0.25': [...],
+            '0.30': [...]
+        }
+    """
+    assert math.isclose(sum(partition_ratios), 1.0), 'Ratios must sum to 1'
+
+    number_partitions =  len(partition_ratios)
+    if number_partitions <= 1:
+        return object_list
+
+    partition_sizes = [round(r*len(object_list)) for r in partition_ratios]
+    _cursor = 0
+    partitions = {}
+    for i, size in enumerate(partition_sizes):
+        partitions[str(partition_ratios[i])] = object_list[_cursor:(_cursor+size)]
+        _cursor += size
+    return partitions
