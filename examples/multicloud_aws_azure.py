@@ -4,7 +4,7 @@ import pprint
 
 from cohesivenet import constants, ApiException, CohesiveSDKException
 from cohesivenet.clouds import networkmath
-from cohesivenet.macros import connect, config, routes, ipsec, admin
+from cohesivenet.macros import connect, config, routing, ipsec, admin
 
 urllib3.disable_warnings()
 
@@ -104,7 +104,7 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
 
         target_cidr = bridge_kwargs["target_cidr"]
         print("Creating local gateway routes for %s" % target_cidr)
-        routes.create_local_gateway_route(target_client, target_cidr)
+        routing.create_local_gateway_route(target_client, target_cidr)
 
         endpoint_name = bridge_kwargs["endpoint_name"]
         print("Creating tunnel: %s" % endpoint_name)

@@ -27,9 +27,7 @@ python setup.py install --user
 ### Configuring a Client
 
 ```python
-import time
 import cohesivenet
-from cohesivenet.rest import ApiException
 from pprint import pprint
 
 configuration = cohesivenet.Configuration(
@@ -47,12 +45,12 @@ vns3_controller = cohesivenet.VNS3Client(configuration)
 try:
     api_response = vns3_controller.config.get_config()
     pprint(api_response)
-except ApiException as e:
+except cohesivenet.ApiException as e:
     print("Exception fetching VNS3 Configuration get_config(): %s\n" % e)
 ```
 
 ### Methods
-All endpoints are documented [here](./endpoints.md). Each sub-api is available from the VNS3Client instance as follows:
+All endpoints are documented [here](https://github.com/cohesive/python-cohesivenet-sdk/blob/master/endpoints.md). Each sub-api is available from the VNS3Client instance as follows:
 
 ```python
 
@@ -70,6 +68,21 @@ vns3_client.routing               # RoutingApi for configuring routing
 vns3_client.snapshots             # SnapshotsApi for managing backups
 vns3_client.sys_admin             # SystemAdministrationApi for access and sys admin tasks
 vns3_client.licensing             # LicensingApi for controller licensing 
+```
+
+### Common API patterns: `cohesivenet.macros`
+Many API calls are called together to configure a topology or update a network configuration. More macros will be added to 
+increasingly simplify VNS3 topology creation and configuration. More documentation to come.
+
+```python
+macros.admin             # Admin operations typically applied to multiple controllers at once
+macros.config            # configuring multiple clients
+macros.connect           # connecting to clients
+macros.ipsec             # ipsec operations like creating a tunnel and then a route
+macros.overlay_network   # overlay network functions like calculating network segments of the overlay
+macros.peering           # topology peering operations like creating a peering mesh between controllers
+macros.routing           # Operations for updating routing in your topology
+macros.state             # Methods for fetching the state of your controller(s)
 ```
 
 ### Logging
