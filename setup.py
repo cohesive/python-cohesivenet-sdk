@@ -22,7 +22,6 @@ from setuptools import setup, find_packages  # noqa: H301
 from setuptools.command.test import test as TestCommand
 
 NAME = "cohesivenet"
-VERSION = "0.1.0"
 DEPENDENDIES = ["urllib3 >= 1.15", "certifi >=  14.05.14", "python-dateutil >= 2.5.3"]
 
 DIR = os.path.abspath(os.path.dirname(__file__))
@@ -45,15 +44,21 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
+os.chdir(DIR)
+
+version_contents = {}
+with open(os.path.join(DIR, "cohesivenet", "version.py"), encoding="utf-8") as f:
+    exec(f.read(), version_contents)
+
+
 def load_long_description():
     with open(os.path.join(DIR, "README.md"), "r") as fh:
-        long_description = fh.read()
-    return long_description
+        return fh.read()
 
 
 setup(
     name=NAME,
-    version=VERSION,
+    version=version_contents["VERSION"],
     description="Cohesive Networks SDK",
     author="Cohesive Networks, Inc.",
     long_description=load_long_description(),
@@ -84,6 +89,9 @@ setup(
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
         "Topic :: System :: Networking",
+        "Topic :: System :: Networking :: Firewalls",
+        "Topic :: System :: Networking :: Monitoring",
+        "Topic :: Security",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
