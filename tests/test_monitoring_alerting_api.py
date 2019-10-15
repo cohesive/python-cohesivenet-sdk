@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.monitoring_alerting_api import MonitoringAlertingApi  # noqa: E501
+from cohesivenet.api.vns3.monitoring_alerting_api import MonitoringAlertingApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -25,7 +25,7 @@ class TestMonitoringAlertingApi(unittest.TestCase):
 
     def setUp(self):
         self.api = (
-            cohesivenet.api.monitoring_alerting_api.MonitoringAlertingApi()
+            cohesivenet.api.vns3.monitoring_alerting_api.MonitoringAlertingApi()
         )  # noqa: E501
 
     def tearDown(self):

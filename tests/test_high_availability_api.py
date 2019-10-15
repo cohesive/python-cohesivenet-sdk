@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.high_availability_api import HighAvailabilityApi  # noqa: E501
+from cohesivenet.api.vns3.high_availability_api import HighAvailabilityApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -25,7 +25,7 @@ class TestHighAvailabilityApi(unittest.TestCase):
 
     def setUp(self):
         self.api = (
-            cohesivenet.api.high_availability_api.HighAvailabilityApi()
+            cohesivenet.api.vns3.high_availability_api.HighAvailabilityApi()
         )  # noqa: E501
 
     def tearDown(self):

@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.bgp_api import BGPApi  # noqa: E501
+from cohesivenet.api.vns3.bgp_api import BGPApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -24,7 +24,7 @@ class TestBGPApi(unittest.TestCase):
     """BGPApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.bgp_api.BGPApi()  # noqa: E501
+        self.api = cohesivenet.api.vns3.bgp_api.BGPApi()  # noqa: E501
 
     def tearDown(self):
         pass

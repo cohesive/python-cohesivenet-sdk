@@ -1,6 +1,6 @@
 from functools import partial as bind
 
-from cohesivenet import data_types, Logger
+from cohesivenet import data_types
 from cohesivenet.clouds import networkmath
 from cohesivenet.macros import api_operations, state
 

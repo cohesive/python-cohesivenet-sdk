@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.system_administration_api import (
+from cohesivenet.api.vns3.system_administration_api import (
     SystemAdministrationApi,
 )  # noqa: E501
 from cohesivenet.rest import ApiException
@@ -27,7 +27,7 @@ class TestSystemAdministrationApi(unittest.TestCase):
 
     def setUp(self):
         self.api = (
-            cohesivenet.api.system_administration_api.SystemAdministrationApi()
+            cohesivenet.api.vns3.system_administration_api.SystemAdministrationApi()
         )  # noqa: E501
 
     def tearDown(self):

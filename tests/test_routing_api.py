@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.routing_api import RoutingApi  # noqa: E501
+from cohesivenet.api.vns3.routing_api import RoutingApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -24,7 +24,7 @@ class TestRoutingApi(unittest.TestCase):
     """RoutingApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.routing_api.RoutingApi()  # noqa: E501
+        self.api = cohesivenet.api.vns3.routing_api.RoutingApi()  # noqa: E501
 
     def tearDown(self):
         pass

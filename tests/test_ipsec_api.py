@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.ipsec_api import IPsecApi  # noqa: E501
+from cohesivenet.api.vns3.ipsec_api import IPsecApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -24,7 +24,7 @@ class TestIPsecApi(unittest.TestCase):
     """IPsecApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.ipsec_api.IPsecApi()  # noqa: E501
+        self.api = cohesivenet.api.vns3.ipsec_api.IPsecApi()  # noqa: E501
 
     def tearDown(self):
         pass

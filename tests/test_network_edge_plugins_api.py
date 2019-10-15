@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.network_edge_plugins_api import NetworkEdgePluginsApi  # noqa: E501
+from cohesivenet.api.vns3.network_edge_plugins_api import NetworkEdgePluginsApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -25,7 +25,7 @@ class TestNetworkEdgePluginsApi(unittest.TestCase):
 
     def setUp(self):
         self.api = (
-            cohesivenet.api.network_edge_plugins_api.NetworkEdgePluginsApi()
+            cohesivenet.api.vns3.network_edge_plugins_api.NetworkEdgePluginsApi()
         )  # noqa: E501
 
     def tearDown(self):

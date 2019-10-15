@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.firewall_api import FirewallApi  # noqa: E501
+from cohesivenet.api.vns3.firewall_api import FirewallApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
@@ -24,7 +24,7 @@ class TestFirewallApi(unittest.TestCase):
     """FirewallApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.firewall_api.FirewallApi()  # noqa: E501
+        self.api = cohesivenet.api.vns3.firewall_api.FirewallApi()  # noqa: E501
 
     def tearDown(self):
         pass

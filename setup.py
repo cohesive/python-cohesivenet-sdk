@@ -33,15 +33,13 @@ class PyTest(TestCommand):
 
     def initialize_options(self):
         TestCommand.initialize_options(self)
-        self.pytest_args = "-n auto"
+        self.pytest_args = ""
 
     def run_tests(self):
         import shlex
 
         # import here, cause outside the eggs aren't loaded
         import pytest
-
-        print('HERE\n\n\n')
 
         errno = pytest.main(shlex.split(self.pytest_args))
         sys.exit(errno)
