@@ -24,7 +24,10 @@ fmtcheck: venv
 lint: venv
 	@${VENV_NAME}/bin/tox -e lint
 
+build: venv
+	@${VENV_NAME}/bin/python setup.py build sdist bdist_wheel
+
 clean:
 	@rm -rf $(VENV_NAME) build/ dist/
 
-.PHONY: venv test ci fmt fmtcheck lint clean
+.PHONY: venv test ci fmt fmtcheck lint clean build
