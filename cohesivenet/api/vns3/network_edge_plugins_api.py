@@ -19,6 +19,7 @@ import re  # noqa: F401
 import six
 import time
 
+from cohesivenet import Logger
 from cohesivenet.exceptions import ApiTypeError, ApiValueError, ApiException
 
 
@@ -1737,8 +1738,8 @@ class NetworkEdgePluginsApi(object):
             collection_formats=collection_formats,
         )
 
-    def restart_container_network(self, timeout=30.0, **kwargs):
-        """Restart the container ntework
+    def restart_container_network(self, initial_sleep=2.5, timeout=30.0, **kwargs):
+        """Restart the container network
 
         Raises:
             ApiException: Timeout exception
@@ -1746,10 +1747,12 @@ class NetworkEdgePluginsApi(object):
         Returns:
             Boolean
         """
-        start_time = time.time()
+        Logger.debug('Restarting container subsystem.', host=self.api_client.configuration.host)
         self.api_client.network_edge_plugins.post_action_container_system(
             {"action": "stop"}
         )
+        time.sleep(initial_sleep)
+        start_time = time.time()
         while time.time() - start_time < timeout:
             system_state_is_running = (
                 self.api_client.network_edge_plugins.get_container_system_status().response.running

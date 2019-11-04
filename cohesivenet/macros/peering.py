@@ -43,6 +43,8 @@ def _construct_peer_address_mapping(clients, address_type):
         address_type {str} - one of primary_private_ip, secondary_private_ip, public_ip, public_dns
 
     Returns:
+        List of tuples where first element is the client and second is a map for peers
+
         List[Tuple[VNS3Client, Dict]] -- [
             (client,  {
                 [peer_id: str]: [peer_address: str],
@@ -65,9 +67,10 @@ def _construct_peer_address_mapping(clients, address_type):
             c.query_state(VNS3Attr.peer_id): c.query_state(address_type)
             for c in other_clients
         }
-        assert all(client_peers.values()), (
-            "Could not determine %s for some clients" % address_type
-        )
+        if not all(client_peers.values()):
+            raise CohesiveSDKException(
+                "Could not determine %s for some clients" % address_type
+            )
         peer_address_mapping.append((this_client, client_peers))
     return peer_address_mapping
 
@@ -123,6 +126,7 @@ def peer_mesh(
             for from_peer_id, to_peers_map in peer_address_map.items()
         ]
     else:
+        Logger.debug("Constructing peering mesh")
         peer_address_mapping_tuples = _construct_peer_address_mapping(
             clients, address_type
         )
@@ -153,4 +157,5 @@ def peer_mesh(
             )
         )
 
+    Logger.debug("Creating %d-way peering mesh." % len(clients))
     return api_ops.__bulk_call_api(run_peering_funcs, parallelize=True)

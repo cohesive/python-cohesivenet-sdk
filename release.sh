@@ -30,6 +30,7 @@ else
    git push origin $gitTag
 fi
 
+make clean
 make build
 twine upload dist/*
 # make clean

@@ -1,4 +1,4 @@
-from cohesivenet import util
+from cohesivenet import util, Logger
 
 
 def create_firewall_policy(client, firewall_rules, state={}):
@@ -19,6 +19,7 @@ def create_firewall_policy(client, firewall_rules, state={}):
     """
     successes = []
     errors = []
+    Logger.debug('Creating firewall policy.', host=client.host_uri, rule_count=len(firewall_rules))
     for i, rule_args in enumerate(firewall_rules):
         rule = rule_args['rule']
         if util.is_formattable_string(rule):
@@ -26,7 +27,7 @@ def create_firewall_policy(client, firewall_rules, state={}):
                 rule = rule.format(**state)
                 rule = rule.format(**state)
                 rule_args.update(rule=rule)
-            except KeyError as e
+            except KeyError as e:
                 errors.append('Rule %d missing state args %s' % (i, ','.join(e.args)))
                 continue
 
