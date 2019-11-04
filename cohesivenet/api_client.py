@@ -627,11 +627,15 @@ class APIClient(object):
                 r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition
             ).group(1)
 
-            if content_filename != 'yourfilename': # API returns this by default, which is annoying.
+            if (
+                content_filename != "yourfilename"
+            ):  # API returns this by default, which is annoying.
                 filename = content_filename
 
         path = os.path.join(os.path.dirname(path), filename)
-        response_binary = str.encode(response.data) if type(response.data) is str else response.data
+        response_binary = (
+            str.encode(response.data) if type(response.data) is str else response.data
+        )
         with open(path, "wb") as f:
             f.write(response_binary)
 

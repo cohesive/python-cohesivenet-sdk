@@ -3,7 +3,9 @@ from typing import Dict, List, Union
 from cohesivenet import util, VNS3Client
 
 
-def segment_overlay_clients(client: VNS3Client, groups=None, number_groups=None, group_ratios=None):
+def segment_overlay_clients(
+    client: VNS3Client, groups=None, number_groups=None, group_ratios=None
+):
     """segment_overlay_clients Segment clientpacks into sets
     
     Arguments:
@@ -40,7 +42,7 @@ def segment_overlay_clients(client: VNS3Client, groups=None, number_groups=None,
 # def connect_overlay_clients(vns3_client, overlay_clients: List[Union[Dict, str]], overlay_client_creds: Dict = None):
 #     import paramiko
 
-    # ssh_client = paramiko.SSHClient()
-    # ssh_client.connect(hostname, username, key_filename)
-    # ssh_client.connect()
-    # ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy()
+# ssh_client = paramiko.SSHClient()
+# ssh_client.connect(hostname, username, key_filename)
+# ssh_client.connect()
+# ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy()

@@ -1096,7 +1096,9 @@ class NetworkEdgePluginsApi(object):
             collection_formats=collection_formats,
         )
 
-    def post_create_container_image(self, post_create_container_image, **kwargs):  # noqa: E501
+    def post_create_container_image(
+        self, post_create_container_image, **kwargs
+    ):  # noqa: E501
         """post_create_container_image  # noqa: E501
 
         Create new container image  # noqa: E501
@@ -1745,15 +1747,24 @@ class NetworkEdgePluginsApi(object):
             Boolean
         """
         start_time = time.time()
-        resp_data = self.api_client.network_edge_plugins.post_action_container_system({'action': 'stop'})
-        state = resp_data['response']['running']
+        resp_data = self.api_client.network_edge_plugins.post_action_container_system(
+            {"action": "stop"}
+        )
+        state = resp_data["response"]["running"]
         while time.time() - start_time < timeout:
-            system_state_is_running = self.api_client.network_edge_plugins.get_container_system_status().response.running
+            system_state_is_running = (
+                self.api_client.network_edge_plugins.get_container_system_status().response.running
+            )
             if system_state_is_running is False:
-                resp_data = self.api_client.network_edge_plugins.post_action_container_system({'action': 'start'})
+                resp_data = self.api_client.network_edge_plugins.post_action_container_system(
+                    {"action": "start"}
+                )
             elif system_state_is_running is True:
                 return True
-        raise ApiException("Failed to restart container system: API timeout [timeout=%sseconds]" % timeout)
+        raise ApiException(
+            "Failed to restart container system: API timeout [timeout=%sseconds]"
+            % timeout
+        )
 
     def wait_for_image_import(self, import_uuid, timeout=60.0, sleep_time=1.0):
         """Poll for image availability with a UUID
@@ -1776,17 +1787,20 @@ class NetworkEdgePluginsApi(object):
         resp_data = self.get_container_system_images(uuid=import_uuid)
         images = resp_data.response.images
         if not images:
-            raise ApiException('Unknown import UUID %s' % import_uuid)
+            raise ApiException("Unknown import UUID %s" % import_uuid)
 
         image = images[0]
-        if image.status == 'Ready':
+        if image.status == "Ready":
             return True
-                    
+
         time.sleep(sleep_time)
         while time.time() - start_time < timeout:
             resp_data = self.get_container_system_images(uuid=import_uuid)
             image_status = resp_data.response.images[0].status
-            if image_status == 'Ready':
+            if image_status == "Ready":
                 return True
             time.sleep(sleep_time)
-        raise ApiException("API timeout [timeout=%s seconds] [Import image uuid=%s]" % (timeout, import_uuid))
+        raise ApiException(
+            "API timeout [timeout=%s seconds] [Import image uuid=%s]"
+            % (timeout, import_uuid)
+        )

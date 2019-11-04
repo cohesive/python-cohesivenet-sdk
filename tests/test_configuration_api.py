@@ -24,7 +24,9 @@ class TestConfigurationApi(unittest.TestCase):
     """ConfigurationApi unit test stubs"""
 
     def setUp(self):
-        self.api = cohesivenet.api.vns3.configuration_api.ConfigurationApi()  # noqa: E501
+        self.api = (
+            cohesivenet.api.vns3.configuration_api.ConfigurationApi()
+        )  # noqa: E501
 
     def tearDown(self):
         pass

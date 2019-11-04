@@ -1,17 +1,7 @@
 import os
 
-from cohesivenet import (
-    util,
-    Logger,
-)
-from cohesivenet.macros import (
-    connect,
-    config,
-    admin,
-    peering,
-    routing,
-    state,
-)
+from cohesivenet import util, Logger
+from cohesivenet.macros import connect, config, admin, peering, routing, state
 
 Logger.silence_urllib3()
 

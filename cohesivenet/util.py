@@ -18,7 +18,10 @@ def run_parallel(*coroutines):
 def run_pipe(init_data, steps: List[Tuple[str, Callable]]):
     data = deepcopy(init_data)
     total_steps = len(steps)
-    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, scrub_sensitive(init_data)))
+    print(
+        "Running pipe [steps=%s] [inputs=%s]"
+        % (total_steps, scrub_sensitive(init_data))
+    )
 
     for step_i, (step_name, func) in enumerate(steps):
         step_num = step_i + 1
@@ -46,7 +49,10 @@ def run_pipe_async(
     """
     data = deepcopy(init_data)
     total_steps = len(steps)
-    print("Running pipe [steps=%s] [inputs=%s]" % (total_steps, scrub_sensitive(init_data)))
+    print(
+        "Running pipe [steps=%s] [inputs=%s]"
+        % (total_steps, scrub_sensitive(init_data))
+    )
     for step_i, (step_name, step_func) in enumerate(steps):
         step_num = step_i + 1
         print(
@@ -211,7 +217,7 @@ def partition_list_groups(object_list, number_partitions):
     rounded_list = object_list[:-leftovers] if leftovers else object_list
 
     return [
-        rounded_list[i * partition_size: (i + 1) * partition_size]
+        rounded_list[i * partition_size : (i + 1) * partition_size]
         + ([leftover_set[i]] if len(leftover_set) > i else [])
         for i in range(number_partitions)
     ]
@@ -241,13 +247,13 @@ def partition_list_ratios(object_list, partition_ratios):
     _cursor = 0
     partitions = {}
     for i, size in enumerate(partition_sizes):
-        partitions[str(partition_ratios[i])] = object_list[_cursor: (_cursor + size)]
+        partitions[str(partition_ratios[i])] = object_list[_cursor : (_cursor + size)]
         _cursor += size
     return partitions
 
 
 def random_timestamp_filename(file_type=None):
-    timestr = str(time.time()).replace('.', '_')
+    timestr = str(time.time()).replace(".", "_")
     if file_type:
-        return '%s.%s' % (timestr, file_type)
+        return "%s.%s" % (timestr, file_type)
     return timestr

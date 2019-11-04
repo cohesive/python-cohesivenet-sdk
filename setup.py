@@ -22,7 +22,12 @@ from setuptools import setup, find_packages  # noqa: H301
 from setuptools.command.test import test as TestCommand
 
 NAME = "cohesivenet"
-DEPENDENDIES = ["urllib3 >= 1.15", "certifi >=  14.05.14", "python-dateutil >= 2.5.3", "paramiko >= 2.4.3"]
+DEPENDENDIES = [
+    "urllib3 >= 1.15",
+    "certifi >=  14.05.14",
+    "python-dateutil >= 2.5.3",
+    "paramiko >= 2.4.3",
+]
 
 DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -74,12 +79,10 @@ setup(
         "Software Defined Networking",
         "Networkops",
         "networking",
-        "Openapi"
+        "Openapi",
     ],
     install_requires=DEPENDENDIES,
-    tests_require=[
-        "pytest >= 4.6.2"
-    ],
+    tests_require=["pytest >= 4.6.2"],
     packages=find_packages(exclude=["tests", "docs", "examples"]),
     include_package_data=True,
     package_data={NAME: ["version"]},

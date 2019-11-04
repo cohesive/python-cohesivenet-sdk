@@ -56,7 +56,9 @@ def get_clients_common_creds(hosts, common_username, common_password, verify=Fal
     Returns:
         [List[VNS3Clients]]
     """
-    return [get_client(host, common_username, common_password, verify) for host in hosts]
+    return [
+        get_client(host, common_username, common_password, verify) for host in hosts
+    ]
 
 
 def verify_client_connectivity(

@@ -87,8 +87,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
             keyset_data = client.config.get_keyset()
             if not keyset_data.response:
                 Logger.info(
-                    "Keyset exists. Waiting for reboot.",
-                    wait_timeout=wait_timeout,
+                    "Keyset exists. Waiting for reboot.", wait_timeout=wait_timeout
                 )
                 client.sys_admin.wait_for_api(
                     timeout=wait_timeout, wait_for_reboot=True
@@ -162,9 +161,7 @@ def setup_controller(
 
     if accept_license:
         Logger.info("Accepting license", parameters=license_parameters)
-        client.licensing.put_set_license_parameters(
-            license_parameters
-        )
+        client.licensing.put_set_license_parameters(license_parameters)
         Logger.info("Waiting for server reboot.")
         client.sys_admin.wait_for_api(timeout=reboot_timeout, wait_for_reboot=True)
 
@@ -173,9 +170,7 @@ def setup_controller(
     ).response
     if not current_keyset.keyset_present and not current_keyset.in_progress:
         Logger.info("Generating keyset", parameters=keyset_parameters)
-        api_operations.retry_call(
-            client.config.put_keyset, args=(keyset_parameters,)
-        )
+        api_operations.retry_call(client.config.put_keyset, args=(keyset_parameters,))
         Logger.info("Waiting for keyset ready")
         client.config.wait_for_keyset(timeout=keyset_timeout)
     elif current_keyset.in_progress:
@@ -228,6 +223,7 @@ def accept_clients_license(
     Returns:
         BulkOperationResult
     """
+
     def _accept_license(_client):
         return _client.licensing.put_set_license_parameters(license_parameters)
 

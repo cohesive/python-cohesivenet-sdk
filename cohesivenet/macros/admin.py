@@ -4,7 +4,9 @@ from cohesivenet import VNS3Client, data_types
 from cohesivenet.macros import api_operations
 
 
-def roll_api_password(new_password, clients: List[VNS3Client]) -> data_types.BulkOperationResult:
+def roll_api_password(
+    new_password, clients: List[VNS3Client]
+) -> data_types.BulkOperationResult:
     """roll_api_password
 
     Update all passwords for clients

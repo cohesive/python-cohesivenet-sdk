@@ -16,7 +16,9 @@ from __future__ import absolute_import
 import unittest
 
 import cohesivenet
-from cohesivenet.api.vns3.monitoring_alerting_api import MonitoringAlertingApi  # noqa: E501
+from cohesivenet.api.vns3.monitoring_alerting_api import (
+    MonitoringAlertingApi,
+)  # noqa: E501
 from cohesivenet.rest import ApiException
 
 

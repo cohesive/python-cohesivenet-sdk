@@ -701,8 +701,13 @@ class OverlayNetworkApi(object):
 
         query_params = []
 
-        missing_name = "name" not in local_var_params or local_var_params["name"] is None
-        missing_fileformat = "fileformat" not in local_var_params or local_var_params["fileformat"] is None
+        missing_name = (
+            "name" not in local_var_params or local_var_params["name"] is None
+        )
+        missing_fileformat = (
+            "fileformat" not in local_var_params
+            or local_var_params["fileformat"] is None
+        )
         if missing_fileformat or missing_name:
             raise ApiValueError(
                 "Missing the required parameter(s): `name` and `fileformat` are required."
@@ -711,7 +716,9 @@ class OverlayNetworkApi(object):
         if "name" in local_var_params:
             query_params.append(("name", local_var_params["name"]))  # noqa: E501
         if "fileformat" in local_var_params:
-            query_params.append(("fileformat", local_var_params["fileformat"]))  # noqa: E501
+            query_params.append(
+                ("fileformat", local_var_params["fileformat"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -744,7 +751,8 @@ class OverlayNetworkApi(object):
             body={},
             post_params=form_params,
             files=local_var_files,
-            response_type=response_type or "file:%s" % local_var_params["fileformat"],  # noqa: E501
+            response_type=response_type
+            or "file:%s" % local_var_params["fileformat"],  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(

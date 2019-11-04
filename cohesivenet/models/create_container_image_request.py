@@ -37,7 +37,7 @@ class CreateContainerImageRequest(object):
         "buildurl": "str",
         "localbuild": "str",
         "localimage": "str",
-        "description": "str"
+        "description": "str",
     }
 
     attribute_map = {
@@ -46,11 +46,18 @@ class CreateContainerImageRequest(object):
         "buildurl": "buildurl",
         "localbuild": "localbuild",
         "localimage": "localimage",
-        "description": "description"
+        "description": "description",
     }
 
-
-    def __init__(self, name=None, url=None, buildurl=None, localbuild=None, localimage=None, description=None):  # noqa: E501
+    def __init__(
+        self,
+        name=None,
+        url=None,
+        buildurl=None,
+        localbuild=None,
+        localimage=None,
+        description=None,
+    ):  # noqa: E501
         """CreateContainerImageRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._name = None

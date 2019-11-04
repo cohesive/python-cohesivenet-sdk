@@ -21,11 +21,7 @@ import urllib3.exceptions
 
 
 from cohesivenet import Logger
-from cohesivenet.exceptions import (
-    ApiTypeError,
-    ApiValueError,
-    ApiException,
-)
+from cohesivenet.exceptions import ApiTypeError, ApiValueError, ApiException
 
 
 class ConfigurationApi(object):
