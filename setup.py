@@ -22,7 +22,7 @@ from setuptools import setup, find_packages  # noqa: H301
 from setuptools.command.test import test as TestCommand
 
 NAME = "cohesivenet"
-DEPENDENDIES = ["urllib3 >= 1.15", "certifi >=  14.05.14", "python-dateutil >= 2.5.3"]
+DEPENDENDIES = ["urllib3 >= 1.15", "certifi >=  14.05.14", "python-dateutil >= 2.5.3", "paramiko >= 2.4.3"]
 
 DIR = os.path.abspath(os.path.dirname(__file__))
 

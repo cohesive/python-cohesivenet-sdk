@@ -1,6 +1,7 @@
 import asyncio
 import json
 import math
+import time
 
 from copy import deepcopy
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
@@ -243,3 +244,10 @@ def partition_list_ratios(object_list, partition_ratios):
         partitions[str(partition_ratios[i])] = object_list[_cursor: (_cursor + size)]
         _cursor += size
     return partitions
+
+
+def random_timestamp_filename(file_type=None):
+    timestr = str(time.time()).replace('.', '_')
+    if file_type:
+        return '%s.%s' % (timestr, file_type)
+    return timestr

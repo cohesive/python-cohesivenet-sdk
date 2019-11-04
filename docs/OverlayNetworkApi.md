@@ -332,7 +332,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_download_clientpack**
-> file get_download_clientpack(download_clientpack_request)
+> file get_download_clientpack(name="100_127_255_197", fileformat="conf")
 
 
 
@@ -356,10 +356,9 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
-download_clientpack_request = cohesivenet.DownloadClientpackRequest() # DownloadClientpackRequest | 
 
 try:
-    api_response = api_instance.get_download_clientpack(download_clientpack_request)
+    api_response = api_instance.get_download_clientpack(name="100_127_255_197", fileformat="conf")
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->get_download_clientpack: %s\n" % e)
@@ -369,7 +368,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **download_clientpack_request** | [**DownloadClientpackRequest**](DownloadClientpackRequest.md)|  | 
+ **name** | str | name of clientpack | typically ip with underscores e.g. 100_127_255_197
+ **fileformat** | str | format to download file in | conf, ovpn or tarball
 
 ### Return type
 

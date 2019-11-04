@@ -625,19 +625,18 @@ class OverlayNetworkApi(object):
             collection_formats=collection_formats,
         )
 
-    def get_download_clientpack(
-        self, download_clientpack_request, **kwargs
-    ):  # noqa: E501
+    def get_download_clientpack(self, **kwargs):  # noqa: E501
         """get_download_clientpack  # noqa: E501
 
         Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_download_clientpack(download_clientpack_request, async_req=True)
+        >>> thread = api.get_download_clientpack(name="100.171.10.1", "fileformat"="conf", async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param DownloadClientpackRequest download_clientpack_request: (required)
+        :param name str: name of clientpack
+        :param fileformat str: format for file (ovpn, conf or tarball)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -650,23 +649,20 @@ class OverlayNetworkApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.get_download_clientpack_with_http_info(
-            download_clientpack_request, **kwargs
-        )  # noqa: E501
+        return self.get_download_clientpack_with_http_info(**kwargs)  # noqa: E501
 
-    def get_download_clientpack_with_http_info(
-        self, download_clientpack_request, **kwargs
-    ):  # noqa: E501
+    def get_download_clientpack_with_http_info(self, **kwargs):  # noqa: E501
         """get_download_clientpack  # noqa: E501
 
         Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_download_clientpack_with_http_info(download_clientpack_request, async_req=True)
+        >>> thread = api.get_download_clientpack(name="100.171.10.1", "fileformat"="conf", async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param DownloadClientpackRequest download_clientpack_request: (required)
+        :param name str: name of clientpack
+        :param fileformat str: format for file (ovpn, conf or tarball)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -683,28 +679,21 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ["download_clientpack_request"]  # noqa: E501
+        all_params = ["name", "fileformat"]  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
         all_params.append("_request_timeout")
+        response_type = kwargs.pop("response_type", None)
 
         for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_download_clientpack" % key
+                    " to method get_firewall_rule_subgroups" % key
                 )
             local_var_params[key] = val
         del local_var_params["kwargs"]
-        # verify the required parameter 'download_clientpack_request' is set
-        if (
-            "download_clientpack_request" not in local_var_params
-            or local_var_params["download_clientpack_request"] is None
-        ):
-            raise ApiValueError(
-                "Missing the required parameter `download_clientpack_request` when calling `get_download_clientpack`"
-            )  # noqa: E501
 
         collection_formats = {}
 
@@ -712,14 +701,25 @@ class OverlayNetworkApi(object):
 
         query_params = []
 
+        missing_name = "name" not in local_var_params or local_var_params["name"] is None
+        missing_fileformat = "fileformat" not in local_var_params or local_var_params["fileformat"] is None
+        if missing_fileformat or missing_name:
+            raise ApiValueError(
+                "Missing the required parameter(s): `name` and `fileformat` are required."
+            )
+
+        if "name" in local_var_params:
+            query_params.append(("name", local_var_params["name"]))  # noqa: E501
+        if "fileformat" in local_var_params:
+            query_params.append(("fileformat", local_var_params["fileformat"]))  # noqa: E501
+
         header_params = {}
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if "download_clientpack_request" in local_var_params:
-            body_params = local_var_params["download_clientpack_request"]
+
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["text/plain", "application/json"]
@@ -741,10 +741,10 @@ class OverlayNetworkApi(object):
             path_params,
             query_params,
             header_params,
-            body=body_params,
+            body={},
             post_params=form_params,
             files=local_var_files,
-            response_type="file",  # noqa: E501
+            response_type=response_type or "file:%s" % local_var_params["fileformat"],  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1376,7 +1376,7 @@ class OverlayNetworkApi(object):
             collection_formats=collection_formats,
         )
 
-    def put_clientpack(self, unknown_base_type, **kwargs):  # noqa: E501
+    def put_clientpack(self, **kwargs):  # noqa: E501
         """put_clientpack  # noqa: E501
 
         Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501

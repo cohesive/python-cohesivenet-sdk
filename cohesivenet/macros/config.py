@@ -87,7 +87,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
             keyset_data = client.config.get_keyset()
             if not keyset_data.response:
                 Logger.info(
-                    "Keyset already exists. Waiting for reboot.",
+                    "Keyset exists. Waiting for reboot.",
                     wait_timeout=wait_timeout,
                 )
                 client.sys_admin.wait_for_api(

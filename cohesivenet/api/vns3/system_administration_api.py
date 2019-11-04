@@ -22,6 +22,7 @@ import urllib3.exceptions
 
 from cohesivenet import Logger
 from cohesivenet.exceptions import ApiTypeError, ApiValueError, ApiException
+from cohesivenet.api.vns3 import ConfigurationApi
 
 
 class SystemAdministrationApi(object):
@@ -2237,10 +2238,11 @@ class SystemAdministrationApi(object):
         import time
 
         start_time = time.time()
-
+        
+        config_api = ConfigurationApi(self.api_client)
         while time.time() - start_time < timeout:
             try:
-                self.get_ping_system(_request_timeout=retry_timeout)
+                ping = config_api.get_config(_request_timeout=retry_timeout)
                 if sleep_time:
                     time.sleep(sleep_time)
             except (
@@ -2277,11 +2279,12 @@ class SystemAdministrationApi(object):
         if wait_for_reboot:
             self._wait_for_down(sleep_time=1, timeout=timeout)
 
+        config_api = ConfigurationApi(self.api_client)
         successful_pings = 0
         target_host = self.api_client.host_uri
         while time.time() - start_time < timeout:
             try:
-                ping = self.get_ping_system(_request_timeout=retry_timeout)
+                ping = config_api.get_config(_request_timeout=retry_timeout)
                 if ping.response and "Alive" in ping.response.message:
                     successful_pings = successful_pings + 1
                     if successful_pings >= healthy_ping_count:

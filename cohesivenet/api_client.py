@@ -22,8 +22,10 @@ import tempfile
 import six
 from six.moves.urllib.parse import quote
 
-from cohesivenet.configuration import Configuration
+
 import cohesivenet.models
+import cohesivenet.util
+from cohesivenet.configuration import Configuration
 from cohesivenet import rest
 from cohesivenet.exceptions import ApiValueError
 
@@ -255,8 +257,8 @@ class APIClient(object):
         """
         # handle file downloading
         # save response body into a tmp file and return the instance
-        if response_type == "file":
-            return self.__deserialize_file(response)
+        if "file" in response_type:
+            return self.__deserialize_file(response, response_type)
 
         # fetch data from response object
         try:
@@ -598,7 +600,7 @@ class APIClient(object):
                         "Authentication token must be in `query` or `header`"
                     )
 
-    def __deserialize_file(self, response):
+    def __deserialize_file(self, response, response_type=None):
         """Deserializes body to file
 
         Saves response body into a file in a temporary folder,
@@ -607,19 +609,31 @@ class APIClient(object):
         :param response:  RESTResponse.
         :return: file path.
         """
+        file_type = ""
+        if response_type:
+            file_parts = response_type.split(":")
+            if len(file_parts) >= 2:
+                file_type = file_parts[1]
+
         fd, path = tempfile.mkstemp(dir=self.configuration.temp_folder_path)
         os.close(fd)
         os.remove(path)
 
+        # default to timestamped filename
+        filename = cohesivenet.util.random_timestamp_filename(file_type=file_type)
         content_disposition = response.getheader("Content-Disposition")
         if content_disposition:
-            filename = re.search(
+            content_filename = re.search(
                 r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition
             ).group(1)
-            path = os.path.join(os.path.dirname(path), filename)
 
+            if content_filename != 'yourfilename': # API returns this by default, which is annoying.
+                filename = content_filename
+
+        path = os.path.join(os.path.dirname(path), filename)
+        response_binary = str.encode(response.data) if type(response.data) is str else response.data
         with open(path, "wb") as f:
-            f.write(response.data)
+            f.write(response_binary)
 
         return path
 

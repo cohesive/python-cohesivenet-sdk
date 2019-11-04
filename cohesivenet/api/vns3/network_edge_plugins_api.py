@@ -17,8 +17,9 @@ import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
 import six
+import time
 
-from cohesivenet.exceptions import ApiTypeError, ApiValueError
+from cohesivenet.exceptions import ApiTypeError, ApiValueError, ApiException
 
 
 class NetworkEdgePluginsApi(object):
@@ -1095,17 +1096,17 @@ class NetworkEdgePluginsApi(object):
             collection_formats=collection_formats,
         )
 
-    def post_create_container_image(self, unknown_base_type, **kwargs):  # noqa: E501
+    def post_create_container_image(self, post_create_container_image, **kwargs):  # noqa: E501
         """post_create_container_image  # noqa: E501
 
         Create new container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_container_image(unknown_base_type, async_req=True)
+        >>> thread = api.post_create_container_image(post_create_container_image, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type: (required)
+        :param CreateContainerImageRequest post_create_container_image: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1119,22 +1120,22 @@ class NetworkEdgePluginsApi(object):
         """
         kwargs["_return_http_data_only"] = True
         return self.post_create_container_image_with_http_info(
-            unknown_base_type, **kwargs
+            post_create_container_image, **kwargs
         )  # noqa: E501
 
     def post_create_container_image_with_http_info(
-        self, unknown_base_type, **kwargs
+        self, create_container_image_request, **kwargs
     ):  # noqa: E501
         """post_create_container_image  # noqa: E501
 
         Create new container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_container_image_with_http_info(unknown_base_type, async_req=True)
+        >>> thread = api.post_create_container_image_with_http_info(post_create_container_image, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type: (required)
+        :param CreateContainerImageRequest create_container_image_request: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1151,7 +1152,7 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ["unknown_base_type"]  # noqa: E501
+        all_params = ["create_container_image_request"]  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
@@ -1165,13 +1166,13 @@ class NetworkEdgePluginsApi(object):
                 )
             local_var_params[key] = val
         del local_var_params["kwargs"]
-        # verify the required parameter 'unknown_base_type' is set
+        # verify the required parameter 'post_create_container_image' is set
         if (
-            "unknown_base_type" not in local_var_params
-            or local_var_params["unknown_base_type"] is None
+            "create_container_image_request" not in local_var_params
+            or local_var_params["create_container_image_request"] is None
         ):
             raise ApiValueError(
-                "Missing the required parameter `unknown_base_type` when calling `post_create_container_image`"
+                "Missing the required parameter `post_create_container_image` when calling `post_create_container_image`"
             )  # noqa: E501
 
         collection_formats = {}
@@ -1186,8 +1187,8 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if "unknown_base_type" in local_var_params:
-            body_params = local_var_params["unknown_base_type"]
+        if "create_container_image_request" in local_var_params:
+            body_params = local_var_params["create_container_image_request"]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1733,3 +1734,59 @@ class NetworkEdgePluginsApi(object):
             _request_timeout=local_var_params.get("_request_timeout"),
             collection_formats=collection_formats,
         )
+
+    def restart_container_network(self, timeout=30.0, **kwargs):
+        """Restart the container ntework
+        
+        Raises:
+            ApiException: Timeout exception
+
+        Returns:
+            Boolean
+        """
+        start_time = time.time()
+        resp_data = self.api_client.network_edge_plugins.post_action_container_system({'action': 'stop'})
+        state = resp_data['response']['running']
+        while time.time() - start_time < timeout:
+            system_state_is_running = self.api_client.network_edge_plugins.get_container_system_status().response.running
+            if system_state_is_running is False:
+                resp_data = self.api_client.network_edge_plugins.post_action_container_system({'action': 'start'})
+            elif system_state_is_running is True:
+                return True
+        raise ApiException("Failed to restart container system: API timeout [timeout=%sseconds]" % timeout)
+
+    def wait_for_image_import(self, import_uuid, timeout=60.0, sleep_time=1.0):
+        """Poll for image availability with a UUID
+        
+        Arguments:
+            import_uuid {str} - UUID recieved on import
+        
+        Keyword Arguments:
+            timeout {float}
+            sleep_time {float}
+        
+        Raises:
+            ApiException: Raise if timeout or UUID does not exist
+        
+        Returns:
+            Boolean
+        """
+
+        start_time = time.time()
+        resp_data = self.get_container_system_images(uuid=import_uuid)
+        images = resp_data.response.images
+        if not images:
+            raise ApiException('Unknown import UUID %s' % import_uuid)
+
+        image = images[0]
+        if image.status == 'Ready':
+            return True
+                    
+        time.sleep(sleep_time)
+        while time.time() - start_time < timeout:
+            resp_data = self.get_container_system_images(uuid=import_uuid)
+            image_status = resp_data.response.images[0].status
+            if image_status == 'Ready':
+                return True
+            time.sleep(sleep_time)
+        raise ApiException("API timeout [timeout=%s seconds] [Import image uuid=%s]" % (timeout, import_uuid))

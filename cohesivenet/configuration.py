@@ -128,6 +128,9 @@ class Configuration(object):
 
     @host.setter
     def host(self, value):
+        if value is None:
+            return
+
         if value.startswith("http"):
             raise ValueError(
                 "Host must not contain protocol information. "

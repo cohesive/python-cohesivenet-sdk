@@ -82,6 +82,12 @@ class VNS3Client(APIClient):
         setattr(self, "_state", state)
         return None
 
+    def update_state(self, state_updates_dict):
+        state = getattr(self, "_state", {})
+        state.update(state_updates_dict)
+        setattr(self, "_state", state)
+        return None
+
     def query_state(self, key):
         return self.controller_state.get(key)
 
