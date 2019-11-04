@@ -92,7 +92,7 @@ class CreateContainerImageRequest(object):
         """
         return self._expires
 
-    @expires.setter
+    @name.setter
     def name(self, name):
         """Sets the name of this CreateContainerImageRequest.
 
@@ -119,7 +119,7 @@ class CreateContainerImageRequest(object):
         """
         return self._url
 
-    @expires.setter
+    @url.setter
     def url(self, url):
         """Sets the URL of this CreateContainerImageRequest.
 
@@ -141,7 +141,7 @@ class CreateContainerImageRequest(object):
         """
         return self._url
 
-    @expires.setter
+    @buildurl.setter
     def buildurl(self, buildurl):
         """Sets the buildurl of this CreateContainerImageRequest.
 
@@ -163,7 +163,7 @@ class CreateContainerImageRequest(object):
         """
         return self._localbuild
 
-    @expires.setter
+    @localbuild.setter
     def localbuild(self, localbuild):
         """Sets the localbuild of this CreateContainerImageRequest.
 
@@ -185,7 +185,7 @@ class CreateContainerImageRequest(object):
         """
         return self._localimage
 
-    @expires.setter
+    @localimage.setter
     def localimage(self, localimage):
         """Sets the localimage of this CreateContainerImageRequest.
 
@@ -207,7 +207,7 @@ class CreateContainerImageRequest(object):
         """
         return self._description
 
-    @expires.setter
+    @description.setter
     def description(self, description):
         """Sets the description of this CreateContainerImageRequest.
 

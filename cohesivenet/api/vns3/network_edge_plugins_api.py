@@ -1739,7 +1739,7 @@ class NetworkEdgePluginsApi(object):
 
     def restart_container_network(self, timeout=30.0, **kwargs):
         """Restart the container ntework
-        
+
         Raises:
             ApiException: Timeout exception
 
@@ -1747,16 +1747,15 @@ class NetworkEdgePluginsApi(object):
             Boolean
         """
         start_time = time.time()
-        resp_data = self.api_client.network_edge_plugins.post_action_container_system(
+        self.api_client.network_edge_plugins.post_action_container_system(
             {"action": "stop"}
         )
-        state = resp_data["response"]["running"]
         while time.time() - start_time < timeout:
             system_state_is_running = (
                 self.api_client.network_edge_plugins.get_container_system_status().response.running
             )
             if system_state_is_running is False:
-                resp_data = self.api_client.network_edge_plugins.post_action_container_system(
+                self.api_client.network_edge_plugins.post_action_container_system(
                     {"action": "start"}
                 )
             elif system_state_is_running is True:
@@ -1768,17 +1767,17 @@ class NetworkEdgePluginsApi(object):
 
     def wait_for_image_import(self, import_uuid, timeout=60.0, sleep_time=1.0):
         """Poll for image availability with a UUID
-        
+
         Arguments:
             import_uuid {str} - UUID recieved on import
-        
+
         Keyword Arguments:
             timeout {float}
             sleep_time {float}
-        
+
         Raises:
             ApiException: Raise if timeout or UUID does not exist
-        
+
         Returns:
             Boolean
         """

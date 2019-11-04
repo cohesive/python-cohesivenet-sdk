@@ -2242,7 +2242,7 @@ class SystemAdministrationApi(object):
         config_api = ConfigurationApi(self.api_client)
         while time.time() - start_time < timeout:
             try:
-                ping = config_api.get_config(_request_timeout=retry_timeout)
+                config_api.get_config(_request_timeout=retry_timeout)
                 if sleep_time:
                     time.sleep(sleep_time)
             except (

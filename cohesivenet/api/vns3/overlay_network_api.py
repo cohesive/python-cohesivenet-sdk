@@ -1384,7 +1384,7 @@ class OverlayNetworkApi(object):
             collection_formats=collection_formats,
         )
 
-    def put_clientpack(self, **kwargs):  # noqa: E501
+    def put_clientpack(self, unknown_base_type, **kwargs):  # noqa: E501
         """put_clientpack  # noqa: E501
 
         Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501
