@@ -2284,8 +2284,8 @@ class SystemAdministrationApi(object):
         target_host = self.api_client.host_uri
         while time.time() - start_time < timeout:
             try:
-                ping = config_api.get_config(_request_timeout=retry_timeout)
-                if ping.response and "Alive" in ping.response.message:
+                config_detail = config_api.get_config(_request_timeout=retry_timeout)
+                if config_detail and config_detail.response and config_detail.response.vns3_version:
                     successful_pings = successful_pings + 1
                     if successful_pings >= healthy_ping_count:
                         return ping.response

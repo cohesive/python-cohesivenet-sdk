@@ -29,5 +29,6 @@ else
    git push origin $gitTagVersion
 fi
 
-make
+make build
 twine upload dist/*
+# make clean
