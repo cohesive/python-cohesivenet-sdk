@@ -2,6 +2,7 @@ import asyncio
 import json
 import math
 import time
+import re
 
 from copy import deepcopy
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
@@ -195,6 +196,11 @@ def map_dict_keypaths(key_map, data_dict):
         new_key: get_path(data_dict, key_path) for key_path, new_key in key_map.items()
     }
     return {**data_dict, **updates}
+
+
+def is_formattable_string(s):
+    regexp = re.compile(r'{.*}')
+    return regexp.search(s)
 
 
 def partition_list_groups(object_list, number_partitions):

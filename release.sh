@@ -5,10 +5,12 @@ projectroot=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd $projectroot
 source .venv/bin/activate
 CurVersion="$(cat cohesivenet/version.py | cut -d' ' -f3 | sed 's/\"//g')"
+BuildCommit=$(git rev-parse --short HEAD)
 
 echo "= Release version $CurVersion to pypi"
+gitTag="v$CurVersion"
 
-if git tag | grep -q $CurVersion
+if git tag | grep -q $gitTag
 then 
     while true; do
         read -p "= Git tag for version $CurVersion already exists \
@@ -24,9 +26,8 @@ Continue with release? [Y/N]: " yn
     git log -1  v$CurVersion
 else
    echo "= Git tag does not exist for version $CurVersion. Creating."
-   gitTagVersion="v$CurVersion"
-   git tag -a $gitTagVersion -m "Release version $CurVersion"
-   git push origin $gitTagVersion
+   git tag -a $gitTag -m "Release version $CurVersion. Build:$BuildCommit"
+   git push origin $gitTag
 fi
 
 make build
