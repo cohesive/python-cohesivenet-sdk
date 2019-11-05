@@ -2258,7 +2258,7 @@ class SystemAdministrationApi(object):
         retry_timeout=2,
         timeout=60,
         wait_for_reboot=False,
-        healthy_ping_count=5,
+        healthy_ping_count=10,
         **kwargs
     ):  # noqa: E501
         """wait_for_api  # noqa: E501
@@ -2288,7 +2288,7 @@ class SystemAdministrationApi(object):
                 if config_detail and config_detail.response and config_detail.response.vns3_version:
                     successful_pings = successful_pings + 1
                     if successful_pings >= healthy_ping_count:
-                        return ping.response
+                        return config_detail.response
             except (
                 urllib3.exceptions.ConnectTimeoutError,
                 urllib3.exceptions.NewConnectionError,

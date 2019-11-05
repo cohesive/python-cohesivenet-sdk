@@ -82,7 +82,12 @@ setup(
         "Openapi",
     ],
     install_requires=DEPENDENDIES,
-    tests_require=["pytest >= 4.6.2"],
+    tests_require=[
+        "pytest >= 4.6.2",
+        "pytest-mock >= 1.10.4",
+        "pytest-xdist >= 1.28.0",
+        "pytest-cov >= 2.7.1"
+    ],
     packages=find_packages(exclude=["tests", "docs", "examples"]),
     include_package_data=True,
     package_data={NAME: ["version"]},

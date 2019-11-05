@@ -27,7 +27,10 @@ lint: venv
 build: venv
 	@${VENV_NAME}/bin/python setup.py build sdist bdist_wheel
 
-clean:
-	@rm -rf $(VENV_NAME) build/ dist/
+cleanbuild:
+	@rm -rf build/ dist/
 
-.PHONY: venv test ci fmt fmtcheck lint clean build
+clean: cleanbuild
+	@rm -rf $(VENV_NAME)
+
+.PHONY: venv test ci fmt fmtcheck lint clean build cleanbuild

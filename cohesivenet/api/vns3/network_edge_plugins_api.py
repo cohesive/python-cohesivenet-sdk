@@ -1738,7 +1738,7 @@ class NetworkEdgePluginsApi(object):
             collection_formats=collection_formats,
         )
 
-    def restart_container_network(self, initial_sleep=2.5, timeout=30.0, **kwargs):
+    def restart_container_network(self, sleep_time=2.5, timeout=30.0, **kwargs):
         """Restart the container network
 
         Raises:
@@ -1751,18 +1751,18 @@ class NetworkEdgePluginsApi(object):
         self.api_client.network_edge_plugins.post_action_container_system(
             {"action": "stop"}
         )
-        time.sleep(initial_sleep)
+        time.sleep(sleep_time)
+        self.api_client.network_edge_plugins.post_action_container_system(
+            {"action": "start"}
+        )
         start_time = time.time()
         while time.time() - start_time < timeout:
             system_state_is_running = (
                 self.api_client.network_edge_plugins.get_container_system_status().response.running
             )
-            if system_state_is_running is False:
-                self.api_client.network_edge_plugins.post_action_container_system(
-                    {"action": "start"}
-                )
-            elif system_state_is_running is True:
+            if system_state_is_running is True:
                 return True
+            time.sleep(sleep_time)
         raise ApiException(
             "Failed to restart container system: API timeout [timeout=%sseconds]"
             % timeout

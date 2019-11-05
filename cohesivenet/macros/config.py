@@ -52,6 +52,11 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
     )
 
     try:
+        keyset_data = client.config.get_keyset()
+        if keyset_data.response.keyset_present:
+            Logger.info('Keyset already present. Cant fetch from other controller.', host=client.host_uri)
+            return keyset_data
+
         put_response = client.config.put_keyset({"source": source, "token": token})
     except UrlLib3ConnExceptions:
         raise ApiException(

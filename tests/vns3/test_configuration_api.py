@@ -14,7 +14,9 @@
 from __future__ import absolute_import
 
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock
+
+from 
 
 from tests.rest_mock import RestClientMock
 
@@ -31,7 +33,7 @@ class TestConfigurationApi(object):
     Under test: cohesivenet.api.vns3.configuration_api.ConfigurationApi
     """
 
-    def test_get_config(self, api_client: VNS3Client, rest_mock: RestClientMock):
+    def test_get_config(self):
         """Test case for get_config
 
         """
