@@ -16,27 +16,27 @@ from __future__ import absolute_import
 import unittest
 from unittest.mock import Mock, patch
 
-import cohesivenet
+from tests.rest_mock import RestClientMock
+
+from cohesivenet import VNS3Client
 from cohesivenet.api.vns3.configuration_api import ConfigurationApi  # noqa: E501
+from cohesivenet.models
 from cohesivenet.rest import ApiException
 
 
-class TestConfigurationApi(unittest.TestCase):
-    """ConfigurationApi unit test stubs"""
+class TestConfigurationApi(object):
+    """
+    ConfigurationApi unit test stubs
+    
+    Under test: cohesivenet.api.vns3.configuration_api.ConfigurationApi
+    """
 
-    def setUp(self):
-        self.api = (
-            cohesivenet.api.vns3.configuration_api.ConfigurationApi()
-        )  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_get_config(self):
+    def test_get_config(self, api_client: VNS3Client, rest_mock: RestClientMock):
         """Test case for get_config
 
         """
-        pass
+        rest_mock.stub_request('get', '/api/config', )
+        resp = api_client.config.get_config()
 
     def test_get_keyset(self):
         """Test case for get_keyset
