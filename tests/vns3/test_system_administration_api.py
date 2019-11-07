@@ -13,8 +13,6 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.system_administration_api import (
     SystemAdministrationApi,
@@ -22,16 +20,8 @@ from cohesivenet.api.vns3.system_administration_api import (
 from cohesivenet.rest import ApiException
 
 
-class TestSystemAdministrationApi(unittest.TestCase):
+class TestSystemAdministrationApi(object):
     """SystemAdministrationApi unit test stubs"""
-
-    def setUp(self):
-        self.api = (
-            cohesivenet.api.vns3.system_administration_api.SystemAdministrationApi()
-        )  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_access_url(self):
         """Test case for delete_access_url
@@ -146,7 +136,3 @@ class TestSystemAdministrationApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

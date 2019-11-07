@@ -13,21 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.peering_api import PeeringApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestPeeringApi(unittest.TestCase):
+class TestPeeringApi(object):
     """PeeringApi unit test stubs"""
-
-    def setUp(self):
-        self.api = cohesivenet.api.vns3.peering_api.PeeringApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_peer(self):
         """Test case for delete_peer
@@ -64,7 +56,3 @@ class TestPeeringApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

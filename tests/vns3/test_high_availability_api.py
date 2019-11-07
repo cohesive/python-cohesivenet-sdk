@@ -13,23 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.high_availability_api import HighAvailabilityApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestHighAvailabilityApi(unittest.TestCase):
+class TestHighAvailabilityApi(object):
     """HighAvailabilityApi unit test stubs"""
-
-    def setUp(self):
-        self.api = (
-            cohesivenet.api.vns3.high_availability_api.HighAvailabilityApi()
-        )  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_get_ha_id(self):
         """Test case for get_ha_id
@@ -78,7 +68,3 @@ class TestHighAvailabilityApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

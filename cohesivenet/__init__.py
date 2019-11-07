@@ -18,6 +18,8 @@ from __future__ import absolute_import
 from cohesivenet.log_util import Logger
 
 import os
+import urllib3
+import six
 
 COHESIVE_LOG_LEVEL = os.environ.get("COHESIVE_LOG_LEVEL", "").lower()
 Logger.set_null()

@@ -13,7 +13,6 @@
 
 from __future__ import absolute_import
 
-import unittest
 
 import cohesivenet
 from cohesivenet.api.vns3.network_edge_plugins_api import (
@@ -22,16 +21,8 @@ from cohesivenet.api.vns3.network_edge_plugins_api import (
 from cohesivenet.rest import ApiException
 
 
-class TestNetworkEdgePluginsApi(unittest.TestCase):
+class TestNetworkEdgePluginsApi(object):
     """NetworkEdgePluginsApi unit test stubs"""
-
-    def setUp(self):
-        self.api = (
-            cohesivenet.api.vns3.network_edge_plugins_api.NetworkEdgePluginsApi()
-        )  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_container(self):
         """Test case for delete_container
@@ -116,7 +107,3 @@ class TestNetworkEdgePluginsApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -13,21 +13,14 @@
 
 from __future__ import absolute_import
 
-import unittest
 
 import cohesivenet
 from cohesivenet.api.vns3.bgp_api import BGPApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestBGPApi(unittest.TestCase):
+class TestBGPApi(object):
     """BGPApi unit test stubs"""
-
-    def setUp(self):
-        self.api = cohesivenet.api.vns3.bgp_api.BGPApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_ipsec_endpoint_bgp_peer(self):
         """Test case for delete_ipsec_endpoint_bgp_peer
@@ -46,7 +39,3 @@ class TestBGPApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -3,19 +3,19 @@ from cohesivenet import util, Logger
 
 def create_firewall_policy(client, firewall_rules, state={}):
     """Create group of firewall rules
-    
+
     Arguments:
         client {VNS3Client}
         firewall_rules {List[CreateFirewallRuleRequest]} - [{
             'position': int,
             'rule': str
         }, ...]
-    
+
     Keyword Arguments:
         state {dict} - State to format rules with. (can call client.controller_state)
-    
+
     Returns:
-        Tuple[List[str], List[str]] - success, errors 
+        Tuple[List[str], List[str]] - success, errors
     """
     successes = []
     errors = []
@@ -31,6 +31,6 @@ def create_firewall_policy(client, firewall_rules, state={}):
                 errors.append('Rule %d missing state args %s' % (i, ','.join(e.args)))
                 continue
 
-        resp = client.firewall.post_create_firewall_rule(rule_args)
+        client.firewall.post_create_firewall_rule(rule_args)
         successes.append('Rule "%s" inserted at position %d' % (rule, rule_args['position']))
     return successes, errors

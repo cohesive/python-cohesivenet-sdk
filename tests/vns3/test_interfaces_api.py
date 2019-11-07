@@ -13,21 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.interfaces_api import InterfacesApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestInterfacesApi(unittest.TestCase):
+class TestInterfacesApi(object):
     """InterfacesApi unit test stubs"""
-
-    def setUp(self):
-        self.api = cohesivenet.api.vns3.interfaces_api.InterfacesApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_gre_endpoint(self):
         """Test case for delete_gre_endpoint
@@ -100,7 +92,3 @@ class TestInterfacesApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

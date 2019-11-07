@@ -13,21 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.snapshots_api import SnapshotsApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestSnapshotsApi(unittest.TestCase):
+class TestSnapshotsApi(object):
     """SnapshotsApi unit test stubs"""
-
-    def setUp(self):
-        self.api = cohesivenet.api.vns3.snapshots_api.SnapshotsApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_snapshot(self):
         """Test case for delete_snapshot
@@ -58,7 +50,3 @@ class TestSnapshotsApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

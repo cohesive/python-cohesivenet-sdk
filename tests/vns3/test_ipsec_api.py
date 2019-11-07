@@ -13,21 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.ipsec_api import IPsecApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestIPsecApi(unittest.TestCase):
+class TestIPsecApi(object):
     """IPsecApi unit test stubs"""
-
-    def setUp(self):
-        self.api = cohesivenet.api.vns3.ipsec_api.IPsecApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_ipsec_endpoint(self):
         """Test case for delete_ipsec_endpoint
@@ -100,7 +92,3 @@ class TestIPsecApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

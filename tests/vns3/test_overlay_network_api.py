@@ -13,23 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.overlay_network_api import OverlayNetworkApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestOverlayNetworkApi(unittest.TestCase):
+class TestOverlayNetworkApi(object):
     """OverlayNetworkApi unit test stubs"""
-
-    def setUp(self):
-        self.api = (
-            cohesivenet.api.vns3.overlay_network_api.OverlayNetworkApi()
-        )  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_clientpack_tag(self):
         """Test case for delete_clientpack_tag
@@ -114,7 +104,3 @@ class TestOverlayNetworkApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

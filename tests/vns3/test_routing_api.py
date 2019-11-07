@@ -13,21 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.routing_api import RoutingApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestRoutingApi(unittest.TestCase):
+class TestRoutingApi(object):
     """RoutingApi unit test stubs"""
-
-    def setUp(self):
-        self.api = cohesivenet.api.vns3.routing_api.RoutingApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_route(self):
         """Test case for delete_route
@@ -46,7 +38,3 @@ class TestRoutingApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

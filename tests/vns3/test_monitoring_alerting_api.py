@@ -13,7 +13,6 @@
 
 from __future__ import absolute_import
 
-import unittest
 
 import cohesivenet
 from cohesivenet.api.vns3.monitoring_alerting_api import (
@@ -22,16 +21,8 @@ from cohesivenet.api.vns3.monitoring_alerting_api import (
 from cohesivenet.rest import ApiException
 
 
-class TestMonitoringAlertingApi(unittest.TestCase):
+class TestMonitoringAlertingApi(object):
     """MonitoringAlertingApi unit test stubs"""
-
-    def setUp(self):
-        self.api = (
-            cohesivenet.api.vns3.monitoring_alerting_api.MonitoringAlertingApi()
-        )  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_alert(self):
         """Test case for delete_alert
@@ -74,7 +65,3 @@ class TestMonitoringAlertingApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -13,21 +13,13 @@
 
 from __future__ import absolute_import
 
-import unittest
-
 import cohesivenet
 from cohesivenet.api.vns3.firewall_api import FirewallApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
-class TestFirewallApi(unittest.TestCase):
+class TestFirewallApi(object):
     """FirewallApi unit test stubs"""
-
-    def setUp(self):
-        self.api = cohesivenet.api.vns3.firewall_api.FirewallApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
 
     def test_delete_firewall_fw_set(self):
         """Test case for delete_firewall_fw_set
@@ -94,7 +86,3 @@ class TestFirewallApi(unittest.TestCase):
 
         """
         pass
-
-
-if __name__ == "__main__":
-    unittest.main()
