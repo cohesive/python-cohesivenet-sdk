@@ -13,11 +13,14 @@
 
 from __future__ import absolute_import
 
+import pytest
+
 import cohesivenet
 from cohesivenet.api.vns3.overlay_network_api import OverlayNetworkApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
+@pytest.mark.licensed
 class TestOverlayNetworkApi(object):
     """OverlayNetworkApi unit test stubs"""
 

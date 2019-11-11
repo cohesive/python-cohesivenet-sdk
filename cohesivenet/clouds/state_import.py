@@ -1,17 +1,23 @@
 import json
+import subprocess
+
+from cohesivenet import util, CohesiveSDKException
 
 
-def load_terraform_outputs_file(file_path):
-    """load_terraform_outputs_file Import JSON file of terraform outputs
+def load_terraform_state(path_to_infra):
+    """Load terraform state
 
     Arguments:
-        file_path {str} -- File to be loaded
+        path_to_infra {str} - full path to infra
 
     Returns:
-        [dict] -- {variable_name: variable_value}
+        Dict
     """
+    raw_result = ''
     try:
-        state = json.loads(open(file_path).read().strip())
-        return {k: data["value"] for k, data in state.items()}
+        with util.cd(path_to_infra):
+            result = subprocess.run(['terraform', 'show', '-json'], stdout=subprocess.PIPE)
+            raw_result = result.stdout.decode('utf-8')
+            return json.loads(raw_result.strip())
     except json.decoder.JSONDecodeError:
-        return {}
+        raise CohesiveSDKException('Failed to load result: %s' % raw_result)

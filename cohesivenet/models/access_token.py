@@ -33,14 +33,14 @@ class AccessToken(object):
     """
     openapi_types = {
         "id": "int",
-        "created_at": "str",
+        "created_at": "datetime",
         "created_ip": "str",
         "description": "str",
-        "expires_at": "int",
+        "expires_at": "datetime",
         "lifetime": "str",
         "refreshes": "str",
         "expired": "bool",
-        "last_access_at": "str",
+        "last_access_at": "datetime",
         "last_accessed_ip": "str",
     }
 
@@ -286,7 +286,6 @@ class AccessToken(object):
     @last_access_at.setter
     def last_access_at(self, last_access_at):
         """Sets the last_access_at of this AccessToken.
-
 
         :param last_access_at: The last_access_at of this AccessToken.  # noqa: E501
         :type: str

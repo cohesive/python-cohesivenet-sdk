@@ -13,6 +13,8 @@
 
 from __future__ import absolute_import
 
+import pytest
+
 import cohesivenet
 from cohesivenet.api.vns3.licensing_api import LicensingApi  # noqa: E501
 from cohesivenet.rest import ApiException
@@ -21,12 +23,14 @@ from cohesivenet.rest import ApiException
 class TestLicensingApi(object):
     """LicensingApi unit test stubs"""
 
+    @pytest.mark.licensed
     def test_get_license(self):
         """Test case for get_license
 
         """
         pass
 
+    @pytest.mark.licensed
     def test_put_license_upgrade(self):
         """Test case for put_license_upgrade
 

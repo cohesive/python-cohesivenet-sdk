@@ -34,13 +34,13 @@ class AccessUrl(object):
     openapi_types = {
         "id": "int",
         "url": "str",
-        "created_at": "str",
+        "created_at": "datetime",
         "created_ip": "str",
         "description": "str",
-        "expires_at": "int",
+        "expires_at": "datetime",
         "lifetime": "str",
         "expired": "bool",
-        "last_access_at": "str",
+        "last_access_at": "datetime",
         "last_accessed_ip": "str",
     }
 

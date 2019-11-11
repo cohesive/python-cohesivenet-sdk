@@ -13,11 +13,14 @@
 
 from __future__ import absolute_import
 
+import pytest
+
 import cohesivenet
 from cohesivenet.api.vns3.ipsec_api import IPsecApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
+@pytest.mark.licensed
 class TestIPsecApi(object):
     """IPsecApi unit test stubs"""
 

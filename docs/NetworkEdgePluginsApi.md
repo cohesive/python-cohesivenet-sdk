@@ -577,7 +577,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_container_image**
-> CreateImageDetailResponse post_create_container_image(unknown_base_type)
+> CreateImageDetailResponse post_create_container_image(create_container_image_request)
 
 
 
@@ -601,10 +601,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
-unknown_base_type = cohesivenet.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+image_request = cohesivenet.CreateContainerImageRequest()
 
 try:
-    api_response = api_instance.post_create_container_image(unknown_base_type)
+    api_response = api_instance.post_create_container_image(image_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NetworkEdgePluginsApi->post_create_container_image: %s\n" % e)
@@ -614,7 +614,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **create_container_image_request** | [**CreateContainerImageRequest**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -641,8 +641,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_start_container**
-> RunContainerDetailResponse post_start_container(unknown_base_type)
-
+> RunContainerDetailResponse post_start_container(start_container_request)
 
 
 Create (allocate) a new container or start an existing one
@@ -665,10 +664,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = cohesivenet.NetworkEdgePluginsApi(cohesivenet.VNS3Client(configuration))
-unknown_base_type = cohesivenet.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+start_container_requet = cohesivenet.StartContainerRequest()
 
 try:
-    api_response = api_instance.post_start_container(unknown_base_type)
+    api_response = api_instance.post_start_container(start_container_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NetworkEdgePluginsApi->post_start_container: %s\n" % e)
@@ -678,7 +677,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **start_container_request** | [**StartContainerRequest**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 

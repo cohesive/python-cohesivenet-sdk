@@ -39,7 +39,7 @@ class SystemAdministrationApi(object):
             api_client = VNS3Client()
         self.api_client = api_client
 
-    def delete_access_url(self, **kwargs):  # noqa: E501
+    def delete_access_url(self, delete_access_url_request, **kwargs):  # noqa: E501
         """delete_access_url  # noqa: E501
 
         Delete access URL by ID or URL  # noqa: E501
@@ -49,7 +49,7 @@ class SystemAdministrationApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type:
+        :param DeleteAccessUrlRequest delete_access_url_request:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -62,9 +62,9 @@ class SystemAdministrationApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.delete_access_url_with_http_info(**kwargs)  # noqa: E501
+        return self.delete_access_url_with_http_info(delete_access_url_request, **kwargs)  # noqa: E501
 
-    def delete_access_url_with_http_info(self, **kwargs):  # noqa: E501
+    def delete_access_url_with_http_info(self, delete_access_url_request, **kwargs):  # noqa: E501
         """delete_access_url  # noqa: E501
 
         Delete access URL by ID or URL  # noqa: E501
@@ -74,7 +74,7 @@ class SystemAdministrationApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type:
+        :param DeleteAccessUrlRequest delete_access_url_request:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -91,7 +91,7 @@ class SystemAdministrationApi(object):
 
         local_var_params = locals()
 
-        all_params = ["unknown_base_type"]  # noqa: E501
+        all_params = ["delete_access_url_request"]  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
@@ -118,8 +118,8 @@ class SystemAdministrationApi(object):
         local_var_files = {}
 
         body_params = None
-        if "unknown_base_type" in local_var_params:
-            body_params = local_var_params["unknown_base_type"]
+        if "delete_access_url_request" in local_var_params:
+            body_params = local_var_params["delete_access_url_request"]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

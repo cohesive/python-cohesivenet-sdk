@@ -13,6 +13,8 @@
 
 from __future__ import absolute_import
 
+import pytest
+
 import cohesivenet
 from cohesivenet.api.vns3.snapshots_api import SnapshotsApi  # noqa: E501
 from cohesivenet.rest import ApiException
@@ -21,24 +23,28 @@ from cohesivenet.rest import ApiException
 class TestSnapshotsApi(object):
     """SnapshotsApi unit test stubs"""
 
+    @pytest.mark.licensed
     def test_delete_snapshot(self):
         """Test case for delete_snapshot
 
         """
         pass
 
+    @pytest.mark.licensed
     def test_get_download_snapshot(self):
         """Test case for get_download_snapshot
 
         """
         pass
 
+    @pytest.mark.licensed
     def test_get_snapshots(self):
         """Test case for get_snapshots
 
         """
         pass
 
+    @pytest.mark.licensed
     def test_post_create_snapshot(self):
         """Test case for post_create_snapshot
 

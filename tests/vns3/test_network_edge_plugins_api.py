@@ -13,6 +13,7 @@
 
 from __future__ import absolute_import
 
+import pytest
 
 import cohesivenet
 from cohesivenet.api.vns3.network_edge_plugins_api import (
@@ -21,6 +22,7 @@ from cohesivenet.api.vns3.network_edge_plugins_api import (
 from cohesivenet.rest import ApiException
 
 
+@pytest.mark.licensed
 class TestNetworkEdgePluginsApi(object):
     """NetworkEdgePluginsApi unit test stubs"""
 

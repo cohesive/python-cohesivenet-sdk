@@ -13,12 +13,14 @@
 
 from __future__ import absolute_import
 
+import pytest
 
 import cohesivenet
 from cohesivenet.api.vns3.bgp_api import BGPApi  # noqa: E501
 from cohesivenet.rest import ApiException
 
 
+@pytest.mark.licensed
 class TestBGPApi(object):
     """BGPApi unit test stubs"""
 

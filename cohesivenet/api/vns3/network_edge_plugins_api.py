@@ -1098,18 +1098,18 @@ class NetworkEdgePluginsApi(object):
         )
 
     def post_create_container_image(
-        self, post_create_container_image, **kwargs
+        self, create_container_image_request, **kwargs
     ):  # noqa: E501
         """post_create_container_image  # noqa: E501
 
         Create new container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_container_image(post_create_container_image, async_req=True)
+        >>> thread = api.post_create_container_image(create_container_image_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param CreateContainerImageRequest post_create_container_image: (required)
+        :param CreateContainerImageRequest create_container_image_request: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1123,7 +1123,7 @@ class NetworkEdgePluginsApi(object):
         """
         kwargs["_return_http_data_only"] = True
         return self.post_create_container_image_with_http_info(
-            post_create_container_image, **kwargs
+            create_container_image_request, **kwargs
         )  # noqa: E501
 
     def post_create_container_image_with_http_info(
@@ -1227,17 +1227,17 @@ class NetworkEdgePluginsApi(object):
             collection_formats=collection_formats,
         )
 
-    def post_start_container(self, unknown_base_type, **kwargs):  # noqa: E501
+    def post_start_container(self, start_container_request, **kwargs):  # noqa: E501
         """post_start_container  # noqa: E501
 
         Create (allocate) a new container or start an existing one  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_start_container(unknown_base_type, async_req=True)
+        >>> thread = api.post_start_container(start_container_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type: (required)
+        :param StartContainerRequest start_container_request: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1251,22 +1251,22 @@ class NetworkEdgePluginsApi(object):
         """
         kwargs["_return_http_data_only"] = True
         return self.post_start_container_with_http_info(
-            unknown_base_type, **kwargs
+            start_container_request, **kwargs
         )  # noqa: E501
 
     def post_start_container_with_http_info(
-        self, unknown_base_type, **kwargs
+        self, start_container_request, **kwargs
     ):  # noqa: E501
         """post_start_container  # noqa: E501
 
         Create (allocate) a new container or start an existing one  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_start_container_with_http_info(unknown_base_type, async_req=True)
+        >>> thread = api.post_start_container_with_http_info(start_container_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type: (required)
+        :param StartContainerRequest start_container_request: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1283,7 +1283,7 @@ class NetworkEdgePluginsApi(object):
 
         local_var_params = locals()
 
-        all_params = ["unknown_base_type"]  # noqa: E501
+        all_params = ["start_container_request"]  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
@@ -1297,13 +1297,13 @@ class NetworkEdgePluginsApi(object):
                 )
             local_var_params[key] = val
         del local_var_params["kwargs"]
-        # verify the required parameter 'unknown_base_type' is set
+        # verify the required parameter 'start_container_request' is set
         if (
-            "unknown_base_type" not in local_var_params
-            or local_var_params["unknown_base_type"] is None
+            "start_container_request" not in local_var_params
+            or local_var_params["start_container_request"] is None
         ):
             raise ApiValueError(
-                "Missing the required parameter `unknown_base_type` when calling `post_start_container`"
+                "Missing the required parameter `start_container_request` when calling `post_start_container`"
             )  # noqa: E501
 
         collection_formats = {}
@@ -1318,8 +1318,8 @@ class NetworkEdgePluginsApi(object):
         local_var_files = {}
 
         body_params = None
-        if "unknown_base_type" in local_var_params:
-            body_params = local_var_params["unknown_base_type"]
+        if "start_container_request" in local_var_params:
+            body_params = local_var_params["start_container_request"]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1789,7 +1789,7 @@ class NetworkEdgePluginsApi(object):
         resp_data = self.get_container_system_images(uuid=import_uuid)
         images = resp_data.response.images
         if not images:
-            raise ApiException("Unknown import UUID %s" % import_uuid)
+            raise ApiException("Import UUID not found: %s" % import_uuid)
 
         image = images[0]
         if image.status == "Ready":

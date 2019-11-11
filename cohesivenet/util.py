@@ -1,10 +1,12 @@
 import asyncio
 import json
 import math
+import os
 import time
 import re
 
 from copy import deepcopy
+from contextlib import contextmanager
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
 
 from cohesivenet.log_util import scrub_sensitive
@@ -263,3 +265,13 @@ def random_timestamp_filename(file_type=None):
     if file_type:
         return "%s.%s" % (timestr, file_type)
     return timestr
+
+
+@contextmanager
+def cd(newdir):
+    prevdir = os.getcwd()
+    os.chdir(os.path.expanduser(newdir))
+    try:
+        yield
+    finally:
+        os.chdir(prevdir)

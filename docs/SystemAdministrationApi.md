@@ -26,7 +26,7 @@ Method | HTTP request | Description
 
 
 # **delete_access_url**
-> object delete_access_url(unknown_base_type=unknown_base_type)
+> object delete_access_url(delete_access_url_request=delete_access_url_request)
 
 
 
@@ -50,10 +50,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = cohesivenet.SystemAdministrationApi(cohesivenet.VNS3Client(configuration))
-unknown_base_type = cohesivenet.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE |  (optional)
+delete_access_url_request = cohesivenet.DeleteAccessUrlRequest()
 
 try:
-    api_response = api_instance.delete_access_url(unknown_base_type=unknown_base_type)
+    api_response = api_instance.delete_access_url(delete_access_url_request=delete_access_url_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SystemAdministrationApi->delete_access_url: %s\n" % e)
@@ -63,7 +63,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | [optional] 
+ **delete_access_url_request** | [**DeleteAccessUrlRequest**](UNKNOWN_BASE_TYPE.md)|  | [optional] 
 
 ### Return type
 

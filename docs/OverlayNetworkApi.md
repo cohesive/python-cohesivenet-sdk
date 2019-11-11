@@ -707,7 +707,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_clientpack**
-> OneOfobjectobject put_clientpack(unknown_base_type)
+> OneOfobjectobject put_clientpack(update_clientpack_request)
 
 
 
@@ -731,10 +731,10 @@ configuration.password = 'YOUR_PASSWORD'
 configuration.host = "https://vns3-host:8000/api"
 # Create an instance of the API class
 api_instance = cohesivenet.OverlayNetworkApi(cohesivenet.VNS3Client(configuration))
-unknown_base_type = cohesivenet.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+update_clientpack_request = cohesivenet.UpdateClientpackRequest()
 
 try:
-    api_response = api_instance.put_clientpack(unknown_base_type)
+    api_response = api_instance.put_clientpack(update_clientpack_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OverlayNetworkApi->put_clientpack: %s\n" % e)
@@ -744,7 +744,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **update_clientpack_request** | [**UpdateClientpackRequest**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 

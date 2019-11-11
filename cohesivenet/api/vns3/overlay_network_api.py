@@ -1384,17 +1384,17 @@ class OverlayNetworkApi(object):
             collection_formats=collection_formats,
         )
 
-    def put_clientpack(self, unknown_base_type, **kwargs):  # noqa: E501
+    def put_clientpack(self, update_clientpack_request, **kwargs):  # noqa: E501
         """put_clientpack  # noqa: E501
 
         Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_clientpack(unknown_base_type, async_req=True)
+        >>> thread = api.put_clientpack(update_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type: (required)
+        :param UpdateClientpackRequest update_clientpack_request: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1408,20 +1408,20 @@ class OverlayNetworkApi(object):
         """
         kwargs["_return_http_data_only"] = True
         return self.put_clientpack_with_http_info(
-            unknown_base_type, **kwargs
+            update_clientpack_request, **kwargs
         )  # noqa: E501
 
-    def put_clientpack_with_http_info(self, unknown_base_type, **kwargs):  # noqa: E501
+    def put_clientpack_with_http_info(self, update_clientpack_request, **kwargs):  # noqa: E501
         """put_clientpack  # noqa: E501
 
         Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_clientpack_with_http_info(unknown_base_type, async_req=True)
+        >>> thread = api.put_clientpack_with_http_info(update_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param UNKNOWN_BASE_TYPE unknown_base_type: (required)
+        :param UpdateClientpackRequest update_clientpack_request: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1438,7 +1438,7 @@ class OverlayNetworkApi(object):
 
         local_var_params = locals()
 
-        all_params = ["unknown_base_type"]  # noqa: E501
+        all_params = ["update_clientpack_request"]  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
@@ -1452,13 +1452,13 @@ class OverlayNetworkApi(object):
                 )
             local_var_params[key] = val
         del local_var_params["kwargs"]
-        # verify the required parameter 'unknown_base_type' is set
+        # verify the required parameter 'update_clientpack_request' is set
         if (
-            "unknown_base_type" not in local_var_params
-            or local_var_params["unknown_base_type"] is None
+            "update_clientpack_request" not in local_var_params
+            or local_var_params["update_clientpack_request"] is None
         ):
             raise ApiValueError(
-                "Missing the required parameter `unknown_base_type` when calling `put_clientpack`"
+                "Missing the required parameter `update_clientpack_request` when calling `put_clientpack`"
             )  # noqa: E501
 
         collection_formats = {}
@@ -1473,8 +1473,8 @@ class OverlayNetworkApi(object):
         local_var_files = {}
 
         body_params = None
-        if "unknown_base_type" in local_var_params:
-            body_params = local_var_params["unknown_base_type"]
+        if "update_clientpack_request" in local_var_params:
+            body_params = local_var_params["update_clientpack_request"]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

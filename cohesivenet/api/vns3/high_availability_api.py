@@ -140,7 +140,7 @@ class HighAvailabilityApi(object):
             collection_formats=collection_formats,
         )
 
-    def get_ha_status(self, **kwargs):  # noqa: E501
+    def get_ha_status(self, uuid, **kwargs):  # noqa: E501
         """get_ha_status  # noqa: E501
 
         Get HA status for given ID  # noqa: E501
@@ -162,9 +162,9 @@ class HighAvailabilityApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.get_ha_status_with_http_info(**kwargs)  # noqa: E501
+        return self.get_ha_status_with_http_info(uuid, **kwargs)  # noqa: E501
 
-    def get_ha_status_with_http_info(self, **kwargs):  # noqa: E501
+    def get_ha_status_with_http_info(self, uuid, **kwargs):  # noqa: E501
         """get_ha_status  # noqa: E501
 
         Get HA status for given ID  # noqa: E501
@@ -190,7 +190,7 @@ class HighAvailabilityApi(object):
 
         local_var_params = locals()
 
-        all_params = []  # noqa: E501
+        all_params = ["uuid"]  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
@@ -204,6 +204,11 @@ class HighAvailabilityApi(object):
                 )
             local_var_params[key] = val
         del local_var_params["kwargs"]
+        # verify the required parameter 'uuid' is set
+        if "uuid" not in local_var_params or local_var_params["uuid"] is None:
+            raise ApiValueError(
+                "Missing the required parameter `uuid` when calling `get_ha_status`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -215,6 +220,9 @@ class HighAvailabilityApi(object):
 
         form_params = []
         local_var_files = {}
+
+        if "uuid" in local_var_params:
+            query_params.append(("uuid", local_var_params["uuid"]))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`

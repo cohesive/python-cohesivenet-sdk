@@ -6,8 +6,14 @@ from cohesivenet.rest import RESTResponse
 
 
 class RestClientMock(object):
+    COMMON_HOST_ENDPOINT = '0.0.0.0'
+    COMMON_PORT = '8000'
+    COMMON_HOST = '%s:%s' % (COMMON_HOST_ENDPOINT, COMMON_PORT)
+
+
     def __init__(self, mocker):
         self._mocker = mocker
+        self._client = None
 
         self._real_request = cohesivenet.rest.RESTClientObject.request
         self._stub_request_handler = StubRequestHandler()
@@ -24,10 +30,14 @@ class RestClientMock(object):
             autospec=True,
         )
 
+    def get_expected_url(self, url):
+        if url.startswith('http'):
+            return url
+        return 'https://%s%s' % (self.COMMON_HOST, url)
 
     def _patched_request(self, requestor, method, url, *args, **kwargs):
         response = self._stub_request_handler.get_response(method, url)
-        print('response %s' % response)
+        print(self._stub_request_handler._entries)
         if response is not None:
             return response
 
@@ -39,28 +49,46 @@ class RestClientMock(object):
         )
 
     def assert_requested(self, method, url, query_params=None, headers=None, body=None, post_params=None):
-        params = params or self._mocker.ANY
+        query_params = query_params or self._mocker.ANY
         headers = headers or self._mocker.ANY
+        body = body or self._mocker.ANY
+        post_params = post_params or self._mocker.ANY
         called = False
         exception = None
+        method_expected = method.upper()
+        url_expected = self.get_expected_url(url)
 
         # Sadly, ANY does not match a missing optional argument, so we
         # check all the possible signatures of the request method
-        possible_called_args = [
-            # (self._mocker.ANY, method, url),
-            # (self._mocker.ANY, method, url, params),
-            # (self._mocker.ANY, method, url, params, headers),
-            (self._mocker.ANY, method, url, query_params, headers, body, post_params),
-        ]
+        call_args = (
+            self._mocker.ANY,
+            method_expected,
+            url_expected,
+        )
+        call_kwargs = {
+            '_preload_content': self._mocker.ANY,
+            '_request_timeout': self._mocker.ANY,
+            'headers': self._mocker.ANY,
+            'post_params': [],
+            'query_params': [],
+            'body': None
+        }
 
-        for args in possible_called_args:
-            try:
-                self.request_patcher.assert_called_with(*args)
-            except AssertionError as e:
-                exception = e
-            else:
-                called = True
-                break
+        if query_params:
+            call_kwargs.update(query_params=query_params)
+        if headers:
+            call_kwargs.update(headers=headers)
+        if body:
+            call_kwargs.update(body=body)
+        if post_params:
+            call_kwargs.update(post_params=post_params)
+
+        try:
+            self.request_patcher.assert_called_with(*call_args, **call_kwargs)
+        except AssertionError as e:
+            exception = e
+        else:
+            called = True
 
         if not called:
             raise exception
@@ -86,8 +114,9 @@ class StubRequestHandler(object):
 
     def get_response(self, method, url):
         method = method.lower()
-        url_no_protocol = url.strip('https://')
+        url_no_protocol = url.lstrip('https://')
         uri = url_no_protocol[url_no_protocol.index('/'):]
+
         if (method, uri) in self._entries:
             rbody, rstatus, rheaders = self._entries.pop((method, uri))
             if not isinstance(rbody, six.string_types):
