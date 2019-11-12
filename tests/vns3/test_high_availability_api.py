@@ -28,19 +28,17 @@ class TestHighAvailabilityApi(object):
         """Test case for get_ha_id
 
         """
-        mock_uuid = '4902a793073191235f83ae25c83a596b4277c8a6c909ecf9551ce8cd3189b12d'
-        rest_mock.stub_request('get', '/api/ha/uuid', {
-            'response': {
-                'ha_uuid': mock_uuid
-            }
-        })
+        mock_uuid = "4902a793073191235f83ae25c83a596b4277c8a6c909ecf9551ce8cd3189b12d"
+        rest_mock.stub_request(
+            "get", "/api/ha/uuid", {"response": {"ha_uuid": mock_uuid}}
+        )
 
         api_client = VNS3Client(
             configuration=Configuration(
-                host='0.0.0.0:8000',
-                username='api',
-                password='password',
-                verify_ssl=False
+                host="0.0.0.0:8000",
+                username="api",
+                password="password",
+                verify_ssl=False,
             )
         )
 
@@ -48,11 +46,32 @@ class TestHighAvailabilityApi(object):
         assert type(resp) is models.HaUUID
         assert resp.response.ha_uuid == mock_uuid
 
-    def test_get_ha_status(self, rest_mock: RestClientMock):
+    def test_get_ha_status_uninitialized(self, rest_mock: RestClientMock):
         """Test case for get_ha_status
 
         """
-        pass
+        method, uri = "get", "/api/ha/status"
+        mock_uuid = "4902a793073191235f83ae25c83a596b4277c8a6c909ecf9551ce8cd3189b12d"
+        rest_mock.stub_request(
+            method,
+            uri,
+            {"response": {"type": "backup_server", "status": "Not initialised"}},
+        )
+
+        api_client = VNS3Client(
+            configuration=Configuration(
+                host="0.0.0.0:8000",
+                username="api",
+                password="password",
+                verify_ssl=False,
+            )
+        )
+
+        resp = api_client.high_availability.get_ha_status(mock_uuid)
+        assert type(resp) is models.HaDetail
+        assert resp.response.type == "backup_server"
+        assert resp.response.status == "Not initialised"
+        rest_mock.assert_requested(method, uri, query_params=[("uuid", mock_uuid)])
 
     @pytest.mark.licensed
     def test_get_ha_sync_file(self, rest_mock: RestClientMock):
@@ -73,7 +92,7 @@ class TestHighAvailabilityApi(object):
 
         """
         pass
-    
+
     @pytest.mark.licensed
     def test_post_sync_ha(self, rest_mock: RestClientMock):
         """Test case for post_sync_ha

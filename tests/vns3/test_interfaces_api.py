@@ -13,7 +13,7 @@
 
 from __future__ import absolute_import
 
-import  pytest
+import pytest
 
 import cohesivenet
 from cohesivenet.api.vns3.interfaces_api import InterfacesApi  # noqa: E501

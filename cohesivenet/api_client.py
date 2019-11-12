@@ -81,6 +81,7 @@ class APIClient(object):
         self.user_agent = "OpenAPI-Generator/1.0.0/python"
         self._base_path = "/%s" % self.BASE_PATH.strip("/") if self.BASE_PATH else ""
         self._api_cache = {}
+        self.client_side_validation = configuration.client_side_validation
 
     @property
     def configuration(self):

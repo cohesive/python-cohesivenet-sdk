@@ -32,17 +32,19 @@ class UpdateClientpackRequest(object):
         "enabled": "bool",
         "checked_out": "bool",
         "name": "str",
-        "regenerate": "bool"
+        "regenerate": "bool",
     }
 
     attribute_map = {
         "enabled": "enabled",
         "checked_out": "checked_out",
         "name": "name",
-        "regenerate": "regenerate"
+        "regenerate": "regenerate",
     }
 
-    def __init__(self, enabled=None, checked_out=None, name=None, regenerate=None):  # noqa: E501
+    def __init__(
+        self, enabled=None, checked_out=None, name=None, regenerate=None
+    ):  # noqa: E501
         """UpdateClientpackRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._enabled = None

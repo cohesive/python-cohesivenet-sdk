@@ -6,10 +6,10 @@ from cohesivenet import VNS3Client, Configuration
 
 
 class MockConstants(object):
-    Host = '0.0.0.0'
-    Port = '8000'
-    User = 'api'
-    Password = 'mockpass1234'
+    Host = "0.0.0.0"
+    Port = "8000"
+    User = "api"
+    Password = "mockpass1234"
     VerifySSL = False
 
 
@@ -22,9 +22,9 @@ def rest_mock(mocker):
 def api_client():
     return VNS3Client(
         configuration=Configuration(
-            host='%s:%s' % (MockConstants.Host, MockConstants.Port),
+            host="%s:%s" % (MockConstants.Host, MockConstants.Port),
             username=MockConstants.User,
             password=MockConstants.Password,
-            verify_ssl=MockConstants.VerifySSL
+            verify_ssl=MockConstants.VerifySSL,
         )
     )

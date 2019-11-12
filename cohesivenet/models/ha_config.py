@@ -51,7 +51,7 @@ class HaConfig(object):
 
     def __init__(
         self,
-        type_str=None,
+        type=None,
         status=None,
         last_sync=None,
         last_sync_update=None,
@@ -68,8 +68,8 @@ class HaConfig(object):
         self._backup_ip = None
         self.discriminator = None
 
-        if type_str is not None:
-            self.type = type_str
+        if type is not None:
+            self.type = type
         if status is not None:
             self.status = status
         self.last_sync = last_sync

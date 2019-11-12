@@ -70,42 +70,46 @@ class TestSystemAdministrationApi(object):
         """Test case for get_cloud_data
 
         """
-        rest_mock.stub_request('get', '/api/cloud_data', {
-            'response': {
-                'cloud_data': {
-                    'accountId': '947761958079',
-                    'architecture': 'x86_64',
-                    'availabilityZone': 'us-east-1a',
-                    'billingProducts': None,
-                    'devpayProductCodes': None,
-                    'imageId': 'ami-034b377bde620d2a8',
-                    'instanceId': 'i-0b96e779c3143cf66',
-                    'instanceType': 't3.small',
-                    'kernelId': None,
-                    'marketplaceProductCodes': None,
-                    'pendingTime': '2019-11-08T16:18:38Z',
-                    'privateIp': '10.0.1.37',
-                    'ramdiskId': None,
-                    'region': 'us-east-1',
-                    'version': '2017-09-30'
-                },
-                'cloud_type': 'ec2'
-            }
-        })
+        rest_mock.stub_request(
+            "get",
+            "/api/cloud_data",
+            {
+                "response": {
+                    "cloud_data": {
+                        "accountId": "947761958079",
+                        "architecture": "x86_64",
+                        "availabilityZone": "us-east-1a",
+                        "billingProducts": None,
+                        "devpayProductCodes": None,
+                        "imageId": "ami-034b377bde620d2a8",
+                        "instanceId": "i-0b96e779c3143cf66",
+                        "instanceType": "t3.small",
+                        "kernelId": None,
+                        "marketplaceProductCodes": None,
+                        "pendingTime": "2019-11-08T16:18:38Z",
+                        "privateIp": "10.0.1.37",
+                        "ramdiskId": None,
+                        "region": "us-east-1",
+                        "version": "2017-09-30",
+                    },
+                    "cloud_type": "ec2",
+                }
+            },
+        )
 
         api_client = VNS3Client(
             configuration=Configuration(
-                host='0.0.0.0:8000',
-                username='api',
-                password='password',
-                verify_ssl=False
+                host="0.0.0.0:8000",
+                username="api",
+                password="password",
+                verify_ssl=False,
             )
         )
 
         resp = api_client.sys_admin.get_cloud_data()
         assert type(resp) is models.CloudInfoDetail
-        assert resp.response.cloud_type == 'ec2'
-        assert resp.response.cloud_data['accountId'] == '947761958079'
+        assert resp.response.cloud_type == "ec2"
+        assert resp.response.cloud_data["accountId"] == "947761958079"
 
     @pytest.mark.licensed
     def test_get_status(self):

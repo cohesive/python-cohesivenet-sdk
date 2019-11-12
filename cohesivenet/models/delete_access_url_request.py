@@ -25,6 +25,7 @@ class DeleteAccessUrlRequest(object):
       attribute_map (dict): The key is attribute access_url
                             and the value is json key in definition.
     """
+
     openapi_types = {"access_url_id": "int", "access_url": "str"}
 
     attribute_map = {"access_url_id": "access_url_id", "access_url": "access_url"}

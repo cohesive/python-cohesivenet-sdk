@@ -121,6 +121,8 @@ class Configuration(object):
         self.retries = None
         """Adding retries to override urllib3 default value 3
         """
+        # Client side validation
+        self.client_side_validation = True
 
     @property
     def host(self):

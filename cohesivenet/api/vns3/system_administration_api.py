@@ -62,9 +62,13 @@ class SystemAdministrationApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.delete_access_url_with_http_info(delete_access_url_request, **kwargs)  # noqa: E501
+        return self.delete_access_url_with_http_info(
+            delete_access_url_request, **kwargs
+        )  # noqa: E501
 
-    def delete_access_url_with_http_info(self, delete_access_url_request, **kwargs):  # noqa: E501
+    def delete_access_url_with_http_info(
+        self, delete_access_url_request, **kwargs
+    ):  # noqa: E501
         """delete_access_url  # noqa: E501
 
         Delete access URL by ID or URL  # noqa: E501
@@ -2285,7 +2289,11 @@ class SystemAdministrationApi(object):
         while time.time() - start_time < timeout:
             try:
                 config_detail = config_api.get_config(_request_timeout=retry_timeout)
-                if config_detail and config_detail.response and config_detail.response.vns3_version:
+                if (
+                    config_detail
+                    and config_detail.response
+                    and config_detail.response.vns3_version
+                ):
                     successful_pings = successful_pings + 1
                     if successful_pings >= healthy_ping_count:
                         return config_detail.response

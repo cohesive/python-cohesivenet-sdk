@@ -1411,7 +1411,9 @@ class OverlayNetworkApi(object):
             update_clientpack_request, **kwargs
         )  # noqa: E501
 
-    def put_clientpack_with_http_info(self, update_clientpack_request, **kwargs):  # noqa: E501
+    def put_clientpack_with_http_info(
+        self, update_clientpack_request, **kwargs
+    ):  # noqa: E501
         """put_clientpack  # noqa: E501
 
         Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501

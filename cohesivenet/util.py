@@ -201,7 +201,7 @@ def map_dict_keypaths(key_map, data_dict):
 
 
 def is_formattable_string(s):
-    regexp = re.compile(r'{.*}')
+    regexp = re.compile(r"{.*}")
     return regexp.search(s)
 
 
@@ -225,7 +225,7 @@ def partition_list_groups(object_list, number_partitions):
     rounded_list = object_list[:-leftovers] if leftovers else object_list
 
     return [
-        rounded_list[i * partition_size: (i + 1) * partition_size]
+        rounded_list[i * partition_size : (i + 1) * partition_size]
         + ([leftover_set[i]] if len(leftover_set) > i else [])
         for i in range(number_partitions)
     ]
@@ -255,7 +255,7 @@ def partition_list_ratios(object_list, partition_ratios):
     _cursor = 0
     partitions = {}
     for i, size in enumerate(partition_sizes):
-        partitions[str(partition_ratios[i])] = object_list[_cursor: (_cursor + size)]
+        partitions[str(partition_ratios[i])] = object_list[_cursor : (_cursor + size)]
         _cursor += size
     return partitions
 

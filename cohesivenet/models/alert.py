@@ -37,7 +37,7 @@ class Alert(object):
         "url": "str",
         "enabled": "bool",
         "events": "list[str]",
-        "custom_properties": "dict(str, str)",
+        "custom_properties": "list[WebhookCustomProperty]",
     }
 
     attribute_map = {

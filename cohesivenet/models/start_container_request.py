@@ -25,6 +25,7 @@ class StartContainerRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
+
     openapi_types = {
         "uuid": "str",
         "image_uuid": "str",
@@ -32,7 +33,7 @@ class StartContainerRequest(object):
         "name": "str",
         "description": "str",
         "command": "str",
-        "environment": "str"
+        "environment": "str",
     }
 
     attribute_map = {
@@ -42,11 +43,18 @@ class StartContainerRequest(object):
         "name": "name",
         "description": "description",
         "command": "command",
-        "environment": "environment"
+        "environment": "environment",
     }
 
     def __init__(
-        self, uuid=None, image_uuid=None, name=None, ipaddress=None, description=None, command=None, environment=None
+        self,
+        uuid=None,
+        image_uuid=None,
+        name=None,
+        ipaddress=None,
+        description=None,
+        command=None,
+        environment=None,
     ):  # noqa: E501
         """StartContainerRequest - a model defined in OpenAPI"""  # noqa: E501
 

@@ -1747,7 +1747,9 @@ class NetworkEdgePluginsApi(object):
         Returns:
             Boolean
         """
-        Logger.debug('Restarting container subsystem.', host=self.api_client.configuration.host)
+        Logger.debug(
+            "Restarting container subsystem.", host=self.api_client.configuration.host
+        )
         self.api_client.network_edge_plugins.post_action_container_system(
             {"action": "stop"}
         )

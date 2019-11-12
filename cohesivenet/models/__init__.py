@@ -264,3 +264,9 @@ from cohesivenet.models.upgrade_license_response_response import (
 )
 from cohesivenet.models.vns3_controller import VNS3Controller
 from cohesivenet.models.vns3_controller_peer import VNS3ControllerPeer
+from cohesivenet.models.webhook_custom_property import WebhookCustomProperty
+from cohesivenet.models.webhook_detail_response import WebhookDetailResponse
+from cohesivenet.models.webhook_header import WebhookHeader
+from cohesivenet.models.webhook_integration import WebhookIntegration
+from cohesivenet.models.webhook_parameter import WebhookParameter
+from cohesivenet.models.webhooks_list_response import WebhooksListResponse
