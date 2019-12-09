@@ -31,6 +31,7 @@ class RuntimeConfig(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
+
     openapi_types = {
         "asn": "int",
         "topology_name": "str",

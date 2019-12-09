@@ -2006,7 +2006,9 @@ class SystemAdministrationApi(object):
             collection_formats=collection_formats,
         )
 
-    def put_remote_support(self, **kwargs):  # noqa: E501
+    def put_remote_support(
+        self, update_remote_support_config_request, **kwargs
+    ):  # noqa: E501
         """put_remote_support  # noqa: E501
 
         Enables and disables remote support. Revokes the validity of a remote support  keypair generated with postGenerateKeypair   # noqa: E501
@@ -2029,9 +2031,13 @@ class SystemAdministrationApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.put_remote_support_with_http_info(**kwargs)  # noqa: E501
+        return self.put_remote_support_with_http_info(
+            update_remote_support_config_request, **kwargs
+        )  # noqa: E501
 
-    def put_remote_support_with_http_info(self, **kwargs):  # noqa: E501
+    def put_remote_support_with_http_info(
+        self, update_remote_support_config_request, **kwargs
+    ):  # noqa: E501
         """put_remote_support  # noqa: E501
 
         Enables and disables remote support. Revokes the validity of a remote support  keypair generated with postGenerateKeypair   # noqa: E501
@@ -2122,7 +2128,7 @@ class SystemAdministrationApi(object):
             collection_formats=collection_formats,
         )
 
-    def put_server_action(self, **kwargs):  # noqa: E501
+    def put_server_action(self, reboot_request, **kwargs):  # noqa: E501
         """put_server_action  # noqa: E501
 
         Server action for VNS3 controller. Currently only reboot supported.  # noqa: E501
@@ -2145,9 +2151,11 @@ class SystemAdministrationApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.put_server_action_with_http_info(**kwargs)  # noqa: E501
+        return self.put_server_action_with_http_info(
+            reboot_request, **kwargs
+        )  # noqa: E501
 
-    def put_server_action_with_http_info(self, **kwargs):  # noqa: E501
+    def put_server_action_with_http_info(self, reboot_request, **kwargs):  # noqa: E501
         """put_server_action  # noqa: E501
 
         Server action for VNS3 controller. Currently only reboot supported.  # noqa: E501

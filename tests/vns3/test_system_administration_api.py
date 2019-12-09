@@ -162,11 +162,29 @@ class TestSystemAdministrationApi(object):
         """
         pass
 
-    def test_put_remote_support(self):
+    def test_put_remote_support(self, rest_mock: RestClientMock):
         """Test case for put_remote_support
 
         """
-        pass
+        method, uri = "put", "/api/remote_support"
+        rest_mock.stub_request(
+            method, uri, {"response": {"enabled": False, "revoke_credential": True}}
+        )
+
+        api_client = VNS3Client(
+            configuration=Configuration(
+                host="0.0.0.0:8000",
+                username="api",
+                password="password",
+                verify_ssl=False,
+            )
+        )
+
+        request = {"enabled": False, "revoke": True}
+        resp = api_client.sys_admin.put_remote_support(request)
+        assert type(resp) is models.RemoteSupportStatusResponse
+        assert not resp.response.enabled and resp.response.revoke_credential
+        rest_mock.assert_requested(method, uri, body=request)
 
     @pytest.mark.licensed
     def test_put_server_action(self):

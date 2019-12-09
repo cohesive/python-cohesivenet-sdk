@@ -256,6 +256,12 @@ class APIClient(object):
 
         :return: deserialized object.
         """
+        error_response_str = re.findall(r"{\"error\".*}", response.data)
+        if error_response_str:
+            return self.__deserialize(
+                json.loads(error_response_str[0]), "ErrorResponse"
+            )
+
         # handle file downloading
         # save response body into a tmp file and return the instance
         if "file" in response_type:

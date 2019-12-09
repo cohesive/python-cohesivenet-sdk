@@ -101,8 +101,8 @@ from cohesivenet.models.delete_container_image_detail_response import (
 )
 from cohesivenet.models.delete_firewall_rule_request import DeleteFirewallRuleRequest
 from cohesivenet.models.disconnet_client_request import DisconnetClientRequest
-from cohesivenet.models.error import Error
-from cohesivenet.models.error_error import ErrorError
+from cohesivenet.models.error_response import ErrorResponse
+from cohesivenet.models.error_detail import ErrorDetail
 from cohesivenet.models.expire_request import ExpireRequest
 from cohesivenet.models.firewall_fw_set import FirewallFWSet
 from cohesivenet.models.firewall_fw_set_list_response import FirewallFWSetListResponse

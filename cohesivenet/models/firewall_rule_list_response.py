@@ -31,7 +31,7 @@ class FirewallRuleListResponse(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"response": "list[list[OneOfstringinteger]]"}
+    openapi_types = {"response": "list[list[str]]"}
 
     attribute_map = {"response": "response"}
 

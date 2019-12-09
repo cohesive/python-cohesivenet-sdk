@@ -156,7 +156,6 @@ class TestConfigurationApi(object):
 
     def test_get_runtime(self, rest_mock: RestClientMock):
         """Test case for get_runtime
-
         """
         rest_mock.stub_request(
             "get",
@@ -183,8 +182,8 @@ class TestConfigurationApi(object):
         )
 
         resp = api_client.config.get_runtime()
-        assert type(resp) is dict
-        assert resp["response"]["private_ipaddress"] == "10.0.1.37"
+        assert type(resp) is models.ConfigDetail
+        assert resp.response.private_ipaddress == "10.0.1.37"
 
     @pytest.mark.skip(reason="Todo - INSTALL SSL")
     @pytest.mark.licensed

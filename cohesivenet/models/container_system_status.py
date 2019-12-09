@@ -31,7 +31,7 @@ class ContainerSystemStatus(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"network": "str", "running": "bool"}
+    openapi_types = {"network": "str", "running": "str"}
 
     attribute_map = {"network": "network", "running": "running"}
 

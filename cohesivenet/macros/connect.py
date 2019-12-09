@@ -62,7 +62,7 @@ def get_clients_common_creds(hosts, common_username, common_password, verify=Fal
 
 
 def verify_client_connectivity(
-    clients: List[VNS3Client]
+    clients: List[VNS3Client],
 ) -> data_types.BulkOperationResult:
     """Verify the connectivty of provided clients by pinging API
 

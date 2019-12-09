@@ -26,9 +26,16 @@ Logger.set_null()
 if COHESIVE_LOG_LEVEL:
     Logger.set_stream_handler(COHESIVE_LOG_LEVEL)
 
+from cohesivenet.version import VERSION
 
-__version__ = "0.1.0"
+__version__ = VERSION
 
+from cohesivenet.models.webhook_custom_property import WebhookCustomProperty
+from cohesivenet.models.webhook_detail_response import WebhookDetailResponse
+from cohesivenet.models.webhook_header import WebhookHeader
+from cohesivenet.models.webhook_integration import WebhookIntegration
+from cohesivenet.models.webhook_parameter import WebhookParameter
+from cohesivenet.models.webhooks_list_response import WebhooksListResponse
 from cohesivenet.models.vns3_controller_peer import VNS3ControllerPeer
 from cohesivenet.models.vns3_controller import VNS3Controller
 from cohesivenet.models.upgrade_license_response_response import (
@@ -190,8 +197,8 @@ from cohesivenet.models.firewall_rule_list_response import FirewallRuleListRespo
 from cohesivenet.models.firewall_fw_set_list_response import FirewallFWSetListResponse
 from cohesivenet.models.firewall_fw_set import FirewallFWSet
 from cohesivenet.models.expire_request import ExpireRequest
-from cohesivenet.models.error_error import ErrorError
-from cohesivenet.models.error import Error
+from cohesivenet.models.error_detail import ErrorDetail
+from cohesivenet.models.error_response import ErrorResponse
 from cohesivenet.models.disconnet_client_request import DisconnetClientRequest
 from cohesivenet.models.delete_firewall_rule_request import DeleteFirewallRuleRequest
 from cohesivenet.models.delete_container_image_detail_response import (
