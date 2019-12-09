@@ -52,7 +52,6 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
     )
 
     try:
-        keyset_data = client.config.get_keyset()
         keyset_response = keyset_data.response
         if keyset_response and keyset_response.keyset_present:
             Logger.info(
@@ -62,6 +61,12 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
             return keyset_data
 
         put_response = client.config.put_keyset({"source": source, "token": token})
+    except ApiException as e:
+        Logger.info(
+            "Failed to fetch keyset: %s." % e.get_error_message(),
+            host=client.host_uri,
+        )
+        raise e
     except UrlLib3ConnExceptions:
         raise ApiException(
             status=HTTPStatus.SERVICE_UNAVAILABLE,
