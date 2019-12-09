@@ -55,7 +55,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
         put_response = client.config.put_keyset({"source": source, "token": token})
     except ApiException as e:
         Logger.info(
-            "Failed to fetch keyset: %s." % e.get_error_message(),
+            "Failed to fetch keyset: %s" % e.get_error_message(),
             host=client.host_uri,
         )
         raise e
@@ -88,6 +88,8 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
                 wait_timeout=wait_timeout,
             )
             return client.config.wait_for_keyset(timeout=wait_timeout)
+        except ApiException as e:
+            duplicate_call_resp = e.body
 
         if keyset_exists_err(duplicate_call_resp):
             keyset_data = client.config.get_keyset()
