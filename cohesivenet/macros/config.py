@@ -10,21 +10,24 @@ from cohesivenet import (
     Logger,
     UrlLib3ConnExceptions,
     HTTPStatus,
+    models
 )
 from cohesivenet.macros import api_operations
 
 
-def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
+def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
     """fetch_keyset_from_source Put keyset by providing source controller to download keyset. This
     contains logic that handles whether or not fetching from the source fails, typically due
     to a firewall or routing issue in the underlay network (e.g. security groups and route tables).
 
     Pseudo-logic:
-        if already in progress or successful new request:
+        PUT new keyset request to fetch from remote controller
+        if keyset exists or already in progress, fail immediately as its unexpected
+        if PUT succees:
             wait:
                 if a new successful put returns: that indicates failure to download from source. return 400
                 if timeout: that indicates controller is rebooting, return wait for keyset
-        if keyset already exists: return keyset details
+                if keyset already exists, wait to ensure keyset  exists, then return keyset details
 
     Arguments:
         source {str} - host controller to fetch keyset from
@@ -37,18 +40,6 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
     failure_error_str = (
         "Failed to fetch keyset for source. This typically due to a misconfigured "
         "firewall or routing issue between source and client controllers."
-    )
-
-    def is_in_progress_err(r):
-        return type(r) is str and "Keyset setup in progress" in r
-
-    def keyset_exists_err(r):
-        return type(r) is str and "Keyset already exists" in r
-
-    get_start_time = (
-        lambda r: None
-        if not type(r) is dict
-        else r.get("response", {}).get("started_at_i")
     )
 
     try:
@@ -65,16 +56,13 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
             reason="Controller unavailable. It is likely rebooting. Try client.sys_admin.wait_for_api().",
         )
 
-    if keyset_exists_err(put_response):
+    if put_response.response.keyset_present:
         raise ApiException(status=400, reason="Keyset already exists.")
 
-    started_time = get_start_time(put_response)
-    already_in_progress = is_in_progress_err(put_response)
+    start_time = put_response.response.started_at_i
     Logger.info(
-        message="Keyset downloading from source."
-        if not already_in_progress
-        else "Keyset download already in progress.",
-        start_time=started_time,
+        message="Keyset downloading from source.",
+        start_time=start_time
     )
     polling_start = time.time()
     while time.time() - polling_start <= wait_timeout:
@@ -87,29 +75,36 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=60.0):
                 "API call timeout. Controller is likely rebooting. Waiting for keyset.",
                 wait_timeout=wait_timeout,
             )
+            client.sys_admin.wait_for_api(
+                timeout=wait_timeout, wait_for_reboot=True
+            )
             return client.config.wait_for_keyset(timeout=wait_timeout)
         except ApiException as e:
-            duplicate_call_resp = e.body
+            duplicate_call_error = e.get_error_message()
 
-        if keyset_exists_err(duplicate_call_resp):
-            keyset_data = client.config.get_keyset()
-            if not keyset_data.response:
-                Logger.info(
-                    "Keyset exists. Waiting for reboot.", wait_timeout=wait_timeout
-                )
-                client.sys_admin.wait_for_api(
-                    timeout=wait_timeout, wait_for_reboot=True
-                )
-                return client.config.wait_for_keyset()
-            return keyset_data
+            if duplicate_call_error == "Keyset already exists.":
+                keyset_data = client.config.try_get_keyset()
+                if not keyset_data:
+                    Logger.info(
+                        "Keyset exists. Waiting for reboot.", wait_timeout=wait_timeout
+                    )
+                    client.sys_admin.wait_for_api(
+                        timeout=wait_timeout, wait_for_reboot=True
+                    )
+                    return client.config.wait_for_keyset()
+                return keyset_data
 
-        if is_in_progress_err(duplicate_call_resp):
-            # this means download is in progress, but might fail. Wait and retry
-            time.sleep(2.0)
-            continue
+            if duplicate_call_error == "Keyset setup in progress.":
+                # this means download is in progress, but might fail. Wait and retry
+                time.sleep(2.0)
+                continue
 
-        new_start = get_start_time(duplicate_call_resp)
-        if (new_start and started_time) and (new_start != started_time):
+            # Unexpected ApiException
+            raise e
+
+        # If there is a new start time for keyset generation, that indicates a failure
+        new_start = duplicate_call_resp.response.started_at_i
+        if (new_start and start_time) and (new_start != start_time):
             Logger.error(failure_error_str, source=source)
             raise ApiException(status=HTTPStatus.BAD_REQUEST, reason=failure_error_str)
 
