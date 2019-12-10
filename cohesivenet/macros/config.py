@@ -10,7 +10,6 @@ from cohesivenet import (
     Logger,
     UrlLib3ConnExceptions,
     HTTPStatus,
-    models
 )
 from cohesivenet.macros import api_operations
 
@@ -46,8 +45,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
         put_response = client.config.put_keyset({"source": source, "token": token})
     except ApiException as e:
         Logger.info(
-            "Failed to fetch keyset: %s" % e.get_error_message(),
-            host=client.host_uri,
+            "Failed to fetch keyset: %s" % e.get_error_message(), host=client.host_uri,
         )
         raise e
     except UrlLib3ConnExceptions:
@@ -60,10 +58,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
         raise ApiException(status=400, reason="Keyset already exists.")
 
     start_time = put_response.response.started_at_i
-    Logger.info(
-        message="Keyset downloading from source.",
-        start_time=start_time
-    )
+    Logger.info(message="Keyset downloading from source.", start_time=start_time)
     polling_start = time.time()
     while time.time() - polling_start <= wait_timeout:
         try:
@@ -75,9 +70,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
                 "API call timeout. Controller is likely rebooting. Waiting for keyset.",
                 wait_timeout=wait_timeout,
             )
-            client.sys_admin.wait_for_api(
-                timeout=wait_timeout, wait_for_reboot=True
-            )
+            client.sys_admin.wait_for_api(timeout=wait_timeout, wait_for_reboot=True)
             return client.config.wait_for_keyset(timeout=wait_timeout)
         except ApiException as e:
             duplicate_call_error = e.get_error_message()

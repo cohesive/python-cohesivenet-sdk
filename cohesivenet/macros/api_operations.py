@@ -207,15 +207,18 @@ def bulk_operation_failed(result: data_types.BulkOperationResult):
     return len(failures) > 1
 
 
-def bulk_operation_all_exceptions(result: data_types.BulkOperationResult, predicate_func: Callable):
+def bulk_operation_all_exceptions(
+    result: data_types.BulkOperationResult, predicate_func: Callable
+):
     exceptions = result[1]
-    return all([
-        predicate_func(e.exception) for e in exceptions
-    ])
+    return all([predicate_func(e.exception) for e in exceptions])
 
 
 def stringify_bulk_result_exception(result: data_types.BulkOperationResult):
     exceptions = result[1]
-    return ", ".join([
-        "message=%s client=%s" % (str(e.exception), e.client.host_uri) for e in exceptions
-    ])
+    return ", ".join(
+        [
+            "message=%s client=%s" % (str(e.exception), e.client.host_uri)
+            for e in exceptions
+        ]
+    )

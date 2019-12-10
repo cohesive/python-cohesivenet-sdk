@@ -1764,9 +1764,8 @@ class NetworkEdgePluginsApi(object):
             )
             resp_type = type(system_state_is_running)
             is_running = (
-                (resp_type is str and system_state_is_running.lower() == 'true') or 
-                (resp_type is bool and system_state_is_running is True)
-            )
+                resp_type is str and system_state_is_running.lower() == "true"
+            ) or (resp_type is bool and system_state_is_running is True)
             if is_running is True:
                 return True
             time.sleep(sleep_time)
