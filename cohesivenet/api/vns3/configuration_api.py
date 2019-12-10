@@ -1210,6 +1210,31 @@ class ConfigurationApi(object):
             collection_formats=collection_formats,
         )
 
+    def try_get_keyset(self, **kwargs):  # noqa: E501
+        """try_get_keyset  # noqa: E501
+
+        Wraps get_keyset for unlicensed error.
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.try_get_keyset(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: KeysetDetail or None
+        """
+        try:
+            return self.get_keyset(**kwargs)
+        except ApiException as e:
+            if e.status == 403 and "must be licensed" in e.get_error_message().lower():
+                return None
+            raise e
+
     def wait_for_keyset(self, retry_timeout=2.0, timeout=60):
         """wait_for_keyset
 
