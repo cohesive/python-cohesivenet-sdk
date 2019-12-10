@@ -20,6 +20,11 @@ def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
     """
 
     def _set_peer_id(_client, i):
+        get_resp = _client.peering.get_peering_status()
+        if get_resp.response.id == i:
+            _client.add_to_state(VNS3Attr.peer_id, i)
+            return get_resp
+
         resp = _client.peering.put_self_peering_id({"id": i})
         _client.add_to_state(VNS3Attr.peer_id, i)
         return resp
