@@ -1738,6 +1738,42 @@ class NetworkEdgePluginsApi(object):
             collection_formats=collection_formats,
         )
 
+    def assert_container_system_state(self, running, sleep_time=2.0, timeout=30.0):
+        """Assert container system is either stopped or running
+
+        Arguments:
+            api_client {VNS3Client}
+            running {Boolean}
+
+        Keyword Arguments:
+            timeout {float} -- [description] (default: {30.0})
+
+        Raises:
+            ApiException:
+
+        Returns:
+            Boolean or raises ApiException
+        """
+
+        action = "start" if running else "stop"
+        expected_running_state = "true" if running else "false"
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            call_data = self.post_action_container_system(
+                {"action": action}
+            )
+
+            running_state = call_data.response.running
+            if running_state.lower() == expected_running_state:
+                return True
+
+            time.sleep(sleep_time)
+
+        raise ApiException(
+            "Timeout: Failed to assert container system state running=%s [timeout=%s seconds, host=%s]"
+            % (expected_running_state, timeout, api_client.host_uri)
+        )
+
     def restart_container_network(self, sleep_time=2.5, timeout=30.0, **kwargs):
         """Restart the container network
 
@@ -1747,32 +1783,11 @@ class NetworkEdgePluginsApi(object):
         Returns:
             Boolean
         """
-        Logger.debug(
-            "Restarting container subsystem.", host=self.api_client.configuration.host
-        )
-        self.api_client.network_edge_plugins.post_action_container_system(
-            {"action": "stop"}
-        )
-        time.sleep(sleep_time)
-        self.api_client.network_edge_plugins.post_action_container_system(
-            {"action": "start"}
-        )
         start_time = time.time()
-        while time.time() - start_time < timeout:
-            system_state_is_running = (
-                self.api_client.network_edge_plugins.get_container_system_status().response.running
-            )
-            resp_type = type(system_state_is_running)
-            is_running = (
-                resp_type is str and system_state_is_running.lower() == "true"
-            ) or (resp_type is bool and system_state_is_running is True)
-            if is_running is True:
-                return True
-            time.sleep(sleep_time)
-        raise ApiException(
-            "Failed to restart container system: API timeout [timeout=%s seconds]"
-            % timeout
-        )
+        self.assert_container_system_state(running=False, sleep_time=sleep_time, timeout=timeout)
+        remaining_time = timeout - (time.time() - start_time)
+        self.assert_container_system_state(running=True, sleep_time=sleep_time, timeout=remaining_time)
+        return True
 
     def wait_for_image_import(self, import_uuid, timeout=60.0, sleep_time=1.0):
         """Poll for image availability with a UUID

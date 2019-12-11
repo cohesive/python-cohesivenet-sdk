@@ -2,10 +2,9 @@ import time
 
 from typing import Callable
 
-import cohesivenet.util as pipe
 import cohesivenet.data_types as data_types
 from cohesivenet import ApiException, UrlLib3ConnExceptions
-
+from cohesivenet.util import run_parallel, force_async
 
 def retry_call(call_api, args=(), kwargs={}, attempt=0, max_attempts=10, sleep=2):
     try:
@@ -72,7 +71,7 @@ async def try_call_client_async(client, call, *args, **kwargs):
     Returns:
         [OperationResult or ClientExceptionResult]
     """
-    return try_call_client(client, call, *args, **kwargs)
+    return await force_async(try_call_client)(client, call, *args, **kwargs)
 
 
 def try_call_api(api_call, *args, should_raise=False, **kwargs):
@@ -102,7 +101,7 @@ async def try_call_api_async(api_call, *args, **kwargs):
     Returns:
         [Coroutine -> [OperationResult or ClientExceptionResult]]
     """
-    return try_call_api(api_call, *args, **kwargs)
+    return await force_async(try_call_api)(api_call, *args, **kwargs)
 
 
 def __bulk_call_client_sync(
@@ -135,7 +134,7 @@ def __bulk_call_client_parallel(
         data_types.BulkOperationResult
     """
     return gather_results(
-        pipe.run_parallel(
+        run_parallel(
             *(try_call_client_async(client, call_client_func) for client in clients)
         )
     )
@@ -181,7 +180,7 @@ def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
         data_types.BulkOperationResult
     """
     return gather_results(
-        pipe.run_parallel(
+        run_parallel(
             *(try_call_api_async(api_call) for api_call in bound_api_calls)
         )
     )

@@ -1,4 +1,5 @@
 import asyncio
+import functools
 import json
 import math
 import os
@@ -10,6 +11,26 @@ from contextlib import contextmanager
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
 
 from cohesivenet.log_util import scrub_sensitive
+
+
+
+def force_async(fn):
+    """Turns a sync function to async function using threads
+
+    Arguments:
+        fn {function}
+
+    Returns:
+        function - awaitable function
+    """
+    from concurrent.futures import ThreadPoolExecutor
+    pool = ThreadPoolExecutor()
+
+    @functools.wraps(fn)
+    def async_wrapper(*args, **kwargs):
+        future = pool.submit(fn, *args, **kwargs)
+        return asyncio.wrap_future(future)  # make it awaitable
+    return async_wrapper
 
 
 def run_parallel(*coroutines):
