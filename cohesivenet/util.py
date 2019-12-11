@@ -13,7 +13,6 @@ from typing import Dict, Tuple, List, Callable, Union, Awaitable
 from cohesivenet.log_util import scrub_sensitive
 
 
-
 def force_async(fn):
     """Turns a sync function to async function using threads
 

@@ -19,7 +19,6 @@ import re  # noqa: F401
 import six
 import time
 
-from cohesivenet import Logger
 from cohesivenet.exceptions import ApiTypeError, ApiValueError, ApiException
 
 
@@ -1771,7 +1770,7 @@ class NetworkEdgePluginsApi(object):
 
         raise ApiException(
             "Timeout: Failed to assert container system state running=%s [timeout=%s seconds, host=%s]"
-            % (expected_running_state, timeout, api_client.host_uri)
+            % (expected_running_state, timeout, self.api_client.host_uri)
         )
 
     def restart_container_network(self, sleep_time=2.5, timeout=30.0, **kwargs):
