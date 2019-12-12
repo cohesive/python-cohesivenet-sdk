@@ -1808,17 +1808,25 @@ class NetworkEdgePluginsApi(object):
         start_time = time.time()
         resp_data = self.get_container_system_images(uuid=import_uuid)
         images = resp_data.response.images
-        if not images:
+        if images is None:
+            raise ApiException("No images returned. Is container system running?")
+        elif len(images) == 0:
             raise ApiException("Import UUID not found: %s" % import_uuid)
 
-        image = images[0]
-        if image.status == "Ready":
+        image_status = images[0].status
+        if image_status == "Ready":
             return True
 
         time.sleep(sleep_time)
         while time.time() - start_time < timeout:
             resp_data = self.get_container_system_images(uuid=import_uuid)
-            image_status = resp_data.response.images[0].status
+            images = resp_data.response.images
+            if images is None:
+                raise ApiException("No images returned. Is container system running?")
+            elif len(images) == 0:
+                raise ApiException("Import UUID not found: %s" % import_uuid)
+
+            image_status = images[0].status
             if image_status == "Ready":
                 return True
             time.sleep(sleep_time)
