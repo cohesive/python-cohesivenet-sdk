@@ -36,6 +36,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
     Raises:
         e: [description]
     """
+    sleep_time = 2.0
     failure_error_str = (
         "Failed to fetch keyset for source. This typically due to a misconfigured "
         "firewall or routing issue between source and client controllers."
@@ -89,18 +90,20 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
 
             if duplicate_call_error == "Keyset setup in progress.":
                 # this means download is in progress, but might fail. Wait and retry
-                time.sleep(2.0)
+                time.sleep(sleep_time)
                 continue
 
             # Unexpected ApiException
             raise e
 
         # If there is a new start time for keyset generation, that indicates a failure
-        new_start = duplicate_call_resp.response.started_at_i
+        new_start_resp = duplicate_call_resp.response
+        new_start = new_start_resp.started_at_i if new_start_resp else None
         if (new_start and start_time) and (new_start != start_time):
             Logger.error(failure_error_str, source=source)
             raise ApiException(status=HTTPStatus.BAD_REQUEST, reason=failure_error_str)
 
+        time.sleep(sleep_time)
     raise CohesiveSDKException(
         "Timeout while waiting for keyset.", host=client.host_uri, source=source
     )
