@@ -104,9 +104,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
             raise ApiException(status=HTTPStatus.BAD_REQUEST, reason=failure_error_str)
 
         time.sleep(sleep_time)
-    raise CohesiveSDKException(
-        "Timeout while waiting for keyset.", host=client.host_uri, source=source
-    )
+    raise CohesiveSDKException("Timeout while waiting for keyset.")
 
 
 def setup_controller(
