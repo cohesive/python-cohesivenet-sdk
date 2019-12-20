@@ -29,15 +29,15 @@ def gather_results(results):
     """Group results if by success and exception
 
     Arguments:
-        results {List[ClientExceptionResult or Any]}
+        results {List[ExceptionResult or Any]}
 
     Returns:
-        Tuple[List[Any], List[ClientExceptionResult]]
+        Tuple[List[Any], List[ExceptionResult]]
     """
     succeeded = []
     failed = []
     for result in results:
-        if isinstance(result, data_types.ClientExceptionResult):
+        if isinstance(result, data_types.ExceptionResult):
             failed.append(result)
         else:
             succeeded.append(result)
@@ -45,7 +45,7 @@ def gather_results(results):
     return succeeded, failed
 
 
-def try_call_client(client, call, *args, **kwargs):
+def try_call_client(client, call, *args, should_raise=False, **kwargs):
     """Try call method call(client, *args, **kwargs) catch exception
 
     Arguments:
@@ -53,13 +53,15 @@ def try_call_client(client, call, *args, **kwargs):
         call {Callable} - function that accepts client as first arg
 
     Returns:
-        [OperationResult or ClientExceptionResult]
+        [OperationResult or ExceptionResult]
     """
     try:
         response = call(client, *args, **kwargs)
-        return data_types.OperationResult(client, response)
+        return data_types.OperationResult(response, client=client)
     except ApiException as e:
-        return data_types.ClientExceptionResult(client, e)
+        if should_raise:
+            raise e
+        return data_types.ExceptionResult(e, client=client)
 
 
 async def try_call_client_async(client, call, *args, **kwargs):
@@ -70,7 +72,7 @@ async def try_call_client_async(client, call, *args, **kwargs):
         call {Callable} - function that accepts client as first arg
 
     Returns:
-        [OperationResult or ClientExceptionResult]
+        [OperationResult or ExceptionResult]
     """
     return await force_async(try_call_client)(client, call, *args, **kwargs)
 
@@ -82,15 +84,15 @@ def try_call_api(api_call, *args, should_raise=False, **kwargs):
         api_call {callable}
 
     Returns:
-        [OperationResult or ClientExceptionResult]
+        [OperationResult or ExceptionResult]
     """
-
     try:
-        return api_call(*args, **kwargs)
+        response = api_call(*args, **kwargs)
+        return data_types.OperationResult(response, client=None)
     except ApiException as e:
         if should_raise:
             raise e
-        return e
+        return data_types.ExceptionResult(e, client=None)
 
 
 async def try_call_api_async(api_call, *args, **kwargs):
@@ -100,7 +102,7 @@ async def try_call_api_async(api_call, *args, **kwargs):
         api_call {callable}
 
     Returns:
-        [Coroutine -> [OperationResult or ClientExceptionResult]]
+        [Coroutine -> [OperationResult or ExceptionResult]]
     """
     return await force_async(try_call_api)(api_call, *args, **kwargs)
 
@@ -204,7 +206,7 @@ def __bulk_call_api(api_calls, parallelize=False) -> data_types.BulkOperationRes
 
 def bulk_operation_failed(result: data_types.BulkOperationResult):
     failures = result[1]
-    return len(failures) > 1
+    return len(failures) >= 1
 
 
 def bulk_operation_all_exceptions(
@@ -218,7 +220,7 @@ def stringify_bulk_result_exception(result: data_types.BulkOperationResult):
     exceptions = result[1]
     return ", ".join(
         [
-            "message=%s client=%s" % (str(e.exception), e.client.host_uri)
+            "message=%s client=%s" % (str(e.exception), 'None' if not e.client else e.client.host_uri)
             for e in exceptions
         ]
     )

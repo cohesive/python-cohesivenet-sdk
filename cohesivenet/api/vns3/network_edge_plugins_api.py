@@ -19,6 +19,7 @@ import re  # noqa: F401
 import six
 import time
 
+from cohesivenet import Logger
 from cohesivenet.exceptions import ApiTypeError, ApiValueError, ApiException
 
 
@@ -1819,7 +1820,17 @@ class NetworkEdgePluginsApi(object):
 
         time.sleep(sleep_time)
         while time.time() - start_time < timeout:
-            resp_data = self.get_container_system_images(uuid=import_uuid)
+            try:
+                resp_data = self.get_container_system_images(uuid=import_uuid)
+            except ApiException as e:
+                if e.status == 500:
+                    Logger.debug(
+                        "API server error [500] waiting for image. Likely due to resource contention. Continuing polling.",
+                        host=self.api_client.host_uri
+                    )
+                    time.sleep(sleep_time)
+                    continue
+                raise e
             images = resp_data.response.images
             if images is None:
                 raise ApiException("No images returned. Is container system running?")
