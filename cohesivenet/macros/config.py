@@ -55,8 +55,11 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
             reason="Controller unavailable. It is likely rebooting. Try client.sys_admin.wait_for_api().",
         )
 
-    if put_response.response.keyset_present:
-        raise ApiException(status=400, reason="Keyset already exists.")
+    if not put_response.response:
+        keyset_data = client.config.get_keyset()
+        if keyset_data.response.keyset_present:
+            raise ApiException(status=400, reason="Keyset already exists.")
+        raise ApiException(status=500, reason="Put keyset returned None.")
 
     start_time = put_response.response.started_at_i
     Logger.info(message="Keyset downloading from source.", start_time=start_time)

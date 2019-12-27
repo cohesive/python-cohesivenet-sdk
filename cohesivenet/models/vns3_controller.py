@@ -31,7 +31,11 @@ class VNS3Controller(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"asn": "int", "manager_id": "int", "overlay_ipaddress": "OverlayIPAddress"}
+    openapi_types = {
+        "asn": "int",
+        "manager_id": "int",
+        "overlay_ipaddress": "OverlayIPAddress",
+    }
 
     attribute_map = {
         "asn": "asn",

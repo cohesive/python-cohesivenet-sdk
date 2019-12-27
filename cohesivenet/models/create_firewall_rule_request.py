@@ -35,7 +35,7 @@ class CreateFirewallRuleRequest(object):
 
     attribute_map = {"rule": "rule", "position": "position"}
 
-    def __init__(self, rule=None, position=0):  # noqa: E501
+    def __init__(self, rule=None, position=-1):  # noqa: E501
         """CreateFirewallRuleRequest - a model defined in OpenAPI"""  # noqa: E501
 
         self._rule = None

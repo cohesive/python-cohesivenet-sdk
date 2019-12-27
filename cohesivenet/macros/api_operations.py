@@ -183,9 +183,7 @@ def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
         data_types.BulkOperationResult
     """
     return gather_results(
-        run_parallel(
-            *(try_call_api_async(api_call) for api_call in bound_api_calls)
-        )
+        run_parallel(*(try_call_api_async(api_call) for api_call in bound_api_calls))
     )
 
 
@@ -220,7 +218,8 @@ def stringify_bulk_result_exception(result: data_types.BulkOperationResult):
     exceptions = result[1]
     return ", ".join(
         [
-            "message=%s client=%s" % (str(e.exception), 'None' if not e.client else e.client.host_uri)
+            "message=%s client=%s"
+            % (str(e.exception), "None" if not e.client else e.client.host_uri)
             for e in exceptions
         ]
     )

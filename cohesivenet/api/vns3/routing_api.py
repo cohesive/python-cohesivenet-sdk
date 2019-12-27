@@ -18,7 +18,12 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from cohesivenet import Logger
 from cohesivenet.exceptions import ApiTypeError, ApiValueError
+
+
+class RouteConstants(object):
+    RouteComparisonKeys = ["cidr", "interface", "gateway"]
 
 
 class RoutingApi(object):
@@ -387,3 +392,39 @@ class RoutingApi(object):
             _request_timeout=local_var_params.get("_request_timeout"),
             collection_formats=collection_formats,
         )
+
+    def post_create_route_if_not_exists(
+        self, route_request, comparison_keys=RouteConstants.RouteComparisonKeys
+    ):
+        """Create route if it doesn not exist for client. Compare based on keys.
+
+        Arguments:
+            client {VNS3Client}
+            route {dict} - models.Route dictionary
+
+        Keyword Arguments:
+            comparison_keys {List[str]} - list of models.Route attributes to compare when checking for existence.
+                                          default: ["cidr", "interface", "gateway"]
+
+        Returns:
+            [models.RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> models.Route
+        """
+        def __to_route_tuple(route, keys):
+            return tuple(route[key] for key in keys)
+
+        routes_response = self.api_client.routing.get_routes().response
+        route_tuples = {
+            __to_route_tuple(
+                current_route.to_dict(), comparison_keys
+            ): current_route.to_dict()
+            for current_route in routes_response.values()
+        }
+        new_route_tuple = __to_route_tuple(route_request, comparison_keys)
+        if new_route_tuple in route_tuples:
+            Logger.debug(
+                "Route already exists. Skipping creation.",
+                host=self.api_client.host_uri,
+            )
+            return routes_response
+
+        return self.api_client.routing.post_create_route(route_request).response

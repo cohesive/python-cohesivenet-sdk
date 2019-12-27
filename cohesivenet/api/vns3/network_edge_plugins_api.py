@@ -1759,9 +1759,7 @@ class NetworkEdgePluginsApi(object):
         expected_running_state = "true" if running else "false"
         start_time = time.time()
         while time.time() - start_time < timeout:
-            call_data = self.post_action_container_system(
-                {"action": action}
-            )
+            call_data = self.post_action_container_system({"action": action})
 
             running_state = call_data.response.running
             if running_state.lower() == expected_running_state:
@@ -1784,9 +1782,13 @@ class NetworkEdgePluginsApi(object):
             Boolean
         """
         start_time = time.time()
-        self.assert_container_system_state(running=False, sleep_time=sleep_time, timeout=timeout)
+        self.assert_container_system_state(
+            running=False, sleep_time=sleep_time, timeout=timeout
+        )
         remaining_time = timeout - (time.time() - start_time)
-        self.assert_container_system_state(running=True, sleep_time=sleep_time, timeout=remaining_time)
+        self.assert_container_system_state(
+            running=True, sleep_time=sleep_time, timeout=remaining_time
+        )
         return True
 
     def wait_for_image_import(self, import_uuid, timeout=60.0, sleep_time=1.0):
@@ -1826,7 +1828,7 @@ class NetworkEdgePluginsApi(object):
                 if e.status == 500:
                     Logger.debug(
                         "API server error [500] waiting for image. Likely due to resource contention. Continuing polling.",
-                        host=self.api_client.host_uri
+                        host=self.api_client.host_uri,
                     )
                     time.sleep(sleep_time)
                     continue

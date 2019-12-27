@@ -1,7 +1,6 @@
 import time
 
 from cohesivenet import CohesiveSDKException, VNS3Client
-from cohesivenet.models import Container
 
 
 def wait_for_images_ready(client, import_uuids=None, interval=1.0, timeout=120.0):
@@ -72,7 +71,7 @@ def search_images(client, image_name):
         image_name {str}
 
     Raises:
-        CohesiveSDKException: [description]
+        CohesiveSDKException
 
     Returns:
         ContainerImage
@@ -100,7 +99,9 @@ def search_containers(client: VNS3Client, image_id=None):
     if not any([image_id]):
         return None
 
-    containers_resp = client.network_edge_plugins.get_container_system_running_containers()
+    containers_resp = (
+        client.network_edge_plugins.get_container_system_running_containers()
+    )
     containers = containers_resp.response.containers
     if containers is None:
         raise CohesiveSDKException("Container system is not running")
