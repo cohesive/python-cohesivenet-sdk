@@ -367,7 +367,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_update_alert**
-> object put_update_alert(update_alert_request)
+> object put_update_alert(alert_id, update_alert_request)
 
 
 
@@ -394,7 +394,7 @@ api_instance = cohesivenet.MonitoringAlertingApi(cohesivenet.VNS3Client(configur
 update_alert_request = cohesivenet.UpdateAlertRequest() # UpdateAlertRequest | 
 
 try:
-    api_response = api_instance.put_update_alert(update_alert_request)
+    api_response = api_instance.put_update_alert(alert_id, update_alert_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling MonitoringAlertingApi->put_update_alert: %s\n" % e)
@@ -404,6 +404,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **alert_id** | Integer  | 
  **update_alert_request** | [**UpdateAlertRequest**](UpdateAlertRequest.md)|  | 
 
 ### Return type

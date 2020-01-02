@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_peer**
-> object put_peer(update_peer_request)
+> object put_peer(peer_id, update_peer_request)
 
 
 
@@ -224,7 +224,7 @@ api_instance = cohesivenet.PeeringApi(cohesivenet.VNS3Client(configuration))
 update_peer_request = cohesivenet.UpdatePeerRequest() # UpdatePeerRequest | 
 
 try:
-    api_response = api_instance.put_peer(update_peer_request)
+    api_response = api_instance.put_peer(peer_id, update_peer_request)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling PeeringApi->put_peer: %s\n" % e)
@@ -234,6 +234,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **peer_id** | Integer |  | 
  **update_peer_request** | [**UpdatePeerRequest**](UpdatePeerRequest.md)|  | 
 
 ### Return type

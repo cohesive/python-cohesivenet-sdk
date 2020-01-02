@@ -79,6 +79,7 @@ setup(
         "Software Defined Networking",
         "Networkops",
         "networking",
+        "SASE",
         "Openapi",
     ],
     install_requires=DEPENDENDIES,

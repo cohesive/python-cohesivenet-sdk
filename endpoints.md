@@ -103,7 +103,7 @@ Class | Method | HTTP request | Description
 *PeeringApi* | [**delete_peer**](docs/PeeringApi.md#delete_peer) | **DELETE** /peering/peers/{peer_id} | 
 *PeeringApi* | [**get_peering_status**](docs/PeeringApi.md#get_peering_status) | **GET** /peering | 
 *PeeringApi* | [**post_peer**](docs/PeeringApi.md#post_peer) | **POST** /peering/peers | 
-*PeeringApi* | [**put_peer**](docs/PeeringApi.md#put_peer) | **PUT** /peering/peers | 
+*PeeringApi* | [**put_peer**](docs/PeeringApi.md#put_peer) | **PUT** /peering/peers/{peer_id} | 
 *PeeringApi* | [**put_reconfigure_peers**](docs/PeeringApi.md#put_reconfigure_peers) | **PUT** /peering | 
 *PeeringApi* | [**put_self_peering_id**](docs/PeeringApi.md#put_self_peering_id) | **PUT** /peering/self | 
 *RoutingApi* | [**delete_route**](docs/RoutingApi.md#delete_route) | **DELETE** /routes/{id} | 

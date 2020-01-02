@@ -31,55 +31,27 @@ class UpdatePeerRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"id": "str", "name": "str", "overlay_mtu": "int", "force": "bool"}
+    openapi_types = {"name": "str", "overlay_mtu": "int", "force": "bool"}
 
     attribute_map = {
-        "id": "id",
         "name": "name",
         "overlay_mtu": "overlay_mtu",
         "force": "force",
     }
 
-    def __init__(self, id=None, name=None, overlay_mtu=None, force=None):  # noqa: E501
+    def __init__(self, name=None, overlay_mtu=None, force=None):  # noqa: E501
         """UpdatePeerRequest - a model defined in OpenAPI"""  # noqa: E501
 
-        self._id = None
         self._name = None
         self._overlay_mtu = None
         self._force = None
         self.discriminator = None
 
-        self.id = id
         self.name = name
         if overlay_mtu is not None:
             self.overlay_mtu = overlay_mtu
         if force is not None:
             self.force = force
-
-    @property
-    def id(self):
-        """Gets the id of this UpdatePeerRequest.  # noqa: E501
-
-        Manager ID as an integer of the the manager you are peering with,  NOT the id of the one you are calling from   # noqa: E501
-
-        :return: The id of this UpdatePeerRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this UpdatePeerRequest.
-
-        Manager ID as an integer of the the manager you are peering with,  NOT the id of the one you are calling from   # noqa: E501
-
-        :param id: The id of this UpdatePeerRequest.  # noqa: E501
-        :type: str
-        """
-        if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-
-        self._id = id
 
     @property
     def name(self):

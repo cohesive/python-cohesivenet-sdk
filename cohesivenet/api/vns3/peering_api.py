@@ -380,7 +380,7 @@ class PeeringApi(object):
             collection_formats=collection_formats,
         )
 
-    def put_peer(self, update_peer_request, **kwargs):  # noqa: E501
+    def put_peer(self, peer_id, update_peer_request, **kwargs):  # noqa: E501
         """put_peer  # noqa: E501
 
         Edits a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
@@ -390,6 +390,7 @@ class PeeringApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
+        :param int peer_id: ID for Peer (required)
         :param UpdatePeerRequest update_peer_request: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -403,9 +404,9 @@ class PeeringApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.put_peer_with_http_info(update_peer_request, **kwargs)  # noqa: E501
+        return self.put_peer_with_http_info(peer_id, update_peer_request, **kwargs)  # noqa: E501
 
-    def put_peer_with_http_info(self, update_peer_request, **kwargs):  # noqa: E501
+    def put_peer_with_http_info(self, peer_id, update_peer_request, **kwargs):  # noqa: E501
         """put_peer  # noqa: E501
 
         Edits a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
@@ -415,6 +416,7 @@ class PeeringApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
+        :param int peer_id: ID for Peer (required)
         :param UpdatePeerRequest update_peer_request: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -432,11 +434,20 @@ class PeeringApi(object):
 
         local_var_params = locals()
 
-        all_params = ["update_peer_request"]  # noqa: E501
+        all_params = ["peer_id", "update_peer_request"]  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
         all_params.append("_request_timeout")
+
+        # verify the required parameter 'peer_id' is set
+        if self.api_client.client_side_validation and (
+            "peer_id" not in local_var_params
+            or local_var_params["peer_id"] is None  # noqa: E501
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Missing the required parameter `peer_id` when calling `put_peer`"
+            )  # noqa: E501
 
         for key, val in six.iteritems(local_var_params["kwargs"]):
             if key not in all_params:
@@ -455,9 +466,20 @@ class PeeringApi(object):
                 "Missing the required parameter `update_peer_request` when calling `put_peer`"
             )  # noqa: E501
 
+        if (
+            self.api_client.client_side_validation
+            and "peer_id" in local_var_params
+            and local_var_params["peer_id"] < 0
+        ):  # noqa: E501
+            raise ApiValueError(
+                "Invalid value for parameter `peer_id` when calling `put_peer`, must be a value greater than or equal to `0`"
+            )  # noqa: E501
+
         collection_formats = {}
 
         path_params = {}
+        if "peer_id" in local_var_params:
+            path_params["peer_id"] = local_var_params["peer_id"]  # noqa: E501
 
         query_params = []
 
@@ -485,7 +507,7 @@ class PeeringApi(object):
         auth_settings = ["basicAuth"]  # noqa: E501
 
         return self.api_client.call_api(
-            "/peering/peers",
+            "/peering/peers/{peer_id}",
             "PUT",
             path_params,
             query_params,
