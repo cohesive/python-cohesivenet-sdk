@@ -8,6 +8,24 @@ from cohesivenet.util import run_parallel, force_async
 
 
 def retry_call(call_api, args=(), kwargs={}, attempt=0, max_attempts=10, sleep=2):
+    """Simply retry wrapper. No backoff, constant retry
+
+    Arguments:
+        call_api {callable}
+
+    Keyword Arguments:
+        args {tuple}
+        kwargs {dict}
+        attempt {int} - increment on attempts
+        max_attempts {int} - (default: {10})
+        sleep {int} - wait between attempts (default: {2})
+
+    Raises:
+        e: UrlLib3ConnExceptions
+
+    Returns:
+        Any
+    """
     try:
         return call_api(*args, **kwargs)
     except UrlLib3ConnExceptions as e:

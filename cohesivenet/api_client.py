@@ -256,6 +256,9 @@ class APIClient(object):
 
         :return: deserialized object.
         """
+        error_response_str = re.findall(r"{\"error\".*}", response.data)
+        if error_response_str:
+            raise rest.ApiException(status=response.status, reason=error_response_str[0])
 
         # handle file downloading
         # save response body into a tmp file and return the instance

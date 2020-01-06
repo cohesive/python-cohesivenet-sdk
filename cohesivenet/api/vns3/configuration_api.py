@@ -1229,16 +1229,27 @@ class ConfigurationApi(object):
         :return: KeysetDetail or None
         """
         try:
-            return self.get_keyset(**kwargs)
+            detail = self.get_keyset(**kwargs)
+            if detail.response:
+                return detail
+            return None
         except ApiException as e:
             if e.status == 403 and "must be licensed" in e.get_error_message().lower():
                 return None
             raise e
 
     def wait_for_keyset(self, retry_timeout=2.0, timeout=60):
-        """wait_for_keyset
+        """Wait for keyset generation
 
-        Wait for keyset to be generated on server
+        Keyword Arguments:
+            retry_timeout {float} - time to sleep between retries
+            timeout {int} - max time to wait
+
+        Raises:
+            ApiException
+
+        Returns:
+            KeysetDetail
         """
         import time
 

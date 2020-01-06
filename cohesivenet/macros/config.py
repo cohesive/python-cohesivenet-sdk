@@ -34,7 +34,10 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
         wait_timeout {float} - timeout for waiting for keyset and while polling for download failure (default: 1 min)
 
     Raises:
-        e: [description]
+        e: ApiException or CohesiveSDKException
+
+    Returns:
+        KeysetDetail
     """
     sleep_time = 2.0
     failure_error_str = (
@@ -57,7 +60,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
 
     if not put_response.response:
         keyset_data = client.config.get_keyset()
-        if keyset_data.response.keyset_present:
+        if keyset_data.response and keyset_data.response.keyset_present:
             raise ApiException(status=400, reason="Keyset already exists.")
         raise ApiException(status=500, reason="Put keyset returned None.")
 
@@ -247,4 +250,4 @@ def fetch_keysets(clients, root_host, keyset_token, wait_timeout=80.0):
             _client, root_host, keyset_token, wait_timeout=wait_timeout
         )
 
-    return api_operations.__bulk_call_client(clients, _fetch_keyset, parallelize=True)
+    return api_operations.__bulk_call_client(clients, _fetch_keyset, parallelize=False)
