@@ -404,9 +404,13 @@ class PeeringApi(object):
                  returns the request thread.
         """
         kwargs["_return_http_data_only"] = True
-        return self.put_peer_with_http_info(peer_id, update_peer_request, **kwargs)  # noqa: E501
+        return self.put_peer_with_http_info(
+            peer_id, update_peer_request, **kwargs
+        )  # noqa: E501
 
-    def put_peer_with_http_info(self, peer_id, update_peer_request, **kwargs):  # noqa: E501
+    def put_peer_with_http_info(
+        self, peer_id, update_peer_request, **kwargs
+    ):  # noqa: E501
         """put_peer  # noqa: E501
 
         Edits a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501

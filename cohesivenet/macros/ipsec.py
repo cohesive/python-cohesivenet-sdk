@@ -1,5 +1,3 @@
-
-
 def create_tunnel_endpoint(
     client,
     tunnel_name,

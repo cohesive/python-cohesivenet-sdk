@@ -145,9 +145,7 @@ def assert_rule_policy(client: VNS3Client, rules, should_fix=False):
 
         firewall_edits.append("%s:%s" % (operation, i))
         if operation == OP_INS:
-            client.firewall.post_create_firewall_rule(
-                {"rule": rule, "position": i}
-            )
+            client.firewall.post_create_firewall_rule({"rule": rule, "position": i})
             current_firewall.insert(i, rule)
         else:  # operation == OP_DEL:
             client.firewall.delete_firewall_rule_by_position(i)

@@ -409,6 +409,7 @@ class RoutingApi(object):
         Returns:
             [models.RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> models.Route
         """
+
         def __to_route_tuple(route, keys):
             return tuple(route[key] for key in keys)
 
