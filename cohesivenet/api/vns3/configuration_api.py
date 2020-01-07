@@ -1234,7 +1234,7 @@ class ConfigurationApi(object):
                 return detail
             return None
         except ApiException as e:
-            if e.status == 403 and "must be licensed" in e.get_error_message().lower():
+            if "must be licensed" in e.get_error_message().lower():
                 return None
             raise e
 

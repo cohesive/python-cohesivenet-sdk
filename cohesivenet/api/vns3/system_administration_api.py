@@ -2271,6 +2271,7 @@ class SystemAdministrationApi(object):
         timeout=60,
         wait_for_reboot=False,
         healthy_ping_count=10,
+        sleep_time=1.5,
         **kwargs
     ):  # noqa: E501
         """wait_for_api  # noqa: E501
@@ -2311,9 +2312,12 @@ class SystemAdministrationApi(object):
                 urllib3.exceptions.MaxRetryError,
             ):
                 Logger.debug(
-                    "API connection error on API ping. Retrying.", host=target_host
+                    "API connection error on API ping. Retrying in %ds."
+                    % sleep_time, host=target_host
                 )
                 continue
             except ApiException as e:
                 return e
+
+            time.sleep(sleep_time)
         raise ApiException("API timeout [timeout=%sseconds]" % timeout)

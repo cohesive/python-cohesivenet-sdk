@@ -1746,7 +1746,8 @@ class NetworkEdgePluginsApi(object):
             running {Boolean}
 
         Keyword Arguments:
-            timeout {float} -- [description] (default: {30.0})
+            sleep_time {float} (default: {2.0})
+            timeout {float} (default: {30.0})
 
         Raises:
             ApiException:
@@ -1757,10 +1758,17 @@ class NetworkEdgePluginsApi(object):
 
         action = "start" if running else "stop"
         expected_running_state = "true" if running else "false"
+        expected_in_progress = "starting" if running else "stopping"
+        action_data = self.post_action_container_system({"action": action})
+        response_state = action_data.response.running.lower()
+        if response_state == expected_running_state:
+            return True
+
+        assert response_state == expected_in_progress, "Unexpected state."
+
         start_time = time.time()
         while time.time() - start_time < timeout:
-            call_data = self.post_action_container_system({"action": action})
-
+            call_data = self.get_container_system_status()
             running_state = call_data.response.running
             if running_state.lower() == expected_running_state:
                 return True
@@ -1772,7 +1780,7 @@ class NetworkEdgePluginsApi(object):
             % (expected_running_state, timeout, self.api_client.host_uri)
         )
 
-    def restart_container_network(self, sleep_time=2.5, timeout=30.0, **kwargs):
+    def restart_container_network(self, sleep_time=2.0, timeout=30.0, **kwargs):
         """Restart the container network
 
         Raises:
