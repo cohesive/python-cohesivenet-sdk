@@ -289,7 +289,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ClientpackDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -398,7 +398,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ClientpackListResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -503,7 +503,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="OverlayClientsListResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -614,7 +614,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ConnectedSubnetsDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1012,7 +1012,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ClientpackTagsResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1117,7 +1117,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="BulkClientResetStatusResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1245,7 +1245,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ClientpackStatusResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1501,7 +1501,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="OneOfobjectobject",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1775,7 +1775,7 @@ class OverlayNetworkApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="UpdateClientpacksStatusResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(

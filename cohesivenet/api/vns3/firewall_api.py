@@ -626,7 +626,7 @@ class FirewallApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="FirewallFWSetListResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -739,7 +739,7 @@ class FirewallApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="FirewallSubgroupListResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -844,7 +844,7 @@ class FirewallApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="FirewallRuleListResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -974,7 +974,7 @@ class FirewallApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="FirewallRuleOperationResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1104,7 +1104,7 @@ class FirewallApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="OneOfobjectobject",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(

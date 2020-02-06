@@ -132,7 +132,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ConfigDetail",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -237,7 +237,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="KeysetDetail",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -342,7 +342,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ConfigDetail",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -582,7 +582,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ConfigDetail",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -687,7 +687,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ServerSSLDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -813,7 +813,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="KeysetDetail",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -943,7 +943,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="AdminUISettingsDetail",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1071,7 +1071,7 @@ class ConfigurationApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="PasswordResetResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(

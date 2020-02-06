@@ -140,7 +140,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="DeleteContainerDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -258,7 +258,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="DeleteContainerImageDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -383,7 +383,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ContainerLogsResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -488,7 +488,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ContainerSystemIPListResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -597,7 +597,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ContainerImageListResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -712,7 +712,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="RunningContainersDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -817,7 +817,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ContainerSystemStatusDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -947,7 +947,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ContainerSystemStatusDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1086,7 +1086,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="CreateContainerImageResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1216,7 +1216,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="CreateImageDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1344,7 +1344,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="RunContainerDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1474,7 +1474,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="ContainerSystemStatusDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1613,7 +1613,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="UpdateContainerImageDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
@@ -1727,7 +1727,7 @@ class NetworkEdgePluginsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type="StopContainerDetailResponse",  # noqa: E501
+            response_type="object",  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get("async_req"),
             _return_http_data_only=local_var_params.get(
