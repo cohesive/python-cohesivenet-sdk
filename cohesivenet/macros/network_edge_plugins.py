@@ -80,10 +80,11 @@ def search_images(client, image_name):
     images = resp_data.response.images
     if images is None:
         raise CohesiveSDKException("Container system is not running")
-    if len(images) == 0:
+    non_null_images = list(filter(None, images))
+    if len(non_null_images) == 0:
         return None
 
-    for image in images:
+    for image in non_null_images:
         if image.image_name.lower() == image_name.lower():
             return image
     return None

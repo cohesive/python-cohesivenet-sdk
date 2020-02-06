@@ -2315,9 +2315,5 @@ class SystemAdministrationApi(object):
                     "API connection error on API ping. Retrying in %ds." % sleep_time,
                     host=target_host,
                 )
-                continue
-            except ApiException as e:
-                return e
-
-            time.sleep(sleep_time)
+                time.sleep(sleep_time)
         raise ApiException("API timeout [timeout=%sseconds]" % timeout)

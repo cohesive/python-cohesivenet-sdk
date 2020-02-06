@@ -35,6 +35,7 @@ class CreateAlertRequest(object):
         "description": "str",
         "url": "str",
         "webhook_id": "int",
+        "template_id": "int",
         "events": "list[str]",
         "custom_properties": "dict(str, str)",
         "enabled": "bool",
@@ -44,6 +45,7 @@ class CreateAlertRequest(object):
         "description": "description",
         "url": "url",
         "webhook_id": "webhook_id",
+        "template_id": "template_id",
         "events": "events",
         "custom_properties": "custom_properties",
         "enabled": "enabled",
@@ -54,6 +56,7 @@ class CreateAlertRequest(object):
         description=None,
         url=None,
         webhook_id=None,
+        template_id=None,
         events=None,
         custom_properties=None,
         enabled=True,
@@ -63,6 +66,7 @@ class CreateAlertRequest(object):
         self._description = None
         self._url = None
         self._webhook_id = None
+        self._template_id = None
         self._events = None
         self._custom_properties = None
         self._enabled = None
@@ -70,13 +74,16 @@ class CreateAlertRequest(object):
 
         self.description = description
         self.url = url
-        self.webhook_id = webhook_id
         if events is not None:
             self.events = events
         if custom_properties is not None:
             self.custom_properties = custom_properties
         if enabled is not None:
             self.enabled = enabled
+        if webhook_id is not None:
+            self.webhook_id = webhook_id
+        if template_id is not None:
+            self.template_id = template_id
 
     @property
     def description(self):
@@ -127,6 +134,26 @@ class CreateAlertRequest(object):
             )  # noqa: E501
 
         self._url = url
+
+    @property
+    def template_id(self):
+        """Gets the template_id of this CreateAlertRequest.  # noqa: E501
+
+
+        :return: The template_id of this CreateAlertRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._template_id
+
+    @template_id.setter
+    def template_id(self, template_id):
+        """Sets the template_id of this CreateAlertRequest.
+
+
+        :param template_id: The template_id of this CreateAlertRequest.  # noqa: E501
+        :type: int
+        """
+        self._template_id = template_id
 
     @property
     def webhook_id(self):
