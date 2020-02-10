@@ -46,7 +46,7 @@ class RoutingApi(object):
         Delete Route  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_route(route_id, async_req=True)
+        >>> response = await api.delete_route(route_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -71,7 +71,7 @@ class RoutingApi(object):
         Delete Route  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_route_with_http_info(route_id, async_req=True)
+        >>> response = await api.delete_route_with_http_info(route_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -166,7 +166,7 @@ class RoutingApi(object):
         Describes routes that this manager has access to via its network interfaces (virtual or otherwise).  If advertized, other VNS3 Controllers will receive the route instantly. Network clients will  receive it when they get their next route push, which is normally on a re-connect or in neartime  if they use the VNS3 Routing agent on their cloud servers. Remote endpoints  (other data centers) would not receive the route unless specified as part of  their IPsec Configuration AND the Configuration of such a tunnel on the VNS3 controller.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_routes(async_req=True)
+        >>> response = await api.get_routes(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -190,7 +190,7 @@ class RoutingApi(object):
         Describes routes that this manager has access to via its network interfaces (virtual or otherwise).  If advertized, other VNS3 Controllers will receive the route instantly. Network clients will  receive it when they get their next route push, which is normally on a re-connect or in neartime  if they use the VNS3 Routing agent on their cloud servers. Remote endpoints  (other data centers) would not receive the route unless specified as part of  their IPsec Configuration AND the Configuration of such a tunnel on the VNS3 controller.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_routes_with_http_info(async_req=True)
+        >>> response = await api.get_routes_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -271,7 +271,7 @@ class RoutingApi(object):
         Pushes routes that this manager has access to via its network interfaces (virtual or otherwise)   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_route(create_route_request, async_req=True)
+        >>> response = await api.post_create_route(create_route_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -300,7 +300,7 @@ class RoutingApi(object):
         Pushes routes that this manager has access to via its network interfaces (virtual or otherwise)   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_route_with_http_info(create_route_request, async_req=True)
+        >>> response = await api.post_create_route_with_http_info(create_route_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -355,9 +355,9 @@ class RoutingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_route_request" in local_var_params:
-            body_params = local_var_params["create_route_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -400,14 +400,14 @@ class RoutingApi(object):
 
         Arguments:
             client {VNS3Client}
-            route {dict} - models.Route dictionary
+            route {dict} - Route dictionary
 
         Keyword Arguments:
             comparison_keys {List[str]} - list of models.Route attributes to compare when checking for existence.
                                           default: ["cidr", "interface", "gateway"]
 
         Returns:
-            [models.RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> models.Route
+            [RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> dict
         """
 
         def __to_route_tuple(route, keys):

@@ -43,7 +43,7 @@ class NetworkEdgePluginsApi(object):
         Delete a container  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_container(uuid, async_req=True)
+        >>> response = await api.delete_container(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -68,7 +68,7 @@ class NetworkEdgePluginsApi(object):
         Delete a container  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_container_with_http_info(uuid, async_req=True)
+        >>> response = await api.delete_container_with_http_info(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -157,7 +157,7 @@ class NetworkEdgePluginsApi(object):
         Delete container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_container_image(uuid, async_req=True)
+        >>> response = await api.delete_container_image(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -183,7 +183,7 @@ class NetworkEdgePluginsApi(object):
         Delete container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_container_image_with_http_info(uuid, async_req=True)
+        >>> response = await api.delete_container_image_with_http_info(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -275,7 +275,7 @@ class NetworkEdgePluginsApi(object):
         Fetch containers log messages  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_logs(uuid, lines, async_req=True)
+        >>> response = await api.get_container_logs(uuid, lines, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -303,7 +303,7 @@ class NetworkEdgePluginsApi(object):
         Fetch containers log messages  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_logs_with_http_info(uuid, lines, async_req=True)
+        >>> response = await api.get_container_logs_with_http_info(uuid, lines, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -400,7 +400,7 @@ class NetworkEdgePluginsApi(object):
         Retrieve IP address list for current container network configuration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_i_ps(async_req=True)
+        >>> response = await api.get_container_system_i_ps(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -424,7 +424,7 @@ class NetworkEdgePluginsApi(object):
         Retrieve IP address list for current container network configuration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_i_ps_with_http_info(async_req=True)
+        >>> response = await api.get_container_system_i_ps_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -505,7 +505,7 @@ class NetworkEdgePluginsApi(object):
         Get list of existing container system images  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_images(async_req=True)
+        >>> response = await api.get_container_system_images(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -530,7 +530,7 @@ class NetworkEdgePluginsApi(object):
         Get list of existing container system images  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_images_with_http_info(async_req=True)
+        >>> response = await api.get_container_system_images_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -614,7 +614,7 @@ class NetworkEdgePluginsApi(object):
         Provides description information for one or all allocated containers  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_running_containers(async_req=True)
+        >>> response = await api.get_container_system_running_containers(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -643,7 +643,7 @@ class NetworkEdgePluginsApi(object):
         Provides description information for one or all allocated containers  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_running_containers_with_http_info(async_req=True)
+        >>> response = await api.get_container_system_running_containers_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -729,7 +729,7 @@ class NetworkEdgePluginsApi(object):
         Retrieve status of container system  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_status(async_req=True)
+        >>> response = await api.get_container_system_status(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -753,7 +753,7 @@ class NetworkEdgePluginsApi(object):
         Retrieve status of container system  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_container_system_status_with_http_info(async_req=True)
+        >>> response = await api.get_container_system_status_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -836,7 +836,7 @@ class NetworkEdgePluginsApi(object):
         Take action on container system  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_action_container_system(container_system_action_request, async_req=True)
+        >>> response = await api.post_action_container_system(container_system_action_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -865,7 +865,7 @@ class NetworkEdgePluginsApi(object):
         Take action on container system  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_action_container_system_with_http_info(container_system_action_request, async_req=True)
+        >>> response = await api.post_action_container_system_with_http_info(container_system_action_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -920,9 +920,9 @@ class NetworkEdgePluginsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "container_system_action_request" in local_var_params:
-            body_params = local_var_params["container_system_action_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -966,7 +966,7 @@ class NetworkEdgePluginsApi(object):
         Creates a new container image from a running container  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_commit_container(uuid, commit_container_request, async_req=True)
+        >>> response = await api.post_commit_container(uuid, commit_container_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -996,7 +996,7 @@ class NetworkEdgePluginsApi(object):
         Creates a new container image from a running container  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_commit_container_with_http_info(uuid, commit_container_request, async_req=True)
+        >>> response = await api.post_commit_container_with_http_info(uuid, commit_container_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1059,9 +1059,9 @@ class NetworkEdgePluginsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "commit_container_request" in local_var_params:
-            body_params = local_var_params["commit_container_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1105,7 +1105,7 @@ class NetworkEdgePluginsApi(object):
         Create new container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_container_image(create_container_image_request, async_req=True)
+        >>> response = await api.post_create_container_image(create_container_image_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1134,7 +1134,7 @@ class NetworkEdgePluginsApi(object):
         Create new container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_container_image_with_http_info(post_create_container_image, async_req=True)
+        >>> response = await api.post_create_container_image_with_http_info(post_create_container_image, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1189,9 +1189,9 @@ class NetworkEdgePluginsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_container_image_request" in local_var_params:
-            body_params = local_var_params["create_container_image_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1233,7 +1233,7 @@ class NetworkEdgePluginsApi(object):
         Create (allocate) a new container or start an existing one  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_start_container(start_container_request, async_req=True)
+        >>> response = await api.post_start_container(start_container_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1262,7 +1262,7 @@ class NetworkEdgePluginsApi(object):
         Create (allocate) a new container or start an existing one  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_start_container_with_http_info(start_container_request, async_req=True)
+        >>> response = await api.post_start_container_with_http_info(start_container_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1317,9 +1317,9 @@ class NetworkEdgePluginsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "start_container_request" in local_var_params:
-            body_params = local_var_params["start_container_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1363,7 +1363,7 @@ class NetworkEdgePluginsApi(object):
         Configures the container network.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_configure_container_system(update_configure_container_system_request, async_req=True)
+        >>> response = await api.put_configure_container_system(update_configure_container_system_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1392,7 +1392,7 @@ class NetworkEdgePluginsApi(object):
         Configures the container network.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_configure_container_system_with_http_info(update_configure_container_system_request, async_req=True)
+        >>> response = await api.put_configure_container_system_with_http_info(update_configure_container_system_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1447,9 +1447,9 @@ class NetworkEdgePluginsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_configure_container_system_request" in local_var_params:
-            body_params = local_var_params["update_configure_container_system_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1493,7 +1493,7 @@ class NetworkEdgePluginsApi(object):
         Edits container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_container_image(uuid, update_container_image_request, async_req=True)
+        >>> response = await api.put_edit_container_image(uuid, update_container_image_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1523,7 +1523,7 @@ class NetworkEdgePluginsApi(object):
         Edits container image  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_container_image_with_http_info(uuid, update_container_image_request, async_req=True)
+        >>> response = await api.put_edit_container_image_with_http_info(uuid, update_container_image_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1586,9 +1586,9 @@ class NetworkEdgePluginsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_container_image_request" in local_var_params:
-            body_params = local_var_params["update_container_image_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1630,7 +1630,7 @@ class NetworkEdgePluginsApi(object):
         Stops a running container  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_stop_container(uuid, async_req=True)
+        >>> response = await api.put_stop_container(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1655,7 +1655,7 @@ class NetworkEdgePluginsApi(object):
         Stops a running container  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_stop_container_with_http_info(uuid, async_req=True)
+        >>> response = await api.put_stop_container_with_http_info(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously

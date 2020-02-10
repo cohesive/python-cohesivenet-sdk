@@ -18,6 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from cohesivenet import validators
 from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
@@ -35,20 +36,18 @@ class BGPApi(object):
             api_client = VNS3Client()
         self.api_client = api_client
 
-    def delete_ipsec_endpoint_bgp_peer(
-        self, endpoint_id, bgp_peer_id, **kwargs
-    ):  # noqa: E501
-        """delete_ipsec_endpoint_bgp_peer  # noqa: E501
+    @validators.validate(path_params=["endpoint_id", "bgp_peer_id"])
+    def delete_bgp_peer(self, endpoint_id, bgp_peer_id, **kwargs):  # noqa: E501
+        """delete_bgp_peer  # noqa: E501
 
         Delete BGP Peer connection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id, async_req=True)
-        >>> result = thread.get()
+        >>> response = await api.delete_bgp_peer(endpoint_id, bgp_peer_id, async_req=True)
 
-        :param async_req bool: execute request asynchronously
         :param int endpoint_id: ID for IPsec endpoint (required)
         :param int bgp_peer_id: ID for BGP peer (required)
+        :param async_req bool: execute request asynchronously
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -56,41 +55,7 @@ class BGPApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: object
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs["_return_http_data_only"] = True
-        return self.delete_ipsec_endpoint_bgp_peer_with_http_info(
-            endpoint_id, bgp_peer_id, **kwargs
-        )  # noqa: E501
-
-    def delete_ipsec_endpoint_bgp_peer_with_http_info(
-        self, endpoint_id, bgp_peer_id, **kwargs
-    ):  # noqa: E501
-        """delete_ipsec_endpoint_bgp_peer  # noqa: E501
-
-        Delete BGP Peer connection  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ipsec_endpoint_bgp_peer_with_http_info(endpoint_id, bgp_peer_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param int endpoint_id: ID for IPsec endpoint (required)
-        :param int bgp_peer_id: ID for BGP peer (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
+        :return: APIResponse or awaitable if async
         """
 
         local_var_params = locals()
@@ -101,43 +66,6 @@ class BGPApi(object):
         all_params.append("_preload_content")
         all_params.append("_request_timeout")
 
-        for key, val in six.iteritems(local_var_params["kwargs"]):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_ipsec_endpoint_bgp_peer" % key
-                )
-            local_var_params[key] = val
-        del local_var_params["kwargs"]
-        # verify the required parameter 'endpoint_id' is set
-        if (
-            "endpoint_id" not in local_var_params
-            or local_var_params["endpoint_id"] is None
-        ):
-            raise ApiValueError(
-                "Missing the required parameter `endpoint_id` when calling `delete_ipsec_endpoint_bgp_peer`"
-            )  # noqa: E501
-        # verify the required parameter 'bgp_peer_id' is set
-        if (
-            "bgp_peer_id" not in local_var_params
-            or local_var_params["bgp_peer_id"] is None
-        ):
-            raise ApiValueError(
-                "Missing the required parameter `bgp_peer_id` when calling `delete_ipsec_endpoint_bgp_peer`"
-            )  # noqa: E501
-
-        if (
-            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
-        ):  # noqa: E501
-            raise ApiValueError(
-                "Invalid value for parameter `endpoint_id` when calling `delete_ipsec_endpoint_bgp_peer`, must be a value greater than or equal to `0`"
-            )  # noqa: E501
-        if (
-            "bgp_peer_id" in local_var_params and local_var_params["bgp_peer_id"] < 0
-        ):  # noqa: E501
-            raise ApiValueError(
-                "Invalid value for parameter `bgp_peer_id` when calling `delete_ipsec_endpoint_bgp_peer`, must be a value greater than or equal to `0`"
-            )  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -181,51 +109,21 @@ class BGPApi(object):
             _request_timeout=local_var_params.get("_request_timeout"),
             collection_formats=collection_formats,
         )
+    # self, ipaddress=None, asn=None, access_list=None, bgp_password=None
+    def create_bgp_peer(self, endpoint_id, ipaddress=None, asn=None, access_list=None, bgp_password=None, **kwargs):  # noqa: E501
+        """Create BGP Peer  # noqa: E501
 
-    def post_create_ipsec_endpoint_bgp_peer(
-        self, endpoint_id, create_bgp_peer_request, **kwargs
-    ):  # noqa: E501
-        """post_create_ipsec_endpoint_bgp_peer  # noqa: E501
-
-        Create BGP peer connection  # noqa: E501
+        Create new BGP peer connection for IPsec endpoint  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_ipsec_endpoint_bgp_peer(endpoint_id, create_bgp_peer_request, async_req=True)
-        >>> result = thread.get()
+        >>> response = await api.create_bgp_peer(endpoint_id, create_bgp_peer_request, async_req=True)
 
-        :param async_req bool: execute request asynchronously
         :param int endpoint_id: ID for IPsec endpoint (required)
-        :param CreateBGPPeerRequest create_bgp_peer_request: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: object
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs["_return_http_data_only"] = True
-        return self.post_create_ipsec_endpoint_bgp_peer_with_http_info(
-            endpoint_id, create_bgp_peer_request, **kwargs
-        )  # noqa: E501
-
-    def post_create_ipsec_endpoint_bgp_peer_with_http_info(
-        self, endpoint_id, create_bgp_peer_request, **kwargs
-    ):  # noqa: E501
-        """post_create_ipsec_endpoint_bgp_peer  # noqa: E501
-
-        Create BGP peer connection  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_ipsec_endpoint_bgp_peer_with_http_info(endpoint_id, create_bgp_peer_request, async_req=True)
-        >>> result = thread.get()
-
+        :param str ipaddress: IP address of the desired BGP peer. (required)
+        :param int asn: Autonomous system number assigned to device at ipaddress (required)
+        :param str access_list: List of \"in permit CIDR\" and/or \"out permit CIDR\" statements in a string delimited by \"\\n\"
+        :param str bgp_password: String to be agreed upon by both peers as a simple password.
         :param async_req bool: execute request asynchronously
-        :param int endpoint_id: ID for IPsec endpoint (required)
-        :param CreateBGPPeerRequest create_bgp_peer_request: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -235,14 +133,14 @@ class BGPApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
+        :return: APIResponse or awaitable if async
         """
 
         local_var_params = locals()
 
-        all_params = ["endpoint_id", "create_bgp_peer_request"]  # noqa: E501
+        call_params = ["ipaddress", "asn", "access_list", "bgp_password"]
+        required_call_params = ["ipaddress", "asn"]
+        all_params = ["endpoint_id"] + call_params  # noqa: E501
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
@@ -252,7 +150,7 @@ class BGPApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method post_create_ipsec_endpoint_bgp_peer" % key
+                    " to method create_bgp_peer" % key
                 )
             local_var_params[key] = val
         del local_var_params["kwargs"]
@@ -262,22 +160,16 @@ class BGPApi(object):
             or local_var_params["endpoint_id"] is None
         ):
             raise ApiValueError(
-                "Missing the required parameter `endpoint_id` when calling `post_create_ipsec_endpoint_bgp_peer`"
-            )  # noqa: E501
-        # verify the required parameter 'create_bgp_peer_request' is set
-        if (
-            "create_bgp_peer_request" not in local_var_params
-            or local_var_params["create_bgp_peer_request"] is None
-        ):
-            raise ApiValueError(
-                "Missing the required parameter `create_bgp_peer_request` when calling `post_create_ipsec_endpoint_bgp_peer`"
+                "Missing the required parameter `endpoint_id` when calling `create_bgp_peer`"
             )  # noqa: E501
 
+        validators.validate_required_params(required_call_params, local_var_params, 'create_bgp_peer')
+
         if (
-            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
+            "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 1
         ):  # noqa: E501
             raise ApiValueError(
-                "Invalid value for parameter `endpoint_id` when calling `post_create_ipsec_endpoint_bgp_peer`, must be a value greater than or equal to `0`"
+                "Invalid value for parameter `endpoint_id` when calling `create_bgp_peer`, must be a value greater than or equal to `0`"
             )  # noqa: E501
         collection_formats = {}
 
@@ -292,9 +184,10 @@ class BGPApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_bgp_peer_request" in local_var_params:
-            body_params = local_var_params["create_bgp_peer_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
+
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -330,52 +223,36 @@ class BGPApi(object):
             collection_formats=collection_formats,
         )
 
-    def put_edit_ipsec_endpoint_bgp_peer(
-        self, endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, **kwargs
+    def update_bgp_peer(
+        self,
+        endpoint_id,
+        bgp_peer_id, 
+        ipaddress=None,
+        asn=None,
+        access_list=None,
+        bgp_password=None,
+        add_network_distance=None,
+        add_network_distance_direction=None,
+        add_network_distance_hops=None,
+        **kwargs
     ):  # noqa: E501
         """put_edit_ipsec_endpoint_bgp_peer  # noqa: E501
 
         Edit BGP peer connection parameters  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_ipsec_endpoint_bgp_peer(endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, async_req=True)
-        >>> result = thread.get()
+        >>> response = await api.put_edit_ipsec_endpoint_bgp_peer_with_http_info(endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, async_req=True)
 
         :param async_req bool: execute request asynchronously
         :param int endpoint_id: ID for IPsec endpoint (required)
         :param int bgp_peer_id: ID for BGP peer (required)
-        :param UpdateBGPPeerConnectionRequest update_bgp_peer_connection_request: (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: object
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs["_return_http_data_only"] = True
-        return self.put_edit_ipsec_endpoint_bgp_peer_with_http_info(
-            endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, **kwargs
-        )  # noqa: E501
-
-    def put_edit_ipsec_endpoint_bgp_peer_with_http_info(
-        self, endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, **kwargs
-    ):  # noqa: E501
-        """put_edit_ipsec_endpoint_bgp_peer  # noqa: E501
-
-        Edit BGP peer connection parameters  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_ipsec_endpoint_bgp_peer_with_http_info(endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param int endpoint_id: ID for IPsec endpoint (required)
-        :param int bgp_peer_id: ID for BGP peer (required)
-        :param UpdateBGPPeerConnectionRequest update_bgp_peer_connection_request: (required)
+        :param str ipaddress: IP address of the desired BGP peer. (required)
+        :param int asn: Autonomous system number assigned to device at ipaddress (required)
+        :param str access_list: List of \"in permit CIDR\" and/or \"out permit CIDR\" statements in a string delimited by \"\\n\"
+        :param str bgp_password: String to be agreed upon by both peers as a simple password.
+        :param bool add_network_distance: Enable network distance for BGP peer
+        :param str add_network_distance_direction: Add distance direction for BGP peer
+        :param int add_network_distance_hops: Distance metric weight indicating distance in hops for BGP peer
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -392,11 +269,12 @@ class BGPApi(object):
 
         local_var_params = locals()
 
+        call_params = ["ipaddress", "asn", "access_list", "bgp_password", "add_network_distance", "add_network_distance_direction", "add_network_distance_hops"]
+        required_call_params = ["ipaddress", "asn"]
         all_params = [
             "endpoint_id",
-            "bgp_peer_id",
-            "update_bgp_peer_connection_request",
-        ]  # noqa: E501
+            "bgp_peer_id"
+        ] + call_params
         all_params.append("async_req")
         all_params.append("_return_http_data_only")
         all_params.append("_preload_content")
@@ -427,13 +305,6 @@ class BGPApi(object):
                 "Missing the required parameter `bgp_peer_id` when calling `put_edit_ipsec_endpoint_bgp_peer`"
             )  # noqa: E501
         # verify the required parameter 'update_bgp_peer_connection_request' is set
-        if (
-            "update_bgp_peer_connection_request" not in local_var_params
-            or local_var_params["update_bgp_peer_connection_request"] is None
-        ):
-            raise ApiValueError(
-                "Missing the required parameter `update_bgp_peer_connection_request` when calling `put_edit_ipsec_endpoint_bgp_peer`"
-            )  # noqa: E501
 
         if (
             "endpoint_id" in local_var_params and local_var_params["endpoint_id"] < 0
@@ -462,9 +333,10 @@ class BGPApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_bgp_peer_connection_request" in local_var_params:
-            body_params = local_var_params["update_bgp_peer_connection_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
+
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

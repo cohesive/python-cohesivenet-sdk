@@ -41,7 +41,7 @@ class InterfacesApi(object):
         Delete GRE Interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_gre_endpoint(async_req=True)
+        >>> response = await api.delete_gre_endpoint(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -65,7 +65,7 @@ class InterfacesApi(object):
         Delete GRE Interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_gre_endpoint_with_http_info(async_req=True)
+        >>> response = await api.delete_gre_endpoint_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -146,7 +146,7 @@ class InterfacesApi(object):
         Delete System Interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_system_interface(interface_id, async_req=True)
+        >>> response = await api.delete_system_interface(interface_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -175,7 +175,7 @@ class InterfacesApi(object):
         Delete System Interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_system_interface_with_http_info(interface_id, async_req=True)
+        >>> response = await api.delete_system_interface_with_http_info(interface_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -267,7 +267,7 @@ class InterfacesApi(object):
         Describe system edge GRE endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_edge_gre_endpoints(async_req=True)
+        >>> response = await api.get_edge_gre_endpoints(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -291,7 +291,7 @@ class InterfacesApi(object):
         Describe system edge GRE endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_edge_gre_endpoints_with_http_info(async_req=True)
+        >>> response = await api.get_edge_gre_endpoints_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -372,7 +372,7 @@ class InterfacesApi(object):
         Get GRE interface details by id or name  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_gre_endpoint_details(interface_id, async_req=True)
+        >>> response = await api.get_gre_endpoint_details(interface_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -401,7 +401,7 @@ class InterfacesApi(object):
         Get GRE interface details by id or name  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_gre_endpoint_details_with_http_info(interface_id, async_req=True)
+        >>> response = await api.get_gre_endpoint_details_with_http_info(interface_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -493,7 +493,7 @@ class InterfacesApi(object):
         (BETA) Describe all physical and virtual interfaces, both system and edge GRE interfaces  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_interfaces(async_req=True)
+        >>> response = await api.get_interfaces(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -517,7 +517,7 @@ class InterfacesApi(object):
         (BETA) Describe all physical and virtual interfaces, both system and edge GRE interfaces  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_interfaces_with_http_info(async_req=True)
+        >>> response = await api.get_interfaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -598,7 +598,7 @@ class InterfacesApi(object):
         Get interface details by name  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_system_interface_details(async_req=True)
+        >>> response = await api.get_system_interface_details(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -622,7 +622,7 @@ class InterfacesApi(object):
         Get interface details by name  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_system_interface_details_with_http_info(async_req=True)
+        >>> response = await api.get_system_interface_details_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -703,7 +703,7 @@ class InterfacesApi(object):
         Describe system interfaces  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_system_interfaces(async_req=True)
+        >>> response = await api.get_system_interfaces(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -727,7 +727,7 @@ class InterfacesApi(object):
         Describe system interfaces  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_system_interfaces_with_http_info(async_req=True)
+        >>> response = await api.get_system_interfaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -808,7 +808,7 @@ class InterfacesApi(object):
         Take action on interfaces. Only one action can be taken per request.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_action_interfaces(interface_action_request, async_req=True)
+        >>> response = await api.post_action_interfaces(interface_action_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -837,7 +837,7 @@ class InterfacesApi(object):
         Take action on interfaces. Only one action can be taken per request.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_action_interfaces_with_http_info(interface_action_request, async_req=True)
+        >>> response = await api.post_action_interfaces_with_http_info(interface_action_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -892,9 +892,9 @@ class InterfacesApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "interface_action_request" in local_var_params:
-            body_params = local_var_params["interface_action_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -936,7 +936,7 @@ class InterfacesApi(object):
         Create new edge GRE interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_gre_endpoint(body, async_req=True)
+        >>> response = await api.post_create_gre_endpoint(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -963,7 +963,7 @@ class InterfacesApi(object):
         Create new edge GRE interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_gre_endpoint_with_http_info(body, async_req=True)
+        >>> response = await api.post_create_gre_endpoint_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1015,9 +1015,9 @@ class InterfacesApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "body" in local_var_params:
-            body_params = local_var_params["body"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1059,7 +1059,7 @@ class InterfacesApi(object):
         Create new system interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_system_interface(body, async_req=True)
+        >>> response = await api.post_create_system_interface(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1086,7 +1086,7 @@ class InterfacesApi(object):
         Create new system interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_system_interface_with_http_info(body, async_req=True)
+        >>> response = await api.post_create_system_interface_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1138,9 +1138,9 @@ class InterfacesApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "body" in local_var_params:
-            body_params = local_var_params["body"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1182,7 +1182,7 @@ class InterfacesApi(object):
         Update GRE interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_gre_endpoint(body, async_req=True)
+        >>> response = await api.put_update_gre_endpoint(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1207,7 +1207,7 @@ class InterfacesApi(object):
         Update GRE interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_gre_endpoint_with_http_info(body, async_req=True)
+        >>> response = await api.put_update_gre_endpoint_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1259,9 +1259,9 @@ class InterfacesApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "body" in local_var_params:
-            body_params = local_var_params["body"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1303,7 +1303,7 @@ class InterfacesApi(object):
         Update system interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_system_interface(body, async_req=True)
+        >>> response = await api.put_update_system_interface(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1330,7 +1330,7 @@ class InterfacesApi(object):
         Update system interface  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_system_interface_with_http_info(body, async_req=True)
+        >>> response = await api.put_update_system_interface_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1382,9 +1382,9 @@ class InterfacesApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "body" in local_var_params:
-            body_params = local_var_params["body"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

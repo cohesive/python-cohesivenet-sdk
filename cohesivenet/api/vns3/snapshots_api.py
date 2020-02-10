@@ -41,7 +41,7 @@ class SnapshotsApi(object):
         Delete named snapshot  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_snapshot(snapshot_name, async_req=True)
+        >>> response = await api.delete_snapshot(snapshot_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -68,7 +68,7 @@ class SnapshotsApi(object):
         Delete named snapshot  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_snapshot_with_http_info(snapshot_name, async_req=True)
+        >>> response = await api.delete_snapshot_with_http_info(snapshot_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -162,7 +162,7 @@ class SnapshotsApi(object):
         Download snapshot file  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_download_snapshot(snapshot_name, async_req=True)
+        >>> response = await api.get_download_snapshot(snapshot_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -191,7 +191,7 @@ class SnapshotsApi(object):
         Download snapshot file  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_download_snapshot_with_http_info(snapshot_name, async_req=True)
+        >>> response = await api.get_download_snapshot_with_http_info(snapshot_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -285,7 +285,7 @@ class SnapshotsApi(object):
         get list of snapshots  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_snapshots(async_req=True)
+        >>> response = await api.get_snapshots(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -309,7 +309,7 @@ class SnapshotsApi(object):
         get list of snapshots  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_snapshots_with_http_info(async_req=True)
+        >>> response = await api.get_snapshots_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -390,7 +390,7 @@ class SnapshotsApi(object):
         Create a new snapshot  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_snapshot(async_req=True)
+        >>> response = await api.post_create_snapshot(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -415,7 +415,7 @@ class SnapshotsApi(object):
         Create a new snapshot  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_snapshot_with_http_info(async_req=True)
+        >>> response = await api.post_create_snapshot_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -462,9 +462,9 @@ class SnapshotsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_snapshot_request" in local_var_params:
-            body_params = local_var_params["create_snapshot_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -506,7 +506,7 @@ class SnapshotsApi(object):
         Import snapshot into the manager and triggers a reboot for the Configuration to take effect.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_import_snapshot(body, async_req=True)
+        >>> response = await api.put_import_snapshot(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -531,7 +531,7 @@ class SnapshotsApi(object):
         Import snapshot into the manager and triggers a reboot for the Configuration to take effect.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_import_snapshot_with_http_info(body, async_req=True)
+        >>> response = await api.put_import_snapshot_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -583,9 +583,9 @@ class SnapshotsApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "body" in local_var_params:
-            body_params = local_var_params["body"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

@@ -6,9 +6,23 @@ cd $projectroot
 source .venv/bin/activate
 CurVersion="$(cat cohesivenet/version.py | cut -d' ' -f3 | sed 's/\"//g')"
 BuildCommit=$(git rev-parse --short HEAD)
+useTestRepo=false
 
 echo "= Release version $CurVersion to pypi"
 gitTag="v$CurVersion"
+
+for i in "$@"
+do
+case $i in
+    -t|--test)
+    useTestRepo=true
+    shift # past argument=value
+    ;;
+    *)
+    	echo "Unknown Option $i"
+    ;;
+esac
+done
 
 if git tag | grep -q $gitTag
 then 
@@ -32,5 +46,11 @@ fi
 
 make clean
 make build
-twine upload dist/*
+
+if [ "$useTestRepo" = true ] ; then
+    twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+else
+    twine upload dist/*
+fi
+
 # make clean

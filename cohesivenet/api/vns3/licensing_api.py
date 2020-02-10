@@ -41,7 +41,7 @@ class LicensingApi(object):
         Get license details  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_license(async_req=True)
+        >>> response = await api.get_license(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -65,7 +65,7 @@ class LicensingApi(object):
         Get license details  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_license_with_http_info(async_req=True)
+        >>> response = await api.get_license_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -146,7 +146,7 @@ class LicensingApi(object):
         Upload new license to controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_license_upgrade(body, async_req=True)
+        >>> response = await api.put_license_upgrade(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -171,7 +171,7 @@ class LicensingApi(object):
         Upload new license to controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_license_upgrade_with_http_info(body, async_req=True)
+        >>> response = await api.put_license_upgrade_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -223,9 +223,9 @@ class LicensingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "body" in local_var_params:
-            body_params = local_var_params["body"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -269,7 +269,7 @@ class LicensingApi(object):
         Set and accept license parameters. Triggers reboot. Irreversible operation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_set_license_parameters(update_license_parameters_request, async_req=True)
+        >>> response = await api.put_set_license_parameters(update_license_parameters_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -298,7 +298,7 @@ class LicensingApi(object):
         Set and accept license parameters. Triggers reboot. Irreversible operation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_set_license_parameters_with_http_info(update_license_parameters_request, async_req=True)
+        >>> response = await api.put_set_license_parameters_with_http_info(update_license_parameters_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -353,9 +353,9 @@ class LicensingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_license_parameters_request" in local_var_params:
-            body_params = local_var_params["update_license_parameters_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -397,7 +397,7 @@ class LicensingApi(object):
         License a VNS3 Controller to be a part of a specific topology. Must not be licensed already.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.upload_license(body, async_req=True)
+        >>> response = await api.upload_license(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -422,7 +422,7 @@ class LicensingApi(object):
         License a VNS3 Controller to be a part of a specific topology. Must not be licensed already.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.upload_license_with_http_info(body, async_req=True)
+        >>> response = await api.upload_license_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -474,9 +474,9 @@ class LicensingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "body" in local_var_params:
-            body_params = local_var_params["body"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

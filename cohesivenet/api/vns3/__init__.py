@@ -6,7 +6,6 @@ from __future__ import absolute_import
 from cohesivenet.api.vns3.bgp_api import BGPApi
 from cohesivenet.api.vns3.configuration_api import ConfigurationApi
 from cohesivenet.api.vns3.firewall_api import FirewallApi
-from cohesivenet.api.vns3.high_availability_api import HighAvailabilityApi
 from cohesivenet.api.vns3.ipsec_api import IPsecApi
 from cohesivenet.api.vns3.interfaces_api import InterfacesApi
 from cohesivenet.api.vns3.licensing_api import LicensingApi
@@ -17,3 +16,4 @@ from cohesivenet.api.vns3.peering_api import PeeringApi
 from cohesivenet.api.vns3.routing_api import RoutingApi
 from cohesivenet.api.vns3.snapshots_api import SnapshotsApi
 from cohesivenet.api.vns3.system_administration_api import SystemAdministrationApi
+from cohesivenet.api.vns3.access_api import AccessApi

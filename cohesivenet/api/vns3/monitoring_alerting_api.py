@@ -41,7 +41,7 @@ class MonitoringAlertingApi(object):
         Retrieve all Alert integrations (webhooks)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_webhooks(async_req=True)
+        >>> response = await api.get_webhooks(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -65,7 +65,7 @@ class MonitoringAlertingApi(object):
         Retrieve all Alert integrations (webhooks)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_webhooks_with_http_info(async_req=True)
+        >>> response = await api.get_webhooks_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -146,7 +146,7 @@ class MonitoringAlertingApi(object):
         Retrieve details for single webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_webhook(webhook_id, async_req=True)
+        >>> response = await api.get_webhook(webhook_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -171,7 +171,7 @@ class MonitoringAlertingApi(object):
         Retrieve details for single webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_webhook_with_http_info(webhook_id, async_req=True)
+        >>> response = await api.get_webhook_with_http_info(webhook_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -271,7 +271,7 @@ class MonitoringAlertingApi(object):
         Define new Webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_webhook(create_webhook_request, async_req=True)
+        >>> response = await api.post_create_webhook(create_webhook_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -300,7 +300,7 @@ class MonitoringAlertingApi(object):
         Define new Webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_webhook_with_http_info(create_webhook_request, async_req=True)
+        >>> response = await api.post_create_webhook_with_http_info(create_webhook_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -355,9 +355,9 @@ class MonitoringAlertingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_webhook_request" in local_var_params:
-            body_params = local_var_params["create_webhook_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -401,7 +401,7 @@ class MonitoringAlertingApi(object):
         Edit defined webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_webhook(webhook_id, update_webhook_request, async_req=True)
+        >>> response = await api.put_update_webhook(webhook_id, update_webhook_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -431,7 +431,7 @@ class MonitoringAlertingApi(object):
         Edit defined webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_webhook_with_http_info(webhook_id, update_webhook_request, async_req=True)
+        >>> response = await api.put_update_webhook_with_http_info(webhook_id, update_webhook_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -505,9 +505,9 @@ class MonitoringAlertingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_webhook_request" in local_var_params:
-            body_params = local_var_params["update_webhook_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -549,7 +549,7 @@ class MonitoringAlertingApi(object):
         Delete defined webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_webhook(webhook_id, async_req=True)
+        >>> response = await api.delete_webhook(webhook_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -574,7 +574,7 @@ class MonitoringAlertingApi(object):
         Delete defined webhook integration  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_webhook_with_http_info(webhook_id, async_req=True)
+        >>> response = await api.delete_webhook_with_http_info(webhook_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -674,7 +674,7 @@ class MonitoringAlertingApi(object):
         Delete defined alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_alert(async_req=True)
+        >>> response = await api.delete_alert(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -698,7 +698,7 @@ class MonitoringAlertingApi(object):
         Delete defined alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_alert_with_http_info(async_req=True)
+        >>> response = await api.delete_alert_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -779,7 +779,7 @@ class MonitoringAlertingApi(object):
         Retrieve details for single alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_alert(alert_id, async_req=True)
+        >>> response = await api.get_alert(alert_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -804,7 +804,7 @@ class MonitoringAlertingApi(object):
         Retrieve details for single alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_alert_with_http_info(alert_id, async_req=True)
+        >>> response = await api.get_alert_with_http_info(alert_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -904,7 +904,7 @@ class MonitoringAlertingApi(object):
         Retrieve all alerts  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_alerts(async_req=True)
+        >>> response = await api.get_alerts(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -928,7 +928,7 @@ class MonitoringAlertingApi(object):
         Retrieve all alerts  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_alerts_with_http_info(async_req=True)
+        >>> response = await api.get_alerts_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1009,7 +1009,7 @@ class MonitoringAlertingApi(object):
         Define new alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_define_new_alert(create_alert_request, async_req=True)
+        >>> response = await api.post_define_new_alert(create_alert_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1038,7 +1038,7 @@ class MonitoringAlertingApi(object):
         Define new alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_define_new_alert_with_http_info(create_alert_request, async_req=True)
+        >>> response = await api.post_define_new_alert_with_http_info(create_alert_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1093,9 +1093,9 @@ class MonitoringAlertingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_alert_request" in local_var_params:
-            body_params = local_var_params["create_alert_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1137,7 +1137,7 @@ class MonitoringAlertingApi(object):
         Send test alert for this defined alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_test_alert(alert_id, async_req=True)
+        >>> response = await api.post_test_alert(alert_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1162,7 +1162,7 @@ class MonitoringAlertingApi(object):
         Send test alert for this defined alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_test_alert_with_http_info(alert_id, async_req=True)
+        >>> response = await api.post_test_alert_with_http_info(alert_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1257,7 +1257,7 @@ class MonitoringAlertingApi(object):
         Toggle enabled property on alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_toggle_enabled_alert(alert_id, async_req=True)
+        >>> response = await api.post_toggle_enabled_alert(alert_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1286,7 +1286,7 @@ class MonitoringAlertingApi(object):
         Toggle enabled property on alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_toggle_enabled_alert_with_http_info(alert_id, async_req=True)
+        >>> response = await api.post_toggle_enabled_alert_with_http_info(alert_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1381,7 +1381,7 @@ class MonitoringAlertingApi(object):
         Edit defined alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_alert(alert_id, update_alert_request, async_req=True)
+        >>> response = await api.put_update_alert(alert_id, update_alert_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1411,7 +1411,7 @@ class MonitoringAlertingApi(object):
         Edit defined alert  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_alert_with_http_info(alert_id, update_alert_request, async_req=True)
+        >>> response = await api.put_update_alert_with_http_info(alert_id, update_alert_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1480,9 +1480,9 @@ class MonitoringAlertingApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_alert_request" in local_var_params:
-            body_params = local_var_params["update_alert_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

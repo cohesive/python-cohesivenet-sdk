@@ -43,7 +43,7 @@ class OverlayNetworkApi(object):
         For deleting individual clientpack tags  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_clientpack_tag(clientpack_name, clientpack_tag_key_request, async_req=True)
+        >>> response = await api.delete_clientpack_tag(clientpack_name, clientpack_tag_key_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -73,7 +73,7 @@ class OverlayNetworkApi(object):
         For deleting individual clientpack tags  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_clientpack_tag_with_http_info(clientpack_name, clientpack_tag_key_request, async_req=True)
+        >>> response = await api.delete_clientpack_tag_with_http_info(clientpack_name, clientpack_tag_key_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -141,9 +141,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "clientpack_tag_key_request" in local_var_params:
-            body_params = local_var_params["clientpack_tag_key_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -185,7 +185,7 @@ class OverlayNetworkApi(object):
         Returns detailed information about all of the clientpacks in the topology.  If manager's are properly peered, this information can come from any of the controllers.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_clientpack(clientpack_name, async_req=True)
+        >>> response = await api.get_clientpack(clientpack_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -212,7 +212,7 @@ class OverlayNetworkApi(object):
         Returns detailed information about all of the clientpacks in the topology.  If manager's are properly peered, this information can come from any of the controllers.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_clientpack_with_http_info(clientpack_name, async_req=True)
+        >>> response = await api.get_clientpack_with_http_info(clientpack_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -306,7 +306,7 @@ class OverlayNetworkApi(object):
         Returns detailed information about all of the clientpacks in the topology. If manager's are properly peered, this information can come from any of the controllers.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_clientpacks(async_req=True)
+        >>> response = await api.get_clientpacks(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -331,7 +331,7 @@ class OverlayNetworkApi(object):
         Returns detailed information about all of the clientpacks in the topology. If manager's are properly peered, this information can come from any of the controllers.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_clientpacks_with_http_info(async_req=True)
+        >>> response = await api.get_clientpacks_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -415,7 +415,7 @@ class OverlayNetworkApi(object):
         Describe overlay clients  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_clients_status(async_req=True)
+        >>> response = await api.get_clients_status(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -439,7 +439,7 @@ class OverlayNetworkApi(object):
         Describe overlay clients  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_clients_status_with_http_info(async_req=True)
+        >>> response = await api.get_clients_status_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -520,7 +520,7 @@ class OverlayNetworkApi(object):
         Provides information about any connected subnets.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_connected_subnets(async_req=True)
+        >>> response = await api.get_connected_subnets(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -545,7 +545,7 @@ class OverlayNetworkApi(object):
         Provides information about any connected subnets.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_connected_subnets_with_http_info(async_req=True)
+        >>> response = await api.get_connected_subnets_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -631,7 +631,7 @@ class OverlayNetworkApi(object):
         Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_download_clientpack(name="100.171.10.1", "fileformat"="conf", async_req=True)
+        >>> response = await api.get_download_clientpack(name="100.171.10.1", "fileformat"="conf", async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -657,7 +657,7 @@ class OverlayNetworkApi(object):
         Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_download_clientpack(name="100.171.10.1", "fileformat"="conf", async_req=True)
+        >>> response = await api.get_download_clientpack(name="100.171.10.1", "fileformat"="conf", async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -769,7 +769,7 @@ class OverlayNetworkApi(object):
         Get next sequential client pack. Provides sufficient information to call GET /clientpack.  Note, Using this resource against multiple controllers in the same topology could cause distribution of the  same clientpack to multiple overlay devices which is not allowed.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_calc_next_clientpack(async_req=True)
+        >>> response = await api.post_calc_next_clientpack(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -794,7 +794,7 @@ class OverlayNetworkApi(object):
         Get next sequential client pack. Provides sufficient information to call GET /clientpack.  Note, Using this resource against multiple controllers in the same topology could cause distribution of the  same clientpack to multiple overlay devices which is not allowed.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_calc_next_clientpack_with_http_info(async_req=True)
+        >>> response = await api.post_calc_next_clientpack_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -841,9 +841,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "calculate_next_clientpack_request" in local_var_params:
-            body_params = local_var_params["calculate_next_clientpack_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -887,7 +887,7 @@ class OverlayNetworkApi(object):
         For tagging individual clientpacks.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_clientpack_tag(clientpack_name, create_clientpack_tag_request, async_req=True)
+        >>> response = await api.post_clientpack_tag(clientpack_name, create_clientpack_tag_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -917,7 +917,7 @@ class OverlayNetworkApi(object):
         For tagging individual clientpacks.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_clientpack_tag_with_http_info(clientpack_name, create_clientpack_tag_request, async_req=True)
+        >>> response = await api.post_clientpack_tag_with_http_info(clientpack_name, create_clientpack_tag_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -985,9 +985,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_clientpack_tag_request" in local_var_params:
-            body_params = local_var_params["create_clientpack_tag_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1029,7 +1029,7 @@ class OverlayNetworkApi(object):
         For resetting all of the connections of clients connected to the VNS3 Controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_reset_all_clients(async_req=True)
+        >>> response = await api.post_reset_all_clients(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1053,7 +1053,7 @@ class OverlayNetworkApi(object):
         For resetting all of the connections of clients connected to the VNS3 Controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_reset_all_clients_with_http_info(async_req=True)
+        >>> response = await api.post_reset_all_clients_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1134,7 +1134,7 @@ class OverlayNetworkApi(object):
         For resetting the connection of a client to a VNS3 Controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_reset_client(reset_overlay_client_request, async_req=True)
+        >>> response = await api.post_reset_client(reset_overlay_client_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1163,7 +1163,7 @@ class OverlayNetworkApi(object):
         For resetting the connection of a client to a VNS3 Controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_reset_client_with_http_info(reset_overlay_client_request, async_req=True)
+        >>> response = await api.post_reset_client_with_http_info(reset_overlay_client_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1218,9 +1218,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "reset_overlay_client_request" in local_var_params:
-            body_params = local_var_params["reset_overlay_client_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1262,7 +1262,7 @@ class OverlayNetworkApi(object):
         Incrementally add new clientpacks for use  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_add_clientpacks(add_clientpack_request, async_req=True)
+        >>> response = await api.put_add_clientpacks(add_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1291,7 +1291,7 @@ class OverlayNetworkApi(object):
         Incrementally add new clientpacks for use  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_add_clientpacks_with_http_info(add_clientpack_request, async_req=True)
+        >>> response = await api.put_add_clientpacks_with_http_info(add_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1346,9 +1346,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "add_clientpack_request" in local_var_params:
-            body_params = local_var_params["add_clientpack_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1390,7 +1390,7 @@ class OverlayNetworkApi(object):
         Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_clientpack(update_clientpack_request, async_req=True)
+        >>> response = await api.put_clientpack(update_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1419,7 +1419,7 @@ class OverlayNetworkApi(object):
         Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_clientpack_with_http_info(update_clientpack_request, async_req=True)
+        >>> response = await api.put_clientpack_with_http_info(update_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1474,9 +1474,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_clientpack_request" in local_var_params:
-            body_params = local_var_params["update_clientpack_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1520,7 +1520,7 @@ class OverlayNetworkApi(object):
         Force disconnect client for named clientpack  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_disconnect_clientpack(clientpack_name, disconnet_client_request, async_req=True)
+        >>> response = await api.put_disconnect_clientpack(clientpack_name, disconnet_client_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1550,7 +1550,7 @@ class OverlayNetworkApi(object):
         Force disconnect client for named clientpack  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_disconnect_clientpack_with_http_info(clientpack_name, disconnet_client_request, async_req=True)
+        >>> response = await api.put_disconnect_clientpack_with_http_info(clientpack_name, disconnet_client_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1618,9 +1618,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "disconnet_client_request" in local_var_params:
-            body_params = local_var_params["disconnet_client_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1664,7 +1664,7 @@ class OverlayNetworkApi(object):
         For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.  This enables a variety of work flows by calling these functions after key generation,  but before general provisioning of addresses to devivces   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_clientpacks(update_config_clientpack_request, async_req=True)
+        >>> response = await api.put_update_clientpacks(update_config_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1693,7 +1693,7 @@ class OverlayNetworkApi(object):
         For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.  This enables a variety of work flows by calling these functions after key generation,  but before general provisioning of addresses to devivces   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_clientpacks_with_http_info(update_config_clientpack_request, async_req=True)
+        >>> response = await api.put_update_clientpacks_with_http_info(update_config_clientpack_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1748,9 +1748,9 @@ class OverlayNetworkApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_config_clientpack_request" in local_var_params:
-            body_params = local_var_params["update_config_clientpack_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

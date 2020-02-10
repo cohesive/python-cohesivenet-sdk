@@ -41,7 +41,7 @@ class IPsecApi(object):
         Delete IPsec endpoint  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ipsec_endpoint(endpoint_id, async_req=True)
+        >>> response = await api.delete_ipsec_endpoint(endpoint_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -68,7 +68,7 @@ class IPsecApi(object):
         Delete IPsec endpoint  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ipsec_endpoint_with_http_info(endpoint_id, async_req=True)
+        >>> response = await api.delete_ipsec_endpoint_with_http_info(endpoint_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -168,7 +168,7 @@ class IPsecApi(object):
         Delete IPsec tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, async_req=True)
+        >>> response = await api.delete_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -198,7 +198,7 @@ class IPsecApi(object):
         Delete IPsec tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_ipsec_endpoint_tunnel_with_http_info(endpoint_id, tunnel_id, async_req=True)
+        >>> response = await api.delete_ipsec_endpoint_tunnel_with_http_info(endpoint_id, tunnel_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -304,7 +304,7 @@ class IPsecApi(object):
         Get details for all IPsec endpoints/subnets  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ipsec(async_req=True)
+        >>> response = await api.get_ipsec(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -328,7 +328,7 @@ class IPsecApi(object):
         Get details for all IPsec endpoints/subnets  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ipsec_with_http_info(async_req=True)
+        >>> response = await api.get_ipsec_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -409,7 +409,7 @@ class IPsecApi(object):
         Get IPsec endpoint information  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ipsec_endpoint(endpoint_id, async_req=True)
+        >>> response = await api.get_ipsec_endpoint(endpoint_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -436,7 +436,7 @@ class IPsecApi(object):
         Get IPsec endpoint information  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ipsec_endpoint_with_http_info(endpoint_id, async_req=True)
+        >>> response = await api.get_ipsec_endpoint_with_http_info(endpoint_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -534,7 +534,7 @@ class IPsecApi(object):
         Describe ipsec tunnels status  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ipsec_status(async_req=True)
+        >>> response = await api.get_ipsec_status(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -558,7 +558,7 @@ class IPsecApi(object):
         Describe ipsec tunnels status  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ipsec_status_with_http_info(async_req=True)
+        >>> response = await api.get_ipsec_status_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -639,7 +639,7 @@ class IPsecApi(object):
         Provides information about the connection history of the subnet or tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_link_history(async_req=True)
+        >>> response = await api.get_link_history(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -666,7 +666,7 @@ class IPsecApi(object):
         Provides information about the connection history of the subnet or tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_link_history_with_http_info(async_req=True)
+        >>> response = await api.get_link_history_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -760,7 +760,7 @@ class IPsecApi(object):
         Create IPsec connection to the defined remote gateway  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_ipsec_endpoint(create_ipsec_endpoint_request, async_req=True)
+        >>> response = await api.post_create_ipsec_endpoint(create_ipsec_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -789,7 +789,7 @@ class IPsecApi(object):
         Create IPsec connection to the defined remote gateway  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_ipsec_endpoint_with_http_info(create_ipsec_endpoint_request, async_req=True)
+        >>> response = await api.post_create_ipsec_endpoint_with_http_info(create_ipsec_endpoint_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -844,9 +844,9 @@ class IPsecApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_ipsec_endpoint_request" in local_var_params:
-            body_params = local_var_params["create_ipsec_endpoint_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -890,7 +890,7 @@ class IPsecApi(object):
         Create IPsec endpoint tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_ipsec_endpoint_tunnel(endpoint_id, create_ipsec_tunnel_request, async_req=True)
+        >>> response = await api.post_create_ipsec_endpoint_tunnel(endpoint_id, create_ipsec_tunnel_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -920,7 +920,7 @@ class IPsecApi(object):
         Create IPsec endpoint tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_ipsec_endpoint_tunnel_with_http_info(endpoint_id, create_ipsec_tunnel_request, async_req=True)
+        >>> response = await api.post_create_ipsec_endpoint_tunnel_with_http_info(endpoint_id, create_ipsec_tunnel_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -992,9 +992,9 @@ class IPsecApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_ipsec_tunnel_request" in local_var_params:
-            body_params = local_var_params["create_ipsec_tunnel_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1036,7 +1036,7 @@ class IPsecApi(object):
         Restart ipsec subystem  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_restart_ipsec_action(restart_request, async_req=True)
+        >>> response = await api.post_restart_ipsec_action(restart_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1065,7 +1065,7 @@ class IPsecApi(object):
         Restart ipsec subystem  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_restart_ipsec_action_with_http_info(restart_request, async_req=True)
+        >>> response = await api.post_restart_ipsec_action_with_http_info(restart_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1120,9 +1120,9 @@ class IPsecApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "restart_request" in local_var_params:
-            body_params = local_var_params["restart_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1166,7 +1166,7 @@ class IPsecApi(object):
         Edit IPsec connection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_ipsec_endpoint(endpoint_id, update_ipsec_connection_request, async_req=True)
+        >>> response = await api.put_edit_ipsec_endpoint(endpoint_id, update_ipsec_connection_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1196,7 +1196,7 @@ class IPsecApi(object):
         Edit IPsec connection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_ipsec_endpoint_with_http_info(endpoint_id, update_ipsec_connection_request, async_req=True)
+        >>> response = await api.put_edit_ipsec_endpoint_with_http_info(endpoint_id, update_ipsec_connection_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1268,9 +1268,9 @@ class IPsecApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_ipsec_connection_request" in local_var_params:
-            body_params = local_var_params["update_ipsec_connection_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1314,7 +1314,7 @@ class IPsecApi(object):
         Edit IPsec endpoint tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, update_ipsec_tunnel_request, async_req=True)
+        >>> response = await api.put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, update_ipsec_tunnel_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1345,7 +1345,7 @@ class IPsecApi(object):
         Edit IPsec endpoint tunnel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_edit_ipsec_endpoint_tunnel_with_http_info(endpoint_id, tunnel_id, update_ipsec_tunnel_request, async_req=True)
+        >>> response = await api.put_edit_ipsec_endpoint_tunnel_with_http_info(endpoint_id, tunnel_id, update_ipsec_tunnel_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1429,9 +1429,9 @@ class IPsecApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_ipsec_tunnel_request" in local_var_params:
-            body_params = local_var_params["update_ipsec_tunnel_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1473,7 +1473,7 @@ class IPsecApi(object):
         Edit Ipsec Configuration on device. Note, This is device wide and must be set before  any remote endpoint definitions are created. If it needs to be changed, all remote endpoint  information and tunnel information must be deleted first.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_ipsec_config(update_ipsec_address_request, async_req=True)
+        >>> response = await api.put_ipsec_config(update_ipsec_address_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1502,7 +1502,7 @@ class IPsecApi(object):
         Edit Ipsec Configuration on device. Note, This is device wide and must be set before  any remote endpoint definitions are created. If it needs to be changed, all remote endpoint  information and tunnel information must be deleted first.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_ipsec_config_with_http_info(update_ipsec_address_request, async_req=True)
+        >>> response = await api.put_ipsec_config_with_http_info(update_ipsec_address_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1557,9 +1557,9 @@ class IPsecApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_ipsec_address_request" in local_var_params:
-            body_params = local_var_params["update_ipsec_address_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

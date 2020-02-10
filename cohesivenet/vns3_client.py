@@ -16,7 +16,6 @@ from cohesivenet.api_client import APIClient, api_as_property
 from cohesivenet.api.vns3 import BGPApi
 from cohesivenet.api.vns3 import ConfigurationApi
 from cohesivenet.api.vns3 import FirewallApi
-from cohesivenet.api.vns3 import HighAvailabilityApi
 from cohesivenet.api.vns3 import IPsecApi
 from cohesivenet.api.vns3 import InterfacesApi
 from cohesivenet.api.vns3 import LicensingApi
@@ -27,6 +26,8 @@ from cohesivenet.api.vns3 import PeeringApi
 from cohesivenet.api.vns3 import RoutingApi
 from cohesivenet.api.vns3 import SnapshotsApi
 from cohesivenet.api.vns3 import SystemAdministrationApi
+from cohesivenet.api.vns3 import AccessApi
+from cohesivenet.macros import state as vns3_state
 
 
 class VNS3Client(APIClient):
@@ -55,10 +56,10 @@ class VNS3Client(APIClient):
     DEF_REQ_TIMEOUT = 15.0
 
     # Client API Groups available as attributes: e.g. vns3_client.peering.delete_peer(4)
+    access = api_as_property("access", AccessApi)
     bgp = api_as_property("bgp", BGPApi)
     config = api_as_property("config", ConfigurationApi)
     firewall = api_as_property("firewall", FirewallApi)
-    high_availability = api_as_property("high_availability", HighAvailabilityApi)
     ipsec = api_as_property("ipsec", IPsecApi)
     interfaces = api_as_property("interfaces", InterfacesApi)
     licensing = api_as_property("licensing", LicensingApi)
@@ -82,6 +83,10 @@ class VNS3Client(APIClient):
         setattr(self, "_state", state)
         return None
 
+    def set_vns3_version(self):
+        _ = vns3_state.get_vns3_version(self, bust_cache=True)
+        return self
+
     def update_state(self, state_updates_dict):
         state = getattr(self, "_state", {})
         state.update(state_updates_dict)
@@ -90,6 +95,15 @@ class VNS3Client(APIClient):
 
     def query_state(self, key):
         return self.controller_state.get(key)
+
+    @property
+    def vns3_version(self):
+        return vns3_state.get_vns3_version(self)
+
+    @property
+    def vns3_dot_version(self):
+        vns3_version = vns3_state.get_vns3_version(self)
+        return vns3_version.split('-')[0]
 
     @property
     def host_uri(self):

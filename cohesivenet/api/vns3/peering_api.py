@@ -41,7 +41,7 @@ class PeeringApi(object):
         Breaks a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to  fully break the peer relationship.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_peer(peer_id, async_req=True)
+        >>> response = await api.delete_peer(peer_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -66,7 +66,7 @@ class PeeringApi(object):
         Breaks a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to  fully break the peer relationship.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_peer_with_http_info(peer_id, async_req=True)
+        >>> response = await api.delete_peer_with_http_info(peer_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -155,7 +155,7 @@ class PeeringApi(object):
         Provides the status of whether a Controller is peered to other Controllers  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_peering_status(async_req=True)
+        >>> response = await api.get_peering_status(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -179,7 +179,7 @@ class PeeringApi(object):
         Provides the status of whether a Controller is peered to other Controllers  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_peering_status_with_http_info(async_req=True)
+        >>> response = await api.get_peering_status_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -260,7 +260,7 @@ class PeeringApi(object):
         Creates a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_peer(create_peer_request, async_req=True)
+        >>> response = await api.post_peer(create_peer_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -287,7 +287,7 @@ class PeeringApi(object):
         Creates a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_peer_with_http_info(create_peer_request, async_req=True)
+        >>> response = await api.post_peer_with_http_info(create_peer_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -342,9 +342,9 @@ class PeeringApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_peer_request" in local_var_params:
-            body_params = local_var_params["create_peer_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -386,7 +386,7 @@ class PeeringApi(object):
         Edits a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_peer(update_peer_request, async_req=True)
+        >>> response = await api.put_peer(update_peer_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -416,7 +416,7 @@ class PeeringApi(object):
         Edits a peering relationship from a manager to another manager.  The peering call is unidirectional. Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_peer_with_http_info(update_peer_request, async_req=True)
+        >>> response = await api.put_peer_with_http_info(update_peer_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -492,9 +492,9 @@ class PeeringApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_peer_request" in local_var_params:
-            body_params = local_var_params["update_peer_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -536,7 +536,7 @@ class PeeringApi(object):
         Reconfigure peered controllers  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_reconfigure_peers(configure_peer_request, async_req=True)
+        >>> response = await api.put_reconfigure_peers(configure_peer_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -565,7 +565,7 @@ class PeeringApi(object):
         Reconfigure peered controllers  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_reconfigure_peers_with_http_info(configure_peer_request, async_req=True)
+        >>> response = await api.put_reconfigure_peers_with_http_info(configure_peer_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -620,9 +620,9 @@ class PeeringApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "configure_peer_request" in local_var_params:
-            body_params = local_var_params["configure_peer_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -664,7 +664,7 @@ class PeeringApi(object):
         Sets the Controller ID of a controller so that it can be peered within a topology  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_self_peering_id(peer_self_request, async_req=True)
+        >>> response = await api.put_self_peering_id(peer_self_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -693,7 +693,7 @@ class PeeringApi(object):
         Sets the Controller ID of a controller so that it can be peered within a topology  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_self_peering_id_with_http_info(peer_self_request, async_req=True)
+        >>> response = await api.put_self_peering_id_with_http_info(peer_self_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -748,9 +748,9 @@ class PeeringApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "peer_self_request" in local_var_params:
-            body_params = local_var_params["peer_self_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]

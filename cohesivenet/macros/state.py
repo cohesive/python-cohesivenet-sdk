@@ -12,6 +12,7 @@ class VNS3Attr(object):
     secondary_private_ip = "secondary_private_ip"
     public_ip = "public_ip"
     public_dns = "public_dns"
+    vns3_version = "vns3_version"
     peer_id = "peer_id"
     asn = "asn"
 
@@ -59,14 +60,24 @@ def get_peer_id(client, bust_cache=False):
     client.add_to_state(VNS3Attr.peer_id, val)
     return val
 
+def get_vns3_version(client, bust_cache=False):
+    if not bust_cache:
+        val = client.query_state(VNS3Attr.vns3_version)
+        if val:
+            return val
+
+    val = client.config.get_config().response.vns3_version
+    client.add_to_state(VNS3Attr.vns3_version, val)
+    return val
+
 
 _StateLibrary = {
     VNS3Attr.primary_private_ip: get_primary_private_ip,
     VNS3Attr.public_ip: get_public_ip,
     VNS3Attr.asn: get_asn,
     VNS3Attr.peer_id: get_peer_id,
+    VNS3Attr.vns3_version: get_vns3_version
 }
-
 
 def attribute_supported(attribute):
     return attribute in _StateLibrary

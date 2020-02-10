@@ -44,7 +44,7 @@ class ConfigurationApi(object):
         Describe Runtime Configuration for VNS3 Controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_config(async_req=True)
+        >>> response = await api.get_config(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -68,7 +68,7 @@ class ConfigurationApi(object):
         Describe Runtime Configuration for VNS3 Controller  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_config_with_http_info(async_req=True)
+        >>> response = await api.get_config_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -149,7 +149,7 @@ class ConfigurationApi(object):
         Returns status of whether cryptographic credentials, which are used to provide  overlay devices access to the topology, have been generated.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_keyset(async_req=True)
+        >>> response = await api.get_keyset(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -173,7 +173,7 @@ class ConfigurationApi(object):
         Returns status of whether cryptographic credentials, which are used to provide  overlay devices access to the topology, have been generated.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_keyset_with_http_info(async_req=True)
+        >>> response = await api.get_keyset_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -254,7 +254,7 @@ class ConfigurationApi(object):
         Alias for GET /config  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_runtime(async_req=True)
+        >>> response = await api.get_runtime(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -278,7 +278,7 @@ class ConfigurationApi(object):
         Alias for GET /config  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_runtime_with_http_info(async_req=True)
+        >>> response = await api.get_runtime_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -359,7 +359,7 @@ class ConfigurationApi(object):
         Get status for ssl installation task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ssl_install_status(uuid, async_req=True)
+        >>> response = await api.get_ssl_install_status(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -384,7 +384,7 @@ class ConfigurationApi(object):
         Get status for ssl installation task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_ssl_install_status_with_http_info(uuid, async_req=True)
+        >>> response = await api.get_ssl_install_status_with_http_info(uuid, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -473,7 +473,7 @@ class ConfigurationApi(object):
         Provides general information about the manager's topology, license state and  checksums and allows you to set the topology name.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_config(update_config_request, async_req=True)
+        >>> response = await api.put_config(update_config_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -500,7 +500,7 @@ class ConfigurationApi(object):
         Provides general information about the manager's topology, license state and  checksums and allows you to set the topology name.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_config_with_http_info(update_config_request, async_req=True)
+        >>> response = await api.put_config_with_http_info(update_config_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -555,9 +555,10 @@ class ConfigurationApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_config_request" in local_var_params:
-            body_params = local_var_params["update_config_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
+
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -599,7 +600,7 @@ class ConfigurationApi(object):
         Install new SSL cert and key pair  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_install_ssl_keypair(async_req=True)
+        >>> response = await api.put_install_ssl_keypair(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -623,7 +624,7 @@ class ConfigurationApi(object):
         Install new SSL cert and key pair  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_install_ssl_keypair_with_http_info(async_req=True)
+        >>> response = await api.put_install_ssl_keypair_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -704,7 +705,7 @@ class ConfigurationApi(object):
         Generates or fetches cryptographic credentials which are used to provide overlay devices access to the topology.  Keyset generation happens in background. Poll on GET /keyset in_progress value.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_keyset(update_keyset_request, async_req=True)
+        >>> response = await api.put_keyset(update_keyset_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -731,7 +732,7 @@ class ConfigurationApi(object):
         Generates or fetches cryptographic credentials which are used to provide overlay devices access to the topology.  Keyset generation happens in background. Poll on GET /keyset in_progress value.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_keyset_with_http_info(update_keyset_request, async_req=True)
+        >>> response = await api.put_keyset_with_http_info(update_keyset_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -786,9 +787,9 @@ class ConfigurationApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_keyset_request" in local_var_params:
-            body_params = local_var_params["update_keyset_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -832,7 +833,7 @@ class ConfigurationApi(object):
         Update Admin UI settings. Enable/Disable and set credentials.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_admin_ui(update_admin_ui_settings_request, async_req=True)
+        >>> response = await api.put_update_admin_ui(update_admin_ui_settings_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -861,7 +862,7 @@ class ConfigurationApi(object):
         Update Admin UI settings. Enable/Disable and set credentials.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_admin_ui_with_http_info(update_admin_ui_settings_request, async_req=True)
+        >>> response = await api.put_update_admin_ui_with_http_info(update_admin_ui_settings_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -916,9 +917,9 @@ class ConfigurationApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_admin_ui_settings_request" in local_var_params:
-            body_params = local_var_params["update_admin_ui_settings_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -960,7 +961,7 @@ class ConfigurationApi(object):
         Allows you to change the API password/secret key.  To change the Web UI password (or username) use PUT admin_ui.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_api_password(update_password_request, async_req=True)
+        >>> response = await api.put_update_api_password(update_password_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -989,7 +990,7 @@ class ConfigurationApi(object):
         Allows you to change the API password/secret key.  To change the Web UI password (or username) use PUT admin_ui.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_update_api_password_with_http_info(update_password_request, async_req=True)
+        >>> response = await api.put_update_api_password_with_http_info(update_password_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1044,9 +1045,9 @@ class ConfigurationApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_password_request" in local_var_params:
-            body_params = local_var_params["update_password_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1088,7 +1089,7 @@ class ConfigurationApi(object):
         Upload new SSL cert and key pair  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_upload_ssl_keypair(update_server_ssl_request, async_req=True)
+        >>> response = await api.put_upload_ssl_keypair(update_server_ssl_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1117,7 +1118,7 @@ class ConfigurationApi(object):
         Upload new SSL cert and key pair  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_upload_ssl_keypair_with_http_info(update_server_ssl_request, async_req=True)
+        >>> response = await api.put_upload_ssl_keypair_with_http_info(update_server_ssl_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1172,9 +1173,9 @@ class ConfigurationApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "update_server_ssl_request" in local_var_params:
-            body_params = local_var_params["update_server_ssl_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1215,7 +1216,7 @@ class ConfigurationApi(object):
 
         Wraps get_keyset for unlicensed error.
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.try_get_keyset(async_req=True)
+        >>> response = await api.try_get_keyset(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously

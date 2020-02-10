@@ -41,7 +41,7 @@ class FirewallApi(object):
         Delete Firewall FWSet by name or rules  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_fw_set(body, async_req=True)
+        >>> response = await api.delete_firewall_fw_set(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -66,7 +66,7 @@ class FirewallApi(object):
         Delete Firewall FWSet by name or rules  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_fw_set_with_http_info(body, async_req=True)
+        >>> response = await api.delete_firewall_fw_set_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -162,7 +162,7 @@ class FirewallApi(object):
         Delete Firewall Rule  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_rule_by_position(position, async_req=True)
+        >>> response = await api.delete_firewall_rule_by_position(position, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -191,7 +191,7 @@ class FirewallApi(object):
         Delete Firewall Rule  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_rule_by_position_with_http_info(position, async_req=True)
+        >>> response = await api.delete_firewall_rule_by_position_with_http_info(position, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -282,7 +282,7 @@ class FirewallApi(object):
         Delete firewall rule  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_rule_by_rule(delete_firewall_rule_request, async_req=True)
+        >>> response = await api.delete_firewall_rule_by_rule(delete_firewall_rule_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -311,7 +311,7 @@ class FirewallApi(object):
         Delete firewall rule  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_rule_by_rule_with_http_info(delete_firewall_rule_request, async_req=True)
+        >>> response = await api.delete_firewall_rule_by_rule_with_http_info(delete_firewall_rule_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -366,9 +366,9 @@ class FirewallApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "delete_firewall_rule_request" in local_var_params:
-            body_params = local_var_params["delete_firewall_rule_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -410,7 +410,7 @@ class FirewallApi(object):
         Delete Firewall subgroup by name or rules  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_subgroup(firewall_fw_set, async_req=True)
+        >>> response = await api.delete_firewall_subgroup(firewall_fw_set, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -439,7 +439,7 @@ class FirewallApi(object):
         Delete Firewall subgroup by name or rules  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_firewall_subgroup_with_http_info(firewall_fw_set, async_req=True)
+        >>> response = await api.delete_firewall_subgroup_with_http_info(firewall_fw_set, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -494,9 +494,9 @@ class FirewallApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "firewall_fw_set" in local_var_params:
-            body_params = local_var_params["firewall_fw_set"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -538,7 +538,7 @@ class FirewallApi(object):
         Get a list of current firewall rule sets. These are IPsets that allow for faster matching of rules against IPs.  See http://ipset.netfilter.org for more details.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_firewall_fw_sets(async_req=True)
+        >>> response = await api.get_firewall_fw_sets(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -562,7 +562,7 @@ class FirewallApi(object):
         Get a list of current firewall rule sets. These are IPsets that allow for faster matching of rules against IPs.  See http://ipset.netfilter.org for more details.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_firewall_fw_sets_with_http_info(async_req=True)
+        >>> response = await api.get_firewall_fw_sets_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -643,7 +643,7 @@ class FirewallApi(object):
         Get a list of current firewall rules at subgroup (chained rules)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_firewall_rule_subgroups(async_req=True)
+        >>> response = await api.get_firewall_rule_subgroups(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -669,7 +669,7 @@ class FirewallApi(object):
         Get a list of current firewall rules at subgroup (chained rules)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_firewall_rule_subgroups_with_http_info(async_req=True)
+        >>> response = await api.get_firewall_rule_subgroups_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -756,7 +756,7 @@ class FirewallApi(object):
         Get a list of current firewall rules  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_firewall_rules(async_req=True)
+        >>> response = await api.get_firewall_rules(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -780,7 +780,7 @@ class FirewallApi(object):
         Get a list of current firewall rules  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_firewall_rules_with_http_info(async_req=True)
+        >>> response = await api.get_firewall_rules_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -863,7 +863,7 @@ class FirewallApi(object):
         Adds a firewall rule to the VNS3 Controller's firewall  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_firewall_rule(create_firewall_rule_request, async_req=True)
+        >>> response = await api.post_create_firewall_rule(create_firewall_rule_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -892,7 +892,7 @@ class FirewallApi(object):
         Adds a firewall rule to the VNS3 Controller's firewall  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_firewall_rule_with_http_info(create_firewall_rule_request, async_req=True)
+        >>> response = await api.post_create_firewall_rule_with_http_info(create_firewall_rule_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -947,9 +947,9 @@ class FirewallApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_firewall_rule_request" in local_var_params:
-            body_params = local_var_params["create_firewall_rule_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -993,7 +993,7 @@ class FirewallApi(object):
         Create a new firewall subgroup rules (rule chain)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_firewall_subgroup_rule(create_fw_subgroup_request, async_req=True)
+        >>> response = await api.post_create_firewall_subgroup_rule(create_fw_subgroup_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1022,7 +1022,7 @@ class FirewallApi(object):
         Create a new firewall subgroup rules (rule chain)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.post_create_firewall_subgroup_rule_with_http_info(create_fw_subgroup_request, async_req=True)
+        >>> response = await api.post_create_firewall_subgroup_rule_with_http_info(create_fw_subgroup_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1077,9 +1077,9 @@ class FirewallApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "create_fw_subgroup_request" in local_var_params:
-            body_params = local_var_params["create_fw_subgroup_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1121,7 +1121,7 @@ class FirewallApi(object):
         Reinitialize all Firewall FWSet  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_reinitialize_fw_sets(reinit_firewall_request, async_req=True)
+        >>> response = await api.put_reinitialize_fw_sets(reinit_firewall_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1150,7 +1150,7 @@ class FirewallApi(object):
         Reinitialize all Firewall FWSet  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_reinitialize_fw_sets_with_http_info(reinit_firewall_request, async_req=True)
+        >>> response = await api.put_reinitialize_fw_sets_with_http_info(reinit_firewall_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1205,9 +1205,9 @@ class FirewallApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "reinit_firewall_request" in local_var_params:
-            body_params = local_var_params["reinit_firewall_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
@@ -1249,7 +1249,7 @@ class FirewallApi(object):
         Reinitialize Firewall subgroups  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_reinitialize_subgroups(reinit_request, async_req=True)
+        >>> response = await api.put_reinitialize_subgroups(reinit_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1278,7 +1278,7 @@ class FirewallApi(object):
         Reinitialize Firewall subgroups  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.put_reinitialize_subgroups_with_http_info(reinit_request, async_req=True)
+        >>> response = await api.put_reinitialize_subgroups_with_http_info(reinit_request, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -1333,9 +1333,9 @@ class FirewallApi(object):
         form_params = []
         local_var_files = {}
 
-        body_params = None
-        if "reinit_request" in local_var_params:
-            body_params = local_var_params["reinit_request"]
+        body_params = {}
+        for param in [p for p in call_params if local_var_params.get(p) is not None]:
+            body_params[param] = local_var_params[param]
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
