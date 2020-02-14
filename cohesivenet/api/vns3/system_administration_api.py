@@ -2270,6 +2270,7 @@ class SystemAdministrationApi(object):
         retry_timeout=2,
         timeout=60,
         wait_for_reboot=False,
+        assert_config=None,
         healthy_ping_count=10,
         sleep_time=1.5,
         **kwargs
@@ -2303,9 +2304,10 @@ class SystemAdministrationApi(object):
                     and config_detail.response
                     and config_detail.response.vns3_version
                 ):
-                    successful_pings = successful_pings + 1
-                    if successful_pings >= healthy_ping_count:
-                        return config_detail.response
+                    if not assert_config or (assert_config(config_detail.response)):
+                        successful_pings = successful_pings + 1
+                        if successful_pings >= healthy_ping_count:
+                            return config_detail.response
             except (
                 urllib3.exceptions.ConnectTimeoutError,
                 urllib3.exceptions.NewConnectionError,
@@ -2315,5 +2317,5 @@ class SystemAdministrationApi(object):
                     "API connection error on API ping. Retrying in %ds." % sleep_time,
                     host=target_host,
                 )
-                time.sleep(sleep_time)
+            time.sleep(sleep_time)
         raise ApiException("API timeout [timeout=%sseconds]" % timeout)

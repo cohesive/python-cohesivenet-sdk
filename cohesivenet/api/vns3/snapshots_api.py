@@ -159,6 +159,8 @@ class SnapshotsApi(object):
     def get_download_snapshot(self, snapshot_name, **kwargs):  # noqa: E501
         """get_download_snapshot  # noqa: E501
 
+        TODO: Add support for writing to specific file location
+
         Download snapshot file  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -595,7 +597,7 @@ class SnapshotsApi(object):
         header_params[
             "Content-Type"
         ] = self.api_client.select_header_content_type(  # noqa: E501
-            ["text/plain"]
+            ["application/octet-stream"]
         )  # noqa: E501
 
         # Authentication setting
