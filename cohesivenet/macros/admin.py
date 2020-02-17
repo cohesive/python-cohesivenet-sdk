@@ -1,3 +1,4 @@
+import time
 from typing import Dict, List
 
 from cohesivenet import VNS3Client, data_types
@@ -43,7 +44,10 @@ def disable_uis(clients: List[VNS3Client]):
     """
 
     def _disable_ui(_client):
-        return _client.config.put_update_admin_ui({"enabled": False})
+        resp = _client.config.put_update_admin_ui({"enabled": False})
+        # required to avoid 502 from api resetting itself
+        time.sleep(2.0)
+        return resp
 
     return api_operations.__bulk_call_client(clients, _disable_ui)
 
@@ -65,13 +69,16 @@ def roll_ui_credentials(
     assert "password" in new_credentials, '"password" required in new_credentials arg'
 
     def _update_ui_credentials(_client):
-        return _client.config.put_update_admin_ui(
+        resp = _client.config.put_update_admin_ui(
             {
                 "admin_username": new_credentials.get("username"),
                 "admin_password": new_credentials.get("password"),
                 "enabled": enable_ui,
             }
         )
+        # required to avoid 502 from api resetting itself
+        time.sleep(2.0)
+        return resp
 
     return api_operations.__bulk_call_client(
         clients, _update_ui_credentials, parallelize=True
