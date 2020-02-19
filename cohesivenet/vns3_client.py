@@ -84,7 +84,11 @@ class VNS3Client(APIClient):
         return None
 
     def set_vns3_version(self):
+        prev_v = self.vns3_dot_version
         _ = vns3_state.get_vns3_version(self, bust_cache=True)
+        new_v = self.vns3_dot_version
+        if prev_v != new_v:
+            self.reset_api_version_sdk()
         return self
 
     def update_state(self, state_updates_dict):

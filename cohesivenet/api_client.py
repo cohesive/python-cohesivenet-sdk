@@ -38,7 +38,7 @@ class APIResponse(io.IOBase):
         self.raw_data = rest_response.data
         self._rest_response = rest_response
         self._serializer = Serializer()
-        self._data = None
+        self._data_serialized = None
 
     def get_headers(self):
         """Returns a dictionary of the response headers."""
@@ -50,11 +50,13 @@ class APIResponse(io.IOBase):
 
     @property
     def data(self):
-        if self._data:
-            return self._data
+        return self._rest_response.data
 
-        self._data = self._serializer.deserialize(self._rest_response)
-        return self._data
+    def json(self):
+        if self._data_serialized:
+            return self._data_serialized
+        self._data_serialized = self._serializer.deserialize(self._rest_response)
+        return self._data_serialized
 
     @property
     def response(self):
@@ -101,8 +103,8 @@ class APIClient(object):
         # Set default User-Agent.
         self.user_agent = "OpenAPI-Generator/1.0.0/python"
         self._base_path = "/%s" % self.BASE_PATH.strip("/") if self.BASE_PATH else ""
-        self._api_cache = {}
-        self.client_side_validation = configuration.client_side_validation
+        self._api_versions_cache = {}
+        self.client_side_validation = self.configuration.client_side_validation
         self.serializer = Serializer(self.configuration)
 
     @property
@@ -115,7 +117,7 @@ class APIClient(object):
         if config is None:
             config = Configuration()
         self._configuration = config
-        self._api_cache = {}
+        self._api_versions_cache = {}
         self.rest_client = rest.RESTClientObject(self.configuration)
 
     @property
@@ -129,6 +131,10 @@ class APIClient(object):
 
     def set_default_header(self, header_name, header_value):
         self.default_headers[header_name] = header_value
+
+    def reset_api_version_sdk(self):
+        self._api_versions_cache = {}
+        return self
 
     def __call_api(
         self,
@@ -525,13 +531,13 @@ def prop_setter_exception(name):
 
 def prop_get_api(name, api_class):
     def _get_api(client):
-        if not hasattr(client, "_api_cache"):
+        if not hasattr(client, "_api_versions_cache"):
             return api_class(client)
-        elif name in client._api_cache:
-            return client._api_cache[name]
+        elif name in client._api_versions_cache:
+            return client._api_versions_cache[name]
 
         _api = api_class(client)
-        client._api_cache[name] = _api
+        client._api_versions_cache[name] = _api
         return _api
 
     _get_api.__name__ = "get_%s_api" % name

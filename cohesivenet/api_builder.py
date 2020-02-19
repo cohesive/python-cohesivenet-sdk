@@ -1,7 +1,12 @@
 import functools
 
+from cohesivenet import Logger
+from cohesivenet.version import LATEST_VNS3_VERSION
+from cohesivenet.macros import state as vns3_state
+from cohesivenet.exceptions import ApiTypeError, ApiValueError, ApiMethodUnsupportedError
 
-def validate(
+
+def validate_call(
     path_params=None,
     path_constraints=None,
     body_params=None,
@@ -14,18 +19,18 @@ def validate(
 ):
     def validate_decorator(api_func):
         @functools.wraps(api_func)
-        def api_func_wrapper(self_api, *args, **kwargs):
+        def api_func_wrapper(api_client, *args, **kwargs):
             call_path_params = list(args)
             call_keyword_params = dict(kwargs)
 
             if path_params:
                 assert len(args) == len(path_params), 'declared path params and args are different lengths'
-                call_path_params = dict(zip(path_params, args))
+                named_path_params = dict(zip(path_params, args))
             else:
-                call_path_params = list(args)
+                named_path_params = {}
 
             if supported_versions:
-                vns3_version = vns3_state.get_vns3_version(self_api.api_client)
+                vns3_version = vns3_state.get_vns3_version(api_client)
                 is_supported = True
                 if not is_supported:
                     raise ApiMethodUnsupportedError(
@@ -36,7 +41,7 @@ def validate(
 
             if path_params:
                 for path_param in path_params:
-                    if path_param not in call_path_params or call_path_params[path_param] is None:
+                    if path_param not in named_path_params or named_path_params[path_param] is None:
                         raise ApiValueError(
                             "Missing the required path parameter `%s` when calling `%s`"
                             % (path_param, api_func.__name__)
@@ -69,12 +74,12 @@ def validate(
                         )
 
 
-            return api_func(*args, **kwargs)
+            return api_func(api_client, *args, **kwargs)
         return api_func_wrapper
     return validate_decorator
 
 
-def set_api_library(client, api, library):
+def set_version_library(client, api, library):
     """Set the API library functions based on the current clients version
     
     Arguments:
@@ -86,7 +91,10 @@ def set_api_library(client, api, library):
 
     Returns: None
     """
-    vns3_version = client.vns3_dot_version
+    if not (client.configuration and client.configuration.is_valid()):
+        vns3_version = LATEST_VNS3_VERSION
+    else:
+        vns3_version = client.vns3_dot_version
 
     def in_range(val, min_v, max_v):
         return val >= min_v and val <= max_v
@@ -105,5 +113,30 @@ def set_api_library(client, api, library):
             elif version == vns3_version:
                 version_library[function_name] = func
 
+    Logger.debug("Setting VNS3 v%s API functions %s" % (vns3_version, api.__class__.__name__))
     for name, func in version_library.items():
         setattr(api, name, functools.partial(func, client))
+
+
+class VersionRouter(object):
+    """SETIT"""
+
+    function_library = {}
+
+    def __init__(self, api_client):
+        self.__api_client = api_client
+        set_version_library(api_client, self, self.function_library)
+
+    @property
+    def api_client(self):
+        return self.__api_client
+
+    @api_client.setter
+    def api_client(self, _):
+        raise RuntimeError("Can't reset api_client on VersionRouter. Please instantiate new router.")
+
+    @classmethod
+    def show_available_functions(cls):
+        for function_name, versions in cls.function_library.items():
+            versions_supported = ",".join(versions.keys())
+            print("%s versions=%s" % (function_name, versions_supported))

@@ -18,7 +18,28 @@ import pytest
 from tests.rest_mock import RestClientMock
 
 from cohesivenet import VNS3Client, models, Configuration
+from cohesivenet.api.vns3 import bgp_api
 from cohesivenet.rest import ApiException
+
+from tests.generator import run_method_test
+
+
+bgp_functions = bgp_api.BGPApiRouter.function_library
+
+
+test_get_config = run_method_test(
+    client,
+    schema,
+    http_method,
+    path,
+    rest_mocker,
+    request_args=None,
+    request_kwargs=None,
+    mock_request_from_schema=False,
+    mock_response=None,
+    mock_response_from_schema=False,
+    expected_response_status=200,
+    allow_fail=False)
 
 
 class TestConfigurationApi(object):
@@ -28,9 +49,10 @@ class TestConfigurationApi(object):
     Under test: cohesivenet.api.vns3.configuration_api.ConfigurationApi
     """
 
-    def test_get_config(self, rest_mock: RestClientMock):
+    def test_get_config(self, rest_mock: RestClientMock, api_client: VNS3Client, api_schema: dict):
         """Test case for get_config
         """
+        
         rest_mock.stub_request(
             "get",
             "/api/config",

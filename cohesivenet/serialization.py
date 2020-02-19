@@ -72,6 +72,9 @@ class Serializer(object):
 
         :return: deserialized object.
         """
+        if response.data is None:
+            return None
+
         error_response_str = re.findall(r"{\"error\".*}", response.data)
         if error_response_str:
             raise rest.ApiException(

@@ -16,28 +16,54 @@ from __future__ import absolute_import
 import pytest
 
 import cohesivenet
-from cohesivenet.api.vns3.bgp_api import BGPApi  # noqa: E501
+from cohesivenet.api.vns3 import bgp_api
 from cohesivenet.rest import ApiException
 
+from tests.generator import configure_method_test
+from tests import stub_data
 
-@pytest.mark.licensed
+
 class TestBGPApi(object):
-    """BGPApi unit test stubs"""
+    """BGPApi unit tests stubs"""
 
-    def test_delete_ipsec_endpoint_bgp_peer(self):
-        """Test case for delete_ipsec_endpoint_bgp_peer
-
+    def test_delete_bgp_peer(self, rest_mocker: RestClientMock, api_client: VNS3Client, api_schema: dict):
+        """Test case for delete_bgp_peer
         """
-        pass
+        configure_method_test(
+            api_client,
+            api_schema,
+            "delete",
+            "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=stub_data.ipsec_endpoint_detail,
+            expected_response_status=200,
+        )(bgp_api.delete_bgp_peer)
 
-    def test_post_create_ipsec_endpoint_bgp_peer(self):
-        """Test case for post_create_ipsec_endpoint_bgp_peer
-
+    def test_create_bgp_peer(self, rest_mocker: RestClientMock, api_client: VNS3Client, api_schema: dict):
+        """Test case for test_create_bgp_peer
         """
-        pass
+        configure_method_test(
+            api_client,
+            api_schema,
+            "post",
+            "/ipsec/endpoints/{endpoint_id}/ebgp_peers",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=stub_data.ipsec_endpoint_detail,
+            expected_response_status=200,
+        )(bgp_api.create_bgp_peer)
 
-    def test_put_edit_ipsec_endpoint_bgp_peer(self):
-        """Test case for put_edit_ipsec_endpoint_bgp_peer
-
+    def test_update_bgp_peer(self, rest_mocker: RestClientMock, api_client: VNS3Client, api_schema: dict):
+        """Test case for test_update_bgp_peer
         """
-        pass
+        configure_method_test(
+            api_client,
+            api_schema,
+            "delete",
+            "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=stub_data.ipsec_endpoint_detail,
+            expected_response_status=200,
+        )(bgp_api.update_bgp_peer)
