@@ -34,8 +34,8 @@ class TestVNS3Client(object):
             and type(api_client.firewall) is cohesivenet.FirewallApi
         )
         assert (
-            hasattr(api_client, "high_availability")
-            and type(api_client.high_availability) is cohesivenet.HighAvailabilityApi
+            hasattr(api_client, "access")
+            and type(api_client.access) is cohesivenet.AccessApi
         )
         assert (
             hasattr(api_client, "ipsec")

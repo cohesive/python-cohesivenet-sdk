@@ -26,6 +26,20 @@ from tests import stub_data
 class TestBGPApi(object):
     """BGPApi unit tests stubs"""
 
+    def test_get_bgp_peer(self, rest_mocker: RestClientMock, api_client: VNS3Client, api_schema: dict):
+        """Test case for delete_bgp_peer
+        """
+        configure_method_test(
+            api_client,
+            api_schema,
+            "get",
+            "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=stub_data.bgp_peer_detail,
+            expected_response_status=200,
+        )(bgp_api.get_bgp_peer)
+
     def test_delete_bgp_peer(self, rest_mocker: RestClientMock, api_client: VNS3Client, api_schema: dict):
         """Test case for delete_bgp_peer
         """

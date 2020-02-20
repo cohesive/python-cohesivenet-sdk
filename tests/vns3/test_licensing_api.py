@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import pytest
 
 import cohesivenet
-from cohesivenet.api.vns3.licensing_api import LicensingApi  # noqa: E501
+from cohesivenet.api.vns3 import licensing_api  # noqa: E501
 from cohesivenet.rest import ApiException
 
 

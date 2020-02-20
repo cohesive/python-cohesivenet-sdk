@@ -16,9 +16,7 @@ from __future__ import absolute_import
 import pytest
 
 import cohesivenet
-from cohesivenet.api.vns3.network_edge_plugins_api import (
-    NetworkEdgePluginsApi,
-)  # noqa: E501
+from cohesivenet.api.vns3 import network_edge_plugins_api
 from cohesivenet.rest import ApiException
 
 

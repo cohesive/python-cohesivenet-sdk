@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import pytest
 
 import cohesivenet
-from cohesivenet.api.vns3.firewall_api import FirewallApi  # noqa: E501
+from cohesivenet.api.vns3 import firewall_api
 from cohesivenet.rest import ApiException
 
 

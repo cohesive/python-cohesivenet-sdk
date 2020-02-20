@@ -22,6 +22,79 @@ from cohesivenet.api_builder import validate_call, VersionRouter
 
 
 @validate_call(path_params=["endpoint_id", "bgp_peer_id"])
+def get_bgp_peer(api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs):  # noqa: E501
+    """Get eBGP peer  # noqa: E501
+
+    Get eBGP peer details  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = api.get_bgp_peer(client, endpoint_id, bgp_peer_id, async_req=True)
+
+    :param int endpoint_id: ID for IPsec endpoint (required)
+    :param int bgp_peer_id: ID for BGP peer (required)
+    :param async_req bool: execute request asynchronously
+    :param bool verbose: True for verbose output
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+
+    request_params = ["verbose"]  # noqa: E501
+
+    collection_formats = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    path_params = {
+        "endpoint_id": endpoint_id,
+        "bgp_peer_id": bgp_peer_id
+    }
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params['Accept'] = api_client.select_header_accept(
+        ['application/json'])  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ['basicAuth']  # noqa: E501
+
+    return api_client.call_api(
+        '/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}', 'GET',
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type='object',  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get('async_req'),
+        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+        _preload_content=local_var_params.get('_preload_content', True),
+        _request_timeout=local_var_params.get('_request_timeout'),
+        collection_formats=collection_formats)
+
+
+
+@validate_call(path_params=["endpoint_id", "bgp_peer_id"])
 def delete_bgp_peer(api_client, endpoint_id, bgp_peer_id, **kwargs):  # noqa: E501
     """delete_bgp_peer  # noqa: E501
 
@@ -312,6 +385,9 @@ class BGPApiRouter(VersionRouter):
     """Manage BGP peers"""
 
     function_library = {
+        'get_bgp_peer': {
+            '4.8.1': get_bgp_peer
+        },
         'delete_bgp_peer': {
             '4.8.1': delete_bgp_peer
         },

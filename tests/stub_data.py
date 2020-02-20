@@ -27,3 +27,17 @@ ipsec_endpoint_detail = {
         "psk": "testtest"
     }
 }
+
+
+bgp_peer_detail = {
+    "response": {
+        "id": 1,
+        "ipaddress": "55.55.55.55",
+        "asn": 65123,
+        "bgp_password": "",
+        "access_list": "",
+        "add_network_distance": False,
+        "add_network_distance_direction": "",
+        "add_network_distance_hops": 0
+    }
+}
