@@ -1,3 +1,4 @@
+import json
 import os
 import time
 from typing import Dict
@@ -10,6 +11,7 @@ from cohesivenet import (
     Logger,
     UrlLib3ConnExceptions,
     HTTPStatus,
+    util
 )
 from cohesivenet.macros import api_operations
 
@@ -251,3 +253,325 @@ def fetch_keysets(clients, root_host, keyset_token, wait_timeout=80.0):
         )
 
     return api_operations.__bulk_call_client(clients, _fetch_keyset, parallelize=False)
+
+
+def __add_controller_states(config, infra_state, groups=None):
+    """
+    Merge config and infrastructure states
+
+    Arguments:
+        config {dict}
+        infra_state {dict}
+
+    Keyword Arguments:
+        groups {dict} - name: str -> size: int
+
+    Raises:
+        CohesiveSDKException: [description]
+
+    Returns:
+        [type] -- [description]
+    """
+    if not infra_state:
+        return config
+
+    controllers = config["controllers"]
+
+    _group_indexes = None
+    if groups:
+        _group_indexes = {env: 0 for env in groups}
+        missing_states = [g for g in groups if g not in infra_state]
+        if missing_states:
+            raise CohesiveSDKException(
+                "If groups are provided. infra_state must be keyed by group. "
+                "e.g. groups={aws: 3, azure: 2}, infra_state={aws: {...}, azure: {...}}")
+
+    for i, controller in enumerate(controllers):
+        controller_vars = controller.get("variables", {})
+        if groups:
+            group = controller_vars["group"]
+            if group not in infra_state:
+                continue
+
+            group_size = groups[group]
+            _cur_group_index = _group_indexes[group]
+            if _cur_group_index >= group_size:
+                continue
+
+            group_state = infra_state[group]
+            for key, val in group_state.items():
+                controller_vars[key] = val[_cur_group_index]
+                _group_indexes[group] = _cur_group_index + 1
+        else:
+            for key, val in infra_state.items():
+                assert type(val) in (tuple, list), "Expected infra state vars to be lists, indexed by controller"
+                if len(val) > i:
+                    controller_vars[key] = val[i]
+
+        controller.update(variables=controller_vars)
+    return config
+
+
+def get_config_from_env():
+    # Update for environment
+    return {
+        "license_file": os.getenv("LICENSE"),
+        "plugin_images": {
+            "ha_selfish_image": "",
+            "ha_selfless_image": "",
+            "logger_image": ""
+        },
+        "variables": {
+            "network_left": os.getenv("NETWORK_LEFT"),
+            "network_right": os.getenv("NETWORK_RIGHT"),
+            "topology_name": os.getenv("TOPOLOGY_NAME"),
+            "topology_password": os.getenv("TOPOLOGY_PASSWORD"),
+            "master_password": os.getenv("MASTER_PASSWORD"),
+            "set_master_password": os.getenv("SET_MASTER_PASSWORD", "").lower() == "true",
+        },
+        "controllers__subnet": os.getenv("CONTROLLER_SUBNETS_CSV", "").split(","),
+        "controllers__host": os.getenv("HOSTS_CSV", "").split(","),
+        "controllers__api_password": os.getenv("HOST_PASSWORDS_CSV", "").split(","),
+    }
+
+
+def _filter_dict_none_vals(d, none_vals=("", None)):
+    return dict(list(filter(lambda kv: kv[1] not in none_vals, d.items())))
+
+
+def __add_config_from_env(config, env_config):
+    """Get configuration details from environment
+
+    Arguments:
+        config {dict}
+
+    Raises:
+        CohesiveSDKException: [description]
+
+    Returns:
+        [dict]
+    """
+    NONE_VALS = ("", None)
+    topology_vars = env_config.pop("variables", {})
+    topology_vars_non_null = _filter_dict_none_vals(topology_vars)
+    topology_vars_plugin_images = env_config.pop("plugin_images", {})
+    topology_vars_plugin_images_non_null = _filter_dict_none_vals(topology_vars_plugin_images)
+
+    updated_config = dict(config, **{
+        "variables": dict(config.get("variables", {}), **topology_vars_non_null),
+        "plugin_images": dict(config.get("plugin_images", {}), **topology_vars_plugin_images_non_null),
+    })
+
+    controllers = config["controllers"]
+    for key, config_value in env_config.items():
+        if config_value in NONE_VALS:
+            continue
+
+        if key.startswith("controllers__"):
+            assert type(config_value) is list, "Controller state vars should be passed as lists"
+            var_name = key.replace("controllers__", "")
+            for i, controller_var_value in enumerate(config_value):
+                if controller_var_value in NONE_VALS:
+                    continue
+
+                if len(controllers) < i:
+                    controllers.append({})
+
+                controller_config = controllers[i]
+                controller_vars = controller_config.get("variables", {})
+                controller_vars.update(**{var_name: controller_var_value})
+                controller_config.update(variables=controller_vars)
+
+        elif type(config_value) in (str, int):
+            updated_config.update(**{key: config_value})
+        else:
+            raise CohesiveSDKException("Unknown environment variable value key=%s, value=%s" % (key, config_value))
+
+    updated_config.update(controllers=controllers)
+    return updated_config
+
+
+
+def __resolve_string_var(string, local_vars, global_config):
+    """Resolve string variable. Sub local and global vars into string
+
+    Arguments:
+        string {str}
+        local_vars {dict}
+        global_config {dict}
+
+    Returns:
+        [tuple] - (str, errors)
+    """
+    var = util.is_formattable_string(string)
+    if not var:
+        return string, None
+
+    if var.startswith("config."):
+        path = var.replace("config.", "")
+        val = util.get_path(global_config, path)
+        if not val:
+            return string, "Cant format config var for string %s" % string
+        else:
+            return util.dumb_replace(string, val), None
+    elif var in local_vars:
+        return string.format(**{var: local_vars[var]}), None
+    else:
+        # allow non-config variables to be replaced later
+        return string, None
+
+
+def __resolve_route_config_variables(controller, config):
+    """Resolve variables in route kwargs
+
+    Arguments:
+        controller {dict}
+        config {dict}
+
+    Raises:
+        CohesiveSDKException: [description]
+
+    Returns:
+        [dict]
+    """
+    routes = controller.get("routes", [])
+    if not routes:
+        return config
+
+    local_vars = controller.get("variables", {})
+    format_errors = []
+    for i, route_kwargs in enumerate(routes):
+        for key, val in route_kwargs.items():
+            val, err = __resolve_string_var(val, local_vars, config)
+            if err:
+                format_errors.append(err)
+            route_kwargs.update(**{key: val})
+
+    if format_errors:
+        raise CohesiveSDKException("Failed to format routes: %s" % ",".join(format_errors))
+    return config
+
+
+def __resolve_peering_config_variables(controller, config):
+    """Resolve peering config variables.
+
+    Arguments:
+        controller {dict}
+        config {dict}
+
+    Raises:
+        CohesiveSDKException: [description]
+
+    Returns:
+        [dict]
+    """
+    peering = controller.get("peering", {})
+    peers = peering.get("peers", {})
+    local_vars = controller.get("variables", {})
+    if not peers:
+        return config
+
+    format_errors = []
+    for peer_id, peer_name in peers.items():
+        peer_name, err = __resolve_string_var(peer_name, local_vars, config)
+        if err:
+            format_errors.append(err)
+        peers[peer_id] = peer_name
+
+    if format_errors:
+        raise CohesiveSDKException("Failed to format peers: %s" % ",".join(format_errors))
+    return config
+
+
+def __substitute_controller_variables(config):
+    """Substitute variables and set defaults for config
+
+    Arguments:
+        config {dict}
+
+    Raises:
+        Exception: [description]
+
+    Returns:
+        [dict]
+    """
+    global_variables = config.get("variables", {})
+    use_default_passwords = global_variables.get("use_default_passwords")
+    master_password = global_variables.get("master_password")
+    for controller in config["controllers"]:
+        # add global variables controller state, overriding with local variables
+        local_variables = dict(global_variables, **controller.get("variables", {}))
+
+        # Password logic:
+        #   - use passwords passed by ENV
+        #   - if none, use passwords in config file
+        #   - if still none >
+        #   -   if master password is passed and use_default_passwords flag is NOT true, use master
+        #   -   else use default password for clouds
+        if not local_variables.get("api_password"):
+            if not master_password or use_default_passwords:
+                if local_variables["cloud"] == "azure":
+                    local_variables["api_password"] = "%s-%s" % (local_variables["instance_name"], local_variables["primary_ip"])
+                else:
+                    local_variables["api_password"] = local_variables["instance_id"]
+            else:
+                local_variables["api_password"] = master_password
+
+        if not local_variables.get("host"):
+            local_variables["host"] = local_variables["public_ip"]
+
+        for key, value in local_variables.items():
+            if util.is_formattable_string(value):
+                try:
+                    local_variables[key] = value.format(**local_variables)
+                except KeyError:
+                    raise CohesiveSDKException("Missing variable %s" % value)
+
+        controller["variables"] = local_variables
+        __resolve_route_config_variables(controller, config)
+        __resolve_peering_config_variables(controller, config)
+    return config
+
+
+def read_config_file(config_file):
+    try:
+        return json.loads(open(config_file).read())
+    except json.decoder.JSONDecodeError as e:
+        raise CohesiveSDKException("Invalid config file %s. Must be valid json." % config_file)
+
+
+def resolve_config_variables(config_dict, infra_state=None, fetch_env=False, groups=None):
+    """Resolve and fetch config variables
+
+    Arguments:
+        config_dict {dict}
+
+    Keyword Arguments:
+        infra_state {dict} - infrastructure state
+        fetch_env {bool} - read vars from env if True
+        groups {Dict{str -> int}} - group_name, size dict
+
+    Returns:
+        [type] -- [description]
+    """
+    _config = dict(config_dict)
+
+    if not groups:
+        controllers = config_dict["controllers"]
+        groups = {}
+        for controller in controllers:
+            controller_group = controller["variables"].get("group")
+            if not controller_group:
+                continue
+            elif controller_group in groups:
+                groups[controller_group] = groups[controller_group] + 1
+            else:
+                groups[controller_group] = 1
+
+    if infra_state:
+        _config = __add_controller_states(_config, infra_state, groups=groups)
+
+    if fetch_env:
+        _config = __add_config_from_env(_config, get_config_from_env())
+
+    return __substitute_controller_variables(_config)

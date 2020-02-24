@@ -1,19 +1,6 @@
 from cohesivenet import util, Logger, VNS3Client, CohesiveSDKException
 
 
-def format_rule(rule, state):
-    err_none = None
-    if util.is_formattable_string(rule):
-        try:
-            return rule.format(**state), err_none
-        except KeyError as e:
-            return (
-                rule,
-                "Rule format error: missing state args %s" % ",".join(e.args),
-            )
-    return rule, err_none
-
-
 def create_firewall_policy(client: VNS3Client, firewall_rules, state={}):
     """Create group of firewall rules
 
@@ -38,7 +25,7 @@ def create_firewall_policy(client: VNS3Client, firewall_rules, state={}):
         rule_count=len(firewall_rules),
     )
     for i, rule_args in enumerate(firewall_rules):
-        rule, err = format_rule(rule_args["rule"], state)
+        rule, err = util.format_string(rule_args["rule"], state)
         if err:
             errors.append(err)
             continue
@@ -56,7 +43,7 @@ def __construct_proposed_firewall_list(rule_args_list, state=None):
     errors = []
     new_firewall = []
     for rule_args in rule_args_list:
-        rule, err = format_rule(rule_args["rule"], _state)
+        rule, err = util.format_string(rule_args["rule"], _state)
         if err:
             errors.append(err)
             continue

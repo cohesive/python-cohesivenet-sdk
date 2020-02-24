@@ -1,4 +1,3 @@
-import asyncio
 import functools
 import json
 import math
@@ -11,91 +10,6 @@ from contextlib import contextmanager
 from typing import Dict, Tuple, List, Callable, Union, Awaitable
 
 from cohesivenet.log_util import scrub_sensitive
-
-
-def force_async(fn):
-    """Turns a sync function to async function using threads
-
-    Arguments:
-        fn {function}
-
-    Returns:
-        function - awaitable function
-    """
-    from concurrent.futures import ThreadPoolExecutor
-
-    pool = ThreadPoolExecutor()
-
-    @functools.wraps(fn)
-    def async_wrapper(*args, **kwargs):
-        future = pool.submit(fn, *args, **kwargs)
-        return asyncio.wrap_future(future)  # make it awaitable
-
-    return async_wrapper
-
-
-def run_parallel(*coroutines):
-    loop = asyncio.get_event_loop()
-    results = loop.run_until_complete(asyncio.gather(*coroutines))
-    return results
-
-
-def run_pipe(init_data, steps: List[Tuple[str, Callable]]):
-    data = deepcopy(init_data)
-    total_steps = len(steps)
-    print(
-        "Running pipe [steps=%s] [inputs=%s]"
-        % (total_steps, scrub_sensitive(init_data))
-    )
-
-    for step_i, (step_name, func) in enumerate(steps):
-        step_num = step_i + 1
-        print(
-            "Running step [step=%s/%s] [name=%s]" % (step_num, total_steps, step_name)
-        )
-        response = func(data)
-        outputs = response.get("outputs", {})
-        data.update(outputs)
-        print("Step %s/%s finished. Outputs: %s" % (step_num, total_steps, outputs))
-    return data
-
-
-def run_pipe_async(
-    init_data, steps: List[Tuple[str, Union[Callable, List[Awaitable]]]]
-):
-    """Run pipeline of step functions, running in parallel if
-
-    Arguments:
-        init_data {[type]} -- [description]
-        steps {List[Tuple[str, Union[Callable, List[Awaitable]]]]} -- [description]
-
-    Returns:
-        [type] -- [description]
-    """
-    data = deepcopy(init_data)
-    total_steps = len(steps)
-    print(
-        "Running pipe [steps=%s] [inputs=%s]"
-        % (total_steps, scrub_sensitive(init_data))
-    )
-    for step_i, (step_name, step_func) in enumerate(steps):
-        step_num = step_i + 1
-        print(
-            "Running pipe step [step=%s/%s] [name=%s]"
-            % (step_num, total_steps, step_name)
-        )
-        if type(step_func) is list:
-            print("Running async substeps")
-            step_responses = run_parallel(*(func(data) for func in step_func))
-            print("Substeps finished. Outputs: %s" % step_responses)
-            for response in step_responses:
-                data.update(response.get("outputs", {}))
-        else:
-            response = step_func(data)
-            outputs = response.get("outputs", {})
-            data.update(outputs)
-            print("Step %s/%s finished. Outputs: %s" % (step_num, total_steps, outputs))
-    return data
 
 
 def take_keys(keys: List[str], data_dict: Dict):
@@ -184,6 +98,41 @@ def map_type(s, expected_type, strict=True):
         raise
 
 
+def is_formattable_string(s):
+    if type(s) not in (str, bytes):
+        return False
+    match = re.match(r".*{(.*)}.*", s)
+    if match:
+        return match.group(1)
+    return False
+
+
+def format_string(s, state):
+    err_none = None
+    if is_formattable_string(s):
+        try:
+            return s.format(**state), err_none
+        except KeyError as e:
+            return (
+                s,
+                "String format error: missing state args %s" % ",".join(e.args)
+            )
+    return s, err_none
+
+
+def dumb_replace(s, value):
+    if type(s) not in (str, bytes):
+        return s
+    return re.sub(r"{.*}", value, s)
+
+
+def is_list_index(s):
+    match = re.match(r"(.*)\[(\d+)\]", str(s))
+    if match:
+        return match.group(1), match.group(2)
+    return False
+
+
 def get_path(data_dict, key_path, fail=False):
     """get_path
 
@@ -200,14 +149,34 @@ def get_path(data_dict, key_path, fail=False):
     Returns:
         [any] -- value at key path
     """
+    DOES_NOT_EXIST = 'Path "%s" does not exist' % key_path
     _target = data_dict
     steps = key_path if type(key_path) is list else key_path.split(".")
+
     for step in steps:
-        if type(_target) is not dict or step not in _target:
+        if type(_target) is not dict:
             if fail:
-                raise Exception('Path "%s" does not exist' % key_path)
+                raise Exception(DOES_NOT_EXIST)
             return None
+
+        step_list_index = is_list_index(step)
+        list_index = None
+        if step_list_index:
+            step, list_index = step_list_index
+
+        if step not in _target:
+            if fail:
+                raise Exception(DOES_NOT_EXIST)
+            return None
+
         _target = _target.get(step)
+        if list_index is not None:
+            if type(_target) not in (list, tuple) or len(_target) <= int(list_index):
+                if fail:
+                    raise Exception(DOES_NOT_EXIST)
+                return None
+            _target = _target[int(list_index)]
+
     return _target
 
 
@@ -220,11 +189,6 @@ def map_dict_keypaths(key_map, data_dict):
         new_key: get_path(data_dict, key_path) for key_path, new_key in key_map.items()
     }
     return {**data_dict, **updates}
-
-
-def is_formattable_string(s):
-    regexp = re.compile(r"{.*}")
-    return regexp.search(s)
 
 
 def partition_list_groups(object_list, number_partitions):

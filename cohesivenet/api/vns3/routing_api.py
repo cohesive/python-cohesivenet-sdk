@@ -411,7 +411,7 @@ class RoutingApi(object):
         """
 
         def __to_route_tuple(route, keys):
-            return tuple(route[key] for key in keys)
+            return tuple(route[key] for key in keys if key in keys)
 
         routes_response = self.api_client.routing.get_routes().response
         route_tuples = {
