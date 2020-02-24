@@ -11,7 +11,7 @@ from cohesivenet import (
     Logger,
     UrlLib3ConnExceptions,
     HTTPStatus,
-    util
+    util,
 )
 from cohesivenet.macros import api_operations
 
@@ -284,7 +284,8 @@ def __add_controller_states(config, infra_state, groups=None):
         if missing_states:
             raise CohesiveSDKException(
                 "If groups are provided. infra_state must be keyed by group. "
-                "e.g. groups={aws: 3, azure: 2}, infra_state={aws: {...}, azure: {...}}")
+                "e.g. groups={aws: 3, azure: 2}, infra_state={aws: {...}, azure: {...}}"
+            )
 
     for i, controller in enumerate(controllers):
         controller_vars = controller.get("variables", {})
@@ -304,7 +305,10 @@ def __add_controller_states(config, infra_state, groups=None):
                 _group_indexes[group] = _cur_group_index + 1
         else:
             for key, val in infra_state.items():
-                assert type(val) in (tuple, list), "Expected infra state vars to be lists, indexed by controller"
+                assert type(val) in (
+                    tuple,
+                    list,
+                ), "Expected infra state vars to be lists, indexed by controller"
                 if len(val) > i:
                     controller_vars[key] = val[i]
 
@@ -319,7 +323,7 @@ def get_config_from_env():
         "plugin_images": {
             "ha_selfish_image": "",
             "ha_selfless_image": "",
-            "logger_image": ""
+            "logger_image": "",
         },
         "variables": {
             "network_left": os.getenv("NETWORK_LEFT"),
@@ -327,7 +331,8 @@ def get_config_from_env():
             "topology_name": os.getenv("TOPOLOGY_NAME"),
             "topology_password": os.getenv("TOPOLOGY_PASSWORD"),
             "master_password": os.getenv("MASTER_PASSWORD"),
-            "set_master_password": os.getenv("SET_MASTER_PASSWORD", "").lower() == "true",
+            "set_master_password": os.getenv("SET_MASTER_PASSWORD", "").lower()
+            == "true",
         },
         "controllers__subnet": os.getenv("CONTROLLER_SUBNETS_CSV", "").split(","),
         "controllers__host": os.getenv("HOSTS_CSV", "").split(","),
@@ -355,12 +360,19 @@ def __add_config_from_env(config, env_config):
     topology_vars = env_config.pop("variables", {})
     topology_vars_non_null = _filter_dict_none_vals(topology_vars)
     topology_vars_plugin_images = env_config.pop("plugin_images", {})
-    topology_vars_plugin_images_non_null = _filter_dict_none_vals(topology_vars_plugin_images)
+    topology_vars_plugin_images_non_null = _filter_dict_none_vals(
+        topology_vars_plugin_images
+    )
 
-    updated_config = dict(config, **{
-        "variables": dict(config.get("variables", {}), **topology_vars_non_null),
-        "plugin_images": dict(config.get("plugin_images", {}), **topology_vars_plugin_images_non_null),
-    })
+    updated_config = dict(
+        config,
+        **{
+            "variables": dict(config.get("variables", {}), **topology_vars_non_null),
+            "plugin_images": dict(
+                config.get("plugin_images", {}), **topology_vars_plugin_images_non_null
+            ),
+        }
+    )
 
     controllers = config["controllers"]
     for key, config_value in env_config.items():
@@ -368,7 +380,9 @@ def __add_config_from_env(config, env_config):
             continue
 
         if key.startswith("controllers__"):
-            assert type(config_value) is list, "Controller state vars should be passed as lists"
+            assert (
+                type(config_value) is list
+            ), "Controller state vars should be passed as lists"
             var_name = key.replace("controllers__", "")
             for i, controller_var_value in enumerate(config_value):
                 if controller_var_value in NONE_VALS:
@@ -385,11 +399,13 @@ def __add_config_from_env(config, env_config):
         elif type(config_value) in (str, int):
             updated_config.update(**{key: config_value})
         else:
-            raise CohesiveSDKException("Unknown environment variable value key=%s, value=%s" % (key, config_value))
+            raise CohesiveSDKException(
+                "Unknown environment variable value key=%s, value=%s"
+                % (key, config_value)
+            )
 
     updated_config.update(controllers=controllers)
     return updated_config
-
 
 
 def __resolve_string_var(string, local_vars, global_config):
@@ -448,7 +464,9 @@ def __resolve_route_config_variables(controller, config):
             route_kwargs.update(**{key: val})
 
     if format_errors:
-        raise CohesiveSDKException("Failed to format routes: %s" % ",".join(format_errors))
+        raise CohesiveSDKException(
+            "Failed to format routes: %s" % ",".join(format_errors)
+        )
     return config
 
 
@@ -479,7 +497,9 @@ def __resolve_peering_config_variables(controller, config):
         peers[peer_id] = peer_name
 
     if format_errors:
-        raise CohesiveSDKException("Failed to format peers: %s" % ",".join(format_errors))
+        raise CohesiveSDKException(
+            "Failed to format peers: %s" % ",".join(format_errors)
+        )
     return config
 
 
@@ -511,7 +531,10 @@ def __substitute_controller_variables(config):
         if not local_variables.get("api_password"):
             if not master_password or use_default_passwords:
                 if local_variables["cloud"] == "azure":
-                    local_variables["api_password"] = "%s-%s" % (local_variables["instance_name"], local_variables["primary_ip"])
+                    local_variables["api_password"] = "%s-%s" % (
+                        local_variables["instance_name"],
+                        local_variables["primary_ip"],
+                    )
                 else:
                     local_variables["api_password"] = local_variables["instance_id"]
             else:
@@ -536,11 +559,15 @@ def __substitute_controller_variables(config):
 def read_config_file(config_file):
     try:
         return json.loads(open(config_file).read())
-    except json.decoder.JSONDecodeError as e:
-        raise CohesiveSDKException("Invalid config file %s. Must be valid json." % config_file)
+    except json.decoder.JSONDecodeError:
+        raise CohesiveSDKException(
+            "Invalid config file %s. Must be valid json." % config_file
+        )
 
 
-def resolve_config_variables(config_dict, infra_state=None, fetch_env=False, groups=None):
+def resolve_config_variables(
+    config_dict, infra_state=None, fetch_env=False, groups=None
+):
     """Resolve and fetch config variables
 
     Arguments:

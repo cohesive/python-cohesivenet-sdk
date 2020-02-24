@@ -1,6 +1,6 @@
 from functools import partial as bind
 
-from cohesivenet import data_types, network_math, Logger, util
+from cohesivenet import data_types, network_math, Logger, util, VNS3Client
 from cohesivenet.macros import api_operations, state
 
 
@@ -122,4 +122,3 @@ def create_route_table(client: VNS3Client, routes, state={}):
         client.routing.post_create_route_if_not_exists(route_kwargs)
         successes.append("Route exists: route=%s" % str(route_kwargs))
     return successes, errors
-

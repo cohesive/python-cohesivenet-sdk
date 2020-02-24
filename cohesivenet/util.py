@@ -1,15 +1,11 @@
-import functools
 import json
 import math
 import os
 import time
 import re
 
-from copy import deepcopy
 from contextlib import contextmanager
-from typing import Dict, Tuple, List, Callable, Union, Awaitable
-
-from cohesivenet.log_util import scrub_sensitive
+from typing import Dict, List
 
 
 def take_keys(keys: List[str], data_dict: Dict):
@@ -113,10 +109,7 @@ def format_string(s, state):
         try:
             return s.format(**state), err_none
         except KeyError as e:
-            return (
-                s,
-                "String format error: missing state args %s" % ",".join(e.args)
-            )
+            return (s, "String format error: missing state args %s" % ",".join(e.args))
     return s, err_none
 
 

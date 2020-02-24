@@ -1,4 +1,5 @@
 import asyncio
+import functools
 
 
 def force_async(fn):

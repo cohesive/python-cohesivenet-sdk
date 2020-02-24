@@ -1763,7 +1763,7 @@ class NetworkEdgePluginsApi(object):
         response_state = action_data.response.running.lower()
         if response_state == expected_running_state:
             return True
- 
+
         assert response_state == expected_in_progress, "Unexpected state."
 
         start_time = time.time()
