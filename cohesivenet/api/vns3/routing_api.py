@@ -23,7 +23,7 @@ from cohesivenet.exceptions import ApiTypeError, ApiValueError
 
 
 class RouteConstants(object):
-    RouteComparisonKeys = ["cidr", "interface", "gateway"]
+    RouteComparisonKeys = ["cidr", "interface", "gateway", "advertise"]
 
 
 class RoutingApi(object):
@@ -409,9 +409,17 @@ class RoutingApi(object):
         Returns:
             [models.RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> models.Route
         """
-
         def __to_route_tuple(route, keys):
-            return tuple(route[key] for key in keys if key in keys)
+            t = ()
+            for key in keys:
+                _val = route.get(key)
+                if _val is not None:
+                    t += (_val,)
+                elif key == "interface":
+                    t += ("_notset",)
+                else:
+                    t += (None,)
+            return t
 
         routes_response = self.api_client.routing.get_routes().response
         route_tuples = {
