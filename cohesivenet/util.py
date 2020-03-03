@@ -8,6 +8,13 @@ from contextlib import contextmanager
 from typing import Dict, List
 
 
+def take(iterator, count):
+    return [
+        next(iterator)
+        for _ in range(count)
+    ]
+
+
 def take_keys(keys: List[str], data_dict: Dict):
     """Take keys from dict
 
@@ -97,9 +104,10 @@ def map_type(s, expected_type, strict=True):
 def is_formattable_string(s):
     if type(s) not in (str, bytes):
         return False
-    match = re.match(r".*{(.*)}.*", s)
-    if match:
-        return match.group(1)
+
+    matches = re.findall(r'{[A-Za-z0-9_\.\[\]]*}', s)
+    if matches:
+        return [m.strip('{}') for m in matches]
     return False
 
 

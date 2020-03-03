@@ -1,13 +1,19 @@
 import ipaddress
 from typing import List
 
+from cohesivenet import util
+
 
 class NetworkMathException(Exception):
     pass
 
 
 def get_default_gateway(subnet_cidr: str) -> str:
-    return str(next(ipaddress.ip_network(subnet_cidr).hosts()))
+    return util.take(ipaddress.ip_network(subnet_cidr).hosts(), 1)[-1]
+
+
+def get_dns_server(subnet_cidr: str) -> str:
+    return util.take(ipaddress.ip_network(subnet_cidr).hosts(), 2)[-1]
 
 
 def calculate_next_subnets(

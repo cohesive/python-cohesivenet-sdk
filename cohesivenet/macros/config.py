@@ -318,26 +318,33 @@ def __add_controller_states(config, infra_state, groups=None):
 
 def get_config_from_env():
     # Update for environment
-    return {
-        "license_file": os.getenv("LICENSE"),
-        "plugin_images": {
-            "ha_selfish_image": "",
-            "ha_selfless_image": "",
-            "logger_image": "",
-        },
-        "variables": {
-            "network_left": os.getenv("NETWORK_LEFT"),
-            "network_right": os.getenv("NETWORK_RIGHT"),
-            "topology_name": os.getenv("TOPOLOGY_NAME"),
-            "topology_password": os.getenv("TOPOLOGY_PASSWORD"),
-            "master_password": os.getenv("MASTER_PASSWORD"),
-            "set_master_password": os.getenv("SET_MASTER_PASSWORD", "").lower()
-            == "true",
-        },
-        "controllers__subnet": os.getenv("CONTROLLER_SUBNETS_CSV", "").split(","),
-        "controllers__host": os.getenv("HOSTS_CSV", "").split(","),
-        "controllers__api_password": os.getenv("HOST_PASSWORDS_CSV", "").split(","),
+    cn_vars = {
+        k.replace('CN_', '').lower(): v
+        for k, v in dict(os.environ).items()
+        if k.startswith('CN_')
     }
+
+    env_config = {
+        "license_file": cn_vars.pop("license", None)
+    }
+
+    controller_vars = {
+        k: v.split(",")
+        for k, v in cn_vars.items()
+        if k.startswith("controllers")
+    }
+
+    variables = {
+        k: v
+        for k, v in cn_vars.items()
+        if k not in controller_vars
+    }
+
+    return dict(
+        env_config,
+        **controller_vars, **{
+            "variables": variables
+        })
 
 
 def _filter_dict_none_vals(d, none_vals=("", None)):
@@ -379,11 +386,11 @@ def __add_config_from_env(config, env_config):
         if config_value in NONE_VALS:
             continue
 
-        if key.startswith("controllers__"):
+        if key.startswith("controllers"):
             assert (
                 type(config_value) is list
             ), "Controller state vars should be passed as lists"
-            var_name = key.replace("controllers__", "")
+            var_name = "_".join(key.split("_")[1:]).strip("_")
             for i, controller_var_value in enumerate(config_value):
                 if controller_var_value in NONE_VALS:
                     continue
@@ -408,7 +415,7 @@ def __add_config_from_env(config, env_config):
     return updated_config
 
 
-def __resolve_string_var(string, local_vars, global_config):
+def __resolve_string_vars(string, local_vars, global_config):
     """Resolve string variable. Sub local and global vars into string
 
     Arguments:
@@ -419,22 +426,27 @@ def __resolve_string_var(string, local_vars, global_config):
     Returns:
         [tuple] - (str, errors)
     """
-    var = util.is_formattable_string(string)
-    if not var:
+    string_vars = util.is_formattable_string(string)
+    if not string_vars:
         return string, None
 
-    if var.startswith("config."):
-        path = var.replace("config.", "")
-        val = util.get_path(global_config, path)
-        if not val:
-            return string, "Cant format config var for string %s" % string
-        else:
-            return util.dumb_replace(string, val), None
-    elif var in local_vars:
-        return string.format(**{var: local_vars[var]}), None
-    else:
-        # allow non-config variables to be replaced later
-        return string, None
+    errors = []
+    for var in string_vars:
+        if var.startswith("config."):
+            path = var.replace("config.", "")
+            val = util.get_path(global_config, path)
+            if not val:
+                errors.append("Can't format config var %s for string %s" % (var, string))
+            elif type(val) is dict:
+                if string != "{%s}" % var:
+                    errors.append("Can't format dict into string for config var %s and string %s" % (var, string))
+                else:
+                    return val, None
+            else:
+                string = string.replace("{%s}" % var, val)
+        elif var in local_vars:
+            string = string.replace("{%s}" % var, local_vars[var])
+    return string, None if not errors else ",".join(errors)
 
 
 def __resolve_route_config_variables(controller, config):
@@ -458,7 +470,7 @@ def __resolve_route_config_variables(controller, config):
     format_errors = []
     for i, route_kwargs in enumerate(routes):
         for key, val in route_kwargs.items():
-            val, err = __resolve_string_var(val, local_vars, config)
+            val, err = __resolve_string_vars(val, local_vars, config)
             if err:
                 format_errors.append(err)
             route_kwargs.update(**{key: val})
@@ -491,7 +503,7 @@ def __resolve_peering_config_variables(controller, config):
 
     format_errors = []
     for peer_id, peer_name in peers.items():
-        peer_name, err = __resolve_string_var(peer_name, local_vars, config)
+        peer_name, err = __resolve_string_vars(peer_name, local_vars, config)
         if err:
             format_errors.append(err)
         peers[peer_id] = peer_name
@@ -499,6 +511,40 @@ def __resolve_peering_config_variables(controller, config):
     if format_errors:
         raise CohesiveSDKException(
             "Failed to format peers: %s" % ",".join(format_errors)
+        )
+    return config
+
+
+def __resolve_plugins_config_variables(controller, config):
+    """Resolve Plugin images for controller
+
+    Arguments:
+        controller {dict}
+        config {dict}
+
+    Raises:
+        CohesiveSDKException: [description]
+
+    Returns:
+        [dict]
+    """
+    plugins = controller.get("plugins", [])
+    local_vars = controller.get("variables", {})
+    if not plugins:
+        return config
+
+    format_errors = []
+    for plugin in plugins:
+        for key, val in plugin.items():
+            val_resolved, err = __resolve_string_vars(val, local_vars, config)
+            if err:
+                format_errors.append(err)
+                continue
+            plugin[key] = val_resolved
+
+    if format_errors:
+        raise CohesiveSDKException(
+            "Failed to resolve controller plugin vars: %s" % ",".join(format_errors)
         )
     return config
 
@@ -516,7 +562,7 @@ def __substitute_controller_variables(config):
         [dict]
     """
     global_variables = config.get("variables", {})
-    use_default_passwords = global_variables.get("use_default_passwords")
+    set_master_password = global_variables.get("set_master_password")
     master_password = global_variables.get("master_password")
     for controller in config["controllers"]:
         # add global variables controller state, overriding with local variables
@@ -526,14 +572,14 @@ def __substitute_controller_variables(config):
         #   - use passwords passed by ENV
         #   - if none, use passwords in config file
         #   - if still none >
-        #   -   if master password is passed and use_default_passwords flag is NOT true, use master
+        #   -   if master password is passed and set_master_password flag is NOT true, use master
         #   -   else use default password for clouds
         if not local_variables.get("api_password"):
-            if not master_password or use_default_passwords:
+            if not master_password or set_master_password:
                 if local_variables["cloud"] == "azure":
                     local_variables["api_password"] = "%s-%s" % (
                         local_variables["instance_name"],
-                        local_variables["primary_ip"],
+                        local_variables["primary_private_ip"],
                     )
                 else:
                     local_variables["api_password"] = local_variables["instance_id"]
@@ -553,6 +599,7 @@ def __substitute_controller_variables(config):
         controller["variables"] = local_variables
         __resolve_route_config_variables(controller, config)
         __resolve_peering_config_variables(controller, config)
+        __resolve_plugins_config_variables(controller, config)
     return config
 
 

@@ -1,6 +1,6 @@
 from functools import partial as bind
 
-from cohesivenet import data_types, network_math, Logger, util, VNS3Client
+from cohesivenet import data_types, network_math, Logger, util, VNS3Client, CohesiveSDKException
 from cohesivenet.macros import api_operations, state
 
 
@@ -106,10 +106,12 @@ def create_route_table(client: VNS3Client, routes, state={}):
         host=client.host_uri,
         route_count=len(routes),
     )
+
+    _sub_vars = state or client.controller_state
     for i, route_kwargs in enumerate(routes):
         skip = False
         for key, value in route_kwargs.items():
-            _value, err = util.format_string(value, state)
+            _value, err = util.format_string(value, _sub_vars)
             if err:
                 errors.append("Route key %s not formattable." % key)
                 skip = True
@@ -120,5 +122,9 @@ def create_route_table(client: VNS3Client, routes, state={}):
             continue
 
         client.routing.post_create_route_if_not_exists(route_kwargs)
-        successes.append("Route exists: route=%s" % str(route_kwargs))
+        successes.append("Route created: route=%s" % str(route_kwargs))
+
+    if errors:
+        raise CohesiveSDKException(",".join(errors))
+
     return successes, errors
