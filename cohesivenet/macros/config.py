@@ -78,6 +78,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
             Logger.info(
                 "API call timeout. Controller is likely rebooting. Waiting for keyset.",
                 wait_timeout=wait_timeout,
+                source=source
             )
             client.sys_admin.wait_for_api(timeout=wait_timeout, wait_for_reboot=True)
             return client.config.wait_for_keyset(timeout=wait_timeout)
@@ -88,7 +89,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
                 keyset_data = client.config.try_get_keyset()
                 if not keyset_data:
                     Logger.info(
-                        "Keyset exists. Waiting for reboot.", wait_timeout=wait_timeout
+                        "Keyset exists. Waiting for reboot.", wait_timeout=wait_timeout, source=source
                     )
                     client.sys_admin.wait_for_api(
                         timeout=wait_timeout, wait_for_reboot=True
@@ -436,8 +437,9 @@ def __resolve_string_vars(string, local_vars, global_config):
             path = var.replace("config.", "")
             val = util.get_path(global_config, path)
             if not val:
-                errors.append("Can't format config var %s for string %s" % (var, string))
-            elif type(val) is dict:
+                continue
+
+            if type(val) is dict:
                 if string != "{%s}" % var:
                     errors.append("Can't format dict into string for config var %s and string %s" % (var, string))
                 else:
@@ -447,7 +449,6 @@ def __resolve_string_vars(string, local_vars, global_config):
         elif var in local_vars:
             string = string.replace("{%s}" % var, local_vars[var])
     return string, None if not errors else ",".join(errors)
-
 
 def __resolve_route_config_variables(controller, config):
     """Resolve variables in route kwargs
