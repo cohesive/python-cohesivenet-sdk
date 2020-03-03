@@ -9,11 +9,11 @@ class NetworkMathException(Exception):
 
 
 def get_default_gateway(subnet_cidr: str) -> str:
-    return util.take(ipaddress.ip_network(subnet_cidr).hosts(), 1)[-1]
+    return str(util.take(ipaddress.ip_network(subnet_cidr).hosts(), 1)[-1])
 
 
 def get_dns_server(subnet_cidr: str) -> str:
-    return util.take(ipaddress.ip_network(subnet_cidr).hosts(), 2)[-1]
+    return str(util.take(ipaddress.ip_network(subnet_cidr).hosts(), 2)[-1])
 
 
 def calculate_next_subnets(

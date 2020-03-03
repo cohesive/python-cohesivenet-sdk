@@ -98,7 +98,7 @@ def search_containers(client: VNS3Client, image_id=None):
         image_id {str}
     """
     if not any([image_id]):
-        return None
+        return []
 
     containers_resp = (
         client.network_edge_plugins.get_container_system_running_containers()
@@ -107,10 +107,11 @@ def search_containers(client: VNS3Client, image_id=None):
     if containers is None:
         raise CohesiveSDKException("Container system is not running")
     if len(containers) == 0:
-        return None
+        return []
 
+    matches = []
     for container in containers:
         if image_id is not None:
             if image_id == container.image:
-                return container
-    return None
+                matches.append(container)
+    return matches
