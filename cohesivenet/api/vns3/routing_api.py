@@ -358,6 +358,10 @@ class RoutingApi(object):
         body_params = None
         if "create_route_request" in local_var_params:
             body_params = local_var_params["create_route_request"]
+            gateway = body_params.get("gateway")
+            if not gateway:
+                body_params["gateway"] = ""
+
         # HTTP header `Accept`
         header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
