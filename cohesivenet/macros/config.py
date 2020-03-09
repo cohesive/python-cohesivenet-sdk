@@ -450,6 +450,7 @@ def __resolve_string_vars(string, local_vars, global_config):
             string = string.replace("{%s}" % var, local_vars[var])
     return string, None if not errors else ",".join(errors)
 
+
 def __resolve_route_config_variables(controller, config):
     """Resolve variables in route kwargs
 
