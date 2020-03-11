@@ -79,12 +79,12 @@
 #         """
 #         pass
 
-#     def test_get_webhooks(self, rest_mock: RestClientMock):
+#     def test_get_webhooks(self, rest_mocker: RestClientMock):
 #         """Test case for get_webhooks
 
 #         """
 #         method, uri = "get", "/api/webhooks"
-#         rest_mock.stub_request(
+#         rest_mocker.stub_request(
 #             method,
 #             uri,
 #             {

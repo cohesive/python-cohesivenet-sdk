@@ -769,36 +769,36 @@ class AccessApiRouter(VersionRouter):
 
     function_library = {
         'create_access_url': {
-            '4.8.1-4.8.4': create_access_url
+            '4.8.4': create_access_url
         },
         'create_api_token': {
-            '4.8.1-4.8.4': create_api_token
+            '4.8.4': create_api_token
         },
         'delete_access_url': {
-            '4.8.1-4.8.4': delete_access_url
+            '4.8.4': delete_access_url
         },
         'delete_access_url_by_search': {
-            '4.8.1-4.8.4': delete_access_url_by_search
+            '4.8.4': delete_access_url_by_search
         },
         'delete_api_token': {
-            '4.8.1-4.8.4': delete_api_token
+            '4.8.4': delete_api_token
         },
         'get_access_urls': {
-            '4.8.1-4.8.4': get_access_urls
+            '4.8.4': get_access_urls
         },
         'get_access_url': {
-            '4.8.1-4.8.4': get_access_url
+            '4.8.4': get_access_url
         },
         'get_api_token': {
-            '4.8.1': get_api_token
+            '4.8.4': get_api_token
         },
         'get_api_tokens': {
             '4.8.4': get_api_tokens
         },
         'put_expire_access_url': {
-            '4.8.1': put_expire_access_url
+            '4.8.4': put_expire_access_url
         },
         'put_expire_api_token': {
-            '4.8.1': put_expire_api_token
+            '4.8.4': put_expire_api_token
         }
     }

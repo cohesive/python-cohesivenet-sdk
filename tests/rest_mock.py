@@ -39,7 +39,7 @@ class RestClientMock(object):
         if response is not None:
             return response
 
-        return self._real_request(requestor, method, url, *args, *kwargs)
+        return self._real_request(requestor, method, url, *args, **kwargs)
 
     def stub_request(self, method, url, rbody={}, rcode=200, rheaders={}):
         self._stub_request_handler.register(method, url, rbody, rcode, rheaders)
@@ -79,6 +79,13 @@ class RestClientMock(object):
             for p in optional_params
             if p not in expected_call_kwargs
         }
+
+        if method.lower() == "delete":
+            any_call_kwargs.pop("post_params")
+        elif method.lower() == "get":
+            any_call_kwargs.pop("post_params")
+            any_call_kwargs.pop("body")
+
         kwarg_assertions = [
             expected_call_kwargs,
             dict(any_call_kwargs, **expected_call_kwargs),
@@ -119,8 +126,7 @@ class StubRequestHandler(object):
     def get_response(self, method, url):
         method = method.lower()
         url_no_protocol = url.lstrip("https://")
-        uri = url_no_protocol[url_no_protocol.index("/") :]
-
+        uri = url_no_protocol[url_no_protocol.index("/"):]
         if (method, uri) in self._entries:
             rbody, rstatus, rheaders = self._entries.pop((method, uri))
             if not isinstance(rbody, six.string_types):

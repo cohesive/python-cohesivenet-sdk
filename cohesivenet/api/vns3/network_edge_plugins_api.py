@@ -1242,54 +1242,54 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
 class NetworkEdgePluginsApiRouter(VersionRouter):
      function_library = {
         "delete_container": {
-            "4.8.1": delete_container
+            "4.8.4": delete_container
         },
         "delete_container_image": {
-            "4.8.1": delete_container_image
+            "4.8.4": delete_container_image
         },
         "get_container_logs": {
-            "4.8.1": get_container_logs
+            "4.8.4": get_container_logs
         },
         "get_container_system_ips": {
-            "4.8.1": get_container_system_ips
+            "4.8.4": get_container_system_ips
         },
         "get_container_system_images": {
-            "4.8.1": get_container_system_images
+            "4.8.4": get_container_system_images
         },
         "get_container_system_running_containers": {
-            "4.8.1": get_container_system_running_containers
+            "4.8.4": get_container_system_running_containers
         },
         "get_container_system_status": {
-            "4.8.1": get_container_system_status
+            "4.8.4": get_container_system_status
         },
         "post_action_container_system": {
-            "4.8.1": post_action_container_system
+            "4.8.4": post_action_container_system
         },
         "post_commit_container": {
-            "4.8.1": post_commit_container
+            "4.8.4": post_commit_container
         },
         "post_create_container_image": {
-            "4.8.1": post_create_container_image
+            "4.8.4": post_create_container_image
         },
         "post_start_container": {
-            "4.8.1": post_start_container
+            "4.8.4": post_start_container
         },
         "put_configure_container_system": {
-            "4.8.1": put_configure_container_system
+            "4.8.4": put_configure_container_system
         },
         "put_edit_container_image": {
-            "4.8.1": put_edit_container_image
+            "4.8.4": put_edit_container_image
         },
         "put_stop_container": {
-            "4.8.1": put_stop_container
+            "4.8.4": put_stop_container
         },
         "assert_container_system_state": {
-            "4.8.1": assert_container_system_state
+            "4.8.4": assert_container_system_state
         },
         "restart_container_network": {
-            "4.8.1": restart_container_network
+            "4.8.4": restart_container_network
         },
         "wait_for_image_import": {
-            "4.8.1": wait_for_image_import
+            "4.8.4": wait_for_image_import
         },
     }

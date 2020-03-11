@@ -29,6 +29,13 @@ class DataDict(dict):
         super(DataDict, self).__init__(*args, **kwargs)
         self.__dict__ = self
 
+    def __getattribute__(self, name):
+        if name in self:
+            if type(self[name]) is dict:
+                return DataDict(**self[name])
+            return super().__getattribute__(name)
+        return None
+
 
 class APIResponse(io.IOBase):
     def __init__(self, rest_response):
@@ -60,9 +67,9 @@ class APIResponse(io.IOBase):
 
     @property
     def response(self):
-        data = self.data
-        if "response" in self.data:
-            resp = self.data["response"]
+        data = self.json()
+        if "response" in data:
+            resp = data["response"]
             if type(resp) is dict:
                 return DataDict(**resp)
             return resp

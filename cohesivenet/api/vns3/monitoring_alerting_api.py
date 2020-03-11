@@ -1024,39 +1024,39 @@ class MonitoringAlertingApiRouter(VersionRouter):
 
     function_library = {
         "get_webhooks": {
-            "4.8.1": get_webhooks
+            "4.8.4": get_webhooks
         },
         "get_webhook": {
-            "4.8.1": get_webhook
+            "4.8.4": get_webhook
         },
         "post_create_webhook": {
-            "4.8.1": post_create_webhook
+            "4.8.4": post_create_webhook
         },
         "put_update_webhook": {
-            "4.8.1": put_update_webhook
+            "4.8.4": put_update_webhook
         },
         "delete_webhook": {
-            "4.8.1": delete_webhook
+            "4.8.4": delete_webhook
         },
         "delete_alert": {
-            "4.8.1": delete_alert
+            "4.8.4": delete_alert
         },
         "get_alert": {
-            "4.8.1": get_alert
+            "4.8.4": get_alert
         },
         "get_alerts": {
-            "4.8.1": get_alerts
+            "4.8.4": get_alerts
         },
         "post_define_new_alert": {
-            "4.8.1": post_define_new_alert
+            "4.8.4": post_define_new_alert
         },
         "post_test_alert": {
-            "4.8.1": post_test_alert
+            "4.8.4": post_test_alert
         },
         "post_toggle_enabled_alert": {
-            "4.8.1": post_toggle_enabled_alert
+            "4.8.4": post_toggle_enabled_alert
         },
         "put_update_alert": {
-            "4.8.1": put_update_alert
+            "4.8.4": put_update_alert
         }
     }

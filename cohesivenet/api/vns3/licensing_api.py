@@ -342,15 +342,15 @@ class LicensingApiRouter(VersionRouter):
     
     function_library = {
         "get_license": {
-            "4.8.1": get_license
+            "4.8.4": get_license
         },
         "put_license_upgrade": {
-            "4.8.1": put_license_upgrade
+            "4.8.4": put_license_upgrade
         },
         "put_set_license_parameters": {
-            "4.8.1": put_set_license_parameters
+            "4.8.4": put_set_license_parameters
         },
         "upload_license": {
-            "4.8.1": upload_license
+            "4.8.4": upload_license
         }
     }

@@ -23,7 +23,7 @@ from cohesivenet.api_builder import validate_call, VersionRouter
 
 
 class RouteConstants(object):
-    RouteComparisonKeys = ["cidr", "interface", "gateway"]
+    RouteComparisonKeys = ["cidr", "interface", "gateway", "advertise"]
 
 
 
@@ -233,6 +233,13 @@ def post_create_route(
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
+
+    gateway = body_params.get("gateway")
+    if not gateway:
+        body_params["gateway"] = "_notset"
+    interface = body_params.get("interface")
+    if not interface:
+        body_params["interface"] = "_notset"
         
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
@@ -286,9 +293,17 @@ def post_create_route_if_not_exists(
     Returns:
         [RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> dict
     """
-
     def __to_route_tuple(route, keys):
-        return tuple(route[key] for key in keys)
+        t = ()
+        for key in keys:
+            _val = route.get(key)
+            if _val is not None:
+                t += (_val,)
+            elif key == "interface":
+                t += ("_notset",)
+            else:
+                t += (None,)
+        return t
 
     routes_response = api_client.routing.get_routes().response
     route_tuples = {
@@ -312,15 +327,15 @@ class RoutingApiRouter(VersionRouter):
 
     function_library = {
         "delete_route": {
-            "4.8.1": delete_route
+            "4.8.4": delete_route
         },
         "get_routes": {
-            "4.8.1": get_routes
+            "4.8.4": get_routes
         },
         "post_create_route": {
-            "4.8.1": post_create_route
+            "4.8.4": post_create_route
         },
         "post_create_route_if_not_exists": {
-            "4.8.1": post_create_route_if_not_exists
+            "4.8.4": post_create_route_if_not_exists
         },
     }

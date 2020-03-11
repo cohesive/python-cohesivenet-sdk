@@ -49,7 +49,6 @@ def get_bgp_peer(api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs):
 
     local_var_params = locals()
 
-
     request_params = ["verbose"]  # noqa: E501
 
     collection_formats = {}
@@ -77,7 +76,8 @@ def get_bgp_peer(api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs):
     auth_settings = ['basicAuth']  # noqa: E501
 
     return api_client.call_api(
-        '/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}', 'GET',
+        '/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}', 
+        'GET',
         path_params,
         query_params,
         header_params,
@@ -91,7 +91,6 @@ def get_bgp_peer(api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs):
         _preload_content=local_var_params.get('_preload_content', True),
         _request_timeout=local_var_params.get('_request_timeout'),
         collection_formats=collection_formats)
-
 
 
 @validate_call(path_params=["endpoint_id", "bgp_peer_id"])
@@ -324,7 +323,6 @@ def update_bgp_peer(
     ]
 
     local_var_params = locals()
-    request_params = ["ipaddress", "asn", "access_list", "bgp_password"]
 
     collection_formats = {}
 
@@ -386,15 +384,15 @@ class BGPApiRouter(VersionRouter):
 
     function_library = {
         'get_bgp_peer': {
-            '4.8.1': get_bgp_peer
+            '4.8.4': get_bgp_peer
         },
         'delete_bgp_peer': {
-            '4.8.1': delete_bgp_peer
+            '4.8.4': delete_bgp_peer
         },
         'create_bgp_peer': {
-            '4.8.1': create_bgp_peer
+            '4.8.4': create_bgp_peer
         },
         'update_bgp_peer': {
-            '4.8.1': update_bgp_peer
+            '4.8.4': update_bgp_peer
         }
     }

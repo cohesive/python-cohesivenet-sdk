@@ -115,7 +115,7 @@ def set_version_library(client, api, library):
 
     Logger.debug("Setting VNS3 v%s API functions %s" % (vns3_version, api.__class__.__name__))
     for name, func in version_library.items():
-        setattr(api, name, functools.partial(func, client))
+        setattr(api, name, staticmethod(functools.partial(func, client)))
 
 
 class VersionRouter(object):

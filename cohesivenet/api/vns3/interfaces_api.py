@@ -1040,39 +1040,39 @@ class InterfacesApiRouter(VersionRouter):
     
     function_library = {
         "get_interfaces": {
-            "4.8.1": get_interfaces
+            "4.8.4": get_interfaces
         },
         "get_system_interface_details": {
-            "4.8.1": get_system_interface_details
+            "4.8.4": get_system_interface_details
         },
         "get_system_interfaces": {
-            "4.8.1": get_system_interfaces
+            "4.8.4": get_system_interfaces
         },
         "put_update_system_interface": {
-            "4.8.1": put_update_system_interface
+            "4.8.4": put_update_system_interface
         },
         "post_create_system_interface": {
-            "4.8.1": post_create_system_interface
+            "4.8.4": post_create_system_interface
         },
         "delete_gre_endpoint": {
-            "4.8.1": delete_edge_gre_endpoint
+            "4.8.4": delete_edge_gre_endpoint
         },
         "get_edge_gre_endpoints": {
-            "4.8.1": get_edge_gre_endpoints
+            "4.8.4": get_edge_gre_endpoints
         },
         "put_update_edge_gre_endpoint": {
-            "4.8.1": put_update_edge_gre_endpoint
+            "4.8.4": put_update_edge_gre_endpoint
         },
         "get_edge_gre_endpoint_details": {
-            "4.8.1": get_edge_gre_endpoint_details
+            "4.8.4": get_edge_gre_endpoint_details
         },
         "post_create_edge_gre_endpoint": {
-            "4.8.1": post_create_edge_gre_endpoint
+            "4.8.4": post_create_edge_gre_endpoint
         },
         "delete_system_interface": {
-            "4.8.1": delete_system_interface
+            "4.8.4": delete_system_interface
         },
         "post_action_interfaces": {
-            "4.8.1": post_action_interfaces
+            "4.8.4": post_action_interfaces
         }
     }

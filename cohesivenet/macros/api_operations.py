@@ -4,7 +4,7 @@ from typing import Callable
 
 import cohesivenet.data_types as data_types
 from cohesivenet import ApiException, UrlLib3ConnExceptions
-from cohesivenet.util import run_parallel, force_async
+from cohesivenet.async_util import run_parallel, force_async
 
 
 def retry_call(call_api, args=(), kwargs={}, attempt=0, max_attempts=10, sleep=2):

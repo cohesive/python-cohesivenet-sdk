@@ -621,27 +621,27 @@ def wait_for_api(
 class SystemAdministrationApiRouter(VersionRouter):
     function_library = {
         "get_cloud_data": {
-            "4.8.1": get_cloud_data
+            "4.8.4": get_cloud_data
         },
         "get_status": {
-            "4.8.1": get_status
+            "4.8.4": get_status
         },
         "get_task_status": {
-            "4.8.1": get_task_status
+            "4.8.4": get_task_status
         },
         "get_system_status": {
-            "4.8.1": get_system_status
+            "4.8.4": get_system_status
         },
         "post_generate_keypair": {
-            "4.8.1": post_generate_keypair
+            "4.8.4": post_generate_keypair
         },
         "put_remote_support": {
-            "4.8.1": put_remote_support
+            "4.8.4": put_remote_support
         },
         "put_server_action": {
-            "4.8.1": put_server_action
+            "4.8.4": put_server_action
         },
         "wait_for_api": {
-            "4.8.1": wait_for_api
+            "4.8.4": wait_for_api
         },
     }

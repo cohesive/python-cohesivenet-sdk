@@ -1,7 +1,6 @@
 from functools import partial as bind
 
-from cohesivenet import data_types
-from cohesivenet.clouds import networkmath
+from cohesivenet import data_types, network_math, Logger, util, VNS3Client, CohesiveSDKException
 from cohesivenet.macros import api_operations, state
 
 
@@ -23,7 +22,7 @@ def create_local_gateway_route(client, local_cidr, **route_kwargs):
             "cidr": local_cidr,
             "description": "Local Underlay Network Routing",
             "interface": "eth0",
-            "gateway": networkmath.get_default_gateway(local_cidr),
+            "gateway": network_math.get_default_gateway(local_cidr),
             "advertise": "False",
             "metric": 0,
         },
@@ -53,7 +52,7 @@ def create_route_advertisements(
     invalid = []
     for index, client in enumerate(clients):
         private_ip = state.get_primary_private_ip(client)
-        if not networkmath.subnet_contains_ipv4(private_ip, local_subnets[index]):
+        if not network_math.subnet_contains_ipv4(private_ip, local_subnets[index]):
             invalid.append("%s not in %s" % (private_ip, local_subnets[index]))
 
     if len(invalid):
@@ -77,3 +76,55 @@ def create_route_advertisements(
     ]
 
     return api_operations.__bulk_call_api(bound_api_calls)
+
+
+def create_route_table(client: VNS3Client, routes, state={}):
+    """Create routing policy
+
+    Arguments:
+        client {VNS3Client}
+        routes {List[Route]} - [{
+            "cidr": "str",
+            "description": "str",
+            "interface": "str",
+            "gateway": "str",
+            "tunnel": "int",
+            "advertise": "bool",
+            "metric": "int",
+        }, ...]
+
+    Keyword Arguments:
+        state {dict} - State to format routes with. (can call client.controller_state)
+
+    Returns:
+        Tuple[List[str], List[str]] - success, errors
+    """
+    successes = []
+    errors = []
+    Logger.debug(
+        "Setting controller route table.",
+        host=client.host_uri,
+        route_count=len(routes),
+    )
+
+    _sub_vars = state or client.controller_state
+    for i, route_kwargs in enumerate(routes):
+        skip = False
+        for key, value in route_kwargs.items():
+            _value, err = util.format_string(value, _sub_vars)
+            if err:
+                errors.append("Route key %s not formattable." % key)
+                skip = True
+            else:
+                route_kwargs.update(**{key: _value})
+
+        if skip:
+            continue
+
+        client.routing.post_create_route_if_not_exists(route_kwargs)
+        successes.append("Route created: route=%s" % str(route_kwargs))
+
+    if errors:
+        raise CohesiveSDKException(",".join(errors))
+
+    return successes, errors

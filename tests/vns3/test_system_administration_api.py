@@ -66,11 +66,11 @@
 #         """
 #         pass
 
-#     def test_get_cloud_data_aws(self, rest_mock: RestClientMock):
+#     def test_get_cloud_data_aws(self, rest_mocker):
 #         """Test case for get_cloud_data
 
 #         """
-#         rest_mock.stub_request(
+#         rest_mocker.stub_request(
 #             "get",
 #             "/api/cloud_data",
 #             {

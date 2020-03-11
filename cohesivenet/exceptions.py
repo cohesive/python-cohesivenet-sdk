@@ -31,7 +31,7 @@ class CohesiveSDKException(Exception):
     """The base exception class for SDK Client exceptions"""
 
 
-class ApiMethodUnsupportedError(Exception):
+class  ApiMethodUnsupportedError(Exception):
     def __init__(self, method_name, version, supported_versions, *args, **kwargs):
         self.method = method_name
         self.version = version

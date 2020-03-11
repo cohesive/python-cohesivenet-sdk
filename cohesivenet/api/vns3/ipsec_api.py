@@ -1078,39 +1078,39 @@ class IPsecApiRouter(VersionRouter):
     
     function_library = {
         "delete_ipsec_endpoint": {
-            "4.8.1": delete_ipsec_endpoint
+            "4.8.4": delete_ipsec_endpoint
         },
         "delete_ipsec_endpoint_tunnel": {
-            "4.8.1": delete_ipsec_endpoint_tunnel
+            "4.8.4": delete_ipsec_endpoint_tunnel
         },
         "get_ipsec": {
-            "4.8.1": get_ipsec
+            "4.8.4": get_ipsec
         },
         "get_ipsec_endpoint": {
-            "4.8.1": get_ipsec_endpoint
+            "4.8.4": get_ipsec_endpoint
         },
         "get_ipsec_status": {
-            "4.8.1": get_ipsec_status
+            "4.8.4": get_ipsec_status
         },
         "get_link_history": {
-            "4.8.1": get_link_history
+            "4.8.4": get_link_history
         },
         "post_create_ipsec_endpoint": {
-            "4.8.1": post_create_ipsec_endpoint
+            "4.8.4": post_create_ipsec_endpoint
         },
         "post_create_ipsec_endpoint_tunnel": {
-            "4.8.1": post_create_ipsec_endpoint_tunnel
+            "4.8.4": post_create_ipsec_endpoint_tunnel
         },
         "post_restart_ipsec_action": {
-            "4.8.1": post_restart_ipsec_action
+            "4.8.4": post_restart_ipsec_action
         },
         "put_edit_ipsec_endpoint": {
-            "4.8.1": put_edit_ipsec_endpoint
+            "4.8.4": put_edit_ipsec_endpoint
         },
         "put_edit_ipsec_endpoint_tunnel": {
-            "4.8.1": put_edit_ipsec_endpoint_tunnel
+            "4.8.4": put_edit_ipsec_endpoint_tunnel
         },
         "put_ipsec_config": {
-            "4.8.1": put_ipsec_config
+            "4.8.4": put_ipsec_config
         }
     }

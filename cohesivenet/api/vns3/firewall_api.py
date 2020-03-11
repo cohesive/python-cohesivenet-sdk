@@ -864,36 +864,36 @@ class FirewallApiRouter(VersionRouter):
 
     function_library = {
         'delete_firewall_fw_set': {
-            '4.8.1': delete_firewall_fw_set
+            '4.8.4': delete_firewall_fw_set
         },
         "delete_firewall_rule_by_position": {
-            "4.8.1": delete_firewall_rule_by_position
+            "4.8.4": delete_firewall_rule_by_position
         },
         "delete_firewall_rule_by_rule": {
-            "4.8.1": delete_firewall_rule_by_rule
+            "4.8.4": delete_firewall_rule_by_rule
         },
         "delete_firewall_subgroup": {
-            "4.8.1": delete_firewall_subgroup
+            "4.8.4": delete_firewall_subgroup
         },
         "get_firewall_fw_sets": {
-            "4.8.1": get_firewall_fw_sets
+            "4.8.4": get_firewall_fw_sets
         },
         "get_firewall_rule_subgroups": {
-            "4.8.1": get_firewall_rule_subgroups
+            "4.8.4": get_firewall_rule_subgroups
         },
         "get_firewall_rules": {
-            "4.8.1": get_firewall_rules
+            "4.8.4": get_firewall_rules
         },
         "post_create_firewall_rule": {
-            "4.8.1": post_create_firewall_rule
+            "4.8.4": post_create_firewall_rule
         },
         "post_create_firewall_subgroup_rule": {
-            "4.8.1": post_create_firewall_subgroup_rule
+            "4.8.4": post_create_firewall_subgroup_rule
         },
         "put_reinitialize_fw_sets": {
-            "4.8.1": put_reinitialize_fw_sets
+            "4.8.4": put_reinitialize_fw_sets
         },
         "put_reinitialize_subgroups": {
-            "4.8.1": put_reinitialize_subgroups
+            "4.8.4": put_reinitialize_subgroups
         }
     }

@@ -712,7 +712,7 @@ def try_get_keyset(api_client, **kwargs):  # noqa: E501
     :return: {} or None
     """
     try:
-        detail = get_keyset(**kwargs)
+        detail = get_keyset(api_client, **kwargs)
         if detail.response:
             return detail
         return None
@@ -744,7 +744,7 @@ def wait_for_keyset(api_client, retry_timeout=2.0, timeout=60):
     target_host = api_client.host_uri
     while time.time() - start_time < timeout:
         try:
-            keyset_data = get_keyset()
+            keyset_data = get_keyset(api_client)
             keyset_response = keyset_data.response
             if (
                 keyset_response
@@ -774,36 +774,36 @@ class ConfigurationApiRouter(VersionRouter):
 
     function_library = {
         'get_config': {
-            '4.8.1': get_config
+            '4.8.4': get_config
         },
         'get_keyset': {
-            '4.8.1': get_keyset
+            '4.8.4': get_keyset
         },
         "get_ssl_install_status": {
-            "4.8.1": get_ssl_install_status
+            "4.8.4": get_ssl_install_status
         },
         "put_config": {
-            "4.8.1": put_config
+            "4.8.4": put_config
         },
         "put_install_ssl_keypair": {
-            "4.8.1": put_install_ssl_keypair
+            "4.8.4": put_install_ssl_keypair
         },
         "put_keyset": {
-            "4.8.1": put_keyset
+            "4.8.4": put_keyset
         },
         "put_update_admin_ui": {
-            "4.8.1": put_update_admin_ui
+            "4.8.4": put_update_admin_ui
         },
         "put_update_api_password": {
-            "4.8.1": put_update_api_password
+            "4.8.4": put_update_api_password
         },
         "put_upload_ssl_keypair": {
-            "4.8.1": put_upload_ssl_keypair
+            "4.8.4": put_upload_ssl_keypair
         },
         "try_get_keyset": {
-            "4.8.1": try_get_keyset
+            "4.8.4": try_get_keyset
         },
         "wait_for_keyset": {
-            "4.8.1": wait_for_keyset
+            "4.8.4": wait_for_keyset
         }
     }

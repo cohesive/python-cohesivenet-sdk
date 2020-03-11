@@ -1117,45 +1117,45 @@ class OverlayNetworkApiRouter(VersionRouter):
     # put_update_clientpacks
     function_library = {
         "delete_clientpack_tag": {
-            "4.8.1": delete_clientpack_tag
+            "4.8.4": delete_clientpack_tag
         },
         "get_clientpack": {
-            "4.8.1": get_clientpack
+            "4.8.4": get_clientpack
         },
         "get_clientpacks": {
-            "4.8.1": get_clientpacks
+            "4.8.4": get_clientpacks
         },
         "get_clients_status": {
-            "4.8.1": get_clients_status
+            "4.8.4": get_clients_status
         },
         "get_connected_subnets": {
-            "4.8.1": get_connected_subnets
+            "4.8.4": get_connected_subnets
         },
         "get_download_clientpack": {
-            "4.8.1": get_download_clientpack
+            "4.8.4": get_download_clientpack
         },
         "post_calc_next_clientpack": {
-            "4.8.1": post_calc_next_clientpack
+            "4.8.4": post_calc_next_clientpack
         },
         "post_create_clientpack_tag": {
-            "4.8.1": post_create_clientpack_tag
+            "4.8.4": post_create_clientpack_tag
         },
         "post_reset_all_clients": {
-            "4.8.1": post_reset_all_clients
+            "4.8.4": post_reset_all_clients
         },
         "post_reset_client": {
-            "4.8.1": post_reset_client
+            "4.8.4": post_reset_client
         },
         "put_add_clientpacks": {
-            "4.8.1": put_add_clientpacks
+            "4.8.4": put_add_clientpacks
         },
         "put_clientpack": {
-            "4.8.1": put_clientpack
+            "4.8.4": put_clientpack
         },
         "put_disconnect_clientpack": {
-            "4.8.1": put_disconnect_clientpack
+            "4.8.4": put_disconnect_clientpack
         },
         "put_update_clientpacks": {
-            "4.8.1": put_update_clientpacks
+            "4.8.4": put_update_clientpacks
         }
     }
