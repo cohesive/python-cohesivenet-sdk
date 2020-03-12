@@ -91,10 +91,7 @@ def set_version_library(client, api, library):
 
     Returns: None
     """
-    if not (client.configuration and client.configuration.is_valid()):
-        vns3_version = LATEST_VNS3_VERSION
-    else:
-        vns3_version = client.vns3_dot_version
+    vns3_version = client.vns3_dot_version or LATEST_VNS3_VERSION
 
     def in_range(val, min_v, max_v):
         return val >= min_v and val <= max_v

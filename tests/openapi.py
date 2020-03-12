@@ -13,12 +13,12 @@ class OpenAPITypes(object):
     Object = "object"
 
     PyTypes = {
-        String: {str, bytes},
-        Number: {float, int},
-        Integer: {int},
-        Boolean: {bool},
-        Array: {list, tuple},
-        Object: {dict}
+        String: (str, bytes),
+        Number: (float, int),
+        Integer: (int,),
+        Boolean: (bool,),
+        Array: (list, tuple),
+        Object: (dict,)
     }
 
 
@@ -99,10 +99,21 @@ def get_mock_call_kwargs(method_schema):
 def resolve_ref(schema, ref):
     ref_parts = ref.lstrip('#/').split('/')
     _schema_pointer = schema
+
+    parts = []
     for p in ref_parts:
-        _schema_pointer = _schema_pointer.get(p.replace("~1", "/").replace("%7B", "{").replace("%7D", "}"))
-        if type(_schema_pointer) is not dict:
-            break
+        part = p.replace("~1", "/").replace("%7B", "{").replace("%7D", "}")
+        parts.append(part)
+
+        if not _schema_pointer:
+            raise Exception("Failed to resolve ref %s" % ref)
+        elif type(_schema_pointer) is list:
+            if not part.isdigit():
+                raise Exception("Failed to resolve ref %s. Expected list index." % ref)
+            _schema_pointer = _schema_pointer[int(part)]
+        elif type(_schema_pointer) is dict:
+            _schema_pointer = _schema_pointer.get(part)
+
     if _schema_pointer is None:
         raise Exception("Failed to resolve ref %s" % ref)
     return _schema_pointer
@@ -159,6 +170,9 @@ def get_method_success_response(method_schema, full_schema, content_type=None):
         if status not in http_success_codes:
             continue
 
+        if "content" not in response_schema:
+            return int(status), {}
+
         content_schema = response_schema["content"]
         if content_type and content_type not in content_schema:
             raise RuntimeError(
@@ -172,45 +186,75 @@ def get_method_success_response(method_schema, full_schema, content_type=None):
 
 
 
-def assert_on_type(val, type_schema, path=[]):
-    exp_type = None
-    if "type" in type_schema:
-        exp_type = type_schema["type"]
+def assert_on_response_type(val, type_schema, path=[], should_raise=True):
+    if type_schema is None:
+        assert val is None or val == {}, "Expected no content"
+        return
 
     if "oneOf" in type_schema:
-        raise Exception("'oneOf' not yet supported by testing assertions")
+        one_of_types = type_schema["oneOf"]
+        failed = True
+        assertion_errors = []
 
-    if "allOf" in type_schema:
-        raise Exception("'allOf' not yet supported by testing assertions")
+        # succeed on first assertion that doesnt fail
+        for optional_type in one_of_types:
+            assertion_error = assert_on_response_type(val, optional_type, should_raise=False)
+            if not assertion_error:
+                failed = False
+                break
+            assertion_errors.append(assertion_error)
+        if failed:
+            raise AssertionError(
+                "Response failed to conform to optional types. Errors: [%s]"
+                % (",".join(map(str, assertion_errors))))
+        return None
+    elif "allOf" in type_schema:
+        all_types = type_schema["allOf"]
+        _final_props = {}
+        for required_type in all_types:
+            assert required_type["type"] == OpenAPITypes.Object, "Can only merge object types"
+            _final_props.update(**required_type["properties"])
 
-    if not exp_type:
-        raise Exception("Cant determine expected type for schema %s" % type_schema)
+        type_schema = {
+            "type": "object",
+            "properties": _final_props
+        }
 
-    # print('Asserting val %s is %s' % (val, type_schema))
-    assert type(val) in OpenAPITypes.PyTypes[exp_type], "Bad type for %s=%s. Expected %s" % (".".join(path), str(val), exp_type)
-    if exp_type == OpenAPITypes.Object: 
-        required_props = type_schema.get("required", [])
-        missing_props = [prop for prop in required_props if prop not in val]
-        assert len(missing_props) == 0, "Missing required properties for %s" % ".".join(path)
-        properties_schema = type_schema.get("properties", {})
-        val_type = type_schema.get("additionalProperties", {})
+    elif "type" not in type_schema:
+        raise Exception("Unsupported schema for assertions: %s" % type_schema)
 
-        if properties_schema:
-            for prop, prop_val in val.items():
-                assert prop in properties_schema, "Unexpected property '%s' @ %s" % (prop, ".".join(path))
-                assert_on_type(prop_val, properties_schema[prop], path=path + [prop])
-        elif val_type:
-            for prop, prop_val in val.items():
-                assert_on_type(prop_val, val_type, path=path + [prop])
+    exp_type = type_schema["type"]
+    try:
+        valid_types = OpenAPITypes.PyTypes[exp_type] + ((type(None),) if type_schema.get("nullable") else ())
+        assert type(val) in valid_types, "Bad type for path=%s Val=%s Expected %s" % (".".join(path), str(val), exp_type)
+        if exp_type == OpenAPITypes.Object: 
+            required_props = type_schema.get("required", [])
+            missing_props = [prop for prop in required_props if prop not in val]
+            assert len(missing_props) == 0, "Missing required properties for %s" % ".".join(path)
+            properties_schema = type_schema.get("properties", {})
+            val_type = type_schema.get("additionalProperties", {})
+
+            if properties_schema:
+                for prop, prop_val in val.items():
+                    assert prop in properties_schema, "Unexpected property '%s' @ %s" % (prop, ".".join(path))
+                    assert_on_response_type(prop_val, properties_schema[prop], path=path + [prop])
+            elif val_type:
+                for prop, prop_val in val.items():
+                    assert_on_response_type(prop_val, val_type, path=path + [prop])
+            else:
+                raise RuntimeError("Unexpected type schema format: %s" % type_schema)
+        elif exp_type == OpenAPITypes.Array:
+            item_schema = type_schema["items"]
+            for i, val_item in enumerate(val):
+                assert_on_response_type(val_item, item_schema, path=path + [str(i)])
         else:
-            raise RuntimeError("Unexpected type schema format: %s" % type_schema)
-    elif exp_type == OpenAPITypes.Array:
-        item_schema = type_schema["items"]
-        for i, val_item in enumerate(val):
-            assert_on_type(val_item, item_schema, path=path + [str(i)])
-    else:
-        # todo: add checks like enum and max min
-        pass
+            # todo: add checks like enum and max min
+            pass
+        return None
+    except AssertionError as e:
+        if should_raise:
+            raise e
+        return e
 
 
 def generate_method_test(
@@ -273,17 +317,15 @@ def generate_method_test(
         path_params = get_mock_call_args(method_schema)
         call_args = tuple(path_params.values())
 
-    call_kwargs = None
+    call_kwargs = {}
     if request_kwargs is not None:
         call_kwargs = request_kwargs
     elif mock_request_from_schema:
         call_kwargs = get_mock_call_kwargs(method_schema)
-    else:
-        call_kwargs = {}
 
     _full_api_path = ("/api%s" % _path).format(**path_params)
-    response_code, response = get_method_success_response(method_schema, schema)
-    response_schema = response["schema"]
+    response_code, method_response = get_method_success_response(method_schema, schema)
+    response_schema = method_response.get("schema")
     expected_response = {}
     if mock_response:
         expected_response = mock_response
@@ -294,10 +336,12 @@ def generate_method_test(
             rcode=response_code
         )
     elif mock_response_from_schema:
-        example_response =  response.get("example")
+        example_response = method_response.get("example")
         if not example_response:
-            raise RuntimeError(
-                "No response example provided for status code %s" % str(response_code))
+            example_response = response_schema.get("example") if response_schema else None
+            if not expected_response:
+                raise RuntimeError(
+                    "No response example provided for status code %s" % str(response_code))
 
         expected_response = example_response
         rest_mocker.stub_request(
@@ -324,12 +368,19 @@ def generate_method_test(
     }
 
     if _method in ('post', 'put', 'delete'):
-        expected_request_args["body"] = call_kwargs
         request_body = method_schema.get('requestBody')
         if request_body:
             expected_request_args['headers']['Content-Type'] = next(iter(request_body['content'].keys()))
+
+        if call_kwargs:
+            if expected_request_args['headers'].get('Content-Type') == "text/plain":
+                # Currently expecting all file uploads to pass body kwarg as file
+                expected_request_args["body"] = call_kwargs["body"]
+            else:
+                expected_request_args["body"] = call_kwargs
     elif _method in ('get'):
-        expected_request_args["query_params"] = list(call_kwargs.items())
+        if call_kwargs:
+            expected_request_args["query_params"] = list(call_kwargs.items())
 
     def __test(call):
         response = call(client, *call_args, **call_kwargs)
@@ -343,5 +394,5 @@ def generate_method_test(
             "%s%s" % (client.configuration.endpoint, _full_api_path),
             **expected_request_args
         )
-        assert_on_type(response.json(), response_schema)
+        assert_on_response_type(response.json(), response_schema)
     return __test

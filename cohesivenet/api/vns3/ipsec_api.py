@@ -491,7 +491,7 @@ def post_create_ipsec_endpoint(
 
     request_params = [
         "name",
-        "ipaddress"
+        "ipaddress",
         "secret",
         "pfs",
         "ike_version",
@@ -603,7 +603,7 @@ def post_create_ipsec_endpoint_tunnel(
 
     request_params = [
         "remote_subnet",
-        "local_subnet"
+        "local_subnet",
         "enabled",
         "ping_ipaddress",
         "ping_interface",
@@ -804,7 +804,7 @@ def put_edit_ipsec_endpoint(
 
     request_params = [
         "name",
-        "ipaddress"
+        "ipaddress",
         "secret",
         "pfs",
         "ike_version",
@@ -922,7 +922,7 @@ def put_edit_ipsec_endpoint_tunnel(
 
     request_params = [
         "remote_subnet",
-        "local_subnet"
+        "local_subnet",
         "enabled",
         "bounce",
         "ping_ipaddress",

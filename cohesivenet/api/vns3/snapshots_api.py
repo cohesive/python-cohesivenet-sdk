@@ -303,7 +303,7 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
 
 
 @validate_call(file_upload=True, file_kwarg="body")
-def put_import_snapshot(api_client, body, **kwargs):  # noqa: E501
+def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
     """put_import_snapshot  # noqa: E501
 
     Import snapshot into the manager and triggers a reboot for the Configuration to take effect.  # noqa: E501
@@ -349,7 +349,7 @@ def put_import_snapshot(api_client, body, **kwargs):  # noqa: E501
     header_params[
         "Content-Type"
     ] = api_client.select_header_content_type(  # noqa: E501
-        ["application/octet-stream"]
+        ["text/plain"]
     )  # noqa: E501
 
     # Authentication setting

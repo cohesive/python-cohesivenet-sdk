@@ -274,13 +274,6 @@ def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["basicAuth"]  # noqa: E501
 
@@ -305,8 +298,8 @@ def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(file_upload=True, file_kwarg="passphrase_body")
-def post_generate_keypair(api_client, passphrase_body=None, **kwargs):  # noqa: E501
+@validate_call(file_upload=True, file_kwarg="body")
+def post_generate_keypair(api_client,  body=None, **kwargs):  # noqa: E501
     """post_generate_keypair  # noqa: E501
 
     Generating a remote support key which can be shared with Cohesive to provide  access to the internal of the VNS3 Controller 
@@ -314,10 +307,10 @@ def post_generate_keypair(api_client, passphrase_body=None, **kwargs):  # noqa: 
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_generate_keypair(client, passphrase_body, async_req=True)
+    >>> response = await api.post_generate_keypair(client, body, async_req=True)
 
     :param async_req bool: execute request asynchronously
-    :param passphrase_body body: Encrypted passphrase file which will be used to generate an X509 key for  accessing the VNS3 Controller 
+    :param passphrase_body str: Encrypted passphrase file which will be used to generate an X509 key for  accessing the VNS3 Controller 
     in support mode. These are generated and owned by Cohesive.  Contact support@cohesive.net for an encrypted passphrase file.  (required)
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -344,7 +337,7 @@ def post_generate_keypair(api_client, passphrase_body=None, **kwargs):  # noqa: 
     form_params = []
     local_var_files = {}
 
-    body_params = passphrase_body
+    body_params = body
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(

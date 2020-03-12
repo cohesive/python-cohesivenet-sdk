@@ -14,6 +14,10 @@ def fetch_spec(spec):
         raise RuntimeError(
             "No specification available for testing. "
             "Expected VNS3 specification at %s" % spec)
+    from tests.openapi import resolve_refs
+    open("spec.json", "w").write(response.data.decode("utf8").strip())
+    resolved = resolve_refs(json.loads(response.data.decode("utf8").strip()))
+    open("spec-resolved.json", "w").write(json.dumps(resolved, indent=2))
     return json.loads(response.data.decode("utf8").strip())
 
 

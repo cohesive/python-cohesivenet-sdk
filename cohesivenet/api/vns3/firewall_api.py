@@ -93,6 +93,88 @@ def get_firewall_fw_sets(api_client, name=None, verbose=None, **kwargs):  # noqa
     )
 
 
+def post_create_firewall_fw_set(
+    api_client, rules=None, name=None, flush=None, **kwargs
+):  # noqa: E501
+    """post_create_firewall_fw_set  # noqa: E501
+
+    Create a new firewall FW set rules (Binary index list of IPs for fast lookup)  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_firewall_fw_set(name="NETS_cloud_dev", async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param rules str: Chained fwsets seperated by \\n e.g. NETS_cloud_dev 10.96.20.0/24\\nNETS_cloud_dev 10.97.20.0/24
+    :param name str: name of the fw_set
+    :param flush bool: whether or not to reload all fwsets (default=True)
+
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["rules", "name", "flush"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params[
+        "Content-Type"
+    ] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/firewall/fwsets",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 def delete_firewall_fw_set(api_client, name=None, rules=None, **kwargs):  # noqa: E501
     """delete_firewall_fw_set  # noqa: E501
 
@@ -877,6 +959,9 @@ class FirewallApiRouter(VersionRouter):
         },
         "get_firewall_fw_sets": {
             "4.8.4": get_firewall_fw_sets
+        },
+        "post_create_firewall_fw_set": {
+            "4.8.4": post_create_firewall_fw_set
         },
         "get_firewall_rule_subgroups": {
             "4.8.4": get_firewall_rule_subgroups

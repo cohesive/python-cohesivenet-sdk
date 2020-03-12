@@ -24,60 +24,34 @@ class TestVNS3Client(object):
             )
         )
 
-        assert hasattr(api_client, "bgp") and type(api_client.bgp) is cohesivenet.BGPApi
-        assert (
-            hasattr(api_client, "config")
-            and type(api_client.config) is cohesivenet.ConfigurationApi
-        )
-        assert (
-            hasattr(api_client, "firewall")
-            and type(api_client.firewall) is cohesivenet.FirewallApi
-        )
-        assert (
-            hasattr(api_client, "access")
-            and type(api_client.access) is cohesivenet.AccessApi
-        )
-        assert (
-            hasattr(api_client, "ipsec")
-            and type(api_client.ipsec) is cohesivenet.IPsecApi
-        )
-        assert (
-            hasattr(api_client, "interfaces")
-            and type(api_client.interfaces) is cohesivenet.InterfacesApi
-        )
-        assert (
-            hasattr(api_client, "licensing")
-            and type(api_client.licensing) is cohesivenet.LicensingApi
-        )
-        assert (
-            hasattr(api_client, "monitoring")
-            and type(api_client.monitoring) is cohesivenet.MonitoringAlertingApi
-        )
-        assert (
-            hasattr(api_client, "network_edge_plugins")
-            and type(api_client.network_edge_plugins)
-            is cohesivenet.NetworkEdgePluginsApi
-        )
-        assert (
-            hasattr(api_client, "overlay_network")
-            and type(api_client.overlay_network) is cohesivenet.OverlayNetworkApi
-        )
-        assert (
-            hasattr(api_client, "peering")
-            and type(api_client.peering) is cohesivenet.PeeringApi
-        )
-        assert (
-            hasattr(api_client, "routing")
-            and type(api_client.routing) is cohesivenet.RoutingApi
-        )
-        assert (
-            hasattr(api_client, "snapshots")
-            and type(api_client.snapshots) is cohesivenet.SnapshotsApi
-        )
-        assert (
-            hasattr(api_client, "sys_admin")
-            and type(api_client.sys_admin) is cohesivenet.SystemAdministrationApi
-        )
+        assert hasattr(api_client, "bgp")
+        assert type(api_client.bgp) is cohesivenet.BGPApi
+        assert hasattr(api_client, "config")
+        assert type(api_client.config) is cohesivenet.ConfigurationApi
+        assert hasattr(api_client, "firewall")
+        assert type(api_client.firewall) is cohesivenet.FirewallApi
+        assert hasattr(api_client, "access")
+        assert type(api_client.access) is cohesivenet.AccessApi
+        assert hasattr(api_client, "ipsec")
+        assert type(api_client.ipsec) is cohesivenet.IPsecApi
+        assert hasattr(api_client, "interfaces")
+        assert type(api_client.interfaces) is cohesivenet.InterfacesApi
+        assert hasattr(api_client, "licensing")
+        assert type(api_client.licensing) is cohesivenet.LicensingApi
+        assert hasattr(api_client, "monitoring")
+        assert type(api_client.monitoring) is cohesivenet.MonitoringAlertingApi
+        assert hasattr(api_client, "network_edge_plugins")
+        assert type(api_client.network_edge_plugins) is cohesivenet.NetworkEdgePluginsApi
+        assert hasattr(api_client, "overlay_network")
+        assert type(api_client.overlay_network) is cohesivenet.OverlayNetworkApi
+        assert hasattr(api_client, "peering")
+        assert type(api_client.peering) is cohesivenet.PeeringApi
+        assert hasattr(api_client, "routing")
+        assert type(api_client.routing) is cohesivenet.RoutingApi
+        assert hasattr(api_client, "snapshots")
+        assert type(api_client.snapshots) is cohesivenet.SnapshotsApi
+        assert hasattr(api_client, "sys_admin")
+        assert type(api_client.sys_admin) is cohesivenet.SystemAdministrationApi
 
     def test_get_controller_state(self):
         api_client = VNS3Client(

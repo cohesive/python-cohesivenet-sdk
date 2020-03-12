@@ -875,7 +875,9 @@ def put_update_edge_gre_endpoint(
 
     collection_formats = {}
 
-    path_params = {}
+    path_params = {
+        "interface_id": interface_id
+    }
 
     query_params = []
 
@@ -986,7 +988,9 @@ def put_update_system_interface(
 
     collection_formats = {}
 
-    path_params = {}
+    path_params = {
+        "interface_id": interface_id
+    }
 
     query_params = []
 

@@ -211,7 +211,7 @@ def post_create_webhook(
 
     request_params = [
         "name",
-        "url"
+        "url",
         "events",
         "body",
         "validate_cert",
@@ -329,7 +329,7 @@ def put_update_webhook(
 
     request_params = [
         "name",
-        "url"
+        "url",
         "events",
         "body",
         "validate_cert",
@@ -712,7 +712,7 @@ def post_define_new_alert(
 
     request_params = [
         "name",
-        "url"
+        "url",
         "enabled",
         "events",
         "custom_properties",
@@ -958,7 +958,7 @@ def put_update_alert(
 
     request_params = [
         "name",
-        "url"
+        "url",
         "enabled",
         "events",
         "custom_properties",

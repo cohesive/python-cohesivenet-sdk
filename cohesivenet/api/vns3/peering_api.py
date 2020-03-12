@@ -154,7 +154,7 @@ def get_peering_status(api_client, **kwargs):  # noqa: E501
 
 
 @validate_call(body_params=["id", "name"])
-def post_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs):  # noqa: E501
+def post_create_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs):  # noqa: E501
     """post_peer  # noqa: E501
 
     Creates a peering relationship from a manager to another manager.  The peering call is unidirectional. 
@@ -195,7 +195,9 @@ def post_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs):  # no
     form_params = []
     local_var_files = {}
     
-    body_params = {}
+    body_params = {
+        "force": kwargs.pop("force", True)
+    }
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
 
@@ -237,7 +239,7 @@ def post_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs):  # no
 
 
 @validate_call(path_params=["peer_id"])
-def put_peer(
+def put_update_peer(
     api_client,
     peer_id,
     name=None,
@@ -367,7 +369,9 @@ def put_self_peering_id(api_client, id=None, **kwargs):  # noqa: E501
     form_params = []
     local_var_files = {}
     
-    body_params = {}
+    body_params = {
+        "force": kwargs.pop("force", True)
+    }
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
 
@@ -415,11 +419,11 @@ class PeeringApiRouter(VersionRouter):
         "get_peering_status": {
             "4.8.4": get_peering_status
         },
-        "post_peer": {
-            "4.8.4": post_peer
+        "post_create_peer": {
+            "4.8.4": post_create_peer
         },
-        "put_peer": {
-            "4.8.4": put_peer
+        "put_update_peer": {
+            "4.8.4": put_update_peer
         },
         "put_self_peering_id": {
             "4.8.4": put_self_peering_id

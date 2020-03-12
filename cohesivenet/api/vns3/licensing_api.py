@@ -203,7 +203,7 @@ def put_set_license_parameters(
 
     request_params = [
         "subnet",
-        "managers"
+        "managers",
         "asns",
         "clients",
         "my_manager_vip",

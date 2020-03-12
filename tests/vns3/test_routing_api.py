@@ -19,25 +19,59 @@ import cohesivenet
 from cohesivenet.api.vns3 import routing_api  # noqa: E501
 from cohesivenet.rest import ApiException
 
+from tests.openapi import generate_method_test
+from tests.stub_data import RoutingApiData
 
-@pytest.mark.licensed
+
 class TestRoutingApi(object):
     """RoutingApi unit test stubs"""
 
-    def test_delete_route(self):
+    def test_delete_route(self, rest_mocker, api_client, api_schema: dict):
         """Test case for delete_route
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "delete",
+            "/routes/{route_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=RoutingApiData.RoutesResponse
+        )(routing_api.delete_route)
 
-    def test_get_routes(self):
+    def test_get_routes(self, rest_mocker, api_client, api_schema: dict):
         """Test case for get_routes
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "get",
+            "/routes",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=RoutingApiData.RoutesResponse
+        )(routing_api.get_routes)
 
-    def test_post_create_route(self):
+    def test_post_create_route(self, rest_mocker, api_client, api_schema: dict):
         """Test case for post_create_route
 
         """
+        generate_method_test(
+            api_client,
+            api_schema,
+            "post",
+            "/routes",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=RoutingApiData.RoutesResponse
+        )(routing_api.post_create_route)
+
+
+    def test_post_create_route_already_exists(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for post_create_route_if_not_exists
+        """
+        # need custom method for this one. different interface
         pass
+

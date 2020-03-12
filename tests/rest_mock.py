@@ -94,16 +94,40 @@ class RestClientMock(object):
         # Sadly, ANY does not match a missing optional argument, so we
         # check all the possible signatures of the request method
 
-        for call_kwargs in kwarg_assertions:
-            try:
-                self.request_patcher.assert_called_with(*call_args, **call_kwargs)
-            except AssertionError as e:
-                exception = e
-            else:
-                called = True
+        call_args = tuple(self.request_patcher.call_args)
+        path_args = call_args[0]
+        method_kwargs = call_args[1]
 
-        if not called:
-            raise exception
+        method_called = path_args[1]
+        endpoint_called = path_args[2]
+        query_called = method_kwargs.get("query_params")
+        body_called = method_kwargs.get("body")
+        post_params_called = method_kwargs.get("post_params")
+        headers_called = method_kwargs.get("headers")
+
+        assert method_called == method.upper(), (
+            "Unexpected method %s. Expected %s." % (method_called, method.upper())
+        )
+        assert endpoint_called == url_expected, (
+            "Unexpected URL %s. Expected %s." % (endpoint_called, url_expected)
+        )
+
+        if query_params is not None:
+            assert set(query_called) == set(query_params), (
+                "Unexpected query params %s. Expected %s. Order ignored." % (query_called, query_params)
+            )
+        if headers is not None:
+            assert headers_called == headers, (
+                "Unexpected headers %s. Expected %s." % (headers_called, headers)
+            )
+        if post_params is not None:
+            assert post_params_called == post_params, (
+                "Unexpected POST params %s. Expected %s." % (post_params_called, post_params)
+            )
+        if body is not None:
+            assert body_called == body, (
+                "Unexpected Body %s. Expected %s." % (body_called, body)
+            )
 
     def assert_no_request(self):
         if self.request_patcher.call_count != 0:
