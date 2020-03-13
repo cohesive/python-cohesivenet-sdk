@@ -83,7 +83,7 @@ class Serializer(object):
 
         # handle file downloading
         # save response body into a tmp file and return the instance
-        if response_type == "file":
+        if "file" in response_type:
             return self.__deserialize_file(response, response_type)
 
         # fetch data from response object

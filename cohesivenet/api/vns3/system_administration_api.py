@@ -341,7 +341,7 @@ def post_generate_keypair(api_client,  body=None, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["text/plain", "application/json"]
+        ["text/plain"]
     )  # noqa: E501
 
     # HTTP header `Content-Type`

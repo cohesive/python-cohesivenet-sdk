@@ -36,7 +36,6 @@ class DataDict(dict):
             return super().__getattribute__(name)
         return None
 
-
 class APIResponse(io.IOBase):
     def __init__(self, rest_response):
         self.urllib3_response = rest_response.urllib3_response

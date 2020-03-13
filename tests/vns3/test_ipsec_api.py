@@ -185,5 +185,5 @@ class TestIPsecApi(object):
             "/ipsec",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=None
+            mock_response=IpsecApiData.IpsecSystemDetailResponse
         )(ipsec_api.put_ipsec_config)

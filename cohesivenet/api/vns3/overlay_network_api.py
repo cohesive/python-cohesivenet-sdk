@@ -22,7 +22,7 @@ from cohesivenet.api_builder import validate_call, VersionRouter
 
 
 @validate_call(path_params=["clientpack_name"])
-def get_clientpack(api_client, clientpack_name, **kwargs):  # noqa: E501
+def get_clientpack_details(api_client, clientpack_name, **kwargs):  # noqa: E501
     """get_clientpack  # noqa: E501
 
     Returns detailed information about all of the clientpacks in the topology. 
@@ -71,7 +71,7 @@ def get_clientpack(api_client, clientpack_name, **kwargs):  # noqa: E501
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/clientpacks/{name}",
+        "/clientpacks/{clientpack_name}",
         "GET",
         path_params,
         query_params,
@@ -342,14 +342,7 @@ def get_download_clientpack(api_client, name=None, fileformat=None,**kwargs):  #
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["text/plain", "application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
+        ["text/plain"]
     )  # noqa: E501
 
     # Authentication setting
@@ -1119,8 +1112,8 @@ class OverlayNetworkApiRouter(VersionRouter):
         "delete_clientpack_tag": {
             "4.8.4": delete_clientpack_tag
         },
-        "get_clientpack": {
-            "4.8.4": get_clientpack
+        "get_clientpack_details": {
+            "4.8.4": get_clientpack_details
         },
         "get_clientpacks": {
             "4.8.4": get_clientpacks

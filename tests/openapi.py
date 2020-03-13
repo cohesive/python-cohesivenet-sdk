@@ -235,9 +235,15 @@ def assert_on_response_type(val, type_schema, path=[], should_raise=True):
             val_type = type_schema.get("additionalProperties", {})
 
             if properties_schema:
-                for prop, prop_val in val.items():
-                    assert prop in properties_schema, "Unexpected property '%s' @ %s" % (prop, ".".join(path))
-                    assert_on_response_type(prop_val, properties_schema[prop], path=path + [prop])
+                is_nullable = type_schema.get("nullable")
+                if not is_nullable:
+                    assert val, "Object %s is not nullable" % ".".join(path)
+
+                if val:
+                    for prop, prop_val in val.items():
+                        if not val_type:
+                            assert prop in properties_schema, "Unexpected property '%s' @ %s" % (prop, ".".join(path))
+                            assert_on_response_type(prop_val, properties_schema[prop], path=path + [prop])
             elif val_type:
                 for prop, prop_val in val.items():
                     assert_on_response_type(prop_val, val_type, path=path + [prop])
@@ -339,7 +345,7 @@ def generate_method_test(
         example_response = method_response.get("example")
         if not example_response:
             example_response = response_schema.get("example") if response_schema else None
-            if not expected_response:
+            if not example_response:
                 raise RuntimeError(
                     "No response example provided for status code %s" % str(response_code))
 
@@ -381,6 +387,9 @@ def generate_method_test(
     elif _method in ('get'):
         if call_kwargs:
             expected_request_args["query_params"] = list(call_kwargs.items())
+
+    if response_schema and response_schema.get("type") == OpenAPITypes.String and response_schema.get("format") == "binary":
+        expected_request_args['headers']['Accept'] = "text/plain"
 
     def __test(call):
         response = call(client, *call_args, **call_kwargs)

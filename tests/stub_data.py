@@ -680,11 +680,494 @@ class MonitoringApiData(object):
 
 
 class NetworkEdgePluginsApiData(object):
-    pass
+    ContainerLogsResponse = {
+        "response": {
+            "uuid": "09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f",
+            "logs":[
+                "Unlinking stale socket /var/run/supervisor.sock\r",
+                "2020-01-24 22:10:57,062 INFO RPC interface 'supervisor' initialized\r"
+            ]
+        }
+    }
+
+    ContainerImage1 = {
+        "id": "sha256:f172625acb12cd0299dfc53627e25856bd3d0f51b615b4b3c8cdbdde185243b5",
+        "image_name": "HAimage",
+        "tag_name": "vns3local:HAimage",
+        "status": "Ready",
+        "status_msg": None,
+        "import_id": "33ecfea886d4243af29f639e20ab6a01f83dec088f563bb2889bbb641bfb5be8",
+        "created": "2020-01-24T19:01:20.539Z",
+        "description": "",
+        "comment": None,
+        "container_config": None
+    }
+
+    ContainerImage2 = {
+        "id": "sha256:3ba915f8153cb7443aafce77cb4f250b1d0fcb861c297ae7d04ec67f7ec259fa",
+        "image_name": "SplunkLogger",
+        "tag_name": "vns3local:SplunkLogger",
+        "status": "Ready",
+        "status_msg": None,
+        "import_id": "d809ca4d5cddd7b7639be8611d097377ac94c077267107ee6ff8b88091ca3b4f",
+        "created": "2020-01-24T19:02:37.230Z",
+        "description": "Splunk logger that configures controller splunk hostname via the command.",
+        "comment": None,
+        "container_config": None
+    }
+
+    ContainerImagesResponse = {
+        "response": {
+            "images": [
+                ContainerImage1,
+                ContainerImage2
+            ]
+        }
+    }
+
+    ContainerSystemStatus = {
+        "response": {
+            "running": True,
+            "network":"198.51.100.0/28"
+        }
+    }
+
+    ContainerSystemIPs = {
+        "response": {
+            "addresses": [
+                {
+                    "address": "198.51.100.0",
+                    "status": "reserved"
+                },
+                {
+                    "address": "198.51.100.1",
+                    "status": "reserved"
+                },
+                {
+                    "address": "198.51.100.2",
+                    "status": "in_use"
+                },
+                {
+                    "address": "198.51.100.3",
+                    "status": "in_use"
+                },
+                {
+                    "address": "198.51.100.4",
+                    "status": "available"
+                },
+                {
+                    "address": "198.51.100.5",
+                    "status": "available"
+                },
+                {
+                    "address": "198.51.100.6",
+                    "status": "available"
+                },
+                {
+                    "address": "198.51.100.7",
+                    "status": "available"
+                },
+                {
+                    "address": "198.51.100.8",
+                    "status": "available"
+                }
+            ]
+        }
+    }
+
+    ContainersListResponse = {
+        "response": {
+            "containers": [
+                {
+                    "Id": "09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f",
+                    "Created": "2020-01-24T22:10:56.370194442Z",
+                    "Path": "/usr/bin/execStartLogger.sh",
+                    "Args": [
+                        "ChinaEnv-VNS3-4311-Controller1"
+                    ],
+                    "State": {
+                        "Status": "running",
+                        "Running": True,
+                        "Paused": False,
+                        "Restarting": False,
+                        "OOMKilled": False,
+                        "Dead": False,
+                        "Pid": 9507,
+                        "ExitCode": 0,
+                        "Error": "",
+                        "StartedAt": "2020-01-24T22:10:56.581735816Z",
+                        "FinishedAt": "0001-01-01T00:00:00Z"
+                    },
+                    "Image": "sha256:3595cffccf01d1319e8e84507a369d5104340d5e66ab381a2004d60d5b8ac772",
+                    "ResolvConfPath": "/var/lib/docker/containers/09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f/resolv.conf",
+                    "HostnamePath": "/var/lib/docker/containers/09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f/hostname",
+                    "HostsPath": "/var/lib/docker/containers/09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f/hosts",
+                    "LogPath": "/var/lib/docker/containers/09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f/09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f-json.log",
+                    "Name": "/dreamy_haibt",
+                    "RestartCount": 0,
+                    "Driver": "aufs",
+                    "MountLabel": "",
+                    "ProcessLabel": "",
+                    "AppArmorProfile": "",
+                    "ExecIDs": None,
+                    "HostConfig": {
+                        "Binds": [
+                            "/mnt/logs:/mnt/logs:rw"
+                        ],
+                        "ContainerIDFile": "",
+                        "LogConfig": {
+                            "Type": "json-file",
+                            "Config": {}
+                        },
+                        "NetworkMode": "cohesive.net",
+                        "PortBindings": {},
+                        "RestartPolicy": {
+                            "Name": "always",
+                            "MaximumRetryCount": 0
+                        },
+                        "AutoRemove": False,
+                        "VolumeDriver": "",
+                        "VolumesFrom": None,
+                        "CapAdd": None,
+                        "CapDrop": None,
+                        "Dns": [],
+                        "DnsOptions": [],
+                        "DnsSearch": [],
+                        "ExtraHosts": None,
+                        "GroupAdd": None,
+                        "IpcMode": "",
+                        "Cgroup": "",
+                        "Links": None,
+                        "OomScoreAdj": 0,
+                        "PidMode": "",
+                        "Privileged": True,
+                        "PublishAllPorts": False,
+                        "ReadonlyRootfs": False,
+                        "SecurityOpt": [
+                            "label=disable"
+                        ],
+                        "UTSMode": "",
+                        "UsernsMode": "",
+                        "ShmSize": 67108864,
+                        "Runtime": "runc",
+                        "ConsoleSize": [
+                            0,
+                            0
+                        ],
+                        "Isolation": "",
+                        "CpuShares": 0,
+                        "Memory": 0,
+                        "NanoCpus": 0,
+                        "CgroupParent": "",
+                        "BlkioWeight": 0,
+                        "BlkioWeightDevice": None,
+                        "BlkioDeviceReadBps": None,
+                        "BlkioDeviceWriteBps": None,
+                        "BlkioDeviceReadIOps": None,
+                        "BlkioDeviceWriteIOps": None,
+                        "CpuPeriod": 0,
+                        "CpuQuota": 0,
+                        "CpuRealtimePeriod": 0,
+                        "CpuRealtimeRuntime": 0,
+                        "CpusetCpus": "",
+                        "CpusetMems": "",
+                        "Devices": [],
+                        "DiskQuota": 0,
+                        "KernelMemory": 0,
+                        "MemoryReservation": 0,
+                        "MemorySwap": 0,
+                        "MemorySwappiness": -1,
+                        "OomKillDisable": False,
+                        "PidsLimit": 0,
+                        "Ulimits": None,
+                        "CpuCount": 0,
+                        "CpuPercent": 0,
+                        "IOMaximumIOps": 0,
+                        "IOMaximumBandwidth": 0
+                    },
+                    "GraphDriver": {
+                        "Name": "aufs",
+                        "Data": None
+                    },
+                    "Volumes": {
+                        "/mnt/logs": "/mnt/logs"
+                    },
+                    "VolumesRW": {
+                        "/mnt/logs": True
+                    },
+                    "Config": {
+                        "Hostname": "09334531f189",
+                        "Domainname": "",
+                        "User": "",
+                        "AttachStdin": False,
+                        "AttachStdout": False,
+                        "AttachStderr": False,
+                        "Tty": True,
+                        "OpenStdin": False,
+                        "StdinOnce": False,
+                        "Env": [
+                            "oe_name=SplunkLogger"
+                        ],
+                        "Cmd": [
+                            "/usr/bin/execStartLogger.sh",
+                            "ChinaEnv-VNS3-4311-Controller1"
+                        ],
+                        "Image": "sha256:3595cffccf01d1319e8e84507a369d5104340d5e66ab381a2004d60d5b8ac772",
+                        "Volumes": None,
+                        "WorkingDir": "",
+                        "Entrypoint": None,
+                        "OnBuild": None,
+                        "Labels": {},
+                        "MacAddress": "",
+                        "NetworkDisabled": False,
+                        "ExposedPorts": None,
+                        "VolumeDriver": "",
+                        "Memory": 0,
+                        "MemorySwap": 0,
+                        "CpuShares": 0,
+                        "Cpuset": ""
+                    },
+                    "NetworkSettings": {
+                        "Bridge": "",
+                        "SandboxID": "1b917be5ff5b9e30d2e6d7ea23b12023f0158a162618fa237b9abf0c86bd825d",
+                        "HairpinMode": False,
+                        "LinkLocalIPv6Address": "",
+                        "LinkLocalIPv6PrefixLen": 0,
+                        "Ports": {},
+                        "SandboxKey": "/var/run/docker/netns/1b917be5ff5b",
+                        "SecondaryIPAddresses": None,
+                        "SecondaryIPv6Addresses": None,
+                        "EndpointID": "",
+                        "Gateway": "",
+                        "GlobalIPv6Address": "",
+                        "GlobalIPv6PrefixLen": 0,
+                        "IPAddress": "",
+                        "IPPrefixLen": 0,
+                        "IPv6Gateway": "",
+                        "MacAddress": ""
+                    }
+                },
+                {
+                    "Id": "5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21",
+                    "Created": "2020-01-24T22:10:50.979930165Z",
+                    "Path": "/usr/bin/supervisord",
+                    "Args": [],
+                    "State": {
+                        "Status": "running",
+                        "Running": True,
+                        "Paused": False,
+                        "Restarting": False,
+                        "OOMKilled": False,
+                        "Dead": False,
+                        "Pid": 9221,
+                        "ExitCode": 0,
+                        "Error": "",
+                        "StartedAt": "2020-01-24T22:10:51.299339771Z",
+                        "FinishedAt": "0001-01-01T00:00:00Z"
+                    },
+                    "Image": "sha256:dd354ae9d0be5003dbcee9fe777446aa1b09e159af324a6c22be0c5d1f37250f",
+                    "ResolvConfPath": "/var/lib/docker/containers/5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21/resolv.conf",
+                    "HostnamePath": "/var/lib/docker/containers/5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21/hostname",
+                    "HostsPath": "/var/lib/docker/containers/5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21/hosts",
+                    "LogPath": "/var/lib/docker/containers/5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21/5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21-json.log",
+                    "Name": "/sleepy_stonebraker",
+                    # "RestartCount": 0,
+                    "Driver": "aufs",
+                    "MountLabel": "",
+                    "ProcessLabel": "",
+                    "AppArmorProfile": "",
+                    "ExecIDs": None,
+                    "HostConfig": {
+                        "Binds": None,
+                        "ContainerIDFile": "",
+                        "LogConfig": {
+                            "Type": "json-file",
+                            "Config": {}
+                        },
+                        "NetworkMode": "cohesive.net",
+                        "PortBindings": {},
+                        "RestartPolicy": {
+                            "Name": "always",
+                            "MaximumRetryCount": 0
+                        },
+                        "AutoRemove": False,
+                        "VolumeDriver": "",
+                        "VolumesFrom": None,
+                        "CapAdd": None,
+                        "CapDrop": None,
+                        "Dns": [],
+                        "DnsOptions": [],
+                        "DnsSearch": [],
+                        "ExtraHosts": None,
+                        "GroupAdd": None,
+                        "IpcMode": "",
+                        "Cgroup": "",
+                        "Links": None,
+                        "OomScoreAdj": 0,
+                        "PidMode": "",
+                        "Privileged": False,
+                        "PublishAllPorts": False,
+                        "ReadonlyRootfs": False,
+                        "SecurityOpt": None,
+                        "UTSMode": "",
+                        "UsernsMode": "",
+                        "ShmSize": 67108864,
+                        "Runtime": "runc",
+                        "ConsoleSize": [
+                            0,
+                            0
+                        ],
+                        "Isolation": "",
+                        "CpuShares": 0,
+                        "Memory": 0,
+                        "NanoCpus": 0,
+                        "CgroupParent": "",
+                        "BlkioWeight": 0,
+                        "BlkioWeightDevice": None,
+                        "BlkioDeviceReadBps": None,
+                        "BlkioDeviceWriteBps": None,
+                        "BlkioDeviceReadIOps": None,
+                        "BlkioDeviceWriteIOps": None,
+                        "CpuPeriod": 0,
+                        "CpuQuota": 0,
+                        "CpuRealtimePeriod": 0,
+                        "CpuRealtimeRuntime": 0,
+                        "CpusetCpus": "",
+                        "CpusetMems": "",
+                        "Devices": [],
+                        "DiskQuota": 0,
+                        "KernelMemory": 0,
+                        "MemoryReservation": 0,
+                        "MemorySwap": 0,
+                        "MemorySwappiness": -1,
+                        "OomKillDisable": False,
+                        "PidsLimit": 0,
+                        "Ulimits": None,
+                        "CpuCount": 0,
+                        "CpuPercent": 0,
+                        "IOMaximumIOps": 0,
+                        "IOMaximumBandwidth": 0
+                    },
+                    "GraphDriver": {
+                        "Name": "aufs",
+                        "Data": None
+                    },
+                    "Volumes": {},
+                    "VolumesRW": {},
+                    "Config": {
+                        "Hostname": "5c22b4e31ccc",
+                        "Domainname": "",
+                        "User": "",
+                        "AttachStdin": False,
+                        "AttachStdout": False,
+                        "AttachStderr": False,
+                        "Tty": True,
+                        "OpenStdin": False,
+                        "StdinOnce": False,
+                        "Env": None,
+                        "Cmd": [
+                            "/usr/bin/supervisord"
+                        ],
+                        "Image": "sha256:dd354ae9d0be5003dbcee9fe777446aa1b09e159af324a6c22be0c5d1f37250f",
+                        "Volumes": None,
+                        "WorkingDir": "",
+                        "Entrypoint": None,
+                        "OnBuild": None,
+                        "Labels": {},
+                        "MacAddress": "",
+                        "NetworkDisabled": False,
+                        "ExposedPorts": None,
+                        "VolumeDriver": "",
+                        "Memory": 0,
+                        "MemorySwap": 0,
+                        "CpuShares": 0,
+                        "Cpuset": ""
+                    },
+                    "NetworkSettings": {
+                        "Bridge": "",
+                        "SandboxID": "7c310373310a0b1fb2336389c90d332b43334a77dc9d1caaca11535c80da890b",
+                        "HairpinMode": False,
+                        "LinkLocalIPv6Address": "",
+                        "LinkLocalIPv6PrefixLen": 0,
+                        "Ports": {},
+                        "SandboxKey": "/var/run/docker/netns/7c310373310a",
+                        "SecondaryIPAddresses": None,
+                        "SecondaryIPv6Addresses": None,
+                        "EndpointID": "",
+                        "Gateway": "",
+                        "GlobalIPv6Address": "",
+                        "GlobalIPv6PrefixLen": 0,
+                        "IPAddress": "",
+                        "IPPrefixLen": 0,
+                        "IPv6Gateway": "",
+                        "MacAddress": ""
+                    }
+                }
+            ]
+        }
+    }
 
 
 class OverlayNetworkApiData(object):
-    pass
+    Clientpack = {
+        "overlay_ipaddress": "192.168.10.1",
+        "name": "192_168_10_1",
+        "tarball_file": "192_168_10_1.tar.gz",
+        "tarball_sha1": "61a24dbcf764da153fedfdb4c8c02375c25ab4f9",
+        "sequential_id": 1,
+        "zip_file": "192_168_10_1.zip",
+        "zip_sha1": "2d7ef3717d417b59091012ee7f7168bf96cf309e",
+        "linux_onefile": "192_168_10_1.conf",
+        "conf_sha1": "d504c924cb9cb7a24d01701475ff68ca7d76ca0c",
+        "windows_onefile": "192_168_10_1.ovpn",
+        "ovpn_sha1": "d504c924cb9cb7a24d01701475ff68ca7d76ca0c",
+        "status": "not_connected",
+        "enabled": True,
+        "checked_out": False,
+        "tags": {},
+        "last_connect": "",
+        "last_disconnect": ""
+    }
+
+    NextClientpackResponse = {
+        "response": {
+            "name": "172_31_0_2",
+            "overlay_ipaddress": "172.31.0.2",
+            "enabled": True,
+            "checked_out": True,
+            "sequential_id": 2,
+            "linux_onefile": "172_31_0_2.conf",
+            "conf_sha1": "e31cc4db37ce2b082d0b08dc73b6af27ac0ff9ae",
+            "windows_onefile": "172_31_0_2.ovpn",
+            "ovpn_sha1": "e31cc4db37ce2b082d0b08dc73b6af27ac0ff9ae",
+            "tarball_file": "172_31_0_2.tar.gz",
+            "tarball_sha1": "b9a2e4961d2519154af488ea5572fe083e624ea7",
+            "zip_file": "172_31_0_2.zip",
+            "zip_sha1": "21340d31bf939da497f042a5eaecb6a9d7dbd947"
+        }
+    }
+
+    ClientpackDetail = {
+        "response": {
+            "clientpack": Clientpack
+        }
+    }
+
+    ClientpacksListResponse = {
+        "response": {
+            "192.168.10.1": Clientpack
+        }
+    }
+
+    ClientpackTagsResponse = {
+        "response": {
+            "name": "my-name",
+            "tags": {
+                "environment": "chicago",
+                "application": "webapp"
+            }
+        }
+    }
 
 
 class PeeringApiData(object):

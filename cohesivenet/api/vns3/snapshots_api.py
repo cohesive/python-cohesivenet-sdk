@@ -133,7 +133,7 @@ def get_download_snapshot(
     body_params = None
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["text/plain", "application/json"]
+        ["text/plain"]
     )  # noqa: E501
 
     # Authentication setting
@@ -383,7 +383,7 @@ class SnapshotsApiRouter(VersionRouter):
             "4.8.4": delete_snapshot
         },
         "get_download_snapshot": {
-            "4.8.4": delete_snapshot
+            "4.8.4": get_download_snapshot
         },
         "get_snapshots": {
             "4.8.4": get_snapshots

@@ -376,7 +376,7 @@ def get_container_system_images(api_client, uuid=None, **kwargs):  # noqa: E501
 
 
 def get_container_system_running_containers(
-    api_client, show_all=None, **kwargs
+    api_client, show_all=None, uuid=None, **kwargs
 ):  # noqa: E501
     """get_container_system_running_containers  # noqa: E501
 
@@ -401,7 +401,7 @@ def get_container_system_running_containers(
 
     local_var_params = locals()
 
-    request_params = ["show_all"]
+    request_params = ["show_all", "uuid"]
 
     collection_formats = {}
 
