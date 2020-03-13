@@ -316,6 +316,7 @@ def generate_method_test(
     if request_args is not None:
         if type(request_args) is dict:
             path_params = request_args
+            # ordering my be an issue here
             call_args = tuple(request_args.values())
         else:
             call_args = request_args
@@ -333,7 +334,7 @@ def generate_method_test(
     response_code, method_response = get_method_success_response(method_schema, schema)
     response_schema = method_response.get("schema")
     expected_response = {}
-    if mock_response:
+    if mock_response is not None:
         expected_response = mock_response
         rest_mocker.stub_request(
             _method,
@@ -356,13 +357,13 @@ def generate_method_test(
             rbody=example_response,
             rcode=response_code
         )
-    else:
-        rest_mocker.stub_request(
-            _method,
-            _full_api_path,
-            rbody=expected_response,
-            rcode=response_code
-        )
+    # else:
+    #     rest_mocker.stub_request(
+    #         _method,
+    #         _full_api_path,
+    #         rbody=expected_response,
+    #         rcode=response_code
+    #     )
 
     # constants will have to change based on spec, specifically Content Type
     expected_request_args = {

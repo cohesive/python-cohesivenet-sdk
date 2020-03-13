@@ -23,7 +23,6 @@ from tests.openapi import generate_method_test
 from tests.stub_data import OverlayNetworkApiData
 
 
-@pytest.mark.licensed
 class TestOverlayNetworkApi(object):
     """OverlayNetworkApi unit test stubs"""
 
