@@ -15,9 +15,6 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import VersionRouter, validate_call
 
 
@@ -114,9 +111,7 @@ def get_system_interface_details(api_client, interface_id, **kwargs):  # noqa: E
 
     collection_formats = {}
 
-    path_params = {
-        "interface_id": interface_id
-    }
+    path_params = {"interface_id": interface_id}
 
     query_params = []
 
@@ -221,9 +216,7 @@ def get_system_interfaces(api_client, **kwargs):  # noqa: E501
 
 
 @validate_call(path_params=["interface_id"])
-def delete_system_interface(
-    api_client, interface_id, **kwargs
-):  # noqa: E501
+def delete_system_interface(api_client, interface_id, **kwargs):  # noqa: E501
     """delete_system_interface  # noqa: E501
 
     Delete System Interface  # noqa: E501
@@ -250,9 +243,7 @@ def delete_system_interface(
 
     collection_formats = {}
 
-    path_params = {
-        "interface_id": interface_id
-    }
+    path_params = {"interface_id": interface_id}
 
     query_params = []
 
@@ -319,9 +310,7 @@ def delete_edge_gre_endpoint(api_client, interface_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "interface_id": interface_id
-    }
+    path_params = {"interface_id": interface_id}
 
     query_params = []
 
@@ -426,13 +415,11 @@ def get_edge_gre_endpoints(api_client, **kwargs):  # noqa: E501
 
 
 @validate_call(path_params=["interface_id"])
-def get_edge_gre_endpoint_details(
-    api_client, interface_id, **kwargs
-):  # noqa: E501
+def get_edge_gre_endpoint_details(api_client, interface_id, **kwargs):  # noqa: E501
     """get_gre_endpoint_details  # noqa: E501
 
     Get GRE interface details by id or name  # noqa: E501
- 
+
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.get_gre_endpoint_details(interface_id, async_req=True)
@@ -455,9 +442,7 @@ def get_edge_gre_endpoint_details(
 
     collection_formats = {}
 
-    path_params = {
-        "interface_id": interface_id
-    }
+    path_params = {"interface_id": interface_id}
 
     query_params = []
 
@@ -497,7 +482,7 @@ def get_edge_gre_endpoint_details(
 
 
 def post_action_interfaces(
-    api_client, 
+    api_client,
     discover_new_primary_adapters=None,
     discover_ips=None,
     manage_overlay_interfaces=None,
@@ -511,7 +496,7 @@ def post_action_interfaces(
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.post_action_interfaces(interface_action_request, async_req=True)
 
-     Run discovery for new primary adapters 
+     Run discovery for new primary adapters
 
     :param discover_new_primary_adapters bool: execute request asynchronously
     :param discover_ips bool: execute request asynchronously
@@ -534,7 +519,7 @@ def post_action_interfaces(
     request_params = [
         "discover_new_primary_adapters",
         "discover_ips",
-        "manage_overlay_interfaces"
+        "manage_overlay_interfaces",
     ]
 
     collection_formats = {}
@@ -558,9 +543,7 @@ def post_action_interfaces(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -646,7 +629,7 @@ def post_create_edge_gre_endpoint(
         "system_default",
         "local_connection_ip",
         "remote_connection_ip",
-        "ttl"
+        "ttl",
     ]
 
     collection_formats = {}
@@ -670,9 +653,7 @@ def post_create_edge_gre_endpoint(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -756,7 +737,7 @@ def post_create_system_interface(
         "enabled",
         "mask_bits",
         "gateway",
-        "system_default"
+        "system_default",
     ]
 
     collection_formats = {}
@@ -780,9 +761,7 @@ def post_create_system_interface(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -870,14 +849,12 @@ def put_update_edge_gre_endpoint(
         "system_default",
         "local_connection_ip",
         "remote_connection_ip",
-        "ttl"
+        "ttl",
     ]
 
     collection_formats = {}
 
-    path_params = {
-        "interface_id": interface_id
-    }
+    path_params = {"interface_id": interface_id}
 
     query_params = []
 
@@ -896,9 +873,7 @@ def put_update_edge_gre_endpoint(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -925,10 +900,11 @@ def put_update_edge_gre_endpoint(
         collection_formats=collection_formats,
     )
 
+
 @validate_call(path_params=["interface_id"])
 def put_update_system_interface(
     api_client,
-    interface_id, 
+    interface_id,
     name=None,
     description=None,
     ip_internal=None,
@@ -983,14 +959,12 @@ def put_update_system_interface(
         "enabled",
         "mask_bits",
         "gateway",
-        "system_default"
+        "system_default",
     ]
 
     collection_formats = {}
 
-    path_params = {
-        "interface_id": interface_id
-    }
+    path_params = {"interface_id": interface_id}
 
     query_params = []
 
@@ -1009,9 +983,7 @@ def put_update_system_interface(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1041,42 +1013,18 @@ def put_update_system_interface(
 
 class InterfacesApiRouter(VersionRouter):
     """(Beta) Manage your VNS3 controllers interfaces"""
-    
+
     function_library = {
-        "get_interfaces": {
-            "4.8.4": get_interfaces
-        },
-        "get_system_interface_details": {
-            "4.8.4": get_system_interface_details
-        },
-        "get_system_interfaces": {
-            "4.8.4": get_system_interfaces
-        },
-        "put_update_system_interface": {
-            "4.8.4": put_update_system_interface
-        },
-        "post_create_system_interface": {
-            "4.8.4": post_create_system_interface
-        },
-        "delete_gre_endpoint": {
-            "4.8.4": delete_edge_gre_endpoint
-        },
-        "get_edge_gre_endpoints": {
-            "4.8.4": get_edge_gre_endpoints
-        },
-        "put_update_edge_gre_endpoint": {
-            "4.8.4": put_update_edge_gre_endpoint
-        },
-        "get_edge_gre_endpoint_details": {
-            "4.8.4": get_edge_gre_endpoint_details
-        },
-        "post_create_edge_gre_endpoint": {
-            "4.8.4": post_create_edge_gre_endpoint
-        },
-        "delete_system_interface": {
-            "4.8.4": delete_system_interface
-        },
-        "post_action_interfaces": {
-            "4.8.4": post_action_interfaces
-        }
+        "get_interfaces": {"4.8.4": get_interfaces},
+        "get_system_interface_details": {"4.8.4": get_system_interface_details},
+        "get_system_interfaces": {"4.8.4": get_system_interfaces},
+        "put_update_system_interface": {"4.8.4": put_update_system_interface},
+        "post_create_system_interface": {"4.8.4": post_create_system_interface},
+        "delete_gre_endpoint": {"4.8.4": delete_edge_gre_endpoint},
+        "get_edge_gre_endpoints": {"4.8.4": get_edge_gre_endpoints},
+        "put_update_edge_gre_endpoint": {"4.8.4": put_update_edge_gre_endpoint},
+        "get_edge_gre_endpoint_details": {"4.8.4": get_edge_gre_endpoint_details},
+        "post_create_edge_gre_endpoint": {"4.8.4": post_create_edge_gre_endpoint},
+        "delete_system_interface": {"4.8.4": delete_system_interface},
+        "post_action_interfaces": {"4.8.4": post_action_interfaces},
     }

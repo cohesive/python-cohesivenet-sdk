@@ -36,6 +36,7 @@ class DataDict(dict):
             return super().__getattribute__(name)
         return None
 
+
 class APIResponse(io.IOBase):
     def __init__(self, rest_response):
         self.urllib3_response = rest_response.urllib3_response
@@ -154,7 +155,7 @@ class APIClient(object):
         files=None,
         response_type=None,
         auth_settings=None,
-        _return_http_data_only=None,    # deprecated
+        _return_http_data_only=None,  # deprecated
         collection_formats=None,
         _preload_content=True,
         _request_timeout=None,
@@ -223,14 +224,6 @@ class APIClient(object):
         )
 
         self.last_response = rest_response
-
-        return_data = rest_response
-        if _preload_content:
-            # deserialize response data
-            if response_type:
-                return_data = self.serializer.deserialize(rest_response, response_type)
-            else:
-                return_data = None
         return APIResponse(rest_response)
 
     def call_api(

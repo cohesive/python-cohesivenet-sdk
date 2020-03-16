@@ -107,7 +107,7 @@ class VNS3Client(APIClient):
     @property
     def vns3_dot_version(self):
         vns3_version = self.vns3_version
-        return vns3_version.split('-')[0] if vns3_version else None
+        return vns3_version.split("-")[0] if vns3_version else None
 
     @property
     def host_uri(self):

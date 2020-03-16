@@ -36,7 +36,7 @@ class TestBGPApi(object):
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=BGPApiData.BGPPeerDetail
+            mock_response=BGPApiData.BGPPeerDetail,
         )(bgp_api.get_bgp_peer)
 
     def test_delete_bgp_peer(self, rest_mocker, api_client, api_schema: dict):
@@ -49,7 +49,7 @@ class TestBGPApi(object):
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=IpsecApiData.IpsecEndpointDetail
+            mock_response=IpsecApiData.IpsecEndpointDetail,
         )(bgp_api.delete_bgp_peer)
 
     def test_create_bgp_peer(self, rest_mocker, api_client, api_schema: dict):
@@ -62,7 +62,7 @@ class TestBGPApi(object):
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=IpsecApiData.IpsecEndpointDetail
+            mock_response=IpsecApiData.IpsecEndpointDetail,
         )(bgp_api.create_bgp_peer)
 
     def test_update_bgp_peer(self, rest_mocker, api_client, api_schema: dict):
@@ -75,5 +75,5 @@ class TestBGPApi(object):
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=IpsecApiData.IpsecEndpointDetail
+            mock_response=IpsecApiData.IpsecEndpointDetail,
         )(bgp_api.update_bgp_peer)

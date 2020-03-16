@@ -37,7 +37,7 @@ class TestPeeringApi(object):
             "/peering/peers/{peer_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=PeeringApiData.PeeringStatus
+            mock_response=PeeringApiData.PeeringStatus,
         )(peering_api.delete_peer)
 
     def test_get_peering_status(self, rest_mocker, api_client, api_schema: dict):
@@ -51,7 +51,7 @@ class TestPeeringApi(object):
             "/peering",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=PeeringApiData.PeeringStatus
+            mock_response=PeeringApiData.PeeringStatus,
         )(peering_api.get_peering_status)
 
     def test_post_create_peer(self, rest_mocker, api_client, api_schema: dict):
@@ -65,7 +65,7 @@ class TestPeeringApi(object):
             "/peering/peers",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=PeeringApiData.PeeringStatus
+            mock_response=PeeringApiData.PeeringStatus,
         )(peering_api.post_create_peer)
 
     def test_put_update_peer(self, rest_mocker, api_client, api_schema: dict):
@@ -79,7 +79,7 @@ class TestPeeringApi(object):
             "/peering/peers/{peer_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=PeeringApiData.PeeringStatus
+            mock_response=PeeringApiData.PeeringStatus,
         )(peering_api.put_update_peer)
 
     def test_put_self_peering_id(self, rest_mocker, api_client, api_schema: dict):
@@ -93,5 +93,5 @@ class TestPeeringApi(object):
             "/peering/self",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=PeeringApiData.PeeringStatus
+            mock_response=PeeringApiData.PeeringStatus,
         )(peering_api.put_self_peering_id)

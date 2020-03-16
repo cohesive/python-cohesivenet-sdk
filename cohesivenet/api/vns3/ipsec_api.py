@@ -15,9 +15,6 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import validate_call, VersionRouter
 
 
@@ -49,9 +46,7 @@ def delete_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id
-    }
+    path_params = {"endpoint_id": endpoint_id}
 
     query_params = []
 
@@ -121,10 +116,7 @@ def delete_ipsec_endpoint_tunnel(
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id,
-        "tunnel_id": tunnel_id
-    }
+    path_params = {"endpoint_id": endpoint_id, "tunnel_id": tunnel_id}
 
     query_params = []
 
@@ -256,9 +248,7 @@ def get_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id
-    }
+    path_params = {"endpoint_id": endpoint_id}
 
     query_params = []
 
@@ -362,7 +352,9 @@ def get_ipsec_status(api_client, **kwargs):  # noqa: E501
     )
 
 
-def get_link_history(api_client, remote=None, local=None, tunnelid=None, **kwargs):  # noqa: E501
+def get_link_history(
+    api_client, remote=None, local=None, tunnelid=None, **kwargs
+):  # noqa: E501
     """get_link_history  # noqa: E501
 
     Provides information about the connection history of the subnet or tunnel  # noqa: E501
@@ -503,7 +495,7 @@ def post_create_ipsec_endpoint(
         "vpn_type",
         "route_based_int_address",
         "route_based_local",
-        "route_based_remote"
+        "route_based_remote",
     ]
 
     collection_formats = {}
@@ -527,9 +519,7 @@ def post_create_ipsec_endpoint(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -608,14 +598,12 @@ def post_create_ipsec_endpoint_tunnel(
         "ping_ipaddress",
         "ping_interface",
         "ping_interval",
-        "description"
+        "description",
     ]
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id
-    }
+    path_params = {"endpoint_id": endpoint_id}
 
     query_params = []
 
@@ -634,9 +622,7 @@ def post_create_ipsec_endpoint_tunnel(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -664,9 +650,7 @@ def post_create_ipsec_endpoint_tunnel(
     )
 
 
-def post_restart_ipsec_action(
-    api_client, restart=True, **kwargs
-):  # noqa: E501
+def post_restart_ipsec_action(api_client, restart=True, **kwargs):  # noqa: E501
     """post_restart_ipsec_action  # noqa: E501
 
     Restart ipsec subystem  # noqa: E501
@@ -690,9 +674,7 @@ def post_restart_ipsec_action(
 
     local_var_params = locals()
 
-    request_params = [
-        "restart"
-    ]
+    request_params = ["restart"]
 
     collection_formats = {}
 
@@ -715,9 +697,7 @@ def post_restart_ipsec_action(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -748,7 +728,7 @@ def post_restart_ipsec_action(
 @validate_call(path_params=["endpoint_id"])
 def put_edit_ipsec_endpoint(
     api_client,
-    endpoint_id, 
+    endpoint_id,
     name=None,
     ipaddress=None,
     secret=None,
@@ -816,14 +796,12 @@ def put_edit_ipsec_endpoint(
         "vpn_type",
         "route_based_int_address",
         "route_based_local",
-        "route_based_remote"
+        "route_based_remote",
     ]
-    
+
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id
-    }
+    path_params = {"endpoint_id": endpoint_id}
 
     query_params = []
 
@@ -842,9 +820,7 @@ def put_edit_ipsec_endpoint(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -876,7 +852,7 @@ def put_edit_ipsec_endpoint(
 def put_edit_ipsec_endpoint_tunnel(
     api_client,
     endpoint_id,
-    tunnel_id, 
+    tunnel_id,
     remote_subnet=None,
     local_subnet=None,
     enabled=None,
@@ -928,15 +904,12 @@ def put_edit_ipsec_endpoint_tunnel(
         "ping_ipaddress",
         "ping_interface",
         "ping_interval",
-        "description"
+        "description",
     ]
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id,
-        "tunnel_id": tunnel_id
-    }
+    path_params = {"endpoint_id": endpoint_id, "tunnel_id": tunnel_id}
 
     query_params = []
 
@@ -955,9 +928,7 @@ def put_edit_ipsec_endpoint_tunnel(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -985,23 +956,21 @@ def put_edit_ipsec_endpoint_tunnel(
     )
 
 
-def put_ipsec_config(
-    api_client, ipsec_local_address=None, **kwargs
-):  # noqa: E501
+def put_ipsec_config(api_client, ipsec_local_address=None, **kwargs):  # noqa: E501
     """put_ipsec_config  # noqa: E501
 
-    Edit Ipsec Configuration on device. Note, This is device wide and must be set before 
-    any remote endpoint definitions are created. If it needs to be changed, all remote endpoint 
+    Edit Ipsec Configuration on device. Note, This is device wide and must be set before
+    any remote endpoint definitions are created. If it needs to be changed, all remote endpoint
     information and tunnel information must be deleted first.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.put_ipsec_config(update_ipsec_address_request, async_req=True)
 
-    :param ipsec_local_address str: This is effectively a \"cloud NAT\" address, since you don't 
-           know what your LAN address will be between invocations in a cloud, this address can be 
-           used by remote endpoints  as your \"behind a NAT\" address, sometimes referred to Peer 
-           or IKE ID, if needed (e.g. Watchguard or Juniper). It can ALSO be thought of even 
+    :param ipsec_local_address str: This is effectively a \"cloud NAT\" address, since you don't
+           know what your LAN address will be between invocations in a cloud, this address can be
+           used by remote endpoints  as your \"behind a NAT\" address, sometimes referred to Peer
+           or IKE ID, if needed (e.g. Watchguard or Juniper). It can ALSO be thought of even
            more simply as an IPsec \"loopback\" interface that you can use to terminate traffic.
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
@@ -1018,10 +987,8 @@ def put_ipsec_config(
 
     local_var_params = locals()
 
-    request_params = [
-        "ipsec_local_address"
-    ]
-    
+    request_params = ["ipsec_local_address"]
+
     collection_formats = {}
 
     path_params = {}
@@ -1043,9 +1010,7 @@ def put_ipsec_config(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1073,44 +1038,21 @@ def put_ipsec_config(
     )
 
 
-
 class IPsecApiRouter(VersionRouter):
-    
+
     function_library = {
-        "delete_ipsec_endpoint": {
-            "4.8.4": delete_ipsec_endpoint
-        },
-        "delete_ipsec_endpoint_tunnel": {
-            "4.8.4": delete_ipsec_endpoint_tunnel
-        },
-        "get_ipsec": {
-            "4.8.4": get_ipsec
-        },
-        "get_ipsec_endpoint": {
-            "4.8.4": get_ipsec_endpoint
-        },
-        "get_ipsec_status": {
-            "4.8.4": get_ipsec_status
-        },
-        "get_link_history": {
-            "4.8.4": get_link_history
-        },
-        "post_create_ipsec_endpoint": {
-            "4.8.4": post_create_ipsec_endpoint
-        },
+        "delete_ipsec_endpoint": {"4.8.4": delete_ipsec_endpoint},
+        "delete_ipsec_endpoint_tunnel": {"4.8.4": delete_ipsec_endpoint_tunnel},
+        "get_ipsec": {"4.8.4": get_ipsec},
+        "get_ipsec_endpoint": {"4.8.4": get_ipsec_endpoint},
+        "get_ipsec_status": {"4.8.4": get_ipsec_status},
+        "get_link_history": {"4.8.4": get_link_history},
+        "post_create_ipsec_endpoint": {"4.8.4": post_create_ipsec_endpoint},
         "post_create_ipsec_endpoint_tunnel": {
             "4.8.4": post_create_ipsec_endpoint_tunnel
         },
-        "post_restart_ipsec_action": {
-            "4.8.4": post_restart_ipsec_action
-        },
-        "put_edit_ipsec_endpoint": {
-            "4.8.4": put_edit_ipsec_endpoint
-        },
-        "put_edit_ipsec_endpoint_tunnel": {
-            "4.8.4": put_edit_ipsec_endpoint_tunnel
-        },
-        "put_ipsec_config": {
-            "4.8.4": put_ipsec_config
-        }
+        "post_restart_ipsec_action": {"4.8.4": post_restart_ipsec_action},
+        "put_edit_ipsec_endpoint": {"4.8.4": put_edit_ipsec_endpoint},
+        "put_edit_ipsec_endpoint_tunnel": {"4.8.4": put_edit_ipsec_endpoint_tunnel},
+        "put_ipsec_config": {"4.8.4": put_ipsec_config},
     }

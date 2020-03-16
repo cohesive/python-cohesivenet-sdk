@@ -1,6 +1,13 @@
 from functools import partial as bind
 
-from cohesivenet import data_types, network_math, Logger, util, VNS3Client, CohesiveSDKException
+from cohesivenet import (
+    data_types,
+    network_math,
+    Logger,
+    util,
+    VNS3Client,
+    CohesiveSDKException,
+)
 from cohesivenet.macros import api_operations, state
 
 

@@ -22,6 +22,7 @@ from cohesivenet.rest import ApiException
 from tests.openapi import generate_method_test
 from tests.stub_data import SnapshotsApiData
 
+
 class TestSnapshotsApi(object):
     """SnapshotsApi unit test stubs"""
 
@@ -36,7 +37,7 @@ class TestSnapshotsApi(object):
             "/snapshots/{snapshot_name}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SnapshotsApiData.SnapshotsListResponse
+            mock_response=SnapshotsApiData.SnapshotsListResponse,
         )(snapshots_api.delete_snapshot)
 
     def test_get_download_snapshot(self, rest_mocker, api_client, api_schema: dict):
@@ -50,7 +51,7 @@ class TestSnapshotsApi(object):
             "/snapshots/{snapshot_name}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response="asdfasdfasdf"
+            mock_response="asdfasdfasdf",
         )(snapshots_api.get_download_snapshot)
 
     def test_get_snapshots(self, rest_mocker, api_client, api_schema: dict):
@@ -64,7 +65,7 @@ class TestSnapshotsApi(object):
             "/snapshots",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SnapshotsApiData.SnapshotsListResponse
+            mock_response=SnapshotsApiData.SnapshotsListResponse,
         )(snapshots_api.get_snapshots)
 
     def test_post_create_snapshot(self, rest_mocker, api_client, api_schema: dict):
@@ -78,7 +79,7 @@ class TestSnapshotsApi(object):
             "/snapshots",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SnapshotsApiData.SnapshotDetail
+            mock_response=SnapshotsApiData.SnapshotDetail,
         )(snapshots_api.post_create_snapshot)
 
     def test_put_import_snapshot(self, rest_mocker, api_client, api_schema: dict):
@@ -92,5 +93,5 @@ class TestSnapshotsApi(object):
             "/snapshots/running_config",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SnapshotsApiData.SnapshotImportResponse
+            mock_response=SnapshotsApiData.SnapshotImportResponse,
         )(snapshots_api.put_import_snapshot)

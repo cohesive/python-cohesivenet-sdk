@@ -1,32 +1,28 @@
 class ConfigurationApiData(object):
     ConfigDetail = {
         "response": {
-            "private_ipaddress": "10.0.1.211", 
+            "private_ipaddress": "10.0.1.211",
             "public_ipaddress": "52.202.254.43",
             "topology_checksum": "9e29c480e3a20f1a9e4fd7f453f8da7280bdada4",
-            "vns3_version":"4.8.4-20191220",
-            "topology_name":"My-topology-name",
+            "vns3_version": "4.8.4-20191220",
+            "topology_name": "My-topology-name",
             "ntp_hosts": "0.ubuntu.pool.ntp.org 1.ubuntu.pool.ntp.org 2.ubuntu.pool.ntp.org 3.ubuntu.pool.ntp.org ntp.ubuntu.com time.apple.com",
-            "licensed": False
+            "licensed": False,
         }
     }
 
     KeysetDetail = {
         "response": {
             "keyset_present": True,
-            "created_at":"2020-01-24T20:42:56.500+00:00",
+            "created_at": "2020-01-24T20:42:56.500+00:00",
             "created_at_i": 1579898576,
             "checksum": "8e4f8ae182a41a047c206c099c62fa0ea59ebbcb",
-            "uuid": "184f06f0-3eea-11ea-ad17-02e11c8e6b1d"
+            "uuid": "184f06f0-3eea-11ea-ad17-02e11c8e6b1d",
         }
     }
 
-    UpdateUIAdminResponse = {
-        "response": {
-            "enabled": True,
-            "username": "vnscubed",
-        }
-    }
+    UpdateUIAdminResponse = {"response": {"enabled": True, "username": "vnscubed",}}
+
 
 class IpsecApiData(object):
     IpsecEndpointDetail = {
@@ -48,13 +44,13 @@ class IpsecApiData(object):
                     "enabled": True,
                     "description": "tunnel",
                     "ping_ipaddress": "",
-                    "ping_interface": "tun0"
+                    "ping_interface": "tun0",
                 }
             },
             "bgp_peers": {},
             "type": "ipsec",
             "vpn_type": "policy",
-            "psk": "testtest"
+            "psk": "testtest",
         }
     }
 
@@ -72,7 +68,7 @@ class IpsecApiData(object):
             "bgp_peers": {},
             "type": "ipsec",
             "vpn_type": "policy",
-            "psk": "nnotnot"
+            "psk": "nnotnot",
         }
     }
 
@@ -98,13 +94,13 @@ class IpsecApiData(object):
                             "description": "Tunnel A",
                             "ping_ipaddress": "",
                             "ping_interface": "tun0",
-                            "ping_interval": 30
+                            "ping_interval": 30,
                         }
                     },
                     "bgp_peers": {},
                     "type": "ipsec",
                     "vpn_type": "policy",
-                    "psk": "testtest"
+                    "psk": "testtest",
                 }
             },
             "this_endpoint": {
@@ -112,8 +108,8 @@ class IpsecApiData(object):
                 "overlay_subnet": "172.31.0.0/22",
                 "private_ipaddress": "192.0.2.254",
                 "ipsec_local_ipaddress": "192.0.2.254",
-                "asn": 65001
-            }
+                "asn": 65001,
+            },
         }
     }
 
@@ -147,8 +143,8 @@ class IpsecApiData(object):
                     "phase1_cipher": "AES 256",
                     "phase1_prf": "SHA2_256",
                     "phase1_dh_group": 14,
-                    "ike_version": "IKEv1"
-                }
+                    "ike_version": "IKEv1",
+                },
             }
         }
     }
@@ -163,19 +159,21 @@ class IpsecApiData(object):
             "description": "tunnel",
             "ping_ipaddress": "",
             "ping_interface": "",
-            "ping_interval": None
+            "ping_interval": None,
         }
     }
 
     LinkHistoryResponse = {
         "response": {
             "remote": "172.31.0.0/28",
-            "history": [{
-            "event": "Tunnel up",
-            "timestamp": "2020-01-24T17:41:51.476Z",
-            "timestamp_i": 1564089901
-            }],
-            "local": "192.168.10.0/22"
+            "history": [
+                {
+                    "event": "Tunnel up",
+                    "timestamp": "2020-01-24T17:41:51.476Z",
+                    "timestamp_i": 1564089901,
+                }
+            ],
+            "local": "192.168.10.0/22",
         }
     }
 
@@ -190,7 +188,7 @@ class BGPApiData(object):
             "access_list": "",
             "add_network_distance": False,
             "add_network_distance_direction": "",
-            "add_network_distance_hops": 0
+            "add_network_distance_hops": 0,
         }
     }
 
@@ -206,15 +204,11 @@ class AccessApiData(object):
         "expires_at": "2020-01-24T18:41:51.484Z",
         "expired": False,
         "last_accessed_at": "2020-01-24T17:41:51.476Z",
-        "last_accessed_ip": "2020-01-24T17:41:51.476Z"
+        "last_accessed_ip": "2020-01-24T17:41:51.476Z",
     }
 
-    AccessUrlDetail = {
-        "response": AccessUrl
-    }
-    AccessUrlListResponse = {
-        "response": [AccessUrl]
-    }
+    AccessUrlDetail = {"response": AccessUrl}
+    AccessUrlListResponse = {"response": [AccessUrl]}
     AccessToken = {
         "id": 1,
         "created_at": "2019-08-19T19:07:49.662Z",
@@ -226,20 +220,12 @@ class AccessApiData(object):
         "refreshes": False,
         "expired": True,
         "last_accessed_at": "2019-08-19T19:07:49.662Z",
-        "last_accessed_ip": "2019-08-19T19:07:49.662Z"
+        "last_accessed_ip": "2019-08-19T19:07:49.662Z",
     }
-    AccessTokenDetail = {
-        "response": AccessToken
-    }
-    AccessTokenListResponse = {
-        "response": [AccessToken]
-    }
-    AccessUrlDeleteResponse = {
-        "response": "Access url deleted"
-    }
-    AccessTokenDeleteResponse = {
-        "response": "Token deleted"
-    }
+    AccessTokenDetail = {"response": AccessToken}
+    AccessTokenListResponse = {"response": [AccessToken]}
+    AccessUrlDeleteResponse = {"response": "Access url deleted"}
+    AccessTokenDeleteResponse = {"response": "Token deleted"}
 
 
 class FirewallApiData(object):
@@ -253,14 +239,14 @@ class InterfacesApiData(object):
         "interface_type": "system",
         "description": "Auto-created interface",
         "ip_internal": "10.0.1.120",
-        "mtu":9001,
-        "enabled":True,
+        "mtu": 9001,
+        "enabled": True,
         "status": "Up",
         "mask_bits": "25",
         "gateway": None,
         "system_default": True,
         "ip_external": "3.212.92.239",
-        "tags": []
+        "tags": [],
     }
 
     Interface2 = {
@@ -276,19 +262,12 @@ class InterfacesApiData(object):
         "gateway": None,
         "system_default": True,
         "ip_external": None,
-        "tags": []
+        "tags": [],
     }
 
-    InterfaceDetail = {
-        "response": Interface2
-    }
+    InterfaceDetail = {"response": Interface2}
 
-    InterfaceListResponse = {
-        "response": [
-            Interface1,
-            Interface2
-        ]
-    }
+    InterfaceListResponse = {"response": [Interface1, Interface2]}
 
     GREEndpoint = {
         "id": 8,
@@ -307,18 +286,12 @@ class InterfacesApiData(object):
         "tags": [],
         "local_connection_ip": "10.1.0.1",
         "remote_connection_ip": "10.2.0.1",
-        "ttl": 255
+        "ttl": 255,
     }
 
-    GREEndpointDetail = {
-        "response": GREEndpoint
-    }
+    GREEndpointDetail = {"response": GREEndpoint}
 
-    GREEndpointListResponse = {
-        "response": [
-            GREEndpoint
-        ]
-    }
+    GREEndpointListResponse = {"response": [GREEndpoint]}
 
 
 class LicensingApiData(object):
@@ -333,7 +306,7 @@ class LicensingApiData(object):
                 "LinearAddressing",
                 "LinearAddressingConfigurable",
                 "CloudWAN",
-                "Containers"
+                "Containers",
             ],
             "default_topology": {
                 "managers": [
@@ -341,144 +314,52 @@ class LicensingApiData(object):
                         "manager_id": 1,
                         "overlay_ipaddress": {
                             "ip_address": "100.127.255.253",
-                            "octets": [
-                                100,
-                                127,
-                                255,
-                                253
-                            ]
+                            "octets": [100, 127, 255, 253],
                         },
-                        "asn": 65001
+                        "asn": 65001,
                     },
                     {
                         "manager_id": 2,
                         "overlay_ipaddress": {
                             "ip_address": "100.127.255.252",
-                            "octets": [
-                                100,
-                                127,
-                                255,
-                                252
-                            ]
+                            "octets": [100, 127, 255, 252],
                         },
-                        "asn": 65002
+                        "asn": 65002,
                     },
                     {
                         "manager_id": 3,
                         "overlay_ipaddress": {
                             "ip_address": "100.127.255.251",
-                            "octets": [
-                                100,
-                                127,
-                                255,
-                                251
-                            ]
+                            "octets": [100, 127, 255, 251],
                         },
-                        "asn": 65003
+                        "asn": 65003,
                     },
                     {
                         "manager_id": 4,
                         "overlay_ipaddress": {
                             "ip_address": "100.127.255.250",
-                            "octets": [
-                                100,
-                                127,
-                                255,
-                                250
-                            ]
+                            "octets": [100, 127, 255, 250],
                         },
-                        "asn": 65004
-                    }
+                        "asn": 65004,
+                    },
                 ],
                 "clients": [
-                    {
-                        "ip_address": "100.127.255.193",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            193
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.194",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            194
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.195",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            195
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.196",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            196
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.197",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            197
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.198",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            198
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.199",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            199
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.200",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            200
-                        ]
-                    },
-                    {
-                        "ip_address": "100.127.255.217",
-                        "octets": [
-                            100,
-                            127,
-                            255,
-                            217
-                        ]
-                    }
+                    {"ip_address": "100.127.255.193", "octets": [100, 127, 255, 193]},
+                    {"ip_address": "100.127.255.194", "octets": [100, 127, 255, 194]},
+                    {"ip_address": "100.127.255.195", "octets": [100, 127, 255, 195]},
+                    {"ip_address": "100.127.255.196", "octets": [100, 127, 255, 196]},
+                    {"ip_address": "100.127.255.197", "octets": [100, 127, 255, 197]},
+                    {"ip_address": "100.127.255.198", "octets": [100, 127, 255, 198]},
+                    {"ip_address": "100.127.255.199", "octets": [100, 127, 255, 199]},
+                    {"ip_address": "100.127.255.200", "octets": [100, 127, 255, 200]},
+                    {"ip_address": "100.127.255.217", "octets": [100, 127, 255, 217]},
                 ],
                 "total_clients": 25,
                 "overlay_max_clients": 25,
                 "overlay_subnet": "100.127.255.192/26",
                 "ipsec_max_endpoints": 4,
-                "ipsec_max_subnets": 16
-            }
+                "ipsec_max_subnets": 16,
+            },
         }
     }
 
@@ -494,71 +375,41 @@ class LicensingApiData(object):
                         "manager_id": 1,
                         "overlay_ipaddress": {
                             "ip_address": "172.31.1.253",
-                            "octets": [
-                                172,
-                                31,
-                                1,
-                                253
-                            ]
+                            "octets": [172, 31, 1, 253],
                         },
-                        "asn": 34001
+                        "asn": 34001,
                     },
                     {
                         "manager_id": 2,
                         "overlay_ipaddress": {
                             "ip_address": "172.31.1.252",
-                            "octets": [
-                                172,
-                                31,
-                                1,
-                                252
-                            ]
+                            "octets": [172, 31, 1, 252],
                         },
-                        "asn": 34002
+                        "asn": 34002,
                     },
                     {
                         "manager_id": 3,
                         "overlay_ipaddress": {
                             "ip_address": "172.31.1.251",
-                            "octets": [
-                                172,
-                                31,
-                                1,
-                                251
-                            ]
+                            "octets": [172, 31, 1, 251],
                         },
-                        "asn": 35011
+                        "asn": 35011,
                     },
                     {
                         "manager_id": 4,
                         "overlay_ipaddress": {
                             "ip_address": "172.31.1.250",
-                            "octets": [
-                                172,
-                                31,
-                                1,
-                                250
-                            ]
+                            "octets": [172, 31, 1, 250],
                         },
-                        "asn": 35012
-                    }
+                        "asn": 35012,
+                    },
                 ],
-                "clients": [
-                    {
-                        "ip_address": "172.31.1.1",
-                        "octets": [
-                            172,
-                            31,
-                            1,
-                            1
-                        ]
-                    }
-                ],
+                "clients": [{"ip_address": "172.31.1.1", "octets": [172, 31, 1, 1]}],
                 "total_clients": 1,
                 "overlay_max_clients": 25,
                 "overlay_subnet": "172.31.1.0/24",
                 "ipsec_max_endpoints": 4,
-                "ipsec_max_subnets": 16
+                "ipsec_max_subnets": 16,
             },
             "capabilities": [
                 "IPsec",
@@ -566,14 +417,14 @@ class LicensingApiData(object):
                 "LinearAddressing",
                 "LinearAddressingConfigurable",
                 "CloudWAN",
-                "Containers"
+                "Containers",
             ],
             "container_details": {
                 "containers_run_count": 4,
-                "containers_image_count": 50
+                "containers_image_count": 50,
             },
             "finalized": True,
-            "custom_addressing": True
+            "custom_addressing": True,
         }
     }
 
@@ -583,23 +434,16 @@ class LicensingApiData(object):
             "finalized": True,
             "parameters": {
                 "subnet": "172.31.1.0/24",
-                "managers":[
+                "managers": [
                     "172.31.1.253",
                     "172.31.1.252",
                     "172.31.1.251",
-                    "172.31.1.250"
+                    "172.31.1.250",
                 ],
-                "clients": [
-                    "172.31.1.1"
-                ],
-                "asns": [
-                    34001,
-                    34002,
-                    35011,
-                    35012
-                ],
-                "my_manager_vip": "172.31.1.254"
-            }
+                "clients": ["172.31.1.1"],
+                "asns": [34001, 34002, 35011, 35012],
+                "my_manager_vip": "172.31.1.254",
+            },
         }
     }
 
@@ -609,7 +453,7 @@ class LicensingApiData(object):
             "uniq": "4320fce04d8db1c5d19a1648990a04e13ffc4419",
             "license": "in-progress",
             "new_clientpacks": 50,
-            "new_managers": 4
+            "new_managers": 4,
         }
     }
 
@@ -624,21 +468,12 @@ class MonitoringApiData(object):
         "updated_at": "2020-01-14T17:32:55.904Z",
         "url": "https://hooks.slack.com/services/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",
         "custom_properties": [],
-        "events": [
-            "tunnel_up",
-            "tunnel_down"
-        ]
+        "events": ["tunnel_up", "tunnel_down"],
     }
 
-    AlertDetail = {
-        "response": Alert
-    }
+    AlertDetail = {"response": Alert}
 
-    AlertsListResponse = {
-        "response": [
-            Alert
-        ]
-    }
+    AlertsListResponse = {"response": [Alert]}
 
     Webhook = {
         "body": "{\n"
@@ -670,23 +505,19 @@ class MonitoringApiData(object):
         "validate_cert": True,
     }
 
-    WebhookDetail = {
-        "response": Webhook
-    }
+    WebhookDetail = {"response": Webhook}
 
-    WebhookListResponse = {
-        "response": [Webhook]
-    }
+    WebhookListResponse = {"response": [Webhook]}
 
 
 class NetworkEdgePluginsApiData(object):
     ContainerLogsResponse = {
         "response": {
             "uuid": "09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f",
-            "logs":[
+            "logs": [
                 "Unlinking stale socket /var/run/supervisor.sock\r",
-                "2020-01-24 22:10:57,062 INFO RPC interface 'supervisor' initialized\r"
-            ]
+                "2020-01-24 22:10:57,062 INFO RPC interface 'supervisor' initialized\r",
+            ],
         }
     }
 
@@ -700,7 +531,7 @@ class NetworkEdgePluginsApiData(object):
         "created": "2020-01-24T19:01:20.539Z",
         "description": "",
         "comment": None,
-        "container_config": None
+        "container_config": None,
     }
 
     ContainerImage2 = {
@@ -713,64 +544,29 @@ class NetworkEdgePluginsApiData(object):
         "created": "2020-01-24T19:02:37.230Z",
         "description": "Splunk logger that configures controller splunk hostname via the command.",
         "comment": None,
-        "container_config": None
+        "container_config": None,
     }
 
     ContainerImagesResponse = {
-        "response": {
-            "images": [
-                ContainerImage1,
-                ContainerImage2
-            ]
-        }
+        "response": {"images": [ContainerImage1, ContainerImage2]}
     }
 
     ContainerSystemStatus = {
-        "response": {
-            "running": True,
-            "network":"198.51.100.0/28"
-        }
+        "response": {"running": True, "network": "198.51.100.0/28"}
     }
 
     ContainerSystemIPs = {
         "response": {
             "addresses": [
-                {
-                    "address": "198.51.100.0",
-                    "status": "reserved"
-                },
-                {
-                    "address": "198.51.100.1",
-                    "status": "reserved"
-                },
-                {
-                    "address": "198.51.100.2",
-                    "status": "in_use"
-                },
-                {
-                    "address": "198.51.100.3",
-                    "status": "in_use"
-                },
-                {
-                    "address": "198.51.100.4",
-                    "status": "available"
-                },
-                {
-                    "address": "198.51.100.5",
-                    "status": "available"
-                },
-                {
-                    "address": "198.51.100.6",
-                    "status": "available"
-                },
-                {
-                    "address": "198.51.100.7",
-                    "status": "available"
-                },
-                {
-                    "address": "198.51.100.8",
-                    "status": "available"
-                }
+                {"address": "198.51.100.0", "status": "reserved"},
+                {"address": "198.51.100.1", "status": "reserved"},
+                {"address": "198.51.100.2", "status": "in_use"},
+                {"address": "198.51.100.3", "status": "in_use"},
+                {"address": "198.51.100.4", "status": "available"},
+                {"address": "198.51.100.5", "status": "available"},
+                {"address": "198.51.100.6", "status": "available"},
+                {"address": "198.51.100.7", "status": "available"},
+                {"address": "198.51.100.8", "status": "available"},
             ]
         }
     }
@@ -782,9 +578,7 @@ class NetworkEdgePluginsApiData(object):
                     "Id": "09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f",
                     "Created": "2020-01-24T22:10:56.370194442Z",
                     "Path": "/usr/bin/execStartLogger.sh",
-                    "Args": [
-                        "ChinaEnv-VNS3-4311-Controller1"
-                    ],
+                    "Args": ["ChinaEnv-VNS3-4311-Controller1"],
                     "State": {
                         "Status": "running",
                         "Running": True,
@@ -796,7 +590,7 @@ class NetworkEdgePluginsApiData(object):
                         "ExitCode": 0,
                         "Error": "",
                         "StartedAt": "2020-01-24T22:10:56.581735816Z",
-                        "FinishedAt": "0001-01-01T00:00:00Z"
+                        "FinishedAt": "0001-01-01T00:00:00Z",
                     },
                     "Image": "sha256:3595cffccf01d1319e8e84507a369d5104340d5e66ab381a2004d60d5b8ac772",
                     "ResolvConfPath": "/var/lib/docker/containers/09334531f1892b6a9bbd63c9e8aff64ac237aea18159dd41d645814ba95b733f/resolv.conf",
@@ -811,20 +605,12 @@ class NetworkEdgePluginsApiData(object):
                     "AppArmorProfile": "",
                     "ExecIDs": None,
                     "HostConfig": {
-                        "Binds": [
-                            "/mnt/logs:/mnt/logs:rw"
-                        ],
+                        "Binds": ["/mnt/logs:/mnt/logs:rw"],
                         "ContainerIDFile": "",
-                        "LogConfig": {
-                            "Type": "json-file",
-                            "Config": {}
-                        },
+                        "LogConfig": {"Type": "json-file", "Config": {}},
                         "NetworkMode": "cohesive.net",
                         "PortBindings": {},
-                        "RestartPolicy": {
-                            "Name": "always",
-                            "MaximumRetryCount": 0
-                        },
+                        "RestartPolicy": {"Name": "always", "MaximumRetryCount": 0},
                         "AutoRemove": False,
                         "VolumeDriver": "",
                         "VolumesFrom": None,
@@ -843,17 +629,12 @@ class NetworkEdgePluginsApiData(object):
                         "Privileged": True,
                         "PublishAllPorts": False,
                         "ReadonlyRootfs": False,
-                        "SecurityOpt": [
-                            "label=disable"
-                        ],
+                        "SecurityOpt": ["label=disable"],
                         "UTSMode": "",
                         "UsernsMode": "",
                         "ShmSize": 67108864,
                         "Runtime": "runc",
-                        "ConsoleSize": [
-                            0,
-                            0
-                        ],
+                        "ConsoleSize": [0, 0],
                         "Isolation": "",
                         "CpuShares": 0,
                         "Memory": 0,
@@ -883,18 +664,11 @@ class NetworkEdgePluginsApiData(object):
                         "CpuCount": 0,
                         "CpuPercent": 0,
                         "IOMaximumIOps": 0,
-                        "IOMaximumBandwidth": 0
+                        "IOMaximumBandwidth": 0,
                     },
-                    "GraphDriver": {
-                        "Name": "aufs",
-                        "Data": None
-                    },
-                    "Volumes": {
-                        "/mnt/logs": "/mnt/logs"
-                    },
-                    "VolumesRW": {
-                        "/mnt/logs": True
-                    },
+                    "GraphDriver": {"Name": "aufs", "Data": None},
+                    "Volumes": {"/mnt/logs": "/mnt/logs"},
+                    "VolumesRW": {"/mnt/logs": True},
                     "Config": {
                         "Hostname": "09334531f189",
                         "Domainname": "",
@@ -905,12 +679,10 @@ class NetworkEdgePluginsApiData(object):
                         "Tty": True,
                         "OpenStdin": False,
                         "StdinOnce": False,
-                        "Env": [
-                            "oe_name=SplunkLogger"
-                        ],
+                        "Env": ["oe_name=SplunkLogger"],
                         "Cmd": [
                             "/usr/bin/execStartLogger.sh",
-                            "ChinaEnv-VNS3-4311-Controller1"
+                            "ChinaEnv-VNS3-4311-Controller1",
                         ],
                         "Image": "sha256:3595cffccf01d1319e8e84507a369d5104340d5e66ab381a2004d60d5b8ac772",
                         "Volumes": None,
@@ -925,7 +697,7 @@ class NetworkEdgePluginsApiData(object):
                         "Memory": 0,
                         "MemorySwap": 0,
                         "CpuShares": 0,
-                        "Cpuset": ""
+                        "Cpuset": "",
                     },
                     "NetworkSettings": {
                         "Bridge": "",
@@ -944,8 +716,8 @@ class NetworkEdgePluginsApiData(object):
                         "IPAddress": "",
                         "IPPrefixLen": 0,
                         "IPv6Gateway": "",
-                        "MacAddress": ""
-                    }
+                        "MacAddress": "",
+                    },
                 },
                 {
                     "Id": "5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21",
@@ -963,7 +735,7 @@ class NetworkEdgePluginsApiData(object):
                         "ExitCode": 0,
                         "Error": "",
                         "StartedAt": "2020-01-24T22:10:51.299339771Z",
-                        "FinishedAt": "0001-01-01T00:00:00Z"
+                        "FinishedAt": "0001-01-01T00:00:00Z",
                     },
                     "Image": "sha256:dd354ae9d0be5003dbcee9fe777446aa1b09e159af324a6c22be0c5d1f37250f",
                     "ResolvConfPath": "/var/lib/docker/containers/5c22b4e31cccfc568b770fd576b41865f36aee1293cd354cbee5494cc1e81f21/resolv.conf",
@@ -980,16 +752,10 @@ class NetworkEdgePluginsApiData(object):
                     "HostConfig": {
                         "Binds": None,
                         "ContainerIDFile": "",
-                        "LogConfig": {
-                            "Type": "json-file",
-                            "Config": {}
-                        },
+                        "LogConfig": {"Type": "json-file", "Config": {}},
                         "NetworkMode": "cohesive.net",
                         "PortBindings": {},
-                        "RestartPolicy": {
-                            "Name": "always",
-                            "MaximumRetryCount": 0
-                        },
+                        "RestartPolicy": {"Name": "always", "MaximumRetryCount": 0},
                         "AutoRemove": False,
                         "VolumeDriver": "",
                         "VolumesFrom": None,
@@ -1013,10 +779,7 @@ class NetworkEdgePluginsApiData(object):
                         "UsernsMode": "",
                         "ShmSize": 67108864,
                         "Runtime": "runc",
-                        "ConsoleSize": [
-                            0,
-                            0
-                        ],
+                        "ConsoleSize": [0, 0],
                         "Isolation": "",
                         "CpuShares": 0,
                         "Memory": 0,
@@ -1046,12 +809,9 @@ class NetworkEdgePluginsApiData(object):
                         "CpuCount": 0,
                         "CpuPercent": 0,
                         "IOMaximumIOps": 0,
-                        "IOMaximumBandwidth": 0
+                        "IOMaximumBandwidth": 0,
                     },
-                    "GraphDriver": {
-                        "Name": "aufs",
-                        "Data": None
-                    },
+                    "GraphDriver": {"Name": "aufs", "Data": None},
                     "Volumes": {},
                     "VolumesRW": {},
                     "Config": {
@@ -1065,9 +825,7 @@ class NetworkEdgePluginsApiData(object):
                         "OpenStdin": False,
                         "StdinOnce": False,
                         "Env": None,
-                        "Cmd": [
-                            "/usr/bin/supervisord"
-                        ],
+                        "Cmd": ["/usr/bin/supervisord"],
                         "Image": "sha256:dd354ae9d0be5003dbcee9fe777446aa1b09e159af324a6c22be0c5d1f37250f",
                         "Volumes": None,
                         "WorkingDir": "",
@@ -1081,7 +839,7 @@ class NetworkEdgePluginsApiData(object):
                         "Memory": 0,
                         "MemorySwap": 0,
                         "CpuShares": 0,
-                        "Cpuset": ""
+                        "Cpuset": "",
                     },
                     "NetworkSettings": {
                         "Bridge": "",
@@ -1100,9 +858,9 @@ class NetworkEdgePluginsApiData(object):
                         "IPAddress": "",
                         "IPPrefixLen": 0,
                         "IPv6Gateway": "",
-                        "MacAddress": ""
-                    }
-                }
+                        "MacAddress": "",
+                    },
+                },
             ]
         }
     }
@@ -1126,7 +884,7 @@ class OverlayNetworkApiData(object):
         "checked_out": False,
         "tags": {},
         "last_connect": "",
-        "last_disconnect": ""
+        "last_disconnect": "",
     }
 
     NextClientpackResponse = {
@@ -1143,29 +901,18 @@ class OverlayNetworkApiData(object):
             "tarball_file": "172_31_0_2.tar.gz",
             "tarball_sha1": "b9a2e4961d2519154af488ea5572fe083e624ea7",
             "zip_file": "172_31_0_2.zip",
-            "zip_sha1": "21340d31bf939da497f042a5eaecb6a9d7dbd947"
+            "zip_sha1": "21340d31bf939da497f042a5eaecb6a9d7dbd947",
         }
     }
 
-    ClientpackDetail = {
-        "response": {
-            "clientpack": Clientpack
-        }
-    }
+    ClientpackDetail = {"response": {"clientpack": Clientpack}}
 
-    ClientpacksListResponse = {
-        "response": {
-            "192.168.10.1": Clientpack
-        }
-    }
+    ClientpacksListResponse = {"response": {"192.168.10.1": Clientpack}}
 
     ClientpackTagsResponse = {
         "response": {
             "name": "my-name",
-            "tags": {
-                "environment": "chicago",
-                "application": "webapp"
-            }
+            "tags": {"environment": "chicago", "application": "webapp"},
         }
     }
 
@@ -1175,28 +922,12 @@ class PeeringApiData(object):
         "response": {
             "peered": True,
             "managers": {
-                "1": {
-                    "overlay_ipaddress": "172.31.1.253",
-                    "self": True,
-                    "id": 1
-                },
-                "2": {
-                    "overlay_ipaddress": "172.31.1.252",
-                    "not_set": True,
-                    "id": 2
-                },
-                "3": {
-                    "overlay_ipaddress": "172.31.1.251",
-                    "not_set": True,
-                    "id": 3
-                },
-                "4": {
-                    "overlay_ipaddress": "172.31.1.250",
-                    "not_set": True,
-                    "id": 4
-                }
+                "1": {"overlay_ipaddress": "172.31.1.253", "self": True, "id": 1},
+                "2": {"overlay_ipaddress": "172.31.1.252", "not_set": True, "id": 2},
+                "3": {"overlay_ipaddress": "172.31.1.251", "not_set": True, "id": 3},
+                "4": {"overlay_ipaddress": "172.31.1.250", "not_set": True, "id": 4},
             },
-            "id": 1
+            "id": 1,
         }
     }
 
@@ -1211,7 +942,7 @@ class RoutingApiData(object):
                 "interface": "tun0",
                 "description": "Multicast (auto-added)",
                 "advertise": False,
-                "metric": 0
+                "metric": 0,
             },
             "2": {
                 "cidr": "10.121.11.212/32",
@@ -1221,7 +952,7 @@ class RoutingApiData(object):
                 "gateway": "10.121.11.209",
                 "description": "Local Route subnet gateway",
                 "advertise": False,
-                "metric": 0
+                "metric": 0,
             },
             "3": {
                 "cidr": "10.121.11.213/32",
@@ -1231,7 +962,7 @@ class RoutingApiData(object):
                 "gateway": "10.121.11.209",
                 "description": "Local Secondary IP",
                 "advertise": False,
-                "metric": 0
+                "metric": 0,
             },
             "4": {
                 "cidr": "10.0.0.0/8",
@@ -1240,7 +971,7 @@ class RoutingApiData(object):
                 "interface": "_notset",
                 "description": "On Prem AWS",
                 "advertise": True,
-                "metric": 0
+                "metric": 0,
             },
         }
     }
@@ -1252,26 +983,21 @@ class SnapshotsApiData(object):
             "sha1_checksum": "869c0dc6bfa3f811b1f7affee4051a29a7ecac8b",
             "created_at": "2020-01-27T19:46:09.634+00:00",
             "created_at_i": 1580154369,
-            "size": 1479421
+            "size": 1479421,
         }
     }
 
-    SnapshotDetail = {
-        "response": SnapshotData
-    }
+    SnapshotDetail = {"response": SnapshotData}
 
     SnapshotsListResponse = {
         "response": {
             "latest_snapshot": "snapshot_20200127_1580154368_3.212.92.239",
-            "snapshots": SnapshotData
+            "snapshots": SnapshotData,
         }
     }
 
-    SnapshotImportResponse = {
-        "response": {
-            "snapshot":"accepted"
-        }
-    }
+    SnapshotImportResponse = {"response": {"snapshot": "accepted"}}
+
 
 class SystemAdminApiData(object):
     CloudDataDetail = {
@@ -1295,24 +1021,17 @@ class SystemAdminApiData(object):
             },
             "cloud_type": "ec2",
         }
-
-
     }
 
     UpdateRemoteSupportResponse = {
-        "response": {
-            "enabled": False,
-            "revoke_credential": True
-        }
+        "response": {"enabled": False, "revoke_credential": True}
     }
 
     VNS3Status = {
         "response": {
             "connected_clients": {},
-            "connected_subnets": [
-                ["10.0.1.0","255.255.255.0"]
-            ],
-            "ipsec": {}
+            "connected_subnets": [["10.0.1.0", "255.255.255.0"]],
+            "ipsec": {},
         }
     }
 
@@ -1320,54 +1039,12 @@ class SystemAdminApiData(object):
         "response": {
             "data": {
                 "sysstat": [
-                    [
-                        "vnscubed",
-                        "600",
-                        "1580160301",
-                        "all",
-                        "%user",
-                        "2.16"
-                    ],
-                    [
-                        "vnscubed",
-                        "600",
-                        "1580160301",
-                        "all",
-                        "%nice",
-                        "0.01"
-                    ],
-                    [
-                        "vnscubed",
-                        "600",
-                        "1580160301",
-                        "cpu0",
-                        "%user",
-                        "2.23"
-                    ],
-                    [
-                        "vnscubed",
-                        "600",
-                        "1580160301",
-                        "cpu0",
-                        "%nice",
-                        "0.01"
-                    ],
-                    [
-                        "vnscubed",
-                        "600",
-                        "1580160301",
-                        "cpu0",
-                        "%system",
-                        "1.26"
-                    ],
-                    [
-                        "vnscubed",
-                        "600",
-                        "1580160301",
-                        "cpu0",
-                        "%iowait",
-                        "0.02"
-                    ]
+                    ["vnscubed", "600", "1580160301", "all", "%user", "2.16"],
+                    ["vnscubed", "600", "1580160301", "all", "%nice", "0.01"],
+                    ["vnscubed", "600", "1580160301", "cpu0", "%user", "2.23"],
+                    ["vnscubed", "600", "1580160301", "cpu0", "%nice", "0.01"],
+                    ["vnscubed", "600", "1580160301", "cpu0", "%system", "1.26"],
+                    ["vnscubed", "600", "1580160301", "cpu0", "%iowait", "0.02"],
                 ]
             },
             "timestamp": "2020-01-27 21:46:35 +0000",
@@ -1375,13 +1052,7 @@ class SystemAdminApiData(object):
             "vns3_version": "Cohesive Networks VNS3 4.9.0-20200121",
             "kernel_version": "Linux 4.4.0-154-generic",
             "uptime": 263155,
-            "loadavg": [
-                "0.00",
-                "0.05",
-                "0.07",
-                "1/328",
-                "20398"
-            ],
+            "loadavg": ["0.00", "0.05", "0.07", "1/328", "20398"],
             "diskinfo": [
                 [
                     "/dev/nvme0n1p1",
@@ -1390,7 +1061,7 @@ class SystemAdminApiData(object):
                     "23986741248",
                     "20%",
                     "/",
-                    "13%"
+                    "13%",
                 ]
             ],
             "meminfo": [
@@ -1401,21 +1072,16 @@ class SystemAdminApiData(object):
                 "241074176",
                 "3327860736",
                 "877838336",
-                "7386689536"
+                "7386689536",
             ],
-            "swapinfo": [
-                "1073737728",
-                "0",
-                "1073737728"
-            ],
+            "swapinfo": ["1073737728", "0", "1073737728"],
             "container_system": {
                 "container_system_running": True,
                 "images_limit": 50,
                 "images_stored": 3,
                 "containers_limit": 4,
                 "containers_active": 1,
-                "container_network": "198.51.100.0/28"
-            }
+                "container_network": "198.51.100.0/28",
+            },
         }
     }
-    

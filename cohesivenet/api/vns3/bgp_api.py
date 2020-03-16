@@ -15,14 +15,13 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import validate_call, VersionRouter
 
 
 @validate_call(path_params=["endpoint_id", "bgp_peer_id"])
-def get_bgp_peer(api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs):  # noqa: E501
+def get_bgp_peer(
+    api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs
+):  # noqa: E501
     """Get eBGP peer  # noqa: E501
 
     Get eBGP peer details  # noqa: E501
@@ -57,10 +56,7 @@ def get_bgp_peer(api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs):
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         query_params.append((param, local_var_params[param]))  # noqa: E501
 
-    path_params = {
-        "endpoint_id": endpoint_id,
-        "bgp_peer_id": bgp_peer_id
-    }
+    path_params = {"endpoint_id": endpoint_id, "bgp_peer_id": bgp_peer_id}
 
     header_params = {}
 
@@ -69,28 +65,32 @@ def get_bgp_peer(api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs):
 
     body_params = None
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}', 
-        'GET',
+        "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
+        "GET",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 @validate_call(path_params=["endpoint_id", "bgp_peer_id"])
@@ -120,10 +120,7 @@ def delete_bgp_peer(api_client, endpoint_id, bgp_peer_id, **kwargs):  # noqa: E5
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id,
-        "bgp_peer_id": bgp_peer_id
-    }
+    path_params = {"endpoint_id": endpoint_id, "bgp_peer_id": bgp_peer_id}
     query_params = []
 
     header_params = {}
@@ -200,7 +197,7 @@ def create_bgp_peer(
     :return: APIResponse or awaitable if async
     """
     local_var_params = locals()
-    
+
     request_params = [
         "ipaddress",
         "asn",
@@ -208,14 +205,12 @@ def create_bgp_peer(
         "bgp_password",
         "add_network_distance",
         "add_network_distance_direction",
-        "add_network_distance_hops"
+        "add_network_distance_hops",
     ]
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id
-    }
+    path_params = {"endpoint_id": endpoint_id}
 
     query_params = []
 
@@ -234,9 +229,7 @@ def create_bgp_peer(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -264,7 +257,9 @@ def create_bgp_peer(
     )
 
 
-@validate_call(path_params=["endpoint_id", "bgp_peer_id"], body_constraints=["ipaddress", "asn"])
+@validate_call(
+    path_params=["endpoint_id", "bgp_peer_id"], body_constraints=["ipaddress", "asn"]
+)
 def update_bgp_peer(
     api_client,
     endpoint_id,
@@ -319,17 +314,14 @@ def update_bgp_peer(
         "bgp_password",
         "add_network_distance",
         "add_network_distance_direction",
-        "add_network_distance_hops"
+        "add_network_distance_hops",
     ]
 
     local_var_params = locals()
 
     collection_formats = {}
 
-    path_params = {
-        "endpoint_id": endpoint_id,
-        "bgp_peer_id": bgp_peer_id
-    }
+    path_params = {"endpoint_id": endpoint_id, "bgp_peer_id": bgp_peer_id}
 
     query_params = []
 
@@ -349,9 +341,7 @@ def update_bgp_peer(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -383,16 +373,8 @@ class BGPApiRouter(VersionRouter):
     """Manage BGP peers"""
 
     function_library = {
-        'get_bgp_peer': {
-            '4.8.4': get_bgp_peer
-        },
-        'delete_bgp_peer': {
-            '4.8.4': delete_bgp_peer
-        },
-        'create_bgp_peer': {
-            '4.8.4': create_bgp_peer
-        },
-        'update_bgp_peer': {
-            '4.8.4': update_bgp_peer
-        }
+        "get_bgp_peer": {"4.8.4": get_bgp_peer},
+        "delete_bgp_peer": {"4.8.4": delete_bgp_peer},
+        "create_bgp_peer": {"4.8.4": create_bgp_peer},
+        "update_bgp_peer": {"4.8.4": update_bgp_peer},
     }

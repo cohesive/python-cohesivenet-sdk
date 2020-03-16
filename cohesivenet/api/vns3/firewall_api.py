@@ -15,16 +15,13 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import VersionRouter, validate_call
 
 
 def get_firewall_fw_sets(api_client, name=None, verbose=None, **kwargs):  # noqa: E501
     """get_firewall_fw_sets  # noqa: E501
 
-    Get a list of current firewall rule sets. These are IPsets that allow for faster matching of rules against IPs.  
+    Get a list of current firewall rule sets. These are IPsets that allow for faster matching of rules against IPs.
     See http://ipset.netfilter.org for more details.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -145,9 +142,7 @@ def post_create_firewall_fw_set(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -223,9 +218,7 @@ def delete_firewall_fw_set(api_client, name=None, rules=None, **kwargs):  # noqa
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -253,9 +246,7 @@ def delete_firewall_fw_set(api_client, name=None, rules=None, **kwargs):  # noqa
     )
 
 
-def put_reinitialize_fw_sets(
-    api_client, reinitialize=True, **kwargs
-):  # noqa: E501
+def put_reinitialize_fw_sets(api_client, reinitialize=True, **kwargs):  # noqa: E501
     """put_reinitialize_fw_sets  # noqa: E501
 
     Reinitialize all Firewall FWSet  # noqa: E501
@@ -303,9 +294,7 @@ def put_reinitialize_fw_sets(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -334,9 +323,7 @@ def put_reinitialize_fw_sets(
 
 
 @validate_call(path_params=["position"])
-def delete_firewall_rule_by_position(
-    api_client, position, **kwargs
-):  # noqa: E501
+def delete_firewall_rule_by_position(api_client, position, **kwargs):  # noqa: E501
     """delete_firewall_rule_by_position  # noqa: E501
 
     Delete Firewall Rule  # noqa: E501
@@ -362,9 +349,7 @@ def delete_firewall_rule_by_position(
 
     collection_formats = {}
 
-    path_params = {
-        "position": position
-    }
+    path_params = {"position": position}
 
     query_params = []
 
@@ -404,9 +389,7 @@ def delete_firewall_rule_by_position(
 
 
 @validate_call(body_params=["rule"])
-def delete_firewall_rule_by_rule(
-    api_client, rule=None, **kwargs
-):  # noqa: E501
+def delete_firewall_rule_by_rule(api_client, rule=None, **kwargs):  # noqa: E501
     """delete_firewall_rule_by_rule  # noqa: E501
 
     Delete firewall rule  # noqa: E501
@@ -453,9 +436,7 @@ def delete_firewall_rule_by_rule(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -591,16 +572,14 @@ def post_create_firewall_rule(
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
-        
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -681,9 +660,7 @@ def post_create_firewall_subgroup_rule(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -711,9 +688,7 @@ def post_create_firewall_subgroup_rule(
     )
 
 
-def delete_firewall_subgroup(
-    api_client, rules=None, name=None, **kwargs
-):  # noqa: E501
+def delete_firewall_subgroup(api_client, rules=None, name=None, **kwargs):  # noqa: E501
     """delete_firewall_subgroup  # noqa: E501
 
     Delete Firewall subgroup by name or rules  # noqa: E501
@@ -761,9 +736,7 @@ def delete_firewall_subgroup(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -791,7 +764,9 @@ def delete_firewall_subgroup(
     )
 
 
-def get_firewall_rule_subgroups(api_client, name=None, verbose=None, **kwargs):  # noqa: E501
+def get_firewall_rule_subgroups(
+    api_client, name=None, verbose=None, **kwargs
+):  # noqa: E501
     """get_firewall_rule_subgroups  # noqa: E501
 
     Get a list of current firewall rules at subgroup (chained rules)  # noqa: E501
@@ -862,9 +837,7 @@ def get_firewall_rule_subgroups(api_client, name=None, verbose=None, **kwargs): 
     )
 
 
-def put_reinitialize_subgroups(
-    api_client, reinitialize=True, **kwargs
-):  # noqa: E501
+def put_reinitialize_subgroups(api_client, reinitialize=True, **kwargs):  # noqa: E501
     """put_reinitialize_subgroups  # noqa: E501
 
     Reinitialize Firewall subgroups  # noqa: E501
@@ -911,9 +884,7 @@ def put_reinitialize_subgroups(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -945,40 +916,18 @@ class FirewallApiRouter(VersionRouter):
     """Manage VNS3 Firewall"""
 
     function_library = {
-        'delete_firewall_fw_set': {
-            '4.8.4': delete_firewall_fw_set
-        },
-        "delete_firewall_rule_by_position": {
-            "4.8.4": delete_firewall_rule_by_position
-        },
-        "delete_firewall_rule_by_rule": {
-            "4.8.4": delete_firewall_rule_by_rule
-        },
-        "delete_firewall_subgroup": {
-            "4.8.4": delete_firewall_subgroup
-        },
-        "get_firewall_fw_sets": {
-            "4.8.4": get_firewall_fw_sets
-        },
-        "post_create_firewall_fw_set": {
-            "4.8.4": post_create_firewall_fw_set
-        },
-        "get_firewall_rule_subgroups": {
-            "4.8.4": get_firewall_rule_subgroups
-        },
-        "get_firewall_rules": {
-            "4.8.4": get_firewall_rules
-        },
-        "post_create_firewall_rule": {
-            "4.8.4": post_create_firewall_rule
-        },
+        "delete_firewall_fw_set": {"4.8.4": delete_firewall_fw_set},
+        "delete_firewall_rule_by_position": {"4.8.4": delete_firewall_rule_by_position},
+        "delete_firewall_rule_by_rule": {"4.8.4": delete_firewall_rule_by_rule},
+        "delete_firewall_subgroup": {"4.8.4": delete_firewall_subgroup},
+        "get_firewall_fw_sets": {"4.8.4": get_firewall_fw_sets},
+        "post_create_firewall_fw_set": {"4.8.4": post_create_firewall_fw_set},
+        "get_firewall_rule_subgroups": {"4.8.4": get_firewall_rule_subgroups},
+        "get_firewall_rules": {"4.8.4": get_firewall_rules},
+        "post_create_firewall_rule": {"4.8.4": post_create_firewall_rule},
         "post_create_firewall_subgroup_rule": {
             "4.8.4": post_create_firewall_subgroup_rule
         },
-        "put_reinitialize_fw_sets": {
-            "4.8.4": put_reinitialize_fw_sets
-        },
-        "put_reinitialize_subgroups": {
-            "4.8.4": put_reinitialize_subgroups
-        }
+        "put_reinitialize_fw_sets": {"4.8.4": put_reinitialize_fw_sets},
+        "put_reinitialize_subgroups": {"4.8.4": put_reinitialize_subgroups},
     }

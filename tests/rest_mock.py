@@ -105,28 +105,34 @@ class RestClientMock(object):
         post_params_called = method_kwargs.get("post_params")
         headers_called = method_kwargs.get("headers")
 
-        assert method_called == method.upper(), (
-            "Unexpected method %s. Expected %s." % (method_called, method.upper())
+        assert method_called == method.upper(), "Unexpected method %s. Expected %s." % (
+            method_called,
+            method.upper(),
         )
-        assert endpoint_called == url_expected, (
-            "Unexpected URL %s. Expected %s." % (endpoint_called, url_expected)
+        assert endpoint_called == url_expected, "Unexpected URL %s. Expected %s." % (
+            endpoint_called,
+            url_expected,
         )
 
         if query_params is not None:
             assert set(query_called) == set(query_params), (
-                "Unexpected query params %s. Expected %s. Order ignored." % (query_called, query_params)
+                "Unexpected query params %s. Expected %s. Order ignored."
+                % (query_called, query_params)
             )
         if headers is not None:
-            assert headers_called == headers, (
-                "Unexpected headers %s. Expected %s." % (headers_called, headers)
+            assert headers_called == headers, "Unexpected headers %s. Expected %s." % (
+                headers_called,
+                headers,
             )
         if post_params is not None:
             assert post_params_called == post_params, (
-                "Unexpected POST params %s. Expected %s." % (post_params_called, post_params)
+                "Unexpected POST params %s. Expected %s."
+                % (post_params_called, post_params)
             )
         if body is not None:
-            assert body_called == body, (
-                "Unexpected Body %s. Expected %s." % (body_called, body)
+            assert body_called == body, "Unexpected Body %s. Expected %s." % (
+                body_called,
+                body,
             )
 
     def assert_no_request(self):
@@ -150,7 +156,7 @@ class StubRequestHandler(object):
     def get_response(self, method, url):
         method = method.lower()
         url_no_protocol = url.lstrip("https://")
-        uri = url_no_protocol[url_no_protocol.index("/"):]
+        uri = url_no_protocol[url_no_protocol.index("/") :]
         if (method, uri) in self._entries:
             rbody, rstatus, rheaders = self._entries.pop((method, uri))
             if not isinstance(rbody, six.string_types):

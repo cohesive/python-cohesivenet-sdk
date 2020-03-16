@@ -37,7 +37,7 @@ class TestSystemAdministrationApi(object):
             "/cloud_data",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SystemAdminApiData.CloudDataDetail
+            mock_response=SystemAdminApiData.CloudDataDetail,
         )(system_administration_api.get_cloud_data)
 
     def test_get_status(self, rest_mocker, api_client, api_schema: dict):
@@ -51,7 +51,7 @@ class TestSystemAdministrationApi(object):
             "/status",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SystemAdminApiData.VNS3Status
+            mock_response=SystemAdminApiData.VNS3Status,
         )(system_administration_api.get_status)
 
     def test_get_system_status(self, rest_mocker, api_client, api_schema: dict):
@@ -65,7 +65,7 @@ class TestSystemAdministrationApi(object):
             "/status/system",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SystemAdminApiData.SystemStatus
+            mock_response=SystemAdminApiData.SystemStatus,
         )(system_administration_api.get_system_status)
 
     def test_get_task_status(self, rest_mocker, api_client, api_schema: dict):
@@ -79,11 +79,7 @@ class TestSystemAdministrationApi(object):
             "/status/task",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": {
-                    "task_status": "finished_fail"
-                }
-            }
+            mock_response={"response": {"task_status": "finished_fail"}},
         )(system_administration_api.get_task_status)
 
     def test_post_generate_keypair(self, rest_mocker, api_client, api_schema: dict):
@@ -97,7 +93,7 @@ class TestSystemAdministrationApi(object):
             "/remote_support/keypair",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response="filefilefilefilefilefilefilefile"
+            mock_response="filefilefilefilefilefilefilefile",
         )(system_administration_api.post_generate_keypair)
 
     def test_put_remote_support(self, rest_mocker, api_client, api_schema: dict):
@@ -111,7 +107,7 @@ class TestSystemAdministrationApi(object):
             "/remote_support",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SystemAdminApiData.UpdateRemoteSupportResponse
+            mock_response=SystemAdminApiData.UpdateRemoteSupportResponse,
         )(system_administration_api.put_remote_support)
 
     def test_put_server_action(self, rest_mocker, api_client, api_schema: dict):
@@ -125,15 +121,10 @@ class TestSystemAdministrationApi(object):
             "/server",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": {
-                    "status": "rebooting"
-                }
-            }
+            mock_response={"response": {"status": "rebooting"}},
         )(system_administration_api.put_server_action)
 
     def test_wait_for_api(self, rest_mocker, api_client, api_schema: dict):
         """Test case for wait_for_api
         """
         pass
-

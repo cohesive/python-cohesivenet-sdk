@@ -15,8 +15,6 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
 import urllib3.exceptions
 
 
@@ -152,6 +150,7 @@ def get_keyset(api_client, **kwargs):  # noqa: E501
         collection_formats=collection_formats,
     )
 
+
 @validate_call(path_params=["uuid"])
 def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
     """get_ssl_install_status  # noqa: E501
@@ -180,9 +179,7 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -270,9 +267,7 @@ def put_config(api_client, topology_name=None, ntp_hosts=None, **kwargs):  # noq
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -366,10 +361,17 @@ def put_install_ssl_keypair(api_client, **kwargs):  # noqa: E501
 
 
 @validate_call(body_params=["token"])
-def put_keyset(api_client, token=None, source=None, topology_name=None, sealed_network=None, **kwargs):  # noqa: E501
+def put_keyset(
+    api_client,
+    token=None,
+    source=None,
+    topology_name=None,
+    sealed_network=None,
+    **kwargs
+):  # noqa: E501
     """put_keyset  # noqa: E501
 
-    Generates or fetches cryptographic credentials which are used to provide overlay devices access to the topology. 
+    Generates or fetches cryptographic credentials which are used to provide overlay devices access to the topology.
     Keyset generation happens in background. Poll on GET /keyset in_progress value.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -420,9 +422,7 @@ def put_keyset(api_client, token=None, source=None, topology_name=None, sealed_n
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -503,9 +503,7 @@ def put_update_admin_ui(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -533,9 +531,7 @@ def put_update_admin_ui(
     )
 
 
-def put_update_api_password(
-    api_client, password=None, **kwargs
-):  # noqa: E501
+def put_update_api_password(api_client, password=None, **kwargs):  # noqa: E501
     """put_update_api_password  # noqa: E501
 
     Allows you to change the API password/secret key.  To change the Web UI password (or username) use PUT admin_ui.   # noqa: E501
@@ -584,9 +580,7 @@ def put_update_api_password(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -615,9 +609,7 @@ def put_update_api_password(
 
 
 @validate_call(body_params=["cert", "key"])
-def put_upload_ssl_keypair(
-    api_client, cert=None, key=None, **kwargs
-):  # noqa: E501
+def put_upload_ssl_keypair(api_client, cert=None, key=None, **kwargs):  # noqa: E501
     """put_upload_ssl_keypair  # noqa: E501
 
     Upload new SSL cert and key pair  # noqa: E501
@@ -665,9 +657,7 @@ def put_upload_ssl_keypair(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -693,6 +683,7 @@ def put_upload_ssl_keypair(
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
+
 
 def try_get_keyset(api_client, **kwargs):  # noqa: E501
     """try_get_keyset  # noqa: E501
@@ -764,46 +755,22 @@ def wait_for_keyset(api_client, retry_timeout=2.0, timeout=60):
             )
             time.sleep(retry_timeout)
             continue
-    raise ApiException(
-        reason="Failed to fetch keyset. Timeout %s seconds." % timeout
-    )
+    raise ApiException(reason="Failed to fetch keyset. Timeout %s seconds." % timeout)
 
 
 class ConfigurationApiRouter(VersionRouter):
     """Manage and view VNS3 configuration state"""
 
     function_library = {
-        'get_config': {
-            '4.8.4': get_config
-        },
-        'get_keyset': {
-            '4.8.4': get_keyset
-        },
-        "get_ssl_install_status": {
-            "4.8.4": get_ssl_install_status
-        },
-        "put_config": {
-            "4.8.4": put_config
-        },
-        "put_install_ssl_keypair": {
-            "4.8.4": put_install_ssl_keypair
-        },
-        "put_keyset": {
-            "4.8.4": put_keyset
-        },
-        "put_update_admin_ui": {
-            "4.8.4": put_update_admin_ui
-        },
-        "put_update_api_password": {
-            "4.8.4": put_update_api_password
-        },
-        "put_upload_ssl_keypair": {
-            "4.8.4": put_upload_ssl_keypair
-        },
-        "try_get_keyset": {
-            "4.8.4": try_get_keyset
-        },
-        "wait_for_keyset": {
-            "4.8.4": wait_for_keyset
-        }
+        "get_config": {"4.8.4": get_config},
+        "get_keyset": {"4.8.4": get_keyset},
+        "get_ssl_install_status": {"4.8.4": get_ssl_install_status},
+        "put_config": {"4.8.4": put_config},
+        "put_install_ssl_keypair": {"4.8.4": put_install_ssl_keypair},
+        "put_keyset": {"4.8.4": put_keyset},
+        "put_update_admin_ui": {"4.8.4": put_update_admin_ui},
+        "put_update_api_password": {"4.8.4": put_update_api_password},
+        "put_upload_ssl_keypair": {"4.8.4": put_upload_ssl_keypair},
+        "try_get_keyset": {"4.8.4": try_get_keyset},
+        "wait_for_keyset": {"4.8.4": wait_for_keyset},
     }

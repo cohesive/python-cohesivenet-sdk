@@ -5,7 +5,7 @@ import pytest
 from tests.rest_mock import RestClientMock
 
 import cohesivenet
-from cohesivenet import VNS3Client, models, Configuration
+from cohesivenet import VNS3Client, Configuration
 from cohesivenet.rest import ApiException
 
 
@@ -41,7 +41,9 @@ class TestVNS3Client(object):
         assert hasattr(api_client, "monitoring")
         assert type(api_client.monitoring) is cohesivenet.MonitoringAlertingApi
         assert hasattr(api_client, "network_edge_plugins")
-        assert type(api_client.network_edge_plugins) is cohesivenet.NetworkEdgePluginsApi
+        assert (
+            type(api_client.network_edge_plugins) is cohesivenet.NetworkEdgePluginsApi
+        )
         assert hasattr(api_client, "overlay_network")
         assert type(api_client.overlay_network) is cohesivenet.OverlayNetworkApi
         assert hasattr(api_client, "peering")

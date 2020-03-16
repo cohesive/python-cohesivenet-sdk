@@ -78,7 +78,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
             Logger.info(
                 "API call timeout. Controller is likely rebooting. Waiting for keyset.",
                 wait_timeout=wait_timeout,
-                source=source
+                source=source,
             )
             client.sys_admin.wait_for_api(timeout=wait_timeout, wait_for_reboot=True)
             return client.config.wait_for_keyset(timeout=wait_timeout)
@@ -89,7 +89,9 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
                 keyset_data = client.config.try_get_keyset()
                 if not keyset_data:
                     Logger.info(
-                        "Keyset exists. Waiting for reboot.", wait_timeout=wait_timeout, source=source
+                        "Keyset exists. Waiting for reboot.",
+                        wait_timeout=wait_timeout,
+                        source=source,
                     )
                     client.sys_admin.wait_for_api(
                         timeout=wait_timeout, wait_for_reboot=True
@@ -320,32 +322,20 @@ def __add_controller_states(config, infra_state, groups=None):
 def get_config_from_env():
     # Update for environment
     cn_vars = {
-        k.replace('CN_', '').lower(): v
+        k.replace("CN_", "").lower(): v
         for k, v in dict(os.environ).items()
-        if k.startswith('CN_')
+        if k.startswith("CN_")
     }
 
-    env_config = {
-        "license_file": cn_vars.pop("license", None)
-    }
+    env_config = {"license_file": cn_vars.pop("license", None)}
 
     controller_vars = {
-        k: v.split(",")
-        for k, v in cn_vars.items()
-        if k.startswith("controllers")
+        k: v.split(",") for k, v in cn_vars.items() if k.startswith("controllers")
     }
 
-    variables = {
-        k: v
-        for k, v in cn_vars.items()
-        if k not in controller_vars
-    }
+    variables = {k: v for k, v in cn_vars.items() if k not in controller_vars}
 
-    return dict(
-        env_config,
-        **controller_vars, **{
-            "variables": variables
-        })
+    return dict(env_config, **controller_vars, **{"variables": variables})
 
 
 def _filter_dict_none_vals(d, none_vals=("", None)):
@@ -441,7 +431,10 @@ def __resolve_string_vars(string, local_vars, global_config):
 
             if type(val) is dict:
                 if string != "{%s}" % var:
-                    errors.append("Can't format dict into string for config var %s and string %s" % (var, string))
+                    errors.append(
+                        "Can't format dict into string for config var %s and string %s"
+                        % (var, string)
+                    )
                 else:
                     return val, None
             else:

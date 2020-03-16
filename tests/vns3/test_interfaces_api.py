@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import pytest
 
 import cohesivenet
-from cohesivenet.api.vns3 import interfaces_api # noqa: E501
+from cohesivenet.api.vns3 import interfaces_api  # noqa: E501
 from cohesivenet.rest import ApiException
 
 from tests.openapi import generate_method_test
@@ -37,10 +37,12 @@ class TestInterfacesApi(object):
             "/interfaces",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.InterfaceListResponse
+            mock_response=InterfacesApiData.InterfaceListResponse,
         )(interfaces_api.get_interfaces)
 
-    def test_get_system_interface_details(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_system_interface_details(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for get_system_interface_details
 
         """
@@ -51,7 +53,7 @@ class TestInterfacesApi(object):
             "/interfaces/system/{interface_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.InterfaceDetail
+            mock_response=InterfacesApiData.InterfaceDetail,
         )(interfaces_api.get_system_interface_details)
 
     def test_get_system_interfaces(self, rest_mocker, api_client, api_schema: dict):
@@ -64,10 +66,12 @@ class TestInterfacesApi(object):
             "/interfaces/system",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.InterfaceListResponse
+            mock_response=InterfacesApiData.InterfaceListResponse,
         )(interfaces_api.get_system_interfaces)
 
-    def test_post_create_system_interface(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_create_system_interface(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for post_create_system_interface
         """
         generate_method_test(
@@ -77,10 +81,12 @@ class TestInterfacesApi(object):
             "/interfaces/system",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.InterfaceDetail
+            mock_response=InterfacesApiData.InterfaceDetail,
         )(interfaces_api.post_create_system_interface)
 
-    def test_put_update_system_interface(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_update_system_interface(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for put_update_system_interface
         """
         generate_method_test(
@@ -90,7 +96,7 @@ class TestInterfacesApi(object):
             "/interfaces/system/{interface_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.InterfaceDetail
+            mock_response=InterfacesApiData.InterfaceDetail,
         )(interfaces_api.put_update_system_interface)
 
     def test_delete_system_interface(self, rest_mocker, api_client, api_schema: dict):
@@ -104,7 +110,7 @@ class TestInterfacesApi(object):
             "/interfaces/system/{interface_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.InterfaceDetail
+            mock_response=InterfacesApiData.InterfaceDetail,
         )(interfaces_api.delete_system_interface)
 
     def test_post_action_interfaces(self, rest_mocker, api_client, api_schema: dict):
@@ -117,7 +123,7 @@ class TestInterfacesApi(object):
             "/interfaces/action",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(interfaces_api.post_action_interfaces)
 
     def test_get_edge_gre_endpoints(self, rest_mocker, api_client, api_schema: dict):
@@ -130,10 +136,12 @@ class TestInterfacesApi(object):
             "/interfaces/edge_gre",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.GREEndpointListResponse
+            mock_response=InterfacesApiData.GREEndpointListResponse,
         )(interfaces_api.get_edge_gre_endpoints)
 
-    def test_get_edge_gre_endpoint_details(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_edge_gre_endpoint_details(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for get_edge_gre_endpoint_details
 
         """
@@ -144,7 +152,7 @@ class TestInterfacesApi(object):
             "/interfaces/edge_gre/{interface_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.GREEndpointDetail
+            mock_response=InterfacesApiData.GREEndpointDetail,
         )(interfaces_api.get_edge_gre_endpoint_details)
 
     def test_delete_edge_gre_endpoint(self, rest_mocker, api_client, api_schema: dict):
@@ -158,10 +166,12 @@ class TestInterfacesApi(object):
             "/interfaces/edge_gre/{interface_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.GREEndpointDetail
+            mock_response=InterfacesApiData.GREEndpointDetail,
         )(interfaces_api.delete_edge_gre_endpoint)
 
-    def test_post_create_edge_gre_endpoint(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_create_edge_gre_endpoint(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for post_create_edge_gre_endpoint
         """
         generate_method_test(
@@ -171,10 +181,12 @@ class TestInterfacesApi(object):
             "/interfaces/edge_gre",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.GREEndpointDetail
+            mock_response=InterfacesApiData.GREEndpointDetail,
         )(interfaces_api.post_create_edge_gre_endpoint)
 
-    def test_put_update_edge_gre_endpoint(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_update_edge_gre_endpoint(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for put_update_edge_gre_endpoint
         """
         generate_method_test(
@@ -184,5 +196,5 @@ class TestInterfacesApi(object):
             "/interfaces/edge_gre/{interface_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=InterfacesApiData.GREEndpointDetail
+            mock_response=InterfacesApiData.GREEndpointDetail,
         )(interfaces_api.put_update_edge_gre_endpoint)

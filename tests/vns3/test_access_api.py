@@ -49,7 +49,7 @@ class TestAccessApi(object):
             "/access/token",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessTokenDetail
+            mock_response=AccessApiData.AccessTokenDetail,
         )(access_api.create_api_token)
 
     def test_delete_access_url(self, rest_mocker, api_client, api_schema: dict):
@@ -62,10 +62,12 @@ class TestAccessApi(object):
             "/access/url/{access_url_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessUrlDeleteResponse
+            mock_response=AccessApiData.AccessUrlDeleteResponse,
         )(access_api.delete_access_url)
 
-    def test_delete_access_url_by_search(self, rest_mocker, api_client, api_schema: dict):
+    def test_delete_access_url_by_search(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for delete_access_url_by_search
         """
         generate_method_test(
@@ -75,7 +77,7 @@ class TestAccessApi(object):
             "/access/url",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessUrlDeleteResponse
+            mock_response=AccessApiData.AccessUrlDeleteResponse,
         )(access_api.delete_access_url_by_search)
 
     def test_delete_api_token(self, rest_mocker, api_client, api_schema: dict):
@@ -88,7 +90,7 @@ class TestAccessApi(object):
             "/access/token/{token_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessTokenDeleteResponse
+            mock_response=AccessApiData.AccessTokenDeleteResponse,
         )(access_api.delete_api_token)
 
     def test_get_access_urls(self, rest_mocker, api_client, api_schema: dict):
@@ -101,7 +103,7 @@ class TestAccessApi(object):
             "/access/urls",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessUrlListResponse
+            mock_response=AccessApiData.AccessUrlListResponse,
         )(access_api.get_access_urls)
 
     def test_get_access_url(self, rest_mocker, api_client, api_schema: dict):
@@ -114,7 +116,7 @@ class TestAccessApi(object):
             "/access/url/{access_url_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessUrlDetail
+            mock_response=AccessApiData.AccessUrlDetail,
         )(access_api.get_access_url)
 
     def test_get_api_token(self, rest_mocker, api_client, api_schema: dict):
@@ -127,7 +129,7 @@ class TestAccessApi(object):
             "/access/token/{token_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessTokenDetail
+            mock_response=AccessApiData.AccessTokenDetail,
         )(access_api.get_api_token)
 
     def test_get_api_tokens(self, rest_mocker, api_client, api_schema: dict):
@@ -140,7 +142,7 @@ class TestAccessApi(object):
             "/access/tokens",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessTokenListResponse
+            mock_response=AccessApiData.AccessTokenListResponse,
         )(access_api.get_api_tokens)
 
     def test_put_expire_access_url(self, rest_mocker, api_client, api_schema: dict):
@@ -153,7 +155,7 @@ class TestAccessApi(object):
             "/access/url/{access_url_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessUrlDetail
+            mock_response=AccessApiData.AccessUrlDetail,
         )(access_api.put_expire_access_url)
 
     def test_put_expire_api_token(self, rest_mocker, api_client, api_schema: dict):
@@ -166,5 +168,5 @@ class TestAccessApi(object):
             "/access/token/{token_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.AccessTokenDetail
+            mock_response=AccessApiData.AccessTokenDetail,
         )(access_api.put_expire_api_token)

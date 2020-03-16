@@ -22,7 +22,8 @@ def random_int(minimum=1, maximum=100):
 def random_string(minLength=10, maxLength=15):
     """Generate a random string of fixed length """
     length = random_int(minLength, maxLength)
-    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+    return "".join(random.choice(string.ascii_lowercase) for _ in range(length))
+
 
 def random_from_list(options=[]):
     return random.choice(options)
@@ -34,7 +35,7 @@ def generate_api_var(var_schema, **kwargs):
         enums = var_schema.get("enum")
         if enums:
             return random_from_list(options=enums)
-        kwargs = {} # map string constrains
+        kwargs = {}  # map string constrains
         # TODO: add format options
         return random_string(**kwargs)
     elif api_type == "integer":
@@ -51,8 +52,7 @@ def generate_api_var(var_schema, **kwargs):
         if "additionalProperties" in var_schema:
             v_type = var_schema["additionalProperties"]
             return {
-                str(i): generate_api_var(v_type)
-                for i in range(kwargs.pop("length", 2))
+                str(i): generate_api_var(v_type) for i in range(kwargs.pop("length", 2))
             }
         else:
             return {

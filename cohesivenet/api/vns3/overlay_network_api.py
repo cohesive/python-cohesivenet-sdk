@@ -15,9 +15,6 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import validate_call, VersionRouter
 
 
@@ -25,7 +22,7 @@ from cohesivenet.api_builder import validate_call, VersionRouter
 def get_clientpack_details(api_client, clientpack_name, **kwargs):  # noqa: E501
     """get_clientpack  # noqa: E501
 
-    Returns detailed information about all of the clientpacks in the topology. 
+    Returns detailed information about all of the clientpacks in the topology.
     If controllers's are properly peered, this information can come from any of the controllers.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -50,9 +47,7 @@ def get_clientpack_details(api_client, clientpack_name, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "clientpack_name": clientpack_name
-    }
+    path_params = {"clientpack_name": clientpack_name}
 
     query_params = []
 
@@ -94,7 +89,7 @@ def get_clientpack_details(api_client, clientpack_name, **kwargs):  # noqa: E501
 def get_clientpacks(api_client, sorted=None, **kwargs):  # noqa: E501
     """get_clientpacks  # noqa: E501
 
-    Returns detailed information about all of the clientpacks in the topology. 
+    Returns detailed information about all of the clientpacks in the topology.
     If controllers's are properly peered, this information can come from any of the controllers.  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -161,7 +156,6 @@ def get_clientpacks(api_client, sorted=None, **kwargs):  # noqa: E501
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def get_clients_status(api_client, **kwargs):  # noqa: E501
@@ -298,7 +292,9 @@ def get_connected_subnets(api_client, extended_output=None, **kwargs):  # noqa: 
 
 
 @validate_call(query_params=["name", "fileformat"])
-def get_download_clientpack(api_client, name=None, fileformat=None,**kwargs):  # noqa: E501
+def get_download_clientpack(
+    api_client, name=None, fileformat=None, **kwargs
+):  # noqa: E501
     """get_download_clientpack  # noqa: E501
 
     Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
@@ -370,16 +366,12 @@ def get_download_clientpack(api_client, name=None, fileformat=None,**kwargs):  #
 
 
 def post_calc_next_clientpack(
-    api_client,
-    low_ip=None,
-    high_ip=None,
-    include_disabled=None,
-    **kwargs
+    api_client, low_ip=None, high_ip=None, include_disabled=None, **kwargs
 ):  # noqa: E501
     """post_calc_next_clientpack  # noqa: E501
 
-    Get next sequential client pack. Provides sufficient information to call GET /clientpack. 
-    Note, Using this resource against multiple controllers in the same topology could cause distribution of the 
+    Get next sequential client pack. Provides sufficient information to call GET /clientpack.
+    Note, Using this resource against multiple controllers in the same topology could cause distribution of the
     same clientpack to multiple overlay devices which is not allowed.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -416,7 +408,7 @@ def post_calc_next_clientpack(
 
     form_params = []
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -427,9 +419,7 @@ def post_calc_next_clientpack(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -459,11 +449,7 @@ def post_calc_next_clientpack(
 
 @validate_call(path_params=["clientpack_name"], body_params=["key", "value"])
 def post_create_clientpack_tag(
-    api_client,
-    clientpack_name,
-    key=None,
-    value=None,
-    **kwargs
+    api_client, clientpack_name, key=None, value=None, **kwargs
 ):  # noqa: E501
     """post_create_clientpack_tag  # noqa: E501
 
@@ -494,9 +480,7 @@ def post_create_clientpack_tag(
 
     collection_formats = {}
 
-    path_params = {
-        "clientpack_name": clientpack_name
-    }
+    path_params = {"clientpack_name": clientpack_name}
 
     query_params = []
 
@@ -515,9 +499,7 @@ def post_create_clientpack_tag(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -578,9 +560,7 @@ def delete_clientpack_tag(
 
     collection_formats = {}
 
-    path_params = {
-        "clientpack_name": clientpack_name
-    }
+    path_params = {"clientpack_name": clientpack_name}
 
     query_params = []
 
@@ -599,9 +579,7 @@ def delete_clientpack_tag(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -743,9 +721,7 @@ def post_reset_client(api_client, name=None, disconnect=True, **kwargs):  # noqa
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -774,9 +750,7 @@ def post_reset_client(api_client, name=None, disconnect=True, **kwargs):  # noqa
 
 
 @validate_call(body_params=["requested_ips"])
-def put_add_clientpacks(
-    api_client, requested_ips=None, **kwargs
-):  # noqa: E501
+def put_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E501
     """put_add_clientpacks  # noqa: E501
 
     Incrementally add new clientpacks for use  # noqa: E501
@@ -824,9 +798,7 @@ def put_add_clientpacks(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -857,17 +829,12 @@ def put_add_clientpacks(
 # TODO one of checked_out regenerated enabled
 @validate_call(body_params=["name"])
 def put_clientpack(
-    api_client,
-    name=None,
-    enabled=None,
-    checked_out=None,
-    regenerate=None,
-    **kwargs
+    api_client, name=None, enabled=None, checked_out=None, regenerate=None, **kwargs
 ):  # noqa: E501
     """put_clientpack  # noqa: E501
 
     Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501
-   
+
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.put_clientpack(client, name, checked_out=True,async_req=True)
@@ -914,9 +881,7 @@ def put_clientpack(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -977,9 +942,7 @@ def put_disconnect_clientpack(
 
     collection_formats = {}
 
-    path_params = {
-        "clientpack_name": clientpack_name
-    }
+    path_params = {"clientpack_name": clientpack_name}
 
     query_params = []
 
@@ -998,9 +961,7 @@ def put_disconnect_clientpack(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1028,7 +989,9 @@ def put_disconnect_clientpack(
     )
 
 
-def put_update_clientpacks(api_client, enabled=None, checked_out=None, **kwargs):  # noqa: E501
+def put_update_clientpacks(
+    api_client, enabled=None, checked_out=None, **kwargs
+):  # noqa: E501
     """put_update_clientpacks  # noqa: E501
 
     For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.  This enables a variety of work flows by calling these functions after key generation,  but before general provisioning of addresses to devivces   # noqa: E501
@@ -1076,9 +1039,7 @@ def put_update_clientpacks(api_client, enabled=None, checked_out=None, **kwargs)
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1109,46 +1070,18 @@ def put_update_clientpacks(api_client, enabled=None, checked_out=None, **kwargs)
 class OverlayNetworkApiRouter(VersionRouter):
     # put_update_clientpacks
     function_library = {
-        "delete_clientpack_tag": {
-            "4.8.4": delete_clientpack_tag
-        },
-        "get_clientpack_details": {
-            "4.8.4": get_clientpack_details
-        },
-        "get_clientpacks": {
-            "4.8.4": get_clientpacks
-        },
-        "get_clients_status": {
-            "4.8.4": get_clients_status
-        },
-        "get_connected_subnets": {
-            "4.8.4": get_connected_subnets
-        },
-        "get_download_clientpack": {
-            "4.8.4": get_download_clientpack
-        },
-        "post_calc_next_clientpack": {
-            "4.8.4": post_calc_next_clientpack
-        },
-        "post_create_clientpack_tag": {
-            "4.8.4": post_create_clientpack_tag
-        },
-        "post_reset_all_clients": {
-            "4.8.4": post_reset_all_clients
-        },
-        "post_reset_client": {
-            "4.8.4": post_reset_client
-        },
-        "put_add_clientpacks": {
-            "4.8.4": put_add_clientpacks
-        },
-        "put_clientpack": {
-            "4.8.4": put_clientpack
-        },
-        "put_disconnect_clientpack": {
-            "4.8.4": put_disconnect_clientpack
-        },
-        "put_update_clientpacks": {
-            "4.8.4": put_update_clientpacks
-        }
+        "delete_clientpack_tag": {"4.8.4": delete_clientpack_tag},
+        "get_clientpack_details": {"4.8.4": get_clientpack_details},
+        "get_clientpacks": {"4.8.4": get_clientpacks},
+        "get_clients_status": {"4.8.4": get_clients_status},
+        "get_connected_subnets": {"4.8.4": get_connected_subnets},
+        "get_download_clientpack": {"4.8.4": get_download_clientpack},
+        "post_calc_next_clientpack": {"4.8.4": post_calc_next_clientpack},
+        "post_create_clientpack_tag": {"4.8.4": post_create_clientpack_tag},
+        "post_reset_all_clients": {"4.8.4": post_reset_all_clients},
+        "post_reset_client": {"4.8.4": post_reset_client},
+        "put_add_clientpacks": {"4.8.4": put_add_clientpacks},
+        "put_clientpack": {"4.8.4": put_clientpack},
+        "put_disconnect_clientpack": {"4.8.4": put_disconnect_clientpack},
+        "put_update_clientpacks": {"4.8.4": put_update_clientpacks},
     }

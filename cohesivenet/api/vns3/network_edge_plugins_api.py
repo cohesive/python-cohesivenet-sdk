@@ -15,8 +15,6 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
 import time
 
 from cohesivenet import Logger
@@ -47,14 +45,11 @@ def delete_container(api_client, uuid, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-
     local_var_params = locals()
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -124,9 +119,7 @@ def delete_container_image(api_client, uuid, force=False, **kwargs):  # noqa: E5
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -134,7 +127,7 @@ def delete_container_image(api_client, uuid, force=False, **kwargs):  # noqa: E5
 
     form_params = []
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -198,9 +191,7 @@ def get_container_logs(api_client, uuid, lines=None, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
@@ -512,9 +503,7 @@ def get_container_system_status(api_client, **kwargs):  # noqa: E501
 
 
 @validate_call(body_params=["action"])
-def post_action_container_system(
-    api_client, action=None, **kwargs
-):  # noqa: E501
+def post_action_container_system(api_client, action=None, **kwargs):  # noqa: E501
     """post_action_container_system  # noqa: E501
 
     Start or Stop container system  # noqa: E501
@@ -550,20 +539,18 @@ def post_action_container_system(
 
     form_params = []
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
-        
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -621,16 +608,11 @@ def post_commit_container(
 
     local_var_params = locals()
 
-    request_params = [
-        "name",
-        "description"
-    ]
+    request_params = ["name", "description"]
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -650,9 +632,7 @@ def post_commit_container(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -726,7 +706,7 @@ def post_create_container_image(
         "buildurl",
         "localbuild",
         "localimage",
-        "description"
+        "description",
     ]
 
     collection_formats = {}
@@ -751,9 +731,7 @@ def post_create_container_image(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -801,7 +779,7 @@ def post_start_container(
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.post_start_container(start_container_request, async_req=True)
 
-    :param uuid str: required OR 
+    :param uuid str: required OR
     :param image_uuid str: required OR
     :param ipaddress str:
     :param name str:
@@ -829,7 +807,7 @@ def post_start_container(
         "ipaddress",
         "description",
         "command",
-        "environment"
+        "environment",
     ]
 
     collection_formats = {}
@@ -854,9 +832,7 @@ def post_start_container(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -885,9 +861,7 @@ def post_start_container(
 
 
 @validate_call(body_params=["network"])
-def put_configure_container_system(
-    api_client, network=None, **kwargs
-):  # noqa: E501
+def put_configure_container_system(api_client, network=None, **kwargs):  # noqa: E501
     """put_configure_container_system  # noqa: E501
 
     Configures the container network.  # noqa: E501
@@ -911,7 +885,7 @@ def put_configure_container_system(
     """
 
     local_var_params = locals()
-    
+
     request_params = ["network"]
 
     collection_formats = {}
@@ -934,9 +908,7 @@ def put_configure_container_system(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -998,9 +970,7 @@ def put_edit_container_image(
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -1019,9 +989,7 @@ def put_edit_container_image(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1076,9 +1044,7 @@ def put_stop_container(api_client, uuid, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -1171,9 +1137,7 @@ def restart_container_network(api_client, sleep_time=2.0, timeout=30.0, **kwargs
         Boolean
     """
     start_time = time.time()
-    assert_container_system_state(
-        running=False, sleep_time=sleep_time, timeout=timeout
-    )
+    assert_container_system_state(running=False, sleep_time=sleep_time, timeout=timeout)
     remaining_time = timeout - (time.time() - start_time)
     assert_container_system_state(
         running=True, sleep_time=sleep_time, timeout=remaining_time
@@ -1240,56 +1204,24 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
 
 
 class NetworkEdgePluginsApiRouter(VersionRouter):
-     function_library = {
-        "delete_container": {
-            "4.8.4": delete_container
-        },
-        "delete_container_image": {
-            "4.8.4": delete_container_image
-        },
-        "get_container_logs": {
-            "4.8.4": get_container_logs
-        },
-        "get_container_system_ips": {
-            "4.8.4": get_container_system_ips
-        },
-        "get_container_system_images": {
-            "4.8.4": get_container_system_images
-        },
+    function_library = {
+        "delete_container": {"4.8.4": delete_container},
+        "delete_container_image": {"4.8.4": delete_container_image},
+        "get_container_logs": {"4.8.4": get_container_logs},
+        "get_container_system_ips": {"4.8.4": get_container_system_ips},
+        "get_container_system_images": {"4.8.4": get_container_system_images},
         "get_container_system_running_containers": {
             "4.8.4": get_container_system_running_containers
         },
-        "get_container_system_status": {
-            "4.8.4": get_container_system_status
-        },
-        "post_action_container_system": {
-            "4.8.4": post_action_container_system
-        },
-        "post_commit_container": {
-            "4.8.4": post_commit_container
-        },
-        "post_create_container_image": {
-            "4.8.4": post_create_container_image
-        },
-        "post_start_container": {
-            "4.8.4": post_start_container
-        },
-        "put_configure_container_system": {
-            "4.8.4": put_configure_container_system
-        },
-        "put_edit_container_image": {
-            "4.8.4": put_edit_container_image
-        },
-        "put_stop_container": {
-            "4.8.4": put_stop_container
-        },
-        "assert_container_system_state": {
-            "4.8.4": assert_container_system_state
-        },
-        "restart_container_network": {
-            "4.8.4": restart_container_network
-        },
-        "wait_for_image_import": {
-            "4.8.4": wait_for_image_import
-        },
+        "get_container_system_status": {"4.8.4": get_container_system_status},
+        "post_action_container_system": {"4.8.4": post_action_container_system},
+        "post_commit_container": {"4.8.4": post_commit_container},
+        "post_create_container_image": {"4.8.4": post_create_container_image},
+        "post_start_container": {"4.8.4": post_start_container},
+        "put_configure_container_system": {"4.8.4": put_configure_container_system},
+        "put_edit_container_image": {"4.8.4": put_edit_container_image},
+        "put_stop_container": {"4.8.4": put_stop_container},
+        "assert_container_system_state": {"4.8.4": assert_container_system_state},
+        "restart_container_network": {"4.8.4": restart_container_network},
+        "wait_for_image_import": {"4.8.4": wait_for_image_import},
     }

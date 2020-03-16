@@ -15,9 +15,6 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import validate_call, VersionRouter
 
 
@@ -48,9 +45,7 @@ def delete_peer(api_client, peer_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "peer_id": peer_id
-    }
+    path_params = {"peer_id": peer_id}
 
     query_params = []
 
@@ -154,16 +149,18 @@ def get_peering_status(api_client, **kwargs):  # noqa: E501
 
 
 @validate_call(body_params=["id", "name"])
-def post_create_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs):  # noqa: E501
+def post_create_peer(
+    api_client, id=None, name=None, overlay_mtu=None, **kwargs
+):  # noqa: E501
     """post_peer  # noqa: E501
 
-    Creates a peering relationship from a manager to another manager.  The peering call is unidirectional. 
+    Creates a peering relationship from a manager to another manager.  The peering call is unidirectional.
     Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.post_peer(create_peer_request, async_req=True)
-    
+
     :param id int: Controller ID as an integer of the controller you are peering with,  NOT the id of the one you are calling from
     :param name str: Hostname or IP address of the one you are peering with.
     :param overlay_mtu str: Link MTU between 500 and 4800. Defaults to 1500
@@ -194,10 +191,8 @@ def post_create_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs)
 
     form_params = []
     local_var_files = {}
-    
-    body_params = {
-        "force": kwargs.pop("force", True)
-    }
+
+    body_params = {"force": kwargs.pop("force", True)}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
 
@@ -207,9 +202,7 @@ def post_create_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs)
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -237,19 +230,13 @@ def post_create_peer(api_client, id=None, name=None, overlay_mtu=None, **kwargs)
     )
 
 
-
 @validate_call(path_params=["peer_id"])
 def put_update_peer(
-    api_client,
-    peer_id,
-    name=None,
-    overlay_mtu=None,
-    force=None,
-    **kwargs
+    api_client, peer_id, name=None, overlay_mtu=None, force=None, **kwargs
 ):  # noqa: E501
     """put_peer  # noqa: E501
 
-    Edits a peering relationship from a manager to another manager. The peering call is unidirectional. 
+    Edits a peering relationship from a manager to another manager. The peering call is unidirectional.
     Reciprocal calls must be made to peer two controllers  together and complete the peering process.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -260,7 +247,7 @@ def put_update_peer(
     :param int peer_id: ID for Peer (required)
     :param name str: Hostname or IP address of the one you are peering with.
     :param overlay_mtu str: Link MTU between 500 and 4800. Defaults to 1500
-    :param force bool: Setting false will NOT finalize the peering operation. 
+    :param force bool: Setting false will NOT finalize the peering operation.
         A peer \"reconfigure\" call would then be required. Default is true
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -280,9 +267,7 @@ def put_update_peer(
 
     collection_formats = {}
 
-    path_params = {
-        "peer_id": peer_id
-    }
+    path_params = {"peer_id": peer_id}
 
     query_params = []
 
@@ -290,7 +275,7 @@ def put_update_peer(
 
     form_params = []
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -301,9 +286,7 @@ def put_update_peer(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -368,10 +351,8 @@ def put_self_peering_id(api_client, id=None, **kwargs):  # noqa: E501
 
     form_params = []
     local_var_files = {}
-    
-    body_params = {
-        "force": kwargs.pop("force", True)
-    }
+
+    body_params = {"force": kwargs.pop("force", True)}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
 
@@ -381,9 +362,7 @@ def put_self_peering_id(api_client, id=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -413,19 +392,9 @@ def put_self_peering_id(api_client, id=None, **kwargs):  # noqa: E501
 
 class PeeringApiRouter(VersionRouter):
     function_library = {
-        "delete_peer": {
-            "4.8.4": delete_peer
-        },
-        "get_peering_status": {
-            "4.8.4": get_peering_status
-        },
-        "post_create_peer": {
-            "4.8.4": post_create_peer
-        },
-        "put_update_peer": {
-            "4.8.4": put_update_peer
-        },
-        "put_self_peering_id": {
-            "4.8.4": put_self_peering_id
-        }
+        "delete_peer": {"4.8.4": delete_peer},
+        "get_peering_status": {"4.8.4": get_peering_status},
+        "post_create_peer": {"4.8.4": post_create_peer},
+        "put_update_peer": {"4.8.4": put_update_peer},
+        "put_self_peering_id": {"4.8.4": put_self_peering_id},
     }

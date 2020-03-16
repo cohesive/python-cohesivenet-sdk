@@ -36,7 +36,7 @@ class TestOverlayNetworkApi(object):
             "/clientpacks/{clientpack_name}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=OverlayNetworkApiData.ClientpackDetail
+            mock_response=OverlayNetworkApiData.ClientpackDetail,
         )(overlay_network_api.get_clientpack_details)
 
     def test_get_clientpacks(self, rest_mocker, api_client, api_schema: dict):
@@ -50,7 +50,7 @@ class TestOverlayNetworkApi(object):
             "/clientpacks",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=OverlayNetworkApiData.ClientpacksListResponse
+            mock_response=OverlayNetworkApiData.ClientpacksListResponse,
         )(overlay_network_api.get_clientpacks)
 
     def test_get_clients_status(self, rest_mocker, api_client, api_schema: dict):
@@ -70,10 +70,10 @@ class TestOverlayNetworkApi(object):
                         "overlay_ipaddress": "172.31.1.1",
                         "managerid": 1,
                         "ipaddress": "10.10.10.27",
-                        "tags": {}
+                        "tags": {},
                     }
                 }
-            }
+            },
         )(overlay_network_api.get_clients_status)
 
     def test_get_connected_subnets(self, rest_mocker, api_client, api_schema: dict):
@@ -86,11 +86,7 @@ class TestOverlayNetworkApi(object):
             "/status/connected_subnets",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": [
-                    ["10.0.1.0", "255.255.255.0"]
-                ]
-            }
+            mock_response={"response": [["10.0.1.0", "255.255.255.0"]]},
         )(overlay_network_api.get_connected_subnets)
 
     def test_get_download_clientpack(self, rest_mocker, api_client, api_schema: dict):
@@ -104,7 +100,7 @@ class TestOverlayNetworkApi(object):
             "/clientpack",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response="asdofnaosdfnoasdfiasodiffilefilefilefile"
+            mock_response="asdofnaosdfnoasdfiasodiffilefilefilefile",
         )(overlay_network_api.get_download_clientpack)
 
     def test_post_calc_next_clientpack(self, rest_mocker, api_client, api_schema: dict):
@@ -118,10 +114,12 @@ class TestOverlayNetworkApi(object):
             "/clientpacks/next_available",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=OverlayNetworkApiData.NextClientpackResponse
+            mock_response=OverlayNetworkApiData.NextClientpackResponse,
         )(overlay_network_api.post_calc_next_clientpack)
 
-    def test_post_create_clientpack_tag(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_create_clientpack_tag(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for post_create_clientpack_tag
 
         """
@@ -132,7 +130,7 @@ class TestOverlayNetworkApi(object):
             "/clientpack/{clientpack_name}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=OverlayNetworkApiData.ClientpackTagsResponse
+            mock_response=OverlayNetworkApiData.ClientpackTagsResponse,
         )(overlay_network_api.post_create_clientpack_tag)
 
     def test_delete_clientpack_tag(self, rest_mocker, api_client, api_schema: dict):
@@ -146,7 +144,7 @@ class TestOverlayNetworkApi(object):
             "/clientpack/{clientpack_name}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=OverlayNetworkApiData.ClientpackTagsResponse
+            mock_response=OverlayNetworkApiData.ClientpackTagsResponse,
         )(overlay_network_api.delete_clientpack_tag)
 
     def test_post_reset_all_clients(self, rest_mocker, api_client, api_schema: dict):
@@ -160,11 +158,7 @@ class TestOverlayNetworkApi(object):
             "/clients/reset_all",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": {
-                    "resetting": ["172.16.1.1"]
-                }
-            }
+            mock_response={"response": {"resetting": ["172.16.1.1"]}},
         )(overlay_network_api.post_reset_all_clients)
 
     def test_post_reset_client(self, rest_mocker, api_client, api_schema: dict):
@@ -181,9 +175,9 @@ class TestOverlayNetworkApi(object):
             mock_response={
                 "response": {
                     "disconnecting": "172_31_1_2",
-                    "overlay_ipaddress":"172.31.1.2"
+                    "overlay_ipaddress": "172.31.1.2",
                 }
-            }
+            },
         )(overlay_network_api.post_reset_client)
 
     def test_put_add_clientpacks(self, rest_mocker, api_client, api_schema: dict):
@@ -199,7 +193,7 @@ class TestOverlayNetworkApi(object):
             mock_request_from_schema=True,
             mock_response={
                 "response": "15801670638979_696771229646571095757665467757884236311815995938"
-            }
+            },
         )(overlay_network_api.put_add_clientpacks)
 
     def test_put_clientpack(self, rest_mocker, api_client, api_schema: dict):
@@ -213,9 +207,7 @@ class TestOverlayNetworkApi(object):
             "/clientpack",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": OverlayNetworkApiData.Clientpack
-            }
+            mock_response={"response": OverlayNetworkApiData.Clientpack},
         )(overlay_network_api.put_clientpack)
 
     def test_put_disconnect_clientpack(self, rest_mocker, api_client, api_schema: dict):
@@ -232,9 +224,9 @@ class TestOverlayNetworkApi(object):
             mock_response={
                 "response": {
                     "disconnecting": "172_31_1_2",
-                    "overlay_ipaddress":"172.31.1.2"
+                    "overlay_ipaddress": "172.31.1.2",
                 }
-            }
+            },
         )(overlay_network_api.put_disconnect_clientpack)
 
     def test_put_update_clientpacks(self, rest_mocker, api_client, api_schema: dict):
@@ -247,10 +239,5 @@ class TestOverlayNetworkApi(object):
             "/clientpacks",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": {
-                    "enabled": True,
-                    "checked_out": True
-                }
-            }
+            mock_response={"response": {"enabled": True, "checked_out": True}},
         )(overlay_network_api.put_update_clientpacks)

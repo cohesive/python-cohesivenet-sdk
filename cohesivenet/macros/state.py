@@ -72,6 +72,7 @@ def get_peer_id(client, bust_cache=False):
     client.add_to_state(VNS3Attr.peer_id, val)
     return val
 
+
 def get_vns3_version(client, bust_cache=False):
     if not bust_cache:
         val = client.query_state(VNS3Attr.vns3_version)
@@ -89,8 +90,9 @@ _StateLibrary = {
     VNS3Attr.asn: get_asn,
     VNS3Attr.peer_id: get_peer_id,
     VNS3Attr.vns3_version: get_vns3_version,
-    VNS3Attr.overlay_ip: get_overlay_ip
+    VNS3Attr.overlay_ip: get_overlay_ip,
 }
+
 
 def attribute_supported(attribute):
     return attribute in _StateLibrary

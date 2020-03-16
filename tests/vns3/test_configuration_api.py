@@ -49,7 +49,7 @@ class TestConfigurationApi(object):
             "/keyset",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=ConfigurationApiData.KeysetDetail
+            mock_response=ConfigurationApiData.KeysetDetail,
         )(configuration_api.get_keyset)
 
     def test_get_ssl_install_status(self, rest_mocker, api_client, api_schema: dict):
@@ -62,7 +62,7 @@ class TestConfigurationApi(object):
             "/system/ssl/install/{uuid}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(configuration_api.get_ssl_install_status)
 
     def test_put_config(self, rest_mocker, api_client, api_schema: dict):
@@ -75,7 +75,7 @@ class TestConfigurationApi(object):
             "/config",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=ConfigurationApiData.ConfigDetail
+            mock_response=ConfigurationApiData.ConfigDetail,
         )(configuration_api.put_config)
 
     def test_put_install_ssl_keypair(self, rest_mocker, api_client, api_schema: dict):
@@ -88,7 +88,7 @@ class TestConfigurationApi(object):
             "/system/ssl/install",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(configuration_api.put_install_ssl_keypair)
 
     def test_put_keyset(self, rest_mocker, api_client, api_schema: dict):
@@ -101,7 +101,7 @@ class TestConfigurationApi(object):
             "/keyset",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=ConfigurationApiData.KeysetDetail
+            mock_response=ConfigurationApiData.KeysetDetail,
         )(configuration_api.put_keyset)
 
     def test_put_update_admin_ui(self, rest_mocker, api_client, api_schema: dict):
@@ -114,7 +114,7 @@ class TestConfigurationApi(object):
             "/admin_ui",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=ConfigurationApiData.UpdateUIAdminResponse
+            mock_response=ConfigurationApiData.UpdateUIAdminResponse,
         )(configuration_api.put_update_admin_ui)
 
     def test_put_update_api_password(self, rest_mocker, api_client, api_schema: dict):
@@ -127,11 +127,7 @@ class TestConfigurationApi(object):
             "/api_password",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": {
-                    "password_reset": "ok"
-                }
-            }
+            mock_response={"response": {"password_reset": "ok"}},
         )(configuration_api.put_update_api_password)
 
     def test_put_upload_ssl_keypair(self, rest_mocker, api_client, api_schema: dict):
@@ -144,9 +140,7 @@ class TestConfigurationApi(object):
             "/system/ssl/keypair",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": "Valid key/cert files uploaded"
-            }
+            mock_response={"response": "Valid key/cert files uploaded"},
         )(configuration_api.put_upload_ssl_keypair)
 
     def test_try_get_keyset(self, rest_mocker, api_client, api_schema: dict):
@@ -159,7 +153,7 @@ class TestConfigurationApi(object):
             "/keyset",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=ConfigurationApiData.KeysetDetail
+            mock_response=ConfigurationApiData.KeysetDetail,
         )(configuration_api.try_get_keyset)
 
     def test_wait_for_keyset(self, rest_mocker, api_client, api_schema: dict):
@@ -172,5 +166,5 @@ class TestConfigurationApi(object):
             "/keyset",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=ConfigurationApiData.KeysetDetail
+            mock_response=ConfigurationApiData.KeysetDetail,
         )(configuration_api.wait_for_keyset)

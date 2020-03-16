@@ -37,7 +37,7 @@ class TestRoutingApi(object):
             "/routes/{route_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=RoutingApiData.RoutesResponse
+            mock_response=RoutingApiData.RoutesResponse,
         )(routing_api.delete_route)
 
     def test_get_routes(self, rest_mocker, api_client, api_schema: dict):
@@ -51,7 +51,7 @@ class TestRoutingApi(object):
             "/routes",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=RoutingApiData.RoutesResponse
+            mock_response=RoutingApiData.RoutesResponse,
         )(routing_api.get_routes)
 
     def test_post_create_route(self, rest_mocker, api_client, api_schema: dict):
@@ -65,13 +65,13 @@ class TestRoutingApi(object):
             "/routes",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=RoutingApiData.RoutesResponse
+            mock_response=RoutingApiData.RoutesResponse,
         )(routing_api.post_create_route)
 
-
-    def test_post_create_route_already_exists(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_create_route_already_exists(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for post_create_route_if_not_exists
         """
         # need custom method for this one. different interface
         pass
-

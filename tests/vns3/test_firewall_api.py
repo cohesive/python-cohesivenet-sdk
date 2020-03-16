@@ -40,12 +40,14 @@ class TestFirewallApi(object):
                 "response": {
                     "status": "submitted",
                     "rule": "POSTROUTING_CUST -o eth0 -s 198.51.100.0/28 -j SNAT --to 10.0.1.120",
-                    "token": "15798987631596_5280108744805298913050300048466684878015928855"
+                    "token": "15798987631596_5280108744805298913050300048466684878015928855",
                 }
-            }
+            },
         )(firewall_api.post_create_firewall_rule)
 
-    def test_delete_firewall_rule_by_position(self, rest_mocker, api_client, api_schema: dict):
+    def test_delete_firewall_rule_by_position(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for delete_firewall_rule_by_position
         """
         generate_method_test(
@@ -58,14 +60,16 @@ class TestFirewallApi(object):
             mock_response={
                 "response": {
                     "status": "submitted",
-                    "rule":"MACRO_CUST -o eth0 -s 198.51.100.0/28 -j MASQUERADE\n",
-                    "position":1,
-                    "token":"15799073889568_958635609379530042894988535092666127141377814351"
+                    "rule": "MACRO_CUST -o eth0 -s 198.51.100.0/28 -j MASQUERADE\n",
+                    "position": 1,
+                    "token": "15799073889568_958635609379530042894988535092666127141377814351",
                 }
-            }
+            },
         )(firewall_api.delete_firewall_rule_by_position)
 
-    def test_delete_firewall_rule_by_rule(self, rest_mocker, api_client, api_schema: dict):
+    def test_delete_firewall_rule_by_rule(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for delete_firewall_rule_by_rule
         """
         generate_method_test(
@@ -79,9 +83,9 @@ class TestFirewallApi(object):
                 "response": {
                     "status": ":finished_ok, Matching rule found.",
                     "rule": "FORWARD_CUST -s 10.0.1.0/24 -d 10.0.3.0/24 -j ACCEPT",
-                    "position": 4
+                    "position": 4,
                 }
-            }
+            },
         )(firewall_api.delete_firewall_rule_by_rule)
 
     def test_delete_firewall_subgroup(self, rest_mocker, api_client, api_schema: dict):
@@ -94,11 +98,7 @@ class TestFirewallApi(object):
             "/firewall/rules/subgroup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": {
-                    "status": "finished_ok"
-                }
-            }
+            mock_response={"response": {"status": "finished_ok"}},
         )(firewall_api.delete_firewall_subgroup)
 
     def test_get_firewall_fw_sets(self, rest_mocker, api_client, api_schema: dict):
@@ -112,14 +112,13 @@ class TestFirewallApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response": [
-                    "PORTS_policy53 1194-1197",
-                    "PORTS_policy53 8080"
-                ]
-            }
+                "response": ["PORTS_policy53 1194-1197", "PORTS_policy53 8080"]
+            },
         )(firewall_api.get_firewall_fw_sets)
 
-    def test_post_create_firewall_fw_set(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_create_firewall_fw_set(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for post_create_firewall_fw_set
         """
         generate_method_test(
@@ -132,9 +131,9 @@ class TestFirewallApi(object):
             mock_response={
                 "response": {
                     "status": "ok",
-                    "rules": "PORTS_policy53 1194-1197\n PORTS_policy53 8080"
+                    "rules": "PORTS_policy53 1194-1197\n PORTS_policy53 8080",
                 }
-            }
+            },
         )(firewall_api.post_create_firewall_fw_set)
 
     def test_delete_firewall_fw_set(self, rest_mocker, api_client, api_schema: dict):
@@ -147,11 +146,7 @@ class TestFirewallApi(object):
             "/firewall/fwsets",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response": {
-                    "status": "finished_ok"
-                }
-            }
+            mock_response={"response": {"status": "finished_ok"}},
         )(firewall_api.delete_firewall_fw_set)
 
     def test_get_firewall_rules(self, rest_mocker, api_client, api_schema: dict):
@@ -165,19 +160,27 @@ class TestFirewallApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response":[
-                    ["POSTROUTING_CUST -o eth0 -s 198.51.100.0/28 -j SNAT --to 10.0.1.120\n", 0],
+                "response": [
+                    [
+                        "POSTROUTING_CUST -o eth0 -s 198.51.100.0/28 -j SNAT --to 10.0.1.120\n",
+                        0,
+                    ],
                     ["MACRO_CUST -o eth0 -s 198.51.100.0/28 -j MASQUERADE\n", 1],
                     ["FORWARD_CUST -s 198.51.100.0/28 -j ACCEPT\n", 2],
                     ["FORWARD_CUST -d 198.51.100.0/28 -j ACCEPT\n", 3],
-                    ["PREROUTING_CUST -i eth0 -p tcp -s 0.0.0.0/0 --dport 44 -j DNAT --to 198.51.100.2:22\n", 4],
+                    [
+                        "PREROUTING_CUST -i eth0 -p tcp -s 0.0.0.0/0 --dport 44 -j DNAT --to 198.51.100.2:22\n",
+                        4,
+                    ],
                     ["FORWARD_CUST -s 10.0.1.0/24 -d 10.0.3.0/24 -j ACCEPT\n", 5],
-                    ["FORWARD_CUST -d 10.0.1.0/24 -s 10.0.3.0/24 -j ACCEPT", 6]
+                    ["FORWARD_CUST -d 10.0.1.0/24 -s 10.0.3.0/24 -j ACCEPT", 6],
                 ]
-            }
+            },
         )(firewall_api.get_firewall_rules)
 
-    def test_get_firewall_rule_subgroups(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_firewall_rule_subgroups(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for get_firewall_rule_subgroups
         """
         generate_method_test(
@@ -188,14 +191,16 @@ class TestFirewallApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response":[
+                "response": [
                     ["INP_C_bensothergroup"],
-                    ["INP_C_bensnewgroup -s 198.31.50.0/24 -j DROP"]
+                    ["INP_C_bensnewgroup -s 198.31.50.0/24 -j DROP"],
                 ]
-            }
+            },
         )(firewall_api.get_firewall_rule_subgroups)
 
-    def test_post_create_firewall_subgroup_rule(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_create_firewall_subgroup_rule(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for post_create_firewall_subgroup_rule
         """
         generate_method_test(
@@ -208,9 +213,9 @@ class TestFirewallApi(object):
             mock_response={
                 "response": {
                     "status": "ok",
-                    "rules": "INP_C_bensnewgro -s 198.31.50.0/24 -j DROP\n"
+                    "rules": "INP_C_bensnewgro -s 198.31.50.0/24 -j DROP\n",
                 }
-            }
+            },
         )(firewall_api.post_create_firewall_subgroup_rule)
 
     def test_put_reinitialize_fw_sets(self, rest_mocker, api_client, api_schema: dict):
@@ -223,10 +228,12 @@ class TestFirewallApi(object):
             "/firewall/fwsets",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={}
+            mock_response={},
         )(firewall_api.put_reinitialize_fw_sets)
 
-    def test_put_reinitialize_subgroups(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_reinitialize_subgroups(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for put_reinitialize_subgroups
         """
         generate_method_test(
@@ -236,5 +243,5 @@ class TestFirewallApi(object):
             "/firewall/rules/subgroup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={}
+            mock_response={},
         )(firewall_api.put_reinitialize_subgroups)

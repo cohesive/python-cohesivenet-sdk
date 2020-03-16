@@ -15,11 +15,7 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import validate_call, VersionRouter
-
 
 
 def get_webhooks(api_client, **kwargs):  # noqa: E501
@@ -115,9 +111,7 @@ def get_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "webhook_id": webhook_id
-    }
+    path_params = {"webhook_id": webhook_id}
 
     query_params = []
 
@@ -217,7 +211,7 @@ def post_create_webhook(
         "validate_cert",
         "custom_properties",
         "headers",
-        "parameters"
+        "parameters",
     ]
 
     collection_formats = {}
@@ -242,9 +236,7 @@ def post_create_webhook(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -275,7 +267,7 @@ def post_create_webhook(
 @validate_call(path_params=["webhook_id"])
 def put_update_webhook(
     api_client,
-    webhook_id, 
+    webhook_id,
     name=None,
     url=None,
     events=None,
@@ -335,14 +327,12 @@ def put_update_webhook(
         "validate_cert",
         "custom_properties",
         "headers",
-        "parameters"
+        "parameters",
     ]
 
     collection_formats = {}
 
-    path_params = {
-        "webhook_id": webhook_id
-    }
+    path_params = {"webhook_id": webhook_id}
 
     query_params = []
 
@@ -362,9 +352,7 @@ def put_update_webhook(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -420,9 +408,7 @@ def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "webhook_id": webhook_id
-    }
+    path_params = {"webhook_id": webhook_id}
 
     query_params = []
 
@@ -489,9 +475,7 @@ def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "alert_id": alert_id
-    }
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -557,9 +541,7 @@ def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "alert_id": alert_id
-    }
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -717,7 +699,7 @@ def post_define_new_alert(
         "events",
         "custom_properties",
         "webhook_id",
-        "template_id"
+        "template_id",
     ]
 
     collection_formats = {}
@@ -742,9 +724,7 @@ def post_define_new_alert(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -799,9 +779,7 @@ def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "alert_id": alert_id
-    }
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -841,9 +819,7 @@ def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
 
 
 @validate_call(path_params=["alert_id"])
-def post_toggle_enabled_alert(
-    api_client, alert_id, **kwargs
-):  # noqa: E501
+def post_toggle_enabled_alert(api_client, alert_id, **kwargs):  # noqa: E501
     """post_toggle_enabled_alert  # noqa: E501
 
     Toggle enabled property on alert  # noqa: E501
@@ -869,9 +845,7 @@ def post_toggle_enabled_alert(
 
     collection_formats = {}
 
-    path_params = {
-        "alert_id": alert_id
-    }
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -963,14 +937,12 @@ def put_update_alert(
         "events",
         "custom_properties",
         "webhook_id",
-        "template_id"
+        "template_id",
     ]
 
     collection_formats = {}
 
-    path_params = {
-        "alert_id": alert_id
-    }
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -990,9 +962,7 @@ def put_update_alert(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1023,40 +993,16 @@ def put_update_alert(
 class MonitoringAlertingApiRouter(VersionRouter):
 
     function_library = {
-        "get_webhooks": {
-            "4.8.4": get_webhooks
-        },
-        "get_webhook": {
-            "4.8.4": get_webhook
-        },
-        "post_create_webhook": {
-            "4.8.4": post_create_webhook
-        },
-        "put_update_webhook": {
-            "4.8.4": put_update_webhook
-        },
-        "delete_webhook": {
-            "4.8.4": delete_webhook
-        },
-        "delete_alert": {
-            "4.8.4": delete_alert
-        },
-        "get_alert": {
-            "4.8.4": get_alert
-        },
-        "get_alerts": {
-            "4.8.4": get_alerts
-        },
-        "post_define_new_alert": {
-            "4.8.4": post_define_new_alert
-        },
-        "post_test_alert": {
-            "4.8.4": post_test_alert
-        },
-        "post_toggle_enabled_alert": {
-            "4.8.4": post_toggle_enabled_alert
-        },
-        "put_update_alert": {
-            "4.8.4": put_update_alert
-        }
+        "get_webhooks": {"4.8.4": get_webhooks},
+        "get_webhook": {"4.8.4": get_webhook},
+        "post_create_webhook": {"4.8.4": post_create_webhook},
+        "put_update_webhook": {"4.8.4": put_update_webhook},
+        "delete_webhook": {"4.8.4": delete_webhook},
+        "delete_alert": {"4.8.4": delete_alert},
+        "get_alert": {"4.8.4": get_alert},
+        "get_alerts": {"4.8.4": get_alerts},
+        "post_define_new_alert": {"4.8.4": post_define_new_alert},
+        "post_test_alert": {"4.8.4": post_test_alert},
+        "post_toggle_enabled_alert": {"4.8.4": post_toggle_enabled_alert},
+        "put_update_alert": {"4.8.4": put_update_alert},
     }

@@ -15,11 +15,7 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import validate_call, VersionRouter
-
 
 
 @validate_call(path_params=["snapshot_name"])
@@ -49,9 +45,7 @@ def delete_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "snapshot_name": snapshot_name
-    }
+    path_params = {"snapshot_name": snapshot_name}
 
     query_params = []
 
@@ -91,9 +85,7 @@ def delete_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
 
 
 @validate_call(path_params=["snapshot_name"])
-def get_download_snapshot(
-    api_client, snapshot_name, **kwargs
-):  # noqa: E501
+def get_download_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
     """get_download_snapshot  # noqa: E501
 
     Download snapshot file  # noqa: E501
@@ -119,9 +111,7 @@ def get_download_snapshot(
 
     collection_formats = {}
 
-    path_params = {
-        "snapshot_name": snapshot_name
-    }
+    path_params = {"snapshot_name": snapshot_name}
 
     query_params = []
 
@@ -261,7 +251,7 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
     form_params = []
 
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -272,9 +262,7 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -346,9 +334,7 @@ def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["text/plain"]
     )  # noqa: E501
 
@@ -376,22 +362,11 @@ def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
     )
 
 
-
 class SnapshotsApiRouter(VersionRouter):
     function_library = {
-        "delete_snapshot": {
-            "4.8.4": delete_snapshot
-        },
-        "get_download_snapshot": {
-            "4.8.4": get_download_snapshot
-        },
-        "get_snapshots": {
-            "4.8.4": get_snapshots
-        },
-        "post_create_snapshot": {
-            "4.8.4": post_create_snapshot
-        },
-        "put_import_snapshot": {
-            "4.8.4": put_import_snapshot
-        }
+        "delete_snapshot": {"4.8.4": delete_snapshot},
+        "get_download_snapshot": {"4.8.4": get_download_snapshot},
+        "get_snapshots": {"4.8.4": get_snapshots},
+        "post_create_snapshot": {"4.8.4": post_create_snapshot},
+        "put_import_snapshot": {"4.8.4": put_import_snapshot},
     }

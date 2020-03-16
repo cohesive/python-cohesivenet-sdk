@@ -1,4 +1,3 @@
-
 from __future__ import absolute_import
 
 import datetime
@@ -9,7 +8,6 @@ import tempfile
 
 import cohesivenet.util
 from cohesivenet import rest
-from cohesivenet.exceptions import ApiValueError
 
 
 class Serializer(object):
@@ -59,8 +57,7 @@ class Serializer(object):
             raise RuntimeError("Unkown object type %s" % str(type(obj)))
 
         return {
-            key: self.sanitize_for_serialization(val)
-            for key, val in obj_dict.items()
+            key: self.sanitize_for_serialization(val) for key, val in obj_dict.items()
         }
 
     def deserialize(self, response, response_type="object"):
@@ -112,9 +109,7 @@ class Serializer(object):
 
             if klass.startswith("dict("):
                 sub_kls = re.match(r"dict\(([^,]*), (.*)\)", klass).group(2)
-                return {
-                    k: self.__deserialize(v, sub_kls) for k, v in data.items()
-                }
+                return {k: self.__deserialize(v, sub_kls) for k, v in data.items()}
 
             # convert str to class
             if klass in self.NATIVE_TYPES_MAPPING:
@@ -132,7 +127,6 @@ class Serializer(object):
             return self.__deserialize_datatime(data)
         else:
             raise RuntimeError("Unknown type %s. Classes not supported." % klass)
-
 
     def __deserialize_file(self, response, response_type=None):
         """Deserializes body to file

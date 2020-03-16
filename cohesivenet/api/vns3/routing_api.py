@@ -15,16 +15,12 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet import Logger
 from cohesivenet.api_builder import validate_call, VersionRouter
 
 
 class RouteConstants(object):
     RouteComparisonKeys = ["cidr", "interface", "gateway", "advertise"]
-
 
 
 @validate_call(path_params=["route_id"])
@@ -54,9 +50,7 @@ def delete_route(api_client, route_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "route_id": route_id
-    }
+    path_params = {"route_id": route_id}
 
     query_params = []
 
@@ -98,10 +92,10 @@ def delete_route(api_client, route_id, **kwargs):  # noqa: E501
 def get_routes(api_client, **kwargs):  # noqa: E501
     """get_routes  # noqa: E501
 
-    Describes routes that this manager has access to via its network interfaces (virtual or otherwise). 
-    If advertized, other VNS3 Controllers will receive the route instantly. Network clients will 
-    receive it when they get their next route push, which is normally on a re-connect or in neartime 
-    if they use the VNS3 Routing agent on their cloud servers. Remote endpoints  (other data centers) 
+    Describes routes that this manager has access to via its network interfaces (virtual or otherwise).
+    If advertized, other VNS3 Controllers will receive the route instantly. Network clients will
+    receive it when they get their next route push, which is normally on a re-connect or in neartime
+    if they use the VNS3 Routing agent on their cloud servers. Remote endpoints  (other data centers)
     would not receive the route unless specified as part of  their IPsec Configuration AND the
     Configuration of such a tunnel on the VNS3 controller.   # noqa: E501
 
@@ -184,8 +178,8 @@ def post_create_route(
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.post_create_route(create_route_request, async_req=True)
- 
-    :param cidr str: CIDR of a route that the VNS3 Controller has access  to that it wants to 
+
+    :param cidr str: CIDR of a route that the VNS3 Controller has access  to that it wants to
                      publish throughout the  Routing tables of the overlay network
     :param description str:
     :param interface str: Sets the interface where this route will be advertised.
@@ -215,7 +209,7 @@ def post_create_route(
         "gateway",
         "tunnel",
         "advertise",
-        "metric"
+        "metric",
     ]
 
     collection_formats = {}
@@ -229,7 +223,7 @@ def post_create_route(
     form_params = []
 
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -240,16 +234,14 @@ def post_create_route(
     interface = body_params.get("interface")
     if not interface:
         body_params["interface"] = "_notset"
-        
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -287,12 +279,13 @@ def post_create_route_if_not_exists(
         route {dict} - Route dictionary
 
     Keyword Arguments:
-        comparison_keys {List[str]} - list of models.Route attributes to compare when checking for existence.
+        comparison_keys {List[str]} - list of Route attributes to compare when checking for existence.
                                         default: ["cidr", "interface", "gateway"]
 
     Returns:
         [RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> dict
     """
+
     def __to_route_tuple(route, keys):
         t = ()
         for key in keys:
@@ -315,8 +308,7 @@ def post_create_route_if_not_exists(
     new_route_tuple = __to_route_tuple(route_request, comparison_keys)
     if new_route_tuple in route_tuples:
         Logger.debug(
-            "Route already exists. Skipping creation.",
-            host=api_client.host_uri,
+            "Route already exists. Skipping creation.", host=api_client.host_uri,
         )
         return routes_response
 
@@ -326,16 +318,8 @@ def post_create_route_if_not_exists(
 class RoutingApiRouter(VersionRouter):
 
     function_library = {
-        "delete_route": {
-            "4.8.4": delete_route
-        },
-        "get_routes": {
-            "4.8.4": get_routes
-        },
-        "post_create_route": {
-            "4.8.4": post_create_route
-        },
-        "post_create_route_if_not_exists": {
-            "4.8.4": post_create_route_if_not_exists
-        },
+        "delete_route": {"4.8.4": delete_route},
+        "get_routes": {"4.8.4": get_routes},
+        "post_create_route": {"4.8.4": post_create_route},
+        "post_create_route_if_not_exists": {"4.8.4": post_create_route_if_not_exists},
     }

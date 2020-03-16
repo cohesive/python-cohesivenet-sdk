@@ -15,14 +15,13 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import VersionRouter, validate_call
 
 
 # @validate_call()
-def create_access_url(api_client, expires=3600, description=None, **kwargs):  # noqa: E501
+def create_access_url(
+    api_client, expires=3600, description=None, **kwargs
+):  # noqa: E501
     """Create access URL  # noqa: E501
 
     Create access URL  # noqa: E501
@@ -45,10 +44,7 @@ def create_access_url(api_client, expires=3600, description=None, **kwargs):  # 
     """
 
     local_var_params = locals()
-    request_params = [
-        "expires",
-        "description"
-    ]
+    request_params = ["expires", "description"]
 
     collection_formats = {}
 
@@ -66,34 +62,42 @@ def create_access_url(api_client, expires=3600, description=None, **kwargs):  # 
         body_params[param] = local_var_params[param]
 
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params['Content-Type'] = api_client.select_header_content_type(  # noqa: E501
-        ['application/json'])  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/url', 'POST',
+        "/access/url",
+        "POST",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
-def create_api_token(api_client, expires=3600, token_name=None, refreshes=None, **kwargs):  # noqa: E501
+def create_api_token(
+    api_client, expires=3600, token_name=None, refreshes=None, **kwargs
+):  # noqa: E501
     """Create API token  # noqa: E501
 
     Create api token  # noqa: E501
@@ -120,11 +124,7 @@ def create_api_token(api_client, expires=3600, token_name=None, refreshes=None, 
 
     local_var_params = locals()
 
-    request_params = [
-        "expires",
-        "token_name",
-        "refreshes"
-    ]
+    request_params = ["expires", "token_name", "refreshes"]
 
     collection_formats = {}
 
@@ -141,31 +141,37 @@ def create_api_token(api_client, expires=3600, token_name=None, refreshes=None, 
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params['Content-Type'] = api_client.select_header_content_type(  # noqa: E501
-        ['application/json'])  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/token', 'POST',
+        "/access/token",
+        "POST",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 @validate_call(path_params=["access_url_id"])
@@ -195,9 +201,7 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "access_url_id": access_url_id
-    }
+    path_params = {"access_url_id": access_url_id}
 
     query_params = []
 
@@ -208,30 +212,37 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
 
     body_params = None
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/url/{access_url_id}', 'DELETE',
+        "/access/url/{access_url_id}",
+        "DELETE",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
-def delete_access_url_by_search(api_client, access_url_id=None, access_url=None, **kwargs):  # noqa: E501
+def delete_access_url_by_search(
+    api_client, access_url_id=None, access_url=None, **kwargs
+):  # noqa: E501
     """Find and delete access URL  # noqa: E501
 
     Delete access URL by ID or URL  # noqa: E501
@@ -257,10 +268,7 @@ def delete_access_url_by_search(api_client, access_url_id=None, access_url=None,
 
     local_var_params = locals()
 
-    request_params = [
-        "access_url_id",
-        "access_url"
-    ]
+    request_params = ["access_url_id", "access_url"]
 
     collection_formats = {}
 
@@ -278,31 +286,37 @@ def delete_access_url_by_search(api_client, access_url_id=None, access_url=None,
         body_params[param] = local_var_params[param]
 
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params['Content-Type'] = api_client.select_header_content_type(  # noqa: E501
-        ['application/json'])  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/url', 'DELETE',
+        "/access/url",
+        "DELETE",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 @validate_call(path_params=["token_id"])
@@ -332,9 +346,7 @@ def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
     local_var_params = locals()
     collection_formats = {}
 
-    path_params = {
-        "token_id": token_id
-    }
+    path_params = {"token_id": token_id}
 
     query_params = []
 
@@ -345,27 +357,32 @@ def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
 
     body_params = None
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/token/{token_id}', 'DELETE',
+        "/access/token/{token_id}",
+        "DELETE",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 def get_access_urls(api_client, **kwargs):  # noqa: E501
@@ -405,27 +422,32 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
 
     body_params = None
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/urls', 'GET',
+        "/access/urls",
+        "GET",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 @validate_call(path_params=["access_url_id"])
@@ -456,9 +478,7 @@ def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "access_url_id": access_url_id
-    }
+    path_params = {"access_url_id": access_url_id}
 
     query_params = []
 
@@ -469,27 +489,32 @@ def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
 
     body_params = None
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/url/{access_url_id}', 'GET',
+        "/access/url/{access_url_id}",
+        "GET",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 @validate_call(path_params=["token_id"])
@@ -520,9 +545,7 @@ def get_api_token(api_client, token_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "token_id": token_id
-    }
+    path_params = {"token_id": token_id}
 
     query_params = []
 
@@ -533,27 +556,32 @@ def get_api_token(api_client, token_id, **kwargs):  # noqa: E501
 
     body_params = None
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/token/{token_id}', 'GET',
+        "/access/token/{token_id}",
+        "GET",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 def get_api_tokens(api_client, **kwargs):  # noqa: E501
@@ -593,31 +621,38 @@ def get_api_tokens(api_client, **kwargs):  # noqa: E501
 
     body_params = None
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/tokens', 'GET',
+        "/access/tokens",
+        "GET",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 @validate_call(path_params=["access_url_id"])
-def put_expire_access_url(api_client, access_url_id, expired=True, **kwargs):  # noqa: E501
+def put_expire_access_url(
+    api_client, access_url_id, expired=True, **kwargs
+):  # noqa: E501
     """Expire access URL  # noqa: E501
 
     Expire access URL  # noqa: E501
@@ -643,13 +678,11 @@ def put_expire_access_url(api_client, access_url_id, expired=True, **kwargs):  #
 
     local_var_params = locals()
 
-    request_params = ['expired']
+    request_params = ["expired"]
 
     collection_formats = {}
 
-    path_params = {
-        "access_url_id": access_url_id
-    }
+    path_params = {"access_url_id": access_url_id}
 
     query_params = []
 
@@ -663,31 +696,37 @@ def put_expire_access_url(api_client, access_url_id, expired=True, **kwargs):  #
         body_params[param] = local_var_params[param]
 
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params['Content-Type'] = api_client.select_header_content_type(  # noqa: E501
-        ['application/json'])  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/url/{access_url_id}', 'PUT',
+        "/access/url/{access_url_id}",
+        "PUT",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 @validate_call(path_params=["token_id"])
@@ -717,13 +756,11 @@ def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa:
 
     local_var_params = locals()
 
-    request_params = ['expired']
- 
+    request_params = ["expired"]
+
     collection_formats = {}
 
-    path_params = {
-        "token_id": token_id
-    }
+    path_params = {"token_id": token_id}
 
     query_params = []
 
@@ -737,68 +774,52 @@ def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa:
         body_params[param] = local_var_params[param]
 
     # HTTP header `Accept`
-    header_params['Accept'] = api_client.select_header_accept(
-        ['application/json'])  # noqa: E501
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params['Content-Type'] = api_client.select_header_content_type(  # noqa: E501
-        ['application/json'])  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ['basicAuth']  # noqa: E501
+    auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        '/access/token/{token_id}', 'PUT',
+        "/access/token/{token_id}",
+        "PUT",
         path_params,
         query_params,
         header_params,
         body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type='object',  # noqa: E501
+        response_type="object",  # noqa: E501
         auth_settings=auth_settings,
-        async_req=local_var_params.get('async_req'),
-        _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-        _preload_content=local_var_params.get('_preload_content', True),
-        _request_timeout=local_var_params.get('_request_timeout'),
-        collection_formats=collection_formats)
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
 
 
 class AccessApiRouter(VersionRouter):
     """Manage access to VNS3 with API tokens and admin access URLs"""
 
     function_library = {
-        'create_access_url': {
-            '4.8.4': create_access_url
-        },
-        'create_api_token': {
-            '4.8.4': create_api_token
-        },
-        'delete_access_url': {
-            '4.8.4': delete_access_url
-        },
-        'delete_access_url_by_search': {
-            '4.8.4': delete_access_url_by_search
-        },
-        'delete_api_token': {
-            '4.8.4': delete_api_token
-        },
-        'get_access_urls': {
-            '4.8.4': get_access_urls
-        },
-        'get_access_url': {
-            '4.8.4': get_access_url
-        },
-        'get_api_token': {
-            '4.8.4': get_api_token
-        },
-        'get_api_tokens': {
-            '4.8.4': get_api_tokens
-        },
-        'put_expire_access_url': {
-            '4.8.4': put_expire_access_url
-        },
-        'put_expire_api_token': {
-            '4.8.4': put_expire_api_token
-        }
+        "create_access_url": {"4.8.4": create_access_url},
+        "create_api_token": {"4.8.4": create_api_token},
+        "delete_access_url": {"4.8.4": delete_access_url},
+        "delete_access_url_by_search": {"4.8.4": delete_access_url_by_search},
+        "delete_api_token": {"4.8.4": delete_api_token},
+        "get_access_urls": {"4.8.4": get_access_urls},
+        "get_access_url": {"4.8.4": get_access_url},
+        "get_api_token": {"4.8.4": get_api_token},
+        "get_api_tokens": {"4.8.4": get_api_tokens},
+        "put_expire_access_url": {"4.8.4": put_expire_access_url},
+        "put_expire_api_token": {"4.8.4": put_expire_api_token},
     }

@@ -16,7 +16,6 @@ from __future__ import absolute_import
 import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
-import six
 import urllib3.exceptions
 
 
@@ -182,7 +181,7 @@ def get_system_status(api_client, timestamp=None, **kwargs):  # noqa: E501
     local_var_params = locals()
 
     request_params = ["timestamp"]  # noqa: E501
-    
+
     collection_formats = {}
 
     path_params = {}
@@ -253,7 +252,7 @@ def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
     local_var_params = locals()
 
     request_params = ["token"]  # noqa: E501
-    
+
     collection_formats = {}
 
     path_params = {}
@@ -299,10 +298,10 @@ def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
 
 
 @validate_call(file_upload=True, file_kwarg="body")
-def post_generate_keypair(api_client,  body=None, **kwargs):  # noqa: E501
+def post_generate_keypair(api_client, body=None, **kwargs):  # noqa: E501
     """post_generate_keypair  # noqa: E501
 
-    Generating a remote support key which can be shared with Cohesive to provide  access to the internal of the VNS3 Controller 
+    Generating a remote support key which can be shared with Cohesive to provide  access to the internal of the VNS3 Controller
     remotely as a \"one time key\".  Once Cohesive has used the key it can be revoked and access terminated.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -310,7 +309,7 @@ def post_generate_keypair(api_client,  body=None, **kwargs):  # noqa: E501
     >>> response = await api.post_generate_keypair(client, body, async_req=True)
 
     :param async_req bool: execute request asynchronously
-    :param passphrase_body str: Encrypted passphrase file which will be used to generate an X509 key for  accessing the VNS3 Controller 
+    :param passphrase_body str: Encrypted passphrase file which will be used to generate an X509 key for  accessing the VNS3 Controller
     in support mode. These are generated and owned by Cohesive.  Contact support@cohesive.net for an encrypted passphrase file.  (required)
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -345,9 +344,7 @@ def post_generate_keypair(api_client,  body=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["text/plain"]
     )  # noqa: E501
 
@@ -375,10 +372,12 @@ def post_generate_keypair(api_client,  body=None, **kwargs):  # noqa: E501
     )
 
 
-def put_remote_support(api_client, enabled=None, revoke_credential=None, **kwargs):  # noqa: E501
+def put_remote_support(
+    api_client, enabled=None, revoke_credential=None, **kwargs
+):  # noqa: E501
     """put_remote_support  # noqa: E501
 
-    Enables and disables remote support. Revokes the validity of a remote support 
+    Enables and disables remote support. Revokes the validity of a remote support
     keypair generated with postGenerateKeypair   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -401,11 +400,8 @@ def put_remote_support(api_client, enabled=None, revoke_credential=None, **kwarg
     """
 
     local_var_params = locals()
-    
-    request_params = [
-        "enabled",
-        "revoke_credential"
-    ]
+
+    request_params = ["enabled", "revoke_credential"]
 
     collection_formats = {}
 
@@ -418,7 +414,7 @@ def put_remote_support(api_client, enabled=None, revoke_credential=None, **kwarg
     form_params = []
 
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -429,9 +425,7 @@ def put_remote_support(api_client, enabled=None, revoke_credential=None, **kwarg
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -482,7 +476,7 @@ def put_server_action(api_client, reboot=True, **kwargs):  # noqa: E501
     """
 
     local_var_params = locals()
-    
+
     request_params = ["reboot"]
 
     collection_formats = {}
@@ -496,7 +490,7 @@ def put_server_action(api_client, reboot=True, **kwargs):  # noqa: E501
     form_params = []
 
     local_var_files = {}
-    
+
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -507,9 +501,7 @@ def put_server_action(api_client, reboot=True, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -613,28 +605,12 @@ def wait_for_api(
 
 class SystemAdministrationApiRouter(VersionRouter):
     function_library = {
-        "get_cloud_data": {
-            "4.8.4": get_cloud_data
-        },
-        "get_status": {
-            "4.8.4": get_status
-        },
-        "get_task_status": {
-            "4.8.4": get_task_status
-        },
-        "get_system_status": {
-            "4.8.4": get_system_status
-        },
-        "post_generate_keypair": {
-            "4.8.4": post_generate_keypair
-        },
-        "put_remote_support": {
-            "4.8.4": put_remote_support
-        },
-        "put_server_action": {
-            "4.8.4": put_server_action
-        },
-        "wait_for_api": {
-            "4.8.4": wait_for_api
-        },
+        "get_cloud_data": {"4.8.4": get_cloud_data},
+        "get_status": {"4.8.4": get_status},
+        "get_task_status": {"4.8.4": get_task_status},
+        "get_system_status": {"4.8.4": get_system_status},
+        "post_generate_keypair": {"4.8.4": post_generate_keypair},
+        "put_remote_support": {"4.8.4": put_remote_support},
+        "put_server_action": {"4.8.4": put_server_action},
+        "wait_for_api": {"4.8.4": wait_for_api},
     }

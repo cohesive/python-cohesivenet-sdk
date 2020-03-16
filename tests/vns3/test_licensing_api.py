@@ -22,6 +22,7 @@ from cohesivenet.rest import ApiException
 from tests.openapi import generate_method_test
 from tests.stub_data import LicensingApiData
 
+
 class TestLicensingApi(object):
     """LicensingApi unit test stubs"""
 
@@ -35,7 +36,7 @@ class TestLicensingApi(object):
             "/license",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=LicensingApiData.LicenseDetail
+            mock_response=LicensingApiData.LicenseDetail,
         )(licensing_api.get_license)
 
     def test_put_license_upgrade(self, rest_mocker, api_client, api_schema: dict):
@@ -49,10 +50,12 @@ class TestLicensingApi(object):
             "/license/upgrade",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=LicensingApiData.UpgradeLicenseResponse
+            mock_response=LicensingApiData.UpgradeLicenseResponse,
         )(licensing_api.put_license_upgrade)
 
-    def test_put_set_license_parameters(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_set_license_parameters(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for put_set_license_parameters
         """
         generate_method_test(
@@ -62,7 +65,7 @@ class TestLicensingApi(object):
             "/license/parameters",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=LicensingApiData.LicenseParamsResponse
+            mock_response=LicensingApiData.LicenseParamsResponse,
         )(licensing_api.put_set_license_parameters)
 
     def test_upload_license(self, rest_mocker, api_client, api_schema: dict):
@@ -76,5 +79,5 @@ class TestLicensingApi(object):
             "/license",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=LicensingApiData.LicenseUploadDetail
+            mock_response=LicensingApiData.LicenseUploadDetail,
         )(licensing_api.upload_license)

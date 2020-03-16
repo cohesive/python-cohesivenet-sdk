@@ -15,9 +15,6 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
 from cohesivenet.api_builder import validate_call, VersionRouter
 
 
@@ -132,9 +129,7 @@ def put_license_upgrade(api_client, body=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["text/plain"]
     )  # noqa: E501
 
@@ -163,7 +158,7 @@ def put_license_upgrade(api_client, body=None, **kwargs):  # noqa: E501
 
 
 def put_set_license_parameters(
-    api_client, 
+    api_client,
     subnet=None,
     managers=None,
     asns=None,
@@ -207,7 +202,7 @@ def put_set_license_parameters(
         "asns",
         "clients",
         "my_manager_vip",
-        "default"
+        "default",
     ]
 
     collection_formats = {}
@@ -232,9 +227,7 @@ def put_set_license_parameters(
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -267,7 +260,7 @@ def upload_license(api_client, body=None, **kwargs):  # noqa: E501
     """upload_license  # noqa: E501
 
     License a VNS3 Controller to be a part of a specific topology. Must not be licensed already.  # noqa: E501
- 
+
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.upload_license(client, body, async_req=True)
@@ -308,9 +301,7 @@ def upload_license(api_client, body=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # HTTP header `Content-Type`
-    header_params[
-        "Content-Type"
-    ] = api_client.select_header_content_type(  # noqa: E501
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["text/plain"]
     )  # noqa: E501
 
@@ -339,18 +330,10 @@ def upload_license(api_client, body=None, **kwargs):  # noqa: E501
 
 
 class LicensingApiRouter(VersionRouter):
-    
+
     function_library = {
-        "get_license": {
-            "4.8.4": get_license
-        },
-        "put_license_upgrade": {
-            "4.8.4": put_license_upgrade
-        },
-        "put_set_license_parameters": {
-            "4.8.4": put_set_license_parameters
-        },
-        "upload_license": {
-            "4.8.4": upload_license
-        }
+        "get_license": {"4.8.4": get_license},
+        "put_license_upgrade": {"4.8.4": put_license_upgrade},
+        "put_set_license_parameters": {"4.8.4": put_set_license_parameters},
+        "upload_license": {"4.8.4": upload_license},
     }

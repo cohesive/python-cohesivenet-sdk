@@ -37,7 +37,7 @@ class TestMonitoringAlertingApi(object):
             "/alert/{alert_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.AlertDetail
+            mock_response=MonitoringApiData.AlertDetail,
         )(monitoring_alerting_api.delete_alert)
 
     def test_get_alert(self, rest_mocker, api_client, api_schema: dict):
@@ -50,7 +50,7 @@ class TestMonitoringAlertingApi(object):
             "/alert/{alert_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.AlertDetail
+            mock_response=MonitoringApiData.AlertDetail,
         )(monitoring_alerting_api.get_alert)
 
     def test_get_alerts(self, rest_mocker, api_client, api_schema: dict):
@@ -64,7 +64,7 @@ class TestMonitoringAlertingApi(object):
             "/alerts",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.AlertsListResponse
+            mock_response=MonitoringApiData.AlertsListResponse,
         )(monitoring_alerting_api.get_alerts)
 
     def test_post_define_new_alert(self, rest_mocker, api_client, api_schema: dict):
@@ -78,7 +78,7 @@ class TestMonitoringAlertingApi(object):
             "/alert",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.AlertDetail
+            mock_response=MonitoringApiData.AlertDetail,
         )(monitoring_alerting_api.post_define_new_alert)
 
     def test_post_test_alert(self, rest_mocker, api_client, api_schema: dict):
@@ -92,12 +92,8 @@ class TestMonitoringAlertingApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response": {
-                    "status": "success",
-                    "code": 200,
-                    "message": "OK"
-                }
-            }
+                "response": {"status": "success", "code": 200, "message": "OK"}
+            },
         )(monitoring_alerting_api.post_test_alert)
 
     def test_post_toggle_enabled_alert(self, rest_mocker, api_client, api_schema: dict):
@@ -111,7 +107,7 @@ class TestMonitoringAlertingApi(object):
             "/alert/{alert_id}/toggle_enabled",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.AlertDetail
+            mock_response=MonitoringApiData.AlertDetail,
         )(monitoring_alerting_api.post_toggle_enabled_alert)
 
     def test_put_update_alert(self, rest_mocker, api_client, api_schema: dict):
@@ -125,7 +121,7 @@ class TestMonitoringAlertingApi(object):
             "/alert/{alert_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.AlertDetail
+            mock_response=MonitoringApiData.AlertDetail,
         )(monitoring_alerting_api.put_update_alert)
 
     def test_delete_webhook(self, rest_mocker, api_client, api_schema: dict):
@@ -138,7 +134,7 @@ class TestMonitoringAlertingApi(object):
             "/webhook/{webhook_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.WebhookDetail
+            mock_response=MonitoringApiData.WebhookDetail,
         )(monitoring_alerting_api.delete_webhook)
 
     def test_get_webhook(self, rest_mocker, api_client, api_schema: dict):
@@ -151,7 +147,7 @@ class TestMonitoringAlertingApi(object):
             "/webhook/{webhook_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.WebhookDetail
+            mock_response=MonitoringApiData.WebhookDetail,
         )(monitoring_alerting_api.get_webhook)
 
     def test_get_webhooks(self, rest_mocker, api_client, api_schema: dict):
@@ -164,7 +160,7 @@ class TestMonitoringAlertingApi(object):
             "/webhooks",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.WebhookListResponse
+            mock_response=MonitoringApiData.WebhookListResponse,
         )(monitoring_alerting_api.get_webhooks)
 
     def test_post_create_webhook(self, rest_mocker, api_client, api_schema: dict):
@@ -177,7 +173,7 @@ class TestMonitoringAlertingApi(object):
             "/webhook",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.WebhookDetail
+            mock_response=MonitoringApiData.WebhookDetail,
         )(monitoring_alerting_api.post_create_webhook)
 
     def test_put_update_webhook(self, rest_mocker, api_client, api_schema: dict):
@@ -191,5 +187,5 @@ class TestMonitoringAlertingApi(object):
             "/webhook/{webhook_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=MonitoringApiData.WebhookDetail
+            mock_response=MonitoringApiData.WebhookDetail,
         )(monitoring_alerting_api.put_update_webhook)
