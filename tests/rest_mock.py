@@ -1,7 +1,8 @@
 import json
+import six
 
 import cohesivenet
-from cohesivenet import six, urllib3
+from cohesivenet import urllib3
 from cohesivenet.rest import RESTResponse
 
 
