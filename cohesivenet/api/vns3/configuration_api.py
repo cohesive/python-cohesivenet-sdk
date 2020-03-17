@@ -468,7 +468,7 @@ def put_update_admin_ui(
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
+    :param _preload_content: if Falseput_update_admin_ui, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
                                 data. Default is True.
     :param _request_timeout: timeout setting for this request. If one

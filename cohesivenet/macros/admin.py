@@ -22,7 +22,7 @@ def roll_api_password(
     """
 
     def _update_password(_client):
-        resp = _client.config.put_update_api_password({"password": new_password})
+        resp = _client.config.put_update_api_password(password=new_password)
         _client.configuration.password = new_password
         return resp
 
@@ -44,7 +44,7 @@ def disable_uis(clients: List[VNS3Client]):
     """
 
     def _disable_ui(_client):
-        resp = _client.config.put_update_admin_ui({"enabled": False})
+        resp = _client.config.put_update_admin_ui(enabled=False)
         # required to avoid 502 from api resetting itself
         time.sleep(2.0)
         return resp
@@ -70,7 +70,7 @@ def roll_ui_credentials(
 
     def _update_ui_credentials(_client):
         resp = _client.config.put_update_admin_ui(
-            {
+            **{
                 "admin_username": new_credentials.get("username"),
                 "admin_password": new_credentials.get("password"),
                 "enabled": enable_ui,

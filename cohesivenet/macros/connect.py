@@ -74,6 +74,6 @@ def verify_client_connectivity(
     """
 
     def _ping_api(_client):
-        return _client.sys_admin.get_ping_system()
+        return _client.sys_admin.get_config()
 
     return api_operations.__bulk_call_client(clients, _ping_api)

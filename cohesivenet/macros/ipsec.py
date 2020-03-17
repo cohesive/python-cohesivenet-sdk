@@ -29,7 +29,7 @@ def create_tunnel_endpoint(
     Returns:
         [Tuple[IpsecRemoteEndpoint, Dict]]
     """
-    ipsec_endpoint = client.ipsec.post_create_ipsec_endpoint(
+    ipsec_endpoint = client.ipsec.post_create_ipsec_endpoint(**
         dict(
             {
                 "name": tunnel_name,
@@ -48,7 +48,7 @@ def create_tunnel_endpoint(
         )
     )
 
-    routes = client.routing.post_create_route(
+    routes = client.routing.post_create_route(**
         dict(
             {
                 "cidr": target_network_cidr,

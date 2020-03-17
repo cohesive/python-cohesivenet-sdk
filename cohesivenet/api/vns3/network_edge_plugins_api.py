@@ -1105,7 +1105,7 @@ def assert_container_system_state(api_client, running, sleep_time=2.0, timeout=3
     action = "start" if running else "stop"
     expected_running_state = "true" if running else "false"
     expected_in_progress = "starting" if running else "stopping"
-    action_data = post_action_container_system({"action": action})
+    action_data = post_action_container_system(action=action)
     response_state = action_data.response.running.lower()
     if response_state == expected_running_state:
         return True

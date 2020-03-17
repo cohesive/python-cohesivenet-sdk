@@ -22,7 +22,7 @@ import urllib3.exceptions
 from cohesivenet import Logger
 from cohesivenet.api_builder import validate_call, VersionRouter
 from cohesivenet.exceptions import ApiException
-from cohesivenet.api.vns3 import ConfigurationApi
+from cohesivenet.api.vns3 import configuration_api as config_api
 
 
 def get_cloud_data(api_client, **kwargs):  # noqa: E501
@@ -534,10 +534,9 @@ def _wait_for_down(api_client, retry_timeout=2, timeout=30, sleep_time=0):
 
     start_time = time.time()
 
-    config_api = ConfigurationApi(api_client)
     while time.time() - start_time < timeout:
         try:
-            config_api.get_config(_request_timeout=retry_timeout)
+            config_api.get_config(api_client, _request_timeout=retry_timeout)
             if sleep_time:
                 time.sleep(sleep_time)
         except (
@@ -575,12 +574,11 @@ def wait_for_api(
     if wait_for_reboot:
         _wait_for_down(sleep_time=1, timeout=timeout)
 
-    config_api = ConfigurationApi(api_client)
     successful_pings = 0
     target_host = api_client.host_uri
     while time.time() - start_time < timeout:
         try:
-            config_detail = config_api.get_config(_request_timeout=retry_timeout)
+            config_detail = config_api.get_config(api_client, _request_timeout=retry_timeout)
             if (
                 config_detail
                 and config_detail.response

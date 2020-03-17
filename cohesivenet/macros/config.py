@@ -48,7 +48,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
     )
 
     try:
-        put_response = client.config.put_keyset({"source": source, "token": token})
+        put_response = client.config.put_keyset(**{"source": source, "token": token})
     except ApiException as e:
         Logger.info(
             "Failed to fetch keyset: %s" % e.get_error_message(), host=client.host_uri,
@@ -72,7 +72,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
     while time.time() - polling_start <= wait_timeout:
         try:
             duplicate_call_resp = client.config.put_keyset(
-                {"source": source, "token": token}
+                **{"source": source, "token": token}
             )
         except UrlLib3ConnExceptions:
             Logger.info(
@@ -147,7 +147,7 @@ def setup_controller(
     current_config = client.config.get_config().response
     Logger.info("Setting topology name", name=topology_name)
     if current_config.topology_name != topology_name:
-        client.config.put_config({"topology_name": topology_name})
+        client.config.put_config(**{"topology_name": topology_name})
 
     if not current_config.licensed:
         if not os.path.isfile(license_file):
@@ -169,7 +169,7 @@ def setup_controller(
 
     if accept_license:
         Logger.info("Accepting license", parameters=license_parameters)
-        client.licensing.put_set_license_parameters(license_parameters)
+        client.licensing.put_set_license_parameters(**license_parameters)
         Logger.info("Waiting for server reboot.")
         client.sys_admin.wait_for_api(timeout=reboot_timeout, wait_for_reboot=True)
 
@@ -187,7 +187,7 @@ def setup_controller(
     current_peering_status = client.peering.get_peering_status().response
     if not current_peering_status.id and peering_id:
         Logger.info("Setting peering id", id=peering_id)
-        client.peering.put_self_peering_id({"id": peering_id})
+        client.peering.put_self_peering_id(**{"id": peering_id})
     return client
 
 
@@ -233,7 +233,7 @@ def accept_clients_license(
     """
 
     def _accept_license(_client):
-        return _client.licensing.put_set_license_parameters(license_parameters)
+        return _client.licensing.put_set_license_parameters(**license_parameters)
 
     return api_operations.__bulk_call_client(clients, _accept_license)
 

@@ -312,7 +312,7 @@ def post_create_route_if_not_exists(
         )
         return routes_response
 
-    return api_client.routing.post_create_route(route_request).response
+    return api_client.routing.post_create_route(**route_request).response
 
 
 class RoutingApiRouter(VersionRouter):
