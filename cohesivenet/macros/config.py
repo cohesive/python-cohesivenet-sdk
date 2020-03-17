@@ -178,7 +178,7 @@ def setup_controller(
     ).response
     if not current_keyset.keyset_present and not current_keyset.in_progress:
         Logger.info("Generating keyset", parameters=keyset_parameters)
-        api_operations.retry_call(client.config.put_keyset, args=(keyset_parameters,))
+        api_operations.retry_call(client.config.put_keyset, kwargs=keyset_parameters)
         Logger.info("Waiting for keyset ready")
         client.config.wait_for_keyset(timeout=keyset_timeout)
     elif current_keyset.in_progress:

@@ -24,12 +24,15 @@ from cohesivenet import rest
 from cohesivenet.exceptions import ApiValueError
 
 
+RESERVED_DICT_ATTR = dir({})
+
 class DataDict(dict):
     def __init__(self, *args, **kwargs):
         super(DataDict, self).__init__(*args, **kwargs)
         self.__dict__ = self
-
     def __getattribute__(self, name):
+        if name in RESERVED_DICT_ATTR:
+            return super().__getattribute__(name)
         if name in self:
             if type(self[name]) is dict:
                 return DataDict(**self[name])
@@ -46,6 +49,8 @@ class APIResponse(io.IOBase):
         self._rest_response = rest_response
         self._serializer = Serializer()
         self._data_serialized = None
+        # deserialize data
+        self.json()
 
     def get_headers(self):
         """Returns a dictionary of the response headers."""

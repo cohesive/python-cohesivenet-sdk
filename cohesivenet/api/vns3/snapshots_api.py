@@ -290,7 +290,6 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(file_upload=True, file_kwarg="body")
 def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
     """put_import_snapshot  # noqa: E501
 

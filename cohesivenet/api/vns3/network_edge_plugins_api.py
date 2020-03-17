@@ -1105,8 +1105,8 @@ def assert_container_system_state(api_client, running, sleep_time=2.0, timeout=3
     action = "start" if running else "stop"
     expected_running_state = "true" if running else "false"
     expected_in_progress = "starting" if running else "stopping"
-    action_data = post_action_container_system(action=action)
-    response_state = action_data.response.running.lower()
+    action_data = post_action_container_system(api_client, action=action)
+    response_state = str(action_data.response.running).lower()
     if response_state == expected_running_state:
         return True
 
@@ -1114,9 +1114,9 @@ def assert_container_system_state(api_client, running, sleep_time=2.0, timeout=3
 
     start_time = time.time()
     while time.time() - start_time < timeout:
-        call_data = get_container_system_status()
-        running_state = call_data.response.running
-        if running_state.lower() == expected_running_state:
+        call_data = get_container_system_status(api_client)
+        running_state = str(call_data.response.running).lower()
+        if running_state == expected_running_state:
             return True
 
         time.sleep(sleep_time)
@@ -1137,10 +1137,10 @@ def restart_container_network(api_client, sleep_time=2.0, timeout=30.0, **kwargs
         Boolean
     """
     start_time = time.time()
-    assert_container_system_state(running=False, sleep_time=sleep_time, timeout=timeout)
+    assert_container_system_state(api_client, running=False, sleep_time=sleep_time, timeout=timeout)
     remaining_time = timeout - (time.time() - start_time)
     assert_container_system_state(
-        running=True, sleep_time=sleep_time, timeout=remaining_time
+        api_client, running=True, sleep_time=sleep_time, timeout=remaining_time
     )
     return True
 
@@ -1163,7 +1163,7 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
     """
 
     start_time = time.time()
-    resp_data = get_container_system_images(uuid=import_uuid)
+    resp_data = get_container_system_images(api_client, uuid=import_uuid)
     images = resp_data.response.images
     if images is None:
         raise ApiException("No images returned. Is container system running?")
@@ -1177,7 +1177,7 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
     time.sleep(sleep_time)
     while time.time() - start_time < timeout:
         try:
-            resp_data = get_container_system_images(uuid=import_uuid)
+            resp_data = get_container_system_images(api_client, uuid=import_uuid)
         except ApiException as e:
             if e.status == 500:
                 Logger.debug(

@@ -19,6 +19,9 @@ def wait_for_images_ready(client, import_uuids=None, interval=1.0, timeout=120.0
     Returns:
         Bool
     """
+    if not import_uuids:
+        return True
+
     start_time = time.time()
     resp_data = client.network_edge_plugins.get_container_system_images()
     images = resp_data.response.images
@@ -27,14 +30,14 @@ def wait_for_images_ready(client, import_uuids=None, interval=1.0, timeout=120.0
             raise CohesiveSDKException("No container images found.")
         return True
 
-    if all([i.status == "Ready" for i in images]):
+    if all([i.get("status") == "Ready" for i in images]):
         return True
 
     time.sleep(interval)
     while time.time() - start_time < timeout:
         resp_data = client.network_edge_plugins.get_container_system_images()
         images = resp_data.response.images
-        if all([i.status == "Ready" for i in images if i.import_id in import_uuids]):
+        if all([i.get("status") == "Ready" for i in images if i.get("import_id") in import_uuids]):
             return True
         time.sleep(interval)
 
@@ -60,7 +63,7 @@ def get_image_id_from_import(client, import_id):
         raise CohesiveSDKException("Couldnt find image for import id %s" % import_id)
 
     image = images[0]
-    return image.id
+    return image.get("id")
 
 
 def search_images(client, image_name):
@@ -85,7 +88,7 @@ def search_images(client, image_name):
         return None
 
     for image in non_null_images:
-        if image.image_name.lower() == image_name.lower():
+        if image.get("image_name").lower() == image_name.lower():
             return image
     return None
 
@@ -112,6 +115,6 @@ def search_containers(client: VNS3Client, image_id=None):
     matches = []
     for container in containers:
         if image_id is not None:
-            if image_id == container.image:
+            if image_id == container.get("image"):
                 matches.append(container)
     return matches

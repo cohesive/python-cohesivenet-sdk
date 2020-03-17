@@ -83,7 +83,6 @@ def get_license(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(file_upload=True, file_kwarg="body")
 def put_license_upgrade(api_client, body=None, **kwargs):  # noqa: E501
     """put_license_upgrade  # noqa: E501
 
@@ -255,7 +254,6 @@ def put_set_license_parameters(
     )
 
 
-@validate_call(file_upload=True, file_kwarg="body")
 def upload_license(api_client, body=None, **kwargs):  # noqa: E501
     """upload_license  # noqa: E501
 

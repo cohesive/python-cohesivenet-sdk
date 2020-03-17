@@ -297,7 +297,6 @@ def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(file_upload=True, file_kwarg="body")
 def post_generate_keypair(api_client, body=None, **kwargs):  # noqa: E501
     """post_generate_keypair  # noqa: E501
 
@@ -572,7 +571,7 @@ def wait_for_api(
     start_time = time.time()
 
     if wait_for_reboot:
-        _wait_for_down(sleep_time=1, timeout=timeout)
+        _wait_for_down(api_client, sleep_time=1, timeout=timeout)
 
     successful_pings = 0
     target_host = api_client.host_uri

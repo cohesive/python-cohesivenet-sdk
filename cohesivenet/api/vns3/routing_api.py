@@ -292,7 +292,7 @@ def post_create_route_if_not_exists(
             _val = route.get(key)
             if _val is not None:
                 t += (_val,)
-            elif key == "interface":
+            elif key in ("interface", "gateway"):
                 t += ("_notset",)
             else:
                 t += (None,)
@@ -301,10 +301,10 @@ def post_create_route_if_not_exists(
     routes_response = api_client.routing.get_routes().response
     route_tuples = {
         __to_route_tuple(
-            current_route.to_dict(), comparison_keys
-        ): current_route.to_dict()
+            current_route, comparison_keys
+        ): current_route
         for current_route in routes_response.values()
-    }
+    } if routes_response else {}
     new_route_tuple = __to_route_tuple(route_request, comparison_keys)
     if new_route_tuple in route_tuples:
         Logger.debug(
