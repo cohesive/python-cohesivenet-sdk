@@ -48,7 +48,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
     )
 
     try:
-        put_response = client.config.put_keyset({"source": source, "token": token})
+        put_response = client.config.put_keyset(**{"source": source, "token": token})
     except ApiException as e:
         Logger.info(
             "Failed to fetch keyset: %s" % e.get_error_message(), host=client.host_uri,
@@ -72,13 +72,13 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
     while time.time() - polling_start <= wait_timeout:
         try:
             duplicate_call_resp = client.config.put_keyset(
-                {"source": source, "token": token}
+                **{"source": source, "token": token}
             )
         except UrlLib3ConnExceptions:
             Logger.info(
                 "API call timeout. Controller is likely rebooting. Waiting for keyset.",
                 wait_timeout=wait_timeout,
-                source=source
+                source=source,
             )
             client.sys_admin.wait_for_api(timeout=wait_timeout, wait_for_reboot=True)
             return client.config.wait_for_keyset(timeout=wait_timeout)
@@ -89,7 +89,9 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
                 keyset_data = client.config.try_get_keyset()
                 if not keyset_data:
                     Logger.info(
-                        "Keyset exists. Waiting for reboot.", wait_timeout=wait_timeout, source=source
+                        "Keyset exists. Waiting for reboot.",
+                        wait_timeout=wait_timeout,
+                        source=source,
                     )
                     client.sys_admin.wait_for_api(
                         timeout=wait_timeout, wait_for_reboot=True
@@ -145,7 +147,7 @@ def setup_controller(
     current_config = client.config.get_config().response
     Logger.info("Setting topology name", name=topology_name)
     if current_config.topology_name != topology_name:
-        client.config.put_config({"topology_name": topology_name})
+        client.config.put_config(**{"topology_name": topology_name})
 
     if not current_config.licensed:
         if not os.path.isfile(license_file):
@@ -167,7 +169,7 @@ def setup_controller(
 
     if accept_license:
         Logger.info("Accepting license", parameters=license_parameters)
-        client.licensing.put_set_license_parameters(license_parameters)
+        client.licensing.put_set_license_parameters(**license_parameters)
         Logger.info("Waiting for server reboot.")
         client.sys_admin.wait_for_api(timeout=reboot_timeout, wait_for_reboot=True)
 
@@ -176,7 +178,7 @@ def setup_controller(
     ).response
     if not current_keyset.keyset_present and not current_keyset.in_progress:
         Logger.info("Generating keyset", parameters=keyset_parameters)
-        api_operations.retry_call(client.config.put_keyset, args=(keyset_parameters,))
+        api_operations.retry_call(client.config.put_keyset, kwargs=keyset_parameters)
         Logger.info("Waiting for keyset ready")
         client.config.wait_for_keyset(timeout=keyset_timeout)
     elif current_keyset.in_progress:
@@ -185,7 +187,7 @@ def setup_controller(
     current_peering_status = client.peering.get_peering_status().response
     if not current_peering_status.id and peering_id:
         Logger.info("Setting peering id", id=peering_id)
-        client.peering.put_self_peering_id({"id": peering_id})
+        client.peering.put_self_peering_id(**{"id": peering_id})
     return client
 
 
@@ -231,7 +233,7 @@ def accept_clients_license(
     """
 
     def _accept_license(_client):
-        return _client.licensing.put_set_license_parameters(license_parameters)
+        return _client.licensing.put_set_license_parameters(**license_parameters)
 
     return api_operations.__bulk_call_client(clients, _accept_license)
 
@@ -320,32 +322,20 @@ def __add_controller_states(config, infra_state, groups=None):
 def get_config_from_env():
     # Update for environment
     cn_vars = {
-        k.replace('CN_', '').lower(): v
+        k.replace("CN_", "").lower(): v
         for k, v in dict(os.environ).items()
-        if k.startswith('CN_')
+        if k.startswith("CN_")
     }
 
-    env_config = {
-        "license_file": cn_vars.pop("license", None)
-    }
+    env_config = {"license_file": cn_vars.pop("license", None)}
 
     controller_vars = {
-        k: v.split(",")
-        for k, v in cn_vars.items()
-        if k.startswith("controllers")
+        k: v.split(",") for k, v in cn_vars.items() if k.startswith("controllers")
     }
 
-    variables = {
-        k: v
-        for k, v in cn_vars.items()
-        if k not in controller_vars
-    }
+    variables = {k: v for k, v in cn_vars.items() if k not in controller_vars}
 
-    return dict(
-        env_config,
-        **controller_vars, **{
-            "variables": variables
-        })
+    return dict(env_config, **controller_vars, **{"variables": variables})
 
 
 def _filter_dict_none_vals(d, none_vals=("", None)):
@@ -441,7 +431,10 @@ def __resolve_string_vars(string, local_vars, global_config):
 
             if type(val) is dict:
                 if string != "{%s}" % var:
-                    errors.append("Can't format dict into string for config var %s and string %s" % (var, string))
+                    errors.append(
+                        "Can't format dict into string for config var %s and string %s"
+                        % (var, string)
+                    )
                 else:
                     return val, None
             else:

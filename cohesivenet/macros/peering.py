@@ -25,7 +25,7 @@ def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
             _client.add_to_state(VNS3Attr.peer_id, i)
             return get_resp
 
-        resp = _client.peering.put_self_peering_id({"id": i})
+        resp = _client.peering.put_self_peering_id(id=i)
         _client.add_to_state(VNS3Attr.peer_id, i)
         return resp
 
@@ -144,7 +144,7 @@ def peer_mesh(
 
     def create_all_peers_for_client(client, post_peer_kwargs):
         return [
-            client.peering.post_peer(dict(peering_request, **common_peer_kwargs))
+            client.peering.post_create_peer(**dict(peering_request, **common_peer_kwargs))
             for peering_request in post_peer_kwargs
         ]
 

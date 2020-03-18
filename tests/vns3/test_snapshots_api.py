@@ -16,43 +16,82 @@ from __future__ import absolute_import
 import pytest
 
 import cohesivenet
-from cohesivenet.api.vns3.snapshots_api import SnapshotsApi  # noqa: E501
+from cohesivenet.api.vns3 import snapshots_api  # noqa: E501
 from cohesivenet.rest import ApiException
+
+from tests.openapi import generate_method_test
+from tests.stub_data import SnapshotsApiData
 
 
 class TestSnapshotsApi(object):
     """SnapshotsApi unit test stubs"""
 
-    @pytest.mark.licensed
-    def test_delete_snapshot(self):
+    def test_delete_snapshot(self, rest_mocker, api_client, api_schema: dict):
         """Test case for delete_snapshot
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "delete",
+            "/snapshots/{snapshot_name}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=SnapshotsApiData.SnapshotsListResponse,
+        )(snapshots_api.delete_snapshot)
 
-    @pytest.mark.licensed
-    def test_get_download_snapshot(self):
+    def test_get_download_snapshot(self, rest_mocker, api_client, api_schema: dict):
         """Test case for get_download_snapshot
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "get",
+            "/snapshots/{snapshot_name}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response="asdfasdfasdf",
+        )(snapshots_api.get_download_snapshot)
 
-    @pytest.mark.licensed
-    def test_get_snapshots(self):
+    def test_get_snapshots(self, rest_mocker, api_client, api_schema: dict):
         """Test case for get_snapshots
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "get",
+            "/snapshots",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=SnapshotsApiData.SnapshotsListResponse,
+        )(snapshots_api.get_snapshots)
 
-    @pytest.mark.licensed
-    def test_post_create_snapshot(self):
+    def test_post_create_snapshot(self, rest_mocker, api_client, api_schema: dict):
         """Test case for post_create_snapshot
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "post",
+            "/snapshots",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=SnapshotsApiData.SnapshotDetail,
+        )(snapshots_api.post_create_snapshot)
 
-    def test_put_import_snapshot(self):
+    def test_put_import_snapshot(self, rest_mocker, api_client, api_schema: dict):
         """Test case for put_import_snapshot
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "put",
+            "/snapshots/running_config",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=SnapshotsApiData.SnapshotImportResponse,
+        )(snapshots_api.put_import_snapshot)

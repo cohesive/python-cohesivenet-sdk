@@ -3,7 +3,7 @@
 """
     VNS3 Controller API
 
-    Cohesive networks VNS3 API providing complete control of your network's addresses, routes, rules and edge  # noqa: E501
+    Cohesive networks VNS3 provides complete control of your network's addresses, routes, rules and edge. Networking does  # noqa: E501
 
     The version of the OpenAPI document: 4.8
     Contact: solutions@cohesive.net
@@ -15,182 +15,24 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter, validate_call
 
 
-def get_webhooks(api_client, **kwargs):  # noqa: E501
-    """get_webhooks  # noqa: E501
-
-    Retrieve all Alert integrations (webhooks)  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_webhooks(client, async_req=True)
-
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = None
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/webhooks",
-        "GET",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-@validate_call(path_params=["webhook_id"])
-def get_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
-    """get_webhook  # noqa: E501
-
-    Retrieve details for single webhook integration  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_webhook(client, webhook_id, async_req=True)
-
-    :param async_req bool: execute request asynchronously
-    :param int webhook_id: ID for webhook integration (required)
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {"webhook_id": webhook_id}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = None
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/webhook/{webhook_id}",
-        "GET",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-@validate_call(body_params=["name"])
-def post_create_webhook(
-    api_client,
-    name=None,
-    url=None,
-    events=None,
-    body=None,
-    validate_cert=None,
-    custom_properties=None,
-    headers=None,
-    parameters=None,
-    **kwargs
+# @validate_call()
+def create_access_url(
+    api_client, expires=3600, description=None, **kwargs
 ):  # noqa: E501
-    """post_create_webhook  # noqa: E501
+    """Create access URL  # noqa: E501
 
-    Define new Webhook integration  # noqa: E501
+    Create access URL  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_create_webhook(client, name="New slack webhook", async_req=True)
+    >>> response = await api.create_access_url(async_req=True)
 
-    :param name str: (required)
-    :param url str:
-    :param events List[str]:
-    :param body str: Webhook payload
-    :param validate_cert bool: execute request asynchronously
-    :param custom_properties List[{
-        name str: (required)
-        value str:
-        description str:
-    }]:
-    :param headers List[{
-        name str:
-        value str:
-    }]:
-    :param parameters List[{
-        name str:
-        value str:
-    }]:
+    :param VNS3Client api_client: (required)
+    :param expires int: Number of seconds before expiration
+    :param description str: Optional description of access URL
     :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
                                 data. Default is True.
@@ -202,17 +44,7 @@ def post_create_webhook(
     """
 
     local_var_params = locals()
-
-    request_params = [
-        "name",
-        "url",
-        "events",
-        "body",
-        "validate_cert",
-        "custom_properties",
-        "headers",
-        "parameters",
-    ]
+    request_params = ["expires", "description"]
 
     collection_formats = {}
 
@@ -223,7 +55,6 @@ def post_create_webhook(
     header_params = {}
 
     form_params = []
-
     local_var_files = {}
 
     body_params = {}
@@ -244,7 +75,7 @@ def post_create_webhook(
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/webhook",
+        "/access/url",
         "POST",
         path_params,
         query_params,
@@ -264,46 +95,20 @@ def post_create_webhook(
     )
 
 
-@validate_call(path_params=["webhook_id"])
-def put_update_webhook(
-    api_client,
-    webhook_id,
-    name=None,
-    url=None,
-    events=None,
-    body=None,
-    validate_cert=None,
-    custom_properties=None,
-    headers=None,
-    parameters=None,
-    **kwargs
+def create_api_token(
+    api_client, expires=3600, token_name=None, refreshes=None, **kwargs
 ):  # noqa: E501
-    """put_update_webhook  # noqa: E501
+    """Create API token  # noqa: E501
 
-    Edit defined webhook integration  # noqa: E501
+    Create api token  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_update_webhook(webhook_id, update_webhook_request, async_req=True)
+    >>> response = await api.create_api_token_with_http_info(async_req=True)
 
-    :param int webhook_id: ID for webhook integration (required)
-    :param name str:
-    :param url str:
-    :param events List[str]:
-    :param body str: Webhook payload
-    :param validate_cert bool: execute request asynchronously
-    :param custom_properties List[{
-        name str: (required)
-        value str:
-        description str:
-    }]:
-    :param headers List[{
-        name str:
-        value str:
-    }]:
-    :param parameters List[{
-        name str:
-        value str:
-    }]:
+    :param VNS3Client api_client: (required)
+    :param expires int: Number of seconds before expiration
+    :param token_name str: Optional name of token
+    :param refreshes bool: Token lifetime refreshes when used
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -319,33 +124,22 @@ def put_update_webhook(
 
     local_var_params = locals()
 
-    request_params = [
-        "name",
-        "url",
-        "events",
-        "body",
-        "validate_cert",
-        "custom_properties",
-        "headers",
-        "parameters",
-    ]
+    request_params = ["expires", "token_name", "refreshes"]
 
     collection_formats = {}
 
-    path_params = {"webhook_id": webhook_id}
+    path_params = {}
 
     query_params = []
 
     header_params = {}
 
     form_params = []
-
     local_var_files = {}
 
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
-
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
@@ -360,8 +154,8 @@ def put_update_webhook(
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/webhook/{webhook_id}",
-        "PUT",
+        "/access/token",
+        "POST",
         path_params,
         query_params,
         header_params,
@@ -380,17 +174,17 @@ def put_update_webhook(
     )
 
 
-@validate_call(path_params=["webhook_id"])
-def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
-    """delete_webhook  # noqa: E501
+@validate_call(path_params=["access_url_id"])
+def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
+    """Delete access URL  # noqa: E501
 
-    Delete defined webhook integration  # noqa: E501
-
+    Delete access URL by ID  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.delete_webhook(webhook_id, async_req=True)
+    >>> response = await api.delete_access_url_with_http_info(access_url_id, async_req=True)
 
-    :param int webhook_id: ID for webhook integration (required)
+    :param VNS3Client api_client: (required)
+    :param int access_url_id: Access URL ID (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -403,12 +197,11 @@ def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-
     local_var_params = locals()
 
     collection_formats = {}
 
-    path_params = {"webhook_id": webhook_id}
+    path_params = {"access_url_id": access_url_id}
 
     query_params = []
 
@@ -427,7 +220,7 @@ def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/webhook/{webhook_id}",
+        "/access/url/{access_url_id}",
         "DELETE",
         path_params,
         query_params,
@@ -447,17 +240,19 @@ def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["alert_id"])
-def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
-    """delete_alert  # noqa: E501
+def delete_access_url_by_search(
+    api_client, access_url_id=None, access_url=None, **kwargs
+):  # noqa: E501
+    """Find and delete access URL  # noqa: E501
 
-    Delete defined alert  # noqa: E501
-
+    Delete access URL by ID or URL  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.delete_alert(client, async_req=True)
+    >>> response = await api.delete_access_url_by_search_with_http_info(async_req=True)
 
-    :param int alert_id: ID for webhook integration (required)
+    :param VNS3Client api_client: (required)
+    :param access_url_id int: ID of access URL
+    :param access_url str: URL
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -473,9 +268,11 @@ def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
 
     local_var_params = locals()
 
+    request_params = ["access_url_id", "access_url"]
+
     collection_formats = {}
 
-    path_params = {"alert_id": alert_id}
+    path_params = {}
 
     query_params = []
 
@@ -484,9 +281,17 @@ def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
     form_params = []
     local_var_files = {}
 
-    body_params = None
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -494,7 +299,7 @@ def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/alert/{alert_id}",
+        "/access/url",
         "DELETE",
         path_params,
         query_params,
@@ -514,16 +319,17 @@ def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["alert_id"])
-def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
-    """get_alert  # noqa: E501
+@validate_call(path_params=["token_id"])
+def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
+    """Delete API token  # noqa: E501
 
-    Retrieve details for single alert  # noqa: E501
+    Delete API token by ID  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_alert(alert_id, async_req=True)
+    >>> response = await api.delete_api_token_with_http_info(token_id, async_req=True)
 
-    :param int alert_id: ID for Alert definition (required)
+    :param VNS3Client api_client: (required)
+    :param int token_id: Token ID (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -538,10 +344,9 @@ def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
     """
 
     local_var_params = locals()
-
     collection_formats = {}
 
-    path_params = {"alert_id": alert_id}
+    path_params = {"token_id": token_id}
 
     query_params = []
 
@@ -560,8 +365,8 @@ def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/alert/{alert_id}",
-        "GET",
+        "/access/token/{token_id}",
+        "DELETE",
         path_params,
         query_params,
         header_params,
@@ -580,15 +385,15 @@ def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
     )
 
 
-def get_alerts(api_client, **kwargs):  # noqa: E501
-    """get_alerts  # noqa: E501
+def get_access_urls(api_client, **kwargs):  # noqa: E501
+    """Get access URLs  # noqa: E501
 
-    Retrieve all alerts  # noqa: E501
-
+    Retrieve list of users' access urls, including expired ones  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_alerts(async_req=True)
+    >>> response = await api.get_access_ur_ls_with_http_info(async_req=True)
 
+    :param VNS3Client api_client: (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -625,7 +430,7 @@ def get_alerts(api_client, **kwargs):  # noqa: E501
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/alerts",
+        "/access/urls",
         "GET",
         path_params,
         query_params,
@@ -645,38 +450,17 @@ def get_alerts(api_client, **kwargs):  # noqa: E501
     )
 
 
-# TODO: validate webhook_id or template_id
-@validate_call(body_params=["name", "url"])
-def post_define_new_alert(
-    api_client,
-    name=None,
-    url=None,
-    enabled=None,
-    events=None,
-    custom_properties=None,
-    webhook_id=None,
-    template_id=None,
-    **kwargs
-):  # noqa: E501
-    """post_define_new_alert  # noqa: E501
+@validate_call(path_params=["access_url_id"])
+def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
+    """Get access URL  # noqa: E501
 
-    Define new alert  # noqa: E501
-
+    Retrieve details for specific access url (including expired ones)  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_access_url_with_http_info(access_url_id, async_req=True)
 
-    >>> response = await api.post_define_new_alert(client, async_req=True)
-
-    :param name str: (required)
-    :param url str: (required)
-    :param enabled bool: True by default
-    :param events List[str]:
-    :param custom_properties List[{
-        name str:
-        value str:
-    }]:
-    :param webhook_id int: webhook_id or template_id must be provided
-    :param template_id int: webhook_id or template_id must be provided
+    :param VNS3Client api_client: (required)
+    :param int access_url_id: Access URL ID (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -692,15 +476,137 @@ def post_define_new_alert(
 
     local_var_params = locals()
 
-    request_params = [
-        "name",
-        "url",
-        "enabled",
-        "events",
-        "custom_properties",
-        "webhook_id",
-        "template_id",
-    ]
+    collection_formats = {}
+
+    path_params = {"access_url_id": access_url_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/url/{access_url_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+@validate_call(path_params=["token_id"])
+def get_api_token(api_client, token_id, **kwargs):  # noqa: E501
+    """Get API access token  # noqa: E501
+
+    Retrieve details for specific access token (including expired ones)  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_api_token_with_http_info(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param int token_id: Token ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"token_id": token_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/token/{token_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_api_tokens(api_client, **kwargs):  # noqa: E501
+    """Get API access tokens  # noqa: E501
+
+    Retrieve list of api tokens  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_api_tokens_with_http_info(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
 
     collection_formats = {}
 
@@ -711,81 +617,6 @@ def post_define_new_alert(
     header_params = {}
 
     form_params = []
-
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/alert",
-        "POST",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-@validate_call(path_params=["alert_id"])
-def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
-    """post_test_alert  # noqa: E501
-
-    Send test alert for this defined alert  # noqa: E501
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_test_alert(client, alert_id, async_req=True)
-
-    :param int alert_id: ID for Alert definition (required)
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {"alert_id": alert_id}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
     local_var_files = {}
 
     body_params = None
@@ -798,8 +629,8 @@ def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/alert/{alert_id}/test",
-        "POST",
+        "/access/tokens",
+        "GET",
         path_params,
         query_params,
         header_params,
@@ -818,104 +649,21 @@ def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["alert_id"])
-def post_toggle_enabled_alert(api_client, alert_id, **kwargs):  # noqa: E501
-    """post_toggle_enabled_alert  # noqa: E501
-
-    Toggle enabled property on alert  # noqa: E501
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_toggle_enabled_alert(alert_id, async_req=True)
-
-    :param async_req bool: execute request asynchronously
-    :param int alert_id: ID for Alert definition (required)
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {"alert_id": alert_id}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = None
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/alert/{alert_id}/toggle_enabled",
-        "POST",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-@validate_call(path_params=["alert_id"])
-def put_update_alert(
-    api_client,
-    alert_id,
-    name=None,
-    url=None,
-    enabled=None,
-    events=None,
-    custom_properties=None,
-    webhook_id=None,
-    template_id=None,
-    **kwargs
+@validate_call(path_params=["access_url_id"])
+def put_expire_access_url(
+    api_client, access_url_id, expired=True, **kwargs
 ):  # noqa: E501
-    """put_update_alert  # noqa: E501
+    """Expire access URL  # noqa: E501
 
-    Edit defined alert  # noqa: E501
+    Expire access URL  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_update_alert(alert_id, update_alert_request, async_req=True)
+    >>> response = await api.put_expire_access_url_with_http_info(access_url_id, async_req=True)
 
+    :param VNS3Client api_client: (required)
+    :param access_url_id int: Access URL ID (required)
+    :param expired bool: Indicates whether to expire
     :param async_req bool: execute request asynchronously
-    :param int alert_id: ID for Alert definition (required)
-    :param name str:
-    :param url str:
-    :param enabled bool: True by default
-    :param events List[str]:
-    :param custom_properties List[{
-        name str:
-        value str:
-    }]:
-    :param webhook_id int: webhook_id or template_id must be provided
-    :param template_id int: webhook_id or template_id must be provided
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -930,26 +678,17 @@ def put_update_alert(
 
     local_var_params = locals()
 
-    request_params = [
-        "name",
-        "url",
-        "enabled",
-        "events",
-        "custom_properties",
-        "webhook_id",
-        "template_id",
-    ]
+    request_params = ["expired"]
 
     collection_formats = {}
 
-    path_params = {"alert_id": alert_id}
+    path_params = {"access_url_id": access_url_id}
 
     query_params = []
 
     header_params = {}
 
     form_params = []
-
     local_var_files = {}
 
     body_params = {}
@@ -970,7 +709,7 @@ def put_update_alert(
     auth_settings = ["basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/alert/{alert_id}",
+        "/access/url/{access_url_id}",
         "PUT",
         path_params,
         query_params,
@@ -990,19 +729,97 @@ def put_update_alert(
     )
 
 
-class MonitoringAlertingApiRouter(VersionRouter):
+@validate_call(path_params=["token_id"])
+def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa: E501
+    """Expire API token  # noqa: E501
+
+    Expire API token  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_expire_api_token_with_http_info(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param int token_id: Token ID (required)
+    :param expired bool: Indicates whether to expire
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["expired"]
+
+    collection_formats = {}
+
+    path_params = {"token_id": token_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/token/{token_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+class AccessApiRouter(VersionRouter):
+    """Manage access to VNS3 with API tokens and admin access URLs"""
 
     function_library = {
-        "get_webhooks": {"4.8.4": get_webhooks},
-        "get_webhook": {"4.8.4": get_webhook},
-        "post_create_webhook": {"4.8.4": post_create_webhook},
-        "put_update_webhook": {"4.8.4": put_update_webhook},
-        "delete_webhook": {"4.8.4": delete_webhook},
-        "delete_alert": {"4.8.4": delete_alert},
-        "get_alert": {"4.8.4": get_alert},
-        "get_alerts": {"4.8.4": get_alerts},
-        "post_define_new_alert": {"4.8.4": post_define_new_alert},
-        "post_test_alert": {"4.8.4": post_test_alert},
-        "post_toggle_enabled_alert": {"4.8.4": post_toggle_enabled_alert},
-        "put_update_alert": {"4.8.4": put_update_alert},
+        "create_access_url": {"4.8.4": create_access_url},
+        "create_api_token": {"4.8.4": create_api_token},
+        "delete_access_url": {"4.8.4": delete_access_url},
+        "delete_access_url_by_search": {"4.8.4": delete_access_url_by_search},
+        "delete_api_token": {"4.8.4": delete_api_token},
+        "get_access_urls": {"4.8.4": get_access_urls},
+        "get_access_url": {"4.8.4": get_access_url},
+        "get_api_token": {"4.8.4": get_api_token},
+        "get_api_tokens": {"4.8.4": get_api_tokens},
+        "put_expire_access_url": {"4.8.4": put_expire_access_url},
+        "put_expire_api_token": {"4.8.4": put_expire_api_token},
     }

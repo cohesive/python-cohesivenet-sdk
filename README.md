@@ -4,6 +4,18 @@
 Cohesive Networks SDK is Python tool providing access to the VNS3 API from applications written in Python. It also includes common pipelines and macro functions
 for building network topologies.
 
+## API Versions supported
+The SDK will make best efforts to always be backwards compatible. All SDK releases will support all VNS3 versions starting 
+with VNS3 v4.8.1 up to the latest VNS3 version. The latest version of VNS3 is 4.8.4 and thus the latest SDK version (0.1.19) will support VNS3 API 4.8.1 to 4.8.4. The next release of VNS3 will require an SDK update and thus a new package.
+
+| cohesivenet==X |    VNS3 API    |     MS API     |
+|----------------|:--------------:|:--------------:|
+|     0.1.18     | 4.8.1 to 4.8.4 |       N/A      |    # MS SDK not implemented
+|     0.1.17     |      4.8.4     |       N/A      |
+|     0.1.17     |      4.8.4     |       N/A      |
+    
+
+View [VNS3 API specifications](docs.cohesivenet.)
 VNS3 API version: [4.8](https://github.com/cohesive/cohesive-api-specs/blob/master/vns3/vns3-v48-api/spec.yaml)
 
 ## Installation

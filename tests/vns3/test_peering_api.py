@@ -16,46 +16,82 @@ from __future__ import absolute_import
 import pytest
 
 import cohesivenet
-from cohesivenet.api.vns3.peering_api import PeeringApi  # noqa: E501
+from cohesivenet.api.vns3 import peering_api  # noqa: E501
 from cohesivenet.rest import ApiException
 
+from tests.openapi import generate_method_test
+from tests.stub_data import PeeringApiData
 
-@pytest.mark.licensed
+
 class TestPeeringApi(object):
     """PeeringApi unit test stubs"""
 
-    def test_delete_peer(self):
+    def test_delete_peer(self, rest_mocker, api_client, api_schema: dict):
         """Test case for delete_peer
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "delete",
+            "/peering/peers/{peer_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=PeeringApiData.PeeringStatus,
+        )(peering_api.delete_peer)
 
-    def test_get_peering_status(self):
+    def test_get_peering_status(self, rest_mocker, api_client, api_schema: dict):
         """Test case for get_peering_status
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "get",
+            "/peering",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=PeeringApiData.PeeringStatus,
+        )(peering_api.get_peering_status)
 
-    def test_post_peer(self):
-        """Test case for post_peer
-
-        """
-        pass
-
-    def test_put_peer(self):
-        """Test case for put_peer
-
-        """
-        pass
-
-    def test_put_reconfigure_peers(self):
-        """Test case for put_reconfigure_peers
+    def test_post_create_peer(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for post_create_peer
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "post",
+            "/peering/peers",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=PeeringApiData.PeeringStatus,
+        )(peering_api.post_create_peer)
 
-    def test_put_self_peering_id(self):
+    def test_put_update_peer(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for put_update_peer
+
+        """
+        generate_method_test(
+            api_client,
+            api_schema,
+            "put",
+            "/peering/peers/{peer_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=PeeringApiData.PeeringStatus,
+        )(peering_api.put_update_peer)
+
+    def test_put_self_peering_id(self, rest_mocker, api_client, api_schema: dict):
         """Test case for put_self_peering_id
 
         """
-        pass
+        generate_method_test(
+            api_client,
+            api_schema,
+            "put",
+            "/peering/self",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=PeeringApiData.PeeringStatus,
+        )(peering_api.put_self_peering_id)

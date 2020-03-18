@@ -151,6 +151,9 @@ class Configuration(object):
         parts = self.host.split(":")  # remove port if exists
         return parts[0]
 
+    def is_valid(self):
+        return all([self.host and self.username and self.password])
+
     def get_api_key_with_prefix(self, identifier):
         """Gets API key (with prefix if set).
 
