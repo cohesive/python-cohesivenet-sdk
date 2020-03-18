@@ -52,8 +52,7 @@ make build
 if [ "$useTestRepo" = true ] ; then
     twine upload --repository testpypi dist/*
 else
-    # twine upload dist/*
-    echo "NO"
+    twine upload dist/*
 fi
 
 # make clean
