@@ -5,11 +5,8 @@ from tests.rest_mock import RestClientMock
 from cohesivenet import VNS3Client, Configuration, __vns3_spec__, __vns3_version__
 
 
-SPEC = "https://cohesive-networks.s3.amazonaws.com/apis/vns3/vns3-v4-8-1.oasv3.json"
-
-
 def fetch_spec(spec):
-    import urllib3, json
+    import urllib3, json, os
 
     http = urllib3.PoolManager()
     response = http.request("GET", spec)
@@ -20,10 +17,12 @@ def fetch_spec(spec):
         )
     from tests.openapi import resolve_refs
 
-    open("spec.json", "w").write(response.data.decode("utf8").strip())
-    resolved = resolve_refs(json.loads(response.data.decode("utf8").strip()))
-    open("spec-resolved.json", "w").write(json.dumps(resolved, indent=2))
-    return json.loads(response.data.decode("utf8").strip())
+    _raw_spec = response.data.decode("utf8").strip()
+
+    if os.environ.get("DOWNLOAD_SPECS"):
+        open("spec.json", "w").write(_raw_spec)
+        open("spec-resolved.json", "w").write(json.dumps(resolve_refs(_raw_spec), indent=2))
+    return json.loads(_raw_spec)
 
 
 API_SCHEMA = fetch_spec(__vns3_spec__)

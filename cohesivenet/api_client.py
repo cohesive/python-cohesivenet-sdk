@@ -26,10 +26,12 @@ from cohesivenet.exceptions import ApiValueError
 
 RESERVED_DICT_ATTR = dir({})
 
+
 class DataDict(dict):
     def __init__(self, *args, **kwargs):
         super(DataDict, self).__init__(*args, **kwargs)
         self.__dict__ = self
+
     def __getattribute__(self, name):
         if name in RESERVED_DICT_ATTR:
             return super().__getattribute__(name)

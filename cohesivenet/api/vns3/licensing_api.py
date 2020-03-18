@@ -15,7 +15,7 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 
 
 def get_license(api_client, **kwargs):  # noqa: E501
