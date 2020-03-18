@@ -956,7 +956,7 @@ def put_edit_ipsec_endpoint_tunnel(
     )
 
 
-def put_ipsec_config(api_client, ipsec_local_address=None, **kwargs):  # noqa: E501
+def put_ipsec_config(api_client, ipsec_local_ipaddress=None, **kwargs):  # noqa: E501
     """put_ipsec_config  # noqa: E501
 
     Edit Ipsec Configuration on device. Note, This is device wide and must be set before
@@ -965,9 +965,9 @@ def put_ipsec_config(api_client, ipsec_local_address=None, **kwargs):  # noqa: E
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_ipsec_config(update_ipsec_address_request, async_req=True)
+    >>> response = await api.put_ipsec_config(ipsec_local_ipaddress, async_req=True)
 
-    :param ipsec_local_address str: This is effectively a \"cloud NAT\" address, since you don't
+    :param ipsec_local_ipaddress str: This is effectively a \"cloud NAT\" address, since you don't
            know what your LAN address will be between invocations in a cloud, this address can be
            used by remote endpoints  as your \"behind a NAT\" address, sometimes referred to Peer
            or IKE ID, if needed (e.g. Watchguard or Juniper). It can ALSO be thought of even
@@ -987,7 +987,7 @@ def put_ipsec_config(api_client, ipsec_local_address=None, **kwargs):  # noqa: E
 
     local_var_params = locals()
 
-    request_params = ["ipsec_local_address"]
+    request_params = ["ipsec_local_ipaddress"]
 
     collection_formats = {}
 
