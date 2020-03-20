@@ -1084,6 +1084,23 @@ def put_stop_container(api_client, uuid, **kwargs):  # noqa: E501
     )
 
 
+def wait_for_container_system_state(api_client, running=True, sleep_time=2.0, timeout=30.0):
+    expected_running_state = "true" if running else "false"
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        call_data = get_container_system_status(api_client)
+        running_state = str(call_data.response.running).lower()
+        if running_state == expected_running_state:
+            return True
+
+        time.sleep(sleep_time)
+
+    raise ApiException(
+        "Timeout: Failed to assert container system state running=%s [timeout=%s seconds, host=%s]"
+        % (expected_running_state, timeout, api_client.host_uri)
+    )
+
+
 def assert_container_system_state(api_client, running, sleep_time=2.0, timeout=30.0):
     """Assert container system is either stopped or running
 
@@ -1101,7 +1118,6 @@ def assert_container_system_state(api_client, running, sleep_time=2.0, timeout=3
     Returns:
         Boolean or raises ApiException
     """
-
     action = "start" if running else "stop"
     expected_running_state = "true" if running else "false"
     expected_in_progress = "starting" if running else "stopping"
@@ -1111,20 +1127,7 @@ def assert_container_system_state(api_client, running, sleep_time=2.0, timeout=3
         return True
 
     assert response_state == expected_in_progress, "Unexpected state."
-
-    start_time = time.time()
-    while time.time() - start_time < timeout:
-        call_data = get_container_system_status(api_client)
-        running_state = str(call_data.response.running).lower()
-        if running_state == expected_running_state:
-            return True
-
-        time.sleep(sleep_time)
-
-    raise ApiException(
-        "Timeout: Failed to assert container system state running=%s [timeout=%s seconds, host=%s]"
-        % (expected_running_state, timeout, api_client.host_uri)
-    )
+    return wait_for_container_system_state(api_client, running, sleep_time=sleep_time, timeout=timeout)
 
 
 def restart_container_network(api_client, sleep_time=2.0, timeout=30.0, **kwargs):
@@ -1221,7 +1224,7 @@ class NetworkEdgePluginsApiRouter(VersionRouter):
         "put_configure_container_system": {"4.8.4": put_configure_container_system},
         "put_edit_container_image": {"4.8.4": put_edit_container_image},
         "put_stop_container": {"4.8.4": put_stop_container},
-        "assert_container_system_state": {"4.8.4": assert_container_system_state},
+        "wait_for_container_system_state": {"4.8.4": wait_for_container_system_state},
         "restart_container_network": {"4.8.4": restart_container_network},
         "wait_for_image_import": {"4.8.4": wait_for_image_import},
     }

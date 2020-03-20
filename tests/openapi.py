@@ -22,6 +22,26 @@ class OpenAPITypes(object):
     }
 
 
+def fetch_spec(spec):
+    import urllib3, json, os
+
+    http = urllib3.PoolManager()
+    response = http.request("GET", spec)
+    if response.status != 200:
+        raise RuntimeError(
+            "No specification available for testing. "
+            "Expected VNS3 specification at %s" % spec
+        )
+    from tests.openapi import resolve_refs
+
+    _raw_spec = response.data.decode("utf8").strip()
+
+    if os.environ.get("DOWNLOAD_SPECS"):
+        open("spec.json", "w").write(_raw_spec)
+        open("spec-resolved.json", "w").write(json.dumps(resolve_refs(_raw_spec), indent=2))
+    return json.loads(_raw_spec)
+
+
 def get_mock_call_args(method_schema):
     """Generate mock call args for endpoint path args
     

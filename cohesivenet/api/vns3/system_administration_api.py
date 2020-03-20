@@ -596,6 +596,12 @@ def wait_for_api(
                 "API connection error on API ping. Retrying in %ds." % sleep_time,
                 host=target_host,
             )
+        except ApiException as e:
+            if e.status == 502:
+                time.sleep(sleep_time)
+            else:
+                raise e
+
         time.sleep(sleep_time)
     raise ApiException("API timeout [timeout=%sseconds]" % timeout)
 

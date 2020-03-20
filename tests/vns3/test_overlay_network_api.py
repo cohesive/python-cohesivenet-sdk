@@ -196,8 +196,8 @@ class TestOverlayNetworkApi(object):
             },
         )(overlay_network_api.put_add_clientpacks)
 
-    def test_put_clientpack(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for put_clientpack
+    def test_put_update_clientpack(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for put_update_clientpack
 
         """
         generate_method_test(
@@ -208,7 +208,7 @@ class TestOverlayNetworkApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={"response": OverlayNetworkApiData.Clientpack},
-        )(overlay_network_api.put_clientpack)
+        )(overlay_network_api.put_update_clientpack)
 
     def test_put_disconnect_clientpack(self, rest_mocker, api_client, api_schema: dict):
         """Test case for put_disconnect_clientpack
@@ -229,8 +229,8 @@ class TestOverlayNetworkApi(object):
             },
         )(overlay_network_api.put_disconnect_clientpack)
 
-    def test_put_update_clientpacks(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for put_update_clientpacks
+    def test_put_update_all_clientpacks(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for put_update_all_clientpacks
         """
         generate_method_test(
             api_client,
@@ -240,4 +240,4 @@ class TestOverlayNetworkApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={"response": {"enabled": True, "checked_out": True}},
-        )(overlay_network_api.put_update_clientpacks)
+        )(overlay_network_api.put_update_all_clientpacks)

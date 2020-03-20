@@ -828,7 +828,7 @@ def put_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E501
 
 # TODO one of checked_out regenerated enabled
 @validate_call(body_params=["name"])
-def put_clientpack(
+def put_update_clientpack(
     api_client, name=None, enabled=None, checked_out=None, regenerate=None, **kwargs
 ):  # noqa: E501
     """put_clientpack  # noqa: E501
@@ -989,7 +989,7 @@ def put_disconnect_clientpack(
     )
 
 
-def put_update_clientpacks(
+def put_update_all_clientpacks(
     api_client, enabled=None, checked_out=None, **kwargs
 ):  # noqa: E501
     """put_update_clientpacks  # noqa: E501
@@ -1081,7 +1081,7 @@ class OverlayNetworkApiRouter(VersionRouter):
         "post_reset_all_clients": {"4.8.4": post_reset_all_clients},
         "post_reset_client": {"4.8.4": post_reset_client},
         "put_add_clientpacks": {"4.8.4": put_add_clientpacks},
-        "put_clientpack": {"4.8.4": put_clientpack},
+        "put_clientpack": {"4.8.4": put_update_clientpack},
         "put_disconnect_clientpack": {"4.8.4": put_disconnect_clientpack},
-        "put_update_clientpacks": {"4.8.4": put_update_clientpacks},
+        "put_update_all_clientpacks": {"4.8.4": put_update_all_clientpacks},
     }

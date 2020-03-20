@@ -5,29 +5,6 @@ from tests.rest_mock import RestClientMock
 from cohesivenet import VNS3Client, Configuration, __vns3_spec__, __vns3_version__
 
 
-def fetch_spec(spec):
-    import urllib3, json, os
-
-    http = urllib3.PoolManager()
-    response = http.request("GET", spec)
-    if response.status != 200:
-        raise RuntimeError(
-            "No specification available for testing. "
-            "Expected VNS3 specification at %s" % spec
-        )
-    from tests.openapi import resolve_refs
-
-    _raw_spec = response.data.decode("utf8").strip()
-
-    if os.environ.get("DOWNLOAD_SPECS"):
-        open("spec.json", "w").write(_raw_spec)
-        open("spec-resolved.json", "w").write(json.dumps(resolve_refs(_raw_spec), indent=2))
-    return json.loads(_raw_spec)
-
-
-API_SCHEMA = fetch_spec(__vns3_spec__)
-
-
 class MockConstants(object):
     Host = "0.0.0.0"
     Port = "8000"
@@ -38,9 +15,8 @@ class MockConstants(object):
 
 @pytest.fixture
 def api_schema():
-    from tests.openapi import resolve_refs
-
-    return resolve_refs(API_SCHEMA)
+    from tests.openapi import resolve_refs, fetch_spec
+    return resolve_refs(fetch_spec(__vns3_spec__))
 
 
 @pytest.fixture
