@@ -15,7 +15,7 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import VersionRouter, validate_call
+from cohesivenet.api_builder import VersionRouter
 
 
 def get_interfaces(api_client, **kwargs):  # noqa: E501
@@ -83,7 +83,6 @@ def get_interfaces(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["interface_id"])
 def get_system_interface_details(api_client, interface_id, **kwargs):  # noqa: E501
     """get_system_interface_details  # noqa: E501
 
@@ -215,7 +214,6 @@ def get_system_interfaces(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["interface_id"])
 def delete_system_interface(api_client, interface_id, **kwargs):  # noqa: E501
     """delete_system_interface  # noqa: E501
 
@@ -282,7 +280,6 @@ def delete_system_interface(api_client, interface_id, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["interface_id"])
 def delete_edge_gre_endpoint(api_client, interface_id, **kwargs):  # noqa: E501
     """delete_gre_endpoint  # noqa: E501
 
@@ -414,7 +411,6 @@ def get_edge_gre_endpoints(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["interface_id"])
 def get_edge_gre_endpoint_details(api_client, interface_id, **kwargs):  # noqa: E501
     """get_gre_endpoint_details  # noqa: E501
 
@@ -571,7 +567,6 @@ def post_action_interfaces(
     )
 
 
-@validate_call(body_params=["endpoint_name"])
 def post_create_edge_gre_endpoint(
     api_client,
     endpoint_name=None,
@@ -681,7 +676,6 @@ def post_create_edge_gre_endpoint(
     )
 
 
-@validate_call(body_params=["name"])
 def post_create_system_interface(
     api_client,
     name=None,
@@ -789,7 +783,6 @@ def post_create_system_interface(
     )
 
 
-@validate_call(path_params=["interface_id"])
 def put_update_edge_gre_endpoint(
     api_client,
     interface_id,
@@ -901,7 +894,6 @@ def put_update_edge_gre_endpoint(
     )
 
 
-@validate_call(path_params=["interface_id"])
 def put_update_system_interface(
     api_client,
     interface_id,

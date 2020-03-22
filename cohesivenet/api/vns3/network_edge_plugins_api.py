@@ -18,11 +18,10 @@ import re  # noqa: F401
 import time
 
 from cohesivenet import Logger
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 from cohesivenet.exceptions import ApiException
 
 
-@validate_call(path_params=["uuid"])
 def delete_container(api_client, uuid, **kwargs):  # noqa: E501
     """delete_container  # noqa: E501
 
@@ -88,7 +87,6 @@ def delete_container(api_client, uuid, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["uuid"])
 def delete_container_image(api_client, uuid, force=False, **kwargs):  # noqa: E501
     """delete_container_image  # noqa: E501
 
@@ -161,7 +159,6 @@ def delete_container_image(api_client, uuid, force=False, **kwargs):  # noqa: E5
     )
 
 
-@validate_call(path_params=["uuid"], query_params=["lines"])
 def get_container_logs(api_client, uuid, lines=None, **kwargs):  # noqa: E501
     """get_container_logs  # noqa: E501
 
@@ -502,7 +499,6 @@ def get_container_system_status(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(body_params=["action"])
 def post_action_container_system(api_client, action=None, **kwargs):  # noqa: E501
     """post_action_container_system  # noqa: E501
 
@@ -578,7 +574,6 @@ def post_action_container_system(api_client, action=None, **kwargs):  # noqa: E5
     )
 
 
-@validate_call(path_params=["uuid"], body_params=["name"])
 def post_commit_container(
     api_client, uuid, name=None, description=None, **kwargs
 ):  # noqa: E501
@@ -661,7 +656,6 @@ def post_commit_container(
 
 
 # TODO add more validation for OR
-@validate_call(body_params=["name"])
 def post_create_container_image(
     api_client,
     name=None,
@@ -759,8 +753,6 @@ def post_create_container_image(
     )
 
 
-# TODO
-# @validate_call(body_params=["uuid" OR "image_uuid"])
 def post_start_container(
     api_client,
     uuid=None,
@@ -860,7 +852,6 @@ def post_start_container(
     )
 
 
-@validate_call(body_params=["network"])
 def put_configure_container_system(api_client, network=None, **kwargs):  # noqa: E501
     """put_configure_container_system  # noqa: E501
 
@@ -936,7 +927,6 @@ def put_configure_container_system(api_client, network=None, **kwargs):  # noqa:
     )
 
 
-@validate_call(path_params=["uuid"], body_params=["name"])
 def put_edit_container_image(
     api_client, uuid, name=None, description=None, **kwargs
 ):  # noqa: E501
@@ -1017,7 +1007,6 @@ def put_edit_container_image(
     )
 
 
-@validate_call(path_params=["uuid"])
 def put_stop_container(api_client, uuid, **kwargs):  # noqa: E501
     """put_stop_container  # noqa: E501
 

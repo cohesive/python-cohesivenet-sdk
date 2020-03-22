@@ -15,10 +15,9 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 
 
-@validate_call(path_params=["endpoint_id", "bgp_peer_id"])
 def get_bgp_peer(
     api_client, endpoint_id, bgp_peer_id, verbose=False, **kwargs
 ):  # noqa: E501
@@ -93,7 +92,6 @@ def get_bgp_peer(
     )
 
 
-@validate_call(path_params=["endpoint_id", "bgp_peer_id"])
 def delete_bgp_peer(api_client, endpoint_id, bgp_peer_id, **kwargs):  # noqa: E501
     """delete_bgp_peer  # noqa: E501
 
@@ -158,7 +156,6 @@ def delete_bgp_peer(api_client, endpoint_id, bgp_peer_id, **kwargs):  # noqa: E5
     )
 
 
-@validate_call(path_params=["endpoint_id"], body_constraints=["ipaddress", "asn"])
 def create_bgp_peer(
     api_client,
     endpoint_id,
@@ -257,9 +254,6 @@ def create_bgp_peer(
     )
 
 
-@validate_call(
-    path_params=["endpoint_id", "bgp_peer_id"], body_constraints=["ipaddress", "asn"]
-)
 def update_bgp_peer(
     api_client,
     endpoint_id,

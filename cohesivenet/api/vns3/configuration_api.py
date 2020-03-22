@@ -19,7 +19,7 @@ import urllib3.exceptions
 
 
 from cohesivenet import Logger
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 from cohesivenet.exceptions import ApiException
 
 
@@ -151,7 +151,6 @@ def get_keyset(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["uuid"])
 def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
     """get_ssl_install_status  # noqa: E501
 
@@ -360,7 +359,6 @@ def put_install_ssl_keypair(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(body_params=["token"])
 def put_keyset(
     api_client,
     token=None,
@@ -608,7 +606,6 @@ def put_update_api_password(api_client, password=None, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(body_params=["cert", "key"])
 def put_upload_ssl_keypair(api_client, cert=None, key=None, **kwargs):  # noqa: E501
     """put_upload_ssl_keypair  # noqa: E501
 

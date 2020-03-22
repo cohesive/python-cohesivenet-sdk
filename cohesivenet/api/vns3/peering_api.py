@@ -15,10 +15,9 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 
 
-@validate_call(path_params=["peer_id"])
 def delete_peer(api_client, peer_id, **kwargs):  # noqa: E501
     """delete_peer  # noqa: E501
 
@@ -148,7 +147,6 @@ def get_peering_status(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(body_params=["id", "name"])
 def post_create_peer(
     api_client, id=None, name=None, overlay_mtu=None, **kwargs
 ):  # noqa: E501
@@ -230,7 +228,6 @@ def post_create_peer(
     )
 
 
-@validate_call(path_params=["peer_id"])
 def put_update_peer(
     api_client, peer_id, name=None, overlay_mtu=None, force=None, **kwargs
 ):  # noqa: E501
@@ -314,7 +311,6 @@ def put_update_peer(
     )
 
 
-@validate_call(body_params=["id"])
 def put_self_peering_id(api_client, id=None, **kwargs):  # noqa: E501
     """put_self_peering_id  # noqa: E501
 

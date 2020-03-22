@@ -15,10 +15,9 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 
 
-@validate_call(path_params=["snapshot_name"])
 def delete_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
     """delete_snapshot  # noqa: E501
 
@@ -84,7 +83,6 @@ def delete_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["snapshot_name"])
 def get_download_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
     """get_download_snapshot  # noqa: E501
 

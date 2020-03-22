@@ -15,10 +15,9 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 
 
-@validate_call(path_params=["clientpack_name"])
 def get_clientpack_details(api_client, clientpack_name, **kwargs):  # noqa: E501
     """get_clientpack  # noqa: E501
 
@@ -291,7 +290,6 @@ def get_connected_subnets(api_client, extended_output=None, **kwargs):  # noqa: 
     )
 
 
-@validate_call(query_params=["name", "fileformat"])
 def get_download_clientpack(
     api_client, name=None, fileformat=None, **kwargs
 ):  # noqa: E501
@@ -447,7 +445,6 @@ def post_calc_next_clientpack(
     )
 
 
-@validate_call(path_params=["clientpack_name"], body_params=["key", "value"])
 def post_create_clientpack_tag(
     api_client, clientpack_name, key=None, value=None, **kwargs
 ):  # noqa: E501
@@ -527,7 +524,6 @@ def post_create_clientpack_tag(
     )
 
 
-@validate_call(path_params=["clientpack_name"], body_params=["key"])
 def delete_clientpack_tag(
     api_client, clientpack_name, key=None, **kwargs
 ):  # noqa: E501
@@ -672,7 +668,6 @@ def post_reset_all_clients(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(body_params=["name"])
 def post_reset_client(api_client, name=None, disconnect=True, **kwargs):  # noqa: E501
     """post_reset_client  # noqa: E501
 
@@ -749,7 +744,6 @@ def post_reset_client(api_client, name=None, disconnect=True, **kwargs):  # noqa
     )
 
 
-@validate_call(body_params=["requested_ips"])
 def put_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E501
     """put_add_clientpacks  # noqa: E501
 
@@ -827,7 +821,6 @@ def put_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E501
 
 
 # TODO one of checked_out regenerated enabled
-@validate_call(body_params=["name"])
 def put_update_clientpack(
     api_client, name=None, enabled=None, checked_out=None, regenerate=None, **kwargs
 ):  # noqa: E501
@@ -909,7 +902,6 @@ def put_update_clientpack(
     )
 
 
-@validate_call(path_params=["clientpack_name"], body_params=["disconnect"])
 def put_disconnect_clientpack(
     api_client, clientpack_name, disconnect=True, **kwargs
 ):  # noqa: E501

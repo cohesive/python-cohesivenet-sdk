@@ -15,7 +15,7 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import VersionRouter, validate_call
+from cohesivenet.api_builder import VersionRouter
 
 
 def get_firewall_fw_sets(api_client, name=None, verbose=None, **kwargs):  # noqa: E501
@@ -322,7 +322,6 @@ def put_reinitialize_fw_sets(api_client, reinitialize=True, **kwargs):  # noqa: 
     )
 
 
-@validate_call(path_params=["position"])
 def delete_firewall_rule_by_position(api_client, position, **kwargs):  # noqa: E501
     """delete_firewall_rule_by_position  # noqa: E501
 
@@ -388,7 +387,6 @@ def delete_firewall_rule_by_position(api_client, position, **kwargs):  # noqa: E
     )
 
 
-@validate_call(body_params=["rule"])
 def delete_firewall_rule_by_rule(api_client, rule=None, **kwargs):  # noqa: E501
     """delete_firewall_rule_by_rule  # noqa: E501
 
@@ -528,7 +526,6 @@ def get_firewall_rules(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(body_params=["rule"])
 def post_create_firewall_rule(
     api_client, rule=None, position=None, **kwargs
 ):  # noqa: E501

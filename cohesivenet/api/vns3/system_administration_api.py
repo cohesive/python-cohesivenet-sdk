@@ -20,7 +20,7 @@ import urllib3.exceptions
 
 
 from cohesivenet import Logger
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 from cohesivenet.exceptions import ApiException
 from cohesivenet.api.vns3 import configuration_api as config_api
 
@@ -225,7 +225,6 @@ def get_system_status(api_client, timestamp=None, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(query_params=["token"])
 def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
     """get_task_status  # noqa: E501
 

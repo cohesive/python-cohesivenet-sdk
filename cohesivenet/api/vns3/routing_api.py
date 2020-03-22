@@ -16,14 +16,13 @@ from __future__ import absolute_import
 import re  # noqa: F401
 
 from cohesivenet import Logger
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 
 
 class RouteConstants(object):
     RouteComparisonKeys = ["cidr", "interface", "gateway", "advertise"]
 
 
-@validate_call(path_params=["route_id"])
 def delete_route(api_client, route_id, **kwargs):  # noqa: E501
     """delete_route  # noqa: E501
 
@@ -159,7 +158,6 @@ def get_routes(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(body_params=["cidr"])
 def post_create_route(
     api_client,
     cidr=None,

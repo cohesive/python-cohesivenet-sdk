@@ -15,10 +15,9 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import validate_call, VersionRouter
+from cohesivenet.api_builder import VersionRouter
 
 
-@validate_call(path_params=["endpoint_id"])
 def delete_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     """delete_ipsec_endpoint  # noqa: E501
 
@@ -85,7 +84,6 @@ def delete_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["endpoint_id", "tunnel_id"])
 def delete_ipsec_endpoint_tunnel(
     api_client, endpoint_id, tunnel_id, **kwargs
 ):  # noqa: E501
@@ -220,7 +218,6 @@ def get_ipsec(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["endpoint_id"])
 def get_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     """get_ipsec_endpoint  # noqa: E501
 
@@ -426,7 +423,6 @@ def get_link_history(
     )
 
 
-@validate_call(body_params=["name", "ipaddress", "secret"])
 def post_create_ipsec_endpoint(
     api_client,
     name=None,
@@ -547,7 +543,6 @@ def post_create_ipsec_endpoint(
     )
 
 
-@validate_call(path_params=["endpoint_id"], body_params=["remote_subnet"])
 def post_create_ipsec_endpoint_tunnel(
     api_client,
     endpoint_id,
@@ -725,7 +720,6 @@ def post_restart_ipsec_action(api_client, restart=True, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["endpoint_id"])
 def put_edit_ipsec_endpoint(
     api_client,
     endpoint_id,
@@ -848,7 +842,6 @@ def put_edit_ipsec_endpoint(
     )
 
 
-@validate_call(path_params=["endpoint_id", "tunnel_id"])
 def put_edit_ipsec_endpoint_tunnel(
     api_client,
     endpoint_id,

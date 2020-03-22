@@ -15,10 +15,9 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
-from cohesivenet.api_builder import VersionRouter, validate_call
+from cohesivenet.api_builder import VersionRouter
 
 
-# @validate_call()
 def create_access_url(
     api_client, expires=3600, description=None, **kwargs
 ):  # noqa: E501
@@ -174,7 +173,6 @@ def create_api_token(
     )
 
 
-@validate_call(path_params=["access_url_id"])
 def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     """Delete access URL  # noqa: E501
 
@@ -319,7 +317,6 @@ def delete_access_url_by_search(
     )
 
 
-@validate_call(path_params=["token_id"])
 def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
     """Delete API token  # noqa: E501
 
@@ -450,7 +447,6 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["access_url_id"])
 def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     """Get access URL  # noqa: E501
 
@@ -517,7 +513,6 @@ def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["token_id"])
 def get_api_token(api_client, token_id, **kwargs):  # noqa: E501
     """Get API access token  # noqa: E501
 
@@ -649,7 +644,6 @@ def get_api_tokens(api_client, **kwargs):  # noqa: E501
     )
 
 
-@validate_call(path_params=["access_url_id"])
 def put_expire_access_url(
     api_client, access_url_id, expired=True, **kwargs
 ):  # noqa: E501
@@ -729,7 +723,6 @@ def put_expire_access_url(
     )
 
 
-@validate_call(path_params=["token_id"])
 def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa: E501
     """Expire API token  # noqa: E501
 
