@@ -92,8 +92,9 @@ class TestSystemAdministrationApi(object):
             "post",
             "/remote_support/keypair",
             rest_mocker,
+            resp_content_type="application/octet-stream",
             mock_request_from_schema=True,
-            mock_response="filefilefilefilefilefilefilefile",
+            mock_response=b"filefilefilefilefilefilefilefile",
         )(system_administration_api.post_generate_keypair)
 
     def test_put_remote_support(self, rest_mocker, api_client, api_schema: dict):

@@ -99,6 +99,7 @@ class TestOverlayNetworkApi(object):
             "get",
             "/clientpack",
             rest_mocker,
+            resp_content_type="application/octet-stream",
             mock_request_from_schema=True,
             mock_response="asdofnaosdfnoasdfiasodiffilefilefilefile",
         )(overlay_network_api.get_download_clientpack)
@@ -180,21 +181,20 @@ class TestOverlayNetworkApi(object):
             },
         )(overlay_network_api.post_reset_client)
 
-    def test_put_add_clientpacks(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for put_add_clientpacks
-
+    def test_post_add_clientpacks(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for post_add_clientpacks
         """
         generate_method_test(
             api_client,
             api_schema,
-            "put",
+            "post",
             "/clientpacks/add_clientpacks",
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
                 "response": "15801670638979_696771229646571095757665467757884236311815995938"
             },
-        )(overlay_network_api.put_add_clientpacks)
+        )(overlay_network_api.post_add_clientpacks)
 
     def test_put_update_clientpack(self, rest_mocker, api_client, api_schema: dict):
         """Test case for put_update_clientpack

@@ -160,7 +160,7 @@ class StubRequestHandler(object):
         uri = url_no_protocol[url_no_protocol.index("/") :]
         if (method, uri) in self._entries:
             rbody, rstatus, rheaders = self._entries.pop((method, uri))
-            if not isinstance(rbody, six.string_types):
+            if not isinstance(rbody, six.string_types + (bytes,)):
                 rbody = json.dumps(rbody)
             response = RESTResponse(
                 urllib3.response.HTTPResponse(

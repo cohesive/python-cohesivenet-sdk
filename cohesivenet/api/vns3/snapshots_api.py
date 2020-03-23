@@ -121,7 +121,7 @@ def get_download_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
     body_params = None
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["text/plain"]
+        ["text/plain", "application/octet-stream"]
     )  # noqa: E501
 
     # Authentication setting

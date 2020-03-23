@@ -24,6 +24,13 @@ case $i in
 esac
 done
 
+make test
+
+if [ $? == 1 ] ; then
+    echo "Failed tests. Exiting."
+    exit 1
+fi
+
 if [ "$useTestRepo" = false ] ; then
     if git tag | grep -q $gitTag
     then 

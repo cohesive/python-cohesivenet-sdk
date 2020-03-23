@@ -50,6 +50,7 @@ class TestSnapshotsApi(object):
             "get",
             "/snapshots/{snapshot_name}",
             rest_mocker,
+            resp_content_type="application/octet-stream",
             mock_request_from_schema=True,
             mock_response="asdfasdfasdf",
         )(snapshots_api.get_download_snapshot)

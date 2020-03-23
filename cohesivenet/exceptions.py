@@ -119,6 +119,8 @@ class ApiKeyError(OpenApiException, KeyError):
 
 class ApiException(OpenApiException):
     def __init__(self, status=None, reason=None, http_resp=None):
+        self.http_response = http_resp
+
         if http_resp:
             self.status = http_resp.status
             self.reason = http_resp.reason

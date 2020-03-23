@@ -43,14 +43,16 @@ class DataDict(dict):
 
 
 class APIResponse(io.IOBase):
-    def __init__(self, rest_response):
+    def __init__(self, rest_response, response_type):
         self.urllib3_response = rest_response.urllib3_response
         self.status = rest_response.status
         self.reason = rest_response.reason
         self.raw_data = rest_response.data
         self._rest_response = rest_response
         self._serializer = Serializer()
+        self._expected_response_type = response_type
         self._data_serialized = None
+        self._file_download = None
         # deserialize data
         self.json()
 
@@ -66,15 +68,38 @@ class APIResponse(io.IOBase):
     def data(self):
         return self._rest_response.data
 
+    @property
+    def file_download(self):
+        if self._file_download:
+            return self._file_download
+
+        content_type = self.get_header("Content-Type")
+        if content_type in ("text/plain", "application/octet-stream"):
+            assert self._expected_response_type and "file" in self._expected_response_type, (
+                "Unexpected response type %s for serialization based on header content type %s"
+                % (self._expected_response_type, content_type)
+            )
+            self._file_download = self._serializer.deserialize(
+                self._rest_response, self._expected_response_type)
+        return self._file_download
+
     def json(self):
+        if self._expected_response_type != "object":
+            return None
+
         if self._data_serialized:
             return self._data_serialized
-        self._data_serialized = self._serializer.deserialize(self._rest_response)
+
+        self._data_serialized = self._serializer.deserialize(
+            self._rest_response, self._expected_response_type)
         return self._data_serialized
 
     @property
     def response(self):
         data = self.json()
+        if data is None:
+            return None
+
         if "response" in data:
             resp = data["response"]
             if type(resp) is dict:
@@ -231,7 +256,7 @@ class APIClient(object):
         )
 
         self.last_response = rest_response
-        return APIResponse(rest_response)
+        return APIResponse(rest_response, response_type)
 
     def call_api(
         self,

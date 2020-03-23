@@ -336,7 +336,7 @@ def get_download_clientpack(
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["text/plain"]
+        ["text/plain", "application/octet-stream"]
     )  # noqa: E501
 
     # Authentication setting
@@ -744,7 +744,7 @@ def post_reset_client(api_client, name=None, disconnect=True, **kwargs):  # noqa
     )
 
 
-def put_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E501
+def post_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E501
     """put_add_clientpacks  # noqa: E501
 
     Incrementally add new clientpacks for use  # noqa: E501
@@ -801,7 +801,7 @@ def put_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E501
 
     return api_client.call_api(
         "/clientpacks/add_clientpacks",
-        "PUT",
+        "POST",
         path_params,
         query_params,
         header_params,
@@ -1072,8 +1072,8 @@ class OverlayNetworkApiRouter(VersionRouter):
         "post_create_clientpack_tag": {"4.8.4": post_create_clientpack_tag},
         "post_reset_all_clients": {"4.8.4": post_reset_all_clients},
         "post_reset_client": {"4.8.4": post_reset_client},
-        "put_add_clientpacks": {"4.8.4": put_add_clientpacks},
-        "put_clientpack": {"4.8.4": put_update_clientpack},
+        "post_add_clientpacks": {"4.8.4": post_add_clientpacks},
+        "put_update_clientpack": {"4.8.4": put_update_clientpack},
         "put_disconnect_clientpack": {"4.8.4": put_disconnect_clientpack},
         "put_update_all_clientpacks": {"4.8.4": put_update_all_clientpacks},
     }

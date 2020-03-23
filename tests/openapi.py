@@ -166,6 +166,14 @@ def resolve_refs(schema, refs_cache={}, full_schema=None):
     return schema
 
 
+def is_file_download(response_schema):
+    return (
+        response_schema
+        and response_schema.get("type") == OpenAPITypes.String
+        and response_schema.get("format") == "binary"
+    )
+
+
 def get_method_success_response(method_schema, full_schema, content_type=None):
     """[summary]
     
@@ -270,7 +278,7 @@ def assert_on_response_type(val, type_schema, path=[], should_raise=True):
             if properties_schema:
                 is_nullable = type_schema.get("nullable")
                 if not is_nullable:
-                    assert val, "Object %s is not nullable" % ".".join(path)
+                    assert val is not None, "Object %s is not nullable" % ".".join(path)
 
                 if val:
                     for prop, prop_val in val.items():
@@ -290,8 +298,10 @@ def assert_on_response_type(val, type_schema, path=[], should_raise=True):
             item_schema = type_schema["items"]
             for i, val_item in enumerate(val):
                 assert_on_response_type(val_item, item_schema, path=path + [str(i)])
+        elif exp_type == OpenAPITypes.String and type_schema.get("format") == "binary":
+            assert val.startswith("/"), "Expected path to file"
         else:
-            # todo: add checks like enum and max min
+            # TODO: add checks like enum and max min
             pass
         return None
     except AssertionError as e:
@@ -308,6 +318,7 @@ def generate_method_test(
     rest_mocker,
     request_args=None,
     request_kwargs=None,
+    resp_content_type=None,
     mock_request_from_schema=False,
     mock_response=None,
     mock_response_from_schema=False,
@@ -371,13 +382,23 @@ def generate_method_test(
         call_kwargs = get_mock_call_kwargs(method_schema)
 
     _full_api_path = ("/api%s" % _path).format(**path_params)
-    response_code, method_response = get_method_success_response(method_schema, schema)
+    response_code, method_response = get_method_success_response(
+        method_schema, schema, content_type=resp_content_type)
     response_schema = method_response.get("schema")
     expected_response = {}
+
+    file_download = is_file_download(response_schema)
+    response_headers = {
+        "Content-Type": (
+            "application/json" if not file_download else "application/octet-stream"
+        )
+    }
+
     if mock_response is not None:
         expected_response = mock_response
         rest_mocker.stub_request(
-            _method, _full_api_path, rbody=mock_response, rcode=response_code
+            _method, _full_api_path,
+            rbody=mock_response, rcode=response_code, rheaders=response_headers
         )
     elif mock_response_from_schema:
         example_response = method_response.get("example")
@@ -393,21 +414,17 @@ def generate_method_test(
 
         expected_response = example_response
         rest_mocker.stub_request(
-            _method, _full_api_path, rbody=example_response, rcode=response_code
+            _method, _full_api_path,
+            rbody=example_response, rcode=response_code, rheaders=response_headers
         )
-    # else:
-    #     rest_mocker.stub_request(
-    #         _method,
-    #         _full_api_path,
-    #         rbody=expected_response,
-    #         rcode=response_code
-    #     )
 
     # constants will have to change based on spec, specifically Content Type
     expected_request_args = {
         "headers": {
             "User-Agent": "OpenAPI-Generator/1.0.0/python",
-            "Accept": "application/json",
+            "Accept": (
+                "application/json" if not file_download else "text/plain, application/octet-stream"
+            ),
             "Authorization": "Basic YXBpOm1vY2twYXNzMTIzNA==",
         }
     }
@@ -420,7 +437,7 @@ def generate_method_test(
             )
 
         if call_kwargs:
-            if expected_request_args["headers"].get("Content-Type") == "text/plain":
+            if expected_request_args["headers"].get("Content-Type") in ("text/plain", "application/octet-stream"):
                 # Currently expecting all file uploads to pass body kwarg as file
                 expected_request_args["body"] = call_kwargs["body"]
             else:
@@ -429,19 +446,14 @@ def generate_method_test(
         if call_kwargs:
             expected_request_args["query_params"] = list(call_kwargs.items())
 
-    if (
-        response_schema
-        and response_schema.get("type") == OpenAPITypes.String
-        and response_schema.get("format") == "binary"
-    ):
-        expected_request_args["headers"]["Accept"] = "text/plain"
+    if file_download:
+        expected_request_args["headers"]["Accept"] = "text/plain, application/octet-stream"
 
     def __test(call):
         response = call(client, *call_args, **call_kwargs)
         assert type(response) is APIResponse, "Unexpected response type %s" % str(
             type(response)
         )
-        assert response.json() == expected_response, "Unexpected response"
         assert response.status == response_code, (
             "Unexpected response status %d. Expected %s"
             % (response.status, response_code)
@@ -451,6 +463,11 @@ def generate_method_test(
             "%s%s" % (client.configuration.endpoint, _full_api_path),
             **expected_request_args
         )
-        assert_on_response_type(response.json(), response_schema)
+        if file_download:
+            assert response.json() is None, "Json response is non-null"
+            assert_on_response_type(response.file_download, response_schema)
+        else:
+            assert response.json() == expected_response, "Unexpected JSON response"
+            assert_on_response_type(response.json(), response_schema)
 
     return __test
