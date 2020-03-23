@@ -237,9 +237,7 @@ class RESTClientObject(object):
         if _preload_content:
             r = RESTResponse(r)
 
-            # In the python 3, the response.data is bytes.
-            # we need to decode it to string.
-            if six.PY3:
+            if r.getheader("Content-Type") not in ("text/plain", "application/octet-stream") and six.PY3:
                 r.data = r.data.decode("utf8")
 
         if not 200 <= r.status <= 299:

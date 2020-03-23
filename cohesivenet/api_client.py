@@ -47,7 +47,6 @@ class APIResponse(io.IOBase):
         self.urllib3_response = rest_response.urllib3_response
         self.status = rest_response.status
         self.reason = rest_response.reason
-        self.raw_data = rest_response.data
         self._rest_response = rest_response
         self._serializer = Serializer()
         self._expected_response_type = response_type
@@ -65,6 +64,10 @@ class APIResponse(io.IOBase):
         return self.urllib3_response.getheader(name, default)
 
     @property
+    def content_type(self):
+        return self.get_header("Content-Type")
+
+    @property
     def data(self):
         return self._rest_response.data
 
@@ -73,7 +76,7 @@ class APIResponse(io.IOBase):
         if self._file_download:
             return self._file_download
 
-        content_type = self.get_header("Content-Type")
+        content_type = self.content_type
         if content_type in ("text/plain", "application/octet-stream"):
             assert self._expected_response_type and "file" in self._expected_response_type, (
                 "Unexpected response type %s for serialization based on header content type %s"
