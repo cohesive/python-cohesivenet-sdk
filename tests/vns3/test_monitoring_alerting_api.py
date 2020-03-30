@@ -92,7 +92,7 @@ class TestMonitoringAlertingApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response": {"status": "success", "code": 200, "message": "OK"}
+                "response": {"status": "success", "code": "200", "message": "OK"}
             },
         )(monitoring_alerting_api.post_test_alert)
 

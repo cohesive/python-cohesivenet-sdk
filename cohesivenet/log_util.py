@@ -46,6 +46,7 @@ def silence_urllib3(warnings_only=False):
     import urllib3
 
     urllib3.disable_warnings()
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     if warnings_only:
         return
 

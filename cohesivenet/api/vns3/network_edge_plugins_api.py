@@ -587,7 +587,7 @@ def post_commit_container(
 
     :param str uuid: uuid of resource (required)
     :param str name: (required)
-    :param str description: (required)
+    :param str description
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1162,7 +1162,7 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
     elif len(images) == 0:
         raise ApiException("Import UUID not found: %s" % import_uuid)
 
-    image_status = images[0].status
+    image_status = images[0]["status"]
     if image_status == "Ready":
         return True
 
@@ -1185,7 +1185,7 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
         elif len(images) == 0:
             raise ApiException("Import UUID not found: %s" % import_uuid)
 
-        image_status = images[0].status
+        image_status = images[0]["status"]
         if image_status == "Ready":
             return True
         time.sleep(sleep_time)

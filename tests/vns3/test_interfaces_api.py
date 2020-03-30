@@ -126,8 +126,8 @@ class TestInterfacesApi(object):
             mock_response_from_schema=True,
         )(interfaces_api.post_action_interfaces)
 
-    def test_get_edge_gre_endpoints(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for get_edge_gre_endpoints
+    def test_get_gre_endpoints(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for get_gre_endpoints
         """
         generate_method_test(
             api_client,
@@ -137,12 +137,12 @@ class TestInterfacesApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=InterfacesApiData.GREEndpointListResponse,
-        )(interfaces_api.get_edge_gre_endpoints)
+        )(interfaces_api.get_gre_endpoints)
 
-    def test_get_edge_gre_endpoint_details(
+    def test_get_gre_endpoint_details(
         self, rest_mocker, api_client, api_schema: dict
     ):
-        """Test case for get_edge_gre_endpoint_details
+        """Test case for get_gre_endpoint_details
 
         """
         generate_method_test(
@@ -153,10 +153,10 @@ class TestInterfacesApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=InterfacesApiData.GREEndpointDetail,
-        )(interfaces_api.get_edge_gre_endpoint_details)
+        )(interfaces_api.get_gre_endpoint_details)
 
-    def test_delete_edge_gre_endpoint(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for delete_edge_gre_endpoint
+    def test_delete_gre_endpoint(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for delete_gre_endpoint
 
         """
         generate_method_test(
@@ -167,12 +167,12 @@ class TestInterfacesApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=InterfacesApiData.GREEndpointDetail,
-        )(interfaces_api.delete_edge_gre_endpoint)
+        )(interfaces_api.delete_gre_endpoint)
 
-    def test_post_create_edge_gre_endpoint(
+    def test_post_create_gre_endpoint(
         self, rest_mocker, api_client, api_schema: dict
     ):
-        """Test case for post_create_edge_gre_endpoint
+        """Test case for post_create_gre_endpoint
         """
         generate_method_test(
             api_client,
@@ -182,12 +182,12 @@ class TestInterfacesApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=InterfacesApiData.GREEndpointDetail,
-        )(interfaces_api.post_create_edge_gre_endpoint)
+        )(interfaces_api.post_create_gre_endpoint)
 
-    def test_put_update_edge_gre_endpoint(
+    def test_put_update_gre_endpoint(
         self, rest_mocker, api_client, api_schema: dict
     ):
-        """Test case for put_update_edge_gre_endpoint
+        """Test case for put_update_gre_endpoint
         """
         generate_method_test(
             api_client,
@@ -197,4 +197,4 @@ class TestInterfacesApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=InterfacesApiData.GREEndpointDetail,
-        )(interfaces_api.put_update_edge_gre_endpoint)
+        )(interfaces_api.put_update_gre_endpoint)

@@ -15,7 +15,9 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 
+from cohesivenet import Logger
 from cohesivenet.api_builder import VersionRouter
+from cohesivenet.exceptions import CohesiveSDKException
 
 
 def delete_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
@@ -1031,6 +1033,64 @@ def put_ipsec_config(api_client, ipsec_local_ipaddress=None, **kwargs):  # noqa:
     )
 
 
+def wait_for_tunnel_connected(
+    api_client,
+    endpoint_id=None,
+    tunnel_id=None,
+    retry_timeout=2,
+    timeout=60,
+    sleep_time=1.0,
+    **kwargs
+):
+    """Wait for tunnel to have status connected. If ONLY endpoint id provided, assumes only 1 tunnel exists.
+
+    Arguments:
+        api_client {VNS3Client} -- [description]
+
+    Keyword Arguments:
+        endpoint_id {int} - endpoint to check tunnel status for
+        tunnel_id {int} - Tunnel for status
+        retry_timeout {int}
+        timeout {int}
+        sleep_time {float}
+
+    Returns:
+        [dict] - tunnel status dict
+    """
+    import time
+
+    if not (tunnel_id or endpoint_id):
+        raise RuntimeError("tunnel_id or endpoint_id must be provided")
+
+    if not tunnel_id:
+        endpoint = get_ipsec_endpoint(api_client, endpoint_id).response
+        endpoint_tunnels = endpoint["tunnels"]
+        total_tunnels = len(endpoint_tunnels)
+        if total_tunnels != 1:
+            raise RuntimeError(
+                "Can't determine tunnel for endpoint. Expected 1 tunnel, found %s"
+                % str(total_tunnels))
+        tunnel_id = next(iter(endpoint_tunnels.values()))["id"]
+
+    tunnel_id = str(tunnel_id)
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        ipsec_status = get_ipsec_status(api_client, _request_timeout=retry_timeout)
+        if tunnel_id not in ipsec_status.response:
+            raise CohesiveSDKException("Tunnel ID %s does not exist." % tunnel_id)
+
+        tunnel = ipsec_status.response[tunnel_id]
+        if tunnel["connected"]:
+            Logger.debug(
+                "Tunnel connected", host=api_client.host_uri, tunnel_id=tunnel_id
+            )
+            return tunnel
+
+        Logger.debug("Tunnel not up yet. Waiting.", host=api_client.host_uri, tunnel_id=tunnel_id)
+        time.sleep(sleep_time)
+    raise CohesiveSDKException("Polling timeout [timeout=%sseconds]" % timeout)
+
+
 class IPsecApiRouter(VersionRouter):
 
     function_library = {
@@ -1048,4 +1108,5 @@ class IPsecApiRouter(VersionRouter):
         "put_edit_ipsec_endpoint": {"4.8.4": put_edit_ipsec_endpoint},
         "put_edit_ipsec_endpoint_tunnel": {"4.8.4": put_edit_ipsec_endpoint_tunnel},
         "put_ipsec_config": {"4.8.4": put_ipsec_config},
+        "wait_for_tunnel_connected": {"4.8.4": wait_for_tunnel_connected}
     }

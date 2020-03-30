@@ -153,7 +153,8 @@ def setup_controller(
         if not os.path.isfile(license_file):
             raise CohesiveSDKException("License file does not exist")
 
-        license_file_data = open(license_file).read().strip()
+        with open(license_file) as f:
+            license_file_data = f.read().strip()
         Logger.info("Uploading license file", path=license_file)
         client.licensing.upload_license(license_file_data)
 
