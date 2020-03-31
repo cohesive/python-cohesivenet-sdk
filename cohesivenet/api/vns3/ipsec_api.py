@@ -1080,7 +1080,7 @@ def wait_for_tunnel_connected(
             raise CohesiveSDKException("Tunnel ID %s does not exist." % tunnel_id)
 
         tunnel = ipsec_status.response[tunnel_id]
-        if tunnel["connected"]:
+        if tunnel.get("connected") is True:
             Logger.debug(
                 "Tunnel connected", host=api_client.host_uri, tunnel_id=tunnel_id
             )
