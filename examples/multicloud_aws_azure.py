@@ -2,8 +2,7 @@ import os
 import urllib3
 import pprint
 
-from cohesivenet import constants, ApiException, CohesiveSDKException
-from cohesivenet.clouds import networkmath
+from cohesivenet import constants, ApiException, CohesiveSDKException, network_math
 from cohesivenet.macros import connect, config, routing, ipsec, admin
 
 urllib3.disable_warnings()
@@ -128,7 +127,7 @@ def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
         [List[Dict]]
     """
     ipsec_endpoint_name = "aws_azure_vns3_tunnel"
-    vti_blocks = networkmath.calculate_next_subnets(
+    vti_blocks = network_math.calculate_next_subnets(
         prefix_length=30, take=2, cidr=constants.VTI_RANGE_LINK_LOCAL
     )
 

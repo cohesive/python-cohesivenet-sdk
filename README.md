@@ -5,18 +5,15 @@ Cohesive Networks SDK is Python tool providing access to the VNS3 API from appli
 for building network topologies.
 
 ## API Versions supported
-The SDK will make best efforts to always be backwards compatible. All SDK releases will support all VNS3 versions starting 
-with VNS3 v4.8.1 up to the latest VNS3 version. The latest version of VNS3 is 4.8.4 and thus the latest SDK version (0.1.19) will support VNS3 API 4.8.1 to 4.8.4. The next release of VNS3 will require an SDK update and thus a new package.
+The SDK will make best efforts to always be backwards compatible. All SDK releases will support all VNS3 versions starting with VNS3 v4.8.4 up to the latest VNS3 version.
 
 | cohesivenet==X |    VNS3 API    |     MS API     |
 |----------------|:--------------:|:--------------:|
-|     0.1.18     | 4.8.1 to 4.8.4 |       N/A      |    # MS SDK not implemented
-|     0.1.17     |      4.8.4     |       N/A      |
-|     0.1.17     |      4.8.4     |       N/A      |
+|     0.1.0-31   |      4.8.4     |       N/A      |    # MS SDK not implemented
     
 
 View [VNS3 API specifications](docs.cohesivenet.)
-VNS3 API version: [4.8](https://github.com/cohesive/cohesive-api-specs/blob/master/vns3/vns3-v48-api/spec.yaml)
+[VNS3 API specs](https://github.com/cohesive/cohesive-api-specs/blob/master/vns3/vns3-v48-api/spec.yaml)
 
 ## Installation
 
@@ -59,6 +56,16 @@ try:
     pprint(api_response)
 except cohesivenet.ApiException as e:
     print("Exception fetching VNS3 Configuration get_config(): %s\n" % e)
+
+# OR
+from cohesivenet.macros import connect as vns3_connect
+
+vns3_host = "55.55.55.55:8000"
+api_user = "api"
+api_ps = "test1234"
+vns3 = vns3_connect.get_client(vns3_host, api_user, api_ps)
+config = vns3.config.get_config()
+print(config.response)
 ```
 
 ### Methods
@@ -66,10 +73,10 @@ All endpoints are documented [here](https://github.com/cohesive/python-cohesiven
 
 ```python
 
-vns3_client.config                # ConfigurationApi provides VNS3 config methods
+vns3_client.access                # Manage access urls and api tokens
 vns3_client.bgp                   # BGPApi for Border Gateway Protocol methods
+vns3_client.config                # ConfigurationApi provides VNS3 config methods
 vns3_client.firewall              # FirewallApi for configuring VNS3 policies
-vns3_client.high_availability     # HighAvailabilityApi for configuration HA for VNS3
 vns3_client.ipsec                 # IPsecApi for IPsec tunnel methods
 vns3_client.interfaces            # InterfacesApi for viewing VNS3 interfaces
 vns3_client.monitoring            # MonitoringAlertingApi
@@ -87,14 +94,16 @@ Many API calls are called together to configure a topology or update a network c
 increasingly simplify VNS3 topology creation and configuration. More documentation to come.
 
 ```python
-macros.admin             # Admin operations typically applied to multiple controllers at once
-macros.config            # configuring multiple clients
-macros.connect           # connecting to clients
-macros.ipsec             # ipsec operations like creating a tunnel and then a route
-macros.overlay_network   # overlay network functions like calculating network segments of the overlay
-macros.peering           # topology peering operations like creating a peering mesh between controllers
-macros.routing           # Operations for updating routing in your topology
-macros.state             # Methods for fetching the state of your controller(s)
+macros.admin                  # Admin operations typically applied to multiple controllers at once
+macros.config                 # configuring multiple clients
+macros.connect                # connecting to clients
+macros.firewall               # firewall operations like idempotently creating full firewall
+macros.ipsec                  # ipsec operations like creating a tunnel and then a route
+macros.network_edge_plugins   # Manage container system network, images and running containers
+macros.overlay_network        # overlay network functions like calculating network segments of the overlay
+macros.peering                # topology peering operations like creating a peering mesh between controllers
+macros.routing                # Operations for updating routing in your topology
+macros.state                  # Methods for fetching the state of your controller(s)
 ```
 
 ### Logging

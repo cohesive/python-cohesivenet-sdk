@@ -172,4 +172,5 @@ def run():
     ), "More controllers provided by env than expected. Expected 2 in overlay."
     root, peer = clients
     setup_overlay(root, parameters)
-    return config.fetch_keysets([peer], root.host_uri, parameters["keyset_token"])
+    config.fetch_keysets([peer], root.host_uri, parameters["keyset_token"])
+    peer_controllers(root, peer, parameters)
