@@ -36,9 +36,7 @@ def create_local_gateway_route(client, local_cidr, **route_kwargs):
         **route_kwargs
     )
     api_kwargs = dict(**route, should_raise=True)
-    return api_operations.try_api_call(
-        client.routing.post_create_route, **api_kwargs
-    )
+    return api_operations.try_api_call(client.routing.post_create_route, **api_kwargs)
 
 
 def create_route_advertisements(

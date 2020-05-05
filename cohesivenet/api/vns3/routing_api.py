@@ -297,12 +297,14 @@ def post_create_route_if_not_exists(
         return t
 
     routes_response = api_client.routing.get_routes().response
-    route_tuples = {
-        __to_route_tuple(
-            current_route, comparison_keys
-        ): current_route
-        for current_route in routes_response.values()
-    } if routes_response else {}
+    route_tuples = (
+        {
+            __to_route_tuple(current_route, comparison_keys): current_route
+            for current_route in routes_response.values()
+        }
+        if routes_response
+        else {}
+    )
     new_route_tuple = __to_route_tuple(route_request, comparison_keys)
     if new_route_tuple in route_tuples:
         Logger.debug(
@@ -316,8 +318,10 @@ def post_create_route_if_not_exists(
 class RoutingApiRouter(VersionRouter):
 
     function_library = {
-        "delete_route": {"4.8.4": delete_route},
-        "get_routes": {"4.8.4": get_routes},
-        "post_create_route": {"4.8.4": post_create_route},
-        "post_create_route_if_not_exists": {"4.8.4": post_create_route_if_not_exists},
+        "delete_route": {"4.8.4-4.9.1": delete_route},
+        "get_routes": {"4.8.4-4.9.1": get_routes},
+        "post_create_route": {"4.8.4-4.9.1": post_create_route},
+        "post_create_route_if_not_exists": {
+            "4.8.4-4.9.1": post_create_route_if_not_exists
+        },
     }

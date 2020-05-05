@@ -38,7 +38,9 @@ def fetch_spec(spec):
 
     if os.environ.get("DOWNLOAD_SPECS"):
         open("spec.json", "w").write(_raw_spec)
-        open("spec-resolved.json", "w").write(json.dumps(resolve_refs(_raw_spec), indent=2))
+        open("spec-resolved.json", "w").write(
+            json.dumps(resolve_refs(_raw_spec), indent=2)
+        )
     return json.loads(_raw_spec)
 
 
@@ -383,7 +385,8 @@ def generate_method_test(
 
     _full_api_path = ("/api%s" % _path).format(**path_params)
     response_code, method_response = get_method_success_response(
-        method_schema, schema, content_type=resp_content_type)
+        method_schema, schema, content_type=resp_content_type
+    )
     response_schema = method_response.get("schema")
     expected_response = {}
 
@@ -397,8 +400,11 @@ def generate_method_test(
     if mock_response is not None:
         expected_response = mock_response
         rest_mocker.stub_request(
-            _method, _full_api_path,
-            rbody=mock_response, rcode=response_code, rheaders=response_headers
+            _method,
+            _full_api_path,
+            rbody=mock_response,
+            rcode=response_code,
+            rheaders=response_headers,
         )
     elif mock_response_from_schema:
         example_response = method_response.get("example")
@@ -414,8 +420,11 @@ def generate_method_test(
 
         expected_response = example_response
         rest_mocker.stub_request(
-            _method, _full_api_path,
-            rbody=example_response, rcode=response_code, rheaders=response_headers
+            _method,
+            _full_api_path,
+            rbody=example_response,
+            rcode=response_code,
+            rheaders=response_headers,
         )
 
     # constants will have to change based on spec, specifically Content Type
@@ -423,7 +432,9 @@ def generate_method_test(
         "headers": {
             "User-Agent": "OpenAPI-Generator/1.0.0/python",
             "Accept": (
-                "application/json" if not file_download else "text/plain, application/octet-stream"
+                "application/json"
+                if not file_download
+                else "text/plain, application/octet-stream"
             ),
             "Authorization": "Basic YXBpOm1vY2twYXNzMTIzNA==",
         }
@@ -437,7 +448,10 @@ def generate_method_test(
             )
 
         if call_kwargs:
-            if expected_request_args["headers"].get("Content-Type") in ("text/plain", "application/octet-stream"):
+            if expected_request_args["headers"].get("Content-Type") in (
+                "text/plain",
+                "application/octet-stream",
+            ):
                 # Currently expecting all file uploads to pass body kwarg as file
                 expected_request_args["body"] = call_kwargs["body"]
             else:
@@ -447,7 +461,9 @@ def generate_method_test(
             expected_request_args["query_params"] = list(call_kwargs.items())
 
     if file_download:
-        expected_request_args["headers"]["Accept"] = "text/plain, application/octet-stream"
+        expected_request_args["headers"][
+            "Accept"
+        ] = "text/plain, application/octet-stream"
 
     def __test(call):
         response = call(client, *call_args, **call_kwargs)

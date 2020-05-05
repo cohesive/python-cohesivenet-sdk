@@ -237,7 +237,11 @@ class RESTClientObject(object):
         if _preload_content:
             r = RESTResponse(r)
 
-            if r.getheader("Content-Type") not in ("text/plain", "application/octet-stream") and six.PY3:
+            if (
+                r.getheader("Content-Type")
+                not in ("text/plain", "application/octet-stream")
+                and six.PY3
+            ):
                 r.data = r.data.decode("utf8")
 
         if not 200 <= r.status <= 299:

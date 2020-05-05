@@ -198,10 +198,10 @@ class TestFirewallApi(object):
             },
         )(firewall_api.get_firewall_rule_subgroups)
 
-    def test_post_create_firewall_subgroup_rule(
+    def test_post_create_firewall_subgroup(
         self, rest_mocker, api_client, api_schema: dict
     ):
-        """Test case for post_create_firewall_subgroup_rule
+        """Test case for post_create_firewall_subgroup
         """
         generate_method_test(
             api_client,
@@ -216,7 +216,7 @@ class TestFirewallApi(object):
                     "rules": "INP_C_bensnewgro -s 198.31.50.0/24 -j DROP\n",
                 }
             },
-        )(firewall_api.post_create_firewall_subgroup_rule)
+        )(firewall_api.post_create_firewall_subgroup)
 
     def test_put_reinitialize_fw_sets(self, rest_mocker, api_client, api_schema: dict):
         """Test case for put_reinitialize_fw_sets

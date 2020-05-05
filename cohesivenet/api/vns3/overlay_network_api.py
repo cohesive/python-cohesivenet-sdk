@@ -18,7 +18,7 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
-def get_clientpack_details(api_client, clientpack_name, **kwargs):  # noqa: E501
+def get_clientpack(api_client, clientpack_name, **kwargs):  # noqa: E501
     """get_clientpack  # noqa: E501
 
     Returns detailed information about all of the clientpacks in the topology.
@@ -291,18 +291,19 @@ def get_connected_subnets(api_client, extended_output=None, **kwargs):  # noqa: 
 
 
 def get_download_clientpack(
-    api_client, name=None, fileformat=None, **kwargs
+    api_client, name=None, fileformat=None, format=None, **kwargs
 ):  # noqa: E501
     """get_download_clientpack  # noqa: E501
 
     Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_download_clientpack(client, name="100.171.10.1", "fileformat"="conf", async_req=True)
+    >>> response = await api.get_download_clientpack(client, name="100.171.10.1", format="conf", async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param name str: name of clientpack
     :param fileformat str: format for file (ovpn, conf, zip or tarball)
+    :param format str: format for file (ovpn, conf, zip or tarball) (alias for fileformat)
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -317,7 +318,7 @@ def get_download_clientpack(
 
     local_var_params = locals()
 
-    request_params = ["name", "fileformat"]  # noqa: E501
+    request_params = ["name", "fileformat", "format"]  # noqa: E501
 
     collection_formats = {}
 
@@ -363,10 +364,10 @@ def get_download_clientpack(
     )
 
 
-def post_calc_next_clientpack(
+def post_checkout_next_clientpack(
     api_client, low_ip=None, high_ip=None, include_disabled=None, **kwargs
 ):  # noqa: E501
-    """post_calc_next_clientpack  # noqa: E501
+    """post_checkout_next_clientpack  # noqa: E501
 
     Get next sequential client pack. Provides sufficient information to call GET /clientpack.
     Note, Using this resource against multiple controllers in the same topology could cause distribution of the
@@ -374,7 +375,7 @@ def post_calc_next_clientpack(
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_calc_next_clientpack(client, async_req=True)
+    >>> response = await api.post_checkout_next_clientpack(client, async_req=True)
 
     :param low_ip str: Set the lower bound for the resulting IP
     :param high_ip str: Set the upper bound for the resulting IP
@@ -1062,18 +1063,18 @@ def put_update_all_clientpacks(
 class OverlayNetworkApiRouter(VersionRouter):
     # put_update_clientpacks
     function_library = {
-        "delete_clientpack_tag": {"4.8.4": delete_clientpack_tag},
-        "get_clientpack_details": {"4.8.4": get_clientpack_details},
-        "get_clientpacks": {"4.8.4": get_clientpacks},
-        "get_clients_status": {"4.8.4": get_clients_status},
-        "get_connected_subnets": {"4.8.4": get_connected_subnets},
-        "get_download_clientpack": {"4.8.4": get_download_clientpack},
-        "post_calc_next_clientpack": {"4.8.4": post_calc_next_clientpack},
-        "post_create_clientpack_tag": {"4.8.4": post_create_clientpack_tag},
-        "post_reset_all_clients": {"4.8.4": post_reset_all_clients},
-        "post_reset_client": {"4.8.4": post_reset_client},
-        "post_add_clientpacks": {"4.8.4": post_add_clientpacks},
-        "put_update_clientpack": {"4.8.4": put_update_clientpack},
-        "put_disconnect_clientpack": {"4.8.4": put_disconnect_clientpack},
-        "put_update_all_clientpacks": {"4.8.4": put_update_all_clientpacks},
+        "delete_clientpack_tag": {"4.8.4-4.9.1": delete_clientpack_tag},
+        "get_clientpack": {"4.8.4-4.9.1": get_clientpack},
+        "get_clientpacks": {"4.8.4-4.9.1": get_clientpacks},
+        "get_clients_status": {"4.8.4-4.9.1": get_clients_status},
+        "get_connected_subnets": {"4.8.4-4.9.1": get_connected_subnets},
+        "get_download_clientpack": {"4.8.4-4.9.1": get_download_clientpack},
+        "post_checkout_next_clientpack": {"4.8.4-4.9.1": post_checkout_next_clientpack},
+        "post_create_clientpack_tag": {"4.8.4-4.9.1": post_create_clientpack_tag},
+        "post_reset_all_clients": {"4.8.4-4.9.1": post_reset_all_clients},
+        "post_reset_client": {"4.8.4-4.9.1": post_reset_client},
+        "post_add_clientpacks": {"4.8.4-4.9.1": post_add_clientpacks},
+        "put_update_clientpack": {"4.8.4-4.9.1": put_update_clientpack},
+        "put_disconnect_clientpack": {"4.8.4-4.9.1": put_disconnect_clientpack},
+        "put_update_all_clientpacks": {"4.8.4-4.9.1": put_update_all_clientpacks},
     }

@@ -9,6 +9,7 @@ The SDK will make best efforts to always be backwards compatible. All SDK releas
 
 | cohesivenet==X |    VNS3 API    |     MS API     |
 |----------------|:--------------:|:--------------:|
+|     0.1.32     |  4.8.4-4.9.1   |       N/A      |    # MS SDK not implemented
 |     0.1.0-31   |      4.8.4     |       N/A      |    # MS SDK not implemented
     
 
@@ -69,7 +70,7 @@ print(config.response)
 ```
 
 ### Methods
-All endpoints are documented [here](https://github.com/cohesive/python-cohesivenet-sdk/blob/master/endpoints.md). Each sub-api is available from the VNS3Client instance as follows:
+Each sub-api is available from the VNS3Client instance as follows:
 
 ```python
 

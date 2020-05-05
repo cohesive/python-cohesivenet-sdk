@@ -1023,6 +1023,8 @@ class SystemAdminApiData(object):
         }
     }
 
+    RemoteSupportDetails = {"response": {"enabled": True}}
+
     UpdateRemoteSupportResponse = {
         "response": {"enabled": False, "revoke_credential": True}
     }

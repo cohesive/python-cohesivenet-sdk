@@ -40,8 +40,8 @@ class TestSystemAdministrationApi(object):
             mock_response=SystemAdminApiData.CloudDataDetail,
         )(system_administration_api.get_cloud_data)
 
-    def test_get_status(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for get_status
+    def test_get_runtime_status(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for get_runtime_status
 
         """
         generate_method_test(
@@ -52,7 +52,7 @@ class TestSystemAdministrationApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=SystemAdminApiData.VNS3Status,
-        )(system_administration_api.get_status)
+        )(system_administration_api.get_runtime_status)
 
     def test_get_system_status(self, rest_mocker, api_client, api_schema: dict):
         """Test case for get_system_status
@@ -82,8 +82,10 @@ class TestSystemAdministrationApi(object):
             mock_response={"response": {"task_status": "finished_fail"}},
         )(system_administration_api.get_task_status)
 
-    def test_post_generate_keypair(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for post_generate_keypair
+    def test_post_generate_support_keypair(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
+        """Test case for post_generate_support_keypair
 
         """
         generate_method_test(
@@ -95,11 +97,25 @@ class TestSystemAdministrationApi(object):
             resp_content_type="application/octet-stream",
             mock_request_from_schema=True,
             mock_response=b"filefilefilefilefilefilefilefile",
-        )(system_administration_api.post_generate_keypair)
+        )(system_administration_api.post_generate_support_keypair)
 
-    def test_put_remote_support(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for put_remote_support
+    def test_get_remote_support_details(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
+        """Test case for get_remote_support_details
+        """
+        generate_method_test(
+            api_client,
+            api_schema,
+            "get",
+            "/remote_support",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=SystemAdminApiData.RemoteSupportDetails,
+        )(system_administration_api.get_remote_support_details)
 
+    def test_put_update_remote_support(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for put_update_remote_support
         """
         generate_method_test(
             api_client,
@@ -109,7 +125,7 @@ class TestSystemAdministrationApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=SystemAdminApiData.UpdateRemoteSupportResponse,
-        )(system_administration_api.put_remote_support)
+        )(system_administration_api.put_update_remote_support)
 
     def test_put_server_action(self, rest_mocker, api_client, api_schema: dict):
         """Test case for put_server_action

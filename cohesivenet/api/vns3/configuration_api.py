@@ -682,6 +682,296 @@ def put_upload_ssl_keypair(api_client, cert=None, key=None, **kwargs):  # noqa: 
     )
 
 
+def post_send_test_ms_alert(api_client, **kwargs):  # noqa: E501
+    """post_send_test_ms_alert  # noqa: E501
+
+    Send test alert to VNS3:ms  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_send_test_ms_alert(update_server_ssl_request, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ms/alert/test",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_ms_config(api_client, **kwargs):  # noqa: E501
+    """get_ms_config  # noqa: E501
+
+    Get MS configuration  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_ms_config(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ms",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_set_ms_config(api_client, ip=None, **kwargs):  # noqa: E501
+    """post_set_ms_config  # noqa: E501
+
+    Set MS for controller  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_set_ms_config(update_server_ssl_request, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param ip str: VNS3 Management system endpoint IP address (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["ip"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ms",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def update_ms_config(api_client, ip=None, alert_enabled=True, **kwargs):  # noqa: E501
+    """update_ms_config  # noqa: E501
+
+    Set MS config for controller  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.update_ms_config(update_server_ssl_request, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param ip str: VNS3 Management system endpoint IP address
+    :param alert_enabled bool: Disable/Enable sending alerts to VNS3:ms (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["ip", "alert_enabled"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ms",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 def try_get_keyset(api_client, **kwargs):  # noqa: E501
     """try_get_keyset  # noqa: E501
 
@@ -759,15 +1049,19 @@ class ConfigurationApiRouter(VersionRouter):
     """Manage and view VNS3 configuration state"""
 
     function_library = {
-        "get_config": {"4.8.4": get_config},
-        "get_keyset": {"4.8.4": get_keyset},
-        "get_ssl_install_status": {"4.8.4": get_ssl_install_status},
-        "put_config": {"4.8.4": put_config},
-        "put_install_ssl_keypair": {"4.8.4": put_install_ssl_keypair},
-        "put_keyset": {"4.8.4": put_keyset},
-        "put_update_admin_ui": {"4.8.4": put_update_admin_ui},
-        "put_update_api_password": {"4.8.4": put_update_api_password},
-        "put_upload_ssl_keypair": {"4.8.4": put_upload_ssl_keypair},
-        "try_get_keyset": {"4.8.4": try_get_keyset},
-        "wait_for_keyset": {"4.8.4": wait_for_keyset},
+        "get_config": {"4.8.4-4.9.1": get_config},
+        "get_keyset": {"4.8.4-4.9.1": get_keyset},
+        "get_ssl_install_status": {"4.8.4-4.9.1": get_ssl_install_status},
+        "put_config": {"4.8.4-4.9.1": put_config},
+        "put_install_ssl_keypair": {"4.8.4-4.9.1": put_install_ssl_keypair},
+        "put_keyset": {"4.8.4-4.9.1": put_keyset},
+        "put_update_admin_ui": {"4.8.4-4.9.1": put_update_admin_ui},
+        "put_update_api_password": {"4.8.4-4.9.1": put_update_api_password},
+        "put_upload_ssl_keypair": {"4.8.4-4.9.1": put_upload_ssl_keypair},
+        "post_send_test_ms_alert": {"4.8.4-4.9.1": post_send_test_ms_alert},
+        "get_ms_config": {"4.8.4-4.9.1": get_ms_config},
+        "post_set_ms_config": {"4.8.4-4.9.1": post_set_ms_config},
+        "update_ms_config": {"4.8.4-4.9.1": update_ms_config},
+        "try_get_keyset": {"4.8.4-4.9.1": try_get_keyset},
+        "wait_for_keyset": {"4.8.4-4.9.1": wait_for_keyset},
     }

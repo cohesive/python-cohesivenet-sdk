@@ -604,15 +604,15 @@ def post_create_firewall_rule(
     )
 
 
-def post_create_firewall_subgroup_rule(
+def post_create_firewall_subgroup(
     api_client, rules=None, name=None, position=None, flush=None, **kwargs
 ):  # noqa: E501
-    """post_create_firewall_subgroup_rule  # noqa: E501
+    """post_create_firewall_subgroup  # noqa: E501
 
     Create a new firewall subgroup rules (rule chain)  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_create_firewall_subgroup_rule(rules="", async_req=True)
+    >>> response = await api.post_create_firewall_subgroup(rules="", async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param rules str: Chained firewall rules seperated by \\n
@@ -913,18 +913,20 @@ class FirewallApiRouter(VersionRouter):
     """Manage VNS3 Firewall"""
 
     function_library = {
-        "delete_firewall_fw_set": {"4.8.4": delete_firewall_fw_set},
-        "delete_firewall_rule_by_position": {"4.8.4": delete_firewall_rule_by_position},
-        "delete_firewall_rule_by_rule": {"4.8.4": delete_firewall_rule_by_rule},
-        "delete_firewall_subgroup": {"4.8.4": delete_firewall_subgroup},
-        "get_firewall_fw_sets": {"4.8.4": get_firewall_fw_sets},
-        "post_create_firewall_fw_set": {"4.8.4": post_create_firewall_fw_set},
-        "get_firewall_rule_subgroups": {"4.8.4": get_firewall_rule_subgroups},
-        "get_firewall_rules": {"4.8.4": get_firewall_rules},
-        "post_create_firewall_rule": {"4.8.4": post_create_firewall_rule},
-        "post_create_firewall_subgroup_rule": {
-            "4.8.4": post_create_firewall_subgroup_rule
+        "delete_firewall_fw_set": {"4.8.4-4.9.1": delete_firewall_fw_set},
+        "delete_firewall_rule_by_position": {
+            "4.8.4-4.9.1": delete_firewall_rule_by_position
         },
-        "put_reinitialize_fw_sets": {"4.8.4": put_reinitialize_fw_sets},
-        "put_reinitialize_subgroups": {"4.8.4": put_reinitialize_subgroups},
+        "delete_firewall_rule_by_rule": {"4.8.4-4.9.1": delete_firewall_rule_by_rule},
+        "delete_firewall_subgroup": {"4.8.4-4.9.1": delete_firewall_subgroup},
+        "get_firewall_fw_sets": {"4.8.4-4.9.1": get_firewall_fw_sets},
+        "post_create_firewall_fw_set": {"4.8.4-4.9.1": post_create_firewall_fw_set},
+        "get_firewall_rule_subgroups": {"4.8.4-4.9.1": get_firewall_rule_subgroups},
+        "get_firewall_rules": {"4.8.4-4.9.1": get_firewall_rules},
+        "post_create_firewall_rule": {"4.8.4-4.9.1": post_create_firewall_rule},
+        "post_create_firewall_subgroup": {"4.8.4-4.9.1": post_create_firewall_subgroup},
+        "put_reinitialize_fw_sets": {"4.8.4-4.9.1": put_reinitialize_fw_sets},
+        "put_reinitialize_firewall_subgroups": {
+            "4.8.4-4.9.1": put_reinitialize_subgroups
+        },
     }

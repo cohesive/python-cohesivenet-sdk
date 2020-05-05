@@ -9,7 +9,7 @@ from cohesivenet.exceptions import (
 )
 
 
-def validate_call(   # noqa: C901
+def validate_call(  # noqa: C901
     path_params=None,
     path_constraints=None,
     body_params=None,
@@ -87,7 +87,9 @@ def validate_call(   # noqa: C901
                     )
 
             return api_func(api_client, *args, **kwargs)
+
         return api_func_wrapper
+
     return validate_decorator
 
 
@@ -149,7 +151,7 @@ class VersionRouter(object):
         )
 
     @classmethod
-    def show_available_functions(cls):
+    def print_available_functions(cls):
         for function_name, versions in cls.function_library.items():
             versions_supported = ",".join(versions.keys())
             print("%s versions=%s" % (function_name, versions_supported))

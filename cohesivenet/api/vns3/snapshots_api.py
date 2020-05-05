@@ -222,6 +222,7 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
 
     :param async_req bool: execute request asynchronously
     :param name str: optional name, defaults to file with public IP and timestamped name
+    :param async bool: if true, will return task id instead of blocking for snapshot creation
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -236,7 +237,7 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
 
     local_var_params = locals()
 
-    request_params = ["name"]
+    request_params = ["name", "async"]
 
     collection_formats = {}
 
@@ -253,6 +254,13 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
+
+    # parse protected keyword param from kwargs if exists.
+    print(local_var_params)
+    for param in [
+        p for p in request_params if local_var_params["kwargs"].get(p) is not None
+    ]:
+        body_params[param] = local_var_params["kwargs"][param]
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
@@ -361,9 +369,9 @@ def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
 
 class SnapshotsApiRouter(VersionRouter):
     function_library = {
-        "delete_snapshot": {"4.8.4": delete_snapshot},
-        "get_download_snapshot": {"4.8.4": get_download_snapshot},
-        "get_snapshots": {"4.8.4": get_snapshots},
-        "post_create_snapshot": {"4.8.4": post_create_snapshot},
-        "put_import_snapshot": {"4.8.4": put_import_snapshot},
+        "delete_snapshot": {"4.8.4-4.9.1": delete_snapshot},
+        "get_download_snapshot": {"4.8.4-4.9.1": get_download_snapshot},
+        "get_snapshots": {"4.8.4-4.9.1": get_snapshots},
+        "post_create_snapshot": {"4.8.4-4.9.1": post_create_snapshot},
+        "put_import_snapshot": {"4.8.4-4.9.1": put_import_snapshot},
     }

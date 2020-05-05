@@ -78,12 +78,15 @@ class APIResponse(io.IOBase):
 
         content_type = self.content_type
         if content_type in ("text/plain", "application/octet-stream"):
-            assert self._expected_response_type and "file" in self._expected_response_type, (
+            assert (
+                self._expected_response_type and "file" in self._expected_response_type
+            ), (
                 "Unexpected response type %s for serialization based on header content type %s"
                 % (self._expected_response_type, content_type)
             )
             self._file_download = self._serializer.deserialize(
-                self._rest_response, self._expected_response_type)
+                self._rest_response, self._expected_response_type
+            )
         return self._file_download
 
     def json(self):
@@ -94,7 +97,8 @@ class APIResponse(io.IOBase):
             return self._data_serialized
 
         self._data_serialized = self._serializer.deserialize(
-            self._rest_response, self._expected_response_type)
+            self._rest_response, self._expected_response_type
+        )
         return self._data_serialized
 
     @property

@@ -155,14 +155,14 @@ def delete_ipsec_endpoint_tunnel(
     )
 
 
-def get_ipsec(api_client, **kwargs):  # noqa: E501
-    """get_ipsec  # noqa: E501
+def get_ipsec_details(api_client, **kwargs):  # noqa: E501
+    """get_ipsec_details  # noqa: E501
 
     Get details for all IPsec endpoints/subnets  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_ipsec(async_req=True)
+    >>> response = await api.get_ipsec_details(async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
@@ -351,16 +351,21 @@ def get_ipsec_status(api_client, **kwargs):  # noqa: E501
     )
 
 
-def get_link_history(
+def get_connected_subnets(api_client):
+    # TODO:
+    pass
+
+
+def get_ipsec_link_history(
     api_client, remote=None, local=None, tunnelid=None, **kwargs
 ):  # noqa: E501
-    """get_link_history  # noqa: E501
+    """get_ipsec_link_history  # noqa: E501
 
     Provides information about the connection history of the subnet or tunnel  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_link_history(async_req=True)
+    >>> response = await api.get_ipsec_link_history(async_req=True)
 
     :param str remote: Address string in CIDR format to display link history to a remote endpoint.
     :param str local: Address string in CIDR format which will display status of the local route
@@ -722,7 +727,7 @@ def post_restart_ipsec_action(api_client, restart=True, **kwargs):  # noqa: E501
     )
 
 
-def put_edit_ipsec_endpoint(
+def put_update_ipsec_endpoint(
     api_client,
     endpoint_id,
     name=None,
@@ -741,12 +746,12 @@ def put_edit_ipsec_endpoint(
     route_based_remote=None,
     **kwargs
 ):  # noqa: E501
-    """put_edit_ipsec_endpoint  # noqa: E501
+    """put_update_ipsec_endpoint  # noqa: E501
 
-    Edit IPsec connection  # noqa: E501
+    update IPsec connection  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_edit_ipsec_endpoint(endpoint_id, update_ipsec_connection_request, async_req=True)
+    >>> response = await api.put_update_ipsec_endpoint(endpoint_id, update_ipsec_connection_request, async_req=True)
 
     :param int endpoint_id: ID for IPsec endpoint (required)
     :param name str:
@@ -844,7 +849,7 @@ def put_edit_ipsec_endpoint(
     )
 
 
-def put_edit_ipsec_endpoint_tunnel(
+def put_update_ipsec_endpoint_tunnel(
     api_client,
     endpoint_id,
     tunnel_id,
@@ -858,13 +863,13 @@ def put_edit_ipsec_endpoint_tunnel(
     description=None,
     **kwargs
 ):  # noqa: E501
-    """put_edit_ipsec_endpoint_tunnel  # noqa: E501
+    """put_update_ipsec_endpoint_tunnel  # noqa: E501
 
-    Edit IPsec endpoint tunnel  # noqa: E501
+    update IPsec endpoint tunnel  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_edit_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, update_ipsec_tunnel_request, async_req=True)
+    >>> response = await api.put_update_ipsec_endpoint_tunnel(endpoint_id, tunnel_id, update_ipsec_tunnel_request, async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param int endpoint_id: ID for IPsec endpoint (required)
@@ -951,16 +956,18 @@ def put_edit_ipsec_endpoint_tunnel(
     )
 
 
-def put_ipsec_config(api_client, ipsec_local_ipaddress=None, **kwargs):  # noqa: E501
-    """put_ipsec_config  # noqa: E501
+def put_update_ipsec_config(
+    api_client, ipsec_local_ipaddress=None, **kwargs
+):  # noqa: E501
+    """put_update_ipsec_config  # noqa: E501
 
-    Edit Ipsec Configuration on device. Note, This is device wide and must be set before
+    update Ipsec Configuration on device. Note, This is device wide and must be set before
     any remote endpoint definitions are created. If it needs to be changed, all remote endpoint
     information and tunnel information must be deleted first.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_ipsec_config(ipsec_local_ipaddress, async_req=True)
+    >>> response = await api.put_update_ipsec_config(ipsec_local_ipaddress, async_req=True)
 
     :param ipsec_local_ipaddress str: This is effectively a \"cloud NAT\" address, since you don't
            know what your LAN address will be between invocations in a cloud, this address can be
@@ -1012,6 +1019,7 @@ def put_ipsec_config(api_client, ipsec_local_ipaddress=None, **kwargs):  # noqa:
     # Authentication setting
     auth_settings = ["basicAuth"]  # noqa: E501
 
+    print(body_params)
     return api_client.call_api(
         "/ipsec",
         "PUT",
@@ -1069,7 +1077,8 @@ def wait_for_tunnel_connected(
         if total_tunnels != 1:
             raise RuntimeError(
                 "Can't determine tunnel for endpoint. Expected 1 tunnel, found %s"
-                % str(total_tunnels))
+                % str(total_tunnels)
+            )
         tunnel_id = next(iter(endpoint_tunnels.values()))["id"]
 
     tunnel_id = str(tunnel_id)
@@ -1086,7 +1095,9 @@ def wait_for_tunnel_connected(
             )
             return tunnel
 
-        Logger.debug("Tunnel not up yet. Waiting.", host=api_client.host_uri, tunnel_id=tunnel_id)
+        Logger.debug(
+            "Tunnel not up yet. Waiting.", host=api_client.host_uri, tunnel_id=tunnel_id
+        )
         time.sleep(sleep_time)
     raise CohesiveSDKException("Polling timeout [timeout=%sseconds]" % timeout)
 
@@ -1094,19 +1105,22 @@ def wait_for_tunnel_connected(
 class IPsecApiRouter(VersionRouter):
 
     function_library = {
-        "delete_ipsec_endpoint": {"4.8.4": delete_ipsec_endpoint},
-        "delete_ipsec_endpoint_tunnel": {"4.8.4": delete_ipsec_endpoint_tunnel},
-        "get_ipsec": {"4.8.4": get_ipsec},
-        "get_ipsec_endpoint": {"4.8.4": get_ipsec_endpoint},
-        "get_ipsec_status": {"4.8.4": get_ipsec_status},
-        "get_link_history": {"4.8.4": get_link_history},
-        "post_create_ipsec_endpoint": {"4.8.4": post_create_ipsec_endpoint},
-        "post_create_ipsec_endpoint_tunnel": {
-            "4.8.4": post_create_ipsec_endpoint_tunnel
+        "delete_ipsec_endpoint": {"4.8.4-4.9.1": delete_ipsec_endpoint},
+        "delete_ipsec_endpoint_tunnel": {"4.8.4-4.9.1": delete_ipsec_endpoint_tunnel},
+        "get_ipsec_details": {"4.8.4-4.9.1": get_ipsec_details},
+        "get_ipsec_endpoint": {"4.8.4-4.9.1": get_ipsec_endpoint},
+        "get_ipsec_status": {"4.8.4-4.9.1": get_ipsec_status},
+        "get_ipsec_link_history": {"4.8.4-4.9.1": get_ipsec_link_history},
+        "get_connected_subnets": {"4.8.4-4.9.1": get_connected_subnets},
+        "post_create_ipsec_endpoint": {"4.8.4-4.9.1": post_create_ipsec_endpoint},
+        "post_create_ipsec_endpoint_ftunnel": {
+            "4.8.4-4.9.1": post_create_ipsec_endpoint_tunnel
         },
-        "post_restart_ipsec_action": {"4.8.4": post_restart_ipsec_action},
-        "put_edit_ipsec_endpoint": {"4.8.4": put_edit_ipsec_endpoint},
-        "put_edit_ipsec_endpoint_tunnel": {"4.8.4": put_edit_ipsec_endpoint_tunnel},
-        "put_ipsec_config": {"4.8.4": put_ipsec_config},
-        "wait_for_tunnel_connected": {"4.8.4": wait_for_tunnel_connected}
+        "post_restart_ipsec_action": {"4.8.4-4.9.1": post_restart_ipsec_action},
+        "put_update_ipsec_endpoint": {"4.8.4-4.9.1": put_update_ipsec_endpoint},
+        "put_update_ipsec_endpoint_tunnel": {
+            "4.8.4-4.9.1": put_update_ipsec_endpoint_tunnel
+        },
+        "put_update_ipsec_config": {"4.8.4-4.9.1": put_update_ipsec_config},
+        "wait_for_tunnel_connected": {"4.8.4-4.9.1": wait_for_tunnel_connected},
     }

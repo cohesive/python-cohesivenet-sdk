@@ -729,7 +729,7 @@ def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa:
     Expire API token  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_expire_api_token_with_http_info(token_id, async_req=True)
+    >>> response = await api.put_expire_api_token(token_id, async_req=True)
 
     :param VNS3Client api_client: (required)
     :param int token_id: Token ID (required)
@@ -800,19 +800,1098 @@ def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa:
     )
 
 
+def put_ldap_settings(
+    api_client,
+    host=None,
+    port=None,
+    encrypt=None,
+    encrypt_ldaps=None,
+    encrypt_auth=None,
+    encrypt_verify_ca=None,
+    binddn=None,
+    bindpw=None,
+    **kwargs
+):
+    """Put update LDAP settings  # noqa: E501
+
+    Put update LDAP settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_ldap_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param str host: IP address or resolvable hostname (required)
+    :param int port: defaults to ldap default port
+    :param bool encrypt: Use SSL
+    :param bool encrypt_ldaps: Use LDAPS or start TLS (default)
+    :param bool encrypt_auth: Use certificates to authenticate via encrypted connection
+    :param bool encrypt_verify_ca: Verify certicate using authority
+    :param str binddn: Bind Username
+    :param str bindpw: Bind Password
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = [
+        "host",
+        "port",
+        "encrypt",
+        "encrypt_ldaps",
+        "encrypt_auth",
+        "encrypt_verify_ca",
+        "binddn",
+        "bindpw",
+    ]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_test_ldap_settings(
+    api_client,
+    host=None,
+    port=None,
+    encrypt=None,
+    encrypt_ldaps=None,
+    encrypt_auth=None,
+    encrypt_verify_ca=None,
+    binddn=None,
+    bindpw=None,
+    **kwargs
+):
+    """Test LDAP user schema settings  # noqa: E501
+
+    Test LDAP user schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_test_ldap_user_schema_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param str host: IP address or resolvable hostname (required)
+    :param int port: defaults to ldap default port
+    :param bool encrypt: Use SSL
+    :param bool encrypt_ldaps: Use LDAPS or start TLS (default)
+    :param bool encrypt_auth: Use certificates to authenticate via encrypted connection
+    :param bool encrypt_verify_ca: Verify certicate using authority
+    :param str binddn: Bind Username
+    :param str bindpw: Bind Password
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = [
+        "host",
+        "port",
+        "encrypt",
+        "encrypt_ldaps",
+        "encrypt_auth",
+        "encrypt_verify_ca",
+        "binddn",
+        "bindpw",
+    ]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_ldap_settings(api_client, **kwargs):  # noqa: E501
+    """Get LDAP settings  # noqa: E501
+
+    Get LDAP settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_ldap_settings(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_enable_ldap(api_client, enabled=True, **kwargs):  # noqa: E501
+    """Enable/disable LDAP  # noqa: E501
+
+    Enable/disable LDAP  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_enable_ldap(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param bool enabled: Defaults to true (required)
+    :param expired bool: Indicates whether to expire
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = ["enabled"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/enabled",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_upload_ldap_auth_cert(api_client, body=None, **kwargs):  # noqa: E501
+    """put_upload_ldap_auth_cert  # noqa: E501
+
+    Upload LDAP authentication certicate file  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_upload_ldap_auth_cert(body, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param body str: cert file (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/encrypt_auth_cert",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_upload_ldap_auth_key(api_client, body=None, **kwargs):  # noqa: E501
+    """put_upload_ldap_auth_key  # noqa: E501
+
+    Upload LDAP authentication key file  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_upload_ldap_auth_key(body, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param body str: auth key file (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/encrypt_auth_key",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_upload_ldap_ca_cert(api_client, body=None, **kwargs):  # noqa: E501
+    """put_upload_ldap_ca_cert  # noqa: E501
+
+    Upload LDAP CA certicate file  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_upload_ldap_ca_cert(body, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param body str: ca cert file (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/encrypt_ca_cert",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_ldap_group_schema_settings(
+    api_client,
+    group_required=None,
+    group_base=None,
+    group_id_attribute=None,
+    group_list_filter=None,
+    group_member_attribute=None,
+    group_member_attr_format=None,
+    group_search_scope=None,
+    **kwargs
+):
+    """Put update LDAP group schema settings  # noqa: E501
+
+    Put update LDAP group schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_ldap_group_schema_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param bool group_required: Require use of LDAP groups (required)
+    :param str group_base: Base DN from which to search for Groups
+    :param str group_id_attribute: Attribute type for the Groups
+    :param str group_list_filter: Search filter for Groups
+    :param str group_member_attribute: attribute used to search for a user within the Group
+    :param str group_member_attr_format: Format of the Group Member attribute
+    :param str group_search_scope: Default=subtree
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = [
+        "group_required",
+        "group_base",
+        "group_id_attribute",
+        "group_list_filter",
+        "group_member_attribute",
+        "group_member_attr_format",
+        "group_search_scope",
+    ]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/group_schema",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_test_ldap_group_schema_settings(
+    api_client,
+    group_base=None,
+    group_id_attribute=None,
+    group_list_filter=None,
+    group_member_attribute=None,
+    group_member_attr_format=None,
+    group_search_scope=None,
+    limit=None,
+    **kwargs
+):
+    """Test LDAP group schema settings  # noqa: E501
+
+    Test LDAP group schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_test_ldap_group_schema_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param str group_base: Base DN from which to search for Groups (required)
+    :param str group_id_attribute: Attribute type for the Groups (required)
+    :param str group_list_filter: Search filter for Groups
+    :param str group_member_attribute: attribute used to search for a user within the Group
+    :param str group_member_attr_format: Format of the Group Member attribute
+    :param str group_search_scope: Default=subtree
+    :param str limit: Number of records to return. Default = 100
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = [
+        "group_base",
+        "group_id_attribute",
+        "group_list_filter",
+        "group_member_attribute",
+        "group_member_attr_format",
+        "group_search_scope",
+        "limit",
+    ]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/group_schema",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_ldap_group_schema_settings(api_client, **kwargs):  # noqa: E501
+    """Get LDAP group schema settings  # noqa: E501
+
+    Get LDAP group schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_ldap_group_schema_settings(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/group_schema",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_ldap_user_schema_settings(
+    api_client, user_base=None, user_id_attribute=None, user_list_filter=None, **kwargs
+):
+    """Put LDAP user schema settings  # noqa: E501
+
+    Put LDAP user schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_ldap_user_schema_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param str user_base: Base DN from which to search for Users (required)
+    :param str user_id_attribute: Attribute type for the Users (required)
+    :param str user_list_filter: Search filter for Users
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = ["user_base", "user_id_attribute", "user_list_filter"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/user_schema",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_test_ldap_user_schema_settings(
+    api_client,
+    user_base=None,
+    user_id_attribute=None,
+    user_list_filter=None,
+    limit=None,
+    **kwargs
+):
+    """Test LDAP user schema settings  # noqa: E501
+
+    Test LDAP user schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_test_ldap_user_schema_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param str user_base: Base DN from which to search for Users (required)
+    :param str user_id_attribute: Attribute type for the Users (required)
+    :param str user_list_filter: Search filter for Users
+    :param str limit: Number of records to return. Default = 100
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = ["user_base", "user_id_attribute", "user_list_filter", "limit"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/user_schema",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_ldap_user_schema_settings(api_client, **kwargs):  # noqa: E501
+    """Get LDAP user schema settings  # noqa: E501
+
+    Get LDAP user schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_ldap_user_schema_settings(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/user_schema",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class AccessApiRouter(VersionRouter):
     """Manage access to VNS3 with API tokens and admin access URLs"""
 
     function_library = {
-        "create_access_url": {"4.8.4": create_access_url},
-        "create_api_token": {"4.8.4": create_api_token},
-        "delete_access_url": {"4.8.4": delete_access_url},
-        "delete_access_url_by_search": {"4.8.4": delete_access_url_by_search},
-        "delete_api_token": {"4.8.4": delete_api_token},
-        "get_access_urls": {"4.8.4": get_access_urls},
-        "get_access_url": {"4.8.4": get_access_url},
-        "get_api_token": {"4.8.4": get_api_token},
-        "get_api_tokens": {"4.8.4": get_api_tokens},
-        "put_expire_access_url": {"4.8.4": put_expire_access_url},
-        "put_expire_api_token": {"4.8.4": put_expire_api_token},
+        "create_access_url": {"4.8.4-4.9.1": create_access_url},
+        "create_api_token": {"4.8.4-4.9.1": create_api_token},
+        "delete_access_url": {"4.8.4-4.9.1": delete_access_url},
+        "delete_access_url_by_search": {"4.8.4-4.9.1": delete_access_url_by_search},
+        "delete_api_token": {"4.8.4-4.9.1": delete_api_token},
+        "get_access_urls": {"4.8.4-4.9.1": get_access_urls},
+        "get_access_url": {"4.8.4-4.9.1": get_access_url},
+        "get_api_token": {"4.8.4-4.9.1": get_api_token},
+        "get_api_tokens": {"4.8.4-4.9.1": get_api_tokens},
+        "put_expire_access_url": {"4.8.4-4.9.1": put_expire_access_url},
+        "put_expire_api_token": {"4.8.4-4.9.1": put_expire_api_token},
+        "put_ldap_settings": {"4.9.1": put_ldap_settings},
+        "post_test_ldap_settings": {"4.9.1": post_test_ldap_settings},
+        "get_ldap_settings": {"4.9.1": get_ldap_settings},
+        "put_enable_ldap": {"4.9.1": put_enable_ldap},
+        "put_upload_ldap_auth_cert": {"4.9.1": put_upload_ldap_auth_cert},
+        "put_upload_ldap_auth_key": {"4.9.1": put_upload_ldap_auth_key},
+        "put_upload_ldap_ca_cert": {"4.9.1": put_upload_ldap_ca_cert},
+        "put_ldap_group_schema_settings": {"4.9.1": put_ldap_group_schema_settings},
+        "post_test_ldap_group_schema_settings": {
+            "4.9.1": post_test_ldap_group_schema_settings
+        },
+        "get_ldap_group_schema_settings": {"4.9.1": get_ldap_group_schema_settings},
+        "put_ldap_user_schema_settings": {"4.9.1": put_ldap_user_schema_settings},
+        "post_test_ldap_user_schema_settings": {
+            "4.9.1": post_test_ldap_user_schema_settings
+        },
+        "get_ldap_user_schema_settings": {"4.9.1": get_ldap_user_schema_settings},
     }

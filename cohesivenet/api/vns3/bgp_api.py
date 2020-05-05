@@ -267,12 +267,12 @@ def update_bgp_peer(
     add_network_distance_hops=None,
     **kwargs
 ):  # noqa: E501
-    """put_edit_ipsec_endpoint_bgp_peer  # noqa: E501
+    """update_bgp_peer  # noqa: E501
 
     Edit BGP peer connection parameters  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_edit_ipsec_endpoint_bgp_peer_with_http_info(endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, async_req=True)
+    >>> response = await api.update_bgp_peer(endpoint_id, bgp_peer_id, update_bgp_peer_connection_request, async_req=True)
 
     :param VNS3Client api_client: (required)
     :param async_req bool: execute request asynchronously
@@ -367,8 +367,8 @@ class BGPApiRouter(VersionRouter):
     """Manage BGP peers"""
 
     function_library = {
-        "get_bgp_peer": {"4.8.4": get_bgp_peer},
-        "delete_bgp_peer": {"4.8.4": delete_bgp_peer},
-        "create_bgp_peer": {"4.8.4": create_bgp_peer},
-        "update_bgp_peer": {"4.8.4": update_bgp_peer},
+        "get_bgp_peer": {"4.8.4-4.9.1": get_bgp_peer},
+        "delete_bgp_peer": {"4.8.4-4.9.1": delete_bgp_peer},
+        "create_bgp_peer": {"4.8.4-4.9.1": create_bgp_peer},
+        "update_bgp_peer": {"4.8.4-4.9.1": update_bgp_peer},
     }

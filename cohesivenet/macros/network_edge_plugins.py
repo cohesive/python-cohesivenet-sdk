@@ -37,7 +37,13 @@ def wait_for_images_ready(client, import_uuids=None, interval=1.0, timeout=120.0
     while time.time() - start_time < timeout:
         resp_data = client.network_edge_plugins.get_container_system_images()
         images = resp_data.response.images
-        if all([i.get("status") == "Ready" for i in images if i.get("import_id") in import_uuids]):
+        if all(
+            [
+                i.get("status") == "Ready"
+                for i in images
+                if i.get("import_id") in import_uuids
+            ]
+        ):
             return True
         time.sleep(interval)
 

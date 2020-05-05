@@ -131,3 +131,26 @@ class TestVNS3Client(object):
             )
         )
         assert api_client.host_uri == "0.0.0.0"
+
+    def test_api_version_routing(self):
+        """Test api_builder.VersionRouter inits class based on class correctly
+        """
+        api_client = VNS3Client(
+            configuration=Configuration(
+                host="0.0.0.0:8000",
+                username="api",
+                password="password",
+                verify_ssl=False,
+            )
+        )
+        api_client.add_to_state("vns3_version", "4.8.4")
+
+        # "put_upload_ldap_auth_cert": {"4.9.1": put_upload_ldap_auth_cert},
+        # "put_upload_ldap_auth_key": {"4.9.1": put_upload_ldap_auth_key},
+        # "put_upload_ldap_ca_cert": {"4.9.1": put_upload_ldap_ca_cert},
+        # "put_ldap_group_schema_settings": {"4.9.1": put_ldap_group_schema_settings},
+        # "post_test_ldap_group_schema_settings": {"4.9.1": post_test_ldap_group_schema_settings},
+        # "get_ldap_group_schema_settings": {"4.9.1": get_ldap_group_schema_settings},
+        # "put_ldap_user_schema_settings": {"4.9.1": put_ldap_user_schema_settings},
+        # "post_test_ldap_user_schema_settings": {"4.9.1": post_test_ldap_user_schema_settings},
+        # "get_ldap_user_schema_settings": {"4.9.1": get_ldap_user_schema_settings},

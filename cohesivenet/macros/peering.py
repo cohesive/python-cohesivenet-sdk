@@ -144,7 +144,9 @@ def peer_mesh(
 
     def create_all_peers_for_client(client, post_peer_kwargs):
         return [
-            client.peering.post_create_peer(**dict(peering_request, **common_peer_kwargs))
+            client.peering.post_create_peer(
+                **dict(peering_request, **common_peer_kwargs)
+            )
             for peering_request in post_peer_kwargs
         ]
 

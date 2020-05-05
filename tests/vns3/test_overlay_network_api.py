@@ -26,8 +26,8 @@ from tests.stub_data import OverlayNetworkApiData
 class TestOverlayNetworkApi(object):
     """OverlayNetworkApi unit test stubs"""
 
-    def test_get_clientpack_details(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for get_clientpack_details
+    def test_get_clientpack(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for get_clientpack
         """
         generate_method_test(
             api_client,
@@ -37,7 +37,7 @@ class TestOverlayNetworkApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=OverlayNetworkApiData.ClientpackDetail,
-        )(overlay_network_api.get_clientpack_details)
+        )(overlay_network_api.get_clientpack)
 
     def test_get_clientpacks(self, rest_mocker, api_client, api_schema: dict):
         """Test case for get_clientpacks
@@ -104,8 +104,10 @@ class TestOverlayNetworkApi(object):
             mock_response="asdofnaosdfnoasdfiasodiffilefilefilefile",
         )(overlay_network_api.get_download_clientpack)
 
-    def test_post_calc_next_clientpack(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for post_calc_next_clientpack
+    def test_post_checkout_next_clientpack(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
+        """Test case for post_checkout_next_clientpack
 
         """
         generate_method_test(
@@ -116,7 +118,7 @@ class TestOverlayNetworkApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=OverlayNetworkApiData.NextClientpackResponse,
-        )(overlay_network_api.post_calc_next_clientpack)
+        )(overlay_network_api.post_checkout_next_clientpack)
 
     def test_post_create_clientpack_tag(
         self, rest_mocker, api_client, api_schema: dict
@@ -229,7 +231,9 @@ class TestOverlayNetworkApi(object):
             },
         )(overlay_network_api.put_disconnect_clientpack)
 
-    def test_put_update_all_clientpacks(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_update_all_clientpacks(
+        self, rest_mocker, api_client, api_schema: dict
+    ):
         """Test case for put_update_all_clientpacks
         """
         generate_method_test(

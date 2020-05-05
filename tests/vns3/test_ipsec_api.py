@@ -54,8 +54,8 @@ class TestIPsecApi(object):
             mock_response=IpsecApiData.IpsecEndpointDetailNoTunnels,
         )(ipsec_api.delete_ipsec_endpoint_tunnel)
 
-    def test_get_ipsec(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for get_ipsec
+    def test_get_ipsec_details(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for get_ipsec_details
         """
         generate_method_test(
             api_client,
@@ -65,7 +65,7 @@ class TestIPsecApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=IpsecApiData.IpsecSystemDetailResponse,
-        )(ipsec_api.get_ipsec)
+        )(ipsec_api.get_ipsec_details)
 
     def test_get_ipsec_endpoint(self, rest_mocker, api_client, api_schema: dict):
         """Test case for get_ipsec_endpoint
@@ -93,8 +93,8 @@ class TestIPsecApi(object):
             mock_response=IpsecApiData.IpsecStatusResponse,
         )(ipsec_api.get_ipsec_status)
 
-    def test_get_link_history(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for get_link_history
+    def test_get_ipsec_link_history(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for get_ipsec_link_history
         """
         generate_method_test(
             api_client,
@@ -104,7 +104,7 @@ class TestIPsecApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=IpsecApiData.LinkHistoryResponse,
-        )(ipsec_api.get_link_history)
+        )(ipsec_api.get_ipsec_link_history)
 
     def test_post_create_ipsec_endpoint(
         self, rest_mocker, api_client, api_schema: dict
@@ -150,8 +150,8 @@ class TestIPsecApi(object):
             mock_response={"response": {"restart": True}},
         )(ipsec_api.post_restart_ipsec_action)
 
-    def test_put_edit_ipsec_endpoint(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for put_edit_ipsec_endpoint
+    def test_put_update_ipsec_endpoint(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for put_update_ipsec_endpoint
 
         """
         generate_method_test(
@@ -162,12 +162,12 @@ class TestIPsecApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=IpsecApiData.IpsecEndpointDetail,
-        )(ipsec_api.put_edit_ipsec_endpoint)
+        )(ipsec_api.put_update_ipsec_endpoint)
 
-    def test_put_edit_ipsec_endpoint_tunnel(
+    def test_put_update_ipsec_endpoint_tunnel(
         self, rest_mocker, api_client, api_schema: dict
     ):
-        """Test case for put_edit_ipsec_endpoint_tunnel
+        """Test case for put_update_ipsec_endpoint_tunnel
 
         """
         generate_method_test(
@@ -178,10 +178,10 @@ class TestIPsecApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=IpsecApiData.IpsecTunnelDetail,
-        )(ipsec_api.put_edit_ipsec_endpoint_tunnel)
+        )(ipsec_api.put_update_ipsec_endpoint_tunnel)
 
-    def test_put_ipsec_config(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for put_ipsec_config
+    def test_put_update_ipsec_config(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for put_update_ipsec_config
         """
         generate_method_test(
             api_client,
@@ -191,4 +191,4 @@ class TestIPsecApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=IpsecApiData.IpsecSystemDetailResponse,
-        )(ipsec_api.put_ipsec_config)
+        )(ipsec_api.put_update_ipsec_config)

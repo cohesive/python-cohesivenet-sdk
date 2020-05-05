@@ -280,14 +280,14 @@ def delete_system_interface(api_client, interface_id, **kwargs):  # noqa: E501
     )
 
 
-def delete_gre_endpoint(api_client, interface_id, **kwargs):  # noqa: E501
-    """delete_gre_endpoint  # noqa: E501
+def delete_gre_interface(api_client, interface_id, **kwargs):  # noqa: E501
+    """delete_gre_interface  # noqa: E501
 
     Delete GRE Interface  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.delete_gre_endpoint(async_req=True)
+    >>> response = await api.delete_gre_interface(async_req=True)
 
     :param str interface_id: ID for system interface (required)
     :param async_req bool: execute request asynchronously
@@ -346,14 +346,14 @@ def delete_gre_endpoint(api_client, interface_id, **kwargs):  # noqa: E501
     )
 
 
-def get_gre_endpoints(api_client, **kwargs):  # noqa: E501
-    """get_gre_endpoints  # noqa: E501
+def get_gre_interfaces(api_client, **kwargs):  # noqa: E501
+    """get_gre_interfaces  # noqa: E501
 
-    Describe system edge GRE endpoints  # noqa: E501
+    Describe system edge GRE interfaces  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_gre_endpoints(async_req=True)
+    >>> response = await api.get_gre_interfaces(async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
@@ -411,14 +411,14 @@ def get_gre_endpoints(api_client, **kwargs):  # noqa: E501
     )
 
 
-def get_gre_endpoint_details(api_client, interface_id, **kwargs):  # noqa: E501
-    """get_gre_endpoint_details  # noqa: E501
+def get_gre_interface_details(api_client, interface_id, **kwargs):  # noqa: E501
+    """get_gre_interface_details  # noqa: E501
 
     Get GRE interface details by id or name  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_gre_endpoint_details(interface_id, async_req=True)
+    >>> response = await api.get_gre_interface_details(interface_id, async_req=True)
 
     :param str interface_id: ID for Edge GRE interface (required)
     :param async_req bool: execute request asynchronously
@@ -477,20 +477,20 @@ def get_gre_endpoint_details(api_client, interface_id, **kwargs):  # noqa: E501
     )
 
 
-def post_action_interfaces(
+def post_interfaces_action(
     api_client,
     discover_new_primary_adapters=None,
     discover_ips=None,
     manage_overlay_interfaces=None,
     **kwargs
 ):  # noqa: E501
-    """post_action_interfaces  # noqa: E501
+    """post_interfaces_action  # noqa: E501
 
     Take action on interfaces. Only one action can be taken per request.  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_action_interfaces(interface_action_request, async_req=True)
+    >>> response = await api.post_interfaces_action(interface_action_request, async_req=True)
 
      Run discovery for new primary adapters
 
@@ -567,7 +567,7 @@ def post_action_interfaces(
     )
 
 
-def post_create_gre_endpoint(
+def post_create_gre_interface(
     api_client,
     endpoint_name=None,
     description=None,
@@ -581,13 +581,13 @@ def post_create_gre_endpoint(
     ttl=None,
     **kwargs
 ):  # noqa: E501
-    """post_create_gre_endpoint  # noqa: E501
+    """post_create_gre_interface  # noqa: E501
 
     Create new edge GRE interface  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_create_gre_endpoint(body, async_req=True)
+    >>> response = await api.post_create_gre_interface(body, async_req=True)
 
     :param endpoint_name str: (required)
     :param description str:
@@ -783,7 +783,7 @@ def post_create_system_interface(
     )
 
 
-def put_update_gre_endpoint(
+def put_update_gre_interface(
     api_client,
     interface_id,
     endpoint_name=None,
@@ -798,13 +798,13 @@ def put_update_gre_endpoint(
     ttl=None,
     **kwargs
 ):  # noqa: E501
-    """put_update_gre_endpoint  # noqa: E501
+    """put_update_gre_interface  # noqa: E501
 
     Update GRE interface  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_update_gre_endpoint(10, endpoint_name="name", async_req=True)
+    >>> response = await api.put_update_gre_interface(10, endpoint_name="name", async_req=True)
 
     :param str interface_id: ID for edge GRE interface (required)
     :param endpoint_name str:
@@ -1007,16 +1007,16 @@ class InterfacesApiRouter(VersionRouter):
     """(Beta) Manage your VNS3 controllers interfaces"""
 
     function_library = {
-        "get_interfaces": {"4.8.4": get_interfaces},
-        "get_system_interface_details": {"4.8.4": get_system_interface_details},
-        "get_system_interfaces": {"4.8.4": get_system_interfaces},
-        "put_update_system_interface": {"4.8.4": put_update_system_interface},
-        "post_create_system_interface": {"4.8.4": post_create_system_interface},
-        "delete_gre_endpoint": {"4.8.4": delete_gre_endpoint},
-        "get_gre_endpoints": {"4.8.4": get_gre_endpoints},
-        "put_update_gre_endpoint": {"4.8.4": put_update_gre_endpoint},
-        "get_gre_endpoint_details": {"4.8.4": get_gre_endpoint_details},
-        "post_create_gre_endpoint": {"4.8.4": post_create_gre_endpoint},
-        "delete_system_interface": {"4.8.4": delete_system_interface},
-        "post_action_interfaces": {"4.8.4": post_action_interfaces},
+        "get_interfaces": {"4.8.4-4.9.1": get_interfaces},
+        "get_system_interface_details": {"4.8.4-4.9.1": get_system_interface_details},
+        "get_system_interfaces": {"4.8.4-4.9.1": get_system_interfaces},
+        "put_update_system_interface": {"4.8.4-4.9.1": put_update_system_interface},
+        "post_create_system_interface": {"4.8.4-4.9.1": post_create_system_interface},
+        "delete_gre_interface": {"4.8.4-4.9.1": delete_gre_interface},
+        "get_gre_interfaces": {"4.8.4-4.9.1": get_gre_interfaces},
+        "put_update_gre_interface": {"4.8.4-4.9.1": put_update_gre_interface},
+        "get_gre_interface_details": {"4.8.4-4.9.1": get_gre_interface_details},
+        "post_create_gre_interface": {"4.8.4-4.9.1": post_create_gre_interface},
+        "delete_system_interface": {"4.8.4-4.9.1": delete_system_interface},
+        "post_interfaces_action": {"4.8.4-4.9.1": post_interfaces_action},
     }

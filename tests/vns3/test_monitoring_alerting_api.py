@@ -67,8 +67,8 @@ class TestMonitoringAlertingApi(object):
             mock_response=MonitoringApiData.AlertsListResponse,
         )(monitoring_alerting_api.get_alerts)
 
-    def test_post_define_new_alert(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for post_define_new_alert
+    def test_post_create_alert(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for post_create_alert
 
         """
         generate_method_test(
@@ -79,7 +79,7 @@ class TestMonitoringAlertingApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=MonitoringApiData.AlertDetail,
-        )(monitoring_alerting_api.post_define_new_alert)
+        )(monitoring_alerting_api.post_create_alert)
 
     def test_post_test_alert(self, rest_mocker, api_client, api_schema: dict):
         """Test case for post_test_alert
@@ -96,8 +96,8 @@ class TestMonitoringAlertingApi(object):
             },
         )(monitoring_alerting_api.post_test_alert)
 
-    def test_post_toggle_enabled_alert(self, rest_mocker, api_client, api_schema: dict):
-        """Test case for post_toggle_enabled_alert
+    def test_post_toggle_enable_alert(self, rest_mocker, api_client, api_schema: dict):
+        """Test case for post_toggle_enable_alert
 
         """
         generate_method_test(
@@ -108,7 +108,7 @@ class TestMonitoringAlertingApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response=MonitoringApiData.AlertDetail,
-        )(monitoring_alerting_api.post_toggle_enabled_alert)
+        )(monitoring_alerting_api.post_toggle_enable_alert)
 
     def test_put_update_alert(self, rest_mocker, api_client, api_schema: dict):
         """Test case for put_update_alert

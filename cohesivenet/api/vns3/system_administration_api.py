@@ -90,14 +90,14 @@ def get_cloud_data(api_client, **kwargs):  # noqa: E501
     )
 
 
-def get_status(api_client, **kwargs):  # noqa: E501
-    """get_status  # noqa: E501
+def get_runtime_status(api_client, **kwargs):  # noqa: E501
+    """get_runtime_status  # noqa: E501
 
     Describe Runtime status details  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_status(async_req=True)
+    >>> response = await api.get_runtime_status(async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
@@ -296,15 +296,15 @@ def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
     )
 
 
-def post_generate_keypair(api_client, body=None, **kwargs):  # noqa: E501
-    """post_generate_keypair  # noqa: E501
+def post_generate_support_keypair(api_client, body=None, **kwargs):  # noqa: E501
+    """post_generate_support_keypair  # noqa: E501
 
     Generating a remote support key which can be shared with Cohesive to provide  access to the internal of the VNS3 Controller
     remotely as a \"one time key\".  Once Cohesive has used the key it can be revoked and access terminated.   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_generate_keypair(client, body, async_req=True)
+    >>> response = await api.post_generate_support_keypair(client, body, async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param passphrase_body str: Encrypted passphrase file which will be used to generate an X509 key for  accessing the VNS3 Controller
@@ -370,17 +370,17 @@ def post_generate_keypair(api_client, body=None, **kwargs):  # noqa: E501
     )
 
 
-def put_remote_support(
+def put_update_remote_support(
     api_client, enabled=None, revoke_credential=None, **kwargs
 ):  # noqa: E501
-    """put_remote_support  # noqa: E501
+    """put_update_remote_support  # noqa: E501
 
     Enables and disables remote support. Revokes the validity of a remote support
     keypair generated with postGenerateKeypair   # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_remote_support(async_req=True)
+    >>> response = await api.put_update_remote_support(async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param enabled bool: True if remote support should be enabled
@@ -527,6 +527,70 @@ def put_server_action(api_client, reboot=True, **kwargs):  # noqa: E501
     )
 
 
+def get_remote_support_details(api_client, **kwargs):  # noqa: E501
+    """get_remote_support_details  # noqa: E501
+
+    Get remote support configuration details.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_remote_support_details(client, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/remote_support",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 def _wait_for_down(api_client, retry_timeout=2, timeout=30, sleep_time=0):
     import time
 
@@ -576,7 +640,9 @@ def wait_for_api(
     target_host = api_client.host_uri
     while time.time() - start_time < timeout:
         try:
-            config_detail = config_api.get_config(api_client, _request_timeout=retry_timeout)
+            config_detail = config_api.get_config(
+                api_client, _request_timeout=retry_timeout
+            )
             if (
                 config_detail
                 and config_detail.response
@@ -607,12 +673,13 @@ def wait_for_api(
 
 class SystemAdministrationApiRouter(VersionRouter):
     function_library = {
-        "get_cloud_data": {"4.8.4": get_cloud_data},
-        "get_status": {"4.8.4": get_status},
-        "get_task_status": {"4.8.4": get_task_status},
-        "get_system_status": {"4.8.4": get_system_status},
-        "post_generate_keypair": {"4.8.4": post_generate_keypair},
-        "put_remote_support": {"4.8.4": put_remote_support},
-        "put_server_action": {"4.8.4": put_server_action},
-        "wait_for_api": {"4.8.4": wait_for_api},
+        "get_cloud_data": {"4.8.4-4.9.1": get_cloud_data},
+        "get_runtime_status": {"4.8.4-4.9.1": get_runtime_status},
+        "get_task_status": {"4.8.4-4.9.1": get_task_status},
+        "get_system_status": {"4.8.4-4.9.1": get_system_status},
+        "get_remote_support_details": {"4.8.4-4.9.1": get_remote_support_details},
+        "post_generate_support_keypair": {"4.8.4-4.9.1": post_generate_support_keypair},
+        "put_update_remote_support": {"4.8.4-4.9.1": put_update_remote_support},
+        "put_server_action": {"4.8.4-4.9.1": put_server_action},
+        "wait_for_api": {"4.8.4-4.9.1": wait_for_api},
     }

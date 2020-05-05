@@ -294,13 +294,13 @@ def get_container_system_ips(api_client, **kwargs):  # noqa: E501
     )
 
 
-def get_container_system_images(api_client, uuid=None, **kwargs):  # noqa: E501
-    """get_container_system_images  # noqa: E501
+def get_container_images(api_client, uuid=None, **kwargs):  # noqa: E501
+    """get_container_images  # noqa: E501
 
     Get list of existing container system images  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_container_system_images(async_req=True)
+    >>> response = await api.get_container_images(async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param str uuid: UUID for image to limit search
@@ -363,7 +363,7 @@ def get_container_system_images(api_client, uuid=None, **kwargs):  # noqa: E501
     )
 
 
-def get_container_system_running_containers(
+def get_running_containers(
     api_client, show_all=None, uuid=None, **kwargs
 ):  # noqa: E501
     """get_container_system_running_containers  # noqa: E501
@@ -927,15 +927,15 @@ def put_configure_container_system(api_client, network=None, **kwargs):  # noqa:
     )
 
 
-def put_edit_container_image(
+def put_update_container_image(
     api_client, uuid, name=None, description=None, **kwargs
 ):  # noqa: E501
-    """put_edit_container_image  # noqa: E501
+    """put_update_container_image  # noqa: E501
 
-    Edits container image  # noqa: E501
+    Update container image  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_edit_container_image(uuid, update_container_image_request, async_req=True)
+    >>> response = await api.put_update_container_image(uuid, update_container_image_request, async_req=True)
 
     :param str uuid: uuid of resource (required)
     :param str name: (required)
@@ -1073,7 +1073,82 @@ def put_stop_container(api_client, uuid, **kwargs):  # noqa: E501
     )
 
 
-def wait_for_container_system_state(api_client, running=True, sleep_time=2.0, timeout=30.0):
+def post_export_image(api_client, uuid, name=None, **kwargs):  # noqa: E501
+    """post_export_image  # noqa: E501
+
+    Create exported container image  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_export_image(uuid, async_req=True)
+
+    :param uuid str: uuid of resource (required)
+    :param name str: name for file (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["name"]
+
+    collection_formats = {}
+
+    path_params = {"uuid": uuid}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/container_system/containers/{uuid}/exports",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def wait_for_container_system_state(
+    api_client, running=True, sleep_time=2.0, timeout=30.0
+):
     expected_running_state = "true" if running else "false"
     start_time = time.time()
     while time.time() - start_time < timeout:
@@ -1116,7 +1191,9 @@ def assert_container_system_state(api_client, running, sleep_time=2.0, timeout=3
         return True
 
     assert response_state == expected_in_progress, "Unexpected state."
-    return wait_for_container_system_state(api_client, running, sleep_time=sleep_time, timeout=timeout)
+    return wait_for_container_system_state(
+        api_client, running, sleep_time=sleep_time, timeout=timeout
+    )
 
 
 def restart_container_network(api_client, sleep_time=2.0, timeout=30.0, **kwargs):
@@ -1129,7 +1206,9 @@ def restart_container_network(api_client, sleep_time=2.0, timeout=30.0, **kwargs
         Boolean
     """
     start_time = time.time()
-    assert_container_system_state(api_client, running=False, sleep_time=sleep_time, timeout=timeout)
+    assert_container_system_state(
+        api_client, running=False, sleep_time=sleep_time, timeout=timeout
+    )
     remaining_time = timeout - (time.time() - start_time)
     assert_container_system_state(
         api_client, running=True, sleep_time=sleep_time, timeout=remaining_time
@@ -1155,7 +1234,7 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
     """
 
     start_time = time.time()
-    resp_data = get_container_system_images(api_client, uuid=import_uuid)
+    resp_data = get_container_images(api_client, uuid=import_uuid)
     images = resp_data.response.images
     if images is None:
         raise ApiException("No images returned. Is container system running?")
@@ -1169,7 +1248,7 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
     time.sleep(sleep_time)
     while time.time() - start_time < timeout:
         try:
-            resp_data = get_container_system_images(api_client, uuid=import_uuid)
+            resp_data = get_container_images(api_client, uuid=import_uuid)
         except ApiException as e:
             if e.status == 500:
                 Logger.debug(
@@ -1197,23 +1276,30 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
 
 class NetworkEdgePluginsApiRouter(VersionRouter):
     function_library = {
-        "delete_container": {"4.8.4": delete_container},
-        "delete_container_image": {"4.8.4": delete_container_image},
-        "get_container_logs": {"4.8.4": get_container_logs},
-        "get_container_system_ips": {"4.8.4": get_container_system_ips},
-        "get_container_system_images": {"4.8.4": get_container_system_images},
+        "delete_container": {"4.8.4-4.9.1": delete_container},
+        "delete_container_image": {"4.8.4-4.9.1": delete_container_image},
+        "get_container_logs": {"4.8.4-4.9.1": get_container_logs},
+        "get_container_system_ips": {"4.8.4-4.9.1": get_container_system_ips},
+        "get_container_system_images": {"4.8.4-4.9.1": get_container_images},
+        "get_container_images": {"4.8.4-4.9.1": get_container_images},
         "get_container_system_running_containers": {
-            "4.8.4": get_container_system_running_containers
+            "4.8.4-4.9.1": get_running_containers
         },
-        "get_container_system_status": {"4.8.4": get_container_system_status},
-        "post_action_container_system": {"4.8.4": post_action_container_system},
-        "post_commit_container": {"4.8.4": post_commit_container},
-        "post_create_container_image": {"4.8.4": post_create_container_image},
-        "post_start_container": {"4.8.4": post_start_container},
-        "put_configure_container_system": {"4.8.4": put_configure_container_system},
-        "put_edit_container_image": {"4.8.4": put_edit_container_image},
-        "put_stop_container": {"4.8.4": put_stop_container},
-        "wait_for_container_system_state": {"4.8.4": wait_for_container_system_state},
-        "restart_container_network": {"4.8.4": restart_container_network},
-        "wait_for_image_import": {"4.8.4": wait_for_image_import},
+        "get_running_containers": {"4.8.4-4.9.1": get_running_containers},
+        "post_export_image": {"4.9.1": post_export_image},
+        "get_container_system_status": {"4.8.4-4.9.1": get_container_system_status},
+        "post_action_container_system": {"4.8.4-4.9.1": post_action_container_system},
+        "post_commit_container": {"4.8.4-4.9.1": post_commit_container},
+        "post_create_container_image": {"4.8.4-4.9.1": post_create_container_image},
+        "post_start_container": {"4.8.4-4.9.1": post_start_container},
+        "put_configure_container_system": {
+            "4.8.4-4.9.1": put_configure_container_system
+        },
+        "put_update_container_image": {"4.8.4-4.9.1": put_update_container_image},
+        "put_stop_container": {"4.8.4-4.9.1": put_stop_container},
+        "wait_for_container_system_state": {
+            "4.8.4-4.9.1": wait_for_container_system_state
+        },
+        "restart_container_network": {"4.8.4-4.9.1": restart_container_network},
+        "wait_for_image_import": {"4.8.4-4.9.1": wait_for_image_import},
     }

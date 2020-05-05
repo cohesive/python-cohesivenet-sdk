@@ -13,7 +13,7 @@ class MockConstants(object):
     VerifySSL = False
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def api_schema():
     from tests.openapi import resolve_refs, fetch_spec
     return resolve_refs(fetch_spec(__vns3_spec__))
