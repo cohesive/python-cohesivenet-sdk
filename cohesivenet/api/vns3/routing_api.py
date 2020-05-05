@@ -318,10 +318,10 @@ def post_create_route_if_not_exists(
 class RoutingApiRouter(VersionRouter):
 
     function_library = {
-        "delete_route": {"4.8.4-4.9.1": delete_route},
-        "get_routes": {"4.8.4-4.9.1": get_routes},
-        "post_create_route": {"4.8.4-4.9.1": post_create_route},
+        "delete_route": {"4.8.4-4.9.2": delete_route},
+        "get_routes": {"4.8.4-4.9.2": get_routes},
+        "post_create_route": {"4.8.4-4.9.2": post_create_route},
         "post_create_route_if_not_exists": {
-            "4.8.4-4.9.1": post_create_route_if_not_exists
+            "4.8.4-4.9.2": post_create_route_if_not_exists
         },
     }

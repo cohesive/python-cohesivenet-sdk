@@ -1276,30 +1276,30 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
 
 class NetworkEdgePluginsApiRouter(VersionRouter):
     function_library = {
-        "delete_container": {"4.8.4-4.9.1": delete_container},
-        "delete_container_image": {"4.8.4-4.9.1": delete_container_image},
-        "get_container_logs": {"4.8.4-4.9.1": get_container_logs},
-        "get_container_system_ips": {"4.8.4-4.9.1": get_container_system_ips},
-        "get_container_system_images": {"4.8.4-4.9.1": get_container_images},
-        "get_container_images": {"4.8.4-4.9.1": get_container_images},
+        "delete_container": {"4.8.4-4.9.2": delete_container},
+        "delete_container_image": {"4.8.4-4.9.2": delete_container_image},
+        "get_container_logs": {"4.8.4-4.9.2": get_container_logs},
+        "get_container_system_ips": {"4.8.4-4.9.2": get_container_system_ips},
+        "get_container_system_images": {"4.8.4-4.9.2": get_container_images},
+        "get_container_images": {"4.8.4-4.9.2": get_container_images},
         "get_container_system_running_containers": {
-            "4.8.4-4.9.1": get_running_containers
+            "4.8.4-4.9.2": get_running_containers
         },
-        "get_running_containers": {"4.8.4-4.9.1": get_running_containers},
-        "post_export_image": {"4.9.1": post_export_image},
-        "get_container_system_status": {"4.8.4-4.9.1": get_container_system_status},
-        "post_action_container_system": {"4.8.4-4.9.1": post_action_container_system},
-        "post_commit_container": {"4.8.4-4.9.1": post_commit_container},
-        "post_create_container_image": {"4.8.4-4.9.1": post_create_container_image},
-        "post_start_container": {"4.8.4-4.9.1": post_start_container},
+        "get_running_containers": {"4.8.4-4.9.2": get_running_containers},
+        "get_container_system_status": {"4.8.4-4.9.2": get_container_system_status},
+        "post_action_container_system": {"4.8.4-4.9.2": post_action_container_system},
+        "post_commit_container": {"4.8.4-4.9.2": post_commit_container},
+        "post_create_container_image": {"4.8.4-4.9.2": post_create_container_image},
+        "post_start_container": {"4.8.4-4.9.2": post_start_container},
         "put_configure_container_system": {
-            "4.8.4-4.9.1": put_configure_container_system
+            "4.8.4-4.9.2": put_configure_container_system
         },
-        "put_update_container_image": {"4.8.4-4.9.1": put_update_container_image},
-        "put_stop_container": {"4.8.4-4.9.1": put_stop_container},
+        "put_update_container_image": {"4.8.4-4.9.2": put_update_container_image},
+        "put_stop_container": {"4.8.4-4.9.2": put_stop_container},
         "wait_for_container_system_state": {
-            "4.8.4-4.9.1": wait_for_container_system_state
+            "4.8.4-4.9.2": wait_for_container_system_state
         },
-        "restart_container_network": {"4.8.4-4.9.1": restart_container_network},
-        "wait_for_image_import": {"4.8.4-4.9.1": wait_for_image_import},
+        "restart_container_network": {"4.8.4-4.9.2": restart_container_network},
+        "wait_for_image_import": {"4.8.4-4.9.2": wait_for_image_import},
+        "post_export_image": {"4.9.1-4.9.2": post_export_image},
     }
