@@ -372,9 +372,9 @@ def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
 
 class SnapshotsApiRouter(VersionRouter):
     function_library = {
-        "delete_snapshot": {"4.8.4-4.9.2": delete_snapshot},
-        "get_download_snapshot": {"4.8.4-4.9.2": get_download_snapshot},
-        "get_snapshots": {"4.8.4-4.9.2": get_snapshots},
-        "post_create_snapshot": {"4.8.4-4.9.2": post_create_snapshot},
-        "put_import_snapshot": {"4.8.4-4.9.2": put_import_snapshot},
+        "delete_snapshot": {"4.8.4-4.10.1": delete_snapshot},
+        "get_download_snapshot": {"4.8.4-4.10.1": get_download_snapshot},
+        "get_snapshots": {"4.8.4-4.10.1": get_snapshots},
+        "post_create_snapshot": {"4.8.4-4.10.1": post_create_snapshot},
+        "put_import_snapshot": {"4.8.4-4.10.1": put_import_snapshot},
     }

@@ -1862,36 +1862,304 @@ def get_ldap_user_schema_settings(api_client, **kwargs):  # noqa: E501
     )
 
 
+def put_ldap_vpn_schema_settings(
+    api_client,
+    vpn_auth_enabled=None,
+    vpn_group_base=None,
+    vpn_group_id_attribute=None,
+    vpn_group_list_filter=None,
+    vpn_group_member_attribute=None,
+    vpn_group_member_attr_format=None,
+    vpn_group_search_scope=None,
+    **kwargs
+):
+    """Put LDAP VPN schema settings  # noqa: E501
+
+    Put LDAP VPN schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_ldap_vpn_schema_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param bool vpn_auth_enabled: Enable VPN LDAP auth (required)
+    :param str vpn_group_base: Base DN from which to search for VPN Group (required)
+    :param str vpn_group_id_attribute: Attribute type for the VPN Group (required)
+    :param str vpn_group_list_filter: Search filter for VPN Groups
+    :param str vpn_group_member_attribute: Attribute used to search for a user within the VPN Group
+    :param str vpn_group_member_attr_format: Format of the Group VPN Member attribute
+    :param str vpn_group_search_scope: Search scope for filter
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = [
+        "vpn_auth_enabled",
+        "vpn_group_base",
+        "vpn_group_id_attribute",
+        "vpn_group_list_filter",
+        "vpn_group_member_attribute",
+        "vpn_group_member_attr_format",
+        "vpn_group_search_scope"
+    ]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/vpn_schema",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_ldap_vpn_schema_settings(api_client, **kwargs):  # noqa: E501
+    """Get LDAP VPN schema settings  # noqa: E501
+
+    Get LDAP VPN schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_ldap_vpn_schema_settings(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/vpn_schema",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_test_ldap_vpn_schema_settings(
+    api_client,
+    vpn_group_base=None,
+    vpn_group_id_attribute=None,
+    vpn_group_list_filter=None,
+    vpn_group_member_attribute=None,
+    vpn_group_member_attr_format=None,
+    vpn_group_search_scope=None,
+    limit=None,
+    **kwargs
+):
+    """Test LDAP VPN schema settings  # noqa: E501
+
+    Test LDAP VPN schema settings  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_test_ldap_vpn_schema_settings(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param str vpn_group_base: Base DN from which to search for VPN Group (required)
+    :param str vpn_group_id_attribute: Attribute type for the VPN Group (required)
+    :param str vpn_group_list_filter: Search filter for VPN Groups
+    :param str vpn_group_member_attribute: Attribute used to search for a user within the VPN Group
+    :param str vpn_group_member_attr_format: Format of the Group VPN Member attribute
+    :param str vpn_group_search_scope: Search scope for filter
+    :param str limit: Number of records to return. Default = 100
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = [
+        "vpn_group_base",
+        "vpn_group_id_attribute",
+        "vpn_group_list_filter",
+        "vpn_group_member_attribute",
+        "vpn_group_member_attr_format",
+        "vpn_group_search_scope",
+        "limit"
+    ]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/settings/ldap/vpn_schema",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class AccessApiRouter(VersionRouter):
     """Manage access to VNS3 with API tokens and admin access URLs"""
 
     function_library = {
-        "create_access_url": {"4.8.4-4.9.2": create_access_url},
-        "create_api_token": {"4.8.4-4.9.2": create_api_token},
-        "delete_access_url": {"4.8.4-4.9.2": delete_access_url},
-        "delete_access_url_by_search": {"4.8.4-4.9.2": delete_access_url_by_search},
-        "delete_api_token": {"4.8.4-4.9.2": delete_api_token},
-        "get_access_urls": {"4.8.4-4.9.2": get_access_urls},
-        "get_access_url": {"4.8.4-4.9.2": get_access_url},
-        "get_api_token": {"4.8.4-4.9.2": get_api_token},
-        "get_api_tokens": {"4.8.4-4.9.2": get_api_tokens},
-        "put_expire_access_url": {"4.8.4-4.9.2": put_expire_access_url},
-        "put_expire_api_token": {"4.8.4-4.9.2": put_expire_api_token},
-        "put_ldap_settings": {"4.9.1-4.9.2": put_ldap_settings},
-        "post_test_ldap_settings": {".9.1-4.9.2": post_test_ldap_settings},
-        "get_ldap_settings": {"4.9.1-4.9.2": get_ldap_settings},
-        "put_enable_ldap": {"4.9.1-4.9.2": put_enable_ldap},
-        "put_upload_ldap_auth_cert": {"4.9.1-4.9.2": put_upload_ldap_auth_cert},
-        "put_upload_ldap_auth_key": {"4.9.1-4.9.2": put_upload_ldap_auth_key},
-        "put_upload_ldap_ca_cert": {"4.9.1-4.9.2": put_upload_ldap_ca_cert},
-        "put_ldap_group_schema_settings": {"4.9.1-4.9.2": put_ldap_group_schema_settings},
+        "create_access_url": {"4.8.4-4.10.1": create_access_url},
+        "create_api_token": {"4.8.4-4.10.1": create_api_token},
+        "delete_access_url": {"4.8.4-4.10.1": delete_access_url},
+        "delete_access_url_by_search": {"4.8.4-4.10.1": delete_access_url_by_search},
+        "delete_api_token": {"4.8.4-4.10.1": delete_api_token},
+        "get_access_urls": {"4.8.4-4.10.1": get_access_urls},
+        "get_access_url": {"4.8.4-4.10.1": get_access_url},
+        "get_api_token": {"4.8.4-4.10.1": get_api_token},
+        "get_api_tokens": {"4.8.4-4.10.1": get_api_tokens},
+        "put_expire_access_url": {"4.8.4-4.10.1": put_expire_access_url},
+        "put_expire_api_token": {"4.8.4-4.10.1": put_expire_api_token},
+        "put_ldap_settings": {"4.9.1-4.10.1": put_ldap_settings},
+        "post_test_ldap_settings": {"4.9.1-4.10.1": post_test_ldap_settings},
+        "get_ldap_settings": {"4.9.1-4.10.1": get_ldap_settings},
+        "put_enable_ldap": {"4.9.1-4.10.1": put_enable_ldap},
+        "put_upload_ldap_auth_cert": {"4.9.1-4.10.1": put_upload_ldap_auth_cert},
+        "put_upload_ldap_auth_key": {"4.9.1-4.10.1": put_upload_ldap_auth_key},
+        "put_upload_ldap_ca_cert": {"4.9.1-4.10.1": put_upload_ldap_ca_cert},
+        "put_ldap_group_schema_settings": {"4.9.1-4.10.1": put_ldap_group_schema_settings},
         "post_test_ldap_group_schema_settings": {
-            "4.9.1-4.9.2": post_test_ldap_group_schema_settings
+            "4.9.1-4.10.1": post_test_ldap_group_schema_settings
         },
-        "get_ldap_group_schema_settings": {"4.9.1-4.9.2": get_ldap_group_schema_settings},
-        "put_ldap_user_schema_settings": {"4.9.1-4.9.2": put_ldap_user_schema_settings},
+        "get_ldap_group_schema_settings": {"4.9.1-4.10.1": get_ldap_group_schema_settings},
+        "put_ldap_user_schema_settings": {"4.9.1-4.10.1": put_ldap_user_schema_settings},
         "post_test_ldap_user_schema_settings": {
-            "4.9.1-4.9.2": post_test_ldap_user_schema_settings
+            "4.9.1-4.10.1": post_test_ldap_user_schema_settings
         },
-        "get_ldap_user_schema_settings": {"4.9.1-4.9.2": get_ldap_user_schema_settings},
+        "get_ldap_user_schema_settings": {"4.9.1-4.10.1": get_ldap_user_schema_settings},
+        "get_ldap_vpn_schema_settings": {"4.10.1": get_ldap_vpn_schema_settings},
+        "post_test_ldap_vpn_schema_settings": {"4.10.1": post_test_ldap_vpn_schema_settings},
+        "put_ldap_vpn_schema_settings": {"4.10.1": put_ldap_vpn_schema_settings},
     }

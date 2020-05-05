@@ -367,8 +367,8 @@ class BGPApiRouter(VersionRouter):
     """Manage BGP peers"""
 
     function_library = {
-        "get_bgp_peer": {"4.8.4-4.9.2": get_bgp_peer},
-        "delete_bgp_peer": {"4.8.4-4.9.2": delete_bgp_peer},
-        "create_bgp_peer": {"4.8.4-4.9.2": create_bgp_peer},
-        "update_bgp_peer": {"4.8.4-4.9.2": update_bgp_peer},
+        "get_bgp_peer": {"4.8.4-4.10.1": get_bgp_peer},
+        "delete_bgp_peer": {"4.8.4-4.10.1": delete_bgp_peer},
+        "create_bgp_peer": {"4.8.4-4.10.1": create_bgp_peer},
+        "update_bgp_peer": {"4.8.4-4.10.1": update_bgp_peer},
     }
