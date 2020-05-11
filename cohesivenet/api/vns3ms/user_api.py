@@ -17,15 +17,388 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
+def put_user_password(api_client, password=None, force_refresh=None, **kwargs):  # noqa: E501
+    """Update current user password  # noqa: E501
+
+    Update current user password  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_user_password(password, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param password str: New password (required)
+    :param force_refresh bool: Force session refresh
+    :param enabled bool: Enable/Disable API key
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["password", "force_refresh"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/user/password",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_user_credentials(api_client, cred_id=None, **kwargs):  # noqa: E501
+    """Get user credentials  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_user_credentials(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param cred_id int: Filter by credential ID
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["cred_id"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/user/credentials",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_user_credential(api_client, name=None, code=None, fields=None, **kwargs):  # noqa: E501
+    """Create user credential  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_user_credential(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param name str: Name of new credential (required)
+    :param code str: Credential type code (required)
+    :param fields list[{key: str, value: str}]: Credential type code
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "code", "fields"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {
+        "fields": []
+    }
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/user/credentials",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_user_credential(
+    api_client,
+    credential_id,
+    name=None,
+    code=None,
+    fields=None,
+    **kwargs
+):  # noqa: E501
+    """Update user credential  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_user_credential(id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param credential_id int: Credential ID (required)
+    :param name str: Name of new credential
+    :param code str: Credential type code
+    :param fields list[{key: str, value: str}]: Credential type code
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "code", "fields"]
+
+    collection_formats = {}
+
+    path_params = {"credential_id": credential_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/user/credentials/{credential_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_user_credential(api_client, credential_id, **kwargs):  # noqa: E501
+    """Delete user credential  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_user_credential(id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param credential_id int: Credential ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"credential_id": credential_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/user/credentials/{credential_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
 class UserApiRouter(VersionRouter):
     """User management endpoints for configuring credentials"""
 
     function_library = {
-        "put_user_password": {"2.1.1": None},
-        "get_validate_username": {"2.1.1": None},
-        "get_validate_email": {"2.1.1": None},
-        "get_user_credentials": {"2.1.1": None},
-        "post_create_user_credentials": {"2.1.1": None},
-        "put_update_user_credentials": {"2.1.1": None},
-        "delete_user_credentials": {"2.1.1": None}
+        "put_user_password": {"2.1.1": put_user_password},
+        "get_user_credentials": {"2.1.1": get_user_credentials},
+        "post_create_user_credential": {"2.1.1": post_create_user_credential},
+        "put_update_user_credential": {"2.1.1": put_update_user_credential},
+        "delete_user_credential": {"2.1.1": delete_user_credential}
     }

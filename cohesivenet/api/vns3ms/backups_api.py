@@ -218,7 +218,7 @@ def get_download_backup(api_client, **kwargs):  # noqa: E501
         body={},
         post_params=form_params,
         files=local_var_files,
-        response_type="file:%s" % local_var_params["fileformat"],
+        response_type="file",
         auth_settings=auth_settings,
         async_req=local_var_params.get("async_req"),
         _return_http_data_only=local_var_params.get(
@@ -729,7 +729,7 @@ def get_download_snapshots_backup(api_client, **kwargs):  # noqa: E501
         body={},
         post_params=form_params,
         files=local_var_files,
-        response_type="file:%s" % local_var_params["fileformat"],
+        response_type="file",
         auth_settings=auth_settings,
         async_req=local_var_params.get("async_req"),
         _return_http_data_only=local_var_params.get(

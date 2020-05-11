@@ -1183,8 +1183,143 @@ def delete_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E
     )
 
 
-# VNS3 TOPOLOGIES
+def get_export_virtual_networks(api_client):  # noqa: E501
+    """Export virtual networks CSV  # noqa: E501
 
+    Export virtual networks CSV file   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_export_virtual_networks(client, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["text/plain", "application/octet-stream"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/virtual_networks/export",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body={},
+        post_params=form_params,
+        files=local_var_files,
+        response_type="file",
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_import_virtual_networks(api_client, body=None):  # noqa: E501
+    """Import virtual networks from CSV file  # noqa: E501
+
+    Import virtual networks from CSV file   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_import_virtual_networks(client, body, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["text/plain", "application/octet-stream"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/virtual_networks/import",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body={},
+        post_params=form_params,
+        files=local_var_files,
+        response_type="file",
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+# VNS3 TOPOLOGIES
 
 def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E501
     """Return list of all (accessible) VNS3 Topologies  # noqa: E501
@@ -1587,8 +1722,8 @@ class CloudMonitoringApiRouter(VersionRouter):
         "get_virtual_network": {"2.1.1": get_virtual_network},
         "put_update_virtual_network": {"2.1.1": put_update_virtual_network},
         "delete_virtual_network": {"2.1.1": delete_virtual_network},
-        "get_export_virtual_networks": {"2.1.1": None},
-        "post_import_virtual_networks": {"2.1.1": None},
+        "get_export_virtual_networks": {"2.1.1": get_export_virtual_networks},
+        "post_import_virtual_networks": {"2.1.1": post_import_virtual_networks},
         "get_vns3_topologies": {"2.1.1": get_vns3_topologies},
         "post_create_vns3_topology": {"2.1.1": post_create_vns3_topology},
         "get_vns3_topology": {"2.1.1": get_vns3_topology},
