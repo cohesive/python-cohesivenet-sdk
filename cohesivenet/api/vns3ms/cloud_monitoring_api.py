@@ -17,7 +17,9 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
-def get_cloud_vlan_components(api_client, cloud_vlan_component_id=None, **kwargs):  # noqa: E501
+def get_cloud_vlan_components(
+    api_client, cloud_vlan_component_id=None, **kwargs
+):  # noqa: E501
     """Return list of all (accessible) Cloud VLAN Components  # noqa: E501
 
     Return list of all (accessible) Cloud VLAN Components  # noqa: E501
@@ -68,7 +70,7 @@ def get_cloud_vlan_components(api_client, cloud_vlan_component_id=None, **kwargs
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlan_components",
@@ -134,7 +136,7 @@ def post_create_vlan_component(
         "user_cred_id",
         "vlan_component_id",
         "region",
-        "description"
+        "description",
     ]
 
     collection_formats = {}
@@ -163,7 +165,7 @@ def post_create_vlan_component(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlan_components",
@@ -233,7 +235,7 @@ def get_cloud_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlan_components/{component_id}",
@@ -257,7 +259,7 @@ def get_cloud_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
 
 
 def put_update_vlan_component(
-    api_client, 
+    api_client,
     component_id,
     name=None,
     cloud_vlan_id=None,
@@ -290,13 +292,7 @@ def put_update_vlan_component(
     """
 
     local_var_params = locals()
-    request_params = [
-        "name",
-        "cloud_vlan_id",
-        "user_cred_id",
-        "region",
-        "description"
-    ]
+    request_params = ["name", "cloud_vlan_id", "user_cred_id", "region", "description"]
 
     collection_formats = {}
 
@@ -324,7 +320,7 @@ def put_update_vlan_component(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlan_components/{component_id}",
@@ -345,7 +341,6 @@ def put_update_vlan_component(
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def delete_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
@@ -395,7 +390,7 @@ def delete_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlan_components/{component_id}",
@@ -419,6 +414,7 @@ def delete_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
 
 
 # CLOUD VLANS
+
 
 def get_cloud_vlans(api_client, cloud_vlan_id=None, **kwargs):  # noqa: E501
     """Return list of all (accessible) Cloud VLANs  # noqa: E501
@@ -469,7 +465,7 @@ def get_cloud_vlans(api_client, cloud_vlan_id=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlans",
@@ -493,11 +489,7 @@ def get_cloud_vlans(api_client, cloud_vlan_id=None, **kwargs):  # noqa: E501
 
 
 def post_create_cloud_vlan(
-    api_client,
-    name=None,
-    virtual_network_id=None,
-    description=None
-    **kwargs
+    api_client, name=None, virtual_network_id=None, description=None, **kwargs
 ):  # noqa: E501
     """Create new Cloud VLAN  # noqa: E501
 
@@ -523,11 +515,7 @@ def post_create_cloud_vlan(
     """
 
     local_var_params = locals()
-    request_params = [
-        "name",
-        "virtual_network_id",
-        "description"
-    ]
+    request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
 
@@ -555,7 +543,7 @@ def post_create_cloud_vlan(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlans",
@@ -625,7 +613,7 @@ def get_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlans/{vlan_id}",
@@ -649,12 +637,7 @@ def get_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
 
 
 def put_update_cloud_vlan(
-    api_client, 
-    vlan_id,
-    name=None,
-    virtual_network_id=None,
-    description=None,
-    **kwargs
+    api_client, vlan_id, name=None, virtual_network_id=None, description=None, **kwargs
 ):  # noqa: E501
     """Update specified Cloud VLAN Component  # noqa: E501
 
@@ -679,11 +662,7 @@ def put_update_cloud_vlan(
     """
 
     local_var_params = locals()
-    request_params = [
-        "name",
-        "virtual_network_id",
-        "description"
-    ]
+    request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
 
@@ -711,7 +690,7 @@ def put_update_cloud_vlan(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlans/{vlan_id}",
@@ -781,7 +760,7 @@ def delete_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/cloud_vlans/{vlan_id}",
@@ -856,7 +835,7 @@ def get_virtual_networks(api_client, virtual_network_id=None, **kwargs):  # noqa
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/virtual_networks",
@@ -880,10 +859,7 @@ def get_virtual_networks(api_client, virtual_network_id=None, **kwargs):  # noqa
 
 
 def post_create_virtual_network(
-    api_client,
-    name=None,
-    description=None
-    **kwargs
+    api_client, name=None, description=None, **kwargs
 ):  # noqa: E501
     """Create new Virtual Network  # noqa: E501
 
@@ -906,10 +882,7 @@ def post_create_virtual_network(
     """
 
     local_var_params = locals()
-    request_params = [
-        "name",
-        "description"
-    ]
+    request_params = ["name", "description"]
 
     collection_formats = {}
 
@@ -937,7 +910,7 @@ def post_create_virtual_network(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/virtual_networks",
@@ -1007,7 +980,7 @@ def get_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/virtual_networks/{virtual_network_id}",
@@ -1031,11 +1004,7 @@ def get_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E501
 
 
 def put_update_virtual_network(
-    api_client, 
-    virtual_network_id,
-    name=None,
-    description=None,
-    **kwargs
+    api_client, virtual_network_id, name=None, description=None, **kwargs
 ):  # noqa: E501
     """Update specified Virtual Network  # noqa: E501
 
@@ -1059,10 +1028,7 @@ def put_update_virtual_network(
     """
 
     local_var_params = locals()
-    request_params = [
-        "name",
-        "description"
-    ]
+    request_params = ["name", "description"]
 
     collection_formats = {}
 
@@ -1090,7 +1056,7 @@ def put_update_virtual_network(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/virtual_networks/{virtual_network_id}",
@@ -1160,7 +1126,7 @@ def delete_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/virtual_networks/{virtual_network_id}",
@@ -1228,7 +1194,7 @@ def get_export_virtual_networks(api_client):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/virtual_networks/export",
@@ -1296,7 +1262,7 @@ def post_import_virtual_networks(api_client, body=None):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/virtual_networks/import",
@@ -1320,6 +1286,7 @@ def post_import_virtual_networks(api_client, body=None):  # noqa: E501
 
 
 # VNS3 TOPOLOGIES
+
 
 def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E501
     """Return list of all (accessible) VNS3 Topologies  # noqa: E501
@@ -1370,7 +1337,7 @@ def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_topologies",
@@ -1394,11 +1361,7 @@ def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E
 
 
 def post_create_vns3_topology(
-    api_client,
-    name=None,
-    virtual_network_id=None,
-    description=None,
-    **kwargs
+    api_client, name=None, virtual_network_id=None, description=None, **kwargs
 ):  # noqa: E501
     """Create new VNS3 Topology # noqa: E501
 
@@ -1422,11 +1385,7 @@ def post_create_vns3_topology(
     """
 
     local_var_params = locals()
-    request_params = [
-        "name",
-        "virtual_network_id",
-        "description"
-    ]
+    request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
 
@@ -1454,7 +1413,7 @@ def post_create_vns3_topology(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_topologies",
@@ -1524,7 +1483,7 @@ def get_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_topologies/{vns3_topology_id}",
@@ -1548,7 +1507,7 @@ def get_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
 
 
 def put_update_vns3_topology(
-    api_client, 
+    api_client,
     vns3_topology_id,
     name=None,
     virtual_network_id=None,
@@ -1578,11 +1537,7 @@ def put_update_vns3_topology(
     """
 
     local_var_params = locals()
-    request_params = [
-        "name",
-        "virtual_network_id",
-        "description"
-    ]
+    request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
 
@@ -1610,7 +1565,7 @@ def put_update_vns3_topology(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_topologies/{vns3_topology_id}",
@@ -1680,7 +1635,7 @@ def delete_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_topologies/{vns3_topology_id}",
@@ -1728,5 +1683,5 @@ class CloudMonitoringApiRouter(VersionRouter):
         "post_create_vns3_topology": {"2.1.1": post_create_vns3_topology},
         "get_vns3_topology": {"2.1.1": get_vns3_topology},
         "put_update_vns3_topology": {"2.1.1": put_update_vns3_topology},
-        "delete_vns3_topology": {"2.1.1": delete_vns3_topology}
+        "delete_vns3_topology": {"2.1.1": delete_vns3_topology},
     }

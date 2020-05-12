@@ -68,7 +68,7 @@ def put_enable_ldap(api_client, enabled=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap",
@@ -139,7 +139,7 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/settings",
@@ -198,7 +198,13 @@ def put_ldap_settings(
     """
 
     local_var_params = locals()
-    request_params = ["ldap_host", "ldap_port", "ldap_ssl", "ldap_binddn", "ldap_bindpw"]
+    request_params = [
+        "ldap_host",
+        "ldap_port",
+        "ldap_ssl",
+        "ldap_binddn",
+        "ldap_bindpw",
+    ]
 
     collection_formats = {}
 
@@ -226,7 +232,7 @@ def put_ldap_settings(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/settings",
@@ -285,7 +291,13 @@ def post_test_ldap_settings(
     """
 
     local_var_params = locals()
-    request_params = ["ldap_host", "ldap_port", "ldap_ssl", "ldap_binddn", "ldap_bindpw"]
+    request_params = [
+        "ldap_host",
+        "ldap_port",
+        "ldap_ssl",
+        "ldap_binddn",
+        "ldap_bindpw",
+    ]
 
     collection_formats = {}
 
@@ -313,7 +325,7 @@ def post_test_ldap_settings(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/settings",
@@ -335,8 +347,6 @@ def post_test_ldap_settings(
         collection_formats=collection_formats,
     )
 
-
-### USER schema
 
 def get_ldap_user_schema(api_client, **kwargs):  # noqa: E501
     """Get LDAP user schema Settings  # noqa: E501
@@ -386,7 +396,7 @@ def get_ldap_user_schema(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/user_schema",
@@ -413,7 +423,7 @@ def put_ldap_user_schema(
     api_client,
     ldap_user_base=None,
     ldap_user_id_attribute=None,
-    ldap_user_list_filter=None
+    ldap_user_list_filter=None,
     **kwargs
 ):  # noqa: E501
     """Set LDAP user schema settings  # noqa: E501
@@ -444,7 +454,7 @@ def put_ldap_user_schema(
     request_params = [
         "ldap_user_base",
         "ldap_user_id_attribute",
-        "ldap_user_list_filter"
+        "ldap_user_list_filter",
     ]
 
     collection_formats = {}
@@ -473,7 +483,7 @@ def put_ldap_user_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/user_schema",
@@ -501,7 +511,7 @@ def post_validate_ldap_user_schema(
     ldap_user_base=None,
     ldap_user_id_attribute=None,
     ldap_user_list_filter=None,
-    limit=None
+    limit=None,
     **kwargs
 ):  # noqa: E501
     """Validate LDAP user schema  # noqa: E501
@@ -534,7 +544,7 @@ def post_validate_ldap_user_schema(
         "ldap_user_base",
         "ldap_user_id_attribute",
         "ldap_user_list_filter",
-        "limit"
+        "limit",
     ]
 
     collection_formats = {}
@@ -563,7 +573,7 @@ def post_validate_ldap_user_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/user_schema",
@@ -634,7 +644,7 @@ def get_ldap_group_schema(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/group_schema",
@@ -665,7 +675,7 @@ def put_ldap_group_schema(
     ldap_group_list_filter=None,
     ldap_group_member_attribute=None,
     ldap_group_member_attr_format=None,
-    ldap_search_scope=None
+    ldap_search_scope=None,
     **kwargs
 ):  # noqa: E501
     """Set LDAP group schema settings  # noqa: E501
@@ -704,7 +714,7 @@ def put_ldap_group_schema(
         "ldap_group_list_filter",
         "ldap_group_member_attribute",
         "ldap_group_member_attr_format",
-        "ldap_search_scope"
+        "ldap_search_scope",
     ]
 
     collection_formats = {}
@@ -733,7 +743,7 @@ def put_ldap_group_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/group_schema",
@@ -764,7 +774,7 @@ def post_validate_ldap_group_schema(
     ldap_group_member_attribute=None,
     ldap_group_member_attr_format=None,
     ldap_search_scope=None,
-    limit=None
+    limit=None,
     **kwargs
 ):  # noqa: E501
     """Validate LDAP Group Schema  # noqa: E501
@@ -803,7 +813,7 @@ def post_validate_ldap_group_schema(
         "ldap_group_member_attribute",
         "ldap_group_member_attr_format",
         "ldap_search_scope",
-        "limit"
+        "limit",
     ]
 
     collection_formats = {}
@@ -832,7 +842,7 @@ def post_validate_ldap_group_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/group_schema",
@@ -855,7 +865,6 @@ def post_validate_ldap_group_schema(
     )
 
 
-
 class AdministrationApiRouter(VersionRouter):
     """Configure VNS3:ms administration settings such as LDAP integration"""
 
@@ -869,5 +878,5 @@ class AdministrationApiRouter(VersionRouter):
         "post_validate_ldap_user_schema": {"2.1.1": post_validate_ldap_user_schema},
         "get_ldap_group_schema": {"2.1.1": get_ldap_group_schema},
         "put_ldap_group_schema": {"2.1.1": put_ldap_group_schema},
-        "post_validate_ldap_group_schema": {"2.1.1": post_validate_ldap_group_schema}
+        "post_validate_ldap_group_schema": {"2.1.1": post_validate_ldap_group_schema},
     }

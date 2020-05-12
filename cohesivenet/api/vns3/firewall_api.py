@@ -924,7 +924,9 @@ class FirewallApiRouter(VersionRouter):
         "get_firewall_rule_subgroups": {"4.8.4-4.10.1": get_firewall_rule_subgroups},
         "get_firewall_rules": {"4.8.4-4.10.1": get_firewall_rules},
         "post_create_firewall_rule": {"4.8.4-4.10.1": post_create_firewall_rule},
-        "post_create_firewall_subgroup": {"4.8.4-4.10.1": post_create_firewall_subgroup},
+        "post_create_firewall_subgroup": {
+            "4.8.4-4.10.1": post_create_firewall_subgroup
+        },
         "put_reinitialize_fw_sets": {"4.8.4-4.10.1": put_reinitialize_fw_sets},
         "put_reinitialize_firewall_subgroups": {
             "4.8.4-4.10.1": put_reinitialize_subgroups

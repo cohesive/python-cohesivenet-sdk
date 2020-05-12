@@ -65,7 +65,7 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support",
@@ -86,7 +86,6 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def put_remote_support(api_client, enabled=False, **kwargs):  # noqa: E501
@@ -140,7 +139,7 @@ def put_remote_support(api_client, enabled=False, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support",
@@ -209,7 +208,7 @@ def get_remote_support_keypair_details(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support/keypair",
@@ -232,8 +231,9 @@ def get_remote_support_keypair_details(api_client, **kwargs):  # noqa: E501
     )
 
 
-
-def post_generate_remote_support_keypair(api_client, encrypted_passphrase=None, **kwargs):  # noqa: E501
+def post_generate_remote_support_keypair(
+    api_client, encrypted_passphrase=None, **kwargs
+):  # noqa: E501
     """Generate new remote support keypair  # noqa: E501
 
     Will regenerate keyapir if one already exists  # noqa: E501
@@ -284,7 +284,7 @@ def post_generate_remote_support_keypair(api_client, encrypted_passphrase=None, 
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support/keypair",
@@ -356,7 +356,7 @@ def delete_remote_support_keypair(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support/keypair",
@@ -425,7 +425,7 @@ def get_system_status(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/status",
@@ -494,7 +494,7 @@ def get_credential_types(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/credential_types",
@@ -515,7 +515,6 @@ def get_credential_types(api_client, **kwargs):  # noqa: E501
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def get_credential_type_details(api_client, code, **kwargs):  # noqa: E501
@@ -543,9 +542,7 @@ def get_credential_type_details(api_client, code, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "code": code
-    }
+    path_params = {"code": code}
 
     query_params = []
 
@@ -567,7 +564,7 @@ def get_credential_type_details(api_client, code, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/credential_types/{code}",
@@ -636,7 +633,7 @@ def get_system_ntp_hosts(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ntp_hosts",
@@ -708,7 +705,7 @@ def post_add_ntp_host(api_client, host, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ntp_hosts",
@@ -756,9 +753,7 @@ def delete_ntp_host(api_client, host_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "host_id": host_id
-    }
+    path_params = {"host_id": host_id}
 
     query_params = []
 
@@ -780,7 +775,7 @@ def delete_ntp_host(api_client, host_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ntp_hosts/{host_id}",
@@ -852,7 +847,7 @@ def delete_ssl_install(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl",
@@ -901,9 +896,7 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -925,7 +918,7 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl/install/{uuid}",
@@ -998,7 +991,7 @@ def put_upload_ssl_certs(api_client, cert=None, key=None, **kwargs):  # noqa: E5
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl/keypair",
@@ -1069,7 +1062,7 @@ def put_install_ssl_certs(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl/install",
@@ -1117,9 +1110,7 @@ def get_job_status(api_client, uuid, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "uuid": uuid
-    }
+    path_params = {"uuid": uuid}
 
     query_params = []
 
@@ -1141,7 +1132,7 @@ def get_job_status(api_client, uuid, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/jobs/{uuid}",
@@ -1170,8 +1161,12 @@ class SystemApiRouter(VersionRouter):
     function_library = {
         "get_remote_support_details": {"2.1.1": get_remote_support_details},
         "put_remote_support": {"2.1.1": put_remote_support},
-        "get_remote_support_keypair_details": {"2.1.1": get_remote_support_keypair_details},
-        "post_generate_remote_support_keypair": {"2.1.1": post_generate_remote_support_keypair},
+        "get_remote_support_keypair_details": {
+            "2.1.1": get_remote_support_keypair_details
+        },
+        "post_generate_remote_support_keypair": {
+            "2.1.1": post_generate_remote_support_keypair
+        },
         "delete_remote_support_keypair": {"2.1.1": delete_remote_support_keypair},
         "get_system_status": {"2.1.1": get_system_status},
         "get_credential_types": {"2.1.1": get_credential_types},
@@ -1183,5 +1178,5 @@ class SystemApiRouter(VersionRouter):
         "get_ssl_install_status": {"2.1.1": get_ssl_install_status},
         "put_upload_ssl_certs": {"2.1.1": put_upload_ssl_certs},
         "put_install_ssl_certs": {"2.1.1": put_install_ssl_certs},
-        "get_job_status": {"2.1.1": get_job_status}
+        "get_job_status": {"2.1.1": get_job_status},
     }

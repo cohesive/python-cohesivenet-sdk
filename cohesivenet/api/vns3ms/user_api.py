@@ -17,7 +17,9 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
-def put_user_password(api_client, password=None, force_refresh=None, **kwargs):  # noqa: E501
+def put_user_password(
+    api_client, password=None, force_refresh=None, **kwargs
+):  # noqa: E501
     """Update current user password  # noqa: E501
 
     Update current user password  # noqa: E501
@@ -70,7 +72,7 @@ def put_user_password(api_client, password=None, force_refresh=None, **kwargs): 
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/password",
@@ -142,7 +144,7 @@ def get_user_credentials(api_client, cred_id=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials",
@@ -165,7 +167,9 @@ def get_user_credentials(api_client, cred_id=None, **kwargs):  # noqa: E501
     )
 
 
-def post_create_user_credential(api_client, name=None, code=None, fields=None, **kwargs):  # noqa: E501
+def post_create_user_credential(
+    api_client, name=None, code=None, fields=None, **kwargs
+):  # noqa: E501
     """Create user credential  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -201,9 +205,7 @@ def post_create_user_credential(api_client, name=None, code=None, fields=None, *
     form_params = []
     local_var_files = {}
 
-    body_params = {
-        "fields": []
-    }
+    body_params = {"fields": []}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
 
@@ -218,7 +220,7 @@ def post_create_user_credential(api_client, name=None, code=None, fields=None, *
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials",
@@ -242,12 +244,7 @@ def post_create_user_credential(api_client, name=None, code=None, fields=None, *
 
 
 def put_update_user_credential(
-    api_client,
-    credential_id,
-    name=None,
-    code=None,
-    fields=None,
-    **kwargs
+    api_client, credential_id, name=None, code=None, fields=None, **kwargs
 ):  # noqa: E501
     """Update user credential  # noqa: E501
 
@@ -300,7 +297,7 @@ def put_update_user_credential(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials/{credential_id}",
@@ -370,7 +367,7 @@ def delete_user_credential(api_client, credential_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials/{credential_id}",
@@ -392,6 +389,7 @@ def delete_user_credential(api_client, credential_id, **kwargs):  # noqa: E501
         collection_formats=collection_formats,
     )
 
+
 class UserApiRouter(VersionRouter):
     """User management endpoints for configuring credentials"""
 
@@ -400,5 +398,5 @@ class UserApiRouter(VersionRouter):
         "get_user_credentials": {"2.1.1": get_user_credentials},
         "post_create_user_credential": {"2.1.1": post_create_user_credential},
         "put_update_user_credential": {"2.1.1": put_update_user_credential},
-        "delete_user_credential": {"2.1.1": delete_user_credential}
+        "delete_user_credential": {"2.1.1": delete_user_credential},
     }

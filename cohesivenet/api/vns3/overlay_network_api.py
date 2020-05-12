@@ -1069,7 +1069,9 @@ class OverlayNetworkApiRouter(VersionRouter):
         "get_clients_status": {"4.8.4-4.10.1": get_clients_status},
         "get_connected_subnets": {"4.8.4-4.10.1": get_connected_subnets},
         "get_download_clientpack": {"4.8.4-4.10.1": get_download_clientpack},
-        "post_checkout_next_clientpack": {"4.8.4-4.10.1": post_checkout_next_clientpack},
+        "post_checkout_next_clientpack": {
+            "4.8.4-4.10.1": post_checkout_next_clientpack
+        },
         "post_create_clientpack_tag": {"4.8.4-4.10.1": post_create_clientpack_tag},
         "post_reset_all_clients": {"4.8.4-4.10.1": post_reset_all_clients},
         "post_reset_client": {"4.8.4-4.10.1": post_reset_client},

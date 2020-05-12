@@ -17,7 +17,6 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
-
 def put_activate_api_key(
     api_client, username=None, api_key=None, **kwargs
 ):  # noqa: E501
@@ -72,7 +71,7 @@ def put_activate_api_key(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/activate",
@@ -95,9 +94,7 @@ def put_activate_api_key(
     )
 
 
-def post_create_token(
-    api_client, username=None, api_key=None, **kwargs
-):  # noqa: E501
+def post_create_token(api_client, username=None, api_key=None, **kwargs):  # noqa: E501
     """API login method. Accept API-key as password, return API-token to be used for all other calls  # noqa: E501
 
     API login method. Accept API-key as password, return API-token to be used for all other calls  # noqa: E501
@@ -149,7 +146,7 @@ def post_create_token(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth",
@@ -222,7 +219,7 @@ def put_expire_token(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/expire_token",
@@ -296,7 +293,7 @@ def put_invalidate_api_key_tokens(api_client, api_key_id=None, **kwargs):  # noq
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/invalidate_tokens",
@@ -367,7 +364,7 @@ def get_api_keys(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_keys",
@@ -441,7 +438,7 @@ def post_create_api_key(api_client, key_name=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_key",
@@ -464,7 +461,9 @@ def post_create_api_key(api_client, key_name=None, **kwargs):  # noqa: E501
     )
 
 
-def put_update_api_key(api_client, key_id, key_name=None, enabled=None, **kwargs):  # noqa: E501
+def put_update_api_key(
+    api_client, key_id, key_name=None, enabled=None, **kwargs
+):  # noqa: E501
     """Update API key  # noqa: E501
 
     Update API key  # noqa: E501
@@ -517,7 +516,7 @@ def put_update_api_key(api_client, key_id, key_name=None, enabled=None, **kwargs
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_key/{key_id}",
@@ -538,7 +537,6 @@ def put_update_api_key(api_client, key_id, key_name=None, enabled=None, **kwargs
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def delete_api_key(api_client, key_id, **kwargs):  # noqa: E501
@@ -590,7 +588,7 @@ def delete_api_key(api_client, key_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_key/{key_id}",
@@ -614,7 +612,7 @@ def delete_api_key(api_client, key_id, **kwargs):  # noqa: E501
 
 
 class AccessApiRouter(VersionRouter):
-    """Provision API keys or short-lived access URLs for 
+    """Provision API keys or short-lived access URLs for
       providing temporary access to any VNS3 controller in your topology"""
 
     function_library = {
@@ -625,5 +623,5 @@ class AccessApiRouter(VersionRouter):
         "get_api_keys": {"2.1.1": get_api_keys},
         "post_create_api_key": {"2.1.1": post_create_api_key},
         "put_update_api_key": {"2.1.1": put_update_api_key},
-        "delete_api_key": {"2.1.1": delete_api_key}
+        "delete_api_key": {"2.1.1": delete_api_key},
     }

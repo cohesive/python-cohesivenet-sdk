@@ -678,7 +678,9 @@ class SystemAdministrationApiRouter(VersionRouter):
         "get_task_status": {"4.8.4-4.10.1": get_task_status},
         "get_system_status": {"4.8.4-4.10.1": get_system_status},
         "get_remote_support_details": {"4.8.4-4.10.1": get_remote_support_details},
-        "post_generate_support_keypair": {"4.8.4-4.10.1": post_generate_support_keypair},
+        "post_generate_support_keypair": {
+            "4.8.4-4.10.1": post_generate_support_keypair
+        },
         "put_update_remote_support": {"4.8.4-4.10.1": put_update_remote_support},
         "put_server_action": {"4.8.4-4.10.1": put_server_action},
         "wait_for_api": {"4.8.4-4.10.1": wait_for_api},

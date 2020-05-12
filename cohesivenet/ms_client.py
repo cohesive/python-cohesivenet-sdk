@@ -13,7 +13,7 @@ from __future__ import absolute_import
 
 from cohesivenet.api_client import APIClient, api_as_property
 
-from cohesivenet.macros import state as vns3_state
+from cohesivenet.api import vns3ms as vns3ms_apis
 
 
 class MSClient(APIClient):
@@ -40,9 +40,21 @@ class MSClient(APIClient):
 
     BASE_PATH = "api"
     DEF_REQ_TIMEOUT = 15.0
+    TOKEN_LIFETIME = 600  # seconds
 
     # Client API Groups available as attributes: e.g. vns3_client.peering.delete_peer(4)
-    # access = api_as_property("access", AccessApi)
+    access = api_as_property("access", vns3ms_apis.AccessApi)
+    admin = api_as_property("admin", vns3ms_apis.AdministrationApi)
+    backups = api_as_property("backups", vns3ms_apis.BackupsApi)
+    cloud_monitoring = api_as_property(
+        "cloud_monitoring", vns3ms_apis.CloudMonitoringApi
+    )
+    system = api_as_property("system", vns3ms_apis.SystemApi)
+    user = api_as_property("user", vns3ms_apis.UserApi)
+    vns3_management = api_as_property("vns3_management", vns3ms_apis.VNS3ManagementApi)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     @property
     def ms_state(self):
@@ -53,14 +65,6 @@ class MSClient(APIClient):
         state[key] = value
         setattr(self, "_state", state)
         return None
-
-    def set_ms_version(self):
-        prev_v = self.ms_dot_version
-        # _ = vns3_state.get_vns3ms_version(self, bust_cache=True)
-        new_v = self.ms_dot_version
-        if prev_v != new_v:
-            self.reset_api_version_sdk()
-        return self
 
     def update_state(self, state_updates_dict):
         state = getattr(self, "_state", {})
@@ -75,6 +79,15 @@ class MSClient(APIClient):
     def ms_version(self):
         return self.controller_state.get("ms_version")
 
+    @ms_version.setter
+    def ms_version(self, version):
+        prev_v = self.ms_dot_version
+        if prev_v != version:
+            self.reset_api_version_sdk()
+
+        self.add_to_state("ms_version", version)
+        return self
+
     @property
     def ms_dot_version(self):
         ms_version = self.ms_version
@@ -83,3 +96,12 @@ class MSClient(APIClient):
     @property
     def host_uri(self):
         return self.configuration.host_uri
+
+    def refresh_token(self):
+        """
+        """
+        response = self.access.post_create_token(
+            self.configuration.username, self.configuration.api_key
+        ).json()
+
+        self.configuration.api_token = response["api_token"]
