@@ -11,6 +11,7 @@
 
 from __future__ import absolute_import
 
+from cohesivenet.version import LATEST_VNS3_MS_VERSION
 from cohesivenet.api_client import APIClient, api_as_property
 
 from cohesivenet.api import vns3ms as vns3ms_apis
@@ -53,11 +54,12 @@ class MSClient(APIClient):
     user = api_as_property("user", vns3ms_apis.UserApi)
     vns3_management = api_as_property("vns3_management", vns3ms_apis.VNS3ManagementApi)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    @staticmethod
+    def latest_version():
+        return LATEST_VNS3_MS_VERSION
 
     @property
-    def ms_state(self):
+    def state(self):
         return getattr(self, "_state", {})
 
     def add_to_state(self, key, value):
@@ -73,11 +75,11 @@ class MSClient(APIClient):
         return None
 
     def query_state(self, key):
-        return self.controller_state.get(key)
+        return self.state.get(key)
 
     @property
     def ms_version(self):
-        return self.controller_state.get("ms_version")
+        return self.state.get("ms_version")
 
     @ms_version.setter
     def ms_version(self, version):
@@ -92,6 +94,10 @@ class MSClient(APIClient):
     def ms_dot_version(self):
         ms_version = self.ms_version
         return ms_version.split("-")[0] if ms_version else None
+
+    @property
+    def dot_version(self):
+        return self.ms_dot_version
 
     @property
     def host_uri(self):

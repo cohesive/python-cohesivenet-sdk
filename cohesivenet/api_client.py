@@ -77,7 +77,7 @@ class APIResponse(io.IOBase):
             return self._file_download
 
         content_type = self.content_type
-        if content_type in ("text/plain", "application/octet-stream"):
+        if content_type in ("text/plain", "application/octet-stream", "text/csv"):
             assert (
                 self._expected_response_type and "file" in self._expected_response_type
             ), (

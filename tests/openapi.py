@@ -1,6 +1,8 @@
+import base64
 from collections import OrderedDict
 
 from cohesivenet.api_client import APIResponse
+from tests.stub_data import MockConstants
 from tests.generator import generate_api_var, random_string, random_from_list
 
 
@@ -32,15 +34,18 @@ def fetch_spec(spec):
             "No specification available for testing. "
             "Expected VNS3 specification at %s" % spec
         )
-    from tests.openapi import resolve_refs
 
+    from tests.openapi import resolve_refs
     _raw_spec = response.data.decode("utf8").strip()
 
-    if os.environ.get("DOWNLOAD_SPECS"):
-        open("spec.json", "w").write(_raw_spec)
-        open("spec-resolved.json", "w").write(
+    # if os.environ.get("DOWNLOAD_SPECS"):
+    if True:
+        filename = spec.split("/")[-1]
+        open(filename, "w").write(_raw_spec)
+        open("resolved-%s" % filename, "w").write(
             json.dumps(resolve_refs(_raw_spec), indent=2)
         )
+
     return json.loads(_raw_spec)
 
 
@@ -116,6 +121,26 @@ def get_mock_call_kwargs(method_schema):
             )
 
     return dict(query_dict, **body_params)
+
+
+def get_security_scheme(schema, method_schema,  index=0):
+    security = method_schema.get("security")
+    if security is None:
+        security = schema["security"]
+
+    supported_security_schemes = [
+        next(iter(scheme.keys())) for scheme in security
+    ]
+
+    if len(supported_security_schemes) < index + 1:
+        return None
+
+    component_defs = schema["components"]["securitySchemes"]
+    security_scheme = supported_security_schemes[index]
+    if security_scheme not in component_defs:
+        raise AssertionError(
+            "Failed to parse security scheme %s from schema components" % security_scheme)
+    return component_defs[security_scheme]
 
 
 def resolve_ref(schema, ref):
@@ -435,10 +460,18 @@ def generate_method_test(
                 "application/json"
                 if not file_download
                 else "text/plain, application/octet-stream"
-            ),
-            "Authorization": "Basic YXBpOm1vY2twYXNzMTIzNA==",
+            )
         }
     }
+
+    endpoint_security = get_security_scheme(schema, method_schema)
+    if endpoint_security:
+        # Add expected authentication header
+        if endpoint_security["type"].lower() == "apikey":
+            expected_request_args["headers"]["api-token"] = MockConstants.ApiToken
+        else:
+            # assume basic auth
+            expected_request_args["headers"]["Authorization"] = MockConstants.BasicAuthHeader
 
     if _method in ("post", "put", "delete"):
         request_body = method_schema.get("requestBody")

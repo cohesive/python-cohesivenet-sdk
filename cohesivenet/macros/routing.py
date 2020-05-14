@@ -100,7 +100,7 @@ def create_route_table(client: VNS3Client, routes, state={}):
         }, ...]
 
     Keyword Arguments:
-        state {dict} - State to format routes with. (can call client.controller_state)
+        state {dict} - State to format routes with. (can call client.state)
 
     Returns:
         Tuple[List[str], List[str]] - success, errors
@@ -113,7 +113,7 @@ def create_route_table(client: VNS3Client, routes, state={}):
         route_count=len(routes),
     )
 
-    _sub_vars = state or client.controller_state
+    _sub_vars = state or client.state
     for i, route_kwargs in enumerate(routes):
         skip = False
         for key, value in route_kwargs.items():

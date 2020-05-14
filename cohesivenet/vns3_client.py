@@ -11,6 +11,7 @@
 
 from __future__ import absolute_import
 
+from cohesivenet.version import LATEST_VNS3_VERSION
 from cohesivenet.api_client import APIClient, api_as_property
 
 from cohesivenet.api.vns3 import BGPApi
@@ -73,8 +74,12 @@ class VNS3Client(APIClient):
     snapshots = api_as_property("snapshots", SnapshotsApi)
     sys_admin = api_as_property("sys_admin", SystemAdministrationApi)
 
+    @staticmethod
+    def latest_version():
+        return LATEST_VNS3_VERSION
+
     @property
-    def controller_state(self):
+    def state(self):
         return getattr(self, "_state", {})
 
     def add_to_state(self, key, value):
@@ -98,16 +103,20 @@ class VNS3Client(APIClient):
         return None
 
     def query_state(self, key):
-        return self.controller_state.get(key)
+        return self.state.get(key)
 
     @property
     def vns3_version(self):
-        return self.controller_state.get("vns3_version")
+        return self.state.get("vns3_version")
 
     @property
     def vns3_dot_version(self):
         vns3_version = self.vns3_version
         return vns3_version.split("-")[0] if vns3_version else None
+
+    @property
+    def dot_version(self):
+        return self.vns3_dot_version
 
     @property
     def host_uri(self):

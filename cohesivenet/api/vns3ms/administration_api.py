@@ -133,11 +133,6 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -255,7 +250,7 @@ def put_ldap_settings(
     )
 
 
-def post_test_ldap_settings(
+def post_validate_ldap_settings(
     api_client,
     ldap_host=None,
     ldap_port=None,
@@ -387,11 +382,6 @@ def get_ldap_user_schema(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -638,11 +628,6 @@ def get_ldap_group_schema(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -872,7 +857,7 @@ class AdministrationApiRouter(VersionRouter):
         "put_enable_ldap": {"2.1.1": put_enable_ldap},
         "get_ldap_settings": {"2.1.1": get_ldap_settings},
         "put_ldap_settings": {"2.1.1": put_ldap_settings},
-        "post_validate_ldap_settings": {"2.1.1": post_test_ldap_settings},
+        "post_validate_ldap_settings": {"2.1.1": post_validate_ldap_settings},
         "get_ldap_user_schema": {"2.1.1": get_ldap_user_schema},
         "put_ldap_user_schema": {"2.1.1": put_ldap_user_schema},
         "post_validate_ldap_user_schema": {"2.1.1": post_validate_ldap_user_schema},

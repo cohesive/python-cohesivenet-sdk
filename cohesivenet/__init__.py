@@ -25,11 +25,16 @@ Logger.set_null()
 if COHESIVE_LOG_LEVEL:
     Logger.set_stream_handler(COHESIVE_LOG_LEVEL)
 
-from cohesivenet.version import VERSION, LATEST_VNS3_VERSION, LATEST_VNS3_API_SPEC
+from cohesivenet.version import (
+    VERSION, LATEST_VNS3_VERSION, LATEST_VNS3_API_SPEC,
+    LATEST_VNS3_MS_VERSION, LATEST_VNS3_MS_API_SPEC
+)
 
 __version__ = VERSION
 __vns3_version__ = LATEST_VNS3_VERSION
 __vns3_spec__ = LATEST_VNS3_API_SPEC
+__vns3_ms_version__ = LATEST_VNS3_MS_VERSION
+__vns3_ms_spec__ = LATEST_VNS3_MS_API_SPEC
 
 from cohesivenet.rest import HTTPStatus
 from cohesivenet.exceptions import UrlLib3ConnExceptions
@@ -66,3 +71,6 @@ from cohesivenet.api.vns3.system_administration_api import (
     SystemAdministrationApiRouter as SystemAdministrationApi,
 )
 from cohesivenet.api.vns3.access_api import AccessApiRouter as AccessApi
+
+
+from cohesivenet.ms_client import MSClient

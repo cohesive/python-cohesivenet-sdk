@@ -71,7 +71,7 @@ def put_activate_api_key(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = []  # noqa: E501
 
     return api_client.call_api(
         "/auth/activate",
@@ -146,7 +146,7 @@ def post_create_token(api_client, username=None, api_key=None, **kwargs):  # noq
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = []  # noqa: E501
 
     return api_client.call_api(
         "/auth",
@@ -210,11 +210,6 @@ def put_expire_token(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -355,11 +350,6 @@ def get_api_keys(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -520,7 +510,7 @@ def put_update_api_key(
 
     return api_client.call_api(
         "/auth/api_key/{key_id}",
-        "POST",
+        "PUT",
         path_params,
         query_params,
         header_params,
@@ -579,11 +569,6 @@ def delete_api_key(api_client, key_id, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 

@@ -59,11 +59,6 @@ def get_backups(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -162,7 +157,7 @@ def delete_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     )
 
 
-def get_download_backup(api_client, **kwargs):  # noqa: E501
+def get_download_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     """Download a named backup file  # noqa: E501
 
     Download latest named backup file   # noqa: E501
@@ -172,6 +167,7 @@ def get_download_backup(api_client, **kwargs):  # noqa: E501
     >>> response = await api.get_download_backup(client, async_req=True)
 
     :param async_req bool: execute request asynchronously
+    :param backup_name str: Optional name of backup file to download
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -186,13 +182,15 @@ def get_download_backup(api_client, **kwargs):  # noqa: E501
 
     local_var_params = locals()
 
-    request_params = []  # noqa: E501
+    request_params = ["backup_name"]  # noqa: E501
 
     collection_formats = {}
 
     path_params = {}
 
     query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
 
     header_params = {}
 
@@ -351,11 +349,6 @@ def post_create_backup(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -568,11 +561,6 @@ def get_snapshots_backup(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -638,11 +626,6 @@ def delete_snapshots_backup(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -931,11 +914,6 @@ def post_create_snapshots_backup(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 

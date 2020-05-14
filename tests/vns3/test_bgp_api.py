@@ -20,18 +20,18 @@ from cohesivenet.api.vns3 import bgp_api
 from cohesivenet.rest import ApiException
 
 from tests.openapi import generate_method_test
-from tests.stub_data import IpsecApiData, BGPApiData
+from tests.vns3.stub_data import IpsecApiData, BGPApiData
 
 
 class TestBGPApi(object):
     """BGPApi unit tests stubs"""
 
-    def test_get_bgp_peer(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for delete_bgp_peer
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
             rest_mocker,
@@ -39,12 +39,12 @@ class TestBGPApi(object):
             mock_response=BGPApiData.BGPPeerDetail,
         )(bgp_api.get_bgp_peer)
 
-    def test_delete_bgp_peer(self, rest_mocker, api_client, api_schema: dict):
+    def test_delete_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for delete_bgp_peer
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "delete",
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
             rest_mocker,
@@ -52,12 +52,12 @@ class TestBGPApi(object):
             mock_response=IpsecApiData.IpsecEndpointDetail,
         )(bgp_api.delete_bgp_peer)
 
-    def test_create_bgp_peer(self, rest_mocker, api_client, api_schema: dict):
+    def test_create_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for test_create_bgp_peer
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "post",
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers",
             rest_mocker,
@@ -65,12 +65,12 @@ class TestBGPApi(object):
             mock_response=IpsecApiData.IpsecEndpointDetail,
         )(bgp_api.create_bgp_peer)
 
-    def test_update_bgp_peer(self, rest_mocker, api_client, api_schema: dict):
+    def test_update_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for test_update_bgp_peer
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
             rest_mocker,

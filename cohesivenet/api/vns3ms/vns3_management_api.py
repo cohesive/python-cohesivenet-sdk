@@ -462,8 +462,6 @@ def post_add_vns3_controller(
     address=None,
     active=None,
     api_v1_key=None,
-    api_v2_key=None,
-    api_v2_username=None,
     description=None,
     **kwargs
 ):  # noqa: E501
@@ -480,9 +478,7 @@ def post_add_vns3_controller(
     :param vns3_topology_id int: Topology controller is in (required)
     :param address str: IP address or DNS for controller (required)
     :param active bool: Active state
-    :param api_v1_key str: Controller's APIv1 key
-    :param api_v2_key str: Controller's APIv2 key
-    :param api_v2_username str: Controller's APIv2 username
+    :param api_v1_key str: Controller's API key
     :param description str: Description for controller
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
@@ -505,8 +501,6 @@ def post_add_vns3_controller(
         "address",
         "active",
         "api_v1_key",
-        "api_v2_key",
-        "api_v2_username",
         "description",
     ]  # noqa: E501
 
@@ -629,8 +623,6 @@ def put_update_vns3_controller(
     address=None,
     active=None,
     api_v1_key=None,
-    api_v2_key=None,
-    api_v2_username=None,
     description=None,
     **kwargs
 ):  # noqa: E501
@@ -647,8 +639,6 @@ def put_update_vns3_controller(
     :param address str: IP address or DNS for controller
     :param active bool: Active state
     :param api_v1_key str: Controller's APIv1 key
-    :param api_v2_key str: Controller's APIv2 key
-    :param api_v2_username str: Controller's APIv2 username
     :param description str: Description for controller
     :param async_req bool: execute request asynchronously
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -668,8 +658,6 @@ def put_update_vns3_controller(
         "address",
         "active",
         "api_v1_key",
-        "api_v2_key",
-        "api_v2_username",
         "description",
     ]
 
@@ -1084,8 +1072,6 @@ def put_update_vns3_controller_ha(
     ha_uuid=None,
     ha_backup_ip_address=None,
     ha_api_v1_key=None,
-    ha_api_v2_key=None,
-    ha_api_v2_username=None,
     ha_instance_id=None,
     ha_image_id=None,
     ha_cloud_cred_id=None,
@@ -1105,8 +1091,6 @@ def put_update_vns3_controller_ha(
     :param ha_uuid str: HA UUID of the VNS3 failover box for hot HA. Required for hot HA.
     :param ha_backup_ip_address str: HA Backup server IP address. Required for hot HA.
     :param ha_api_v1_key str: Controller's APIv1 key
-    :param ha_api_v2_key str: Controller's APIv2 key
-    :param ha_api_v2_username str: Controller's APIv2 username
     :param ha_instance_id str: VNS3 standby instance for warm HA. Required for warm HA.
     :param ha_image_id str: VNS3 image ID for Cold HA. Required for cold HA.
     :param ha_cloud_cred_id str: Cloud credential ID
@@ -1129,8 +1113,6 @@ def put_update_vns3_controller_ha(
         "ha_uuid",
         "ha_backup_ip_address",
         "ha_api_v1_key",
-        "ha_api_v2_key",
-        "ha_api_v2_username",
         "ha_instance_id",
         "ha_image_id",
         "ha_cloud_cred_id",

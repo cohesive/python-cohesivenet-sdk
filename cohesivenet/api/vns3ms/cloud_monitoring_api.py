@@ -413,9 +413,6 @@ def delete_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
     )
 
 
-# CLOUD VLANS
-
-
 def get_cloud_vlans(api_client, cloud_vlan_id=None, **kwargs):  # noqa: E501
     """Return list of all (accessible) Cloud VLANs  # noqa: E501
 
@@ -781,9 +778,6 @@ def delete_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
-
-# VIRTUAL NETWORKS
 
 
 def get_virtual_networks(api_client, virtual_network_id=None, **kwargs):  # noqa: E501
@@ -1283,9 +1277,6 @@ def post_import_virtual_networks(api_client, body=None):  # noqa: E501
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
-
-# VNS3 TOPOLOGIES
 
 
 def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E501

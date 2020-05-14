@@ -20,19 +20,19 @@ from cohesivenet.api.vns3 import snapshots_api  # noqa: E501
 from cohesivenet.rest import ApiException
 
 from tests.openapi import generate_method_test
-from tests.stub_data import SnapshotsApiData
+from tests.vns3.stub_data import SnapshotsApiData
 
 
 class TestSnapshotsApi(object):
     """SnapshotsApi unit test stubs"""
 
-    def test_delete_snapshot(self, rest_mocker, api_client, api_schema: dict):
+    def test_delete_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for delete_snapshot
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "delete",
             "/snapshots/{snapshot_name}",
             rest_mocker,
@@ -40,13 +40,13 @@ class TestSnapshotsApi(object):
             mock_response=SnapshotsApiData.SnapshotsListResponse,
         )(snapshots_api.delete_snapshot)
 
-    def test_get_download_snapshot(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_download_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for get_download_snapshot
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/snapshots/{snapshot_name}",
             rest_mocker,
@@ -55,13 +55,13 @@ class TestSnapshotsApi(object):
             mock_response="asdfasdfasdf",
         )(snapshots_api.get_download_snapshot)
 
-    def test_get_snapshots(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_snapshots(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for get_snapshots
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/snapshots",
             rest_mocker,
@@ -69,13 +69,13 @@ class TestSnapshotsApi(object):
             mock_response=SnapshotsApiData.SnapshotsListResponse,
         )(snapshots_api.get_snapshots)
 
-    def test_post_create_snapshot(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_create_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for post_create_snapshot
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "post",
             "/snapshots",
             rest_mocker,
@@ -83,13 +83,13 @@ class TestSnapshotsApi(object):
             mock_response=SnapshotsApiData.SnapshotDetail,
         )(snapshots_api.post_create_snapshot)
 
-    def test_put_import_snapshot(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_import_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for put_import_snapshot
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/snapshots/running_config",
             rest_mocker,

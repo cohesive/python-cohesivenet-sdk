@@ -10,7 +10,7 @@ from cohesivenet.rest import ApiException
 
 
 class TestVNS3Client(object):
-    """MonitoringAlertingApi unit test stubs"""
+    """Test VNS3 API client unit test stubs"""
 
     def test_api_properties(self):
         """Test all API groups are accessible as properties
@@ -65,7 +65,7 @@ class TestVNS3Client(object):
             )
         )
 
-        state = api_client.controller_state
+        state = api_client.state
         assert type(state) is dict
         assert len(state) == 0
 
@@ -80,7 +80,7 @@ class TestVNS3Client(object):
         )
 
         api_client.add_to_state("private_ip", "10.0.24.30")
-        state = api_client.controller_state
+        state = api_client.state
         assert "private_ip" in state and state["private_ip"] == "10.0.24.30"
         assert len(state) == 1
 
@@ -96,7 +96,7 @@ class TestVNS3Client(object):
 
         updates = {"container_network": "192.169.16.0/28", "subnet": "10.0.2.0/24"}
         api_client.update_state(updates)
-        state = api_client.controller_state
+        state = api_client.state
         assert set(updates.keys()).issubset(set(state.keys()))
         assert state["subnet"] == updates["subnet"]
         assert len(state) == 2
@@ -144,13 +144,3 @@ class TestVNS3Client(object):
             )
         )
         api_client.add_to_state("vns3_version", "4.8.4")
-
-        # "put_upload_ldap_auth_cert": {"4.9.1": put_upload_ldap_auth_cert},
-        # "put_upload_ldap_auth_key": {"4.9.1": put_upload_ldap_auth_key},
-        # "put_upload_ldap_ca_cert": {"4.9.1": put_upload_ldap_ca_cert},
-        # "put_ldap_group_schema_settings": {"4.9.1": put_ldap_group_schema_settings},
-        # "post_test_ldap_group_schema_settings": {"4.9.1": post_test_ldap_group_schema_settings},
-        # "get_ldap_group_schema_settings": {"4.9.1": get_ldap_group_schema_settings},
-        # "put_ldap_user_schema_settings": {"4.9.1": put_ldap_user_schema_settings},
-        # "post_test_ldap_user_schema_settings": {"4.9.1": post_test_ldap_user_schema_settings},
-        # "get_ldap_user_schema_settings": {"4.9.1": get_ldap_user_schema_settings},

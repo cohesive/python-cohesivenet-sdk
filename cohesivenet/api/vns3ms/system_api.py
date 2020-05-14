@@ -88,17 +88,17 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
     )
 
 
-def put_remote_support(api_client, enabled=False, **kwargs):  # noqa: E501
+def put_remote_support(api_client, enable=False, **kwargs):  # noqa: E501
     """Get Remote Support Details  # noqa: E501
 
     Enable/Disable remote support  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_remote_support(enabled=True, async_req=True)
+    >>> response = await api.put_remote_support(enable=True, async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param enabled bool: Enable/Disable remote support(required)
+    :param enable bool: Enable/Disable remote support(required)
     :param async_req bool: execute request asynchronously
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
@@ -111,7 +111,8 @@ def put_remote_support(api_client, enabled=False, **kwargs):  # noqa: E501
     """
 
     local_var_params = locals()
-    request_params = ["enabled"]
+
+    request_params = ["enable"]
 
     collection_formats = {}
 
