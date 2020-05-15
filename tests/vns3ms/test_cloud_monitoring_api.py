@@ -316,3 +316,159 @@ class TestMSMonitoringApi(object):
             mock_request_from_schema=True,
             mock_response_from_schema=True
         )(cloud_monitoring_api.delete_vns3_topology)
+
+    def test_get_webhooks(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for get_webhooks
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "GET",
+            "/webhooks",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.get_webhooks)
+
+    def test_post_create_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for post_create_webhook
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "POST",
+            "/webhook",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.post_create_webhook)
+
+    def test_get_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for get_webhook
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "GET",
+            "/webhook/{webhook_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.get_webhook)
+
+    def test_put_update_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for put_update_webhook
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "PUT",
+            "/webhook/{webhook_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.put_update_webhook)
+
+    def test_delete_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for delete_webhook
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "DELETE",
+            "/webhook/{webhook_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.delete_webhook)
+
+    def test_get_alerts(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for get_alerts
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "GET",
+            "/alerts",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.get_alerts)
+
+    def test_get_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for get_alert
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "GET",
+            "/alert/{alert_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.get_alert)
+
+    def test_post_create_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for post_create_alert
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "POST",
+            "/alert",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.post_create_alert)
+
+    def test_put_update_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for put_update_alert
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "PUT",
+            "/alert/{alert_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.put_update_alert)
+
+    def test_delete_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for delete_alert
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "DELETE",
+            "/alert/{alert_id}",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.delete_alert)
+
+    def test_post_test_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for post_test_alert
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "POST",
+            "/alert/{alert_id}/test",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.post_test_alert)
+
+    def test_post_toggle_enable_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
+        """Test case for post_toggle_enable_alert
+        """
+        generate_method_test(
+            ms_client,
+            ms_api_schema,
+            "POST",
+            "/alert/{alert_id}/toggle_enabled",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response_from_schema=True
+        )(cloud_monitoring_api.post_toggle_enable_alert)

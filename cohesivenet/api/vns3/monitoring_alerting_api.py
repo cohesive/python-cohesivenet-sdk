@@ -172,7 +172,7 @@ def post_create_webhook(
     :param url str:
     :param events List[str]:
     :param body str: Webhook payload
-    :param validate_cert bool: execute request asynchronously
+    :param validate_cert bool: verify SSL
     :param custom_properties List[{
         name str: (required)
         value str:
