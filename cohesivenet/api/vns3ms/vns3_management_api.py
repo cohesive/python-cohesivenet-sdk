@@ -71,11 +71,6 @@ def get_vns3_snapshots(
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -335,13 +330,15 @@ def get_controller_report(api_client, report_date=None, **kwargs):  # noqa: E501
     """
 
     local_var_params = locals()
-    request_params = []
+    request_params = ["report_date"]
 
     collection_formats = {}
 
     path_params = {}
 
     query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
 
     header_params = {}
 
@@ -351,10 +348,6 @@ def get_controller_report(api_client, report_date=None, **kwargs):  # noqa: E501
     body_params = {}
 
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -521,6 +514,10 @@ def post_add_vns3_controller(
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1211,11 +1208,6 @@ def put_validate_vns3_controller_ha(
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -1278,11 +1270,6 @@ def put_init_vns3_controller_ha(api_client, vns3_controller_id, **kwargs):  # no
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 

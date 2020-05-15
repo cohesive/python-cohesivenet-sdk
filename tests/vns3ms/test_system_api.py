@@ -100,7 +100,7 @@ class TestMSSystemApi(object):
             "/system/status",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=SystemApiData.SystemStatusResponse
+            mock_response_from_schema=True
         )(system_api.get_system_status)
 
     def test_get_credential_types(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -126,7 +126,7 @@ class TestMSSystemApi(object):
             "/system/credential_types/{code}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response=SystemApiData.CredTypeDetails
         )(system_api.get_credential_type_details)
 
     def test_get_system_ntp_hosts(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -192,7 +192,7 @@ class TestMSSystemApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response_from_schema=True
-        )(system_api.test_get_ssl_install_status)
+        )(system_api.get_ssl_install_status)
 
     def test_put_upload_ssl_certs(self, rest_mocker, ms_client, ms_api_schema: dict):
         """Test case for put_upload_ssl_certs

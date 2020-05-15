@@ -317,10 +317,13 @@ def assert_on_response_type(val, type_schema, path=[], should_raise=True):
                                 prop_val, properties_schema[prop], path=path + [prop]
                             )
             elif val_type:
-                for prop, prop_val in val.items():
-                    assert_on_response_type(prop_val, val_type, path=path + [prop])
+                # additionalProperties=True indicates any object structure is allowed
+                # so skip validation on prop children
+                if val_type is not True:
+                    for prop, prop_val in val.items():
+                        assert_on_response_type(prop_val, val_type, path=path + [prop])
             else:
-                raise RuntimeError("Unexpected type schema format: %s" % type_schema)
+                raise RuntimeError("Unexpected type schema format: %s. data=%s. path=%s" % (type_schema, val, path))
         elif exp_type == OpenAPITypes.Array:
             item_schema = type_schema["items"]
             for i, val_item in enumerate(val):

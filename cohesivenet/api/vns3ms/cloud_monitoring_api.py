@@ -64,11 +64,6 @@ def get_cloud_vlan_components(
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -229,11 +224,6 @@ def get_cloud_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -384,11 +374,6 @@ def delete_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -453,11 +438,6 @@ def get_cloud_vlans(api_client, cloud_vlan_id=None, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -604,11 +584,6 @@ def get_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -751,11 +726,6 @@ def delete_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -820,11 +790,6 @@ def get_virtual_networks(api_client, virtual_network_id=None, **kwargs):  # noqa
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -965,11 +930,6 @@ def get_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1114,11 +1074,6 @@ def delete_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -1252,7 +1207,12 @@ def post_import_virtual_networks(api_client, body=None):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["text/plain", "application/octet-stream"]
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
     )  # noqa: E501
 
     # Authentication setting
@@ -1264,10 +1224,10 @@ def post_import_virtual_networks(api_client, body=None):  # noqa: E501
         path_params,
         query_params,
         header_params,
-        body={},
+        body=body_params,
         post_params=form_params,
         files=local_var_files,
-        response_type="file",
+        response_type="object",
         auth_settings=auth_settings,
         async_req=local_var_params.get("async_req"),
         _return_http_data_only=local_var_params.get(
@@ -1319,11 +1279,6 @@ def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1465,11 +1420,6 @@ def get_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1617,11 +1567,6 @@ def delete_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 

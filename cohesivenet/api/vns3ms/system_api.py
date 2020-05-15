@@ -59,11 +59,6 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -200,11 +195,6 @@ def get_remote_support_keypair_details(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -351,11 +341,6 @@ def delete_remote_support_keypair(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -420,11 +405,6 @@ def get_system_status(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -486,11 +466,6 @@ def get_credential_types(api_client, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -559,11 +534,6 @@ def get_credential_type_details(api_client, code, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -628,11 +598,6 @@ def get_system_ntp_hosts(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -657,7 +622,7 @@ def get_system_ntp_hosts(api_client, **kwargs):  # noqa: E501
     )
 
 
-def post_add_ntp_host(api_client, host, **kwargs):  # noqa: E501
+def post_add_ntp_host(api_client, host=None, **kwargs):  # noqa: E501
     """Add new NTP host to system  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -678,7 +643,7 @@ def post_add_ntp_host(api_client, host, **kwargs):  # noqa: E501
     """
 
     local_var_params = locals()
-    request_params = []
+    request_params = ["host"]
 
     collection_formats = {}
 
@@ -770,11 +735,6 @@ def delete_ntp_host(api_client, host_id, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -842,11 +802,6 @@ def delete_ssl_install(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -910,11 +865,6 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
@@ -1057,11 +1007,6 @@ def put_install_ssl_certs(api_client, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
     auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
@@ -1124,11 +1069,6 @@ def get_job_status(api_client, uuid, **kwargs):  # noqa: E501
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 

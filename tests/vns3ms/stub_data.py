@@ -124,15 +124,6 @@ class CloudMonitoringApiData(object):
         }
     }
 
-    VirtualNetworkDetail = {
-        "response":{
-            "id":1,
-            "name":"dev-env-network",
-            "description":"test environment",
-            "created_at":"2020-05-13T16:57:09.000Z"
-        }
-    }
-
     CreateVns3TopologyResponse = {
         "response_type":"success",
         "response":{
@@ -141,67 +132,77 @@ class CloudMonitoringApiData(object):
         }
     }
 
-
-class SystemApiData(object):
-    SystemStatusResponse = {
-        "response_type":"success",
-        "response":{
-            "system_disk":{
-                "type":None,
-                "block_size":4096,
-                "free_blocks":6029874,
-                "available_blocks":5636673,
-                "total_blocks":7707903
-            },
-            "data_disk":{
-                "type":"ext4",
-                "block_size":4096,
-                "free_blocks":6029874,
-                "available_blocks":5636673,
-                "total_blocks":7707903
-            },"cpus":[{
-                "num":0,
-                "user":17830,
-                "system":9350,
-                "nice":28,
-                "idle":6266562
-            },{
-                "num":1,
-                "user":19990,
-                "system":9396,
-                "nice":31,
-                "idle":6268907
-            }],
-            "load_average":{
-                "one_minute":0.07,
-                "five_minutes":0.03,
-                "fifteen_minutes":0.01
-            },
-            "memory":{
-                "pagesize":4096,
-                "wired":77154,
-                "active":285876,
-                "inactive":115567,
-                "free":23746,
-                "pageins":1415297,
-                "pageouts":5674892
-            },
-            "boot_time":"2020-05-12T23:38:54.871Z",
-            "system_time":"2020-05-13T17:20:03.431Z",
-            "uptime":63668.559935987,
-            "virtual_networks":1,
-            "vns3_topologies":0,
-            "vns3_controllers":0,
-            "cloud_vlans":0,
-            "cloud_vlan_components":0,
-            "ha_snapshot_file_count":0,
-            "configuration_snapshot_file_count":0,
-            "configuration_snapshot_failed_count":0,
-            "system_backup_file_count":0,
-            "system_snapshots_backup_file_count":0
-        }
+    Vns3Topology = {
+        "id":1,
+        "name":"Test VNS3 Topology",
+        "virtual_network_name":"dev-env-network",
+        "virtual_network_id":1,
+        "vns3_controllers":[{
+            "id":1,
+            "name":"test-vns3-bp"
+        }],
+        "description":None
     }
 
+    Vns3TopologyDetail = {
+        "response": Vns3Topology
+    }
+
+    Vns3TopologyList = {
+        "response": [Vns3Topology]
+    }
+
+    VirtualNetwork = {
+        "id":1,
+        "name":"dev-env-network",
+        "description":"test environment",
+        "created_at":"2020-05-14T14:27:16.000Z"
+    }
+
+    VirtualNetworkDetail = {
+        "response": VirtualNetwork
+    }
+
+    VirtualNetworkList = {
+        "response": [VirtualNetwork]
+    }
+
+    CloudVlan = {
+        "id":1,
+        "name":"AWS VPC VLAN",
+        "virtual_network_name":"dev-env-network",
+        "virtual_network_id":1,
+        "description":"Test description for my testing topology turtles"
+    }
+
+    CloudVlanDetail = {
+        "response": CloudVlan
+    }
+
+    CloudVlanList = {
+        "response": [CloudVlan]
+    }
+
+    CloudVlanComponent = {
+        "id":1,
+        "name":"dev-env-bplatta-vpc",
+        "cloud_vlan_id":1,
+        "cloud_vlan":"AWS VPC VLAN",
+        "cloud_cred_id":1,
+        "cloud_type":"EC2",
+        "region":"us-east-1",
+        "description":"My  vlan test"
+    }
+
+    CloudVlanComponentDetail = {
+        "response": CloudVlanComponent
+    }
+
+    CloudVlanComponentList = {
+        "response": [CloudVlanComponent]
+    }
+
+class SystemApiData(object):
     NTPHosts = {
         "response_type": "success",
         "response": {
@@ -213,6 +214,36 @@ class SystemApiData(object):
         }
     }
 
+    CredTypeDetails = {
+        "name":"EC2",
+        "code":"ec2",
+        "fields":[{
+            "name":"Use VNS3:ms IAM Role (Recommended Option)",
+            "description":"Use VNS3:ms IAM Role to provide credentials",
+            "required":True,"type":"BOOLEAN"
+        },{
+            "name":"Account ID",
+            "description":"AWS Account ID (optional - VNS3:ms will attempt to fill if left blank)",
+            "required":False,
+            "type":"STRING"
+        },{
+            "name":"Access Key",
+            "description":"AWS Access key",
+            "required":True,
+            "type":"STRING"
+        },{
+            "name":"Secret Key",
+            "description":"AWS Secret key",
+            "required":True,
+            "type":"PASSWORD"
+        },{
+            "name":"GovCloud",
+            "description":"These creds are for use in the EC2 GovCloud",
+            "required":True,
+            "type":"BOOLEAN"
+        }]
+    }
+
 
 class Vns3ManagementApiData(object):
     CreateVns3ControllerResponse = {
@@ -221,4 +252,107 @@ class Vns3ManagementApiData(object):
             "msg":"VNS3 Controller created",
             "id":1
         }
+    }
+
+    Vns3SnapshotsList = {
+        "response":{
+            "snapshots":[{
+                "snapshot_id":1,
+                "created_at":"2020-05-15T17:42:41.000Z",
+                "snapshot_name":"snapshot_20200515_1589564561_52.72.51.23",
+                "snapshot_size":2072122,
+                "sha1_checksum":"c9cbcaca7d0e1996ae2411fde50f74881eeac542",
+                "available":True,
+                "status":"Stored locally",
+                "vns3_controller_id":1,
+                "vns3_controller_name":"test-vns3-bp"
+            }],
+            "failed_snapshots":[]
+        }
+    }
+
+    ControllerReport = {
+        "response_type":"success",
+        "response":{
+            "snapshot_date":"2020-05-15",
+            "snapshot":[{
+                "controller_id":1,
+                "controller_name":"test-vns3-bp",
+                "controller_version":"3.5-default",
+                "active":True,
+                "created_date":"2020-05-14T14:29:59+00:00",
+                "topology_id":1,
+                "topology_name":"Test VNS3 Topology",
+                "virtual_network_id":1,
+                "virtual_network_name":"dev-env-network",
+                "ha_backup_enabled":False
+            }]
+        }
+    }
+
+    Vns3Controller = {
+        "id":1,
+        "name":"test-vns3-bp",
+        "owner":"admin",
+        "virtual_network_id":1,
+        "virtual_network":"dev-env-network",
+        "vns3_topology_id":1,
+        "vns3_topology":"Test VNS3 Topology",
+        "vns3_address":"10.0.1.34",
+        "private_ip_address":None,
+        "vns3_version":"3.5-default",
+        "licensed":None,
+        "active":True,
+        "peered":None,
+        "description":None,
+        "controller_status":{
+            "last_contact_time":"2020-05-15T17:47:25.000Z",
+            "last_successful_contact_time":"2020-05-15T17:47:25.000Z",
+            "last_contact_code":200,
+            "last_contact_result":"OK",
+            "failed_contact_count":0,
+            "alerts_enabled":False
+        },
+        "alerts_enabled":False
+    }
+
+    Vns3ControllerDetail = {
+        "response": Vns3Controller
+    }
+
+    Vns3ControllerList = {
+        "response": [Vns3Controller]
+    }
+
+    Vns3ControllerHaDetail = {
+        "response_type":"success",
+        "response":{
+            "ha_enabled":True,
+            "ha_initialised":False,
+            "ha_cloud_validated":True,
+            "ms_sync_state":"Available",
+            "ms_sync_fail_count":0,
+            "backup_active":False,
+            "backup_sync_fail_count":0,
+            "ha_cloud_cred_id":1,
+            "primary_server_available":True,
+            "backup_server_available":False,
+            "ha_type":"cold",
+            "ha_sync_processing":False,
+            "ha_instance_id":"",
+            "ha_image_id":"ami-12341234"
+        }
+    }
+
+class UserApiData(object):
+
+    CredsList = {
+        "response_type":"success",
+        "response":[{
+            "id":1,
+            "name":"BensEc2Cred",
+            "code":"ec2",
+            "verified":True,
+            "verification_message":"Cloud creds verified"
+        }]
     }

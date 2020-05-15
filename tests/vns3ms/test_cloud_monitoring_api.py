@@ -35,7 +35,7 @@ class TestMSMonitoringApi(object):
             "/cloud_vlan_components",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response=CloudMonitoringApiData.CloudVlanComponentList
         )(cloud_monitoring_api.get_cloud_vlan_components)
 
     def test_post_create_vlan_component(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -48,7 +48,13 @@ class TestMSMonitoringApi(object):
             "/cloud_vlan_components",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response={
+                "response_type":"success",
+                "response":{
+                    "msg":"Cloud VLAN Component created",
+                    "id":1
+                }
+            }
         )(cloud_monitoring_api.post_create_vlan_component)
 
     def test_get_cloud_vlan_component(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -61,7 +67,7 @@ class TestMSMonitoringApi(object):
             "/cloud_vlan_components/{component_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response=CloudMonitoringApiData.CloudVlanComponentDetail
         )(cloud_monitoring_api.get_cloud_vlan_component)
 
     def test_put_update_vlan_component(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -100,7 +106,7 @@ class TestMSMonitoringApi(object):
             "/cloud_vlans",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response=CloudMonitoringApiData.CloudVlanList
         )(cloud_monitoring_api.get_cloud_vlans)
 
     def test_post_create_cloud_vlan(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -113,7 +119,7 @@ class TestMSMonitoringApi(object):
             "/cloud_vlans",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response={"response_type":"success","response":{"msg":"Cloud VLAN created","id":1}}
         )(cloud_monitoring_api.post_create_cloud_vlan)
 
     def test_get_cloud_vlan(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -126,7 +132,7 @@ class TestMSMonitoringApi(object):
             "/cloud_vlans/{vlan_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=None,
+            mock_response=CloudMonitoringApiData.CloudVlanDetail
         )(cloud_monitoring_api.get_cloud_vlan)
 
     def test_put_update_cloud_vlan(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -152,7 +158,7 @@ class TestMSMonitoringApi(object):
             "/cloud_vlans/{vlan_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response={"response_type":"success","response":"Deleted Cloud Vlan 1"}
         )(cloud_monitoring_api.delete_cloud_vlan)
 
     def test_get_virtual_networks(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -165,7 +171,7 @@ class TestMSMonitoringApi(object):
             "/virtual_networks",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response=CloudMonitoringApiData.VirtualNetworkList
         )(cloud_monitoring_api.get_virtual_networks)
 
     def test_post_create_virtual_network(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -230,7 +236,7 @@ class TestMSMonitoringApi(object):
             "/virtual_networks/export",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response="imafileimafileimafileimafileimafileimafileimafileimafile"
         )(cloud_monitoring_api.get_export_virtual_networks)
 
     def test_post_import_virtual_networks(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -256,7 +262,7 @@ class TestMSMonitoringApi(object):
             "/vns3_topologies",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response=CloudMonitoringApiData.Vns3TopologyList
         )(cloud_monitoring_api.get_vns3_topologies)
 
     def test_post_create_vns3_topology(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -282,7 +288,7 @@ class TestMSMonitoringApi(object):
             "/vns3_topologies/{vns3_topology_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response=CloudMonitoringApiData.Vns3TopologyDetail
         )(cloud_monitoring_api.get_vns3_topology)
 
     def test_put_update_vns3_topology(self, rest_mocker, ms_client, ms_api_schema: dict):
