@@ -56,7 +56,9 @@ class TestInterfacesApi(object):
             mock_response=InterfacesApiData.InterfaceDetail,
         )(interfaces_api.get_system_interface_details)
 
-    def test_get_system_interfaces(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_system_interfaces(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_system_interfaces
         """
         generate_method_test(
@@ -99,7 +101,9 @@ class TestInterfacesApi(object):
             mock_response=InterfacesApiData.InterfaceDetail,
         )(interfaces_api.put_update_system_interface)
 
-    def test_delete_system_interface(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_delete_system_interface(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for delete_system_interface
 
         """
@@ -113,7 +117,9 @@ class TestInterfacesApi(object):
             mock_response=InterfacesApiData.InterfaceDetail,
         )(interfaces_api.delete_system_interface)
 
-    def test_post_interfaces_action(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_interfaces_action(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_interfaces_action
         """
         generate_method_test(
@@ -139,7 +145,9 @@ class TestInterfacesApi(object):
             mock_response=InterfacesApiData.GREEndpointListResponse,
         )(interfaces_api.get_gre_interfaces)
 
-    def test_get_gre_interface_details(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_gre_interface_details(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_gre_interface_details
 
         """
@@ -153,7 +161,9 @@ class TestInterfacesApi(object):
             mock_response=InterfacesApiData.GREEndpointDetail,
         )(interfaces_api.get_gre_interface_details)
 
-    def test_delete_gre_interface(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_delete_gre_interface(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for delete_gre_interface
 
         """
@@ -167,7 +177,9 @@ class TestInterfacesApi(object):
             mock_response=InterfacesApiData.GREEndpointDetail,
         )(interfaces_api.delete_gre_interface)
 
-    def test_post_create_gre_interface(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_create_gre_interface(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_create_gre_interface
         """
         generate_method_test(
@@ -180,7 +192,9 @@ class TestInterfacesApi(object):
             mock_response=InterfacesApiData.GREEndpointDetail,
         )(interfaces_api.post_create_gre_interface)
 
-    def test_put_update_gre_interface(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_update_gre_interface(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_update_gre_interface
         """
         generate_method_test(

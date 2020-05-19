@@ -26,7 +26,9 @@ from tests.vns3.stub_data import IpsecApiData
 class TestIPsecApi(object):
     """IPsecApi unit test stubs"""
 
-    def test_delete_ipsec_endpoint(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_delete_ipsec_endpoint(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for delete_ipsec_endpoint
         """
         generate_method_test(
@@ -93,7 +95,9 @@ class TestIPsecApi(object):
             mock_response=IpsecApiData.IpsecStatusResponse,
         )(ipsec_api.get_ipsec_status)
 
-    def test_get_ipsec_link_history(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_ipsec_link_history(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_ipsec_link_history
         """
         generate_method_test(
@@ -137,7 +141,9 @@ class TestIPsecApi(object):
             mock_response=IpsecApiData.IpsecEndpointDetail,
         )(ipsec_api.post_create_ipsec_endpoint_tunnel)
 
-    def test_post_restart_ipsec_action(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_restart_ipsec_action(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_restart_ipsec_action
         """
         generate_method_test(
@@ -150,7 +156,9 @@ class TestIPsecApi(object):
             mock_response={"response": {"restart": True}},
         )(ipsec_api.post_restart_ipsec_action)
 
-    def test_put_update_ipsec_endpoint(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_update_ipsec_endpoint(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_update_ipsec_endpoint
 
         """
@@ -180,7 +188,9 @@ class TestIPsecApi(object):
             mock_response=IpsecApiData.IpsecTunnelDetail,
         )(ipsec_api.put_update_ipsec_endpoint_tunnel)
 
-    def test_put_update_ipsec_config(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_update_ipsec_config(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_update_ipsec_config
         """
         generate_method_test(

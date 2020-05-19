@@ -35,7 +35,7 @@ class TestMSUserApi(object):
             "/user/password",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(user_api.put_user_password)
 
     def test_get_user_credentials(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -48,10 +48,12 @@ class TestMSUserApi(object):
             "/user/credentials",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=UserApiData.CredsList
+            mock_response=UserApiData.CredsList,
         )(user_api.get_user_credentials)
 
-    def test_post_create_user_credential(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_post_create_user_credential(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for post_create_user_credential
         """
         generate_method_test(
@@ -62,12 +64,14 @@ class TestMSUserApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response_type":"success",
-                "response":{"message":"User credentials saved. Validating.","id":1}
-             }
+                "response_type": "success",
+                "response": {"message": "User credentials saved. Validating.", "id": 1},
+            },
         )(user_api.post_create_user_credential)
 
-    def test_put_update_user_credential(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_put_update_user_credential(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for put_update_user_credential
         """
         generate_method_test(
@@ -77,7 +81,7 @@ class TestMSUserApi(object):
             "/user/credentials/{credential_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(user_api.put_update_user_credential)
 
     def test_delete_user_credential(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -90,5 +94,5 @@ class TestMSUserApi(object):
             "/user/credentials/{credential_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(user_api.delete_user_credential)

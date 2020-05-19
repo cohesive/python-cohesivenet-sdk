@@ -114,7 +114,9 @@ class TestSystemAdministrationApi(object):
             mock_response=SystemAdminApiData.RemoteSupportDetails,
         )(system_administration_api.get_remote_support_details)
 
-    def test_put_update_remote_support(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_update_remote_support(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_update_remote_support
         """
         generate_method_test(

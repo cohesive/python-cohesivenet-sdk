@@ -601,12 +601,12 @@ class AccessApiRouter(VersionRouter):
       providing temporary access to any VNS3 controller in your topology"""
 
     function_library = {
-        "put_activate_api_key": {"2.1.1": put_activate_api_key},
-        "post_create_token": {"2.1.1": post_create_token},
-        "put_expire_token": {"2.1.1": put_expire_token},
-        "put_invalidate_api_key_tokens": {"2.1.1": put_invalidate_api_key_tokens},
-        "get_api_keys": {"2.1.1": get_api_keys},
-        "post_create_api_key": {"2.1.1": post_create_api_key},
-        "put_update_api_key": {"2.1.1": put_update_api_key},
-        "delete_api_key": {"2.1.1": delete_api_key},
+        "put_activate_api_key": {"2.1.1-2.3.5": put_activate_api_key},
+        "post_create_token": {"2.1.1-2.3.5": post_create_token},
+        "put_expire_token": {"2.1.1-2.3.5": put_expire_token},
+        "put_invalidate_api_key_tokens": {"2.1.1-2.3.5": put_invalidate_api_key_tokens},
+        "get_api_keys": {"2.1.1-2.3.5": get_api_keys},
+        "post_create_api_key": {"2.1.1-2.3.5": post_create_api_key},
+        "put_update_api_key": {"2.1.1-2.3.5": put_update_api_key},
+        "delete_api_key": {"2.1.1-2.3.5": delete_api_key},
     }

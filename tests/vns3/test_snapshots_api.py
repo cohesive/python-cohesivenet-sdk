@@ -40,7 +40,9 @@ class TestSnapshotsApi(object):
             mock_response=SnapshotsApiData.SnapshotsListResponse,
         )(snapshots_api.delete_snapshot)
 
-    def test_get_download_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_download_snapshot(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_download_snapshot
 
         """
@@ -69,7 +71,9 @@ class TestSnapshotsApi(object):
             mock_response=SnapshotsApiData.SnapshotsListResponse,
         )(snapshots_api.get_snapshots)
 
-    def test_post_create_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_create_snapshot(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_create_snapshot
 
         """

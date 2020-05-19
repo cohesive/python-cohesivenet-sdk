@@ -1657,6 +1657,7 @@ def get_webhooks(api_client, **kwargs):  # noqa: E501
         collection_formats=collection_formats,
     )
 
+
 def post_create_webhook(
     api_client,
     name=None,
@@ -1666,7 +1667,7 @@ def post_create_webhook(
     validate_cert=None,
     custom_properties=None,
     headers=None,
-    parameters=None
+    parameters=None,
     **kwargs
 ):  # noqa: E501
     """Create new Cloud VLAN  # noqa: E501
@@ -1716,7 +1717,7 @@ def post_create_webhook(
         "validate_cert",
         "custom_properties",
         "headers",
-        "parameters"
+        "parameters",
     ]
 
     collection_formats = {}
@@ -1811,7 +1812,7 @@ def get_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/webhook/{webhook_id}",
@@ -1926,7 +1927,7 @@ def put_update_webhook(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/webhook/{webhook_id}",
@@ -1992,7 +1993,7 @@ def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/webhook/{webhook_id}",
@@ -2013,7 +2014,6 @@ def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
@@ -2058,7 +2058,7 @@ def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/alert/{alert_id}",
@@ -2123,7 +2123,7 @@ def get_alerts(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/alerts",
@@ -2228,7 +2228,7 @@ def post_create_alert(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/alert",
@@ -2249,7 +2249,6 @@ def post_create_alert(
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
@@ -2295,7 +2294,7 @@ def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/alert/{alert_id}",
@@ -2400,7 +2399,7 @@ def put_update_alert(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/alert/{alert_id}",
@@ -2465,7 +2464,7 @@ def post_toggle_enable_alert(api_client, alert_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/alert/{alert_id}/toggle_enabled",
@@ -2530,7 +2529,7 @@ def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/alert/{alert_id}/test",
@@ -2557,28 +2556,28 @@ class CloudMonitoringApiRouter(VersionRouter):
     """Configure and monitor your cloud by tracking cloud VPCs and virtual networks"""
 
     function_library = {
-        "get_cloud_vlan_components": {"2.1.1": get_cloud_vlan_components},
-        "post_create_vlan_component": {"2.1.1": post_create_vlan_component},
-        "get_cloud_vlan_component": {"2.1.1": get_cloud_vlan_component},
-        "put_update_vlan_component": {"2.1.1": put_update_vlan_component},
-        "delete_vlan_component": {"2.1.1": delete_vlan_component},
-        "get_cloud_vlans": {"2.1.1": get_cloud_vlans},
-        "post_create_cloud_vlan": {"2.1.1": post_create_cloud_vlan},
-        "get_cloud_vlan": {"2.1.1": get_cloud_vlan},
-        "put_update_cloud_vlan": {"2.1.1": put_update_cloud_vlan},
-        "delete_cloud_vlan": {"2.1.1": delete_cloud_vlan},
-        "get_virtual_networks": {"2.1.1": get_virtual_networks},
-        "post_create_virtual_network": {"2.1.1": post_create_virtual_network},
-        "get_virtual_network": {"2.1.1": get_virtual_network},
-        "put_update_virtual_network": {"2.1.1": put_update_virtual_network},
-        "delete_virtual_network": {"2.1.1": delete_virtual_network},
-        "get_export_virtual_networks": {"2.1.1": get_export_virtual_networks},
-        "post_import_virtual_networks": {"2.1.1": post_import_virtual_networks},
-        "get_vns3_topologies": {"2.1.1": get_vns3_topologies},
-        "post_create_vns3_topology": {"2.1.1": post_create_vns3_topology},
-        "get_vns3_topology": {"2.1.1": get_vns3_topology},
-        "put_update_vns3_topology": {"2.1.1": put_update_vns3_topology},
-        "delete_vns3_topology": {"2.1.1": delete_vns3_topology},
+        "get_cloud_vlan_components": {"2.1.1-2.3.5": get_cloud_vlan_components},
+        "post_create_vlan_component": {"2.1.1-2.3.5": post_create_vlan_component},
+        "get_cloud_vlan_component": {"2.1.1-2.3.5": get_cloud_vlan_component},
+        "put_update_vlan_component": {"2.1.1-2.3.5": put_update_vlan_component},
+        "delete_vlan_component": {"2.1.1-2.3.5": delete_vlan_component},
+        "get_cloud_vlans": {"2.1.1-2.3.5": get_cloud_vlans},
+        "post_create_cloud_vlan": {"2.1.1-2.3.5": post_create_cloud_vlan},
+        "get_cloud_vlan": {"2.1.1-2.3.5": get_cloud_vlan},
+        "put_update_cloud_vlan": {"2.1.1-2.3.5": put_update_cloud_vlan},
+        "delete_cloud_vlan": {"2.1.1-2.3.5": delete_cloud_vlan},
+        "get_virtual_networks": {"2.1.1-2.3.5": get_virtual_networks},
+        "post_create_virtual_network": {"2.1.1-2.3.5": post_create_virtual_network},
+        "get_virtual_network": {"2.1.1-2.3.5": get_virtual_network},
+        "put_update_virtual_network": {"2.1.1-2.3.5": put_update_virtual_network},
+        "delete_virtual_network": {"2.1.1-2.3.5": delete_virtual_network},
+        "get_export_virtual_networks": {"2.1.1-2.3.5": get_export_virtual_networks},
+        "post_import_virtual_networks": {"2.1.1-2.3.5": post_import_virtual_networks},
+        "get_vns3_topologies": {"2.1.1-2.3.5": get_vns3_topologies},
+        "post_create_vns3_topology": {"2.1.1-2.3.5": post_create_vns3_topology},
+        "get_vns3_topology": {"2.1.1-2.3.5": get_vns3_topology},
+        "put_update_vns3_topology": {"2.1.1-2.3.5": put_update_vns3_topology},
+        "delete_vns3_topology": {"2.1.1-2.3.5": delete_vns3_topology},
         "get_webhooks": {"2.3.3-2.3.5": get_webhooks},
         "post_create_webhook": {"2.3.3-2.3.5": post_create_webhook},
         "get_webhook": {"2.3.3-2.3.5": get_webhook},

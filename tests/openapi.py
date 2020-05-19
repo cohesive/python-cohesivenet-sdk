@@ -36,17 +36,18 @@ def fetch_spec(spec):
         )
 
     from tests.openapi import resolve_refs
-    _raw_spec = response.data.decode("utf8").strip()
+
+    _raw_spec = json.loads(response.data.decode("utf8").strip())
 
     # if os.environ.get("DOWNLOAD_SPECS"):
     if True:
         filename = spec.split("/")[-1]
-        open(filename, "w").write(_raw_spec)
+        open(filename, "w").write(json.dumps(_raw_spec, indent=2))
         open("resolved-%s" % filename, "w").write(
             json.dumps(resolve_refs(_raw_spec), indent=2)
         )
 
-    return json.loads(_raw_spec)
+    return _raw_spec
 
 
 def get_mock_call_args(method_schema):
@@ -123,14 +124,12 @@ def get_mock_call_kwargs(method_schema):
     return dict(query_dict, **body_params)
 
 
-def get_security_scheme(schema, method_schema,  index=0):
+def get_security_scheme(schema, method_schema, index=0):
     security = method_schema.get("security")
     if security is None:
         security = schema["security"]
 
-    supported_security_schemes = [
-        next(iter(scheme.keys())) for scheme in security
-    ]
+    supported_security_schemes = [next(iter(scheme.keys())) for scheme in security]
 
     if len(supported_security_schemes) < index + 1:
         return None
@@ -139,7 +138,9 @@ def get_security_scheme(schema, method_schema,  index=0):
     security_scheme = supported_security_schemes[index]
     if security_scheme not in component_defs:
         raise AssertionError(
-            "Failed to parse security scheme %s from schema components" % security_scheme)
+            "Failed to parse security scheme %s from schema components"
+            % security_scheme
+        )
     return component_defs[security_scheme]
 
 
@@ -166,7 +167,8 @@ def resolve_ref(schema, ref):
     return _schema_pointer
 
 
-def resolve_refs(schema, refs_cache={}, full_schema=None):
+def resolve_refs(schema, refs_cache=None, full_schema=None):
+    _cache = {} if refs_cache is None else refs_cache
     full_schema = full_schema or schema
     if type(schema) is not dict:
         return
@@ -175,21 +177,21 @@ def resolve_refs(schema, refs_cache={}, full_schema=None):
         if type(v) is dict:
             if "$ref" in v:
                 ref = v["$ref"]
-                if ref not in refs_cache:
-                    refs_cache[ref] = resolve_ref(full_schema, ref)
-                schema[k] = refs_cache[ref]
+                if ref not in _cache:
+                    _cache[ref] = resolve_ref(full_schema, ref)
+                schema[k] = _cache[ref]
             else:
-                resolve_refs(v, refs_cache, full_schema)
+                resolve_refs(v, _cache, full_schema)
         elif type(v) is list:
             for i, item in enumerate(v):
                 if type(item) is dict:
                     if "$ref" in item:
                         ref = item["$ref"]
-                        if ref not in refs_cache:
-                            refs_cache[ref] = resolve_ref(full_schema, ref)
-                        v[i] = refs_cache[ref]
+                        if ref not in _cache:
+                            _cache[ref] = resolve_ref(full_schema, ref)
+                        v[i] = _cache[ref]
                     else:
-                        resolve_refs(item, refs_cache, full_schema)
+                        resolve_refs(item, _cache, full_schema)
     return schema
 
 
@@ -323,7 +325,10 @@ def assert_on_response_type(val, type_schema, path=[], should_raise=True):
                     for prop, prop_val in val.items():
                         assert_on_response_type(prop_val, val_type, path=path + [prop])
             else:
-                raise RuntimeError("Unexpected type schema format: %s. data=%s. path=%s" % (type_schema, val, path))
+                raise RuntimeError(
+                    "Unexpected type schema format: %s. data=%s. path=%s"
+                    % (type_schema, val, path)
+                )
         elif exp_type == OpenAPITypes.Array:
             item_schema = type_schema["items"]
             for i, val_item in enumerate(val):
@@ -463,7 +468,7 @@ def generate_method_test(
                 "application/json"
                 if not file_download
                 else "text/plain, application/octet-stream"
-            )
+            ),
         }
     }
 
@@ -474,7 +479,9 @@ def generate_method_test(
             expected_request_args["headers"]["api-token"] = MockConstants.ApiToken
         else:
             # assume basic auth
-            expected_request_args["headers"]["Authorization"] = MockConstants.BasicAuthHeader
+            expected_request_args["headers"][
+                "Authorization"
+            ] = MockConstants.BasicAuthHeader
 
     if _method in ("post", "put", "delete"):
         request_body = method_schema.get("requestBody")

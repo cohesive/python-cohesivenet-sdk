@@ -96,7 +96,9 @@ class TestMonitoringAlertingApi(object):
             },
         )(monitoring_alerting_api.post_test_alert)
 
-    def test_post_toggle_enable_alert(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_toggle_enable_alert(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_toggle_enable_alert
 
         """

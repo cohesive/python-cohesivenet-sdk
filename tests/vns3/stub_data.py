@@ -1,4 +1,3 @@
-
 class ConfigurationApiData(object):
     ConfigDetail = {
         "response": {

@@ -145,7 +145,9 @@ class TestAccessApi(object):
             mock_response=AccessApiData.AccessTokenListResponse,
         )(access_api.get_api_tokens)
 
-    def test_put_expire_access_url(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_expire_access_url(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_expire_access_url
         """
         generate_method_test(
@@ -158,7 +160,9 @@ class TestAccessApi(object):
             mock_response=AccessApiData.AccessUrlDetail,
         )(access_api.put_expire_access_url)
 
-    def test_put_expire_api_token(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_expire_api_token(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_expire_api_token
         """
         generate_method_test(

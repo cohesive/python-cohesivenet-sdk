@@ -10,19 +10,21 @@ from cohesivenet import (
     __vns3_spec__,
     __vns3_version__,
     __vns3_ms_version__,
-    __vns3_ms_spec__
+    __vns3_ms_spec__,
 )
 
 
 @pytest.fixture(scope="session")
 def vns3_api_schema():
     from tests.openapi import resolve_refs, fetch_spec
+
     return resolve_refs(fetch_spec(__vns3_spec__))
 
 
 @pytest.fixture(scope="session")
 def ms_api_schema():
     from tests.openapi import resolve_refs, fetch_spec
+
     return resolve_refs(fetch_spec(__vns3_ms_spec__))
 
 
@@ -41,7 +43,6 @@ def vns3_client():
             verify_ssl=MockConstants.VerifySSL,
         )
     )
-
 
 
 @pytest.fixture

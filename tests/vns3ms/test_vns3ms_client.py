@@ -18,10 +18,7 @@ class TestVNS3Client(object):
         """
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0",
-                username="api",
-                api_key="abcdefge",
-                verify_ssl=False,
+                host="0.0.0.0", username="api", api_key="abcdefge", verify_ssl=False,
             )
         )
 
@@ -85,16 +82,13 @@ class TestVNS3Client(object):
     def test_update_client_state(self):
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0",
-                username="api",
-                api_key="abcdefge",
-                verify_ssl=False,
+                host="0.0.0.0", username="api", api_key="abcdefge", verify_ssl=False,
             )
         )
 
         updates = {
             "topology_container_network": "192.169.16.0/24",
-            "subnet": "10.0.2.0/24"
+            "subnet": "10.0.2.0/24",
         }
         api_client.update_state(updates)
         state = api_client.state
@@ -105,10 +99,7 @@ class TestVNS3Client(object):
     def test_query_state(self):
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0",
-                username="api",
-                api_key="abcdefge",
-                verify_ssl=False,
+                host="0.0.0.0", username="api", api_key="abcdefge", verify_ssl=False,
             )
         )
 
@@ -138,10 +129,7 @@ class TestVNS3Client(object):
         """
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0",
-                username="api",
-                password="password",
-                verify_ssl=False,
+                host="0.0.0.0", username="api", password="password", verify_ssl=False,
             )
         )
 
@@ -162,5 +150,3 @@ class TestVNS3Client(object):
             assert hasattr(access_api, method_name), (
                 "Missing method %s on access_api" % method_name
             )
-        
-

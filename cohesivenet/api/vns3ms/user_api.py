@@ -204,10 +204,7 @@ def post_create_user_credential(
     # this is a little annoyance yet to be fixed in VNS3:ms (2.3.5)
     # expecting this field on ec2 codes
     body_params = {
-        "fields": [{
-            "key": "Use VNS3:ms IAM Role (Recommended Option)",
-            "value": False
-        }]
+        "fields": [{"key": "Use VNS3:ms IAM Role (Recommended Option)", "value": False}]
     }
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
@@ -286,25 +283,14 @@ def post_create_ec2_credential(
     form_params = []
     local_var_files = {}
 
-    fields = [{
-        "key": "Access Key",
-        "value": access_key
-    }, {
-        "key": "Secret Key",
-        "value": secret_key
-    }, {
-        "key": "Use VNS3:ms IAM Role (Recommended Option)",
-        "value": False
-    }, {
-        "key": "GovCloud",
-        "value": gov_cloud if gov_cloud is not None else False
-    }]
+    fields = [
+        {"key": "Access Key", "value": access_key},
+        {"key": "Secret Key", "value": secret_key},
+        {"key": "Use VNS3:ms IAM Role (Recommended Option)", "value": False},
+        {"key": "GovCloud", "value": gov_cloud if gov_cloud is not None else False},
+    ]
 
-    body_params = {
-        "name": name,
-        "code": "ec2",
-        "fields": fields
-    }
+    body_params = {"name": name, "code": "ec2", "fields": fields}
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
@@ -486,10 +472,10 @@ class UserApiRouter(VersionRouter):
     """User management endpoints for configuring credentials"""
 
     function_library = {
-        "put_user_password": {"2.1.1": put_user_password},
-        "get_user_credentials": {"2.1.1": get_user_credentials},
-        "post_create_user_credential": {"2.1.1": post_create_user_credential},
-        "post_create_ec2_credential": {"2.1.1": post_create_ec2_credential},
-        "put_update_user_credential": {"2.1.1": put_update_user_credential},
-        "delete_user_credential": {"2.1.1": delete_user_credential},
+        "put_user_password": {"2.1.1-2.3.5": put_user_password},
+        "get_user_credentials": {"2.1.1-2.3.5": get_user_credentials},
+        "post_create_user_credential": {"2.1.1-2.3.5": post_create_user_credential},
+        "post_create_ec2_credential": {"2.1.1-2.3.5": post_create_ec2_credential},
+        "put_update_user_credential": {"2.1.1-2.3.5": put_update_user_credential},
+        "delete_user_credential": {"2.1.1-2.3.5": delete_user_credential},
     }

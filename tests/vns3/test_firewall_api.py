@@ -26,7 +26,9 @@ from tests.vns3.stub_data import FirewallApiData
 class TestFirewallApi(object):
     """FirewallApi unit test stubs"""
 
-    def test_post_create_firewall_rule(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_create_firewall_rule(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_create_firewall_rule
         """
         generate_method_test(
@@ -88,7 +90,9 @@ class TestFirewallApi(object):
             },
         )(firewall_api.delete_firewall_rule_by_rule)
 
-    def test_delete_firewall_subgroup(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_delete_firewall_subgroup(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for delete_firewall_subgroup
         """
         generate_method_test(
@@ -101,7 +105,9 @@ class TestFirewallApi(object):
             mock_response={"response": {"status": "finished_ok"}},
         )(firewall_api.delete_firewall_subgroup)
 
-    def test_get_firewall_fw_sets(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_firewall_fw_sets(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_firewall_fw_sets
         """
         generate_method_test(
@@ -136,7 +142,9 @@ class TestFirewallApi(object):
             },
         )(firewall_api.post_create_firewall_fw_set)
 
-    def test_delete_firewall_fw_set(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_delete_firewall_fw_set(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for delete_firewall_fw_set
         """
         generate_method_test(
@@ -218,7 +226,9 @@ class TestFirewallApi(object):
             },
         )(firewall_api.post_create_firewall_subgroup)
 
-    def test_put_reinitialize_fw_sets(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_reinitialize_fw_sets(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_reinitialize_fw_sets
         """
         generate_method_test(

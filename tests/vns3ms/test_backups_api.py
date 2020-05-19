@@ -37,10 +37,7 @@ class TestMSBackupsApi(object):
             mock_request_from_schema=True,
             mock_response={
                 "response_type": "success",
-                "response": {
-                    "backup_files": [],
-                    "failed_backups": []
-                }
+                "response": {"backup_files": [], "failed_backups": []},
             },
         )(backups_api.get_backups)
 
@@ -54,7 +51,7 @@ class TestMSBackupsApi(object):
             "/backups",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.delete_backup)
 
     def test_get_download_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -80,7 +77,7 @@ class TestMSBackupsApi(object):
             "/backups/upload",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.post_upload_backup)
 
     def test_post_create_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -93,7 +90,7 @@ class TestMSBackupsApi(object):
             "/backups/create_backup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=BackupsApiData.CreateBackupResponse
+            mock_response=BackupsApiData.CreateBackupResponse,
         )(backups_api.post_create_backup)
 
     def test_get_backup_job(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -106,7 +103,7 @@ class TestMSBackupsApi(object):
             "/backups/create_backup/{uuid}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=BackupsApiData.BackupJobStatusResponse
+            mock_response=BackupsApiData.BackupJobStatusResponse,
         )(backups_api.get_backup_job)
 
     def test_post_restore_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -119,7 +116,7 @@ class TestMSBackupsApi(object):
             "/backups/restore_backup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.post_restore_backup)
 
     def test_get_snapshots_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -138,9 +135,9 @@ class TestMSBackupsApi(object):
                     "snapshot_backup_file": {
                         "backup_name": "snapshots.tgz",
                         "create_time": "2020-01-01T10:10:10.000",
-                        "size": 112312312
+                        "size": 112312312,
                     }
-                }
+                },
             },
         )(backups_api.get_snapshots_backup)
 
@@ -154,10 +151,12 @@ class TestMSBackupsApi(object):
             "/snapshots_backup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.delete_snapshots_backup)
 
-    def test_get_download_snapshots_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_get_download_snapshots_backup(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for get_download_snapshots_backup
         """
         generate_method_test(
@@ -167,10 +166,12 @@ class TestMSBackupsApi(object):
             "/snapshots_backup/download",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response="imafileimafileimafileimafileimafileimafileimafile"
+            mock_response="imafileimafileimafileimafileimafileimafileimafile",
         )(backups_api.get_download_snapshots_backup)
 
-    def test_post_upload_snapshots_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_post_upload_snapshots_backup(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for post_upload_snapshots_backup
         """
         generate_method_test(
@@ -180,10 +181,12 @@ class TestMSBackupsApi(object):
             "/snapshots_backup/upload_backup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.post_upload_snapshots_backup)
 
-    def test_get_snapshots_upload_status(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_get_snapshots_upload_status(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for get_snapshots_upload_status
         """
         generate_method_test(
@@ -193,10 +196,12 @@ class TestMSBackupsApi(object):
             "/snapshots_backup/upload_backup/{uuid}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.get_snapshots_upload_status)
 
-    def test_post_create_snapshots_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_post_create_snapshots_backup(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for post_create_snapshots_backup
         """
         generate_method_test(
@@ -206,10 +211,12 @@ class TestMSBackupsApi(object):
             "/snapshots_backup/create_backup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.post_create_snapshots_backup)
 
-    def test_get_snapshots_backup_status(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_get_snapshots_backup_status(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for get_snapshots_backup_status
         """
         generate_method_test(
@@ -219,10 +226,12 @@ class TestMSBackupsApi(object):
             "/snapshots_backup/create_backup/{uuid}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.get_snapshots_backup_status)
 
-    def test_post_restore_snapshots_backup(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_post_restore_snapshots_backup(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for post_restore_snapshots_backup
         """
         generate_method_test(
@@ -232,5 +241,5 @@ class TestMSBackupsApi(object):
             "/snapshots_backup/restore_backup",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(backups_api.post_restore_snapshots_backup)

@@ -36,8 +36,8 @@ class TestMSAdminApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response_type":"success",
-                "response":{"ldap_enabled":False}
+                "response_type": "success",
+                "response": {"ldap_enabled": False},
             },
         )(administration_api.put_enable_ldap)
 
@@ -64,10 +64,12 @@ class TestMSAdminApi(object):
             "/admin/ldap/settings",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={"response_type":"success","response":"Settings updated"},
+            mock_response={"response_type": "success", "response": "Settings updated"},
         )(administration_api.put_ldap_settings)
 
-    def test_post_validate_ldap_settings(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_post_validate_ldap_settings(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for post_validate_ldap_settings
         """
         generate_method_test(
@@ -78,11 +80,11 @@ class TestMSAdminApi(object):
             rest_mocker,
             mock_request_from_schema=True,
             mock_response={
-                "response_type":"error",
-                "response":{
-                    "connect_success":False,
-                    "message":"Connection timed out - user specified timeout"
-                }
+                "response_type": "error",
+                "response": {
+                    "connect_success": False,
+                    "message": "Connection timed out - user specified timeout",
+                },
             },
         )(administration_api.post_validate_ldap_settings)
 
@@ -96,7 +98,7 @@ class TestMSAdminApi(object):
             "/admin/ldap/user_schema",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AdminApiData.LdapUserSchemaResponse
+            mock_response=AdminApiData.LdapUserSchemaResponse,
         )(administration_api.get_ldap_user_schema)
 
     def test_put_ldap_user_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -109,10 +111,12 @@ class TestMSAdminApi(object):
             "/admin/ldap/user_schema",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(administration_api.put_ldap_user_schema)
 
-    def test_post_validate_ldap_user_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_post_validate_ldap_user_schema(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for post_validate_ldap_user_schema
         """
         generate_method_test(
@@ -122,12 +126,7 @@ class TestMSAdminApi(object):
             "/admin/ldap/user_schema",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response_type": "success",
-                "response": [
-                    "user"
-                ]
-            }
+            mock_response={"response_type": "success", "response": ["user"]},
         )(administration_api.post_validate_ldap_user_schema)
 
     def test_get_ldap_group_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -140,7 +139,7 @@ class TestMSAdminApi(object):
             "/admin/ldap/group_schema",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AdminApiData.LdapGroupSchemaResponse
+            mock_response=AdminApiData.LdapGroupSchemaResponse,
         )(administration_api.get_ldap_group_schema)
 
     def test_put_ldap_group_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -153,10 +152,12 @@ class TestMSAdminApi(object):
             "/admin/ldap/group_schema",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(administration_api.put_ldap_group_schema)
 
-    def test_post_validate_ldap_group_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
+    def test_post_validate_ldap_group_schema(
+        self, rest_mocker, ms_client, ms_api_schema: dict
+    ):
         """Test case for post_validate_ldap_group_schema
         """
         generate_method_test(
@@ -166,10 +167,5 @@ class TestMSAdminApi(object):
             "/admin/ldap/group_schema",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={
-                "response_type": "success",
-                "response": [
-                    "group"
-                ]
-            }
+            mock_response={"response_type": "success", "response": ["group"]},
         )(administration_api.post_validate_ldap_group_schema)

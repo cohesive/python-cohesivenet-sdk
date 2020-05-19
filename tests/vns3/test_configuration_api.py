@@ -52,7 +52,9 @@ class TestConfigurationApi(object):
             mock_response=ConfigurationApiData.KeysetDetail,
         )(configuration_api.get_keyset)
 
-    def test_get_ssl_install_status(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_ssl_install_status(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_ssl_install_status
         """
         generate_method_test(
@@ -78,7 +80,9 @@ class TestConfigurationApi(object):
             mock_response=ConfigurationApiData.ConfigDetail,
         )(configuration_api.put_config)
 
-    def test_put_install_ssl_keypair(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_install_ssl_keypair(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_install_ssl_keypair
         """
         generate_method_test(
@@ -117,7 +121,9 @@ class TestConfigurationApi(object):
             mock_response=ConfigurationApiData.UpdateUIAdminResponse,
         )(configuration_api.put_update_admin_ui)
 
-    def test_put_update_api_password(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_update_api_password(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_update_api_password
         """
         generate_method_test(
@@ -130,7 +136,9 @@ class TestConfigurationApi(object):
             mock_response={"response": {"password_reset": "ok"}},
         )(configuration_api.put_update_api_password)
 
-    def test_put_upload_ssl_keypair(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_upload_ssl_keypair(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_upload_ssl_keypair
         """
         generate_method_test(

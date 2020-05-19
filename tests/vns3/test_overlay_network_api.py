@@ -76,7 +76,9 @@ class TestOverlayNetworkApi(object):
             },
         )(overlay_network_api.get_clients_status)
 
-    def test_get_connected_subnets(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_connected_subnets(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_connected_subnets
         """
         generate_method_test(
@@ -89,7 +91,9 @@ class TestOverlayNetworkApi(object):
             mock_response={"response": [["10.0.1.0", "255.255.255.0"]]},
         )(overlay_network_api.get_connected_subnets)
 
-    def test_get_download_clientpack(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_get_download_clientpack(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_download_clientpack
 
         """
@@ -136,7 +140,9 @@ class TestOverlayNetworkApi(object):
             mock_response=OverlayNetworkApiData.ClientpackTagsResponse,
         )(overlay_network_api.post_create_clientpack_tag)
 
-    def test_delete_clientpack_tag(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_delete_clientpack_tag(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for delete_clientpack_tag
 
         """
@@ -150,7 +156,9 @@ class TestOverlayNetworkApi(object):
             mock_response=OverlayNetworkApiData.ClientpackTagsResponse,
         )(overlay_network_api.delete_clientpack_tag)
 
-    def test_post_reset_all_clients(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_reset_all_clients(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_reset_all_clients
 
         """
@@ -183,7 +191,9 @@ class TestOverlayNetworkApi(object):
             },
         )(overlay_network_api.post_reset_client)
 
-    def test_post_add_clientpacks(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_post_add_clientpacks(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_add_clientpacks
         """
         generate_method_test(
@@ -198,7 +208,9 @@ class TestOverlayNetworkApi(object):
             },
         )(overlay_network_api.post_add_clientpacks)
 
-    def test_put_update_clientpack(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_update_clientpack(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_update_clientpack
 
         """
@@ -212,7 +224,9 @@ class TestOverlayNetworkApi(object):
             mock_response={"response": OverlayNetworkApiData.Clientpack},
         )(overlay_network_api.put_update_clientpack)
 
-    def test_put_disconnect_clientpack(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+    def test_put_disconnect_clientpack(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for put_disconnect_clientpack
 
         """
