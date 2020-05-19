@@ -1,5 +1,5 @@
 # Python Cohesive Networks SDK
-[![contact][contact-image]][contact-url]
+[![contact][contact-image]][contact-url] ![contact][python-versions-badge]
 
 Cohesive Networks SDK is Python tool providing access to the VNS3 and VNS3:ms APIs from applications written in Python. It also includes common pipelines and macro functions for building network topologies.
 
@@ -144,3 +144,4 @@ solutions@cohesive.net
 
 [contact-image]: https://img.shields.io/badge/contact-support-blue.svg?style=flat-square
 [contact-url]: https://support.cohesive.net/support/home
+[python-versions-badge]: https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue
