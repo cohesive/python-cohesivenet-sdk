@@ -20,18 +20,18 @@ from cohesivenet.api.vns3 import licensing_api  # noqa: E501
 from cohesivenet.rest import ApiException
 
 from tests.openapi import generate_method_test
-from tests.stub_data import LicensingApiData
+from tests.vns3.stub_data import LicensingApiData
 
 
 class TestLicensingApi(object):
     """LicensingApi unit test stubs"""
 
-    def test_get_license(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_license(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for get_license
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/license",
             rest_mocker,
@@ -39,13 +39,13 @@ class TestLicensingApi(object):
             mock_response=LicensingApiData.LicenseDetail,
         )(licensing_api.get_license)
 
-    def test_put_license_upgrade(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_license_upgrade(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for put_license_upgrade
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/license/upgrade",
             rest_mocker,
@@ -54,13 +54,13 @@ class TestLicensingApi(object):
         )(licensing_api.put_license_upgrade)
 
     def test_put_set_license_parameters(
-        self, rest_mocker, api_client, api_schema: dict
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
         """Test case for put_set_license_parameters
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/license/parameters",
             rest_mocker,
@@ -68,13 +68,13 @@ class TestLicensingApi(object):
             mock_response=LicensingApiData.LicenseParamsResponse,
         )(licensing_api.put_set_license_parameters)
 
-    def test_upload_license(self, rest_mocker, api_client, api_schema: dict):
+    def test_upload_license(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for upload_license
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/license",
             rest_mocker,

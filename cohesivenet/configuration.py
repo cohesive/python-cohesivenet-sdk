@@ -47,8 +47,9 @@ class Configuration(object):
     def __init__(
         self,
         host="",
-        api_key={},
-        api_key_prefix={},
+        api_key=None,
+        api_key_prefix=None,
+        api_token=None,
         username="",
         password="",
         protocol=None,
@@ -75,6 +76,12 @@ class Configuration(object):
         """
         self.refresh_api_key_hook = None
         """function hook to refresh API key if expired
+        """
+        self.api_token = api_token
+        """API token
+        """
+        self.refresh_api_token_hookk = None
+        """function hook to refresh API token if expired
         """
         self.username = username
         """Username for HTTP basic authentication
@@ -162,13 +169,16 @@ class Configuration(object):
         """
         if self.refresh_api_key_hook is not None:
             self.refresh_api_key_hook(self)
-        key = self.api_key.get(identifier)
+        key = self.api_key
         if key:
-            prefix = self.api_key_prefix.get(identifier)
+            prefix = self.api_key_prefix
             if prefix:
                 return "%s %s" % (prefix, key)
             else:
                 return key
+
+    def get_token(self):
+        return self.api_token
 
     def get_basic_auth_token(self):
         """Gets HTTP basic authentication header (string).
@@ -190,7 +200,13 @@ class Configuration(object):
                 "in": "header",
                 "key": "Authorization",
                 "value": self.get_basic_auth_token(),
-            }
+            },
+            "ApiTokenAuth": {
+                "type": "api_key",
+                "in": "header",
+                "key": "api-token",
+                "value": self.get_token(),
+            },
         }
 
     def to_debug_report(self):
@@ -211,9 +227,7 @@ class Configuration(object):
 
         :return: An array of host settings
         """
-        return [
-            {"url": "vns3-host:8000", "description": "Host URI for VNS3 Controller"}
-        ]
+        return [{"url": "vns3-endpoint", "description": "Host URI for VNS3 service"}]
 
     def get_host_from_settings(self, index, variables={}):
         """Gets host URL based on the index and variables

@@ -11,27 +11,13 @@
 
 from __future__ import absolute_import
 
-from cohesivenet.version import LATEST_VNS3_VERSION
+from cohesivenet.version import LATEST_VNS3_MS_VERSION
 from cohesivenet.api_client import APIClient, api_as_property
 
-from cohesivenet.api.vns3 import BGPApi
-from cohesivenet.api.vns3 import ConfigurationApi
-from cohesivenet.api.vns3 import FirewallApi
-from cohesivenet.api.vns3 import IPsecApi
-from cohesivenet.api.vns3 import InterfacesApi
-from cohesivenet.api.vns3 import LicensingApi
-from cohesivenet.api.vns3 import MonitoringAlertingApi
-from cohesivenet.api.vns3 import NetworkEdgePluginsApi
-from cohesivenet.api.vns3 import OverlayNetworkApi
-from cohesivenet.api.vns3 import PeeringApi
-from cohesivenet.api.vns3 import RoutingApi
-from cohesivenet.api.vns3 import SnapshotsApi
-from cohesivenet.api.vns3 import SystemAdministrationApi
-from cohesivenet.api.vns3 import AccessApi
-from cohesivenet.macros import state as vns3_state
+from cohesivenet.api import vns3ms as vns3ms_apis
 
 
-class VNS3Client(APIClient):
+class MSClient(APIClient):
     """Generic API client for OpenAPI client library builds.
 
     OpenAPI generic API client. This client handles the client-
@@ -55,28 +41,22 @@ class VNS3Client(APIClient):
 
     BASE_PATH = "api"
     DEF_REQ_TIMEOUT = 15.0
+    TOKEN_LIFETIME = 600  # seconds
 
     # Client API Groups available as attributes: e.g. vns3_client.peering.delete_peer(4)
-    access = api_as_property("access", AccessApi)
-    bgp = api_as_property("bgp", BGPApi)
-    config = api_as_property("config", ConfigurationApi)
-    firewall = api_as_property("firewall", FirewallApi)
-    ipsec = api_as_property("ipsec", IPsecApi)
-    interfaces = api_as_property("interfaces", InterfacesApi)
-    licensing = api_as_property("licensing", LicensingApi)
-    monitoring = api_as_property("monitoring", MonitoringAlertingApi)
-    network_edge_plugins = api_as_property(
-        "network_edge_plugins", NetworkEdgePluginsApi
+    access = api_as_property("access", vns3ms_apis.AccessApi)
+    admin = api_as_property("admin", vns3ms_apis.AdministrationApi)
+    backups = api_as_property("backups", vns3ms_apis.BackupsApi)
+    cloud_monitoring = api_as_property(
+        "cloud_monitoring", vns3ms_apis.CloudMonitoringApi
     )
-    overlay_network = api_as_property("overlay_network", OverlayNetworkApi)
-    peering = api_as_property("peering", PeeringApi)
-    routing = api_as_property("routing", RoutingApi)
-    snapshots = api_as_property("snapshots", SnapshotsApi)
-    sys_admin = api_as_property("sys_admin", SystemAdministrationApi)
+    system = api_as_property("system", vns3ms_apis.SystemApi)
+    user = api_as_property("user", vns3ms_apis.UserApi)
+    vns3_management = api_as_property("vns3_management", vns3ms_apis.VNS3ManagementApi)
 
     @staticmethod
     def latest_version():
-        return LATEST_VNS3_VERSION
+        return LATEST_VNS3_MS_VERSION
 
     @property
     def state(self):
@@ -88,14 +68,6 @@ class VNS3Client(APIClient):
         setattr(self, "_state", state)
         return None
 
-    def set_vns3_version(self):
-        prev_v = self.vns3_dot_version
-        _ = vns3_state.get_vns3_version(self, bust_cache=True)
-        new_v = self.vns3_dot_version
-        if prev_v != new_v:
-            self.reset_api_version_sdk()
-        return self
-
     def update_state(self, state_updates_dict):
         state = getattr(self, "_state", {})
         state.update(state_updates_dict)
@@ -106,18 +78,36 @@ class VNS3Client(APIClient):
         return self.state.get(key)
 
     @property
-    def vns3_version(self):
-        return self.state.get("vns3_version")
+    def ms_version(self):
+        return self.state.get("ms_version")
+
+    @ms_version.setter
+    def ms_version(self, version):
+        prev_v = self.ms_dot_version
+        if prev_v != version:
+            self.reset_api_version_sdk()
+
+        self.add_to_state("ms_version", version)
+        return self
 
     @property
-    def vns3_dot_version(self):
-        vns3_version = self.vns3_version
-        return vns3_version.split("-")[0] if vns3_version else None
+    def ms_dot_version(self):
+        ms_version = self.ms_version
+        return ms_version.split("-")[0] if ms_version else None
 
     @property
     def dot_version(self):
-        return self.vns3_dot_version
+        return self.ms_dot_version
 
     @property
     def host_uri(self):
         return self.configuration.host_uri
+
+    def refresh_token(self):
+        """
+        """
+        response = self.access.post_create_token(
+            self.configuration.username, self.configuration.api_key
+        ).json()
+
+        self.configuration.api_token = response["api_token"]

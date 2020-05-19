@@ -1,7 +1,6 @@
 import functools
 
 from cohesivenet import Logger
-from cohesivenet.version import LATEST_VNS3_VERSION
 from cohesivenet.macros import state as vns3_state
 from cohesivenet.exceptions import (
     ApiValueError,
@@ -97,7 +96,7 @@ def set_version_library(client, api, library):
     """Set the API library functions based on the current clients version
 
     Arguments:
-        client {VNS3Client}
+        client {APIClient}
         api {Object} -
         library {Dict} - {
             func_name: str -> dict[version:str -> func]
@@ -105,7 +104,9 @@ def set_version_library(client, api, library):
 
     Returns: None
     """
-    vns3_version = client.vns3_dot_version or LATEST_VNS3_VERSION
+    client_version = client.dot_version
+    if not client_version:
+        client_version = client.latest_version()
 
     def in_range(val, min_v, max_v):
         return val >= min_v and val <= max_v
@@ -114,18 +115,18 @@ def set_version_library(client, api, library):
         return int(val.replace(".", ""))
 
     version_library = {}
-    vns3_version_int = v_to_int(vns3_version)
+    vns3_version_int = v_to_int(client_version)
     for function_name, versions_funcs in library.items():
         for version, func in versions_funcs.items():
             if "-" in version:
                 min_v, max_v = [v_to_int(i) for i in version.split("-")]
                 if in_range(vns3_version_int, min_v, max_v):
                     version_library[function_name] = func
-            elif version == vns3_version:
+            elif version == client_version:
                 version_library[function_name] = func
 
     Logger.debug(
-        "Setting VNS3 v%s API functions %s" % (vns3_version, api.__class__.__name__)
+        "Setting v%s API functions %s" % (client_version, api.__class__.__name__)
     )
     for name, func in version_library.items():
         setattr(api, name, functools.partial(func, client))

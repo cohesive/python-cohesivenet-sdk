@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    VNS3 Controller API
+    VNS3:ms API
 
     Cohesive networks VNS3 provides complete control of your network's addresses, routes, rules and edge. Networking does  # noqa: E501
 
@@ -17,19 +17,19 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
-def create_access_url(
-    api_client, expires=3600, description=None, **kwargs
+def get_cloud_vlan_components(
+    api_client, cloud_vlan_component_id=None, **kwargs
 ):  # noqa: E501
-    """Create access URL  # noqa: E501
+    """Return list of all (accessible) Cloud VLAN Components  # noqa: E501
 
-    Create access URL  # noqa: E501
+    Return list of all (accessible) Cloud VLAN Components  # noqa: E501
+
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.create_access_url(async_req=True)
+    >>> response = await api.get_cloud_vlan_components(async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param expires int: Number of seconds before expiration
-    :param description str: Optional description of access URL
+    :param cloud_vlan_component_id int: Cloud VLAN Component ID for filtering
     :param async_req bool: execute request asynchronously
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
@@ -42,7 +42,97 @@ def create_access_url(
     """
 
     local_var_params = locals()
-    request_params = ["expires", "description"]
+    request_params = ["cloud_vlan_component_id"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/cloud_vlan_components",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_vlan_component(
+    api_client,
+    name=None,
+    cloud_vlan_id=None,
+    user_cred_id=None,
+    vlan_component_id=None,
+    region=None,
+    description=None,
+    **kwargs
+):  # noqa: E501
+    """Create new Cloud VLAN Component  # noqa: E501
+
+    Create new Cloud VLAN Component  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_vlan_component(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param name str: Cloud VLAN Component name (required)
+    :param cloud_vlan_id int: Parent Cloud VLAN ID (required)
+    :param user_cred_id int: User credential ID (required)
+    :param vlan_component_id int: Component ID defined by cloud associated with user credential
+    :param region str: Cloud VLAN component region
+    :param description str: Component description
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = [
+        "name",
+        "cloud_vlan_id",
+        "user_cred_id",
+        "vlan_component_id",
+        "region",
+        "description",
+    ]
 
     collection_formats = {}
 
@@ -70,10 +160,10 @@ def create_access_url(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/access/url",
+        "/cloud_vlan_components",
         "POST",
         path_params,
         query_params,
@@ -93,23 +183,16 @@ def create_access_url(
     )
 
 
-def create_api_token(
-    api_client, expires=3600, token_name=None, refreshes=None, **kwargs
-):  # noqa: E501
-    """Create API token  # noqa: E501
+def get_cloud_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
+    """Return specific Cloud VLAN Components details  # noqa: E501
 
-    Create api token  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.create_api_token_with_http_info(async_req=True)
+    >>> response = await api.get_cloud_vlan_component(id, async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param expires int: Number of seconds before expiration
-    :param token_name str: Optional name of token
-    :param refreshes bool: Token lifetime refreshes when used
+    :param component_id int: VLAN component ID (required)
     :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
                                 data. Default is True.
@@ -121,12 +204,89 @@ def create_api_token(
     """
 
     local_var_params = locals()
-
-    request_params = ["expires", "token_name", "refreshes"]
+    request_params = []
 
     collection_formats = {}
 
-    path_params = {}
+    path_params = {"component_id": component_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/cloud_vlan_components/{component_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_vlan_component(
+    api_client,
+    component_id,
+    name=None,
+    cloud_vlan_id=None,
+    user_cred_id=None,
+    region=None,
+    description=None,
+    **kwargs
+):  # noqa: E501
+    """Update specified Cloud VLAN Component  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_vlan_component(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param name str: Cloud VLAN Component name (required)
+    :param cloud_vlan_id int: Parent Cloud VLAN ID (required)
+    :param user_cred_id int: User credential ID (required)
+    :param region str: Cloud VLAN component region
+    :param description str: Component description
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "cloud_vlan_id", "user_cred_id", "region", "description"]
+
+    collection_formats = {}
+
+    path_params = {"component_id": component_id}
 
     query_params = []
 
@@ -138,6 +298,7 @@ def create_api_token(
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
@@ -149,11 +310,11 @@ def create_api_token(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/access/token",
-        "POST",
+        "/cloud_vlan_components/{component_id}",
+        "PUT",
         path_params,
         query_params,
         header_params,
@@ -172,19 +333,16 @@ def create_api_token(
     )
 
 
-def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
-    """Delete access URL  # noqa: E501
+def delete_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
+    """Delete Cloud VLAN Components  # noqa: E501
 
-    Delete access URL by ID  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.delete_access_url_with_http_info(access_url_id, async_req=True)
+    >>> response = await api.delete_vlan_component(id, async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param int access_url_id: Access URL ID (required)
+    :param component_id int: VLAN component ID (required)
     :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
                                 data. Default is True.
@@ -194,11 +352,13 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
+
     local_var_params = locals()
+    request_params = []
 
     collection_formats = {}
 
-    path_params = {"access_url_id": access_url_id}
+    path_params = {"component_id": component_id}
 
     query_params = []
 
@@ -207,17 +367,18 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     form_params = []
     local_var_files = {}
 
-    body_params = None
+    body_params = {}
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/access/url/{access_url_id}",
+        "/cloud_vlan_components/{component_id}",
         "DELETE",
         path_params,
         query_params,
@@ -237,22 +398,16 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     )
 
 
-def delete_access_url_by_search(
-    api_client, access_url_id=None, access_url=None, **kwargs
-):  # noqa: E501
-    """Find and delete access URL  # noqa: E501
+def get_cloud_vlans(api_client, cloud_vlan_id=None, **kwargs):  # noqa: E501
+    """Return list of all (accessible) Cloud VLANs  # noqa: E501
 
-    Delete access URL by ID or URL  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.delete_access_url_by_search_with_http_info(async_req=True)
+    >>> response = await api.get_cloud_vlans(async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param access_url_id int: ID of access URL
-    :param access_url str: URL
+    :param cloud_vlan_id int: Cloud VLAN ID for filtering
     :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
                                 data. Default is True.
@@ -264,8 +419,80 @@ def delete_access_url_by_search(
     """
 
     local_var_params = locals()
+    request_params = ["cloud_vlan_id"]
 
-    request_params = ["access_url_id", "access_url"]
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/cloud_vlans",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_cloud_vlan(
+    api_client, name=None, virtual_network_id=None, description=None, **kwargs
+):  # noqa: E501
+    """Create new Cloud VLAN  # noqa: E501
+
+    Create new Cloud VLAN  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_cloud_vlan(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param name str: Cloud VLAN name (required)
+    :param virtual_network_id int: Parent Virtual Network ID (required)
+    :param description str: VLAN description
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
 
@@ -293,10 +520,217 @@ def delete_access_url_by_search(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/access/url",
+        "/cloud_vlans",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
+    """Return specific Cloud VLAN details  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_cloud_vlan(vlan_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param vlan_id int: Cloud VLAN ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"vlan_id": vlan_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/cloud_vlans/{vlan_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_cloud_vlan(
+    api_client, vlan_id, name=None, virtual_network_id=None, description=None, **kwargs
+):  # noqa: E501
+    """Update specified Cloud VLAN Component  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_cloud_vlan(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param vlan_id int: Cloud VLAN ID (required)
+    :param name str: Cloud VLAN name (required)
+    :param virtual_network_id int: Parent Virtual Network ID (required)
+    :param description str: VLAN description
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "virtual_network_id", "description"]
+
+    collection_formats = {}
+
+    path_params = {"vlan_id": vlan_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/cloud_vlans/{vlan_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
+    """Delete Cloud VLAN  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_cloud_vlan(id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param vlan_id int: Cloud VLAN ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"vlan_id": vlan_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/cloud_vlans/{vlan_id}",
         "DELETE",
         path_params,
         query_params,
@@ -316,19 +750,16 @@ def delete_access_url_by_search(
     )
 
 
-def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
-    """Delete API token  # noqa: E501
+def get_virtual_networks(api_client, virtual_network_id=None, **kwargs):  # noqa: E501
+    """Return list of all (accessible) Virtual Networks  # noqa: E501
 
-    Delete API token by ID  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.delete_api_token_with_http_info(token_id, async_req=True)
+    >>> response = await api.get_virtual_networks(async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param int token_id: Token ID (required)
+    :param virtual_network_id int: Virtual Network ID for filtering
     :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
                                 data. Default is True.
@@ -340,9 +771,81 @@ def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
     """
 
     local_var_params = locals()
+    request_params = ["virtual_network_id"]
+
     collection_formats = {}
 
-    path_params = {"token_id": token_id}
+    path_params = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/virtual_networks",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_virtual_network(
+    api_client, name=None, description=None, **kwargs
+):  # noqa: E501
+    """Create new Virtual Network  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_virtual_network(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param name str: Virtual network name (required)
+    :param description str: Network description
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "description"]
+
+    collection_formats = {}
+
+    path_params = {}
 
     query_params = []
 
@@ -351,17 +854,231 @@ def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
     form_params = []
     local_var_files = {}
 
-    body_params = None
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/virtual_networks",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E501
+    """Return specific Virtual Network details  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_virtual_network(virtual_network_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param virtual_network_id int: Virtual network ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"virtual_network_id": virtual_network_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/access/token/{token_id}",
+        "/virtual_networks/{virtual_network_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_virtual_network(
+    api_client, virtual_network_id, name=None, description=None, **kwargs
+):  # noqa: E501
+    """Update specified Virtual Network  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_virtual_network(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param virtual_network_id int: Virtual network ID (required)
+    :param name str: Virtual network name
+    :param description str: Network description
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "description"]
+
+    collection_formats = {}
+
+    path_params = {"virtual_network_id": virtual_network_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/virtual_networks/{virtual_network_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E501
+    """Delete Virtual Network # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_virtual_network(virtual_network_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param virtual_network_id int: Virtual network ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"virtual_network_id": virtual_network_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/virtual_networks/{virtual_network_id}",
         "DELETE",
         path_params,
         query_params,
@@ -381,15 +1098,15 @@ def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
     )
 
 
-def get_access_urls(api_client, **kwargs):  # noqa: E501
-    """Get access URLs  # noqa: E501
+def get_export_virtual_networks(api_client):  # noqa: E501
+    """Export virtual networks CSV  # noqa: E501
 
-    Retrieve list of users' access urls, including expired ones  # noqa: E501
+    Export virtual networks CSV file   # noqa: E501
+
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_access_ur_ls_with_http_info(async_req=True)
+    >>> response = await api.get_export_virtual_networks(client, async_req=True)
 
-    :param VNS3Client api_client: (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -404,6 +1121,8 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
     """
 
     local_var_params = locals()
+
+    request_params = []  # noqa: E501
 
     collection_formats = {}
 
@@ -417,24 +1136,25 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
     local_var_files = {}
 
     body_params = None
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
+        ["text/plain", "application/octet-stream"]
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/access/urls",
+        "/virtual_networks/export",
         "GET",
         path_params,
         query_params,
         header_params,
-        body=body_params,
+        body={},
         post_params=form_params,
         files=local_var_files,
-        response_type="object",  # noqa: E501
+        response_type="file",
         auth_settings=auth_settings,
         async_req=local_var_params.get("async_req"),
         _return_http_data_only=local_var_params.get(
@@ -446,16 +1166,15 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
     )
 
 
-def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
-    """Get access URL  # noqa: E501
+def post_import_virtual_networks(api_client, body=None):  # noqa: E501
+    """Import virtual networks from CSV file  # noqa: E501
 
-    Retrieve details for specific access url (including expired ones)  # noqa: E501
+    Import virtual networks from CSV file   # noqa: E501
+
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_access_url_with_http_info(access_url_id, async_req=True)
+    >>> response = await api.post_import_virtual_networks(client, body, async_req=True)
 
-    :param VNS3Client api_client: (required)
-    :param int access_url_id: Access URL ID (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -471,136 +1190,7 @@ def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
 
     local_var_params = locals()
 
-    collection_formats = {}
-
-    path_params = {"access_url_id": access_url_id}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = None
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/access/url/{access_url_id}",
-        "GET",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def get_api_token(api_client, token_id, **kwargs):  # noqa: E501
-    """Get API access token  # noqa: E501
-
-    Retrieve details for specific access token (including expired ones)  # noqa: E501
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_api_token_with_http_info(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param int token_id: Token ID (required)
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {"token_id": token_id}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = None
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/access/token/{token_id}",
-        "GET",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def get_api_tokens(api_client, **kwargs):  # noqa: E501
-    """Get API access tokens  # noqa: E501
-
-    Retrieve list of api tokens  # noqa: E501
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_api_tokens_with_http_info(async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-
-    local_var_params = locals()
+    request_params = []  # noqa: E501
 
     collection_formats = {}
 
@@ -613,17 +1203,90 @@ def get_api_tokens(api_client, **kwargs):  # noqa: E501
     form_params = []
     local_var_files = {}
 
-    body_params = None
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/virtual_networks/import",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E501
+    """Return list of all (accessible) VNS3 Topologies  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_vns3_topologies(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param vns3_topology_id int: Topology ID for filtering
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["vns3_topology_id"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/access/tokens",
+        "/vns3_topologies",
         "GET",
         path_params,
         query_params,
@@ -643,22 +1306,20 @@ def get_api_tokens(api_client, **kwargs):  # noqa: E501
     )
 
 
-def put_expire_access_url(
-    api_client, access_url_id, expired=True, **kwargs
+def post_create_vns3_topology(
+    api_client, name=None, virtual_network_id=None, description=None, **kwargs
 ):  # noqa: E501
-    """Expire access URL  # noqa: E501
+    """Create new VNS3 Topology # noqa: E501
 
-    Expire access URL  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_expire_access_url_with_http_info(access_url_id, async_req=True)
+    >>> response = await api.post_create_vns3_topology(async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param access_url_id int: Access URL ID (required)
-    :param expired bool: Indicates whether to expire
+    :param name str: Topology name name (required)
+    :param virtual_network_id int: Parent Virtual Network ID
+    :param description str: Topology description
     :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
                                 data. Default is True.
@@ -670,189 +1331,7 @@ def put_expire_access_url(
     """
 
     local_var_params = locals()
-
-    request_params = ["expired"]
-
-    collection_formats = {}
-
-    path_params = {"access_url_id": access_url_id}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/access/url/{access_url_id}",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa: E501
-    """Expire API token  # noqa: E501
-
-    Expire API token  # noqa: E501
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_expire_api_token(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param int token_id: Token ID (required)
-    :param expired bool: Indicates whether to expire
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-
-    local_var_params = locals()
-
-    request_params = ["expired"]
-
-    collection_formats = {}
-
-    path_params = {"token_id": token_id}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/access/token/{token_id}",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def put_ldap_settings(
-    api_client,
-    host=None,
-    port=None,
-    encrypt=None,
-    encrypt_ldaps=None,
-    encrypt_auth=None,
-    encrypt_verify_ca=None,
-    binddn=None,
-    bindpw=None,
-    **kwargs
-):
-    """Put update LDAP settings  # noqa: E501
-
-    Put update LDAP settings  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_ldap_settings(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param str host: IP address or resolvable hostname (required)
-    :param int port: defaults to ldap default port
-    :param bool encrypt: Use SSL
-    :param bool encrypt_ldaps: Use LDAPS or start TLS (default)
-    :param bool encrypt_auth: Use certificates to authenticate via encrypted connection
-    :param bool encrypt_verify_ca: Verify certicate using authority
-    :param str binddn: Bind Username
-    :param str bindpw: Bind Password
-
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    request_params = [
-        "host",
-        "port",
-        "encrypt",
-        "encrypt_ldaps",
-        "encrypt_auth",
-        "encrypt_verify_ca",
-        "binddn",
-        "bindpw",
-    ]
+    request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
 
@@ -880,114 +1359,10 @@ def put_ldap_settings(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/settings/ldap",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def post_test_ldap_settings(
-    api_client,
-    host=None,
-    port=None,
-    encrypt=None,
-    encrypt_ldaps=None,
-    encrypt_auth=None,
-    encrypt_verify_ca=None,
-    binddn=None,
-    bindpw=None,
-    **kwargs
-):
-    """Test LDAP user schema settings  # noqa: E501
-
-    Test LDAP user schema settings  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_test_ldap_user_schema_settings(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param str host: IP address or resolvable hostname (required)
-    :param int port: defaults to ldap default port
-    :param bool encrypt: Use SSL
-    :param bool encrypt_ldaps: Use LDAPS or start TLS (default)
-    :param bool encrypt_auth: Use certificates to authenticate via encrypted connection
-    :param bool encrypt_verify_ca: Verify certicate using authority
-    :param str binddn: Bind Username
-    :param str bindpw: Bind Password
-
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    request_params = [
-        "host",
-        "port",
-        "encrypt",
-        "encrypt_ldaps",
-        "encrypt_auth",
-        "encrypt_verify_ca",
-        "binddn",
-        "bindpw",
-    ]
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap",
+        "/vns3_topologies",
         "POST",
         path_params,
         query_params,
@@ -1007,16 +1382,498 @@ def post_test_ldap_settings(
     )
 
 
-def get_ldap_settings(api_client, **kwargs):  # noqa: E501
-    """Get LDAP settings  # noqa: E501
-
-    Get LDAP settings  # noqa: E501
+def get_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
+    """Return specific Topology details  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_ldap_settings(async_req=True)
+    >>> response = await api.get_vns3_topology(vns3_topology_id, async_req=True)
 
     :param VNS3Client api_client: (required)
+    :param vns3_topology_id int: Topology ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"vns3_topology_id": vns3_topology_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/vns3_topologies/{vns3_topology_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_vns3_topology(
+    api_client,
+    vns3_topology_id,
+    name=None,
+    virtual_network_id=None,
+    description=None,
+    **kwargs
+):  # noqa: E501
+    """Update specified VNS3 Topology  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_vns3_topology(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param vns3_topology_id int: Topology ID (required)
+    :param name str: Virtual network name
+    :param virtual_network_id int: Parent Virtual Network ID
+    :param description str: Network description
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "virtual_network_id", "description"]
+
+    collection_formats = {}
+
+    path_params = {"vns3_topology_id": vns3_topology_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/vns3_topologies/{vns3_topology_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
+    """Delete Topology # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_vns3_topology(vns3_topology_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param vns3_topology_id int: Topology ID (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"vns3_topology_id": vns3_topology_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/vns3_topologies/{vns3_topology_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_webhooks(api_client, **kwargs):  # noqa: E501
+    """Return list of all configured webhooks  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_webhooks(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param cloud_vlan_component_id int: Cloud VLAN Component ID for filtering
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/webhooks",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_webhook(
+    api_client,
+    name=None,
+    url=None,
+    events=None,
+    body=None,
+    validate_cert=None,
+    custom_properties=None,
+    headers=None,
+    parameters=None,
+    **kwargs
+):  # noqa: E501
+    """Create new Cloud VLAN  # noqa: E501
+
+    Create new Cloud VLAN  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_cloud_vlan(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param name str: Webhook name (required)
+    :param url str: Webhook endpoint
+    :param events List[str]: List of events this webhook supports
+    :param body str: POST payload
+    :param validate_cert bool: Verify SSL
+    :param custom_properties List[{
+        name str: (required)
+        value str:
+        description str:
+    }]:
+    :param headers List[{
+        name str:
+        value str:
+    }]:
+    :param parameters List[{
+        name str:
+        value str:
+    }]:
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = [
+        "name",
+        "url",
+        "events",
+        "body",
+        "validate_cert",
+        "custom_properties",
+        "headers",
+        "parameters",
+    ]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/webhook",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
+    """get_webhook  # noqa: E501
+
+    Retrieve details for single webhook integration  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_webhook(client, webhook_id, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int webhook_id: ID for webhook integration (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"webhook_id": webhook_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/webhook/{webhook_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_webhook(
+    api_client,
+    webhook_id,
+    name=None,
+    url=None,
+    events=None,
+    body=None,
+    validate_cert=None,
+    custom_properties=None,
+    headers=None,
+    parameters=None,
+    **kwargs
+):  # noqa: E501
+    """put_update_webhook  # noqa: E501
+
+    Edit defined webhook integration  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_webhook(webhook_id, update_webhook_request, async_req=True)
+
+    :param int webhook_id: ID for webhook integration (required)
+    :param name str:
+    :param url str:
+    :param events List[str]:
+    :param body str: Webhook payload
+    :param validate_cert bool: execute request asynchronously
+    :param custom_properties List[{
+        name str: (required)
+        value str:
+        description str:
+    }]:
+    :param headers List[{
+        name str:
+        value str:
+    }]:
+    :param parameters List[{
+        name str:
+        value str:
+    }]:
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1029,6 +1886,223 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
+
+    local_var_params = locals()
+
+    request_params = [
+        "name",
+        "url",
+        "events",
+        "body",
+        "validate_cert",
+        "custom_properties",
+        "headers",
+        "parameters",
+    ]
+
+    collection_formats = {}
+
+    path_params = {"webhook_id": webhook_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/webhook/{webhook_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
+    """delete_webhook  # noqa: E501
+
+    Delete defined webhook integration  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_webhook(webhook_id, async_req=True)
+
+    :param int webhook_id: ID for webhook integration (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"webhook_id": webhook_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/webhook/{webhook_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
+    """get_alert  # noqa: E501
+
+    Retrieve details for single alert  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_alert(alert_id, async_req=True)
+
+    :param int alert_id: ID for Alert definition (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"alert_id": alert_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/alert/{alert_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_alerts(api_client, **kwargs):  # noqa: E501
+    """get_alerts  # noqa: E501
+
+    Retrieve all alerts  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_alerts(async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
     local_var_params = locals()
 
     collection_formats = {}
@@ -1049,10 +2123,10 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/settings/ldap",
+        "/alerts",
         "GET",
         path_params,
         query_params,
@@ -1072,326 +2146,36 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
     )
 
 
-def put_enable_ldap(api_client, enabled=True, **kwargs):  # noqa: E501
-    """Enable/disable LDAP  # noqa: E501
-
-    Enable/disable LDAP  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_enable_ldap(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param bool enabled: Defaults to true (required)
-    :param expired bool: Indicates whether to expire
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    request_params = ["enabled"]
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/enabled",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def put_upload_ldap_auth_cert(api_client, body=None, **kwargs):  # noqa: E501
-    """put_upload_ldap_auth_cert  # noqa: E501
-
-    Upload LDAP authentication certicate file  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_upload_ldap_auth_cert(body, async_req=True)
-
-    :param async_req bool: execute request asynchronously
-    :param body str: cert file (required)
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-
-    local_var_files = {}
-
-    body_params = body
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["text/plain"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/encrypt_auth_cert",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def put_upload_ldap_auth_key(api_client, body=None, **kwargs):  # noqa: E501
-    """put_upload_ldap_auth_key  # noqa: E501
-
-    Upload LDAP authentication key file  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_upload_ldap_auth_key(body, async_req=True)
-
-    :param async_req bool: execute request asynchronously
-    :param body str: auth key file (required)
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-
-    local_var_files = {}
-
-    body_params = body
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["text/plain"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/encrypt_auth_key",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def put_upload_ldap_ca_cert(api_client, body=None, **kwargs):  # noqa: E501
-    """put_upload_ldap_ca_cert  # noqa: E501
-
-    Upload LDAP CA certicate file  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_upload_ldap_ca_cert(body, async_req=True)
-
-    :param async_req bool: execute request asynchronously
-    :param body str: ca cert file (required)
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-
-    local_var_files = {}
-
-    body_params = body
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["text/plain"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/encrypt_ca_cert",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def put_ldap_group_schema_settings(
+def post_create_alert(
     api_client,
-    group_required=None,
-    group_base=None,
-    group_id_attribute=None,
-    group_list_filter=None,
-    group_member_attribute=None,
-    group_member_attr_format=None,
-    group_search_scope=None,
+    name=None,
+    url=None,
+    enabled=None,
+    events=None,
+    custom_properties=None,
+    webhook_id=None,
+    template_id=None,
     **kwargs
-):
-    """Put update LDAP group schema settings  # noqa: E501
+):  # noqa: E501
+    """post_create_alert  # noqa: E501
 
-    Put update LDAP group schema settings  # noqa: E501
+    Define new alert  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_ldap_group_schema_settings(token_id, async_req=True)
 
-    :param VNS3Client api_client: (required)
-    :param bool group_required: Require use of LDAP groups (required)
-    :param str group_base: Base DN from which to search for Groups
-    :param str group_id_attribute: Attribute type for the Groups
-    :param str group_list_filter: Search filter for Groups
-    :param str group_member_attribute: attribute used to search for a user within the Group
-    :param str group_member_attr_format: Format of the Group Member attribute
-    :param str group_search_scope: Default=subtree
+    >>> response = await api.post_create_alert(client, async_req=True)
+
+    :param name str: (required)
+    :param url str: (required)
+    :param enabled bool: True by default
+    :param events List[str]:
+    :param custom_properties List[{
+        name str:
+        value str:
+    }]:
+    :param webhook_id int: webhook_id or template_id must be provided. Only webhook_id supported starting with 4.9
+    :param template_id int: webhook_id or template_id must be provided. Only webhook_id supported starting with 4.9
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1404,16 +2188,17 @@ def put_ldap_group_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
+
     local_var_params = locals()
 
     request_params = [
-        "group_required",
-        "group_base",
-        "group_id_attribute",
-        "group_list_filter",
-        "group_member_attribute",
-        "group_member_attr_format",
-        "group_search_scope",
+        "name",
+        "url",
+        "enabled",
+        "events",
+        "custom_properties",
+        "webhook_id",
+        "template_id",
     ]
 
     collection_formats = {}
@@ -1425,6 +2210,7 @@ def put_ldap_group_schema_settings(
     header_params = {}
 
     form_params = []
+
     local_var_files = {}
 
     body_params = {}
@@ -1442,110 +2228,10 @@ def put_ldap_group_schema_settings(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/settings/ldap/group_schema",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def post_test_ldap_group_schema_settings(
-    api_client,
-    group_base=None,
-    group_id_attribute=None,
-    group_list_filter=None,
-    group_member_attribute=None,
-    group_member_attr_format=None,
-    group_search_scope=None,
-    limit=None,
-    **kwargs
-):
-    """Test LDAP group schema settings  # noqa: E501
-
-    Test LDAP group schema settings  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_test_ldap_group_schema_settings(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param str group_base: Base DN from which to search for Groups (required)
-    :param str group_id_attribute: Attribute type for the Groups (required)
-    :param str group_list_filter: Search filter for Groups
-    :param str group_member_attribute: attribute used to search for a user within the Group
-    :param str group_member_attr_format: Format of the Group Member attribute
-    :param str group_search_scope: Default=subtree
-    :param str limit: Number of records to return. Default = 100
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    request_params = [
-        "group_base",
-        "group_id_attribute",
-        "group_list_filter",
-        "group_member_attribute",
-        "group_member_attr_format",
-        "group_search_scope",
-        "limit",
-    ]
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/group_schema",
+        "/alert",
         "POST",
         path_params,
         query_params,
@@ -1565,16 +2251,16 @@ def post_test_ldap_group_schema_settings(
     )
 
 
-def get_ldap_group_schema_settings(api_client, **kwargs):  # noqa: E501
-    """Get LDAP group schema settings  # noqa: E501
+def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
+    """delete_alert  # noqa: E501
 
-    Get LDAP group schema settings  # noqa: E501
+    Delete defined alert  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_ldap_group_schema_settings(async_req=True)
+    >>> response = await api.delete_alert(client, async_req=True)
 
-    :param VNS3Client api_client: (required)
+    :param int alert_id: ID for webhook integration (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1587,11 +2273,12 @@ def get_ldap_group_schema_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
+
     local_var_params = locals()
 
     collection_formats = {}
 
-    path_params = {}
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -1607,11 +2294,11 @@ def get_ldap_group_schema_settings(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/settings/ldap/group_schema",
-        "GET",
+        "/alert/{alert_id}",
+        "DELETE",
         path_params,
         query_params,
         header_params,
@@ -1630,22 +2317,37 @@ def get_ldap_group_schema_settings(api_client, **kwargs):  # noqa: E501
     )
 
 
-def put_ldap_user_schema_settings(
-    api_client, user_base=None, user_id_attribute=None, user_list_filter=None, **kwargs
-):
-    """Put LDAP user schema settings  # noqa: E501
+def put_update_alert(
+    api_client,
+    alert_id,
+    name=None,
+    url=None,
+    enabled=None,
+    events=None,
+    custom_properties=None,
+    webhook_id=None,
+    template_id=None,
+    **kwargs
+):  # noqa: E501
+    """put_update_alert  # noqa: E501
 
-    Put LDAP user schema settings  # noqa: E501
-
+    Edit defined alert  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_ldap_user_schema_settings(token_id, async_req=True)
+    >>> response = await api.put_update_alert(alert_id, update_alert_request, async_req=True)
 
-    :param VNS3Client api_client: (required)
-    :param str user_base: Base DN from which to search for Users (required)
-    :param str user_id_attribute: Attribute type for the Users (required)
-    :param str user_list_filter: Search filter for Users
     :param async_req bool: execute request asynchronously
+    :param int alert_id: ID for Alert definition (required)
+    :param name str:
+    :param url str:
+    :param enabled bool: True by default
+    :param events List[str]:
+    :param custom_properties List[{
+        name str:
+        value str:
+    }]:
+    :param webhook_id int: webhook_id or template_id must be provided. Only webhook_id supported starting with 4.9.
+    :param template_id int: webhook_id or template_id must be provided. Only webhook_id supported starting with 4.9.
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1657,19 +2359,29 @@ def put_ldap_user_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
+
     local_var_params = locals()
 
-    request_params = ["user_base", "user_id_attribute", "user_list_filter"]
+    request_params = [
+        "name",
+        "url",
+        "enabled",
+        "events",
+        "custom_properties",
+        "webhook_id",
+        "template_id",
+    ]
 
     collection_formats = {}
 
-    path_params = {}
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
     header_params = {}
 
     form_params = []
+
     local_var_files = {}
 
     body_params = {}
@@ -1687,10 +2399,10 @@ def put_ldap_user_schema_settings(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/settings/ldap/user_schema",
+        "/alert/{alert_id}",
         "PUT",
         path_params,
         query_params,
@@ -1710,28 +2422,16 @@ def put_ldap_user_schema_settings(
     )
 
 
-def post_test_ldap_user_schema_settings(
-    api_client,
-    user_base=None,
-    user_id_attribute=None,
-    user_list_filter=None,
-    limit=None,
-    **kwargs
-):
-    """Test LDAP user schema settings  # noqa: E501
+def post_toggle_enable_alert(api_client, alert_id, **kwargs):  # noqa: E501
+    """post_toggle_enable_alert  # noqa: E501
 
-    Test LDAP user schema settings  # noqa: E501
-
+    Toggle enabled property on alert  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_test_ldap_user_schema_settings(token_id, async_req=True)
+    >>> response = await api.post_toggle_enable_alert(alert_id, async_req=True)
 
-    :param VNS3Client api_client: (required)
-    :param str user_base: Base DN from which to search for Users (required)
-    :param str user_id_attribute: Attribute type for the Users (required)
-    :param str user_list_filter: Search filter for Users
-    :param str limit: Number of records to return. Default = 100
     :param async_req bool: execute request asynchronously
+    :param int alert_id: ID for Alert definition (required)
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1743,13 +2443,12 @@ def post_test_ldap_user_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
 
-    request_params = ["user_base", "user_id_attribute", "user_list_filter", "limit"]
+    local_var_params = locals()
 
     collection_formats = {}
 
-    path_params = {}
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -1758,25 +2457,17 @@ def post_test_ldap_user_schema_settings(
     form_params = []
     local_var_files = {}
 
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
+    body_params = None
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
     )  # noqa: E501
 
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/settings/ldap/user_schema",
+        "/alert/{alert_id}/toggle_enabled",
         "POST",
         path_params,
         query_params,
@@ -1796,16 +2487,15 @@ def post_test_ldap_user_schema_settings(
     )
 
 
-def get_ldap_user_schema_settings(api_client, **kwargs):  # noqa: E501
-    """Get LDAP user schema settings  # noqa: E501
+def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
+    """post_test_alert  # noqa: E501
 
-    Get LDAP user schema settings  # noqa: E501
-
+    Send test alert for this defined alert  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_ldap_user_schema_settings(async_req=True)
+    >>> response = await api.post_test_alert(client, alert_id, async_req=True)
 
-    :param VNS3Client api_client: (required)
+    :param int alert_id: ID for Alert definition (required)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1818,11 +2508,12 @@ def get_ldap_user_schema_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
+
     local_var_params = locals()
 
     collection_formats = {}
 
-    path_params = {}
+    path_params = {"alert_id": alert_id}
 
     query_params = []
 
@@ -1838,275 +2529,10 @@ def get_ldap_user_schema_settings(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/settings/ldap/user_schema",
-        "GET",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def put_ldap_vpn_schema_settings(
-    api_client,
-    vpn_auth_enabled=None,
-    vpn_group_base=None,
-    vpn_group_id_attribute=None,
-    vpn_group_list_filter=None,
-    vpn_group_member_attribute=None,
-    vpn_group_member_attr_format=None,
-    vpn_group_search_scope=None,
-    **kwargs
-):
-    """Put LDAP VPN schema settings  # noqa: E501
-
-    Put LDAP VPN schema settings  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_ldap_vpn_schema_settings(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param bool vpn_auth_enabled: Enable VPN LDAP auth (required)
-    :param str vpn_group_base: Base DN from which to search for VPN Group (required)
-    :param str vpn_group_id_attribute: Attribute type for the VPN Group (required)
-    :param str vpn_group_list_filter: Search filter for VPN Groups
-    :param str vpn_group_member_attribute: Attribute used to search for a user within the VPN Group
-    :param str vpn_group_member_attr_format: Format of the Group VPN Member attribute
-    :param str vpn_group_search_scope: Search scope for filter
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    request_params = [
-        "vpn_auth_enabled",
-        "vpn_group_base",
-        "vpn_group_id_attribute",
-        "vpn_group_list_filter",
-        "vpn_group_member_attribute",
-        "vpn_group_member_attr_format",
-        "vpn_group_search_scope",
-    ]
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/vpn_schema",
-        "PUT",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def get_ldap_vpn_schema_settings(api_client, **kwargs):  # noqa: E501
-    """Get LDAP VPN schema settings  # noqa: E501
-
-    Get LDAP VPN schema settings  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_ldap_vpn_schema_settings(async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = None
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/vpn_schema",
-        "GET",
-        path_params,
-        query_params,
-        header_params,
-        body=body_params,
-        post_params=form_params,
-        files=local_var_files,
-        response_type="object",  # noqa: E501
-        auth_settings=auth_settings,
-        async_req=local_var_params.get("async_req"),
-        _return_http_data_only=local_var_params.get(
-            "_return_http_data_only"
-        ),  # noqa: E501
-        _preload_content=local_var_params.get("_preload_content", True),
-        _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
-    )
-
-
-def post_test_ldap_vpn_schema_settings(
-    api_client,
-    vpn_group_base=None,
-    vpn_group_id_attribute=None,
-    vpn_group_list_filter=None,
-    vpn_group_member_attribute=None,
-    vpn_group_member_attr_format=None,
-    vpn_group_search_scope=None,
-    limit=None,
-    **kwargs
-):
-    """Test LDAP VPN schema settings  # noqa: E501
-
-    Test LDAP VPN schema settings  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_test_ldap_vpn_schema_settings(token_id, async_req=True)
-
-    :param VNS3Client api_client: (required)
-    :param str vpn_group_base: Base DN from which to search for VPN Group (required)
-    :param str vpn_group_id_attribute: Attribute type for the VPN Group (required)
-    :param str vpn_group_list_filter: Search filter for VPN Groups
-    :param str vpn_group_member_attribute: Attribute used to search for a user within the VPN Group
-    :param str vpn_group_member_attr_format: Format of the Group VPN Member attribute
-    :param str vpn_group_search_scope: Search scope for filter
-    :param str limit: Number of records to return. Default = 100
-    :param async_req bool: execute request asynchronously
-    :param _return_http_data_only: response data without head status code
-                                    and headers
-    :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                be returned without reading/decoding response
-                                data. Default is True.
-    :param _request_timeout: timeout setting for this request. If one
-                                number provided, it will be total request
-                                timeout. It can also be a pair (tuple) of
-                                (connection, read) timeouts.
-    :return: APIResponse or awaitable if async
-    """
-    local_var_params = locals()
-
-    request_params = [
-        "vpn_group_base",
-        "vpn_group_id_attribute",
-        "vpn_group_list_filter",
-        "vpn_group_member_attribute",
-        "vpn_group_member_attr_format",
-        "vpn_group_search_scope",
-        "limit",
-    ]
-
-    collection_formats = {}
-
-    path_params = {}
-
-    query_params = []
-
-    header_params = {}
-
-    form_params = []
-    local_var_files = {}
-
-    body_params = {}
-    for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        body_params[param] = local_var_params[param]
-
-    # HTTP header `Accept`
-    header_params["Accept"] = api_client.select_header_accept(
-        ["application/json"]
-    )  # noqa: E501
-
-    # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
-
-    # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
-
-    return api_client.call_api(
-        "/settings/ldap/vpn_schema",
+        "/alert/{alert_id}/test",
         "POST",
         path_params,
         query_params,
@@ -2126,49 +2552,42 @@ def post_test_ldap_vpn_schema_settings(
     )
 
 
-class AccessApiRouter(VersionRouter):
-    """Manage access to VNS3 with API tokens and admin access URLs"""
+class CloudMonitoringApiRouter(VersionRouter):
+    """Configure and monitor your cloud by tracking cloud VPCs and virtual networks"""
 
     function_library = {
-        "create_access_url": {"4.8.4-4.10.1": create_access_url},
-        "create_api_token": {"4.8.4-4.10.1": create_api_token},
-        "delete_access_url": {"4.8.4-4.10.1": delete_access_url},
-        "delete_access_url_by_search": {"4.8.4-4.10.1": delete_access_url_by_search},
-        "delete_api_token": {"4.8.4-4.10.1": delete_api_token},
-        "get_access_urls": {"4.8.4-4.10.1": get_access_urls},
-        "get_access_url": {"4.8.4-4.10.1": get_access_url},
-        "get_api_token": {"4.8.4-4.10.1": get_api_token},
-        "get_api_tokens": {"4.8.4-4.10.1": get_api_tokens},
-        "put_expire_access_url": {"4.8.4-4.10.1": put_expire_access_url},
-        "put_expire_api_token": {"4.8.4-4.10.1": put_expire_api_token},
-        "put_ldap_settings": {"4.9.1-4.10.1": put_ldap_settings},
-        "post_test_ldap_settings": {"4.9.1-4.10.1": post_test_ldap_settings},
-        "get_ldap_settings": {"4.9.1-4.10.1": get_ldap_settings},
-        "put_enable_ldap": {"4.9.1-4.10.1": put_enable_ldap},
-        "put_upload_ldap_auth_cert": {"4.9.1-4.10.1": put_upload_ldap_auth_cert},
-        "put_upload_ldap_auth_key": {"4.9.1-4.10.1": put_upload_ldap_auth_key},
-        "put_upload_ldap_ca_cert": {"4.9.1-4.10.1": put_upload_ldap_ca_cert},
-        "put_ldap_group_schema_settings": {
-            "4.9.1-4.10.1": put_ldap_group_schema_settings
-        },
-        "post_test_ldap_group_schema_settings": {
-            "4.9.1-4.10.1": post_test_ldap_group_schema_settings
-        },
-        "get_ldap_group_schema_settings": {
-            "4.9.1-4.10.1": get_ldap_group_schema_settings
-        },
-        "put_ldap_user_schema_settings": {
-            "4.9.1-4.10.1": put_ldap_user_schema_settings
-        },
-        "post_test_ldap_user_schema_settings": {
-            "4.9.1-4.10.1": post_test_ldap_user_schema_settings
-        },
-        "get_ldap_user_schema_settings": {
-            "4.9.1-4.10.1": get_ldap_user_schema_settings
-        },
-        "get_ldap_vpn_schema_settings": {"4.10.1": get_ldap_vpn_schema_settings},
-        "post_test_ldap_vpn_schema_settings": {
-            "4.10.1": post_test_ldap_vpn_schema_settings
-        },
-        "put_ldap_vpn_schema_settings": {"4.10.1": put_ldap_vpn_schema_settings},
+        "get_cloud_vlan_components": {"2.1.1-2.3.5": get_cloud_vlan_components},
+        "post_create_vlan_component": {"2.1.1-2.3.5": post_create_vlan_component},
+        "get_cloud_vlan_component": {"2.1.1-2.3.5": get_cloud_vlan_component},
+        "put_update_vlan_component": {"2.1.1-2.3.5": put_update_vlan_component},
+        "delete_vlan_component": {"2.1.1-2.3.5": delete_vlan_component},
+        "get_cloud_vlans": {"2.1.1-2.3.5": get_cloud_vlans},
+        "post_create_cloud_vlan": {"2.1.1-2.3.5": post_create_cloud_vlan},
+        "get_cloud_vlan": {"2.1.1-2.3.5": get_cloud_vlan},
+        "put_update_cloud_vlan": {"2.1.1-2.3.5": put_update_cloud_vlan},
+        "delete_cloud_vlan": {"2.1.1-2.3.5": delete_cloud_vlan},
+        "get_virtual_networks": {"2.1.1-2.3.5": get_virtual_networks},
+        "post_create_virtual_network": {"2.1.1-2.3.5": post_create_virtual_network},
+        "get_virtual_network": {"2.1.1-2.3.5": get_virtual_network},
+        "put_update_virtual_network": {"2.1.1-2.3.5": put_update_virtual_network},
+        "delete_virtual_network": {"2.1.1-2.3.5": delete_virtual_network},
+        "get_export_virtual_networks": {"2.1.1-2.3.5": get_export_virtual_networks},
+        "post_import_virtual_networks": {"2.1.1-2.3.5": post_import_virtual_networks},
+        "get_vns3_topologies": {"2.1.1-2.3.5": get_vns3_topologies},
+        "post_create_vns3_topology": {"2.1.1-2.3.5": post_create_vns3_topology},
+        "get_vns3_topology": {"2.1.1-2.3.5": get_vns3_topology},
+        "put_update_vns3_topology": {"2.1.1-2.3.5": put_update_vns3_topology},
+        "delete_vns3_topology": {"2.1.1-2.3.5": delete_vns3_topology},
+        "get_webhooks": {"2.3.3-2.3.5": get_webhooks},
+        "post_create_webhook": {"2.3.3-2.3.5": post_create_webhook},
+        "get_webhook": {"2.3.3-2.3.5": get_webhook},
+        "put_update_webhook": {"2.3.3-2.3.5": put_update_webhook},
+        "delete_webhook": {"2.3.3-2.3.5": delete_webhook},
+        "get_alerts": {"2.3.3-2.3.5": get_alerts},
+        "get_alert": {"2.3.3-2.3.5": get_alert},
+        "post_create_alert": {"2.3.3-2.3.5": post_create_alert},
+        "put_update_alert": {"2.3.3-2.3.5": put_update_alert},
+        "delete_alert": {"2.3.3-2.3.5": delete_alert},
+        "post_toggle_enable_alert": {"2.3.3-2.3.5": post_toggle_enable_alert},
+        "post_test_alert": {"2.3.3-2.3.5": post_test_alert},
     }

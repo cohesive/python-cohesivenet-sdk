@@ -12,7 +12,7 @@ def create_firewall_policy(client: VNS3Client, firewall_rules, state={}):
         }, ...]
 
     Keyword Arguments:
-        state {dict} - State to format rules with. (can call client.controller_state)
+        state {dict} - State to format rules with. (can call client.state)
 
     Returns:
         Tuple[List[str], List[str]] - success, errors
@@ -86,9 +86,7 @@ def assert_rule_policy(client: VNS3Client, rules, should_fix=False):
         List[str] - ordered list of firewall rules
     """
     current_firewall = __firewall_resp_to_list(client.firewall.get_firewall_rules())
-    new_firewall, errors = __construct_proposed_firewall_list(
-        rules, state=client.controller_state
-    )
+    new_firewall, errors = __construct_proposed_firewall_list(rules, state=client.state)
     if errors:
         raise CohesiveSDKException(
             "Invalid firewall rules provided. Errors=%s" % (errors)

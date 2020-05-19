@@ -20,19 +20,19 @@ from cohesivenet.api.vns3 import network_edge_plugins_api
 from cohesivenet.rest import ApiException
 
 from tests.openapi import generate_method_test
-from tests.stub_data import NetworkEdgePluginsApiData
+from tests.vns3.stub_data import NetworkEdgePluginsApiData
 
 
 class TestNetworkEdgePluginsApi(object):
     """NetworkEdgePluginsApi unit test stubs"""
 
-    def test_delete_container(self, rest_mocker, api_client, api_schema: dict):
+    def test_delete_container(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for delete_container
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "delete",
             "/container_system/containers/{uuid}",
             rest_mocker,
@@ -45,13 +45,15 @@ class TestNetworkEdgePluginsApi(object):
             },
         )(network_edge_plugins_api.delete_container)
 
-    def test_delete_container_image(self, rest_mocker, api_client, api_schema: dict):
+    def test_delete_container_image(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for delete_container_image
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "delete",
             "/container_system/images/{uuid}",
             rest_mocker,
@@ -64,13 +66,13 @@ class TestNetworkEdgePluginsApi(object):
             },
         )(network_edge_plugins_api.delete_container_image)
 
-    def test_get_container_logs(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_container_logs(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for get_container_logs
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/container_system/containers/{uuid}/logs",
             rest_mocker,
@@ -78,13 +80,15 @@ class TestNetworkEdgePluginsApi(object):
             mock_response=NetworkEdgePluginsApiData.ContainerLogsResponse,
         )(network_edge_plugins_api.get_container_logs)
 
-    def test_get_container_system_ips(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_container_system_ips(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_container_system_ips
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/container_system/ip_addresses",
             rest_mocker,
@@ -92,12 +96,14 @@ class TestNetworkEdgePluginsApi(object):
             mock_response=NetworkEdgePluginsApiData.ContainerSystemIPs,
         )(network_edge_plugins_api.get_container_system_ips)
 
-    def test_get_container_images(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_container_images(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_container_images
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/container_system/images",
             rest_mocker,
@@ -105,12 +111,14 @@ class TestNetworkEdgePluginsApi(object):
             mock_response=NetworkEdgePluginsApiData.ContainerImagesResponse,
         )(network_edge_plugins_api.get_container_images)
 
-    def test_get_running_containers(self, rest_mocker, api_client, api_schema: dict):
+    def test_get_running_containers(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for get_running_containers
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/container_system/containers",
             rest_mocker,
@@ -119,14 +127,14 @@ class TestNetworkEdgePluginsApi(object):
         )(network_edge_plugins_api.get_running_containers)
 
     def test_get_container_system_status(
-        self, rest_mocker, api_client, api_schema: dict
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
         """Test case for get_container_system_status
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "get",
             "/container_system",
             rest_mocker,
@@ -135,14 +143,14 @@ class TestNetworkEdgePluginsApi(object):
         )(network_edge_plugins_api.get_container_system_status)
 
     def test_post_action_container_system(
-        self, rest_mocker, api_client, api_schema: dict
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
         """Test case for post_action_container_system
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "post",
             "/container_system",
             rest_mocker,
@@ -152,13 +160,15 @@ class TestNetworkEdgePluginsApi(object):
             },
         )(network_edge_plugins_api.post_action_container_system)
 
-    def test_post_commit_container(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_commit_container(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_commit_container
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "post",
             "/container_system/containers/{uuid}/commit",
             rest_mocker,
@@ -172,14 +182,14 @@ class TestNetworkEdgePluginsApi(object):
         )(network_edge_plugins_api.post_commit_container)
 
     def test_post_create_container_image(
-        self, rest_mocker, api_client, api_schema: dict
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
         """Test case for post_create_container_image
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "post",
             "/container_system/images",
             rest_mocker,
@@ -192,13 +202,15 @@ class TestNetworkEdgePluginsApi(object):
             },
         )(network_edge_plugins_api.post_create_container_image)
 
-    def test_post_start_container(self, rest_mocker, api_client, api_schema: dict):
+    def test_post_start_container(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
         """Test case for post_start_container
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "post",
             "/container_system/containers",
             rest_mocker,
@@ -214,14 +226,14 @@ class TestNetworkEdgePluginsApi(object):
         )(network_edge_plugins_api.post_start_container)
 
     def test_put_configure_container_system(
-        self, rest_mocker, api_client, api_schema: dict
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
         """Test case for put_configure_container_system
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/container_system",
             rest_mocker,
@@ -230,14 +242,14 @@ class TestNetworkEdgePluginsApi(object):
         )(network_edge_plugins_api.put_configure_container_system)
 
     def test_put_update_container_image(
-        self, rest_mocker, api_client, api_schema: dict
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
         """Test case for put_update_container_image
 
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/container_system/images/{uuid}",
             rest_mocker,
@@ -250,12 +262,12 @@ class TestNetworkEdgePluginsApi(object):
             },
         )(network_edge_plugins_api.put_update_container_image)
 
-    def test_put_stop_container(self, rest_mocker, api_client, api_schema: dict):
+    def test_put_stop_container(self, rest_mocker, vns3_client, vns3_api_schema: dict):
         """Test case for put_stop_container
         """
         generate_method_test(
-            api_client,
-            api_schema,
+            vns3_client,
+            vns3_api_schema,
             "put",
             "/container_system/containers/{uuid}",
             rest_mocker,
