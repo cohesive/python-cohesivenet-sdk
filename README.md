@@ -1,21 +1,21 @@
 # Python Cohesive Networks SDK
 [![contact][contact-image]][contact-url]
 
-Cohesive Networks SDK is Python tool providing access to the VNS3 API from applications written in Python. It also includes common pipelines and macro functions
-for building network topologies.
+Cohesive Networks SDK is Python tool providing access to the VNS3 and VNS3:ms APIs from applications written in Python. It also includes common pipelines and macro functions for building network topologies.
 
 ## API Versions supported
-The SDK will make best efforts to always be backwards compatible. All SDK releases will support all VNS3 versions starting with VNS3 v4.8.4 up to the latest VNS3 version.
+The SDK will make best efforts to always be backwards compatible. All SDK releases will support VNS3 versions starting with VNS3 v4.8.4 and VNS3:ms starting with v2.1.1.
 
 | cohesivenet==X |    VNS3 API    |     MS API     |
 |----------------|:--------------:|:--------------:|
+|     0.1.35     |  4.8.4-4.10.1  |   2.1.1-2.3.5  |
 |     0.1.34     |  4.8.4-4.10.1  |       N/A      |    # MS SDK not implemented
 |     0.1.33     |  4.8.4-4.9.2   |       N/A      |    # MS SDK not implemented
 |     0.1.32     |  4.8.4-4.9.1   |       N/A      |    # MS SDK not implemented
 |     0.1.0-31   |      4.8.4     |       N/A      |    # MS SDK not implemented
     
-
-View [VNS3 API specifications](https://docs.cohesive.net/apis/vns3/v/).
+- View [VNS3 API specifications](https://docs.cohesive.net/apis/vns3/v/) with SDK examples.
+- View [VNS3:ms API specifications](https://docs.cohesive.net/apis/vns3-ms/v/) with SDK examples.
 
 ## Installation
 
@@ -74,7 +74,7 @@ print(config.response)
 Each sub-api is available from the VNS3Client instance as follows:
 
 ```python
-
+# VNS3
 vns3_client.access                # Manage access urls and api tokens
 vns3_client.bgp                   # BGPApi for Border Gateway Protocol methods
 vns3_client.config                # ConfigurationApi provides VNS3 config methods
@@ -89,6 +89,15 @@ vns3_client.routing               # RoutingApi for configuring routing
 vns3_client.snapshots             # SnapshotsApi for managing backups
 vns3_client.sys_admin             # SystemAdministrationApi for access and sys admin tasks
 vns3_client.licensing             # LicensingApi for controller licensing 
+
+# VNS3:ms
+ms_client.access                  # Provision short-lived access URLs or API keys for any VNS3 controller in your topology
+ms_client.admin                   # Configure VNS3:ms administration settings such as LDAP integration
+ms_client.vns3_management         # Manage VNS3 controllers in your network topology, automating snapshots, HA and more
+ms_client.cloud_monitoring        # Configure and monitor your cloud by tracking cloud VPCs, virtual networks and VNS3 topologies
+ms_client.system                  # System configuration such as SSL, NTP hosts and remote support
+ms_client.backups                 # Configure backups for VNS3:ms and your controller snapshots
+ms_client.user                    # User management endpoints for configuring credentials
 ```
 
 ### Common API patterns: `cohesivenet.macros`
