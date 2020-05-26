@@ -1,7 +1,8 @@
+from cohesivenet import VNS3Client
 
 
 def create_tunnel_endpoint(
-    client,
+    client: VNS3Client,
     tunnel_name,
     tunnel_secret,
     target_ip,
@@ -63,4 +64,4 @@ def create_tunnel_endpoint(
         )
     )
 
-    return {"endpoint": ipsec_endpoint, "routes": routes}
+    return {"endpoint": ipsec_endpoint.data, "routes": routes.data}

@@ -230,7 +230,7 @@ def post_create_route(
     if not gateway:
         body_params["gateway"] = "_notset"
     interface = body_params.get("interface")
-    if not interface:
+    if not interface and not tunnel:
         body_params["interface"] = "_notset"
 
     # HTTP header `Accept`

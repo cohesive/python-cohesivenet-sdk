@@ -1,50 +1,98 @@
 import os
-import urllib3
 import pprint
 
-from cohesivenet import constants, ApiException, CohesiveSDKException, network_math
-from cohesivenet.macros import connect, config, routing, ipsec, admin
+from cohesivenet import (
+    constants,
+    ApiException,
+    CohesiveSDKException,
+    network_math,
+    Logger
+)
 
-urllib3.disable_warnings()
+from cohesivenet.macros import (
+    connect,
+    config,
+    routing,
+    ipsec,
+    admin
+)
+
+Logger.silence_urllib3()
 
 
-def setup_clients(update_passwords=False):
+def assert_on_values(config_dict):
+    missing_vals = []
+    for key, val in config_dict.items():
+        if val in ("", None):
+            missing_vals.append(key)
+    assert len(missing_vals) == 0, "Missing config: %s" % ",".join(missing_vals)
+
+
+def get_env_config():
+    return {
+        "azure_controller": os.getenv("AZURE_CONTROLLER"),
+        "aws_controller": os.getenv("AWS_CONTROLLER"),
+        "azure_password": os.getenv("AZURE_CONTROLLER_PASSWORD"),
+        "aws_password": os.getenv("AWS_CONTROLLER_PASSWORD"),
+        "master_password": os.getenv("MASTER_CONTROLLER_PASSWORD"),
+        "license": os.getenv("LICENSE"),
+        "keyset_token": os.getenv("KEYSET_TOKEN"),
+        "aws_cidr": os.getenv("AWS_CIDR"),
+        "azure_cidr": os.getenv("AZURE_CIDR"),
+        "ipsec_shared_secret": os.getenv("IPSEC_PSK")
+    }
+
+
+def setup_clients(client_data):
     """Setup clients for AWS and Azure VNS3 Controllers.
        Reset password to master password and enable Admin UI
 
     Returns:
-        Tuple[VNS3Client, VNS3Client]
+        Tuple[VNS3Client (AWS), VNS3Client (Azure)]
     """
-    azure_host = os.getenv("AZURE_HOST")
-    aws_host = os.getenv("AWS_HOST")
-    azure_def_password = os.getenv("AZURE_DEFAULT_PASSWORD")
-    aws_def_password = os.getenv("AWS_DEFAULT_PASSWORD")
-    master_password = os.getenv("MASTER_PASSWORD")
+    azure_vns3 = client_data.get("azure_controller")
+    azure_current_ps = client_data.get("azure_password")
+    aws_vns3 = client_data.get("aws_controller")
+    aws_current_ps = client_data.get("aws_password")
+
+    assert all([azure_vns3, aws_vns3, azure_current_ps, aws_current_ps]), (
+        "Configuration must contain the following: "
+        "azure_controller, aws_controller, azure_password, aws_password"
+    )
 
     azure_client_data = {
-        "host": azure_host + ":8000",
+        "host": azure_vns3 + ":8000",
         "username": "api",
-        "password": master_password if not update_passwords else azure_def_password,
+        "password": azure_current_ps,
         "verify": False,
     }
 
     aws_client_data = {
-        "host": aws_host + ":8000",
+        "host": aws_vns3 + ":8000",
         "username": "api",
-        "password": master_password if not update_passwords else aws_def_password,
+        "password": aws_current_ps,
         "verify": False,
     }
 
+    master_password = client_data.get("master_password")
     aws_client, azure_client = connect.get_clients(aws_client_data, azure_client_data)
-    if not update_passwords:
+    if not master_password:
         return aws_client, azure_client
 
-    admin.roll_api_password(master_password, [aws_client, azure_client])
-    admin.roll_ui_credentials(
-        {"username": "vnscubed", "password": master_password},
-        [aws_client, azure_client],
-        enable_ui=True,
-    )
+    clients_to_update = []
+    if aws_client_data["password"] != master_password:
+        clients_to_update.append(aws_client)
+    if azure_client_data["password"] != master_password:
+        clients_to_update.append(azure_client)
+
+    if len(clients_to_update) > 0:
+        # Automatically updates password used by client
+        admin.roll_api_password(master_password, clients_to_update)
+        admin.roll_ui_credentials(
+            {"username": "vnscubed", "password": master_password},
+            clients_to_update,
+            enable_ui=True,
+        )
 
     return aws_client, azure_client
 
@@ -103,7 +151,7 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
 
         target_cidr = bridge_kwargs["target_cidr"]
         print("Creating local gateway routes for %s" % target_cidr)
-        routing.create_local_gateway_route(target_client, target_cidr)
+        routing.create_local_gateway_route(target_client, target_cidr, should_raise=False)
 
         endpoint_name = bridge_kwargs["endpoint_name"]
         print("Creating tunnel: %s" % endpoint_name)
@@ -113,13 +161,13 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
             bridge_kwargs["tunnel_psk"],
             bridge_kwargs["peer_endpoint"],
             bridge_kwargs["peer_cidr"],
-            bridge_kwargs["tunnel_vti"],
+            bridge_kwargs["tunnel_vti"]
         )
     except (ApiException, CohesiveSDKException) as e:
         return e
 
 
-def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
+def run(config):
     """Fetch variables from environment for clients, configure controllers
        and build IPsec endpoint
 
@@ -131,7 +179,15 @@ def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
         prefix_length=30, take=2, cidr=constants.VTI_RANGE_LINK_LOCAL
     )
 
-    aws_client, azure_client = setup_clients(update_passwords=True)
+    print("Setting up clients")
+    aws_client, azure_client = setup_clients(config)
+    license_file = config.get("license")
+    keyset_token = config.get("keyset_token")
+    aws_cidr = config.get("aws_cidr")
+    azure_cidr = config.get("azure_cidr")
+    ipsec_shared_secret = config.get("ipsec_shared_secret")
+
+    print("Setting up AWS controller")
     aws_response = configure_multicloud_bridge_client(
         target_client=aws_client,
         target_topology_name="MultiCloud - AWS Controller",
@@ -145,6 +201,7 @@ def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
         tunnel_psk=ipsec_shared_secret,
     )
 
+    print("Setting up Azure controller")
     azure_response = configure_multicloud_bridge_client(
         target_client=azure_client,
         target_topology_name="MultiCloud - Azure Controller",
@@ -162,14 +219,7 @@ def run(license_file, keyset_token, aws_cidr, azure_cidr, ipsec_psk):
 
 
 if __name__ == "__main__":
-    license_file = os.getenv("LICENSE")
-    keyset_token = os.getenv("KEYSET_TOKEN")
-    aws_cidr = os.getenv("AWS_CIDR")
-    azure_cidr = os.getenv("AZURE_CIDR")
-    ipsec_shared_secret = os.getenv("IPSEC_PSK")
-
-    responses = run(
-        license_file, keyset_token, aws_cidr, azure_cidr, ipsec_shared_secret
-    )
-
-    pprint(responses)
+    env = get_env_config()
+    assert_on_values(env)
+    responses = run(env)
+    pprint.pprint(responses)
