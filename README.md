@@ -8,7 +8,7 @@ The SDK will make best efforts to always be backwards compatible. All SDK releas
 
 | cohesivenet==X |    VNS3 API    |     MS API     |
 |----------------|:--------------:|:--------------:|
-|     0.1.35     |  4.8.4-4.10.1  |   2.1.1-2.3.5  |
+|   0.1.35-37    |  4.8.4-4.10.1  |   2.1.1-2.3.5  |
 |     0.1.34     |  4.8.4-4.10.1  |       N/A      |    # MS SDK not implemented
 |     0.1.33     |  4.8.4-4.9.2   |       N/A      |    # MS SDK not implemented
 |     0.1.32     |  4.8.4-4.9.1   |       N/A      |    # MS SDK not implemented

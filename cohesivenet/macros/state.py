@@ -84,7 +84,7 @@ def get_vns3_version(client, bust_cache=False):
     return val
 
 
-_StateLibrary = {
+StateLibrary = {
     VNS3Attr.primary_private_ip: get_primary_private_ip,
     VNS3Attr.public_ip: get_public_ip,
     VNS3Attr.asn: get_asn,
@@ -95,7 +95,20 @@ _StateLibrary = {
 
 
 def attribute_supported(attribute):
-    return attribute in _StateLibrary
+    return attribute in StateLibrary
+
+
+def fetch_client_state_attribute(client, attribute, bust_cache=False):
+    """Fetch client state attribute
+
+    Arguments:
+        client {VNS3Client}
+        attribute {str} - attribute in StateLibrary
+        bust_cache {bool}
+    """
+    assert attribute in StateLibrary, "Attribute %s not currently supported" % attribute
+    fetch_func = StateLibrary.get(attribute)
+    return fetch_func(client, bust_cache=bust_cache)
 
 
 def fetch_state_attribute(
@@ -113,9 +126,7 @@ def fetch_state_attribute(
     Returns:
         [BulkOperationResult] -- [description]
     """
-    assert attribute in _StateLibrary, (
-        "Attribute %s not currently supported" % attribute
-    )
-    fetch_func = _StateLibrary.get(attribute)
+    assert attribute in StateLibrary, "Attribute %s not currently supported" % attribute
+    fetch_func = StateLibrary.get(attribute)
     api_calls = [bind(fetch_func, client, bust_cache=bust_cache) for client in clients]
     return api_op.__bulk_call_api(api_calls, parallelize=True)

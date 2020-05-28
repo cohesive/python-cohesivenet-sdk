@@ -39,8 +39,7 @@ def fetch_spec(spec):
 
     _raw_spec = json.loads(response.data.decode("utf8").strip())
 
-    # if os.environ.get("DOWNLOAD_SPECS"):
-    if True:
+    if os.environ.get("DOWNLOAD_SPECS"):
         filename = spec.split("/")[-1]
         open(filename, "w").write(json.dumps(_raw_spec, indent=2))
         open("resolved-%s" % filename, "w").write(

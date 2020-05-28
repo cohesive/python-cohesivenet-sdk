@@ -6,16 +6,10 @@ from cohesivenet import (
     ApiException,
     CohesiveSDKException,
     network_math,
-    Logger
+    Logger,
 )
 
-from cohesivenet.macros import (
-    connect,
-    config,
-    routing,
-    ipsec,
-    admin
-)
+from cohesivenet.macros import connect, config, routing, ipsec, admin
 
 Logger.silence_urllib3()
 
@@ -39,7 +33,7 @@ def get_env_config():
         "keyset_token": os.getenv("KEYSET_TOKEN"),
         "aws_cidr": os.getenv("AWS_CIDR"),
         "azure_cidr": os.getenv("AZURE_CIDR"),
-        "ipsec_shared_secret": os.getenv("IPSEC_PSK")
+        "ipsec_shared_secret": os.getenv("IPSEC_PSK"),
     }
 
 
@@ -151,7 +145,9 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
 
         target_cidr = bridge_kwargs["target_cidr"]
         print("Creating local gateway routes for %s" % target_cidr)
-        routing.create_local_gateway_route(target_client, target_cidr, should_raise=False)
+        routing.create_local_gateway_route(
+            target_client, target_cidr, should_raise=False
+        )
 
         endpoint_name = bridge_kwargs["endpoint_name"]
         print("Creating tunnel: %s" % endpoint_name)
@@ -161,7 +157,7 @@ def configure_multicloud_bridge_client(**bridge_kwargs):
             bridge_kwargs["tunnel_psk"],
             bridge_kwargs["peer_endpoint"],
             bridge_kwargs["peer_cidr"],
-            bridge_kwargs["tunnel_vti"]
+            bridge_kwargs["tunnel_vti"],
         )
     except (ApiException, CohesiveSDKException) as e:
         return e
