@@ -67,7 +67,7 @@ def get_firewall_fw_sets(api_client, name=None, verbose=None, **kwargs):  # noqa
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/fwsets",
@@ -147,7 +147,7 @@ def post_create_firewall_fw_set(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/fwsets",
@@ -223,7 +223,7 @@ def delete_firewall_fw_set(api_client, name=None, rules=None, **kwargs):  # noqa
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/fwsets",
@@ -299,7 +299,7 @@ def put_reinitialize_fw_sets(api_client, reinitialize=True, **kwargs):  # noqa: 
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/fwsets",
@@ -364,7 +364,7 @@ def delete_firewall_rule_by_position(api_client, position, **kwargs):  # noqa: E
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules/{position}",
@@ -439,7 +439,7 @@ def delete_firewall_rule_by_rule(api_client, rule=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules",
@@ -503,7 +503,7 @@ def get_firewall_rules(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules",
@@ -581,7 +581,7 @@ def post_create_firewall_rule(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules",
@@ -662,7 +662,7 @@ def post_create_firewall_subgroup(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules/subgroup",
@@ -738,7 +738,7 @@ def delete_firewall_subgroup(api_client, rules=None, name=None, **kwargs):  # no
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules/subgroup",
@@ -811,7 +811,7 @@ def get_firewall_rule_subgroups(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules/subgroup",
@@ -886,7 +886,7 @@ def put_reinitialize_subgroups(api_client, reinitialize=True, **kwargs):  # noqa
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/firewall/rules/subgroup",

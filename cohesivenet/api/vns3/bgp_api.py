@@ -69,7 +69,7 @@ def get_bgp_peer(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
@@ -133,7 +133,7 @@ def delete_bgp_peer(api_client, endpoint_id, bgp_peer_id, **kwargs):  # noqa: E5
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",
@@ -231,7 +231,7 @@ def create_bgp_peer(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}/ebgp_peers",
@@ -340,7 +340,7 @@ def update_bgp_peer(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}/ebgp_peers/{bgp_peer_id}",

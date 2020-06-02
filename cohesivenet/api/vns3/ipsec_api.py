@@ -63,7 +63,7 @@ def delete_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}",
@@ -132,7 +132,7 @@ def delete_ipsec_endpoint_tunnel(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}/tunnels/{tunnel_id}",
@@ -197,7 +197,7 @@ def get_ipsec_details(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec",
@@ -263,7 +263,7 @@ def get_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}",
@@ -328,7 +328,7 @@ def get_ipsec_status(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/status/ipsec",
@@ -407,7 +407,7 @@ def get_ipsec_link_history(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/status/link_history",
@@ -527,7 +527,7 @@ def post_create_ipsec_endpoint(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints",
@@ -629,7 +629,7 @@ def post_create_ipsec_endpoint_tunnel(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}/tunnels",
@@ -704,7 +704,7 @@ def post_restart_ipsec_action(api_client, restart=True, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec",
@@ -826,7 +826,7 @@ def put_update_ipsec_endpoint(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}",
@@ -933,7 +933,7 @@ def put_update_ipsec_endpoint_tunnel(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec/endpoints/{endpoint_id}/tunnels/{tunnel_id}",
@@ -1017,7 +1017,7 @@ def put_update_ipsec_config(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/ipsec",

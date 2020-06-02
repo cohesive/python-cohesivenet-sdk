@@ -4,7 +4,7 @@ from cohesivenet import VNS3Client, Configuration, data_types
 from cohesivenet.macros import api_operations
 
 
-def get_client(host, username, password, verify=False):
+def get_client(host, username=None, password=None, api_token=None, verify=False):
     """Get VNS3 API Client for host
 
     Arguments:
@@ -18,9 +18,16 @@ def get_client(host, username, password, verify=False):
     Returns:
         [VNS3Client]
     """
+    basic_auth = all([username, password])
+    token_auth = api_token is not None
+    assert basic_auth or token_auth, "Must provide either username/password or api_token"
     return VNS3Client(
         Configuration(
-            host=host, username=username, password=password, verify_ssl=verify
+            host=host,
+            username=username,
+            password=password,
+            api_token=api_token,
+            verify_ssl=verify
         )
     )
 
