@@ -1,4 +1,4 @@
-VERSION = "0.1.38"
+VERSION = "0.1.39"
 LATEST_VNS3_VERSION = "4.10.1"
 LATEST_VNS3_API_SPEC = (
     "https://cohesive-networks.s3.amazonaws.com/apis/vns3/vns3-v%s.oasv3.json"

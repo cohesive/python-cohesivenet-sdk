@@ -16,7 +16,7 @@ from cohesivenet import (
 from cohesivenet.macros import api_operations
 
 
-def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
+def fetch_keyset_from_source(client, source, token, wait_timeout=180.0, allow_exists=False): # noqa
     """fetch_keyset_from_source Put keyset by providing source controller to download keyset. This
     contains logic that handles whether or not fetching from the source fails, typically due
     to a firewall or routing issue in the underlay network (e.g. security groups and route tables).
@@ -34,6 +34,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
         source {str} - host controller to fetch keyset from
         token {str} - secret token used when generating keyset
         wait_timeout {float} - timeout for waiting for keyset and while polling for download failure (default: 1 min)
+        allow_exists {bool} - If true and keyset already exists, DONT throw exception
 
     Raises:
         e: ApiException or CohesiveSDKException
@@ -50,6 +51,12 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0):
     try:
         put_response = client.config.put_keyset(**{"source": source, "token": token})
     except ApiException as e:
+        if allow_exists and ("keyset already exists" in e.get_error_message().lower()):
+            Logger.info(
+                "Keyset already exists.", host=client.host_uri
+            )
+            return client.config.try_get_keyset()
+
         Logger.info(
             "Failed to fetch keyset: %s" % e.get_error_message(), host=client.host_uri,
         )
@@ -572,7 +579,8 @@ def __substitute_controller_variables(config):
         #   -   else use default password for clouds
         if not local_variables.get("api_password"):
             if not master_password or set_master_password:
-                if local_variables["cloud"] == "azure":
+                cloud = local_variables.get("cloud", None)
+                if cloud == "azure":
                     local_variables["api_password"] = "%s-%s" % (
                         local_variables["instance_name"],
                         local_variables["primary_private_ip"],

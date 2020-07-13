@@ -239,7 +239,7 @@ class RESTClientObject(object):
 
             if (
                 r.getheader("Content-Type")
-                not in ("text/plain", "application/octet-stream")
+                not in ("text/plain", "application/octet-stream", "application/x-gzip")
                 and six.PY3
             ):
                 r.data = r.data.decode("utf8")
