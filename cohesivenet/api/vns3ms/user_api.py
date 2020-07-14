@@ -72,7 +72,7 @@ def put_user_password(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/password",
@@ -140,7 +140,7 @@ def get_user_credentials(api_client, cred_id=None, fields=True, **kwargs):  # no
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials",
@@ -220,7 +220,7 @@ def post_create_user_credential(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials",
@@ -303,7 +303,7 @@ def post_create_ec2_credential(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials",
@@ -380,7 +380,7 @@ def put_update_user_credential(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials/{credential_id}",
@@ -445,7 +445,7 @@ def delete_user_credential(api_client, credential_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/user/credentials/{credential_id}",
@@ -472,10 +472,10 @@ class UserApiRouter(VersionRouter):
     """User management endpoints for configuring credentials"""
 
     function_library = {
-        "put_user_password": {"2.1.1-2.3.5": put_user_password},
-        "get_user_credentials": {"2.1.1-2.3.5": get_user_credentials},
-        "post_create_user_credential": {"2.1.1-2.3.5": post_create_user_credential},
-        "post_create_ec2_credential": {"2.1.1-2.3.5": post_create_ec2_credential},
-        "put_update_user_credential": {"2.1.1-2.3.5": put_update_user_credential},
-        "delete_user_credential": {"2.1.1-2.3.5": delete_user_credential},
+        "put_user_password": {"2.1.1-2.5.1": put_user_password},
+        "get_user_credentials": {"2.1.1-2.5.1": get_user_credentials},
+        "post_create_user_credential": {"2.1.1-2.5.1": post_create_user_credential},
+        "post_create_ec2_credential": {"2.1.1-2.5.1": post_create_ec2_credential},
+        "put_update_user_credential": {"2.1.1-2.5.1": put_update_user_credential},
+        "delete_user_credential": {"2.1.1-2.5.1": delete_user_credential},
     }

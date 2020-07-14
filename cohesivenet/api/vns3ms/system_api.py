@@ -60,7 +60,7 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support",
@@ -135,7 +135,7 @@ def put_remote_support(api_client, enable=False, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support",
@@ -199,7 +199,7 @@ def get_remote_support_keypair_details(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support/keypair",
@@ -275,7 +275,7 @@ def post_generate_remote_support_keypair(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support/keypair",
@@ -342,7 +342,7 @@ def delete_remote_support_keypair(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/remote_support/keypair",
@@ -406,7 +406,7 @@ def get_system_status(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/status",
@@ -470,7 +470,7 @@ def get_credential_types(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/credential_types",
@@ -535,7 +535,7 @@ def get_credential_type_details(api_client, code, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/credential_types/{code}",
@@ -599,7 +599,7 @@ def get_system_ntp_hosts(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ntp_hosts",
@@ -671,7 +671,7 @@ def post_add_ntp_host(api_client, host=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ntp_hosts",
@@ -736,7 +736,7 @@ def delete_ntp_host(api_client, host_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ntp_hosts/{host_id}",
@@ -803,7 +803,7 @@ def delete_ssl_install(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl",
@@ -869,7 +869,7 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl/install/{uuid}",
@@ -942,7 +942,7 @@ def put_upload_ssl_certs(api_client, cert=None, key=None, **kwargs):  # noqa: E5
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl/keypair",
@@ -1008,7 +1008,7 @@ def put_install_ssl_certs(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/ssl/install",
@@ -1073,7 +1073,7 @@ def get_job_status(api_client, uuid, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/jobs/{uuid}",
@@ -1100,24 +1100,24 @@ class SystemApiRouter(VersionRouter):
     """System configuration such as SSL, NTP hosts and remote support"""
 
     function_library = {
-        "get_remote_support_details": {"2.1.1-2.3.5": get_remote_support_details},
-        "put_remote_support": {"2.1.1-2.3.5": put_remote_support},
+        "get_remote_support_details": {"2.1.1-2.5.1": get_remote_support_details},
+        "put_remote_support": {"2.1.1-2.5.1": put_remote_support},
         "get_remote_support_keypair_details": {
-            "2.1.1-2.3.5": get_remote_support_keypair_details
+            "2.1.1-2.5.1": get_remote_support_keypair_details
         },
         "post_generate_remote_support_keypair": {
-            "2.1.1-2.3.5": post_generate_remote_support_keypair
+            "2.1.1-2.5.1": post_generate_remote_support_keypair
         },
-        "delete_remote_support_keypair": {"2.1.1-2.3.5": delete_remote_support_keypair},
-        "get_system_status": {"2.1.1-2.3.5": get_system_status},
-        "get_credential_types": {"2.1.1-2.3.5": get_credential_types},
-        "get_credential_type_details": {"2.1.1-2.3.5": get_credential_type_details},
-        "get_system_ntp_hosts": {"2.1.1-2.3.5": get_system_ntp_hosts},
-        "post_add_ntp_host": {"2.1.1-2.3.5": post_add_ntp_host},
-        "delete_ntp_host": {"2.1.1-2.3.5": delete_ntp_host},
-        "delete_ssl_install": {"2.1.1-2.3.5": delete_ssl_install},
-        "get_ssl_install_status": {"2.1.1-2.3.5": get_ssl_install_status},
-        "put_upload_ssl_certs": {"2.1.1-2.3.5": put_upload_ssl_certs},
-        "put_install_ssl_certs": {"2.1.1-2.3.5": put_install_ssl_certs},
-        "get_job_status": {"2.1.1-2.3.5": get_job_status},
+        "delete_remote_support_keypair": {"2.1.1-2.5.1": delete_remote_support_keypair},
+        "get_system_status": {"2.1.1-2.5.1": get_system_status},
+        "get_credential_types": {"2.1.1-2.5.1": get_credential_types},
+        "get_credential_type_details": {"2.1.1-2.5.1": get_credential_type_details},
+        "get_system_ntp_hosts": {"2.1.1-2.5.1": get_system_ntp_hosts},
+        "post_add_ntp_host": {"2.1.1-2.5.1": post_add_ntp_host},
+        "delete_ntp_host": {"2.1.1-2.5.1": delete_ntp_host},
+        "delete_ssl_install": {"2.1.1-2.5.1": delete_ssl_install},
+        "get_ssl_install_status": {"2.1.1-2.5.1": get_ssl_install_status},
+        "put_upload_ssl_certs": {"2.1.1-2.5.1": put_upload_ssl_certs},
+        "put_install_ssl_certs": {"2.1.1-2.5.1": put_install_ssl_certs},
+        "get_job_status": {"2.1.1-2.5.1": get_job_status},
     }

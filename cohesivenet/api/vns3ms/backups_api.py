@@ -60,7 +60,7 @@ def get_backups(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/backups",
@@ -134,7 +134,7 @@ def delete_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/backups",
@@ -205,7 +205,7 @@ def get_download_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/backups/download",
@@ -278,7 +278,7 @@ def post_upload_backup(api_client, body=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/backups/upload",
@@ -353,7 +353,7 @@ def post_create_backup(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/backups/create_backup",
@@ -422,7 +422,7 @@ def get_backup_job(api_client, job_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/backups/create_backup/{uuid}",
@@ -496,7 +496,7 @@ def post_restore_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/backups/restore_backup",
@@ -562,7 +562,7 @@ def get_snapshots_backup(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup",
@@ -630,7 +630,7 @@ def delete_snapshots_backup(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup",
@@ -698,7 +698,7 @@ def get_download_snapshots_backup(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup/download",
@@ -774,7 +774,7 @@ def post_upload_snapshots_backup(api_client, url=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup/upload_backup",
@@ -843,7 +843,7 @@ def get_snapshots_upload_status(api_client, job_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup/upload_backup/{uuid}",
@@ -918,7 +918,7 @@ def post_create_snapshots_backup(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup/create_backup",
@@ -987,7 +987,7 @@ def get_snapshots_backup_status(api_client, job_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup/create_backup/{uuid}",
@@ -1061,7 +1061,7 @@ def post_restore_snapshots_backup(api_client, backup_name=None, **kwargs):  # no
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots_backup/restore_backup",
@@ -1088,19 +1088,19 @@ class BackupsApiRouter(VersionRouter):
     """Configure backups for VNS3:ms and your controller snapshots"""
 
     function_library = {
-        "get_backups": {"2.1.1-2.3.5": get_backups},
-        "delete_backup": {"2.1.1-2.3.5": delete_backup},
-        "get_download_backup": {"2.1.1-2.3.5": get_download_backup},
-        "post_upload_backup": {"2.1.1-2.3.5": post_upload_backup},
-        "post_create_backup": {"2.1.1-2.3.5": post_create_backup},
-        "get_backup_job": {"2.1.1-2.3.5": get_backup_job},
-        "post_restore_backup": {"2.1.1-2.3.5": post_restore_backup},
-        "get_snapshots_backup": {"2.1.1-2.3.5": get_snapshots_backup},
-        "delete_snapshots_backup": {"2.1.1-2.3.5": delete_snapshots_backup},
-        "get_download_snapshots_backup": {"2.1.1-2.3.5": get_download_snapshots_backup},
-        "post_upload_snapshots_backup": {"2.1.1-2.3.5": post_upload_snapshots_backup},
-        "get_snapshots_upload_status": {"2.1.1-2.3.5": get_snapshots_upload_status},
-        "post_create_snapshots_backup": {"2.1.1-2.3.5": post_create_snapshots_backup},
-        "get_snapshots_backup_status": {"2.1.1-2.3.5": get_snapshots_backup_status},
-        "post_restore_snapshots_backup": {"2.1.1-2.3.5": post_restore_snapshots_backup},
+        "get_backups": {"2.1.1-2.5.1": get_backups},
+        "delete_backup": {"2.1.1-2.5.1": delete_backup},
+        "get_download_backup": {"2.1.1-2.5.1": get_download_backup},
+        "post_upload_backup": {"2.1.1-2.5.1": post_upload_backup},
+        "post_create_backup": {"2.1.1-2.5.1": post_create_backup},
+        "get_backup_job": {"2.1.1-2.5.1": get_backup_job},
+        "post_restore_backup": {"2.1.1-2.5.1": post_restore_backup},
+        "get_snapshots_backup": {"2.1.1-2.5.1": get_snapshots_backup},
+        "delete_snapshots_backup": {"2.1.1-2.5.1": delete_snapshots_backup},
+        "get_download_snapshots_backup": {"2.1.1-2.5.1": get_download_snapshots_backup},
+        "post_upload_snapshots_backup": {"2.1.1-2.5.1": post_upload_snapshots_backup},
+        "get_snapshots_upload_status": {"2.1.1-2.5.1": get_snapshots_upload_status},
+        "post_create_snapshots_backup": {"2.1.1-2.5.1": post_create_snapshots_backup},
+        "get_snapshots_backup_status": {"2.1.1-2.5.1": get_snapshots_backup_status},
+        "post_restore_snapshots_backup": {"2.1.1-2.5.1": post_restore_snapshots_backup},
     }

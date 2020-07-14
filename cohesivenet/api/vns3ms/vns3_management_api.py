@@ -72,7 +72,7 @@ def get_vns3_snapshots(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots",
@@ -146,7 +146,7 @@ def post_create_vns3_snapshot(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots",
@@ -218,7 +218,7 @@ def delete_vns3_snapshots(api_client, snapshot_ids=None, **kwargs):  # noqa: E50
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots",
@@ -286,7 +286,7 @@ def get_download_vns3_snapshot(api_client, snapshot_id=None, **kwargs):  # noqa:
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots/download",
@@ -351,7 +351,7 @@ def get_controller_report(api_client, report_date=None, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/controller_report",
@@ -425,7 +425,7 @@ def get_vns3_controllers(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers",
@@ -522,7 +522,7 @@ def post_add_vns3_controller(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers",
@@ -589,7 +589,7 @@ def get_vns3_controller(api_client, vns3_controller_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}",
@@ -684,7 +684,7 @@ def put_update_vns3_controller(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}",
@@ -749,7 +749,7 @@ def delete_vns3_controller(api_client, vns3_controller_id, **kwargs):  # noqa: E
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}",
@@ -814,7 +814,7 @@ def get_vns3_controller_status(api_client, vns3_controller_id, **kwargs):  # noq
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/status",
@@ -889,7 +889,7 @@ def put_vns3_controller_api_password(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/update_api_password",
@@ -971,7 +971,7 @@ def put_vns3_controller_ui(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/update_ui",
@@ -1038,7 +1038,7 @@ def get_vns3_controller_ha_details(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha",
@@ -1065,13 +1065,13 @@ def put_update_vns3_controller_ha(
     api_client,
     vns3_controller_id,
     ha_enabled=None,
+    ha_cloud_cred_id=None,
     ha_type=None,
     ha_uuid=None,
     ha_backup_ip_address=None,
     ha_api_v1_key=None,
     ha_instance_id=None,
     ha_image_id=None,
-    ha_cloud_cred_id=None,
     stop_old_primary=None,
     **kwargs
 ):  # noqa: E501
@@ -1079,18 +1079,18 @@ def put_update_vns3_controller_ha(
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_update_vns3_controller_ha(id, async_req=True)
+    >>> response = await api.put_update_vns3_controller_ha(vns3_controller_id, async_req=True)
 
     :param VNS3Client api_client: (required)
     :param vns3_controller_id int: Controller ID (required)
     :param ha_enabled bool: Enable/Disable HA (required)
+    :param ha_cloud_cred_id str: Cloud credential ID (required if enabled)
     :param ha_type str: Hot, warm or Cold
     :param ha_uuid str: HA UUID of the VNS3 failover box for hot HA. Required for hot HA.
     :param ha_backup_ip_address str: HA Backup server IP address. Required for hot HA.
     :param ha_api_v1_key str: Controller's APIv1 key
     :param ha_instance_id str: VNS3 standby instance for warm HA. Required for warm HA.
     :param ha_image_id str: VNS3 image ID for Cold HA. Required for cold HA.
-    :param ha_cloud_cred_id str: Cloud credential ID
     :param stop_old_primary bool: Should stop old primary?
     :param async_req bool: execute request asynchronously
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1142,7 +1142,7 @@ def put_update_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha",
@@ -1209,7 +1209,7 @@ def put_validate_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/validate",
@@ -1274,7 +1274,7 @@ def put_init_vns3_controller_ha(api_client, vns3_controller_id, **kwargs):  # no
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/initialise",
@@ -1349,7 +1349,7 @@ def put_sync_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/sync",
@@ -1373,7 +1373,7 @@ def put_sync_vns3_controller_ha(
 
 
 def put_activate_vns3_controller_ha(
-    api_client, vns3_controller_id, sync_type=None, **kwargs
+    api_client, vns3_controller_id, dry_run=None, **kwargs
 ):  # noqa: E501
     """Trigger the HA switchover activation  # noqa: E501
 
@@ -1383,7 +1383,7 @@ def put_activate_vns3_controller_ha(
 
     :param VNS3Client api_client: (required)
     :param vns3_controller_id int: Controller ID (required)
-    :param sync_type str: Type of sync to perform: full, pull or push (required)
+    :param dry_run bool: If True, validate HA configuration only.
     :param async_req bool: execute request asynchronously
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
@@ -1396,7 +1396,7 @@ def put_activate_vns3_controller_ha(
     """
 
     local_var_params = locals()
-    request_params = []
+    request_params = ["dry_run"]
 
     collection_formats = {}
 
@@ -1419,7 +1419,7 @@ def put_activate_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/activate",
@@ -1488,7 +1488,7 @@ def get_vns3_controller_ha_status(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/activate",
@@ -1515,32 +1515,32 @@ class VNS3ManagementApiRouter(VersionRouter):
     """Manage VNS3 controllers in your network topology, automating snapshots, HA and more"""
 
     function_library = {
-        "get_vns3_snapshots": {"2.1.1-2.3.5": get_vns3_snapshots},
-        "post_create_vns3_snapshot": {"2.1.1-2.3.5": post_create_vns3_snapshot},
-        "delete_vns3_snapshots": {"2.1.1-2.3.5": delete_vns3_snapshots},
-        "get_download_vns3_snapshot": {"2.1.1-2.3.5": get_download_vns3_snapshot},
-        "get_controller_report": {"2.1.1-2.3.5": get_controller_report},
-        "get_vns3_controllers": {"2.1.1-2.3.5": get_vns3_controllers},
-        "post_add_vns3_controller": {"2.1.1-2.3.5": post_add_vns3_controller},
-        "get_vns3_controller": {"2.1.1-2.3.5": get_vns3_controller},
-        "put_update_vns3_controller": {"2.1.1-2.3.5": put_update_vns3_controller},
-        "delete_vns3_controller": {"2.1.1-2.3.5": delete_vns3_controller},
-        "get_vns3_controller_status": {"2.1.1-2.3.5": get_vns3_controller_status},
+        "get_vns3_snapshots": {"2.1.1-2.5.1": get_vns3_snapshots},
+        "post_create_vns3_snapshot": {"2.1.1-2.5.1": post_create_vns3_snapshot},
+        "delete_vns3_snapshots": {"2.1.1-2.5.1": delete_vns3_snapshots},
+        "get_download_vns3_snapshot": {"2.1.1-2.5.1": get_download_vns3_snapshot},
+        "get_controller_report": {"2.1.1-2.5.1": get_controller_report},
+        "get_vns3_controllers": {"2.1.1-2.5.1": get_vns3_controllers},
+        "post_add_vns3_controller": {"2.1.1-2.5.1": post_add_vns3_controller},
+        "get_vns3_controller": {"2.1.1-2.5.1": get_vns3_controller},
+        "put_update_vns3_controller": {"2.1.1-2.5.1": put_update_vns3_controller},
+        "delete_vns3_controller": {"2.1.1-2.5.1": delete_vns3_controller},
+        "get_vns3_controller_status": {"2.1.1-2.5.1": get_vns3_controller_status},
         "put_vns3_controller_api_password": {
-            "2.1.1-2.3.5": put_vns3_controller_api_password
+            "2.1.1-2.5.1": put_vns3_controller_api_password
         },
-        "put_vns3_controller_ui": {"2.1.1-2.3.5": put_vns3_controller_ui},
+        "put_vns3_controller_ui": {"2.1.1-2.5.1": put_vns3_controller_ui},
         "get_vns3_controller_ha_details": {
-            "2.1.1-2.3.5": get_vns3_controller_ha_details
+            "2.1.1-2.5.1": get_vns3_controller_ha_details
         },
-        "put_update_vns3_controller_ha": {"2.1.1-2.3.5": put_update_vns3_controller_ha},
+        "put_update_vns3_controller_ha": {"2.1.1-2.5.1": put_update_vns3_controller_ha},
         "put_validate_vns3_controller_ha": {
-            "2.1.1-2.3.5": put_validate_vns3_controller_ha
+            "2.1.1-2.5.1": put_validate_vns3_controller_ha
         },
-        "put_init_vns3_controller_ha": {"2.1.1-2.3.5": put_init_vns3_controller_ha},
-        "put_sync_vns3_controller_ha": {"2.1.1-2.3.5": put_sync_vns3_controller_ha},
-        "get_vns3_controller_ha_status": {"2.1.1-2.3.5": get_vns3_controller_ha_status},
+        "put_init_vns3_controller_ha": {"2.1.1-2.5.1": put_init_vns3_controller_ha},
+        "put_sync_vns3_controller_ha": {"2.1.1-2.5.1": put_sync_vns3_controller_ha},
+        "get_vns3_controller_ha_status": {"2.1.1-2.5.1": get_vns3_controller_ha_status},
         "put_activate_vns3_controller_ha": {
-            "2.1.1-2.3.5": put_activate_vns3_controller_ha
+            "2.1.1-2.5.1": put_activate_vns3_controller_ha
         },
     }

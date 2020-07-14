@@ -68,7 +68,7 @@ def put_enable_ldap(api_client, enabled=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap",
@@ -134,7 +134,7 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/settings",
@@ -162,6 +162,10 @@ def put_ldap_settings(
     ldap_host=None,
     ldap_port=None,
     ldap_ssl=None,
+    ldap_encrypt=None,
+    ldap_encrypt_ldaps=None,
+    ldap_encrypt_auth=None,
+    ldap_encrypt_verify_ca=None,
     ldap_binddn=None,
     ldap_bindpw=None,
     **kwargs
@@ -178,6 +182,10 @@ def put_ldap_settings(
     :param ldap_host str: Host for LDAP server, IP or DNS (required)
     :param ldap_port int: Port for LDAP server
     :param ldap_ssl bool: Use SSL?
+    :param ldap_encrypt bool: SSL enabled
+    :param ldap_encrypt_ldaps bool: Use LDAPS or start TLS (default)
+    :param ldap_encrypt_auth bool: Use certificates to authenticate via encrypted connection
+    :param ldap_encrypt_verify_ca bool: Verify certicate using authority
     :param ldap_binddn str: Bind username (required)
     :param ldap_bindpw str: Bind password (required)
 
@@ -197,6 +205,10 @@ def put_ldap_settings(
         "ldap_host",
         "ldap_port",
         "ldap_ssl",
+        "ldap_encrypt",
+        "ldap_encrypt_ldaps",
+        "ldap_encrypt_auth",
+        "ldap_encrypt_verify_ca",
         "ldap_binddn",
         "ldap_bindpw",
     ]
@@ -227,7 +239,7 @@ def put_ldap_settings(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/settings",
@@ -320,7 +332,7 @@ def post_validate_ldap_settings(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/settings",
@@ -386,7 +398,7 @@ def get_ldap_user_schema(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/user_schema",
@@ -473,7 +485,7 @@ def put_ldap_user_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/user_schema",
@@ -563,7 +575,7 @@ def post_validate_ldap_user_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/user_schema",
@@ -629,7 +641,7 @@ def get_ldap_group_schema(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/group_schema",
@@ -728,7 +740,7 @@ def put_ldap_group_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/group_schema",
@@ -827,7 +839,7 @@ def post_validate_ldap_group_schema(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/admin/ldap/group_schema",
@@ -850,22 +862,247 @@ def post_validate_ldap_group_schema(
     )
 
 
+def put_upload_ldap_auth_cert(api_client, body=None, **kwargs):  # noqa: E501
+    """put_upload_ldap_auth_cert  # noqa: E501
+
+    Upload LDAP authentication certicate file  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_upload_ldap_auth_cert(body, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param body str: cert file (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/admin/ldap/encrypt_auth_cert",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_upload_ldap_auth_key(api_client, body=None, **kwargs):  # noqa: E501
+    """put_upload_ldap_auth_key  # noqa: E501
+
+    Upload LDAP authentication key file  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_upload_ldap_auth_key(body, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param body str: auth key file (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/admin/ldap/encrypt_auth_key",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_upload_ldap_ca_cert(api_client, body=None, **kwargs):  # noqa: E501
+    """put_upload_ldap_ca_cert  # noqa: E501
+
+    Upload LDAP CA certicate file  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_upload_ldap_ca_cert(body, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param body str: ca cert file (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = body
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["text/plain"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/admin/ldap/encrypt_ca_cert",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class AdministrationApiRouter(VersionRouter):
     """Configure VNS3:ms administration settings such as LDAP integration"""
 
     function_library = {
-        "put_enable_ldap": {"2.1.1-2.3.5": put_enable_ldap},
-        "get_ldap_settings": {"2.1.1-2.3.5": get_ldap_settings},
-        "put_ldap_settings": {"2.1.1-2.3.5": put_ldap_settings},
-        "post_validate_ldap_settings": {"2.1.1-2.3.5": post_validate_ldap_settings},
-        "get_ldap_user_schema": {"2.1.1-2.3.5": get_ldap_user_schema},
-        "put_ldap_user_schema": {"2.1.1-2.3.5": put_ldap_user_schema},
+        "put_enable_ldap": {"2.1.1-2.5.1": put_enable_ldap},
+        "get_ldap_settings": {"2.1.1-2.5.1": get_ldap_settings},
+        "put_ldap_settings": {"2.1.1-2.5.1": put_ldap_settings},
+        "post_validate_ldap_settings": {"2.1.1-2.5.1": post_validate_ldap_settings},
+        "get_ldap_user_schema": {"2.1.1-2.5.1": get_ldap_user_schema},
+        "put_ldap_user_schema": {"2.1.1-2.5.1": put_ldap_user_schema},
         "post_validate_ldap_user_schema": {
-            "2.1.1-2.3.5": post_validate_ldap_user_schema
+            "2.1.1-2.5.1": post_validate_ldap_user_schema
         },
-        "get_ldap_group_schema": {"2.1.1-2.3.5": get_ldap_group_schema},
-        "put_ldap_group_schema": {"2.1.1-2.3.5": put_ldap_group_schema},
+        "get_ldap_group_schema": {"2.1.1-2.5.1": get_ldap_group_schema},
+        "put_ldap_group_schema": {"2.1.1-2.5.1": put_ldap_group_schema},
         "post_validate_ldap_group_schema": {
-            "2.1.1-2.3.5": post_validate_ldap_group_schema
+            "2.1.1-2.5.1": post_validate_ldap_group_schema
+        },
+        "put_upload_ldap_auth_cert": {
+            "2.5.1": put_upload_ldap_auth_cert
+        },
+        "put_upload_ldap_auth_key": {
+            "2.5.1": put_upload_ldap_auth_key
+        },
+        "put_upload_ldap_ca_cert": {
+            "2.5.1": put_upload_ldap_ca_cert
         },
     }

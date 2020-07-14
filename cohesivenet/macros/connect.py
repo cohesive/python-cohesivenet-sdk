@@ -1,10 +1,10 @@
 from typing import List
 
-from cohesivenet import VNS3Client, Configuration, data_types
+from cohesivenet import VNS3Client, Configuration, data_types, MSClient
 from cohesivenet.macros import api_operations
 
 
-def get_client(host, username=None, password=None, api_token=None, verify=False):
+def get_vns3_client(host, username=None, password=None, api_token=None, verify=False):
     """Get VNS3 API Client for host
 
     Arguments:
@@ -32,7 +32,11 @@ def get_client(host, username=None, password=None, api_token=None, verify=False)
     )
 
 
-def get_clients(*hosts):
+# Alias for backwards compatability
+get_client = get_vns3_client
+
+
+def get_vns3_clients(*hosts):
     """Create VNS3Clients for host information
 
     Arguments:
@@ -46,10 +50,14 @@ def get_clients(*hosts):
     Returns:
         [List[VNS3Client]]
     """
-    return [get_client(**host_data) for host_data in hosts]
+    return [get_vns3_client(**host_data) for host_data in hosts]
 
 
-def get_clients_common_creds(hosts, common_username, common_password, verify=False):
+# Alias for backwards compatability
+get_clients = get_vns3_clients
+
+
+def get_vns3_clients_common_creds(hosts, common_username, common_password, verify=False):
     """Construct clients for each host
 
     Arguments:
@@ -64,8 +72,12 @@ def get_clients_common_creds(hosts, common_username, common_password, verify=Fal
         [List[VNS3Clients]]
     """
     return [
-        get_client(host, common_username, common_password, verify) for host in hosts
+        get_vns3_client(host, common_username, common_password, verify) for host in hosts
     ]
+
+
+# Alias for backwards compatability
+get_clients_common_creds = get_vns3_clients_common_creds
 
 
 def verify_client_connectivity(
@@ -84,3 +96,31 @@ def verify_client_connectivity(
         return _client.sys_admin.get_config()
 
     return api_operations.__bulk_call_client(clients, _ping_api)
+
+
+def get_ms_client(host, username=None, password=None, api_token=None, verify=False):
+    """Get VNS3 API Client for host
+
+    Arguments:
+        host {str}
+        username {str}
+        password {str}
+
+    Keyword Arguments:
+        verify {bool} -- Verify SSL certificate (default: {False})
+
+    Returns:
+        [VNS3Client]
+    """
+    basic_auth = all([username, password])
+    token_auth = api_token is not None
+    assert basic_auth or token_auth, "Must provide either username/password or api_token"
+    return MSClient(
+        Configuration(
+            host=host,
+            username=username,
+            password=password,
+            api_token=api_token,
+            verify_ssl=verify
+        )
+    )

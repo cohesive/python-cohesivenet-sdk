@@ -15,6 +15,7 @@ from __future__ import absolute_import
 import re  # noqa: F401
 
 from cohesivenet.api_builder import VersionRouter
+from cohesivenet.exceptions import ApiValueError
 
 
 def put_activate_api_key(
@@ -214,7 +215,7 @@ def put_expire_token(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/expire_token",
@@ -288,7 +289,7 @@ def put_invalidate_api_key_tokens(api_client, api_key_id=None, **kwargs):  # noq
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/invalidate_tokens",
@@ -354,7 +355,7 @@ def get_api_keys(api_client, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_keys",
@@ -428,7 +429,7 @@ def post_create_api_key(api_client, key_name=None, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_key",
@@ -506,7 +507,7 @@ def put_update_api_key(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_key/{key_id}",
@@ -573,10 +574,882 @@ def delete_api_key(api_client, key_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/auth/api_key/{key_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_access_tokens(api_client, **kwargs):  # noqa: E501
+    """Get all Access tokens for API  # noqa: E501
+
+    Get all Access tokens for API  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_access_tokens(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/tokens",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_access_token(api_client, name=None, expires=None, refreshes=None, user_id=None, **kwargs):  # noqa: E501
+    """Create an Access token for use with the API # noqa: E501
+
+    Create an Access token for use with the API  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_access_token(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param name str: Name for token (optional)
+    :param expires integer: Seconds till expiration (default=3600)
+    :param refreshes bool: If true, expiration refreshes on each use
+    :param user_id int: If super user, can create tokens for users
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["name", "expires", "refreshes", "user_id"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = []  # noqa: E501
+
+    return api_client.call_api(
+        "/access/token",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_access_token(api_client, token_id, **kwargs):  # noqa: E501
+    """Get access token details  # noqa: E501
+
+    Get access token details    # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_access_token(token_id, async_req=True)
+
+    :param token_id int: access token id (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {"token_id": token_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/token/{token_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_access_token(api_client, token_id, expired=None, refresh=None, **kwargs):  # noqa: E501
+    """Update an Access token # noqa: E501
+
+    Update an Access token   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_access_token(token_id, expired=True, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param token_id int: access token id (required)
+    :param expired bool: True to expire  token
+    :param refresh bool: True to refresh expiry time for token
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["expired", "refresh"]
+
+    if not any([expired is not None, refresh is not None]):
+        raise ApiValueError("put_update_access_token requires either expired or refresh as parameters")
+
+    collection_formats = {}
+
+    path_params = {"token_id": token_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = []  # noqa: E501
+
+    return api_client.call_api(
+        "/access/token/{token_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_regenerate_access_token(api_client, token_id, **kwargs):  # noqa: E501
+    """Regenerate an Access token # noqa: E501
+
+    Regenerate an Access token   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_regenerate_access_token(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param token_id int: access token id (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"token_id": token_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = []  # noqa: E501
+
+    return api_client.call_api(
+        "/access/token/{token_id}",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_access_token(api_client, token_id, **kwargs):  # noqa: E501
+    """Delete an Access token # noqa: E501
+
+    Delete an Access token   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_access_token(token_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param token_id int: access token id (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"token_id": token_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = []  # noqa: E501
+
+    return api_client.call_api(
+        "/access/token/{token_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_access_urls(api_client, **kwargs):  # noqa: E501
+    """Get all Access URLs for UI  # noqa: E501
+
+    Get all Access URLs for UI  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_access_urls(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/urls",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_access_url(api_client, expires=None, description=None, **kwargs):  # noqa: E501
+    """Create an Access token for use with the API # noqa: E501
+
+    Create an Access token for use with the API  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_access_token(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param expires integer: Seconds till expiration (default=3600)
+    :param description str: Name for token (optional)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["expires", "description"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = []  # noqa: E501
+
+    return api_client.call_api(
+        "/access/url",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
+    """Get access URL details  # noqa: E501
+
+    Get access URL details    # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_access_url(access_url_id, async_req=True)
+
+    :param access_url_id int: access url id (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {"access_url_id": access_url_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/url/{access_url_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_access_url(api_client, access_url_id, expired=None, **kwargs):  # noqa: E501
+    """Update an Access URL  # noqa: E501
+
+    Update an Access URL   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_access_url(access_url_id, expired=True, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param access_url_id int: access url id (required)
+    :param expired bool: True to expire url
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = ["expired"]
+
+    if expired is None:
+        raise ApiValueError("put_update_access_url requires expired as parameter")
+
+    collection_formats = {}
+
+    path_params = {"access_url_id": access_url_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = []  # noqa: E501
+
+    return api_client.call_api(
+        "/access/url/{access_url_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
+    """Delete an Access URL # noqa: E501
+
+    Delete an Access URL   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_access_url(access_url_id, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param access_url_id int: access url id (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"access_url_id": access_url_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = []  # noqa: E501
+
+    return api_client.call_api(
+        "/access/url/{access_url_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_access_url_by_search(
+    api_client, access_url_id=None, access_url=None, **kwargs
+):  # noqa: E501
+    """Find and delete access URL  # noqa: E501
+
+    Delete access URL by ID or URL  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_access_url_by_search(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param access_url_id int: ID of access URL
+    :param access_url str: URL
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["access_url_id", "access_url"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/access/url",
         "DELETE",
         path_params,
         query_params,
@@ -609,4 +1482,17 @@ class AccessApiRouter(VersionRouter):
         "post_create_api_key": {"2.1.1-2.3.5": post_create_api_key},
         "put_update_api_key": {"2.1.1-2.3.5": put_update_api_key},
         "delete_api_key": {"2.1.1-2.3.5": delete_api_key},
+
+        "get_access_tokens": {"2.5.1": get_access_tokens},
+        "post_create_access_token": {"2.5.1": post_create_access_token},
+        "get_access_token": {"2.5.1": get_access_token},
+        "put_update_access_token": {"2.5.1": put_update_access_token},
+        "post_regenerate_access_token": {"2.5.1": post_regenerate_access_token},
+        "delete_access_token": {"2.5.1": delete_access_token},
+        "get_access_urls": {"2.5.1": get_access_urls},
+        "post_create_access_url": {"2.5.1": post_create_access_url},
+        "delete_access_url_by_search": {"2.5.1": None},
+        "get_access_url": {"2.5.1": get_access_url},
+        "put_update_access_url": {"2.5.1": put_update_access_url},
+        "delete_access_url": {"2.5.1": delete_access_url},
     }
