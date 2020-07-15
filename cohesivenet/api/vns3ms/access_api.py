@@ -717,7 +717,7 @@ def post_create_access_token(api_client, name=None, expires=None, refreshes=None
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = []  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/access/token",
@@ -864,7 +864,7 @@ def put_update_access_token(api_client, token_id, expired=None, refresh=None, **
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = []  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/access/token/{token_id}",
@@ -936,7 +936,7 @@ def post_regenerate_access_token(api_client, token_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = []  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/access/token/{token_id}",
@@ -1008,7 +1008,7 @@ def delete_access_token(api_client, token_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = []  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/access/token/{token_id}",
@@ -1149,7 +1149,7 @@ def post_create_access_url(api_client, expires=None, description=None, **kwargs)
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = []  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/access/url",
@@ -1295,7 +1295,7 @@ def put_update_access_url(api_client, access_url_id, expired=None, **kwargs):  #
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = []  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/access/url/{access_url_id}",
@@ -1367,7 +1367,7 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = []  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/access/url/{access_url_id}",
