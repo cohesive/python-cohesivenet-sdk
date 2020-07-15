@@ -1491,7 +1491,7 @@ class AccessApiRouter(VersionRouter):
         "delete_access_token": {"2.5.1": delete_access_token},
         "get_access_urls": {"2.5.1": get_access_urls},
         "post_create_access_url": {"2.5.1": post_create_access_url},
-        "delete_access_url_by_search": {"2.5.1": None},
+        "delete_access_url_by_search": {"2.5.1": delete_access_url_by_search},
         "get_access_url": {"2.5.1": get_access_url},
         "put_update_access_url": {"2.5.1": put_update_access_url},
         "delete_access_url": {"2.5.1": delete_access_url},
