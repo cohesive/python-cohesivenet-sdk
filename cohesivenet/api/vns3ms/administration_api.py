@@ -1096,13 +1096,7 @@ class AdministrationApiRouter(VersionRouter):
         "post_validate_ldap_group_schema": {
             "2.1.1-2.5.1": post_validate_ldap_group_schema
         },
-        "put_upload_ldap_auth_cert": {
-            "2.5.1": put_upload_ldap_auth_cert
-        },
-        "put_upload_ldap_auth_key": {
-            "2.5.1": put_upload_ldap_auth_key
-        },
-        "put_upload_ldap_ca_cert": {
-            "2.5.1": put_upload_ldap_ca_cert
-        },
+        "put_upload_ldap_auth_cert": {"2.5.1": put_upload_ldap_auth_cert},
+        "put_upload_ldap_auth_key": {"2.5.1": put_upload_ldap_auth_key},
+        "put_upload_ldap_ca_cert": {"2.5.1": put_upload_ldap_ca_cert},
     }

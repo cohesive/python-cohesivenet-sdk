@@ -663,7 +663,9 @@ def get_access_tokens(api_client, **kwargs):  # noqa: E501
     )
 
 
-def post_create_access_token(api_client, name=None, expires=None, refreshes=None, user_id=None, **kwargs):  # noqa: E501
+def post_create_access_token(
+    api_client, name=None, expires=None, refreshes=None, user_id=None, **kwargs
+):  # noqa: E501
     """Create an Access token for use with the API # noqa: E501
 
     Create an Access token for use with the API  # noqa: E501
@@ -808,7 +810,9 @@ def get_access_token(api_client, token_id, **kwargs):  # noqa: E501
     )
 
 
-def put_update_access_token(api_client, token_id, expired=None, refresh=None, **kwargs):  # noqa: E501
+def put_update_access_token(
+    api_client, token_id, expired=None, refresh=None, **kwargs
+):  # noqa: E501
     """Update an Access token # noqa: E501
 
     Update an Access token   # noqa: E501
@@ -836,7 +840,9 @@ def put_update_access_token(api_client, token_id, expired=None, refresh=None, **
     request_params = ["expired", "refresh"]
 
     if not any([expired is not None, refresh is not None]):
-        raise ApiValueError("put_update_access_token requires either expired or refresh as parameters")
+        raise ApiValueError(
+            "put_update_access_token requires either expired or refresh as parameters"
+        )
 
     collection_formats = {}
 
@@ -1097,7 +1103,9 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
     )
 
 
-def post_create_access_url(api_client, expires=None, description=None, **kwargs):  # noqa: E501
+def post_create_access_url(
+    api_client, expires=None, description=None, **kwargs
+):  # noqa: E501
     """Create an Access token for use with the API # noqa: E501
 
     Create an Access token for use with the API  # noqa: E501
@@ -1240,7 +1248,9 @@ def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     )
 
 
-def put_update_access_url(api_client, access_url_id, expired=None, **kwargs):  # noqa: E501
+def put_update_access_url(
+    api_client, access_url_id, expired=None, **kwargs
+):  # noqa: E501
     """Update an Access URL  # noqa: E501
 
     Update an Access URL   # noqa: E501
@@ -1386,7 +1396,7 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
         ),  # noqa: E501
         _preload_content=local_var_params.get("_preload_content", True),
         _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats
+        collection_formats=collection_formats,
     )
 
 
@@ -1482,7 +1492,6 @@ class AccessApiRouter(VersionRouter):
         "post_create_api_key": {"2.1.1-2.3.5": post_create_api_key},
         "put_update_api_key": {"2.1.1-2.3.5": put_update_api_key},
         "delete_api_key": {"2.1.1-2.3.5": delete_api_key},
-
         "get_access_tokens": {"2.5.1": get_access_tokens},
         "post_create_access_token": {"2.5.1": post_create_access_token},
         "get_access_token": {"2.5.1": get_access_token},

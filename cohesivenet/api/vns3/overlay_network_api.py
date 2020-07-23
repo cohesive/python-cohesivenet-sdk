@@ -364,6 +364,76 @@ def get_download_clientpack(
     )
 
 
+def get_download_named_clientpack(api_client, name, **kwargs):  # noqa: E501
+    """get_download_named_clientpack  # noqa: E501
+
+    Returns clientpack file. Clientpacks are files with the necessary information and credentials for an overlay client to be connected to the VNS3 topology   # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_download_named_clientpack(client, "100.171.10.1.ovpn", async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param name str: name of clientpack with a suffic indicating file format e.g. ovpn, zip (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {"name": name}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["text/plain", "application/octet-stream"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/clientpack/{name}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body={},
+        post_params=form_params,
+        files=local_var_files,
+        response_type="file:%s" % local_var_params["fileformat"],
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 def post_checkout_next_clientpack(
     api_client, low_ip=None, high_ip=None, include_disabled=None, **kwargs
 ):  # noqa: E501
@@ -1063,20 +1133,21 @@ def put_update_all_clientpacks(
 class OverlayNetworkApiRouter(VersionRouter):
     # put_update_clientpacks
     function_library = {
-        "delete_clientpack_tag": {"4.8.4-4.10.1": delete_clientpack_tag},
-        "get_clientpack": {"4.8.4-4.10.1": get_clientpack},
-        "get_clientpacks": {"4.8.4-4.10.1": get_clientpacks},
-        "get_clients_status": {"4.8.4-4.10.1": get_clients_status},
-        "get_connected_subnets": {"4.8.4-4.10.1": get_connected_subnets},
-        "get_download_clientpack": {"4.8.4-4.10.1": get_download_clientpack},
+        "delete_clientpack_tag": {"4.8.4-4.11.1": delete_clientpack_tag},
+        "get_clientpack": {"4.8.4-4.11.1": get_clientpack},
+        "get_clientpacks": {"4.8.4-4.11.1": get_clientpacks},
+        "get_clients_status": {"4.8.4-4.11.1": get_clients_status},
+        "get_connected_subnets": {"4.8.4-4.11.1": get_connected_subnets},
+        "get_download_clientpack": {"4.8.4-4.11.1": get_download_clientpack},
+        "get_download_named_clientpack": {"4.11.1": get_download_named_clientpack},
         "post_checkout_next_clientpack": {
-            "4.8.4-4.10.1": post_checkout_next_clientpack
+            "4.8.4-4.11.1": post_checkout_next_clientpack
         },
-        "post_create_clientpack_tag": {"4.8.4-4.10.1": post_create_clientpack_tag},
-        "post_reset_all_clients": {"4.8.4-4.10.1": post_reset_all_clients},
-        "post_reset_client": {"4.8.4-4.10.1": post_reset_client},
-        "post_add_clientpacks": {"4.8.4-4.10.1": post_add_clientpacks},
-        "put_update_clientpack": {"4.8.4-4.10.1": put_update_clientpack},
-        "put_disconnect_clientpack": {"4.8.4-4.10.1": put_disconnect_clientpack},
-        "put_update_all_clientpacks": {"4.8.4-4.10.1": put_update_all_clientpacks},
+        "post_create_clientpack_tag": {"4.8.4-4.11.1": post_create_clientpack_tag},
+        "post_reset_all_clients": {"4.8.4-4.11.1": post_reset_all_clients},
+        "post_reset_client": {"4.8.4-4.11.1": post_reset_client},
+        "post_add_clientpacks": {"4.8.4-4.11.1": post_add_clientpacks},
+        "put_update_clientpack": {"4.8.4-4.11.1": put_update_clientpack},
+        "put_disconnect_clientpack": {"4.8.4-4.11.1": put_disconnect_clientpack},
+        "put_update_all_clientpacks": {"4.8.4-4.11.1": put_update_all_clientpacks},
     }

@@ -1125,7 +1125,9 @@ def wait_for_backup(api_client, job_uuid, retry_timeout=2.0, timeout=60):
             )
             time.sleep(retry_timeout)
             continue
-    raise ApiException(reason="Backup processing never finished. Timeout %s seconds." % timeout)
+    raise ApiException(
+        reason="Backup processing never finished. Timeout %s seconds." % timeout
+    )
 
 
 class BackupsApiRouter(VersionRouter):

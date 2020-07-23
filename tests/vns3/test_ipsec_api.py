@@ -199,6 +199,6 @@ class TestIPsecApi(object):
             "put",
             "/ipsec",
             rest_mocker,
-            mock_request_from_schema=True,
+            request_kwargs={'ipsec_local_ipaddress': 'huwckmxnittoags'},
             mock_response=IpsecApiData.IpsecSystemDetailResponse,
         )(ipsec_api.put_update_ipsec_config)

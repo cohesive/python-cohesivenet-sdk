@@ -16,7 +16,9 @@ from cohesivenet import (
 from cohesivenet.macros import api_operations
 
 
-def fetch_keyset_from_source(client, source, token, wait_timeout=180.0, allow_exists=False): # noqa
+def fetch_keyset_from_source(   # noqa: C901
+    client, source, token, wait_timeout=180.0, allow_exists=False
+):  # noqa
     """fetch_keyset_from_source Put keyset by providing source controller to download keyset. This
     contains logic that handles whether or not fetching from the source fails, typically due
     to a firewall or routing issue in the underlay network (e.g. security groups and route tables).
@@ -52,9 +54,7 @@ def fetch_keyset_from_source(client, source, token, wait_timeout=180.0, allow_ex
         put_response = client.config.put_keyset(**{"source": source, "token": token})
     except ApiException as e:
         if allow_exists and ("keyset already exists" in e.get_error_message().lower()):
-            Logger.info(
-                "Keyset already exists.", host=client.host_uri
-            )
+            Logger.info("Keyset already exists.", host=client.host_uri)
             return client.config.try_get_keyset()
 
         Logger.info(

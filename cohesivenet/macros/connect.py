@@ -20,14 +20,16 @@ def get_vns3_client(host, username=None, password=None, api_token=None, verify=F
     """
     basic_auth = all([username, password])
     token_auth = api_token is not None
-    assert basic_auth or token_auth, "Must provide either username/password or api_token"
+    assert (
+        basic_auth or token_auth
+    ), "Must provide either username/password or api_token"
     return VNS3Client(
         Configuration(
             host=host,
             username=username,
             password=password,
             api_token=api_token,
-            verify_ssl=verify
+            verify_ssl=verify,
         )
     )
 
@@ -57,7 +59,9 @@ def get_vns3_clients(*hosts):
 get_clients = get_vns3_clients
 
 
-def get_vns3_clients_common_creds(hosts, common_username, common_password, verify=False):
+def get_vns3_clients_common_creds(
+    hosts, common_username, common_password, verify=False
+):
     """Construct clients for each host
 
     Arguments:
@@ -72,7 +76,8 @@ def get_vns3_clients_common_creds(hosts, common_username, common_password, verif
         [List[VNS3Clients]]
     """
     return [
-        get_vns3_client(host, common_username, common_password, verify) for host in hosts
+        get_vns3_client(host, common_username, common_password, verify)
+        for host in hosts
     ]
 
 
@@ -114,13 +119,15 @@ def get_ms_client(host, username=None, password=None, api_token=None, verify=Fal
     """
     basic_auth = all([username, password])
     token_auth = api_token is not None
-    assert basic_auth or token_auth, "Must provide either username/password or api_token"
+    assert (
+        basic_auth or token_auth
+    ), "Must provide either username/password or api_token"
     return MSClient(
         Configuration(
             host=host,
             username=username,
             password=password,
             api_token=api_token,
-            verify_ssl=verify
+            verify_ssl=verify,
         )
     )
