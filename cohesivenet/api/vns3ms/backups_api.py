@@ -13,7 +13,9 @@
 from __future__ import absolute_import
 
 import re  # noqa: F401
+import time
 
+from cohesivenet import UrlLib3ConnExceptions, Logger, ApiException
 from cohesivenet.api_builder import VersionRouter
 
 
@@ -1084,6 +1086,49 @@ def post_restore_snapshots_backup(api_client, backup_name=None, **kwargs):  # no
     )
 
 
+def wait_for_backup(api_client, job_uuid, retry_timeout=2.0, timeout=60):
+    """Wait for backup job to complete
+
+    :param VNS3Client api_client: (required)
+    :param str job_uuid: (required)
+
+    Keyword Arguments:
+        retry_timeout {float} - time to sleep between retries
+        timeout {int} - max time to wait
+
+    Raises:
+        ApiException
+
+    Returns:
+        dict job data {
+            'uuid': str,
+            'status': str,
+            'filename': str
+        }
+    """
+    import time
+
+    start_time = time.time()
+
+    target_host = api_client.host_uri
+    while time.time() - start_time < timeout:
+        try:
+            backup_resp = get_backup_job(api_client, job_uuid)
+            backup_data = backup_resp.response
+            if backup_data and backup_data.status.lower() == "completed":
+                return backup_data
+
+            Logger.debug("Backup still prcessing. Waiting.", host=target_host)
+            time.sleep(retry_timeout)
+        except UrlLib3ConnExceptions:
+            Logger.debug(
+                "API connection error fetching backup data. Retrying.", host=target_host
+            )
+            time.sleep(retry_timeout)
+            continue
+    raise ApiException(reason="Backup processing never finished. Timeout %s seconds." % timeout)
+
+
 class BackupsApiRouter(VersionRouter):
     """Configure backups for VNS3:ms and your controller snapshots"""
 
@@ -1094,6 +1139,7 @@ class BackupsApiRouter(VersionRouter):
         "post_upload_backup": {"2.1.1-2.5.1": post_upload_backup},
         "post_create_backup": {"2.1.1-2.5.1": post_create_backup},
         "get_backup_job": {"2.1.1-2.5.1": get_backup_job},
+        "wait_for_backup": {"2.1.1-2.5.1": wait_for_backup},
         "post_restore_backup": {"2.1.1-2.5.1": post_restore_backup},
         "get_snapshots_backup": {"2.1.1-2.5.1": get_snapshots_backup},
         "delete_snapshots_backup": {"2.1.1-2.5.1": delete_snapshots_backup},

@@ -157,6 +157,12 @@ class ApiException(OpenApiException):
             return error_obj.get("message")
         return self.body
 
+    def body_dict(self):
+        try:
+            return json.loads(self.body)
+        except json.decoder.JSONDecodeError:
+            raise ApiValueError("Invalid JSON body: raw error.body: %s" % self.body)
+
     @property
     def error(self):
         _data = self.body or self.reason

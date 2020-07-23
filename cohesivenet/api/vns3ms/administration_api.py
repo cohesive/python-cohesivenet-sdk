@@ -280,9 +280,9 @@ def post_validate_ldap_settings(
     >>> response = await api.post_test_ldap_settings(async_req=True)
 
     :param VNS3Client api_client: (required)
-    :param ldap_host str: Host for LDAP server, IP or DNS
+    :param ldap_host str: Host for LDAP server, IP or DNS (required)
     :param ldap_port int: Port for LDAP server
-    :param ldap_ssl bool: Use SSL?
+    :param ldap_ssl bool: Use SSL? (required)
     :param ldap_binddn str: Bind username (required)
     :param ldap_bindpw str: Bind password (required)
 

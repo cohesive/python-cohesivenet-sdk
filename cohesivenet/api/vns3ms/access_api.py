@@ -1386,7 +1386,7 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
         ),  # noqa: E501
         _preload_content=local_var_params.get("_preload_content", True),
         _request_timeout=local_var_params.get("_request_timeout"),
-        collection_formats=collection_formats,
+        collection_formats=collection_formats
     )
 
 

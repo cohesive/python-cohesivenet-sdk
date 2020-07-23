@@ -1676,7 +1676,7 @@ def post_create_webhook(
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.post_create_cloud_vlan(async_req=True)
+    >>> response = await api.post_create_webhook(async_req=True)
 
     :param VNS3Client api_client: (required)
     :param name str: Webhook name (required)

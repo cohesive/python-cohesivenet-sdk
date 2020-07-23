@@ -89,6 +89,9 @@ class APIResponse(io.IOBase):
             )
         return self._file_download
 
+    def to_dict(self):
+        return self.json()
+
     def json(self):
         if self._expected_response_type != "object":
             return None
