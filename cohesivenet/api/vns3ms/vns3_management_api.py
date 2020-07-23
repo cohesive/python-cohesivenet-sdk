@@ -72,7 +72,7 @@ def get_vns3_snapshots(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots",
@@ -146,7 +146,7 @@ def post_create_vns3_snapshot(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots",
@@ -218,7 +218,7 @@ def delete_vns3_snapshots(api_client, snapshot_ids=None, **kwargs):  # noqa: E50
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots",
@@ -286,7 +286,7 @@ def get_download_vns3_snapshot(api_client, snapshot_id=None, **kwargs):  # noqa:
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/snapshots/download",
@@ -351,7 +351,7 @@ def get_controller_report(api_client, report_date=None, **kwargs):  # noqa: E501
         ["application/json"]
     )  # noqa: E501
 
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/system/controller_report",
@@ -425,7 +425,7 @@ def get_vns3_controllers(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers",
@@ -522,7 +522,7 @@ def post_add_vns3_controller(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers",
@@ -589,7 +589,7 @@ def get_vns3_controller(api_client, vns3_controller_id, **kwargs):  # noqa: E501
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}",
@@ -684,7 +684,7 @@ def put_update_vns3_controller(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}",
@@ -749,7 +749,7 @@ def delete_vns3_controller(api_client, vns3_controller_id, **kwargs):  # noqa: E
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}",
@@ -814,7 +814,7 @@ def get_vns3_controller_status(api_client, vns3_controller_id, **kwargs):  # noq
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/status",
@@ -889,7 +889,7 @@ def put_vns3_controller_api_password(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/update_api_password",
@@ -971,7 +971,7 @@ def put_vns3_controller_ui(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/update_ui",
@@ -1038,7 +1038,7 @@ def get_vns3_controller_ha_details(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha",
@@ -1151,7 +1151,7 @@ def put_update_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha",
@@ -1218,7 +1218,7 @@ def put_validate_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/validate",
@@ -1283,7 +1283,7 @@ def put_init_vns3_controller_ha(api_client, vns3_controller_id, **kwargs):  # no
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/initialise",
@@ -1358,7 +1358,7 @@ def put_sync_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/sync",
@@ -1428,7 +1428,7 @@ def put_activate_vns3_controller_ha(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/activate",
@@ -1497,7 +1497,7 @@ def get_vns3_controller_ha_status(
     )  # noqa: E501
 
     # Authentication setting
-    auth_settings = ["ApiTokenAuth",  "basicAuth"]  # noqa: E501
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
         "/vns3_controllers/{vns3_controller_id}/ha/activate",

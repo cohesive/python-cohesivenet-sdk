@@ -13,7 +13,6 @@
 from __future__ import absolute_import
 
 import re  # noqa: F401
-import time
 
 from cohesivenet import UrlLib3ConnExceptions, Logger, ApiException
 from cohesivenet.api_builder import VersionRouter
