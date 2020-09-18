@@ -291,14 +291,14 @@ def get_connected_subnets(api_client, extended_output=None, **kwargs):  # noqa: 
 
 
 def get_download_clientpack(
-    api_client, name=None, fileformat=None, format=None, **kwargs
+    api_client, name=None, fileformat=None, fileFormat=None, **kwargs
 ):  # noqa: E501
     """get_download_clientpack  # noqa: E501
 
     Returns clientpack file. Clientpacks are files with the necessary information and credentials  for an overlay client to be connected to the VNS3 topology   # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_download_clientpack(client, name="100.171.10.1", format="conf", async_req=True)
+    >>> response = await api.get_download_clientpack(client, name="100.171.10.1", fileformat="conf", async_req=True)
 
     :param async_req bool: execute request asynchronously
     :param name str: name of clientpack
@@ -318,7 +318,7 @@ def get_download_clientpack(
 
     local_var_params = locals()
 
-    request_params = ["name", "fileformat", "format"]  # noqa: E501
+    request_params = ["name", "fileformat", "format", "fileFormat"]  # noqa: E501
 
     collection_formats = {}
 
@@ -352,7 +352,7 @@ def get_download_clientpack(
         body={},
         post_params=form_params,
         files=local_var_files,
-        response_type="file:%s" % local_var_params["fileformat"],
+        response_type="file:%s" % (fileFormat or fileformat),
         auth_settings=auth_settings,
         async_req=local_var_params.get("async_req"),
         _return_http_data_only=local_var_params.get(
