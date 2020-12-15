@@ -1481,7 +1481,7 @@ def delete_access_url_by_search(
 
 class AccessApiRouter(VersionRouter):
     """Provision API keys or short-lived access URLs for
-      providing temporary access to any VNS3 controller in your topology"""
+    providing temporary access to any VNS3 controller in your topology"""
 
     function_library = {
         "put_activate_api_key": {"2.1.1-2.3.5": put_activate_api_key},

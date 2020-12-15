@@ -330,8 +330,8 @@ def upload_license(api_client, body=None, **kwargs):  # noqa: E501
 class LicensingApiRouter(VersionRouter):
 
     function_library = {
-        "get_license": {"4.8.4-4.11.1": get_license},
-        "put_license_upgrade": {"4.8.4-4.11.1": put_license_upgrade},
-        "put_set_license_parameters": {"4.8.4-4.11.1": put_set_license_parameters},
-        "upload_license": {"4.8.4-4.11.1": upload_license},
+        "get_license": {"4.8.4-4.11.3": get_license},
+        "put_license_upgrade": {"4.8.4-4.11.3": put_license_upgrade},
+        "put_set_license_parameters": {"4.8.4-4.11.3": put_set_license_parameters},
+        "upload_license": {"4.8.4-4.11.3": upload_license},
     }

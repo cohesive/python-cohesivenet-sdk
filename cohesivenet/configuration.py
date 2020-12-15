@@ -55,8 +55,7 @@ class Configuration(object):
         protocol=None,
         verify_ssl=True,
     ):
-        """Constructor
-        """
+        """Constructor"""
         self.host = host
         """Default Base url
         """

@@ -27,8 +27,7 @@ class TestConfigurationApi(object):
     """AccessApi unit tests stubs"""
 
     def test_get_config(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_config
-        """
+        """Test case for get_config"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -40,8 +39,7 @@ class TestConfigurationApi(object):
         )(configuration_api.get_config)
 
     def test_get_keyset(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_keyset
-        """
+        """Test case for get_keyset"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -55,8 +53,7 @@ class TestConfigurationApi(object):
     def test_get_ssl_install_status(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for get_ssl_install_status
-        """
+        """Test case for get_ssl_install_status"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -68,8 +65,7 @@ class TestConfigurationApi(object):
         )(configuration_api.get_ssl_install_status)
 
     def test_put_config(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_config
-        """
+        """Test case for put_config"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -83,8 +79,7 @@ class TestConfigurationApi(object):
     def test_put_install_ssl_keypair(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_install_ssl_keypair
-        """
+        """Test case for put_install_ssl_keypair"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -96,8 +91,7 @@ class TestConfigurationApi(object):
         )(configuration_api.put_install_ssl_keypair)
 
     def test_put_keyset(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_keyset
-        """
+        """Test case for put_keyset"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -109,8 +103,7 @@ class TestConfigurationApi(object):
         )(configuration_api.put_keyset)
 
     def test_put_update_admin_ui(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_update_admin_ui
-        """
+        """Test case for put_update_admin_ui"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -124,8 +117,7 @@ class TestConfigurationApi(object):
     def test_put_update_api_password(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_update_api_password
-        """
+        """Test case for put_update_api_password"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -139,8 +131,7 @@ class TestConfigurationApi(object):
     def test_put_upload_ssl_keypair(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_upload_ssl_keypair
-        """
+        """Test case for put_upload_ssl_keypair"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -152,8 +143,7 @@ class TestConfigurationApi(object):
         )(configuration_api.put_upload_ssl_keypair)
 
     def test_try_get_keyset(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_expire_access_url
-        """
+        """Test case for put_expire_access_url"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -165,8 +155,7 @@ class TestConfigurationApi(object):
         )(configuration_api.try_get_keyset)
 
     def test_wait_for_keyset(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for wait_for_keyset
-        """
+        """Test case for wait_for_keyset"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,

@@ -27,9 +27,7 @@ class TestSystemAdministrationApi(object):
     """SystemAdministrationApi unit test stubs. Unlicensed allowed"""
 
     def test_get_cloud_data_aws(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_cloud_data
-
-        """
+        """Test case for get_cloud_data"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -41,9 +39,7 @@ class TestSystemAdministrationApi(object):
         )(system_administration_api.get_cloud_data)
 
     def test_get_runtime_status(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_runtime_status
-
-        """
+        """Test case for get_runtime_status"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -55,9 +51,7 @@ class TestSystemAdministrationApi(object):
         )(system_administration_api.get_runtime_status)
 
     def test_get_system_status(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_system_status
-
-        """
+        """Test case for get_system_status"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -69,9 +63,7 @@ class TestSystemAdministrationApi(object):
         )(system_administration_api.get_system_status)
 
     def test_get_task_status(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_task_status
-
-        """
+        """Test case for get_task_status"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -85,9 +77,7 @@ class TestSystemAdministrationApi(object):
     def test_post_generate_support_keypair(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_generate_support_keypair
-
-        """
+        """Test case for post_generate_support_keypair"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -102,8 +92,7 @@ class TestSystemAdministrationApi(object):
     def test_get_remote_support_details(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for get_remote_support_details
-        """
+        """Test case for get_remote_support_details"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -117,8 +106,7 @@ class TestSystemAdministrationApi(object):
     def test_put_update_remote_support(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_update_remote_support
-        """
+        """Test case for put_update_remote_support"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -130,9 +118,7 @@ class TestSystemAdministrationApi(object):
         )(system_administration_api.put_update_remote_support)
 
     def test_put_server_action(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_server_action
-
-        """
+        """Test case for put_server_action"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -144,6 +130,5 @@ class TestSystemAdministrationApi(object):
         )(system_administration_api.put_server_action)
 
     def test_wait_for_api(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for wait_for_api
-        """
+        """Test case for wait_for_api"""
         pass

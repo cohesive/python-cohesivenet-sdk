@@ -104,8 +104,7 @@ class MSClient(APIClient):
         return self.configuration.host_uri
 
     def refresh_token(self):
-        """
-        """
+        """"""
         response = self.access.post_create_token(
             self.configuration.username, self.configuration.api_key
         ).json()

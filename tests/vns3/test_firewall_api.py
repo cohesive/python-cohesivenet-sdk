@@ -29,8 +29,7 @@ class TestFirewallApi(object):
     def test_post_create_firewall_rule(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_firewall_rule
-        """
+        """Test case for post_create_firewall_rule"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -50,8 +49,7 @@ class TestFirewallApi(object):
     def test_delete_firewall_rule_by_position(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for delete_firewall_rule_by_position
-        """
+        """Test case for delete_firewall_rule_by_position"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -72,8 +70,7 @@ class TestFirewallApi(object):
     def test_delete_firewall_rule_by_rule(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for delete_firewall_rule_by_rule
-        """
+        """Test case for delete_firewall_rule_by_rule"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -93,8 +90,7 @@ class TestFirewallApi(object):
     def test_delete_firewall_subgroup(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for delete_firewall_subgroup
-        """
+        """Test case for delete_firewall_subgroup"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -108,8 +104,7 @@ class TestFirewallApi(object):
     def test_get_firewall_fw_sets(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for get_firewall_fw_sets
-        """
+        """Test case for get_firewall_fw_sets"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -125,8 +120,7 @@ class TestFirewallApi(object):
     def test_post_create_firewall_fw_set(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_firewall_fw_set
-        """
+        """Test case for post_create_firewall_fw_set"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -145,8 +139,7 @@ class TestFirewallApi(object):
     def test_delete_firewall_fw_set(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for delete_firewall_fw_set
-        """
+        """Test case for delete_firewall_fw_set"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -158,8 +151,7 @@ class TestFirewallApi(object):
         )(firewall_api.delete_firewall_fw_set)
 
     def test_get_firewall_rules(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_firewall_rules
-        """
+        """Test case for get_firewall_rules"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -189,8 +181,7 @@ class TestFirewallApi(object):
     def test_get_firewall_rule_subgroups(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for get_firewall_rule_subgroups
-        """
+        """Test case for get_firewall_rule_subgroups"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -209,8 +200,7 @@ class TestFirewallApi(object):
     def test_post_create_firewall_subgroup(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_firewall_subgroup
-        """
+        """Test case for post_create_firewall_subgroup"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -229,8 +219,7 @@ class TestFirewallApi(object):
     def test_put_reinitialize_fw_sets(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_reinitialize_fw_sets
-        """
+        """Test case for put_reinitialize_fw_sets"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -244,8 +233,7 @@ class TestFirewallApi(object):
     def test_put_reinitialize_subgroups(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_reinitialize_subgroups
-        """
+        """Test case for put_reinitialize_subgroups"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,

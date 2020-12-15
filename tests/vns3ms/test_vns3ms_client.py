@@ -14,11 +14,13 @@ class TestVNS3Client(object):
     """Test VNS3ms API client"""
 
     def test_api_properties(self):
-        """Test all API groups are accessible as properties
-        """
+        """Test all API groups are accessible as properties"""
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0", username="api", api_key="abcdefge", verify_ssl=False,
+                host="0.0.0.0",
+                username="api",
+                api_key="abcdefge",
+                verify_ssl=False,
             )
         )
 
@@ -82,7 +84,10 @@ class TestVNS3Client(object):
     def test_update_client_state(self):
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0", username="api", api_key="abcdefge", verify_ssl=False,
+                host="0.0.0.0",
+                username="api",
+                api_key="abcdefge",
+                verify_ssl=False,
             )
         )
 
@@ -99,7 +104,10 @@ class TestVNS3Client(object):
     def test_query_state(self):
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0", username="api", api_key="abcdefge", verify_ssl=False,
+                host="0.0.0.0",
+                username="api",
+                api_key="abcdefge",
+                verify_ssl=False,
             )
         )
 
@@ -125,11 +133,13 @@ class TestVNS3Client(object):
         assert api_client.host_uri == "0.0.0.0"
 
     def test_api_version_routing(self):
-        """Test api_builder.VersionRouter inits class based on class correctly
-        """
+        """Test api_builder.VersionRouter inits class based on class correctly"""
         api_client = MSClient(
             configuration=Configuration(
-                host="0.0.0.0", username="api", password="password", verify_ssl=False,
+                host="0.0.0.0",
+                username="api",
+                password="password",
+                verify_ssl=False,
             )
         )
 

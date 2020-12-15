@@ -1007,16 +1007,16 @@ class InterfacesApiRouter(VersionRouter):
     """(Beta) Manage your VNS3 controllers interfaces"""
 
     function_library = {
-        "get_interfaces": {"4.8.4-4.11.1": get_interfaces},
-        "get_system_interface_details": {"4.8.4-4.11.1": get_system_interface_details},
-        "get_system_interfaces": {"4.8.4-4.11.1": get_system_interfaces},
-        "put_update_system_interface": {"4.8.4-4.11.1": put_update_system_interface},
-        "post_create_system_interface": {"4.8.4-4.11.1": post_create_system_interface},
-        "delete_gre_interface": {"4.8.4-4.11.1": delete_gre_interface},
-        "get_gre_interfaces": {"4.8.4-4.11.1": get_gre_interfaces},
-        "put_update_gre_interface": {"4.8.4-4.11.1": put_update_gre_interface},
-        "get_gre_interface_details": {"4.8.4-4.11.1": get_gre_interface_details},
-        "post_create_gre_interface": {"4.8.4-4.11.1": post_create_gre_interface},
-        "delete_system_interface": {"4.8.4-4.11.1": delete_system_interface},
-        "post_interfaces_action": {"4.8.4-4.11.1": post_interfaces_action},
+        "get_interfaces": {"4.8.4-4.11.3": get_interfaces},
+        "get_system_interface_details": {"4.8.4-4.11.3": get_system_interface_details},
+        "get_system_interfaces": {"4.8.4-4.11.3": get_system_interfaces},
+        "put_update_system_interface": {"4.8.4-4.11.3": put_update_system_interface},
+        "post_create_system_interface": {"4.8.4-4.11.3": post_create_system_interface},
+        "delete_gre_interface": {"4.8.4-4.11.3": delete_gre_interface},
+        "get_gre_interfaces": {"4.8.4-4.11.3": get_gre_interfaces},
+        "put_update_gre_interface": {"4.8.4-4.11.3": put_update_gre_interface},
+        "get_gre_interface_details": {"4.8.4-4.11.3": get_gre_interface_details},
+        "post_create_gre_interface": {"4.8.4-4.11.3": post_create_gre_interface},
+        "delete_system_interface": {"4.8.4-4.11.3": delete_system_interface},
+        "post_interfaces_action": {"4.8.4-4.11.3": post_interfaces_action},
     }

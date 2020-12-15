@@ -26,8 +26,7 @@ class TestMSAdminApi(object):
     """VNS3:ms Admin API unit tests"""
 
     def test_put_enable_ldap(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_enable_ldap
-        """
+        """Test case for put_enable_ldap"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -42,8 +41,7 @@ class TestMSAdminApi(object):
         )(administration_api.put_enable_ldap)
 
     def test_get_ldap_settings(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_ldap_settings
-        """
+        """Test case for get_ldap_settings"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -55,8 +53,7 @@ class TestMSAdminApi(object):
         )(administration_api.get_ldap_settings)
 
     def test_put_ldap_settings(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_ldap_settings
-        """
+        """Test case for put_ldap_settings"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -70,8 +67,7 @@ class TestMSAdminApi(object):
     def test_post_validate_ldap_settings(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_validate_ldap_settings
-        """
+        """Test case for post_validate_ldap_settings"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -89,8 +85,7 @@ class TestMSAdminApi(object):
         )(administration_api.post_validate_ldap_settings)
 
     def test_get_ldap_user_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_ldap_user_schema
-        """
+        """Test case for get_ldap_user_schema"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -102,8 +97,7 @@ class TestMSAdminApi(object):
         )(administration_api.get_ldap_user_schema)
 
     def test_put_ldap_user_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_ldap_user_schema
-        """
+        """Test case for put_ldap_user_schema"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -117,8 +111,7 @@ class TestMSAdminApi(object):
     def test_post_validate_ldap_user_schema(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_validate_ldap_user_schema
-        """
+        """Test case for post_validate_ldap_user_schema"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -130,8 +123,7 @@ class TestMSAdminApi(object):
         )(administration_api.post_validate_ldap_user_schema)
 
     def test_get_ldap_group_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_ldap_group_schema
-        """
+        """Test case for get_ldap_group_schema"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -143,8 +135,7 @@ class TestMSAdminApi(object):
         )(administration_api.get_ldap_group_schema)
 
     def test_put_ldap_group_schema(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_ldap_group_schema
-        """
+        """Test case for put_ldap_group_schema"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -158,8 +149,7 @@ class TestMSAdminApi(object):
     def test_post_validate_ldap_group_schema(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_validate_ldap_group_schema
-        """
+        """Test case for post_validate_ldap_group_schema"""
         generate_method_test(
             ms_client,
             ms_api_schema,

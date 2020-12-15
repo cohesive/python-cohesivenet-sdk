@@ -27,9 +27,7 @@ class TestSnapshotsApi(object):
     """SnapshotsApi unit test stubs"""
 
     def test_delete_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for delete_snapshot
-
-        """
+        """Test case for delete_snapshot"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -43,9 +41,7 @@ class TestSnapshotsApi(object):
     def test_get_download_snapshot(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for get_download_snapshot
-
-        """
+        """Test case for get_download_snapshot"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -58,9 +54,7 @@ class TestSnapshotsApi(object):
         )(snapshots_api.get_download_snapshot)
 
     def test_get_snapshots(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_snapshots
-
-        """
+        """Test case for get_snapshots"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -74,9 +68,7 @@ class TestSnapshotsApi(object):
     def test_post_create_snapshot(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_snapshot
-
-        """
+        """Test case for post_create_snapshot"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -88,9 +80,7 @@ class TestSnapshotsApi(object):
         )(snapshots_api.post_create_snapshot)
 
     def test_put_import_snapshot(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_import_snapshot
-
-        """
+        """Test case for put_import_snapshot"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,

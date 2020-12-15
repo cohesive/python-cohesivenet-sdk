@@ -916,6 +916,12 @@ def post_test_ldap_settings(
     encrypt_verify_ca=None,
     binddn=None,
     bindpw=None,
+    auth_cert=None,
+    auth_cert_current=None,
+    auth_key=None,
+    auth_key_current=None,
+    ca_cert=None,
+    ca_cert_current=None,
     **kwargs
 ):
     """Test LDAP user schema settings  # noqa: E501
@@ -935,6 +941,12 @@ def post_test_ldap_settings(
     :param bool encrypt_verify_ca: Verify certicate using authority
     :param str binddn: Bind Username
     :param str bindpw: Bind Password
+    :param str auth_cert: Authentication certificate text content to use. (4.11.3)
+    :param bool auth_cert_current: Test with current uploaded authentication certificate (4.11.3)
+    :param str auth_key: Authentication key text content to use (4.11.3)
+    :param bool auth_key_current: Test with current uploaded authentication key (4.11.3)
+    :param str ca_cert: CA certificate text content to use (4.11.3)
+    :param bool ca_cert_current:  Test with current uploaded CA certificate (4.11.3)
 
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
@@ -959,6 +971,12 @@ def post_test_ldap_settings(
         "encrypt_verify_ca",
         "binddn",
         "bindpw",
+        "auth_cert",
+        "auth_cert_current",
+        "auth_key",
+        "auth_key_current",
+        "ca_cert",
+        "ca_cert_current",
     ]
 
     collection_formats = {}
@@ -1873,6 +1891,7 @@ def put_ldap_vpn_schema_settings(
     vpn_group_member_attribute=None,
     vpn_group_member_attr_format=None,
     vpn_group_search_scope=None,
+    vpn_group_otp=None,
     **kwargs
 ):
     """Put LDAP VPN schema settings  # noqa: E501
@@ -1891,6 +1910,7 @@ def put_ldap_vpn_schema_settings(
     :param str vpn_group_member_attribute: Attribute used to search for a user within the VPN Group
     :param str vpn_group_member_attr_format: Format of the Group VPN Member attribute
     :param str vpn_group_search_scope: Search scope for filter
+    :param bool vpn_group_otp: Use Google authenticator OTP (default false). New with 4.11.3
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1913,6 +1933,7 @@ def put_ldap_vpn_schema_settings(
         "vpn_group_member_attribute",
         "vpn_group_member_attr_format",
         "vpn_group_search_scope",
+        "vpn_group_otp",
     ]
 
     collection_formats = {}
@@ -2292,47 +2313,47 @@ class AccessApiRouter(VersionRouter):
     """Manage access to VNS3 with API tokens and admin access URLs"""
 
     function_library = {
-        "create_access_url": {"4.8.4-4.11.1": create_access_url},
-        "create_api_token": {"4.8.4-4.11.1": create_api_token},
-        "delete_access_url": {"4.8.4-4.11.1": delete_access_url},
-        "delete_access_url_by_search": {"4.8.4-4.11.1": delete_access_url_by_search},
-        "delete_api_token": {"4.8.4-4.11.1": delete_api_token},
-        "get_access_urls": {"4.8.4-4.11.1": get_access_urls},
-        "get_access_url": {"4.8.4-4.11.1": get_access_url},
-        "get_api_token": {"4.8.4-4.11.1": get_api_token},
-        "get_api_tokens": {"4.8.4-4.11.1": get_api_tokens},
-        "put_expire_access_url": {"4.8.4-4.11.1": put_expire_access_url},
-        "put_expire_api_token": {"4.8.4-4.11.1": put_expire_api_token},
-        "put_ldap_settings": {"4.9.1-4.11.1": put_ldap_settings},
-        "post_test_ldap_settings": {"4.9.1-4.11.1": post_test_ldap_settings},
-        "get_ldap_settings": {"4.9.1-4.11.1": get_ldap_settings},
-        "put_enable_ldap": {"4.9.1-4.11.1": put_enable_ldap},
-        "put_upload_ldap_auth_cert": {"4.9.1-4.11.1": put_upload_ldap_auth_cert},
-        "put_upload_ldap_auth_key": {"4.9.1-4.11.1": put_upload_ldap_auth_key},
-        "put_upload_ldap_ca_cert": {"4.9.1-4.11.1": put_upload_ldap_ca_cert},
+        "create_access_url": {"4.8.4-4.11.3": create_access_url},
+        "create_api_token": {"4.8.4-4.11.3": create_api_token},
+        "delete_access_url": {"4.8.4-4.11.3": delete_access_url},
+        "delete_access_url_by_search": {"4.8.4-4.11.3": delete_access_url_by_search},
+        "delete_api_token": {"4.8.4-4.11.3": delete_api_token},
+        "get_access_urls": {"4.8.4-4.11.3": get_access_urls},
+        "get_access_url": {"4.8.4-4.11.3": get_access_url},
+        "get_api_token": {"4.8.4-4.11.3": get_api_token},
+        "get_api_tokens": {"4.8.4-4.11.3": get_api_tokens},
+        "put_expire_access_url": {"4.8.4-4.11.3": put_expire_access_url},
+        "put_expire_api_token": {"4.8.4-4.11.3": put_expire_api_token},
+        "put_ldap_settings": {"4.9.1-4.11.3": put_ldap_settings},
+        "post_test_ldap_settings": {"4.9.1-4.11.3": post_test_ldap_settings},
+        "get_ldap_settings": {"4.9.1-4.11.3": get_ldap_settings},
+        "put_enable_ldap": {"4.9.1-4.11.3": put_enable_ldap},
+        "put_upload_ldap_auth_cert": {"4.9.1-4.11.3": put_upload_ldap_auth_cert},
+        "put_upload_ldap_auth_key": {"4.9.1-4.11.3": put_upload_ldap_auth_key},
+        "put_upload_ldap_ca_cert": {"4.9.1-4.11.3": put_upload_ldap_ca_cert},
         "put_ldap_group_schema_settings": {
-            "4.9.1-4.11.1": put_ldap_group_schema_settings
+            "4.9.1-4.11.3": put_ldap_group_schema_settings
         },
         "post_test_ldap_group_schema_settings": {
-            "4.9.1-4.11.1": post_test_ldap_group_schema_settings
+            "4.9.1-4.11.3": post_test_ldap_group_schema_settings
         },
         "get_ldap_group_schema_settings": {
-            "4.9.1-4.11.1": get_ldap_group_schema_settings
+            "4.9.1-4.11.3": get_ldap_group_schema_settings
         },
         "put_ldap_user_schema_settings": {
-            "4.9.1-4.11.1": put_ldap_user_schema_settings
+            "4.9.1-4.11.3": put_ldap_user_schema_settings
         },
         "post_test_ldap_user_schema_settings": {
-            "4.9.1-4.11.1": post_test_ldap_user_schema_settings
+            "4.9.1-4.11.3": post_test_ldap_user_schema_settings
         },
         "get_ldap_user_schema_settings": {
-            "4.9.1-4.11.1": get_ldap_user_schema_settings
+            "4.9.1-4.11.3": get_ldap_user_schema_settings
         },
-        "get_ldap_vpn_schema_settings": {"4.10.1-4.11.1": get_ldap_vpn_schema_settings},
+        "get_ldap_vpn_schema_settings": {"4.10.1-4.11.3": get_ldap_vpn_schema_settings},
         "post_test_ldap_vpn_schema_settings": {
-            "4.10.1-4.11.1": post_test_ldap_vpn_schema_settings
+            "4.10.1-4.11.3": post_test_ldap_vpn_schema_settings
         },
-        "put_ldap_vpn_schema_settings": {"4.10.1-4.11.1": put_ldap_vpn_schema_settings},
-        "put_ldap_vpn_radius_settings": {"4.11.1": put_ldap_vpn_radius_settings},
-        "get_ldap_vpn_radius_settings": {"4.11.1": get_ldap_vpn_radius_settings},
+        "put_ldap_vpn_schema_settings": {"4.10.1-4.11.3": put_ldap_vpn_schema_settings},
+        "put_ldap_vpn_radius_settings": {"4.11.1-4.11.3": put_ldap_vpn_radius_settings},
+        "get_ldap_vpn_radius_settings": {"4.11.1-4.11.3": get_ldap_vpn_radius_settings},
     }

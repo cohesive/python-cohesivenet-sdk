@@ -27,8 +27,7 @@ class TestLicensingApi(object):
     """LicensingApi unit test stubs"""
 
     def test_get_license(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_license
-        """
+        """Test case for get_license"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -40,9 +39,7 @@ class TestLicensingApi(object):
         )(licensing_api.get_license)
 
     def test_put_license_upgrade(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_license_upgrade
-
-        """
+        """Test case for put_license_upgrade"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -56,8 +53,7 @@ class TestLicensingApi(object):
     def test_put_set_license_parameters(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_set_license_parameters
-        """
+        """Test case for put_set_license_parameters"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -69,9 +65,7 @@ class TestLicensingApi(object):
         )(licensing_api.put_set_license_parameters)
 
     def test_upload_license(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for upload_license
-
-        """
+        """Test case for upload_license"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,

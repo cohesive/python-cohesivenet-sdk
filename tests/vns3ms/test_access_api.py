@@ -26,8 +26,7 @@ class TestMSAccessApi(object):
     """AccessApi unit tests"""
 
     def test_put_activate_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_activate_api_key
-        """
+        """Test case for put_activate_api_key"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -39,8 +38,7 @@ class TestMSAccessApi(object):
         )(access_api.put_activate_api_key)
 
     def test_post_create_token(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for post_create_token
-        """
+        """Test case for post_create_token"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -52,8 +50,7 @@ class TestMSAccessApi(object):
         )(access_api.post_create_token)
 
     def test_put_expire_token(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_expire_token
-        """
+        """Test case for put_expire_token"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -67,8 +64,7 @@ class TestMSAccessApi(object):
     def test_put_invalidate_api_key_tokens(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_invalidate_api_key_tokens
-        """
+        """Test case for put_invalidate_api_key_tokens"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -80,8 +76,7 @@ class TestMSAccessApi(object):
         )(access_api.put_invalidate_api_key_tokens)
 
     def test_get_api_keys(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_api_keys
-        """
+        """Test case for get_api_keys"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -93,8 +88,7 @@ class TestMSAccessApi(object):
         )(access_api.get_api_keys)
 
     def test_post_create_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for post_create_api_key
-        """
+        """Test case for post_create_api_key"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -106,8 +100,7 @@ class TestMSAccessApi(object):
         )(access_api.post_create_api_key)
 
     def test_put_update_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_update_api_key
-        """
+        """Test case for put_update_api_key"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -119,8 +112,7 @@ class TestMSAccessApi(object):
         )(access_api.put_update_api_key)
 
     def test_delete_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_api_key
-        """
+        """Test case for delete_api_key"""
         generate_method_test(
             ms_client,
             ms_api_schema,

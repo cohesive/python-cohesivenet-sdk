@@ -29,8 +29,7 @@ class TestIPsecApi(object):
     def test_delete_ipsec_endpoint(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for delete_ipsec_endpoint
-        """
+        """Test case for delete_ipsec_endpoint"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -44,8 +43,7 @@ class TestIPsecApi(object):
     def test_delete_ipsec_endpoint_tunnel(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for delete_ipsec_endpoint_tunnel
-        """
+        """Test case for delete_ipsec_endpoint_tunnel"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -57,8 +55,7 @@ class TestIPsecApi(object):
         )(ipsec_api.delete_ipsec_endpoint_tunnel)
 
     def test_get_ipsec_details(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_ipsec_details
-        """
+        """Test case for get_ipsec_details"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -70,8 +67,7 @@ class TestIPsecApi(object):
         )(ipsec_api.get_ipsec_details)
 
     def test_get_ipsec_endpoint(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_ipsec_endpoint
-        """
+        """Test case for get_ipsec_endpoint"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -83,8 +79,7 @@ class TestIPsecApi(object):
         )(ipsec_api.get_ipsec_endpoint)
 
     def test_get_ipsec_status(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_ipsec_status
-        """
+        """Test case for get_ipsec_status"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -98,8 +93,7 @@ class TestIPsecApi(object):
     def test_get_ipsec_link_history(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for get_ipsec_link_history
-        """
+        """Test case for get_ipsec_link_history"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -113,8 +107,7 @@ class TestIPsecApi(object):
     def test_post_create_ipsec_endpoint(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_ipsec_endpoint
-        """
+        """Test case for post_create_ipsec_endpoint"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -128,9 +121,7 @@ class TestIPsecApi(object):
     def test_post_create_ipsec_endpoint_tunnel(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_ipsec_endpoint_tunnel
-
-        """
+        """Test case for post_create_ipsec_endpoint_tunnel"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -144,8 +135,7 @@ class TestIPsecApi(object):
     def test_post_restart_ipsec_action(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_restart_ipsec_action
-        """
+        """Test case for post_restart_ipsec_action"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -159,9 +149,7 @@ class TestIPsecApi(object):
     def test_put_update_ipsec_endpoint(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_update_ipsec_endpoint
-
-        """
+        """Test case for put_update_ipsec_endpoint"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -175,9 +163,7 @@ class TestIPsecApi(object):
     def test_put_update_ipsec_endpoint_tunnel(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_update_ipsec_endpoint_tunnel
-
-        """
+        """Test case for put_update_ipsec_endpoint_tunnel"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -191,14 +177,13 @@ class TestIPsecApi(object):
     def test_put_update_ipsec_config(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_update_ipsec_config
-        """
+        """Test case for put_update_ipsec_config"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
             "put",
             "/ipsec",
             rest_mocker,
-            request_kwargs={'ipsec_local_ipaddress': 'huwckmxnittoags'},
+            request_kwargs={"ipsec_local_ipaddress": "huwckmxnittoags"},
             mock_response=IpsecApiData.IpsecSystemDetailResponse,
         )(ipsec_api.put_update_ipsec_config)

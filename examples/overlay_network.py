@@ -161,8 +161,7 @@ def peer_controllers(root_client, peer_client, parameters):
 
 
 def run():
-    """Run create peering mesh.
-    """
+    """Run create peering mesh."""
     parameters = get_env()
     clients = create_clients(**parameters)
 

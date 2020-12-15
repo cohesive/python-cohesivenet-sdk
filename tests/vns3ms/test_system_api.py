@@ -28,8 +28,7 @@ class TestMSSystemApi(object):
     def test_get_remote_support_details(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_remote_support_details
-        """
+        """Test case for get_remote_support_details"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -44,8 +43,7 @@ class TestMSSystemApi(object):
         )(system_api.get_remote_support_details)
 
     def test_put_remote_support(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_remote_support
-        """
+        """Test case for put_remote_support"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -59,8 +57,7 @@ class TestMSSystemApi(object):
     def test_get_remote_support_keypair_details(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_remote_support_keypair_details
-        """
+        """Test case for get_remote_support_keypair_details"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -74,8 +71,7 @@ class TestMSSystemApi(object):
     def test_post_generate_remote_support_keypair(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_generate_remote_support_keypair
-        """
+        """Test case for post_generate_remote_support_keypair"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -89,8 +85,7 @@ class TestMSSystemApi(object):
     def test_delete_remote_support_keypair(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for delete_remote_support_keypair
-        """
+        """Test case for delete_remote_support_keypair"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -105,8 +100,7 @@ class TestMSSystemApi(object):
         )(system_api.delete_remote_support_keypair)
 
     def test_get_system_status(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_system_status
-        """
+        """Test case for get_system_status"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -118,8 +112,7 @@ class TestMSSystemApi(object):
         )(system_api.get_system_status)
 
     def test_get_credential_types(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_credential_types
-        """
+        """Test case for get_credential_types"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -136,8 +129,7 @@ class TestMSSystemApi(object):
     def test_get_credential_type_details(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_credential_type_details
-        """
+        """Test case for get_credential_type_details"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -149,8 +141,7 @@ class TestMSSystemApi(object):
         )(system_api.get_credential_type_details)
 
     def test_get_system_ntp_hosts(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_system_ntp_hosts
-        """
+        """Test case for get_system_ntp_hosts"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -162,8 +153,7 @@ class TestMSSystemApi(object):
         )(system_api.get_system_ntp_hosts)
 
     def test_post_add_ntp_host(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for post_add_ntp_host
-        """
+        """Test case for post_add_ntp_host"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -175,8 +165,7 @@ class TestMSSystemApi(object):
         )(system_api.post_add_ntp_host)
 
     def test_delete_ntp_host(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_ntp_host
-        """
+        """Test case for delete_ntp_host"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -188,8 +177,7 @@ class TestMSSystemApi(object):
         )(system_api.delete_ntp_host)
 
     def test_delete_ssl_install(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_ssl_install
-        """
+        """Test case for delete_ssl_install"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -201,8 +189,7 @@ class TestMSSystemApi(object):
         )(system_api.delete_ssl_install)
 
     def test_get_ssl_install_status(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_ssl_install_status
-        """
+        """Test case for get_ssl_install_status"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -214,8 +201,7 @@ class TestMSSystemApi(object):
         )(system_api.get_ssl_install_status)
 
     def test_put_upload_ssl_certs(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_upload_ssl_certs
-        """
+        """Test case for put_upload_ssl_certs"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -227,8 +213,7 @@ class TestMSSystemApi(object):
         )(system_api.put_upload_ssl_certs)
 
     def test_put_install_ssl_certs(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_install_ssl_certs
-        """
+        """Test case for put_install_ssl_certs"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -240,8 +225,7 @@ class TestMSSystemApi(object):
         )(system_api.put_install_ssl_certs)
 
     def test_get_job_status(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_job_status
-        """
+        """Test case for get_job_status"""
         generate_method_test(
             ms_client,
             ms_api_schema,

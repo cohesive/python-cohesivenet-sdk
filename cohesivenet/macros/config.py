@@ -16,7 +16,7 @@ from cohesivenet import (
 from cohesivenet.macros import api_operations
 
 
-def fetch_keyset_from_source(   # noqa: C901
+def fetch_keyset_from_source(  # noqa: C901
     client, source, token, wait_timeout=180.0, allow_exists=False
 ):  # noqa
     """fetch_keyset_from_source Put keyset by providing source controller to download keyset. This
@@ -58,7 +58,8 @@ def fetch_keyset_from_source(   # noqa: C901
             return client.config.try_get_keyset()
 
         Logger.info(
-            "Failed to fetch keyset: %s" % e.get_error_message(), host=client.host_uri,
+            "Failed to fetch keyset: %s" % e.get_error_message(),
+            host=client.host_uri,
         )
         raise e
     except UrlLib3ConnExceptions:

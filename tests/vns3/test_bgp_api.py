@@ -27,8 +27,7 @@ class TestBGPApi(object):
     """BGPApi unit tests stubs"""
 
     def test_get_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for delete_bgp_peer
-        """
+        """Test case for delete_bgp_peer"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -40,8 +39,7 @@ class TestBGPApi(object):
         )(bgp_api.get_bgp_peer)
 
     def test_delete_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for delete_bgp_peer
-        """
+        """Test case for delete_bgp_peer"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -53,8 +51,7 @@ class TestBGPApi(object):
         )(bgp_api.delete_bgp_peer)
 
     def test_create_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for test_create_bgp_peer
-        """
+        """Test case for test_create_bgp_peer"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -66,8 +63,7 @@ class TestBGPApi(object):
         )(bgp_api.create_bgp_peer)
 
     def test_update_bgp_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for test_update_bgp_peer
-        """
+        """Test case for test_update_bgp_peer"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,

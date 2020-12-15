@@ -26,8 +26,7 @@ class TestMSUserApi(object):
     """VNS3:ms User API unit tests"""
 
     def test_put_user_password(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_user_password
-        """
+        """Test case for put_user_password"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -39,8 +38,7 @@ class TestMSUserApi(object):
         )(user_api.put_user_password)
 
     def test_get_user_credentials(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_user_credentials
-        """
+        """Test case for get_user_credentials"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -54,8 +52,7 @@ class TestMSUserApi(object):
     def test_post_create_user_credential(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_create_user_credential
-        """
+        """Test case for post_create_user_credential"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -72,8 +69,7 @@ class TestMSUserApi(object):
     def test_put_update_user_credential(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_update_user_credential
-        """
+        """Test case for put_update_user_credential"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -85,8 +81,7 @@ class TestMSUserApi(object):
         )(user_api.put_update_user_credential)
 
     def test_delete_user_credential(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_user_credential
-        """
+        """Test case for delete_user_credential"""
         generate_method_test(
             ms_client,
             ms_api_schema,

@@ -116,9 +116,11 @@ class RestClientMock(object):
         )
 
         if query_params is not None:
-            assert set(query_called) == set(query_params), (
-                "Unexpected query params %s. Expected %s. Order ignored."
-                % (query_called, query_params)
+            assert set(query_called) == set(
+                query_params
+            ), "Unexpected query params %s. Expected %s. Order ignored." % (
+                query_called,
+                query_params,
             )
         if headers is not None:
             assert headers_called == headers, "Unexpected headers %s. Expected %s." % (
@@ -126,9 +128,11 @@ class RestClientMock(object):
                 headers,
             )
         if post_params is not None:
-            assert post_params_called == post_params, (
-                "Unexpected POST params %s. Expected %s."
-                % (post_params_called, post_params)
+            assert (
+                post_params_called == post_params
+            ), "Unexpected POST params %s. Expected %s." % (
+                post_params_called,
+                post_params,
             )
         if body is not None:
             assert body_called == body, "Unexpected Body %s. Expected %s." % (

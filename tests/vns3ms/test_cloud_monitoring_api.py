@@ -28,8 +28,7 @@ class TestMSMonitoringApi(object):
     def test_get_cloud_vlan_components(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_cloud_vlan_components
-        """
+        """Test case for get_cloud_vlan_components"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -43,8 +42,7 @@ class TestMSMonitoringApi(object):
     def test_post_create_vlan_component(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_create_vlan_component
-        """
+        """Test case for post_create_vlan_component"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -61,8 +59,7 @@ class TestMSMonitoringApi(object):
     def test_get_cloud_vlan_component(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_cloud_vlan_component
-        """
+        """Test case for get_cloud_vlan_component"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -76,8 +73,7 @@ class TestMSMonitoringApi(object):
     def test_put_update_vlan_component(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_update_vlan_component
-        """
+        """Test case for put_update_vlan_component"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -89,8 +85,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.put_update_vlan_component)
 
     def test_delete_vlan_component(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_vlan_component
-        """
+        """Test case for delete_vlan_component"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -102,8 +97,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.delete_vlan_component)
 
     def test_get_cloud_vlans(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_cloud_vlans
-        """
+        """Test case for get_cloud_vlans"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -115,8 +109,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.get_cloud_vlans)
 
     def test_post_create_cloud_vlan(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for post_create_cloud_vlan
-        """
+        """Test case for post_create_cloud_vlan"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -131,8 +124,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.post_create_cloud_vlan)
 
     def test_get_cloud_vlan(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_cloud_vlan
-        """
+        """Test case for get_cloud_vlan"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -144,8 +136,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.get_cloud_vlan)
 
     def test_put_update_cloud_vlan(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_update_cloud_vlan
-        """
+        """Test case for put_update_cloud_vlan"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -157,8 +148,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.put_update_cloud_vlan)
 
     def test_delete_cloud_vlan(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_cloud_vlan
-        """
+        """Test case for delete_cloud_vlan"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -173,8 +163,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.delete_cloud_vlan)
 
     def test_get_virtual_networks(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_virtual_networks
-        """
+        """Test case for get_virtual_networks"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -188,8 +177,7 @@ class TestMSMonitoringApi(object):
     def test_post_create_virtual_network(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_create_virtual_network
-        """
+        """Test case for post_create_virtual_network"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -201,8 +189,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.post_create_virtual_network)
 
     def test_get_virtual_network(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_virtual_network
-        """
+        """Test case for get_virtual_network"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -216,8 +203,7 @@ class TestMSMonitoringApi(object):
     def test_put_update_virtual_network(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_update_virtual_network
-        """
+        """Test case for put_update_virtual_network"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -232,8 +218,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.put_update_virtual_network)
 
     def test_delete_virtual_network(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_virtual_network
-        """
+        """Test case for delete_virtual_network"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -250,8 +235,7 @@ class TestMSMonitoringApi(object):
     def test_get_export_virtual_networks(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_export_virtual_networks
-        """
+        """Test case for get_export_virtual_networks"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -265,8 +249,7 @@ class TestMSMonitoringApi(object):
     def test_post_import_virtual_networks(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_import_virtual_networks
-        """
+        """Test case for post_import_virtual_networks"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -278,8 +261,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.post_import_virtual_networks)
 
     def test_get_vns3_topologies(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_vns3_topologies
-        """
+        """Test case for get_vns3_topologies"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -293,8 +275,7 @@ class TestMSMonitoringApi(object):
     def test_post_create_vns3_topology(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_create_vns3_topology
-        """
+        """Test case for post_create_vns3_topology"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -306,8 +287,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.post_create_vns3_topology)
 
     def test_get_vns3_topology(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_vns3_topology
-        """
+        """Test case for get_vns3_topology"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -321,8 +301,7 @@ class TestMSMonitoringApi(object):
     def test_put_update_vns3_topology(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_update_vns3_topology
-        """
+        """Test case for put_update_vns3_topology"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -334,8 +313,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.put_update_vns3_topology)
 
     def test_delete_vns3_topology(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_vns3_topology
-        """
+        """Test case for delete_vns3_topology"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -347,8 +325,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.delete_vns3_topology)
 
     def test_get_webhooks(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_webhooks
-        """
+        """Test case for get_webhooks"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -360,8 +337,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.get_webhooks)
 
     def test_post_create_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for post_create_webhook
-        """
+        """Test case for post_create_webhook"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -373,8 +349,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.post_create_webhook)
 
     def test_get_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_webhook
-        """
+        """Test case for get_webhook"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -386,8 +361,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.get_webhook)
 
     def test_put_update_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_update_webhook
-        """
+        """Test case for put_update_webhook"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -399,8 +373,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.put_update_webhook)
 
     def test_delete_webhook(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_webhook
-        """
+        """Test case for delete_webhook"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -412,8 +385,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.delete_webhook)
 
     def test_get_alerts(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_alerts
-        """
+        """Test case for get_alerts"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -425,8 +397,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.get_alerts)
 
     def test_get_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_alert
-        """
+        """Test case for get_alert"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -438,8 +409,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.get_alert)
 
     def test_post_create_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for post_create_alert
-        """
+        """Test case for post_create_alert"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -451,8 +421,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.post_create_alert)
 
     def test_put_update_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_update_alert
-        """
+        """Test case for put_update_alert"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -464,8 +433,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.put_update_alert)
 
     def test_delete_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_alert
-        """
+        """Test case for delete_alert"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -477,8 +445,7 @@ class TestMSMonitoringApi(object):
         )(cloud_monitoring_api.delete_alert)
 
     def test_post_test_alert(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for post_test_alert
-        """
+        """Test case for post_test_alert"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -495,8 +462,7 @@ class TestMSMonitoringApi(object):
     def test_post_toggle_enable_alert(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_toggle_enable_alert
-        """
+        """Test case for post_toggle_enable_alert"""
         generate_method_test(
             ms_client,
             ms_api_schema,

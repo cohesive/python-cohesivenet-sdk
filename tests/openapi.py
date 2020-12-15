@@ -51,10 +51,10 @@ def fetch_spec(spec):
 
 def get_mock_call_args(method_schema):
     """Generate mock call args for endpoint path args
-    
+
     Arguments:
         method_schema {dict} - parses parameters - https://swagger.io/docs/specification/describing-parameters/
-    
+
     Returns:
         tuple
     """
@@ -74,13 +74,13 @@ def get_mock_call_args(method_schema):
 
 def get_mock_call_kwargs(method_schema):
     """Generate mock request query parameters or request body from schema
-    
+
     Arguments:
         method_schema {dict} -- dict under http methods - https://swagger.io/docs/specification/paths-and-operations/
-    
+
     Raises:
         RuntimeError - invalid test declaration or unsupported
-    
+
     Returns:
         dict
     """
@@ -204,18 +204,18 @@ def is_file_download(response_schema):
 
 def get_method_success_response(method_schema, full_schema, content_type=None):
     """[summary]
-    
+
     Arguments:
         method_schema {[type]} -- [description]
         full_schema {[type]} -- [description]
-    
+
     Keyword Arguments:
         content_type {[type]} -- [description] (default: {None})
-    
+
     Raises:
         RuntimeError: [description]
         RuntimeError: [description]
-    
+
     Returns:
         [type] -- [description]
     """
@@ -512,9 +512,11 @@ def generate_method_test(
         assert type(response) is APIResponse, "Unexpected response type %s" % str(
             type(response)
         )
-        assert response.status == response_code, (
-            "Unexpected response status %d. Expected %s"
-            % (response.status, response_code)
+        assert (
+            response.status == response_code
+        ), "Unexpected response status %d. Expected %s" % (
+            response.status,
+            response_code,
         )
         rest_mocker.assert_requested(
             _method.upper(),

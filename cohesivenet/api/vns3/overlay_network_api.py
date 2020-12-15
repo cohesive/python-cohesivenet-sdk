@@ -1133,21 +1133,21 @@ def put_update_all_clientpacks(
 class OverlayNetworkApiRouter(VersionRouter):
     # put_update_clientpacks
     function_library = {
-        "delete_clientpack_tag": {"4.8.4-4.11.1": delete_clientpack_tag},
-        "get_clientpack": {"4.8.4-4.11.1": get_clientpack},
-        "get_clientpacks": {"4.8.4-4.11.1": get_clientpacks},
-        "get_clients_status": {"4.8.4-4.11.1": get_clients_status},
-        "get_connected_subnets": {"4.8.4-4.11.1": get_connected_subnets},
-        "get_download_clientpack": {"4.8.4-4.11.1": get_download_clientpack},
-        "get_download_named_clientpack": {"4.11.1": get_download_named_clientpack},
+        "delete_clientpack_tag": {"4.8.4-4.11.3": delete_clientpack_tag},
+        "get_clientpack": {"4.8.4-4.11.3": get_clientpack},
+        "get_clientpacks": {"4.8.4-4.11.3": get_clientpacks},
+        "get_clients_status": {"4.8.4-4.11.3": get_clients_status},
+        "get_connected_subnets": {"4.8.4-4.11.3": get_connected_subnets},
+        "get_download_clientpack": {"4.8.4-4.11.3": get_download_clientpack},
+        "get_download_named_clientpack": {"4.11.3": get_download_named_clientpack},
         "post_checkout_next_clientpack": {
-            "4.8.4-4.11.1": post_checkout_next_clientpack
+            "4.8.4-4.11.3": post_checkout_next_clientpack
         },
-        "post_create_clientpack_tag": {"4.8.4-4.11.1": post_create_clientpack_tag},
-        "post_reset_all_clients": {"4.8.4-4.11.1": post_reset_all_clients},
-        "post_reset_client": {"4.8.4-4.11.1": post_reset_client},
-        "post_add_clientpacks": {"4.8.4-4.11.1": post_add_clientpacks},
-        "put_update_clientpack": {"4.8.4-4.11.1": put_update_clientpack},
-        "put_disconnect_clientpack": {"4.8.4-4.11.1": put_disconnect_clientpack},
-        "put_update_all_clientpacks": {"4.8.4-4.11.1": put_update_all_clientpacks},
+        "post_create_clientpack_tag": {"4.8.4-4.11.3": post_create_clientpack_tag},
+        "post_reset_all_clients": {"4.8.4-4.11.3": post_reset_all_clients},
+        "post_reset_client": {"4.8.4-4.11.3": post_reset_client},
+        "post_add_clientpacks": {"4.8.4-4.11.3": post_add_clientpacks},
+        "put_update_clientpack": {"4.8.4-4.11.3": put_update_clientpack},
+        "put_disconnect_clientpack": {"4.8.4-4.11.3": put_disconnect_clientpack},
+        "put_update_all_clientpacks": {"4.8.4-4.11.3": put_update_all_clientpacks},
     }

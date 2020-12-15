@@ -435,6 +435,7 @@ def post_create_ipsec_endpoint(
     name=None,
     ipaddress=None,
     secret=None,
+    description=None,
     pfs=True,
     ike_version=1,
     nat_t_enabled=True,
@@ -455,17 +456,18 @@ def post_create_ipsec_endpoint(
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.post_create_ipsec_endpoint(create_ipsec_endpoint_request, async_req=True)
 
-    :param name str:
-    :param ipaddress str:
-    :param secret str:
-    :param pfs bool: defaults to true on API
-    :param ike_version int:
-    :param nat_t_enabled bool:
-    :param extra_config str:
-    :param private_ipaddress str:
-    :param gre bool:
-    :param gre_interface_address str:
-    :param vpn_type str: defaults to policy
+    :param name str: Name for the connection. (required)
+    :param ipaddress str: IP of the remote gateway (required)
+    :param secret str:  Pre-shared key (required)
+    :param description str: Description of this IPsec endpoint
+    :param pfs bool: Perfect Forward Secrecy if true, disables if false. defaults to true.
+    :param ike_version int: Version for IKE algorithm. default 1
+    :param nat_t_enabled bool: True if you want encapsulated IPsec protocol to this gateway. default true
+    :param extra_config str: Additional optionals for connection such as 'phase1=aes256_gcm-sha2_256-dh14 phase2=aes256_gcm'
+    :param private_ipaddress str: Internal NAT address of the remote gateway
+    :param gre bool: True if GRE is being used for the specific endpoint
+    :param gre_interface_address str: Interface for GRE in /30 format
+    :param vpn_type str: policy, gre, vti. defaults to policy
     :param route_based_int_address str:
     :param route_based_local str:
     :param route_based_local str:
@@ -488,6 +490,7 @@ def post_create_ipsec_endpoint(
         "name",
         "ipaddress",
         "secret",
+        "description",
         "pfs",
         "ike_version",
         "nat_t_enabled",
@@ -733,6 +736,7 @@ def put_update_ipsec_endpoint(
     name=None,
     ipaddress=None,
     secret=None,
+    description=None,
     pfs=True,
     ike_version=1,
     nat_t_enabled=True,
@@ -754,17 +758,18 @@ def put_update_ipsec_endpoint(
     >>> response = await api.put_update_ipsec_endpoint(endpoint_id, update_ipsec_connection_request, async_req=True)
 
     :param int endpoint_id: ID for IPsec endpoint (required)
-    :param name str:
-    :param ipaddress str:
-    :param secret str:
-    :param pfs bool: defaults to true on API
-    :param ike_version int:
-    :param nat_t_enabled bool:
-    :param extra_config str:
-    :param private_ipaddress str:
-    :param gre bool:
-    :param gre_interface_address str:
-    :param vpn_type str: defaults to policy
+    :param name str: Name for the connection.
+    :param ipaddress str: IP of the remote gateway
+    :param secret str:  Pre-shared key
+    :param description str: Description of this IPsec endpoint
+    :param pfs bool: Perfect Forward Secrecy if true, disables if false.
+    :param ike_version int: Version for IKE algorithm.
+    :param nat_t_enabled bool: True if you want encapsulated IPsec protocol to this gateway.
+    :param extra_config str: Additional optionals for connection such as 'phase1=aes256_gcm-sha2_256-dh14 phase2=aes256_gcm'
+    :param private_ipaddress str: Internal NAT address of the remote gateway
+    :param gre bool: True if GRE is being used for the specific endpoint
+    :param gre_interface_address str: Interface for GRE in /30 format
+    :param vpn_type str: policy, gre, vti. defaults to policy
     :param route_based_int_address str:
     :param route_based_local str:
     :param route_based_local str:
@@ -787,6 +792,7 @@ def put_update_ipsec_endpoint(
         "name",
         "ipaddress",
         "secret",
+        "description",
         "pfs",
         "ike_version",
         "nat_t_enabled",
@@ -1104,22 +1110,22 @@ def wait_for_tunnel_connected(
 class IPsecApiRouter(VersionRouter):
 
     function_library = {
-        "delete_ipsec_endpoint": {"4.8.4-4.11.1": delete_ipsec_endpoint},
-        "delete_ipsec_endpoint_tunnel": {"4.8.4-4.11.1": delete_ipsec_endpoint_tunnel},
-        "get_ipsec_details": {"4.8.4-4.11.1": get_ipsec_details},
-        "get_ipsec_endpoint": {"4.8.4-4.11.1": get_ipsec_endpoint},
-        "get_ipsec_status": {"4.8.4-4.11.1": get_ipsec_status},
-        "get_ipsec_link_history": {"4.8.4-4.11.1": get_ipsec_link_history},
-        "get_connected_subnets": {"4.8.4-4.11.1": get_connected_subnets},
-        "post_create_ipsec_endpoint": {"4.8.4-4.11.1": post_create_ipsec_endpoint},
+        "delete_ipsec_endpoint": {"4.8.4-4.11.3": delete_ipsec_endpoint},
+        "delete_ipsec_endpoint_tunnel": {"4.8.4-4.11.3": delete_ipsec_endpoint_tunnel},
+        "get_ipsec_details": {"4.8.4-4.11.3": get_ipsec_details},
+        "get_ipsec_endpoint": {"4.8.4-4.11.3": get_ipsec_endpoint},
+        "get_ipsec_status": {"4.8.4-4.11.3": get_ipsec_status},
+        "get_ipsec_link_history": {"4.8.4-4.11.3": get_ipsec_link_history},
+        "get_connected_subnets": {"4.8.4-4.11.3": get_connected_subnets},
+        "post_create_ipsec_endpoint": {"4.8.4-4.11.3": post_create_ipsec_endpoint},
         "post_create_ipsec_endpoint_tunnel": {
-            "4.8.4-4.11.1": post_create_ipsec_endpoint_tunnel
+            "4.8.4-4.11.3": post_create_ipsec_endpoint_tunnel
         },
-        "post_restart_ipsec_action": {"4.8.4-4.11.1": post_restart_ipsec_action},
-        "put_update_ipsec_endpoint": {"4.8.4-4.11.1": put_update_ipsec_endpoint},
+        "post_restart_ipsec_action": {"4.8.4-4.11.3": post_restart_ipsec_action},
+        "put_update_ipsec_endpoint": {"4.8.4-4.11.3": put_update_ipsec_endpoint},
         "put_update_ipsec_endpoint_tunnel": {
-            "4.8.4-4.11.1": put_update_ipsec_endpoint_tunnel
+            "4.8.4-4.11.3": put_update_ipsec_endpoint_tunnel
         },
-        "put_update_ipsec_config": {"4.8.4-4.11.1": put_update_ipsec_config},
-        "wait_for_tunnel_connected": {"4.8.4-4.11.1": wait_for_tunnel_connected},
+        "put_update_ipsec_config": {"4.8.4-4.11.3": put_update_ipsec_config},
+        "wait_for_tunnel_connected": {"4.8.4-4.11.3": wait_for_tunnel_connected},
     }

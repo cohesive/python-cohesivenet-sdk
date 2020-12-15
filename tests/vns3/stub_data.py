@@ -21,7 +21,12 @@ class ConfigurationApiData(object):
         }
     }
 
-    UpdateUIAdminResponse = {"response": {"enabled": True, "username": "vnscubed",}}
+    UpdateUIAdminResponse = {
+        "response": {
+            "enabled": True,
+            "username": "vnscubed",
+        }
+    }
 
 
 class IpsecApiData(object):
@@ -35,6 +40,7 @@ class IpsecApiData(object):
             "nat_t_enabled": True,
             "private_ipaddress": "192.0.2.254",
             "extra_config": [],
+            "description": "yadayadayada",
             "tunnels": {
                 "3": {
                     "id": 3,

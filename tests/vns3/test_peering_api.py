@@ -27,9 +27,7 @@ class TestPeeringApi(object):
     """PeeringApi unit test stubs"""
 
     def test_delete_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for delete_peer
-
-        """
+        """Test case for delete_peer"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -41,9 +39,7 @@ class TestPeeringApi(object):
         )(peering_api.delete_peer)
 
     def test_get_peering_status(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_peering_status
-
-        """
+        """Test case for get_peering_status"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -55,9 +51,7 @@ class TestPeeringApi(object):
         )(peering_api.get_peering_status)
 
     def test_post_create_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for post_create_peer
-
-        """
+        """Test case for post_create_peer"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -69,9 +63,7 @@ class TestPeeringApi(object):
         )(peering_api.post_create_peer)
 
     def test_put_update_peer(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_update_peer
-
-        """
+        """Test case for put_update_peer"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -83,9 +75,7 @@ class TestPeeringApi(object):
         )(peering_api.put_update_peer)
 
     def test_put_self_peering_id(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for put_self_peering_id
-
-        """
+        """Test case for put_self_peering_id"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,

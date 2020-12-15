@@ -26,8 +26,7 @@ class TestMSVNS3ManagementApi(object):
     """VNS3:ms VNS3 Management API unit tests"""
 
     def test_get_vns3_snapshots(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_vns3_snapshots
-        """
+        """Test case for get_vns3_snapshots"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -41,8 +40,7 @@ class TestMSVNS3ManagementApi(object):
     def test_post_create_vns3_snapshot(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_create_vns3_snapshot
-        """
+        """Test case for post_create_vns3_snapshot"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -54,8 +52,7 @@ class TestMSVNS3ManagementApi(object):
         )(vns3_management_api.post_create_vns3_snapshot)
 
     def test_delete_vns3_snapshots(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_vns3_snapshots
-        """
+        """Test case for delete_vns3_snapshots"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -69,8 +66,7 @@ class TestMSVNS3ManagementApi(object):
     def test_get_download_vns3_snapshot(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_download_vns3_snapshot
-        """
+        """Test case for get_download_vns3_snapshot"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -82,8 +78,7 @@ class TestMSVNS3ManagementApi(object):
         )(vns3_management_api.get_download_vns3_snapshot)
 
     def test_get_controller_report(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_controller_report
-        """
+        """Test case for get_controller_report"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -95,8 +90,7 @@ class TestMSVNS3ManagementApi(object):
         )(vns3_management_api.get_controller_report)
 
     def test_get_vns3_controllers(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_vns3_controllers
-        """
+        """Test case for get_vns3_controllers"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -110,8 +104,7 @@ class TestMSVNS3ManagementApi(object):
     def test_post_add_vns3_controller(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for post_add_vns3_controller
-        """
+        """Test case for post_add_vns3_controller"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -123,8 +116,7 @@ class TestMSVNS3ManagementApi(object):
         )(vns3_management_api.post_add_vns3_controller)
 
     def test_get_vns3_controller(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for get_vns3_controller
-        """
+        """Test case for get_vns3_controller"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -138,8 +130,7 @@ class TestMSVNS3ManagementApi(object):
     def test_put_update_vns3_controller(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_update_vns3_controller
-        """
+        """Test case for put_update_vns3_controller"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -151,8 +142,7 @@ class TestMSVNS3ManagementApi(object):
         )(vns3_management_api.put_update_vns3_controller)
 
     def test_delete_vns3_controller(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for delete_vns3_controller
-        """
+        """Test case for delete_vns3_controller"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -166,8 +156,7 @@ class TestMSVNS3ManagementApi(object):
     def test_get_vns3_controller_status(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_vns3_controller_status
-        """
+        """Test case for get_vns3_controller_status"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -181,8 +170,7 @@ class TestMSVNS3ManagementApi(object):
     def test_put_vns3_controller_api_password(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_vns3_controller_api_password
-        """
+        """Test case for put_vns3_controller_api_password"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -197,8 +185,7 @@ class TestMSVNS3ManagementApi(object):
         )(vns3_management_api.put_vns3_controller_api_password)
 
     def test_put_vns3_controller_ui(self, rest_mocker, ms_client, ms_api_schema: dict):
-        """Test case for put_vns3_controller_ui
-        """
+        """Test case for put_vns3_controller_ui"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -215,8 +202,7 @@ class TestMSVNS3ManagementApi(object):
     def test_get_vns3_controller_ha_details(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_vns3_controller_ha_details
-        """
+        """Test case for get_vns3_controller_ha_details"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -230,8 +216,7 @@ class TestMSVNS3ManagementApi(object):
     def test_put_update_vns3_controller_ha(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_update_vns3_controller_ha
-        """
+        """Test case for put_update_vns3_controller_ha"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -245,8 +230,7 @@ class TestMSVNS3ManagementApi(object):
     def test_put_validate_vns3_controller_ha(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_validate_vns3_controller_ha
-        """
+        """Test case for put_validate_vns3_controller_ha"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -260,8 +244,7 @@ class TestMSVNS3ManagementApi(object):
     def test_put_init_vns3_controller_ha(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_init_vns3_controller_ha
-        """
+        """Test case for put_init_vns3_controller_ha"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -275,8 +258,7 @@ class TestMSVNS3ManagementApi(object):
     def test_put_sync_vns3_controller_ha(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_sync_vns3_controller_ha
-        """
+        """Test case for put_sync_vns3_controller_ha"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -290,8 +272,7 @@ class TestMSVNS3ManagementApi(object):
     def test_put_activate_vns3_controller_ha(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for put_activate_vns3_controller_ha
-        """
+        """Test case for put_activate_vns3_controller_ha"""
         generate_method_test(
             ms_client,
             ms_api_schema,
@@ -305,8 +286,7 @@ class TestMSVNS3ManagementApi(object):
     def test_get_vns3_controller_ha_status(
         self, rest_mocker, ms_client, ms_api_schema: dict
     ):
-        """Test case for get_vns3_controller_ha_status
-        """
+        """Test case for get_vns3_controller_ha_status"""
         generate_method_test(
             ms_client,
             ms_api_schema,

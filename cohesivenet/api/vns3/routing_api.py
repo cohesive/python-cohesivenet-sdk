@@ -308,7 +308,8 @@ def post_create_route_if_not_exists(
     new_route_tuple = __to_route_tuple(route_request, comparison_keys)
     if new_route_tuple in route_tuples:
         Logger.debug(
-            "Route already exists. Skipping creation.", host=api_client.host_uri,
+            "Route already exists. Skipping creation.",
+            host=api_client.host_uri,
         )
         return routes_response
 
@@ -318,10 +319,10 @@ def post_create_route_if_not_exists(
 class RoutingApiRouter(VersionRouter):
 
     function_library = {
-        "delete_route": {"4.8.4-4.11.1": delete_route},
-        "get_routes": {"4.8.4-4.11.1": get_routes},
-        "post_create_route": {"4.8.4-4.11.1": post_create_route},
+        "delete_route": {"4.8.4-4.11.3": delete_route},
+        "get_routes": {"4.8.4-4.11.3": get_routes},
+        "post_create_route": {"4.8.4-4.11.3": post_create_route},
         "post_create_route_if_not_exists": {
-            "4.8.4-4.11.1": post_create_route_if_not_exists
+            "4.8.4-4.11.3": post_create_route_if_not_exists
         },
     }

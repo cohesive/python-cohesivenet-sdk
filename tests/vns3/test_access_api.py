@@ -27,8 +27,7 @@ class TestAccessApi(object):
     """AccessApi unit tests stubs"""
 
     def test_create_access_url(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for create_access_url
-        """
+        """Test case for create_access_url"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -40,8 +39,7 @@ class TestAccessApi(object):
         )(access_api.create_access_url)
 
     def test_create_api_token(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for create_api_token
-        """
+        """Test case for create_api_token"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -53,8 +51,7 @@ class TestAccessApi(object):
         )(access_api.create_api_token)
 
     def test_delete_access_url(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for delete_access_url
-        """
+        """Test case for delete_access_url"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -68,8 +65,7 @@ class TestAccessApi(object):
     def test_delete_access_url_by_search(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for delete_access_url_by_search
-        """
+        """Test case for delete_access_url_by_search"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -81,8 +77,7 @@ class TestAccessApi(object):
         )(access_api.delete_access_url_by_search)
 
     def test_delete_api_token(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for delete_api_token
-        """
+        """Test case for delete_api_token"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -94,8 +89,7 @@ class TestAccessApi(object):
         )(access_api.delete_api_token)
 
     def test_get_access_urls(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_access_urls
-        """
+        """Test case for get_access_urls"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -107,8 +101,7 @@ class TestAccessApi(object):
         )(access_api.get_access_urls)
 
     def test_get_access_url(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_access_url
-        """
+        """Test case for get_access_url"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -120,8 +113,7 @@ class TestAccessApi(object):
         )(access_api.get_access_url)
 
     def test_get_api_token(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_api_token
-        """
+        """Test case for get_api_token"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -133,8 +125,7 @@ class TestAccessApi(object):
         )(access_api.get_api_token)
 
     def test_get_api_tokens(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_api_tokens
-        """
+        """Test case for get_api_tokens"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -148,8 +139,7 @@ class TestAccessApi(object):
     def test_put_expire_access_url(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_expire_access_url
-        """
+        """Test case for put_expire_access_url"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -163,8 +153,7 @@ class TestAccessApi(object):
     def test_put_expire_api_token(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for put_expire_api_token
-        """
+        """Test case for put_expire_api_token"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,

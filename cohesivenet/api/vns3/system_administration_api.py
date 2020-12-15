@@ -610,6 +610,25 @@ def _wait_for_down(api_client, retry_timeout=2, timeout=30, sleep_time=0):
     raise ApiException("API failed to go down [timeout=%sseconds]" % timeout)
 
 
+def poll_token(api_client, token, retry_timeout=1.5, timeout=120):
+    """Poll a task token until finished
+
+    Args:
+        api_client (VNS3Client):
+        token (str): UUID for token
+    """
+    import time
+
+    start_time = time.time()
+
+    while time.time() - start_time < timeout:
+        poll_status = get_task_status(api_client, token=token)
+        if poll_status.response.task_status == "finished_ok":
+            return True
+        time.sleep(retry_timeout)
+    return False
+
+
 def wait_for_api(
     api_client,
     retry_timeout=2,
@@ -673,15 +692,18 @@ def wait_for_api(
 
 class SystemAdministrationApiRouter(VersionRouter):
     function_library = {
-        "get_cloud_data": {"4.8.4-4.11.1": get_cloud_data},
-        "get_runtime_status": {"4.8.4-4.11.1": get_runtime_status},
-        "get_task_status": {"4.8.4-4.11.1": get_task_status},
-        "get_system_status": {"4.8.4-4.11.1": get_system_status},
-        "get_remote_support_details": {"4.8.4-4.11.1": get_remote_support_details},
+        "get_cloud_data": {"4.8.4-4.11.3": get_cloud_data},
+        "get_runtime_status": {"4.8.4-4.11.3": get_runtime_status},
+        "get_task_status": {"4.8.4-4.11.3": get_task_status},
+        "get_system_status": {"4.8.4-4.11.3": get_system_status},
+        "get_remote_support_details": {"4.8.4-4.11.3": get_remote_support_details},
         "post_generate_support_keypair": {
-            "4.8.4-4.11.1": post_generate_support_keypair
+            "4.8.4-4.11.3": post_generate_support_keypair
         },
-        "put_update_remote_support": {"4.8.4-4.11.1": put_update_remote_support},
-        "put_server_action": {"4.8.4-4.11.1": put_server_action},
-        "wait_for_api": {"4.8.4-4.11.1": wait_for_api},
+        "poll_token": {
+            "4.11.1-4.11.3": poll_token
+        },
+        "put_update_remote_support": {"4.8.4-4.11.3": put_update_remote_support},
+        "put_server_action": {"4.8.4-4.11.3": put_server_action},
+        "wait_for_api": {"4.8.4-4.11.3": wait_for_api},
     }

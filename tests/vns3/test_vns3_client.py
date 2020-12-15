@@ -13,8 +13,7 @@ class TestVNS3Client(object):
     """Test VNS3 API client unit test stubs"""
 
     def test_api_properties(self):
-        """Test all API groups are accessible as properties
-        """
+        """Test all API groups are accessible as properties"""
         api_client = VNS3Client(
             configuration=Configuration(
                 host="0.0.0.0:8000",
@@ -133,8 +132,7 @@ class TestVNS3Client(object):
         assert api_client.host_uri == "0.0.0.0"
 
     def test_api_version_routing(self):
-        """Test api_builder.VersionRouter inits class based on class correctly
-        """
+        """Test api_builder.VersionRouter inits class based on class correctly"""
         api_client = VNS3Client(
             configuration=Configuration(
                 host="0.0.0.0:8000",

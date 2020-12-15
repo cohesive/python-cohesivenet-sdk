@@ -27,9 +27,7 @@ class TestRoutingApi(object):
     """RoutingApi unit test stubs"""
 
     def test_delete_route(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for delete_route
-
-        """
+        """Test case for delete_route"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -41,9 +39,7 @@ class TestRoutingApi(object):
         )(routing_api.delete_route)
 
     def test_get_routes(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_routes
-
-        """
+        """Test case for get_routes"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -55,9 +51,7 @@ class TestRoutingApi(object):
         )(routing_api.get_routes)
 
     def test_post_create_route(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for post_create_route
-
-        """
+        """Test case for post_create_route"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -71,7 +65,6 @@ class TestRoutingApi(object):
     def test_post_create_route_already_exists(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_route_if_not_exists
-        """
+        """Test case for post_create_route_if_not_exists"""
         # need custom method for this one. different interface
         pass
