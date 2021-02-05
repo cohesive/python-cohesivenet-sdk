@@ -161,6 +161,7 @@ def create_bgp_peer(
     endpoint_id,
     ipaddress=None,
     asn=None,
+    local_asn_alias=None,
     access_list=None,
     bgp_password=None,
     add_network_distance=None,
@@ -179,6 +180,7 @@ def create_bgp_peer(
     :param int endpoint_id: ID for IPsec endpoint (required)
     :param str ipaddress: IP address of the desired BGP peer. (required)
     :param int asn: Autonomous system number assigned to device at ipaddress (required)
+    :param int local_asn_alias: Autonomous system number alias
     :param str access_list: List of \"in permit CIDR\" and/or \"out permit CIDR\" statements in a string delimited by \"\\n\"
     :param str bgp_password: String to be agreed upon by both peers as a simple password.
     :param async_req bool: execute request asynchronously
@@ -198,6 +200,7 @@ def create_bgp_peer(
     request_params = [
         "ipaddress",
         "asn",
+        "local_asn_alias",
         "access_list",
         "bgp_password",
         "add_network_distance",
@@ -260,6 +263,7 @@ def update_bgp_peer(
     bgp_peer_id,
     ipaddress=None,
     asn=None,
+    local_asn_alias=None,
     access_list=None,
     bgp_password=None,
     add_network_distance=None,
@@ -280,6 +284,7 @@ def update_bgp_peer(
     :param int bgp_peer_id: ID for BGP peer (required)
     :param str ipaddress: IP address of the desired BGP peer. (required)
     :param int asn: Autonomous system number assigned to device at ipaddress (required)
+    :param int local_asn_alias: Autonomous system number alias
     :param str access_list: List of \"in permit CIDR\" and/or \"out permit CIDR\" statements in a string delimited by \"\\n\"
     :param str bgp_password: String to be agreed upon by both peers as a simple password.
     :param bool add_network_distance: Enable network distance for BGP peer
@@ -304,6 +309,7 @@ def update_bgp_peer(
     request_params = [
         "ipaddress",
         "asn",
+        "local_asn_alias",
         "access_list",
         "bgp_password",
         "add_network_distance",
@@ -367,8 +373,8 @@ class BGPApiRouter(VersionRouter):
     """Manage BGP peers"""
 
     function_library = {
-        "get_bgp_peer": {"4.8.4-4.11.3": get_bgp_peer},
-        "delete_bgp_peer": {"4.8.4-4.11.3": delete_bgp_peer},
-        "create_bgp_peer": {"4.8.4-4.11.3": create_bgp_peer},
-        "update_bgp_peer": {"4.8.4-4.11.3": update_bgp_peer},
+        "get_bgp_peer": {"4.8.4-5.0.0": get_bgp_peer},
+        "delete_bgp_peer": {"4.8.4-5.0.0": delete_bgp_peer},
+        "create_bgp_peer": {"4.8.4-5.0.0": create_bgp_peer},
+        "update_bgp_peer": {"4.8.4-5.0.0": update_bgp_peer},
     }

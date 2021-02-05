@@ -6,6 +6,7 @@ class ConfigurationApiData(object):
             "topology_checksum": "9e29c480e3a20f1a9e4fd7f453f8da7280bdada4",
             "vns3_version": "4.8.4-20191220",
             "topology_name": "My-topology-name",
+            "controller_name": "My VNS3 controller",
             "ntp_hosts": "0.ubuntu.pool.ntp.org 1.ubuntu.pool.ntp.org 2.ubuntu.pool.ntp.org 3.ubuntu.pool.ntp.org ntp.ubuntu.com time.apple.com",
             "licensed": False,
         }
@@ -939,6 +940,19 @@ class PeeringApiData(object):
 
 
 class RoutingApiData(object):
+    RouteDetailResponse = {
+        "response": {
+            "cidr": "224.0.0.0/4",
+            "id": 1,
+            "netmask": "240.0.0.0",
+            "interface": "tun0",
+            "enabled": True,
+            "description": "Multicast (auto-added)",
+            "advertise": False,
+            "metric": 0,
+        }
+    }
+
     RoutesResponse = {
         "response": {
             "1": {
@@ -946,6 +960,7 @@ class RoutingApiData(object):
                 "id": 1,
                 "netmask": "240.0.0.0",
                 "interface": "tun0",
+                "enabled": True,
                 "description": "Multicast (auto-added)",
                 "advertise": False,
                 "metric": 0,
@@ -955,6 +970,7 @@ class RoutingApiData(object):
                 "id": 3,
                 "netmask": "255.255.255.255",
                 "interface": "eth0",
+                "enabled": True,
                 "gateway": "10.121.11.209",
                 "description": "Local Route subnet gateway",
                 "advertise": False,
@@ -965,6 +981,7 @@ class RoutingApiData(object):
                 "id": 4,
                 "netmask": "255.255.255.255",
                 "interface": "eth0",
+                "enabled": True,
                 "gateway": "10.121.11.209",
                 "description": "Local Secondary IP",
                 "advertise": False,
@@ -974,6 +991,7 @@ class RoutingApiData(object):
                 "cidr": "10.0.0.0/8",
                 "id": 8,
                 "netmask": "255.0.0.0",
+                "enabled": True,
                 "interface": "_notset",
                 "description": "On Prem AWS",
                 "advertise": True,

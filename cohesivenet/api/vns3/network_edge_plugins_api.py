@@ -22,6 +22,11 @@ from cohesivenet.api_builder import VersionRouter
 from cohesivenet.exceptions import ApiException
 
 
+########################
+# Container System API
+########################
+
+
 def delete_container(api_client, uuid, **kwargs):  # noqa: E501
     """delete_container  # noqa: E501
 
@@ -1274,32 +1279,1483 @@ def wait_for_image_import(api_client, import_uuid, timeout=60.0, sleep_time=1.0)
     )
 
 
+#########################################################
+# Plugins API - BETA
+#
+# Plugins are Cohesive's container abstraction. They
+# correspond to Container images and running containers
+# while providing more management capabilities to the end
+# user. We expect some sys-admins will manage plugins
+# without any container expertise that one might expect
+# from our container system users.
+#########################################################
+
+
+def get_plugins(api_client, *args, **kwargs):  # noqa: E501
+    """get_plugins  # noqa: E501
+
+    Get list of plugin images.
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugins(async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugins",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin(api_client, id, *args, **kwargs):  # noqa: E501
+    """get_plugin  # noqa: E501
+
+    Get plugin image  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin(id, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int id: ID for Plugin image (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugins/{id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instances(api_client, *args, **kwargs):  # noqa: E501
+    """get_plugin_instances  # noqa: E501
+
+    Get list of running plugin instances.
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instances(async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instance(api_client, id, *args, **kwargs):  # noqa: E501
+    """get_plugin_instance  # noqa: E501
+
+    Get running plugin instance  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instance(id, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int id: ID for Plugin instance (running container) (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_commit_plugin_instance(
+    api_client, id, name=None, description=None, **kwargs
+):  # noqa: E501
+    """post_commit_plugin_instance  # noqa: E501
+
+    Create new plugin image from a running plugin instance.
+    This will create a new container image.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_commit_plugin_instance(client, id, name="New Image", async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param name str: Name for new plugin image (required)
+    :param decription str: Description for new plugin image
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["name", "description"]
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/commit",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_manager_config(
+    api_client,
+    id,
+    log_files=None,
+    configuration_files=None,
+    ports=None,
+    process_manager=None,
+    executables=None,
+    **kwargs
+):  # noqa: E501
+    """post_create_manager_config  # noqa: E501
+
+    Create a new plugin manager configuration. If no params are provided,
+    a vanilla example configuration will be created. See docs for param specs:
+    https://docs.cohesive.net/docs/network-edge-plugins/plugin-manager/  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_manager_config(client, id, async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param log_files list: List of Log File objects
+    :param configuration_files list: List of Configuration File objects
+    :param ports list: List of Port objects
+    :param process_manager Dict: Process Manager object
+    :param executables list: List of Executable objects
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = [
+        "log_files",
+        "configuration_files",
+        "ports",
+        "process_manager",
+        "executables",
+    ]
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/manager",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_manager_config(
+    api_client,
+    id,
+    log_files=None,
+    configuration_files=None,
+    ports=None,
+    process_manager=None,
+    executables=None,
+    **kwargs
+):  # noqa: E501
+    """put_update_manager_config  # noqa: E501
+
+    Update plugin manager configuration. See docs for param specs:
+    https://docs.cohesive.net/docs/network-edge-plugins/plugin-manager/  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_manager_config(client, id, async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param log_files list: List of Log File objects
+    :param configuration_files list: List of Configuration File objects
+    :param ports list: List of Port objects
+    :param process_manager Dict: Process Manager object
+    :param executables list: List of Executable objects
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = [
+        "log_files",
+        "configuration_files",
+        "ports",
+        "process_manager",
+        "executables",
+    ]
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/manager",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instance_log_files(api_client, id, *args, **kwargs):  # noqa: E501
+    """get_plugin_instance_log_files  # noqa: E501
+
+    Get plugin instance log file configurations defined in manager configuration  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instance_log_files(id, async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/logs",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instance_log_content(
+    api_client, id, file_slug, lines=None, **kwargs
+):  # noqa: E501
+    """get_plugin_instance_log_content  # noqa: E501
+
+    Read plugin instance log file content  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instance_log_content(id, 0, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str file_slug: Either the name of the log file (name key) or the index in the log files list. (required)
+    :param int lines: Number of log lines to return (default 25)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id, "slug": file_slug}
+
+    query_params = ["lines"]
+
+    for param in [p for p in query_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/logs/{slug}/content",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instance_config_files(api_client, id, **kwargs):  # noqa: E501
+    """get_plugin_instance_config_files  # noqa: E501
+
+    Get plugin instance configuration file configs defined in plugin manager config # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instance_config_files(id, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int id: ID for Plugin instance (running container) (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/configurations",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def revert_plugin_instance_config_file(
+    api_client, id, file_slug, version=None, **kwargs
+):  # noqa: E501
+    """revert_plugin_instance_config_file  # noqa: E501
+
+    Read plugin instance config file content  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.revert_plugin_instance_config_file(id, 0, version=2, async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str file_slug: Either the name of the config file (name key) or the index in the config files list. (required)
+    :param int version: Version of file to revert to (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    request_params = ["version"]
+
+    path_params = {"id": id, "slug": file_slug}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/configurations/{slug}/revert",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instance_config_content(
+    api_client, id, file_slug, version=None, **kwargs
+):  # noqa: E501
+    """get_plugin_instance_config_content  # noqa: E501
+
+    Read plugin instance config file content  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instance_config_content(id, 0, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str file_slug: Either the name of the config file (name key) or the index in the config files list. (required)
+    :param int version: Version of file to retrieve (defaults to current)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id, "slug": file_slug}
+
+    query_params = ["version"]
+    for param in [p for p in query_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/configurations/{slug}/content",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_plugin_instance_config_content(
+    api_client, id, file_slug, content=None, **kwargs
+):  # noqa: E501
+    """put_plugin_instance_config_content  # noqa: E501
+
+    Update plugin instance config file contents
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_plugin_instance_config_content(async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str file_slug: Either the name of the config file (name key) or the index in the config files list. (required)
+    :param str content: File contents as string (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["content"]
+
+    collection_formats = {}
+
+    path_params = {"id": id, "slug": file_slug}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/configurations/{slug}/content",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_plugin_instance_config_version(
+    api_client, id, file_slug, version, *args, **kwargs
+):  # noqa: E501
+    """delete_plugin_instance_config_version  # noqa: E501
+
+    Delete plugin instance config file version  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_plugin_instance_config_version(id, 0, 4, async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str file_slug: Either the name of the config file (name key) or the index in the config files list. (required)
+    :param int version: Version of file to delete (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id, "slug": file_slug, "version": version}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/configurations/{slug}/versions/{version}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instance_processes(api_client, id, *args, **kwargs):  # noqa: E501
+    """get_plugin_instance_processes  # noqa: E501
+
+    Get plugin instance processes defined in the process_manager section
+    of the manager configuration file  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instance_processes(id, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int id: ID for Plugin instance (running container) (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/processes",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def run_plugin_instance_process_action(
+    api_client, id, process=None, action=None, timeout=None, **kwargs
+):  # noqa: E501
+    """run_plugin_instance_process_action  # noqa: E501
+
+    Run plugin instance process action for a process defined in process manager config  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.run_plugin_instance_process_action(id, process="main", action="status", async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str process: Name of the process. Should be listed in subprocesses list of config. (required)
+    :param str action: Action to take. See documentation for supported actions for your process manager. (required)
+    :param int timeout: timeout in seconds for the command, defaults to 10
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    request_params = ["process", "action", "timeout"]
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/processes/action",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def run_plugin_instance_executable_command(
+    api_client, id, command=None, executable_path=None, timeout=None, **kwargs
+):  # noqa: E501
+    """run_plugin_instance_executable_command  # noqa: E501
+
+    Run command for a plugin instance executable  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.run_plugin_instance_executable_command(id, command="stop", async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str command: The command to run. (A key in the commands object) (required)
+    :param str executable_path: Path to executable file in container (required if more than one executable is defined in manager config)
+    :param int timeout: timeout in seconds for the command, defaults to 2
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    request_params = ["command", "executable_path", "timeout"]
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/commands/execute",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_plugin_instance_firewall(api_client, id, *args, **kwargs):  # noqa: E501
+    """get_plugin_instance_firewall  # noqa: E501
+
+    Get list of firewall rules that are related to this plugin instance
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_plugin_instance_firewall(async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/firewall",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_plugin_instance_firewall_rule(
+    api_client,
+    id,
+    preset=None,
+    host_port=None,
+    container_port=None,
+    protocol=None,
+    **kwargs
+):  # noqa: E501
+    """put_plugin_instance_firewall_rule  # noqa: E501
+
+    Create a firewall rule for this plugin
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_plugin_instance_firewall_rule(id, preset="internet", async_req=True)
+
+    :param int id: ID for Plugin instance (running container) (required)
+    :param str preset: One of ssh, internet or port_map (required)
+    :param int host_port: VNS3 port. Required for preset "port_map"
+    :param int container_port: Plugin port to map VNS3 port to. Required for preset "port_map"
+    :param str protocol: Protocol for port map. Required for preset "port_map"
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["preset", "host_port", "container_port", "protocol"]
+
+    collection_formats = {}
+
+    path_params = {"id": id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/plugin-instances/{id}/firewall",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class NetworkEdgePluginsApiRouter(VersionRouter):
     function_library = {
-        "delete_container": {"4.8.4-4.11.3": delete_container},
-        "delete_container_image": {"4.8.4-4.11.3": delete_container_image},
-        "get_container_logs": {"4.8.4-4.11.3": get_container_logs},
-        "get_container_system_ips": {"4.8.4-4.11.3": get_container_system_ips},
-        "get_container_system_images": {"4.8.4-4.11.3": get_container_images},
-        "get_container_images": {"4.8.4-4.11.3": get_container_images},
+        "delete_container": {"4.8.4-5.0.0": delete_container},
+        "delete_container_image": {"4.8.4-5.0.0": delete_container_image},
+        "get_container_logs": {"4.8.4-5.0.0": get_container_logs},
+        "get_container_system_ips": {"4.8.4-5.0.0": get_container_system_ips},
+        "get_container_system_images": {"4.8.4-5.0.0": get_container_images},
+        "get_container_images": {"4.8.4-5.0.0": get_container_images},
         "get_container_system_running_containers": {
-            "4.8.4-4.11.3": get_running_containers
+            "4.8.4-5.0.0": get_running_containers
         },
-        "get_running_containers": {"4.8.4-4.11.3": get_running_containers},
-        "get_container_system_status": {"4.8.4-4.11.3": get_container_system_status},
-        "post_action_container_system": {"4.8.4-4.11.3": post_action_container_system},
-        "post_commit_container": {"4.8.4-4.11.3": post_commit_container},
-        "post_create_container_image": {"4.8.4-4.11.3": post_create_container_image},
-        "post_start_container": {"4.8.4-4.11.3": post_start_container},
+        "get_running_containers": {"4.8.4-5.0.0": get_running_containers},
+        "get_container_system_status": {"4.8.4-5.0.0": get_container_system_status},
+        "post_action_container_system": {"4.8.4-5.0.0": post_action_container_system},
+        "post_commit_container": {"4.8.4-5.0.0": post_commit_container},
+        "post_create_container_image": {"4.8.4-5.0.0": post_create_container_image},
+        "post_start_container": {"4.8.4-5.0.0": post_start_container},
         "put_configure_container_system": {
-            "4.8.4-4.11.3": put_configure_container_system
+            "4.8.4-5.0.0": put_configure_container_system
         },
-        "put_update_container_image": {"4.8.4-4.11.3": put_update_container_image},
-        "put_stop_container": {"4.8.4-4.11.3": put_stop_container},
+        "put_update_container_image": {"4.8.4-5.0.0": put_update_container_image},
+        "put_stop_container": {"4.8.4-5.0.0": put_stop_container},
         "wait_for_container_system_state": {
-            "4.8.4-4.11.3": wait_for_container_system_state
+            "4.8.4-5.0.0": wait_for_container_system_state
         },
-        "restart_container_network": {"4.8.4-4.11.3": restart_container_network},
-        "wait_for_image_import": {"4.8.4-4.11.3": wait_for_image_import},
-        "post_export_image": {"4.9.1-4.11.3": post_export_image},
+        "restart_container_network": {"4.8.4-5.0.0": restart_container_network},
+        "wait_for_image_import": {"4.8.4-5.0.0": wait_for_image_import},
+        "post_export_image": {"4.9.1-5.0.0": post_export_image},  # plugins
+        "get_plugins": {"5.0.0": get_plugins},
+        "get_plugin": {"5.0.0": get_plugin},
+        "post_commit_plugin_instance": {"5.0.0": post_commit_plugin_instance},
+        "get_plugin_instances": {"5.0.0": get_plugin_instances},
+        "get_plugin_instance": {"5.0.0": get_plugin_instance},
+        "post_create_manager_config": {"5.0.0": post_create_manager_config},
+        "put_update_manager_config": {"5.0.0": put_update_manager_config},
+        "get_plugin_instance_log_files": {"5.0.0": get_plugin_instance_log_files},
+        "get_plugin_instance_log_content": {"5.0.0": get_plugin_instance_log_content},
+        "get_plugin_instance_config_files": {"5.0.0": get_plugin_instance_config_files},
+        "revert_plugin_instance_config_file": {
+            "5.0.0": revert_plugin_instance_config_file
+        },
+        "get_plugin_instance_config_content": {
+            "5.0.0": get_plugin_instance_config_content
+        },
+        "put_plugin_instance_config_content": {
+            "5.0.0": put_plugin_instance_config_content
+        },
+        "delete_plugin_instance_config_version": {
+            "5.0.0": delete_plugin_instance_config_version
+        },
+        "get_plugin_instance_processes": {"5.0.0": get_plugin_instance_processes},
+        "run_plugin_instance_process_action": {
+            "5.0.0": run_plugin_instance_process_action
+        },
+        "run_plugin_instance_executable_command": {
+            "5.0.0": run_plugin_instance_executable_command
+        },
+        "get_plugin_instance_firewall": {"5.0.0": get_plugin_instance_firewall},
+        "put_plugin_instance_firewall_rule": {
+            "5.0.0": put_plugin_instance_firewall_rule
+        },
     }

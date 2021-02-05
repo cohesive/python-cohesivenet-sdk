@@ -1110,22 +1110,22 @@ def wait_for_tunnel_connected(
 class IPsecApiRouter(VersionRouter):
 
     function_library = {
-        "delete_ipsec_endpoint": {"4.8.4-4.11.3": delete_ipsec_endpoint},
-        "delete_ipsec_endpoint_tunnel": {"4.8.4-4.11.3": delete_ipsec_endpoint_tunnel},
-        "get_ipsec_details": {"4.8.4-4.11.3": get_ipsec_details},
-        "get_ipsec_endpoint": {"4.8.4-4.11.3": get_ipsec_endpoint},
-        "get_ipsec_status": {"4.8.4-4.11.3": get_ipsec_status},
-        "get_ipsec_link_history": {"4.8.4-4.11.3": get_ipsec_link_history},
-        "get_connected_subnets": {"4.8.4-4.11.3": get_connected_subnets},
-        "post_create_ipsec_endpoint": {"4.8.4-4.11.3": post_create_ipsec_endpoint},
+        "delete_ipsec_endpoint": {"4.8.4-5.0.0": delete_ipsec_endpoint},
+        "delete_ipsec_endpoint_tunnel": {"4.8.4-5.0.0": delete_ipsec_endpoint_tunnel},
+        "get_ipsec_details": {"4.8.4-5.0.0": get_ipsec_details},
+        "get_ipsec_endpoint": {"4.8.4-5.0.0": get_ipsec_endpoint},
+        "get_ipsec_status": {"4.8.4-5.0.0": get_ipsec_status},
+        "get_ipsec_link_history": {"4.8.4-5.0.0": get_ipsec_link_history},
+        "get_connected_subnets": {"4.8.4-5.0.0": get_connected_subnets},
+        "post_create_ipsec_endpoint": {"4.8.4-5.0.0": post_create_ipsec_endpoint},
         "post_create_ipsec_endpoint_tunnel": {
-            "4.8.4-4.11.3": post_create_ipsec_endpoint_tunnel
+            "4.8.4-5.0.0": post_create_ipsec_endpoint_tunnel
         },
-        "post_restart_ipsec_action": {"4.8.4-4.11.3": post_restart_ipsec_action},
-        "put_update_ipsec_endpoint": {"4.8.4-4.11.3": put_update_ipsec_endpoint},
+        "post_restart_ipsec_action": {"4.8.4-5.0.0": post_restart_ipsec_action},
+        "put_update_ipsec_endpoint": {"4.8.4-5.0.0": put_update_ipsec_endpoint},
         "put_update_ipsec_endpoint_tunnel": {
-            "4.8.4-4.11.3": put_update_ipsec_endpoint_tunnel
+            "4.8.4-5.0.0": put_update_ipsec_endpoint_tunnel
         },
-        "put_update_ipsec_config": {"4.8.4-4.11.3": put_update_ipsec_config},
-        "wait_for_tunnel_connected": {"4.8.4-4.11.3": wait_for_tunnel_connected},
+        "put_update_ipsec_config": {"4.8.4-5.0.0": put_update_ipsec_config},
+        "wait_for_tunnel_connected": {"4.8.4-5.0.0": wait_for_tunnel_connected},
     }

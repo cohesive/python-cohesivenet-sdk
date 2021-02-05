@@ -62,6 +62,30 @@ class TestRoutingApi(object):
             mock_response=RoutingApiData.RoutesResponse,
         )(routing_api.post_create_route)
 
+    def test_disable_route(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+        """Test case for disable_route"""
+        generate_method_test(
+            vns3_client,
+            vns3_api_schema,
+            "put",
+            "/routes/{route_id}/disable",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=RoutingApiData.RouteDetailResponse,
+        )(routing_api.disable_route)
+
+    def test_enable_route(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+        """Test case for enable_route"""
+        generate_method_test(
+            vns3_client,
+            vns3_api_schema,
+            "put",
+            "/routes/{route_id}/enable",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=RoutingApiData.RouteDetailResponse,
+        )(routing_api.enable_route)
+
     def test_post_create_route_already_exists(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):

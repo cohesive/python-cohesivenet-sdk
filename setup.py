@@ -37,7 +37,7 @@ class PyTest(TestCommand):
 
     def initialize_options(self):
         TestCommand.initialize_options(self)
-        self.pytest_args = ""
+        self.pytest_args = "--tb=short"
 
     def run_tests(self):
         import shlex

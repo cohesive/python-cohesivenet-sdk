@@ -893,11 +893,18 @@ def post_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E50
 
 # TODO one of checked_out regenerated enabled
 def put_update_clientpack(
-    api_client, name=None, enabled=None, checked_out=None, regenerate=None, **kwargs
+    api_client,
+    name=None,
+    enabled=None,
+    checked_out=None,
+    regenerate=None,
+    compression=None,
+    **kwargs
 ):  # noqa: E501
     """put_clientpack  # noqa: E501
 
-    Change properties of clientpacks; enabling or disabling, checking in or out, or regenerating  # noqa: E501
+    Change properties of clientpacks; enabling or disabling, checking in or out,
+    regenerating, turning on compression  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
@@ -907,6 +914,7 @@ def put_update_clientpack(
     :param enabled bool: Enable or disable clientpacks.
     :param checked_out bool: Update whether clientpacks are checked out and thus unavailable
     :param regenerate bool: Regenerate this clientpack
+    :param compression str: Turn compression on or off. Can be "on" or "off" currently.
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -922,7 +930,13 @@ def put_update_clientpack(
 
     local_var_params = locals()
 
-    request_params = ["name", "enabled", "checked_out", "regenerate"]  # noqa: E501
+    request_params = [
+        "name",
+        "enabled",
+        "checked_out",
+        "regenerate",
+        "compression",
+    ]  # noqa: E501
 
     collection_formats = {}
 
@@ -1053,17 +1067,21 @@ def put_disconnect_clientpack(
 
 
 def put_update_all_clientpacks(
-    api_client, enabled=None, checked_out=None, **kwargs
+    api_client, enabled=None, checked_out=None, compression=None, **kwargs
 ):  # noqa: E501
     """put_update_clientpacks  # noqa: E501
 
-    For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.  This enables a variety of work flows by calling these functions after key generation,  but before general provisioning of addresses to devivces   # noqa: E501
+    For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.
+    This enables a variety of work flows by calling these functions after key generation,
+    but before general provisioning of addresses to devivces   # noqa: E501
+
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.put_update_clientpacks(update_config_clientpack_request, async_req=True)
 
     :param enabled bool: Enable all clientpacks
     :param checked_out bool: Mark all clientpacks checked out
+    :param compression str: Turn compression on or off. Can be "on" or "off" currently.
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1079,7 +1097,7 @@ def put_update_all_clientpacks(
 
     local_var_params = locals()
 
-    request_params = ["enabled", "checked_out"]  # noqa: E501
+    request_params = ["enabled", "checked_out", "compression"]  # noqa: E501
 
     collection_formats = {}
 
@@ -1131,23 +1149,22 @@ def put_update_all_clientpacks(
 
 
 class OverlayNetworkApiRouter(VersionRouter):
-    # put_update_clientpacks
     function_library = {
-        "delete_clientpack_tag": {"4.8.4-4.11.3": delete_clientpack_tag},
-        "get_clientpack": {"4.8.4-4.11.3": get_clientpack},
-        "get_clientpacks": {"4.8.4-4.11.3": get_clientpacks},
-        "get_clients_status": {"4.8.4-4.11.3": get_clients_status},
-        "get_connected_subnets": {"4.8.4-4.11.3": get_connected_subnets},
-        "get_download_clientpack": {"4.8.4-4.11.3": get_download_clientpack},
-        "get_download_named_clientpack": {"4.11.3": get_download_named_clientpack},
+        "delete_clientpack_tag": {"4.8.4-5.0.0": delete_clientpack_tag},
+        "get_clientpack": {"4.8.4-5.0.0": get_clientpack},
+        "get_clientpacks": {"4.8.4-5.0.0": get_clientpacks},
+        "get_clients_status": {"4.8.4-5.0.0": get_clients_status},
+        "get_connected_subnets": {"4.8.4-5.0.0": get_connected_subnets},
+        "get_download_clientpack": {"4.8.4-5.0.0": get_download_clientpack},
+        "get_download_named_clientpack": {"5.0.0": get_download_named_clientpack},
         "post_checkout_next_clientpack": {
-            "4.8.4-4.11.3": post_checkout_next_clientpack
+            "4.8.4-5.0.0": post_checkout_next_clientpack
         },
-        "post_create_clientpack_tag": {"4.8.4-4.11.3": post_create_clientpack_tag},
-        "post_reset_all_clients": {"4.8.4-4.11.3": post_reset_all_clients},
-        "post_reset_client": {"4.8.4-4.11.3": post_reset_client},
-        "post_add_clientpacks": {"4.8.4-4.11.3": post_add_clientpacks},
-        "put_update_clientpack": {"4.8.4-4.11.3": put_update_clientpack},
-        "put_disconnect_clientpack": {"4.8.4-4.11.3": put_disconnect_clientpack},
-        "put_update_all_clientpacks": {"4.8.4-4.11.3": put_update_all_clientpacks},
+        "post_create_clientpack_tag": {"4.8.4-5.0.0": post_create_clientpack_tag},
+        "post_reset_all_clients": {"4.8.4-5.0.0": post_reset_all_clients},
+        "post_reset_client": {"4.8.4-5.0.0": post_reset_client},
+        "post_add_clientpacks": {"4.8.4-5.0.0": post_add_clientpacks},
+        "put_update_clientpack": {"4.8.4-5.0.0": put_update_clientpack},
+        "put_disconnect_clientpack": {"4.8.4-5.0.0": put_disconnect_clientpack},
+        "put_update_all_clientpacks": {"4.8.4-5.0.0": put_update_all_clientpacks},
     }

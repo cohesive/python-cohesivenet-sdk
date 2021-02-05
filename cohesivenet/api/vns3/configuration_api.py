@@ -217,7 +217,7 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
     )
 
 
-def put_config(api_client, topology_name=None, ntp_hosts=None, **kwargs):  # noqa: E501
+def put_config(api_client, topology_name=None, controller_name=None, ntp_hosts=None, **kwargs):  # noqa: E501
     """put_config  # noqa: E501
 
     Provides general information about the manager's topology, license state and  checksums and allows you to set the topology name.   # noqa: E501
@@ -227,6 +227,7 @@ def put_config(api_client, topology_name=None, ntp_hosts=None, **kwargs):  # noq
 
     :param VNS3Client api_client: (required)
     :param topology_name str: Specifies a name to display at the top of the web ui and in the desc_config API response
+    :param controller_name str: Specifies a name for this controller
     :param ntp_hosts str: Single or space separated list of ntp server IPs or dns names. Overwrites existing NTP configuration.
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
@@ -243,7 +244,7 @@ def put_config(api_client, topology_name=None, ntp_hosts=None, **kwargs):  # noq
 
     local_var_params = locals()
 
-    request_params = ["topology_name", "ntp_hosts"]
+    request_params = ["topology_name", "controller_name", "ntp_hosts"]
 
     collection_formats = {}
 
@@ -588,6 +589,68 @@ def put_update_api_password(api_client, password=None, **kwargs):  # noqa: E501
     return api_client.call_api(
         "/api_password",
         "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_ssl_certs(api_client, **kwargs):
+    """get_ssl_certs  # noqa: E501
+
+    Get SSL certificate information
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_ssl_certs(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/system/ssl",
+        "GET",
         path_params,
         query_params,
         header_params,
@@ -1049,19 +1112,20 @@ class ConfigurationApiRouter(VersionRouter):
     """Manage and view VNS3 configuration state"""
 
     function_library = {
-        "get_config": {"4.8.4-4.11.3": get_config},
-        "get_keyset": {"4.8.4-4.11.3": get_keyset},
-        "get_ssl_install_status": {"4.8.4-4.11.3": get_ssl_install_status},
-        "put_config": {"4.8.4-4.11.3": put_config},
-        "put_install_ssl_keypair": {"4.8.4-4.11.3": put_install_ssl_keypair},
-        "put_keyset": {"4.8.4-4.11.3": put_keyset},
-        "put_update_admin_ui": {"4.8.4-4.11.3": put_update_admin_ui},
-        "put_update_api_password": {"4.8.4-4.11.3": put_update_api_password},
-        "put_upload_ssl_keypair": {"4.8.4-4.11.3": put_upload_ssl_keypair},
-        "post_send_test_ms_alert": {"4.8.4-4.11.3": post_send_test_ms_alert},
-        "get_ms_config": {"4.8.4-4.11.3": get_ms_config},
-        "post_set_ms_config": {"4.8.4-4.11.3": post_set_ms_config},
-        "update_ms_config": {"4.8.4-4.11.3": update_ms_config},
-        "try_get_keyset": {"4.8.4-4.11.3": try_get_keyset},
-        "wait_for_keyset": {"4.8.4-4.11.3": wait_for_keyset},
+        "get_config": {"4.8.4-5.0.0": get_config},
+        "get_keyset": {"4.8.4-5.0.0": get_keyset},
+        "get_ssl_install_status": {"4.8.4-5.0.0": get_ssl_install_status},
+        "put_config": {"4.8.4-5.0.0": put_config},
+        "put_install_ssl_keypair": {"4.8.4-5.0.0": put_install_ssl_keypair},
+        "put_keyset": {"4.8.4-5.0.0": put_keyset},
+        "put_update_admin_ui": {"4.8.4-5.0.0": put_update_admin_ui},
+        "put_update_api_password": {"4.8.4-5.0.0": put_update_api_password},
+        "put_upload_ssl_keypair": {"4.8.4-5.0.0": put_upload_ssl_keypair},
+        "get_ssl_certs": {"5.0.0": get_ssl_certs},
+        "post_send_test_ms_alert": {"4.8.4-5.0.0": post_send_test_ms_alert},
+        "get_ms_config": {"4.8.4-5.0.0": get_ms_config},
+        "post_set_ms_config": {"4.8.4-5.0.0": post_set_ms_config},
+        "update_ms_config": {"4.8.4-5.0.0": update_ms_config},
+        "try_get_keyset": {"4.8.4-5.0.0": try_get_keyset},
+        "wait_for_keyset": {"4.8.4-5.0.0": wait_for_keyset},
     }

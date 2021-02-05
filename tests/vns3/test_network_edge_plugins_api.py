@@ -254,3 +254,5 @@ class TestNetworkEdgePluginsApi(object):
                 }
             },
         )(network_edge_plugins_api.put_stop_container)
+
+    # Add plugin endpoints

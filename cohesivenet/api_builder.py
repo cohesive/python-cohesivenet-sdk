@@ -92,6 +92,14 @@ def validate_call(  # noqa: C901
     return validate_decorator
 
 
+def parse_version_to_int(v):
+    # parse versions like 4.11.3 and 5.0.beta => 4113 and 50
+    return int("".join([
+        p for p in v.split(".")
+        if p.isdigit()
+    ]))
+
+
 def set_version_library(client, api, library):
     """Set the API library functions based on the current clients version
 
@@ -111,15 +119,12 @@ def set_version_library(client, api, library):
     def in_range(val, min_v, max_v):
         return val >= min_v and val <= max_v
 
-    def v_to_int(val):
-        return int(val.replace(".", ""))
-
     version_library = {}
-    vns3_version_int = v_to_int(client_version)
+    vns3_version_int = parse_version_to_int(client_version)
     for function_name, versions_funcs in library.items():
         for version, func in versions_funcs.items():
             if "-" in version:
-                min_v, max_v = [v_to_int(i) for i in version.split("-")]
+                min_v, max_v = [parse_version_to_int(i) for i in version.split("-")]
                 if in_range(vns3_version_int, min_v, max_v):
                     version_library[function_name] = func
             elif version == client_version:

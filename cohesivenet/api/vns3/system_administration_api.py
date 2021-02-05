@@ -692,18 +692,16 @@ def wait_for_api(
 
 class SystemAdministrationApiRouter(VersionRouter):
     function_library = {
-        "get_cloud_data": {"4.8.4-4.11.3": get_cloud_data},
-        "get_runtime_status": {"4.8.4-4.11.3": get_runtime_status},
-        "get_task_status": {"4.8.4-4.11.3": get_task_status},
-        "get_system_status": {"4.8.4-4.11.3": get_system_status},
-        "get_remote_support_details": {"4.8.4-4.11.3": get_remote_support_details},
+        "get_cloud_data": {"4.8.4-5.0.0": get_cloud_data},
+        "get_runtime_status": {"4.8.4-5.0.0": get_runtime_status},
+        "get_task_status": {"4.8.4-5.0.0": get_task_status},
+        "get_system_status": {"4.8.4-5.0.0": get_system_status},
+        "get_remote_support_details": {"4.8.4-5.0.0": get_remote_support_details},
         "post_generate_support_keypair": {
-            "4.8.4-4.11.3": post_generate_support_keypair
+            "4.8.4-5.0.0": post_generate_support_keypair
         },
-        "poll_token": {
-            "4.11.1-4.11.3": poll_token
-        },
-        "put_update_remote_support": {"4.8.4-4.11.3": put_update_remote_support},
-        "put_server_action": {"4.8.4-4.11.3": put_server_action},
-        "wait_for_api": {"4.8.4-4.11.3": wait_for_api},
+        "poll_token": {"4.11.1-5.0.0": poll_token},
+        "put_update_remote_support": {"4.8.4-5.0.0": put_update_remote_support},
+        "put_server_action": {"4.8.4-5.0.0": put_server_action},
+        "wait_for_api": {"4.8.4-5.0.0": wait_for_api},
     }

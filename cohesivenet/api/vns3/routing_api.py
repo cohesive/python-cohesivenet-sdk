@@ -267,6 +267,150 @@ def post_create_route(
     )
 
 
+def enable_route(api_client, route_id, **kwargs):  # noqa: E501
+    """enable_route  # noqa: E501
+
+    Enable a disabled route   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.enable_route(1, async_req=True)
+
+    :param route_id int: id for route to enable (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {
+        "route_id": route_id
+    }
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/routes/{route_id}/enable",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def disable_route(api_client, route_id, **kwargs):  # noqa: E501
+    """disable_route  # noqa: E501
+
+    Disable a route   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.disable_route(1, async_req=True)
+
+    :param route_id int: id for route to disable (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []
+
+    collection_formats = {}
+
+    path_params = {
+        "route_id": route_id
+    }
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/routes/{route_id}/disable",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 def post_create_route_if_not_exists(
     api_client, route_request, comparison_keys=RouteConstants.RouteComparisonKeys
 ):
@@ -319,10 +463,12 @@ def post_create_route_if_not_exists(
 class RoutingApiRouter(VersionRouter):
 
     function_library = {
-        "delete_route": {"4.8.4-4.11.3": delete_route},
-        "get_routes": {"4.8.4-4.11.3": get_routes},
-        "post_create_route": {"4.8.4-4.11.3": post_create_route},
+        "delete_route": {"4.8.4-5.0.0": delete_route},
+        "get_routes": {"4.8.4-5.0.0": get_routes},
+        "post_create_route": {"4.8.4-5.0.0": post_create_route},
         "post_create_route_if_not_exists": {
-            "4.8.4-4.11.3": post_create_route_if_not_exists
+            "4.8.4-5.0.0": post_create_route_if_not_exists
         },
+        "enable_route": {"5.0.0": enable_route},
+        "disable_route": {"5.0.0": disable_route}
     }

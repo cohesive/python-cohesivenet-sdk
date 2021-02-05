@@ -132,6 +132,7 @@ def setup_controller(
     license_file: str,
     license_parameters: Dict,
     keyset_parameters: Dict,
+    controller_name: str = None,
     peering_id: int = 1,
     reboot_timeout=120,
     keyset_timeout=120,
@@ -141,6 +142,7 @@ def setup_controller(
     Arguments:
         client {VNS3Client}
         topology_name {str}
+        controller_name {str}
         keyset_parameters {Dict} -- UpdateKeysetRequest {
             'source': 'str',
             'token': 'str',
@@ -154,8 +156,13 @@ def setup_controller(
     """
     current_config = client.config.get_config().response
     Logger.info("Setting topology name", name=topology_name)
-    if current_config.topology_name != topology_name:
-        client.config.put_config(**{"topology_name": topology_name})
+    config_update = {}
+    if topology_name and current_config.topology_name != topology_name:
+        config_update.update({"topology_name": topology_name})
+    if controller_name and current_config.controller_name != controller_name:
+        config_update.update({"controller_name": controller_name})
+    if config_update:
+        client.config.put_config(**config_update)
 
     if not current_config.licensed:
         if not os.path.isfile(license_file):
