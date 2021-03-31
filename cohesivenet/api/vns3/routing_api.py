@@ -296,9 +296,7 @@ def enable_route(api_client, route_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "route_id": route_id
-    }
+    path_params = {"route_id": route_id}
 
     query_params = []
 
@@ -368,9 +366,7 @@ def disable_route(api_client, route_id, **kwargs):  # noqa: E501
 
     collection_formats = {}
 
-    path_params = {
-        "route_id": route_id
-    }
+    path_params = {"route_id": route_id}
 
     query_params = []
 
@@ -463,12 +459,12 @@ def post_create_route_if_not_exists(
 class RoutingApiRouter(VersionRouter):
 
     function_library = {
-        "delete_route": {"4.8.4-5.0.0": delete_route},
-        "get_routes": {"4.8.4-5.0.0": get_routes},
-        "post_create_route": {"4.8.4-5.0.0": post_create_route},
+        "delete_route": {"4.8.4-5.0.2": delete_route},
+        "get_routes": {"4.8.4-5.0.2": get_routes},
+        "post_create_route": {"4.8.4-5.0.2": post_create_route},
         "post_create_route_if_not_exists": {
-            "4.8.4-5.0.0": post_create_route_if_not_exists
+            "4.8.4-5.0.2": post_create_route_if_not_exists
         },
-        "enable_route": {"5.0.0": enable_route},
-        "disable_route": {"5.0.0": disable_route}
+        "enable_route": {"4.11.4-5.0.2": enable_route},
+        "disable_route": {"4.11.4-5.0.2": disable_route},
     }

@@ -1100,24 +1100,24 @@ class SystemApiRouter(VersionRouter):
     """System configuration such as SSL, NTP hosts and remote support"""
 
     function_library = {
-        "get_remote_support_details": {"2.1.1-2.5.1": get_remote_support_details},
-        "put_remote_support": {"2.1.1-2.5.1": put_remote_support},
+        "get_remote_support_details": {"2.1.1-2.5.4": get_remote_support_details},
+        "put_remote_support": {"2.1.1-2.5.4": put_remote_support},
         "get_remote_support_keypair_details": {
-            "2.1.1-2.5.1": get_remote_support_keypair_details
+            "2.1.1-2.5.4": get_remote_support_keypair_details
         },
         "post_generate_remote_support_keypair": {
-            "2.1.1-2.5.1": post_generate_remote_support_keypair
+            "2.1.1-2.5.4": post_generate_remote_support_keypair
         },
-        "delete_remote_support_keypair": {"2.1.1-2.5.1": delete_remote_support_keypair},
-        "get_system_status": {"2.1.1-2.5.1": get_system_status},
-        "get_credential_types": {"2.1.1-2.5.1": get_credential_types},
-        "get_credential_type_details": {"2.1.1-2.5.1": get_credential_type_details},
-        "get_system_ntp_hosts": {"2.1.1-2.5.1": get_system_ntp_hosts},
-        "post_add_ntp_host": {"2.1.1-2.5.1": post_add_ntp_host},
-        "delete_ntp_host": {"2.1.1-2.5.1": delete_ntp_host},
-        "delete_ssl_install": {"2.1.1-2.5.1": delete_ssl_install},
-        "get_ssl_install_status": {"2.1.1-2.5.1": get_ssl_install_status},
-        "put_upload_ssl_certs": {"2.1.1-2.5.1": put_upload_ssl_certs},
-        "put_install_ssl_certs": {"2.1.1-2.5.1": put_install_ssl_certs},
-        "get_job_status": {"2.1.1-2.5.1": get_job_status},
+        "delete_remote_support_keypair": {"2.1.1-2.5.4": delete_remote_support_keypair},
+        "get_system_status": {"2.1.1-2.5.4": get_system_status},
+        "get_credential_types": {"2.1.1-2.5.4": get_credential_types},
+        "get_credential_type_details": {"2.1.1-2.5.4": get_credential_type_details},
+        "get_system_ntp_hosts": {"2.1.1-2.5.4": get_system_ntp_hosts},
+        "post_add_ntp_host": {"2.1.1-2.5.4": post_add_ntp_host},
+        "delete_ntp_host": {"2.1.1-2.5.4": delete_ntp_host},
+        "delete_ssl_install": {"2.1.1-2.5.4": delete_ssl_install},
+        "get_ssl_install_status": {"2.1.1-2.5.4": get_ssl_install_status},
+        "put_upload_ssl_certs": {"2.1.1-2.5.4": put_upload_ssl_certs},
+        "put_install_ssl_certs": {"2.1.1-2.5.4": put_install_ssl_certs},
+        "get_job_status": {"2.1.1-2.5.4": get_job_status},
     }

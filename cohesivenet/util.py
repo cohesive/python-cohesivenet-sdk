@@ -262,10 +262,28 @@ def cd(newdir):
 
 
 def version_dot_to_int(version_str):
-    return int(str(version_str).replace(".", ""))
+    if type(version_str) is int:
+        return version_str
+
+    parts = version_str.split(".")
+    version_padded = ""
+    for part in parts:
+        padded = "".join(["0" for _ in range(2 - len(part))]) + part
+        version_padded += padded
+    return int(version_padded)
 
 
 def version_in_range(version_str, version_range):
+    """Check if version string in range
+
+    Args:
+        version_str (str):
+        version_range (list or str): can be list of version strings or string
+            with "-" delimiter. e.g. "4.8.4-4.9.2"
+
+    Returns:
+        Boolean
+    """
     version = version_dot_to_int(version_str)
 
     if type(version_range) is str:
@@ -275,8 +293,15 @@ def version_in_range(version_str, version_range):
         range_parts = version_range
 
     range_parts_ints = [version_dot_to_int(p) for p in range_parts]
-    assert (
-        len(range_parts_ints) == 2
-    ), "Range invalid. Must be string X.X.X-Y.Y.Y or list"
+    if len(range_parts_ints) > 2:
+        return version in range_parts_ints
+
+    assert len(range_parts_ints) == 2, "Invalid version range"
+    if range_parts_ints[0] == 0:
+        # -Y.Y.Y means anything less than y.y.y inclusive
+        return version <= range_parts_ints[1]
+    elif range_parts_ints[1] == 0:
+        # X.X.X- means anything more than x.x.x inclusive
+        return range_parts_ints[0] <= version
 
     return range_parts_ints[0] <= version <= range_parts_ints[1]

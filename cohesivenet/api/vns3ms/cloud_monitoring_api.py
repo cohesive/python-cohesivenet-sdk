@@ -2154,6 +2154,7 @@ def post_create_alert(
     events=None,
     custom_properties=None,
     webhook_id=None,
+    webhook_name=None,
     template_id=None,
     **kwargs
 ):  # noqa: E501
@@ -2176,6 +2177,8 @@ def post_create_alert(
     }]:
     :param webhook_id int: webhook_id or template_id must be provided. Only webhook_id supported starting with 4.9
     :param template_id int: webhook_id or template_id must be provided. Only webhook_id supported starting with 4.9
+    :param webhook_name str: If provided, will duplicate webhook (as determined by passed id) and
+           name the duplicate with webhook_name (2.5.1)
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -2199,6 +2202,7 @@ def post_create_alert(
         "custom_properties",
         "webhook_id",
         "template_id",
+        "webhook_name",
     ]
 
     collection_formats = {}
@@ -2556,38 +2560,38 @@ class CloudMonitoringApiRouter(VersionRouter):
     """Configure and monitor your cloud by tracking cloud VPCs and virtual networks"""
 
     function_library = {
-        "get_cloud_vlan_components": {"2.1.1-2.5.1": get_cloud_vlan_components},
-        "post_create_vlan_component": {"2.1.1-2.5.1": post_create_vlan_component},
-        "get_cloud_vlan_component": {"2.1.1-2.5.1": get_cloud_vlan_component},
-        "put_update_vlan_component": {"2.1.1-2.5.1": put_update_vlan_component},
-        "delete_vlan_component": {"2.1.1-2.5.1": delete_vlan_component},
-        "get_cloud_vlans": {"2.1.1-2.5.1": get_cloud_vlans},
-        "post_create_cloud_vlan": {"2.1.1-2.5.1": post_create_cloud_vlan},
-        "get_cloud_vlan": {"2.1.1-2.5.1": get_cloud_vlan},
-        "put_update_cloud_vlan": {"2.1.1-2.5.1": put_update_cloud_vlan},
-        "delete_cloud_vlan": {"2.1.1-2.5.1": delete_cloud_vlan},
-        "get_virtual_networks": {"2.1.1-2.5.1": get_virtual_networks},
-        "post_create_virtual_network": {"2.1.1-2.5.1": post_create_virtual_network},
-        "get_virtual_network": {"2.1.1-2.5.1": get_virtual_network},
-        "put_update_virtual_network": {"2.1.1-2.5.1": put_update_virtual_network},
-        "delete_virtual_network": {"2.1.1-2.5.1": delete_virtual_network},
-        "get_export_virtual_networks": {"2.1.1-2.5.1": get_export_virtual_networks},
-        "post_import_virtual_networks": {"2.1.1-2.5.1": post_import_virtual_networks},
-        "get_vns3_topologies": {"2.1.1-2.5.1": get_vns3_topologies},
-        "post_create_vns3_topology": {"2.1.1-2.5.1": post_create_vns3_topology},
-        "get_vns3_topology": {"2.1.1-2.5.1": get_vns3_topology},
-        "put_update_vns3_topology": {"2.1.1-2.5.1": put_update_vns3_topology},
-        "delete_vns3_topology": {"2.1.1-2.5.1": delete_vns3_topology},
-        "get_webhooks": {"2.3.3-2.5.1": get_webhooks},
-        "post_create_webhook": {"2.3.3-2.5.1": post_create_webhook},
-        "get_webhook": {"2.3.3-2.5.1": get_webhook},
-        "put_update_webhook": {"2.3.3-2.5.1": put_update_webhook},
-        "delete_webhook": {"2.3.3-2.5.1": delete_webhook},
-        "get_alerts": {"2.3.3-2.5.1": get_alerts},
-        "get_alert": {"2.3.3-2.5.1": get_alert},
-        "post_create_alert": {"2.3.3-2.5.1": post_create_alert},
-        "put_update_alert": {"2.3.3-2.5.1": put_update_alert},
-        "delete_alert": {"2.3.3-2.5.1": delete_alert},
-        "post_toggle_enable_alert": {"2.3.3-2.5.1": post_toggle_enable_alert},
-        "post_test_alert": {"2.3.3-2.5.1": post_test_alert},
+        "get_cloud_vlan_components": {"2.1.1-2.5.4": get_cloud_vlan_components},
+        "post_create_vlan_component": {"2.1.1-2.5.4": post_create_vlan_component},
+        "get_cloud_vlan_component": {"2.1.1-2.5.4": get_cloud_vlan_component},
+        "put_update_vlan_component": {"2.1.1-2.5.4": put_update_vlan_component},
+        "delete_vlan_component": {"2.1.1-2.5.4": delete_vlan_component},
+        "get_cloud_vlans": {"2.1.1-2.5.4": get_cloud_vlans},
+        "post_create_cloud_vlan": {"2.1.1-2.5.4": post_create_cloud_vlan},
+        "get_cloud_vlan": {"2.1.1-2.5.4": get_cloud_vlan},
+        "put_update_cloud_vlan": {"2.1.1-2.5.4": put_update_cloud_vlan},
+        "delete_cloud_vlan": {"2.1.1-2.5.4": delete_cloud_vlan},
+        "get_virtual_networks": {"2.1.1-2.5.4": get_virtual_networks},
+        "post_create_virtual_network": {"2.1.1-2.5.4": post_create_virtual_network},
+        "get_virtual_network": {"2.1.1-2.5.4": get_virtual_network},
+        "put_update_virtual_network": {"2.1.1-2.5.4": put_update_virtual_network},
+        "delete_virtual_network": {"2.1.1-2.5.4": delete_virtual_network},
+        "get_export_virtual_networks": {"2.1.1-2.5.4": get_export_virtual_networks},
+        "post_import_virtual_networks": {"2.1.1-2.5.4": post_import_virtual_networks},
+        "get_vns3_topologies": {"2.1.1-2.5.4": get_vns3_topologies},
+        "post_create_vns3_topology": {"2.1.1-2.5.4": post_create_vns3_topology},
+        "get_vns3_topology": {"2.1.1-2.5.4": get_vns3_topology},
+        "put_update_vns3_topology": {"2.1.1-2.5.4": put_update_vns3_topology},
+        "delete_vns3_topology": {"2.1.1-2.5.4": delete_vns3_topology},
+        "get_webhooks": {"2.3.3-2.5.4": get_webhooks},
+        "post_create_webhook": {"2.3.3-2.5.4": post_create_webhook},
+        "get_webhook": {"2.3.3-2.5.4": get_webhook},
+        "put_update_webhook": {"2.3.3-2.5.4": put_update_webhook},
+        "delete_webhook": {"2.3.3-2.5.4": delete_webhook},
+        "get_alerts": {"2.3.3-2.5.4": get_alerts},
+        "get_alert": {"2.3.3-2.5.4": get_alert},
+        "post_create_alert": {"2.3.3-2.5.4": post_create_alert},
+        "put_update_alert": {"2.3.3-2.5.4": put_update_alert},
+        "delete_alert": {"2.3.3-2.5.4": delete_alert},
+        "post_toggle_enable_alert": {"2.3.3-2.5.4": post_toggle_enable_alert},
+        "post_test_alert": {"2.3.3-2.5.4": post_test_alert},
     }

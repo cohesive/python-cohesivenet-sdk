@@ -24,7 +24,16 @@ class OpenAPITypes(object):
     }
 
 
-def fetch_spec(spec):
+
+def get_vns3_spec_url(version):
+    return "https://cohesive-networks.s3.amazonaws.com/apis/vns3/vns3-v%s.oasv3.json" % version.replace(".", "-")
+
+
+def get_vns3ms_spec_url(version):
+    return "https://cohesive-networks.s3.amazonaws.com/apis/vns3-ms/vns3ms-v%s.oasv3.json" % version.replace(".", "-")
+
+
+def fetch_spec(spec, resolve_refs=False):
     import urllib3, json, os
 
     http = urllib3.PoolManager()
@@ -35,7 +44,7 @@ def fetch_spec(spec):
             "Expected VNS3 specification at %s" % spec
         )
 
-    from tests.openapi import resolve_refs
+    from tests.openapi import resolve_refs as resolve
 
     _raw_spec = json.loads(response.data.decode("utf8").strip())
 
@@ -46,6 +55,8 @@ def fetch_spec(spec):
             json.dumps(resolve_refs(_raw_spec), indent=2)
         )
 
+    if resolve_refs:
+        return resolve(_raw_spec)
     return _raw_spec
 
 

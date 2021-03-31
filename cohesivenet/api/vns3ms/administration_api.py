@@ -1082,21 +1082,21 @@ class AdministrationApiRouter(VersionRouter):
     """Configure VNS3:ms administration settings such as LDAP integration"""
 
     function_library = {
-        "put_enable_ldap": {"2.1.1-2.5.1": put_enable_ldap},
-        "get_ldap_settings": {"2.1.1-2.5.1": get_ldap_settings},
-        "put_ldap_settings": {"2.1.1-2.5.1": put_ldap_settings},
-        "post_validate_ldap_settings": {"2.1.1-2.5.1": post_validate_ldap_settings},
-        "get_ldap_user_schema": {"2.1.1-2.5.1": get_ldap_user_schema},
-        "put_ldap_user_schema": {"2.1.1-2.5.1": put_ldap_user_schema},
+        "put_enable_ldap": {"2.1.1-2.5.4": put_enable_ldap},
+        "get_ldap_settings": {"2.1.1-2.5.4": get_ldap_settings},
+        "put_ldap_settings": {"2.1.1-2.5.4": put_ldap_settings},
+        "post_validate_ldap_settings": {"2.1.1-2.5.4": post_validate_ldap_settings},
+        "get_ldap_user_schema": {"2.1.1-2.5.4": get_ldap_user_schema},
+        "put_ldap_user_schema": {"2.1.1-2.5.4": put_ldap_user_schema},
         "post_validate_ldap_user_schema": {
-            "2.1.1-2.5.1": post_validate_ldap_user_schema
+            "2.1.1-2.5.4": post_validate_ldap_user_schema
         },
-        "get_ldap_group_schema": {"2.1.1-2.5.1": get_ldap_group_schema},
-        "put_ldap_group_schema": {"2.1.1-2.5.1": put_ldap_group_schema},
+        "get_ldap_group_schema": {"2.1.1-2.5.4": get_ldap_group_schema},
+        "put_ldap_group_schema": {"2.1.1-2.5.4": put_ldap_group_schema},
         "post_validate_ldap_group_schema": {
-            "2.1.1-2.5.1": post_validate_ldap_group_schema
+            "2.1.1-2.5.4": post_validate_ldap_group_schema
         },
-        "put_upload_ldap_auth_cert": {"2.5.1": put_upload_ldap_auth_cert},
-        "put_upload_ldap_auth_key": {"2.5.1": put_upload_ldap_auth_key},
-        "put_upload_ldap_ca_cert": {"2.5.1": put_upload_ldap_ca_cert},
+        "put_upload_ldap_auth_cert": {"2.5.1-2.5.4": put_upload_ldap_auth_cert},
+        "put_upload_ldap_auth_key": {"2.5.1-2.5.4": put_upload_ldap_auth_key},
+        "put_upload_ldap_ca_cert": {"2.5.1-2.5.4": put_upload_ldap_ca_cert},
     }

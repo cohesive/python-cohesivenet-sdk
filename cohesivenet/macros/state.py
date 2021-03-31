@@ -4,7 +4,7 @@ from cohesivenet import data_types
 from cohesivenet.macros import api_operations as api_op
 
 
-class VNS3Attr(object):
+class VNS3Attribute(object):
     """State Attributes - more to be added"""
 
     primary_private_ip = "primary_private_ip"
@@ -15,6 +15,10 @@ class VNS3Attr(object):
     overlay_ip = "overlay_ip"
     peer_id = "peer_id"
     asn = "asn"
+
+
+# Add for backwards compatability
+VNS3Attr = VNS3Attribute
 
 
 def get_overlay_ip(client, bust_cache=False):
@@ -68,7 +72,8 @@ def get_peer_id(client, bust_cache=False):
             return val
 
     val = client.peering.get_peering_status().response.id
-    client.add_to_state(VNS3Attr.peer_id, val)
+    if val:
+        client.add_to_state(VNS3Attr.peer_id, val)
     return val
 
 

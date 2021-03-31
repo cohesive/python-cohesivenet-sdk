@@ -72,11 +72,15 @@ class _Logger(object):
     def set_null(self):
         self._logger.addHandler(logging.NullHandler())
 
+    def set_level(self, log_level):
+        return self.set_stream_handler(log_level)
+
     def set_stream_handler(self, log_level):
         if not log_level:
             return
 
         valid_level = None
+        log_level = str(log_level).lower()
         if log_level == "debug":
             valid_level = logging.DEBUG
         elif log_level == "info":

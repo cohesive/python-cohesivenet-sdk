@@ -15,6 +15,7 @@ from cohesivenet.version import LATEST_VNS3_MS_VERSION
 from cohesivenet.api_client import APIClient, api_as_property
 
 from cohesivenet.api import vns3ms as vns3ms_apis
+from cohesivenet import util
 
 
 class MSClient(APIClient):
@@ -105,8 +106,15 @@ class MSClient(APIClient):
 
     def refresh_token(self):
         """"""
-        response = self.access.post_create_token(
-            self.configuration.username, self.configuration.api_key
-        ).json()
+        is_old_auth = getattr(self, "is_old_auth", None)
+        if is_old_auth is None:
+            is_old_auth = not util.version_in_range(self.ms_dot_version, "2.5.0-")
+            setattr(self, "is_old_auth", is_old_auth)
 
-        self.configuration.api_token = response["api_token"]
+        if is_old_auth:
+            response = self.access.post_create_token(
+                self.configuration.username, self.configuration.api_key
+            ).json()
+            self.configuration.api_token = response["api_token"]
+        else:
+            self.access.refresh_access_token()

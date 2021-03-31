@@ -472,10 +472,10 @@ class UserApiRouter(VersionRouter):
     """User management endpoints for configuring credentials"""
 
     function_library = {
-        "put_user_password": {"2.1.1-2.5.1": put_user_password},
-        "get_user_credentials": {"2.1.1-2.5.1": get_user_credentials},
-        "post_create_user_credential": {"2.1.1-2.5.1": post_create_user_credential},
-        "post_create_ec2_credential": {"2.1.1-2.5.1": post_create_ec2_credential},
-        "put_update_user_credential": {"2.1.1-2.5.1": put_update_user_credential},
-        "delete_user_credential": {"2.1.1-2.5.1": delete_user_credential},
+        "put_user_password": {"2.1.1-2.5.4": put_user_password},
+        "get_user_credentials": {"2.1.1-2.5.4": get_user_credentials},
+        "post_create_user_credential": {"2.1.1-2.5.4": post_create_user_credential},
+        "post_create_ec2_credential": {"2.1.1-2.5.4": post_create_ec2_credential},
+        "put_update_user_credential": {"2.1.1-2.5.4": put_update_user_credential},
+        "delete_user_credential": {"2.1.1-2.5.4": delete_user_credential},
     }

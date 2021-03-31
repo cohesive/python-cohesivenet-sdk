@@ -217,7 +217,9 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
     )
 
 
-def put_config(api_client, topology_name=None, controller_name=None, ntp_hosts=None, **kwargs):  # noqa: E501
+def put_config(
+    api_client, topology_name=None, controller_name=None, ntp_hosts=None, **kwargs
+):  # noqa: E501
     """put_config  # noqa: E501
 
     Provides general information about the manager's topology, license state and  checksums and allows you to set the topology name.   # noqa: E501
@@ -1112,20 +1114,20 @@ class ConfigurationApiRouter(VersionRouter):
     """Manage and view VNS3 configuration state"""
 
     function_library = {
-        "get_config": {"4.8.4-5.0.0": get_config},
-        "get_keyset": {"4.8.4-5.0.0": get_keyset},
-        "get_ssl_install_status": {"4.8.4-5.0.0": get_ssl_install_status},
-        "put_config": {"4.8.4-5.0.0": put_config},
-        "put_install_ssl_keypair": {"4.8.4-5.0.0": put_install_ssl_keypair},
-        "put_keyset": {"4.8.4-5.0.0": put_keyset},
-        "put_update_admin_ui": {"4.8.4-5.0.0": put_update_admin_ui},
-        "put_update_api_password": {"4.8.4-5.0.0": put_update_api_password},
-        "put_upload_ssl_keypair": {"4.8.4-5.0.0": put_upload_ssl_keypair},
-        "get_ssl_certs": {"5.0.0": get_ssl_certs},
-        "post_send_test_ms_alert": {"4.8.4-5.0.0": post_send_test_ms_alert},
-        "get_ms_config": {"4.8.4-5.0.0": get_ms_config},
-        "post_set_ms_config": {"4.8.4-5.0.0": post_set_ms_config},
-        "update_ms_config": {"4.8.4-5.0.0": update_ms_config},
-        "try_get_keyset": {"4.8.4-5.0.0": try_get_keyset},
-        "wait_for_keyset": {"4.8.4-5.0.0": wait_for_keyset},
+        "get_config": {"4.8.4-5.0.2": get_config},
+        "get_keyset": {"4.8.4-5.0.2": get_keyset},
+        "get_ssl_install_status": {"4.8.4-5.0.2": get_ssl_install_status},
+        "put_config": {"4.8.4-5.0.2": put_config},
+        "put_install_ssl_keypair": {"4.8.4-5.0.2": put_install_ssl_keypair},
+        "put_keyset": {"4.8.4-5.0.2": put_keyset},
+        "put_update_admin_ui": {"4.8.4-5.0.2": put_update_admin_ui},
+        "put_update_api_password": {"4.8.4-5.0.2": put_update_api_password},
+        "put_upload_ssl_keypair": {"4.8.4-5.0.2": put_upload_ssl_keypair},
+        "get_ssl_certs": {"5.0.0-5.0.2": get_ssl_certs},
+        "post_send_test_ms_alert": {"4.8.4-5.0.2": post_send_test_ms_alert},
+        "get_ms_config": {"4.8.4-5.0.2": get_ms_config},
+        "post_set_ms_config": {"4.8.4-5.0.2": post_set_ms_config},
+        "update_ms_config": {"4.8.4-5.0.2": update_ms_config},
+        "try_get_keyset": {"4.8.4-5.0.2": try_get_keyset},
+        "wait_for_keyset": {"4.8.4-5.0.2": wait_for_keyset},
     }

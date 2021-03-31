@@ -909,26 +909,178 @@ def put_reinitialize_subgroups(api_client, reinitialize=True, **kwargs):  # noqa
     )
 
 
+def put_firewall_action(api_client, action=None, **kwargs):  # noqa: E501
+    """put_firewall_action  # noqa: E501
+
+    Take an action on the entire firewall  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_firewall_action("reset_connection_tracking", async_req=True)
+
+    :param str action: action to take on firewall
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["action"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/firewall/actions",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_overwrite_firewall(api_client, rules=None, **kwargs):  # noqa: E501
+    """put_overwrite_firewall  # noqa: E501
+
+    Overwrite firewall with firewall string. Dont forget newlines in your string.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_overwrite_firewall("my new firewall rules", async_req=True)
+
+    :param str rules: string to write to firewall file. should include new line for each rule or comment.
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["rules"]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/firewall",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class FirewallApiRouter(VersionRouter):
     """Manage VNS3 Firewall"""
 
     function_library = {
-        "delete_firewall_fw_set": {"4.8.4-5.0.0": delete_firewall_fw_set},
+        "delete_firewall_fw_set": {"4.8.4-5.0.2": delete_firewall_fw_set},
         "delete_firewall_rule_by_position": {
-            "4.8.4-5.0.0": delete_firewall_rule_by_position
+            "4.8.4-5.0.2": delete_firewall_rule_by_position
         },
-        "delete_firewall_rule_by_rule": {"4.8.4-5.0.0": delete_firewall_rule_by_rule},
-        "delete_firewall_subgroup": {"4.8.4-5.0.0": delete_firewall_subgroup},
-        "get_firewall_fw_sets": {"4.8.4-5.0.0": get_firewall_fw_sets},
-        "post_create_firewall_fw_set": {"4.8.4-5.0.0": post_create_firewall_fw_set},
-        "get_firewall_rule_subgroups": {"4.8.4-5.0.0": get_firewall_rule_subgroups},
-        "get_firewall_rules": {"4.8.4-5.0.0": get_firewall_rules},
-        "post_create_firewall_rule": {"4.8.4-5.0.0": post_create_firewall_rule},
-        "post_create_firewall_subgroup": {
-            "4.8.4-5.0.0": post_create_firewall_subgroup
-        },
-        "put_reinitialize_fw_sets": {"4.8.4-5.0.0": put_reinitialize_fw_sets},
+        "delete_firewall_rule_by_rule": {"4.8.4-5.0.2": delete_firewall_rule_by_rule},
+        "delete_firewall_subgroup": {"4.8.4-5.0.2": delete_firewall_subgroup},
+        "get_firewall_fw_sets": {"4.8.4-5.0.2": get_firewall_fw_sets},
+        "post_create_firewall_fw_set": {"4.8.4-5.0.2": post_create_firewall_fw_set},
+        "get_firewall_rule_subgroups": {"4.8.4-5.0.2": get_firewall_rule_subgroups},
+        "get_firewall_rules": {"4.8.4-5.0.2": get_firewall_rules},
+        "post_create_firewall_rule": {"4.8.4-5.0.2": post_create_firewall_rule},
+        "post_create_firewall_subgroup": {"4.8.4-5.0.2": post_create_firewall_subgroup},
+        "put_reinitialize_fw_sets": {"4.8.4-5.0.2": put_reinitialize_fw_sets},
         "put_reinitialize_firewall_subgroups": {
-            "4.8.4-5.0.0": put_reinitialize_subgroups
+            "4.8.4-5.0.2": put_reinitialize_subgroups
         },
+        "put_firewall_action": {"5.0.2": put_firewall_action},
+        "put_overwrite_firewall": {"5.0.2": put_overwrite_firewall},
     }

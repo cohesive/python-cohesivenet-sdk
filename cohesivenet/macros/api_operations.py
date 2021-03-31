@@ -228,6 +228,14 @@ def bulk_operation_failed(result: data_types.BulkOperationResult):
 def bulk_operation_all_exceptions(
     result: data_types.BulkOperationResult, predicate_func: Callable
 ):
+    """Run Predicate on BulkOperationResult
+
+    Args:
+        result (data_types.BulkOperationResult): [description]
+        predicate_func (Callable): returns Boolean
+
+    Returns: Boolean
+    """
     exceptions = result[1]
     return all([predicate_func(e.exception) for e in exceptions])
 

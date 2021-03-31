@@ -1427,6 +1427,11 @@ def put_activate_vns3_controller_ha(
         ["application/json"]
     )  # noqa: E501
 
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
     # Authentication setting
     auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
@@ -1524,32 +1529,32 @@ class VNS3ManagementApiRouter(VersionRouter):
     """Manage VNS3 controllers in your network topology, automating snapshots, HA and more"""
 
     function_library = {
-        "get_vns3_snapshots": {"2.1.1-2.5.1": get_vns3_snapshots},
-        "post_create_vns3_snapshot": {"2.1.1-2.5.1": post_create_vns3_snapshot},
-        "delete_vns3_snapshots": {"2.1.1-2.5.1": delete_vns3_snapshots},
-        "get_download_vns3_snapshot": {"2.1.1-2.5.1": get_download_vns3_snapshot},
-        "get_controller_report": {"2.1.1-2.5.1": get_controller_report},
-        "get_vns3_controllers": {"2.1.1-2.5.1": get_vns3_controllers},
-        "post_add_vns3_controller": {"2.1.1-2.5.1": post_add_vns3_controller},
-        "get_vns3_controller": {"2.1.1-2.5.1": get_vns3_controller},
-        "put_update_vns3_controller": {"2.1.1-2.5.1": put_update_vns3_controller},
-        "delete_vns3_controller": {"2.1.1-2.5.1": delete_vns3_controller},
-        "get_vns3_controller_status": {"2.1.1-2.5.1": get_vns3_controller_status},
+        "get_vns3_snapshots": {"2.1.1-2.5.4": get_vns3_snapshots},
+        "post_create_vns3_snapshot": {"2.1.1-2.5.4": post_create_vns3_snapshot},
+        "delete_vns3_snapshots": {"2.1.1-2.5.4": delete_vns3_snapshots},
+        "get_download_vns3_snapshot": {"2.1.1-2.5.4": get_download_vns3_snapshot},
+        "get_controller_report": {"2.1.1-2.5.4": get_controller_report},
+        "get_vns3_controllers": {"2.1.1-2.5.4": get_vns3_controllers},
+        "post_add_vns3_controller": {"2.1.1-2.5.4": post_add_vns3_controller},
+        "get_vns3_controller": {"2.1.1-2.5.4": get_vns3_controller},
+        "put_update_vns3_controller": {"2.1.1-2.5.4": put_update_vns3_controller},
+        "delete_vns3_controller": {"2.1.1-2.5.4": delete_vns3_controller},
+        "get_vns3_controller_status": {"2.1.1-2.5.4": get_vns3_controller_status},
         "put_vns3_controller_api_password": {
-            "2.1.1-2.5.1": put_vns3_controller_api_password
+            "2.1.1-2.5.4": put_vns3_controller_api_password
         },
-        "put_vns3_controller_ui": {"2.1.1-2.5.1": put_vns3_controller_ui},
+        "put_vns3_controller_ui": {"2.1.1-2.5.4": put_vns3_controller_ui},
         "get_vns3_controller_ha_details": {
-            "2.1.1-2.5.1": get_vns3_controller_ha_details
+            "2.1.1-2.5.4": get_vns3_controller_ha_details
         },
-        "put_update_vns3_controller_ha": {"2.1.1-2.5.1": put_update_vns3_controller_ha},
+        "put_update_vns3_controller_ha": {"2.1.1-2.5.4": put_update_vns3_controller_ha},
         "put_validate_vns3_controller_ha": {
-            "2.1.1-2.5.1": put_validate_vns3_controller_ha
+            "2.1.1-2.5.4": put_validate_vns3_controller_ha
         },
-        "put_init_vns3_controller_ha": {"2.1.1-2.5.1": put_init_vns3_controller_ha},
-        "put_sync_vns3_controller_ha": {"2.1.1-2.5.1": put_sync_vns3_controller_ha},
-        "get_vns3_controller_ha_status": {"2.1.1-2.5.1": get_vns3_controller_ha_status},
+        "put_init_vns3_controller_ha": {"2.1.1-2.5.4": put_init_vns3_controller_ha},
+        "put_sync_vns3_controller_ha": {"2.1.1-2.5.4": put_sync_vns3_controller_ha},
+        "get_vns3_controller_ha_status": {"2.1.1-2.5.4": get_vns3_controller_ha_status},
         "put_activate_vns3_controller_ha": {
-            "2.1.1-2.5.1": put_activate_vns3_controller_ha
+            "2.1.1-2.5.4": put_activate_vns3_controller_ha
         },
     }

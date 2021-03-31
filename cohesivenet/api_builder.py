@@ -94,10 +94,7 @@ def validate_call(  # noqa: C901
 
 def parse_version_to_int(v):
     # parse versions like 4.11.3 and 5.0.beta => 4113 and 50
-    return int("".join([
-        p for p in v.split(".")
-        if p.isdigit()
-    ]))
+    return int("".join([p for p in v.split(".") if p.isdigit()]))
 
 
 def set_version_library(client, api, library):
