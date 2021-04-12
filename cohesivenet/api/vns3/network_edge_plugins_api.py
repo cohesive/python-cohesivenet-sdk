@@ -2699,32 +2699,32 @@ def put_plugin_instance_firewall_rule(
 
 class NetworkEdgePluginsApiRouter(VersionRouter):
     function_library = {
-        "delete_container": {"4.8.45.0.2": delete_container},
-        "delete_container_image": {"4.8.45.0.2": delete_container_image},
-        "get_container_logs": {"4.8.45.0.2": get_container_logs},
-        "get_container_system_ips": {"4.8.45.0.2": get_container_system_ips},
-        "get_container_system_images": {"4.8.45.0.2": get_container_images},
-        "get_container_images": {"4.8.45.0.2": get_container_images},
+        "delete_container": {"4.8.4-5.0.2": delete_container},
+        "delete_container_image": {"4.8.4-5.0.2": delete_container_image},
+        "get_container_logs": {"4.8.4-5.0.2": get_container_logs},
+        "get_container_system_ips": {"4.8.4-5.0.2": get_container_system_ips},
+        "get_container_system_images": {"4.8.4-5.0.2": get_container_images},
+        "get_container_images": {"4.8.4-5.0.2": get_container_images},
         "get_container_system_running_containers": {
-            "4.8.45.0.2": get_running_containers
+            "4.8.4-5.0.2": get_running_containers
         },
-        "get_running_containers": {"4.8.45.0.2": get_running_containers},
-        "get_container_system_status": {"4.8.45.0.2": get_container_system_status},
-        "post_action_container_system": {"4.8.45.0.2": post_action_container_system},
-        "post_commit_container": {"4.8.45.0.2": post_commit_container},
-        "post_create_container_image": {"4.8.45.0.2": post_create_container_image},
-        "post_start_container": {"4.8.45.0.2": post_start_container},
+        "get_running_containers": {"4.8.4-5.0.2": get_running_containers},
+        "get_container_system_status": {"4.8.4-5.0.2": get_container_system_status},
+        "post_action_container_system": {"4.8.4-5.0.2": post_action_container_system},
+        "post_commit_container": {"4.8.4-5.0.2": post_commit_container},
+        "post_create_container_image": {"4.8.4-5.0.2": post_create_container_image},
+        "post_start_container": {"4.8.4-5.0.2": post_start_container},
         "put_configure_container_system": {
-            "4.8.45.0.2": put_configure_container_system
+            "4.8.4-5.0.2": put_configure_container_system
         },
-        "put_update_container_image": {"4.8.45.0.2": put_update_container_image},
-        "put_stop_container": {"4.8.45.0.2": put_stop_container},
+        "put_update_container_image": {"4.8.4-5.0.2": put_update_container_image},
+        "put_stop_container": {"4.8.4-5.0.2": put_stop_container},
         "wait_for_container_system_state": {
-            "4.8.45.0.2": wait_for_container_system_state
+            "4.8.4-5.0.2": wait_for_container_system_state
         },
-        "restart_container_network": {"4.8.45.0.2": restart_container_network},
-        "wait_for_image_import": {"4.8.45.0.2": wait_for_image_import},
-        "post_export_image": {"4.9.15.0.2": post_export_image},  # plugins
+        "restart_container_network": {"4.8.4-5.0.2": restart_container_network},
+        "wait_for_image_import": {"4.8.4-5.0.2": wait_for_image_import},
+        "post_export_image": {"4.9.1-5.0.2": post_export_image},  # plugins
         "get_plugins": {"5.0.0-5.0.2": get_plugins},
         "get_plugin": {"5.0.0-5.0.2": get_plugin},
         "post_commit_plugin_instance": {"5.0.0-5.0.2": post_commit_plugin_instance},
