@@ -23,7 +23,17 @@ def force_async(fn):
     return async_wrapper
 
 
+def get_or_create_eventloop():
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError as ex:
+        if "There is no current event loop in thread" in str(ex):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            return asyncio.get_event_loop()
+
+
 def run_parallel(*coroutines):
-    loop = asyncio.get_event_loop()
+    loop = get_or_create_eventloop()
     results = loop.run_until_complete(asyncio.gather(*coroutines))
     return results
