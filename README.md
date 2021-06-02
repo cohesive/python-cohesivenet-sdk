@@ -73,6 +73,33 @@ config = vns3.config.get_config()
 print(config.response)
 ```
 
+### Storing state VNS3 Client
+Sometimes its useful to be able to cache particular state on VNS3 client as it is passed through scripts. This can be used with the `add_to_state` function on a VNS3Client:
+
+```python
+from cohesivenet.macros import vns3_connect
+
+vns3 = vns3_connect.get_client(
+    host="10.10.10.10:8000",
+    username="api",
+    password="heresmypassword"
+)
+
+peering_status_data = vns3.peering.get_peering_status()
+my_peer_id = peering_status_data.response.id
+vns3.add_to_state('peer_id', my_peer_id)
+
+# Later to retrieve
+vns3.query_state('peer_id') # => my_peer_id
+
+# Viewing entire state:
+vns3.state # => dict
+
+# Update state with dict:
+my_state_updates = {'peer_id': my_peer_id, 'secondary_ip': my_secondary_ip}
+vns3.update_state(my_state_updates)
+```
+
 ### Methods
 Each sub-api is available from the VNS3Client instance as follows:
 
