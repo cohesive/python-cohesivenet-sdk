@@ -1080,7 +1080,8 @@ def create_interface_address(
     ip_internal=None,
     ip_external=None,
     mask_bits=None,
-    gateway=None ** kwargs,
+    gateway=None,
+    **kwargs
 ):  # noqa: E501
     """create_interface_address  # noqa: E501
 
@@ -1246,7 +1247,8 @@ def put_update_interface_address(
     ip_internal=None,
     ip_external=None,
     mask_bits=None,
-    gateway=None ** kwargs,
+    gateway=None,
+    **kwargs
 ):  # noqa: E501
     """put_update_interface_address  # noqa: E501
 
