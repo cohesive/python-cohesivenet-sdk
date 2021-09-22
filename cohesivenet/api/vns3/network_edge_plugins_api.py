@@ -2705,67 +2705,67 @@ def put_plugin_instance_firewall_rule(
 
 class NetworkEdgePluginsApiRouter(VersionRouter):
     function_library = {
-        "delete_container": {"4.8.4-5.0.8": delete_container},
-        "delete_container_image": {"4.8.4-5.0.8": delete_container_image},
-        "get_container_logs": {"4.8.4-5.0.8": get_container_logs},
-        "get_container_system_ips": {"4.8.4-5.0.8": get_container_system_ips},
-        "get_container_system_images": {"4.8.4-5.0.8": get_container_images},
-        "get_container_images": {"4.8.4-5.0.8": get_container_images},
+        "delete_container": {"4.8.4-5.1.5": delete_container},
+        "delete_container_image": {"4.8.4-5.1.5": delete_container_image},
+        "get_container_logs": {"4.8.4-5.1.5": get_container_logs},
+        "get_container_system_ips": {"4.8.4-5.1.5": get_container_system_ips},
+        "get_container_system_images": {"4.8.4-5.1.5": get_container_images},
+        "get_container_images": {"4.8.4-5.1.5": get_container_images},
         "get_container_system_running_containers": {
-            "4.8.4-5.0.8": get_running_containers
+            "4.8.4-5.1.5": get_running_containers
         },
-        "get_running_containers": {"4.8.4-5.0.8": get_running_containers},
-        "get_container_system_status": {"4.8.4-5.0.8": get_container_system_status},
-        "post_action_container_system": {"4.8.4-5.0.8": post_action_container_system},
-        "post_commit_container": {"4.8.4-5.0.8": post_commit_container},
-        "post_create_container_image": {"4.8.4-5.0.8": post_create_container_image},
-        "post_start_container": {"4.8.4-5.0.8": post_start_container},
+        "get_running_containers": {"4.8.4-5.1.5": get_running_containers},
+        "get_container_system_status": {"4.8.4-5.1.5": get_container_system_status},
+        "post_action_container_system": {"4.8.4-5.1.5": post_action_container_system},
+        "post_commit_container": {"4.8.4-5.1.5": post_commit_container},
+        "post_create_container_image": {"4.8.4-5.1.5": post_create_container_image},
+        "post_start_container": {"4.8.4-5.1.5": post_start_container},
         "put_configure_container_system": {
-            "4.8.4-5.0.8": put_configure_container_system
+            "4.8.4-5.1.5": put_configure_container_system
         },
-        "put_update_container_image": {"4.8.4-5.0.8": put_update_container_image},
-        "put_stop_container": {"4.8.4-5.0.8": put_stop_container},
+        "put_update_container_image": {"4.8.4-5.1.5": put_update_container_image},
+        "put_stop_container": {"4.8.4-5.1.5": put_stop_container},
         "wait_for_container_system_state": {
-            "4.8.4-5.0.8": wait_for_container_system_state
+            "4.8.4-5.1.5": wait_for_container_system_state
         },
-        "restart_container_network": {"4.8.4-5.0.8": restart_container_network},
-        "wait_for_image_import": {"4.8.4-5.0.8": wait_for_image_import},
-        "post_export_image": {"4.9.1-5.0.8": post_export_image},  # plugins
-        "get_plugins": {"5.0.0-5.0.8": get_plugins},
-        "get_plugin": {"5.0.0-5.0.8": get_plugin},
-        "post_commit_plugin_instance": {"5.0.0-5.0.8": post_commit_plugin_instance},
-        "get_plugin_instances": {"5.0.0-5.0.8": get_plugin_instances},
-        "get_plugin_instance": {"5.0.0-5.0.8": get_plugin_instance},
-        "post_create_manager_config": {"5.0.0-5.0.8": post_create_manager_config},
-        "put_update_manager_config": {"5.0.0-5.0.8": put_update_manager_config},
-        "get_plugin_instance_log_files": {"5.0.0-5.0.8": get_plugin_instance_log_files},
+        "restart_container_network": {"4.8.4-5.1.5": restart_container_network},
+        "wait_for_image_import": {"4.8.4-5.1.5": wait_for_image_import},
+        "post_export_image": {"4.9.1-5.1.5": post_export_image},  # plugins
+        "get_plugins": {"5.0.0-5.1.5": get_plugins},
+        "get_plugin": {"5.0.0-5.1.5": get_plugin},
+        "post_commit_plugin_instance": {"5.0.0-5.1.5": post_commit_plugin_instance},
+        "get_plugin_instances": {"5.0.0-5.1.5": get_plugin_instances},
+        "get_plugin_instance": {"5.0.0-5.1.5": get_plugin_instance},
+        "post_create_manager_config": {"5.0.0-5.1.5": post_create_manager_config},
+        "put_update_manager_config": {"5.0.0-5.1.5": put_update_manager_config},
+        "get_plugin_instance_log_files": {"5.0.0-5.1.5": get_plugin_instance_log_files},
         "get_plugin_instance_log_content": {
-            "5.0.0-5.0.8": get_plugin_instance_log_content
+            "5.0.0-5.1.5": get_plugin_instance_log_content
         },
         "get_plugin_instance_config_files": {
-            "5.0.0-5.0.8": get_plugin_instance_config_files
+            "5.0.0-5.1.5": get_plugin_instance_config_files
         },
         "revert_plugin_instance_config_file": {
-            "5.0.0-5.0.8": revert_plugin_instance_config_file
+            "5.0.0-5.1.5": revert_plugin_instance_config_file
         },
         "get_plugin_instance_config_content": {
-            "5.0.0-5.0.8": get_plugin_instance_config_content
+            "5.0.0-5.1.5": get_plugin_instance_config_content
         },
         "put_plugin_instance_config_content": {
-            "5.0.0-5.0.8": put_plugin_instance_config_content
+            "5.0.0-5.1.5": put_plugin_instance_config_content
         },
         "delete_plugin_instance_config_version": {
-            "5.0.0-5.0.8": delete_plugin_instance_config_version
+            "5.0.0-5.1.5": delete_plugin_instance_config_version
         },
-        "get_plugin_instance_processes": {"5.0.0-5.0.8": get_plugin_instance_processes},
+        "get_plugin_instance_processes": {"5.0.0-5.1.5": get_plugin_instance_processes},
         "run_plugin_instance_process_action": {
-            "5.0.0-5.0.8": run_plugin_instance_process_action
+            "5.0.0-5.1.5": run_plugin_instance_process_action
         },
         "run_plugin_instance_executable_command": {
-            "5.0.0-5.0.8": run_plugin_instance_executable_command
+            "5.0.0-5.1.5": run_plugin_instance_executable_command
         },
-        "get_plugin_instance_firewall": {"5.0.0-5.0.8": get_plugin_instance_firewall},
+        "get_plugin_instance_firewall": {"5.0.0-5.1.5": get_plugin_instance_firewall},
         "put_plugin_instance_firewall_rule": {
-            "5.0.0-5.0.8": put_plugin_instance_firewall_rule
+            "5.0.0-5.1.5": put_plugin_instance_firewall_rule
         },
     }

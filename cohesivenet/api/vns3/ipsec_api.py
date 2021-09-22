@@ -286,7 +286,7 @@ def get_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     )
 
 
-def get_ipsec_status(api_client, **kwargs):  # noqa: E501
+def get_ipsec_status(api_client, up_down_status_only=None, **kwargs):  # noqa: E501
     """get_ipsec_status  # noqa: E501
 
     Describe ipsec tunnels status  # noqa: E501
@@ -314,7 +314,11 @@ def get_ipsec_status(api_client, **kwargs):  # noqa: E501
 
     path_params = {}
 
+    request_params = ["up_down_status_only"]  # noqa: E501
+
     query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
 
     header_params = {}
 
@@ -1110,22 +1114,22 @@ def wait_for_tunnel_connected(
 class IPsecApiRouter(VersionRouter):
 
     function_library = {
-        "delete_ipsec_endpoint": {"4.8.4-5.0.8": delete_ipsec_endpoint},
-        "delete_ipsec_endpoint_tunnel": {"4.8.4-5.0.8": delete_ipsec_endpoint_tunnel},
-        "get_ipsec_details": {"4.8.4-5.0.8": get_ipsec_details},
-        "get_ipsec_endpoint": {"4.8.4-5.0.8": get_ipsec_endpoint},
-        "get_ipsec_status": {"4.8.4-5.0.8": get_ipsec_status},
-        "get_ipsec_link_history": {"4.8.4-5.0.8": get_ipsec_link_history},
-        "get_connected_subnets": {"4.8.4-5.0.8": get_connected_subnets},
-        "post_create_ipsec_endpoint": {"4.8.4-5.0.8": post_create_ipsec_endpoint},
+        "delete_ipsec_endpoint": {"4.8.4-5.1.5": delete_ipsec_endpoint},
+        "delete_ipsec_endpoint_tunnel": {"4.8.4-5.1.5": delete_ipsec_endpoint_tunnel},
+        "get_ipsec_details": {"4.8.4-5.1.5": get_ipsec_details},
+        "get_ipsec_endpoint": {"4.8.4-5.1.5": get_ipsec_endpoint},
+        "get_ipsec_status": {"4.8.4-5.1.5": get_ipsec_status},
+        "get_ipsec_link_history": {"4.8.4-5.1.5": get_ipsec_link_history},
+        "get_connected_subnets": {"4.8.4-5.1.5": get_connected_subnets},
+        "post_create_ipsec_endpoint": {"4.8.4-5.1.5": post_create_ipsec_endpoint},
         "post_create_ipsec_endpoint_tunnel": {
-            "4.8.4-5.0.8": post_create_ipsec_endpoint_tunnel
+            "4.8.4-5.1.5": post_create_ipsec_endpoint_tunnel
         },
-        "post_restart_ipsec_action": {"4.8.4-5.0.8": post_restart_ipsec_action},
-        "put_update_ipsec_endpoint": {"4.8.4-5.0.8": put_update_ipsec_endpoint},
+        "post_restart_ipsec_action": {"4.8.4-5.1.5": post_restart_ipsec_action},
+        "put_update_ipsec_endpoint": {"4.8.4-5.1.5": put_update_ipsec_endpoint},
         "put_update_ipsec_endpoint_tunnel": {
-            "4.8.4-5.0.8": put_update_ipsec_endpoint_tunnel
+            "4.8.4-5.1.5": put_update_ipsec_endpoint_tunnel
         },
-        "put_update_ipsec_config": {"4.8.4-5.0.8": put_update_ipsec_config},
-        "wait_for_tunnel_connected": {"4.8.4-5.0.8": wait_for_tunnel_connected},
+        "put_update_ipsec_config": {"4.8.4-5.1.5": put_update_ipsec_config},
+        "wait_for_tunnel_connected": {"4.8.4-5.1.5": wait_for_tunnel_connected},
     }

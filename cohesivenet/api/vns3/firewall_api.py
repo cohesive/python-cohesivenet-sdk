@@ -1065,22 +1065,22 @@ class FirewallApiRouter(VersionRouter):
     """Manage VNS3 Firewall"""
 
     function_library = {
-        "delete_firewall_fw_set": {"4.8.4-5.0.8": delete_firewall_fw_set},
+        "delete_firewall_fw_set": {"4.8.4-5.1.5": delete_firewall_fw_set},
         "delete_firewall_rule_by_position": {
-            "4.8.4-5.0.8": delete_firewall_rule_by_position
+            "4.8.4-5.1.5": delete_firewall_rule_by_position
         },
-        "delete_firewall_rule_by_rule": {"4.8.4-5.0.8": delete_firewall_rule_by_rule},
-        "delete_firewall_subgroup": {"4.8.4-5.0.8": delete_firewall_subgroup},
-        "get_firewall_fw_sets": {"4.8.4-5.0.8": get_firewall_fw_sets},
-        "post_create_firewall_fw_set": {"4.8.4-5.0.8": post_create_firewall_fw_set},
-        "get_firewall_rule_subgroups": {"4.8.4-5.0.8": get_firewall_rule_subgroups},
-        "get_firewall_rules": {"4.8.4-5.0.8": get_firewall_rules},
-        "post_create_firewall_rule": {"4.8.4-5.0.8": post_create_firewall_rule},
-        "post_create_firewall_subgroup": {"4.8.4-5.0.8": post_create_firewall_subgroup},
-        "put_reinitialize_fw_sets": {"4.8.4-5.0.8": put_reinitialize_fw_sets},
+        "delete_firewall_rule_by_rule": {"4.8.4-5.1.5": delete_firewall_rule_by_rule},
+        "delete_firewall_subgroup": {"4.8.4-5.1.5": delete_firewall_subgroup},
+        "get_firewall_fw_sets": {"4.8.4-5.1.5": get_firewall_fw_sets},
+        "post_create_firewall_fw_set": {"4.8.4-5.1.5": post_create_firewall_fw_set},
+        "get_firewall_rule_subgroups": {"4.8.4-5.1.5": get_firewall_rule_subgroups},
+        "get_firewall_rules": {"4.8.4-5.1.5": get_firewall_rules},
+        "post_create_firewall_rule": {"4.8.4-5.1.5": post_create_firewall_rule},
+        "post_create_firewall_subgroup": {"4.8.4-5.1.5": post_create_firewall_subgroup},
+        "put_reinitialize_fw_sets": {"4.8.4-5.1.5": put_reinitialize_fw_sets},
         "put_reinitialize_firewall_subgroups": {
-            "4.8.4-5.0.8": put_reinitialize_subgroups
+            "4.8.4-5.1.5": put_reinitialize_subgroups
         },
-        "put_firewall_action": {"5.0.2-5.0.8": put_firewall_action},
-        "put_overwrite_firewall": {"5.0.2-5.0.8": put_overwrite_firewall},
+        "put_firewall_action": {"5.0.2-5.1.5": put_firewall_action},
+        "put_overwrite_firewall": {"5.0.2-5.1.5": put_overwrite_firewall},
     }

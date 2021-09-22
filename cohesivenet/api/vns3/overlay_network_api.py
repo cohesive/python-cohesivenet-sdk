@@ -1148,21 +1148,796 @@ def put_update_all_clientpacks(
     )
 
 
+def get_global_link_policies(api_client, **kwargs):  # noqa: E501
+    """get_global_link_policies  # noqa: E501
+
+    Get policies that apply to all Links at creation time.
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_global_link_policies(client, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param bool sorted: Sort resources
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/global-policies",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_global_link_policies(api_client, policies=None, **kwargs):  # noqa: E501
+    """put_global_link_policies  # noqa: E501
+
+    Update policies that apply to all Links at creation time.
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_global_link_policies(client, policies="" async_req=True)
+
+    :param policies str or list[str]: newline delimited string or list of strings (lines) (required)
+    :param async_req bool: execute request asynchronously
+    :param bool sorted: Sort resources
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    request_params = ["policies"]
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/global-policies",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_links(api_client, **kwargs):  # noqa: E501
+    """get_links  # noqa: E501
+
+    Get all links
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_links(client, async_req=True)
+
+    :param async_req bool: execute request asynchronously
+    :param bool sorted: Sort resources
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def create_link(
+    api_client,
+    id=None,
+    name=None,
+    description=None,
+    conf=None,
+    policies=None,
+    **kwargs
+):  # noqa: E501
+    """create_link  # noqa: E501
+
+    Create link  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.create_link(async_req=True, **data)
+
+    :param id int: required. Creates interface of the form 'lnk{id}'
+    :param name str: required
+    :param description str:
+    :param conf str: Conf file for connection required
+    :param policies str or list[str]: optional additional policies to insert for connection
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+    
+    request_params = [
+        "id",
+        "name",
+        "description",
+        "conf",
+        "policies"
+    ]
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+
+def get_link(api_client, link_id, **kwargs):  # noqa: E501
+    """get_link  # noqa: E501
+
+    Retrieve link details
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_link(client, link_id, async_req=True)
+
+    :param link_id str: str of link. e.g. lnk0
+    :param async_req bool: execute request asynchronously
+    :param bool sorted: Sort resources
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {"link_id": link_id}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/{link_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_link(
+    api_client,
+    link_id,
+    name=None,
+    description=None,
+    connected=None,
+    policies=None,
+    **kwargs
+):  # noqa: E501
+    """put_update_link  # noqa: E501
+
+    Update link details and state  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_link(link_id, async_req=True, **data)
+
+    :param link_id int: ID of link
+    :param name str:
+    :param description str:
+    :param connected bool:
+    :param policies str or list[str]:
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"link_id": link_id}
+    
+    request_params = [
+        "name",
+        "description",
+        "connected",
+        "policies"
+    ]
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/{link_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_link(api_client, link_id, **kwargs):  # noqa: E501
+    """delete_link  # noqa: E501
+
+    Delete link
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_link(client, link_id, async_req=True)
+
+    :param link_id str: str of link. e.g. lnk0
+    :param async_req bool: execute request asynchronously
+    :param bool sorted: Sort resources
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {"link_id": link_id}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/{link_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_link_logs(api_client, link_id, lines=None, sort=None, **kwargs):  # noqa: E501
+    """get_link_logs  # noqa: E501
+
+    Retrieve link logs
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_link_logs(client, link_id, async_req=True)
+
+    :param link_id str: str of link. e.g. lnk0
+    :param lines int: number of lines to return. default: 25
+    :param sort str: asc or desc, default asc
+    :param async_req bool: execute request asynchronously
+    :param bool sorted: Sort resources
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = ["lines", "sort"]  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {"link_id": link_id}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/{link_id}/logs",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def create_link_tag(
+    api_client,
+    link_id,
+    key=None,
+    value=None,
+    **kwargs
+):  # noqa: E501
+    """create_link_tag  # noqa: E501
+
+    Create link tag # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.create_link_tag(link_id, async_req=True, **data)
+
+    :param link_id str: str of link. e.g. lnk0
+    :param key str: required
+    :param value str: required
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+    
+    request_params = [
+        "key",
+        "value"
+    ]
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/{link_id}/tags",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_link_tag(api_client, link_id, tag_key, **kwargs):  # noqa: E501
+    """delete_link_tag  # noqa: E501
+
+    Delete link tag by key
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_link_tag(client, link_id, tag_key, async_req=True)
+
+    :param link_id str: str of link. e.g. lnk0
+    :param tag_key str: key of tag
+    :param async_req bool: execute request asynchronously
+    :param bool sorted: Sort resources
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = []  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {"link_id": link_id, "tag_key": tag_key}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/links/{link_id}/tags/{tag_key}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class OverlayNetworkApiRouter(VersionRouter):
     function_library = {
-        "delete_clientpack_tag": {"4.8.4-5.0.8": delete_clientpack_tag},
-        "get_clientpack": {"4.8.4-5.0.8": get_clientpack},
-        "get_clientpacks": {"4.8.4-5.0.8": get_clientpacks},
-        "get_clients_status": {"4.8.4-5.0.8": get_clients_status},
-        "get_connected_subnets": {"4.8.4-5.0.8": get_connected_subnets},
-        "get_download_clientpack": {"4.8.4-5.0.8": get_download_clientpack},
-        "get_download_named_clientpack": {"5.0.2-5.0.8": get_download_named_clientpack},
-        "post_checkout_next_clientpack": {"4.8.4-5.0.8": post_checkout_next_clientpack},
-        "post_create_clientpack_tag": {"4.8.4-5.0.8": post_create_clientpack_tag},
-        "post_reset_all_clients": {"4.8.4-5.0.8": post_reset_all_clients},
-        "post_reset_client": {"4.8.4-5.0.8": post_reset_client},
-        "post_add_clientpacks": {"4.8.4-5.0.8": post_add_clientpacks},
-        "put_update_clientpack": {"4.8.4-5.0.8": put_update_clientpack},
-        "put_disconnect_clientpack": {"4.8.4-5.0.8": put_disconnect_clientpack},
-        "put_update_all_clientpacks": {"4.8.4-5.0.8": put_update_all_clientpacks},
+        "delete_clientpack_tag": {"4.8.4-5.1.5": delete_clientpack_tag},
+        "get_clientpack": {"4.8.4-5.1.5": get_clientpack},
+        "get_clientpacks": {"4.8.4-5.1.5": get_clientpacks},
+        "get_clients_status": {"4.8.4-5.1.5": get_clients_status},
+        "get_connected_subnets": {"4.8.4-5.1.5": get_connected_subnets},
+        "get_download_clientpack": {"4.8.4-5.1.5": get_download_clientpack},
+        "get_download_named_clientpack": {"5.0.2-5.1.5": get_download_named_clientpack},
+        "post_checkout_next_clientpack": {"4.8.4-5.1.5": post_checkout_next_clientpack},
+        "post_create_clientpack_tag": {"4.8.4-5.1.5": post_create_clientpack_tag},
+        "post_reset_all_clients": {"4.8.4-5.1.5": post_reset_all_clients},
+        "post_reset_client": {"4.8.4-5.1.5": post_reset_client},
+        "post_add_clientpacks": {"4.8.4-5.1.5": post_add_clientpacks},
+        "put_update_clientpack": {"4.8.4-5.1.5": put_update_clientpack},
+        "put_disconnect_clientpack": {"4.8.4-5.1.5": put_disconnect_clientpack},
+        "put_update_all_clientpacks": {"4.8.4-5.1.5": put_update_all_clientpacks},
+        "get_global_link_policies": {"5.1.1-5.1.5": get_global_link_policies},
+        "put_global_link_policies": {"5.1.1-5.1.5": put_global_link_policies},
+        "get_links": {"5.1.1-5.1.5": get_links},
+        "create_link": {"5.1.1-5.1.5": create_link},
+        "get_link": {"5.1.1-5.1.5": get_link},
+        "put_update_link": {"5.1.1-5.1.5": put_update_link},
+        "delete_link": {"5.1.1-5.1.5": delete_link},
+        "get_link_logs": {"5.1.1-5.1.5": get_link_logs},
+        "create_link_tag": {"5.1.1-5.1.5": create_link_tag},
+        "delete_link_tag": {"5.1.1-5.1.5": delete_link_tag},
     }

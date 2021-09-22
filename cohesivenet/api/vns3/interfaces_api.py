@@ -21,7 +21,7 @@ from cohesivenet.api_builder import VersionRouter
 def get_interfaces(api_client, **kwargs):  # noqa: E501
     """get_interfaces  # noqa: E501
 
-    (BETA) Describe all physical and virtual interfaces, both system and edge GRE interfaces  # noqa: E501
+    Describe all physical and virtual interfaces, both system and edge GRE interfaces  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
@@ -482,6 +482,7 @@ def post_interfaces_action(
     discover_new_primary_adapters=None,
     discover_ips=None,
     manage_overlay_interfaces=None,
+    discover_links=None,
     **kwargs
 ):  # noqa: E501
     """post_interfaces_action  # noqa: E501
@@ -494,9 +495,10 @@ def post_interfaces_action(
 
      Run discovery for new primary adapters
 
-    :param discover_new_primary_adapters bool: execute request asynchronously
-    :param discover_ips bool: execute request asynchronously
-    :param manage_overlay_interfaces bool: execute request asynchronously
+    :param discover_new_primary_adapters bool: discover interfaces attached to instance
+    :param discover_ips bool: discover IPs for interfaces
+    :param manage_overlay_interfaces bool: sync tun interfaces
+    :param discover_links bool: discover new link interfaces
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -516,6 +518,7 @@ def post_interfaces_action(
         "discover_new_primary_adapters",
         "discover_ips",
         "manage_overlay_interfaces",
+        "discover_links"
     ]
 
     collection_formats = {}
@@ -1003,20 +1006,420 @@ def put_update_system_interface(
     )
 
 
+def get_interface_addresses(api_client, interface_id, **kwargs):  # noqa: E501
+    """get_interface_addresses  # noqa: E501
+
+    List all addresses for interface  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_interface_addresses(async_req=True)
+
+    :param interface_id int: ID of interface
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"interface_id": interface_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/interfaces/system/{interface_id}/addresses",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def create_interface_address(
+    api_client,
+    interface_id,
+    label=None,
+    description=None,
+    ip_internal=None,
+    ip_external=None,
+    mask_bits=None,
+    gateway=None
+    **kwargs
+):  # noqa: E501
+    """create_interface_address  # noqa: E501
+
+    Create new system interface address  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.create_interface_address(body, interface_id, **data)
+
+    :param label str:
+    :param description str:
+    :param ip_internal str:
+    :param ip_external str:
+    :param mask_bits int:
+    :param gateway str:
+    :param async_req bool: execute request asynchronously
+    :param object body: (required)
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = [
+        "label",
+        "description",
+        "ip_internal",
+        "ip_external",
+        "mask_bits",
+        "gateway"
+    ]
+
+    collection_formats = {}
+
+    path_params = {"interface_id": interface_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/interfaces/system/{interface_id}/addresses",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_interface_address(api_client, interface_id, address_id, **kwargs):  # noqa: E501
+    """get_interface_address  # noqa: E501
+
+    Get interface address details  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_interface_address(interface_id, address_id, async_req=True)
+
+    :param interface_id int: ID of interface
+    :param address_id int: ID of address
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"interface_id": interface_id, "address_id": address_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/interfaces/system/{interface_id}/addresses/{address_id}",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_interface_address(
+    api_client,
+    interface_id,
+    address_id,
+    label=None,
+    description=None,
+    ip_internal=None,
+    ip_external=None,
+    mask_bits=None,
+    gateway=None
+    **kwargs
+):  # noqa: E501
+    """put_update_interface_address  # noqa: E501
+
+    Update interface address details  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_interface_address(interface_id, address_id, async_req=True, **data)
+
+    :param interface_id int: ID of interface
+    :param address_id int: ID of address
+    :param label str:
+    :param description str:
+    :param ip_internal str:
+    :param ip_external str:
+    :param mask_bits int:
+    :param gateway str:
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"interface_id": interface_id, "address_id": address_id}
+    
+    request_params = [
+        "label",
+        "description",
+        "ip_internal",
+        "ip_external",
+        "mask_bits",
+        "gateway"
+    ]
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/interfaces/system/{interface_id}/addresses/{address_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_interface_address(api_client, interface_id, address_id, **kwargs):  # noqa: E501
+    """delete_interface_address  # noqa: E501
+
+    Delete interface address details  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_interface_address(interface_id, address_id, async_req=True)
+
+    :param interface_id int: ID of interface
+    :param address_id int: ID of address
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"interface_id": interface_id, "address_id": address_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/interfaces/system/{interface_id}/addresses/{address_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class InterfacesApiRouter(VersionRouter):
     """(Beta) Manage your VNS3 controllers interfaces"""
 
     function_library = {
-        "get_interfaces": {"4.8.4-5.0.8": get_interfaces},
-        "get_system_interface_details": {"4.8.4-5.0.8": get_system_interface_details},
-        "get_system_interfaces": {"4.8.4-5.0.8": get_system_interfaces},
-        "put_update_system_interface": {"4.8.4-5.0.8": put_update_system_interface},
-        "post_create_system_interface": {"4.8.4-5.0.8": post_create_system_interface},
-        "delete_gre_interface": {"4.8.4-5.0.8": delete_gre_interface},
-        "get_gre_interfaces": {"4.8.4-5.0.8": get_gre_interfaces},
-        "put_update_gre_interface": {"4.8.4-5.0.8": put_update_gre_interface},
-        "get_gre_interface_details": {"4.8.4-5.0.8": get_gre_interface_details},
-        "post_create_gre_interface": {"4.8.4-5.0.8": post_create_gre_interface},
-        "delete_system_interface": {"4.8.4-5.0.8": delete_system_interface},
-        "post_interfaces_action": {"4.8.4-5.0.8": post_interfaces_action},
+        "get_interfaces": {"4.8.4-5.1.5": get_interfaces},
+        "get_system_interface_details": {"4.8.4-5.1.5": get_system_interface_details},
+        "get_system_interfaces": {"4.8.4-5.1.5": get_system_interfaces},
+        "put_update_system_interface": {"4.8.4-5.1.5": put_update_system_interface},
+        "post_create_system_interface": {"4.8.4-5.1.5": post_create_system_interface},
+        "delete_gre_interface": {"4.8.4-5.1.5": delete_gre_interface},
+        "get_gre_interfaces": {"4.8.4-5.1.5": get_gre_interfaces},
+        "put_update_gre_interface": {"4.8.4-5.1.5": put_update_gre_interface},
+        "get_gre_interface_details": {"4.8.4-5.1.5": get_gre_interface_details},
+        "post_create_gre_interface": {"4.8.4-5.1.5": post_create_gre_interface},
+        "delete_system_interface": {"4.8.4-5.1.5": delete_system_interface},
+        "post_interfaces_action": {"4.8.4-5.1.5": post_interfaces_action},
+        "get_interface_addresses": {"5.1.1-5.1.5": get_interface_addresses},
+        "create_interface_address": {"5.1.1-5.1.5": create_interface_address},
+        "get_interface_address": {"5.1.1-5.1.5": get_interface_address},
+        "put_update_interface_address": {"5.1.1-5.1.5": put_update_interface_address},
+        "delete_interface_address": {"5.1.1-5.1.5": delete_interface_address},
     }
