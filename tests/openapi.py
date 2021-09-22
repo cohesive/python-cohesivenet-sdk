@@ -24,13 +24,18 @@ class OpenAPITypes(object):
     }
 
 
-
 def get_vns3_spec_url(version):
-    return "https://cohesive-networks.s3.amazonaws.com/apis/vns3/vns3-v%s.oasv3.json" % version.replace(".", "-")
+    return (
+        "https://cohesive-networks.s3.amazonaws.com/apis/vns3/vns3-v%s.oasv3.json"
+        % version.replace(".", "-")
+    )
 
 
 def get_vns3ms_spec_url(version):
-    return "https://cohesive-networks.s3.amazonaws.com/apis/vns3-ms/vns3ms-v%s.oasv3.json" % version.replace(".", "-")
+    return (
+        "https://cohesive-networks.s3.amazonaws.com/apis/vns3-ms/vns3ms-v%s.oasv3.json"
+        % version.replace(".", "-")
+    )
 
 
 def fetch_spec(spec, resolve_refs=False):

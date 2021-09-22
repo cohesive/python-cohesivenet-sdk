@@ -27,13 +27,12 @@ class TestMSAccessApi(object):
 
     @classmethod
     def setup_class(cls):
-        """ setup any state specific to the execution of the given class (which
+        """setup any state specific to the execution of the given class (which
         usually contains tests).
         """
         PREV_VERSION = "2.3.6"
         cls.previous_auth_api_spec = fetch_spec(
-            get_vns3ms_spec_url(PREV_VERSION),
-            resolve_refs=True
+            get_vns3ms_spec_url(PREV_VERSION), resolve_refs=True
         )
 
     def test_put_activate_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -45,7 +44,7 @@ class TestMSAccessApi(object):
             "/auth/activate",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response_from_schema=True
+            mock_response_from_schema=True,
         )(access_api.put_activate_api_key)
 
     def test_post_create_token(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -57,7 +56,7 @@ class TestMSAccessApi(object):
             "/auth",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.TokenResponse
+            mock_response=AccessApiData.TokenResponse,
         )(access_api.post_create_token)
 
     def test_put_expire_token(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -69,7 +68,7 @@ class TestMSAccessApi(object):
             "/auth/expire_token",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.ExpireTokenResponse
+            mock_response=AccessApiData.ExpireTokenResponse,
         )(access_api.put_expire_token)
 
     def test_put_invalidate_api_key_tokens(
@@ -83,7 +82,7 @@ class TestMSAccessApi(object):
             "/auth/invalidate_tokens",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.ExpireKeyTokens
+            mock_response=AccessApiData.ExpireKeyTokens,
         )(access_api.put_invalidate_api_key_tokens)
 
     def test_get_api_keys(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -95,7 +94,7 @@ class TestMSAccessApi(object):
             "/auth/api_keys",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.ApiKeysResponse
+            mock_response=AccessApiData.ApiKeysResponse,
         )(access_api.get_api_keys)
 
     def test_post_create_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -107,7 +106,7 @@ class TestMSAccessApi(object):
             "/auth/api_key",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.NewApiKeyResponse
+            mock_response=AccessApiData.NewApiKeyResponse,
         )(access_api.post_create_api_key)
 
     def test_put_update_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -119,7 +118,7 @@ class TestMSAccessApi(object):
             "/auth/api_key/{key_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response=AccessApiData.ApiKeyUpdatedResponse
+            mock_response=AccessApiData.ApiKeyUpdatedResponse,
         )(access_api.put_update_api_key)
 
     def test_delete_api_key(self, rest_mocker, ms_client, ms_api_schema: dict):
@@ -131,5 +130,5 @@ class TestMSAccessApi(object):
             "/auth/api_key/{key_id}",
             rest_mocker,
             mock_request_from_schema=True,
-            mock_response={"response_type": "success", "response": "Deleted key"}
+            mock_response={"response_type": "success", "response": "Deleted key"},
         )(access_api.delete_api_key)

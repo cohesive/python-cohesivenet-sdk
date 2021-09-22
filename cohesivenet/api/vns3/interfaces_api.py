@@ -518,7 +518,7 @@ def post_interfaces_action(
         "discover_new_primary_adapters",
         "discover_ips",
         "manage_overlay_interfaces",
-        "discover_links"
+        "discover_links",
     ]
 
     collection_formats = {}
@@ -1080,8 +1080,7 @@ def create_interface_address(
     ip_internal=None,
     ip_external=None,
     mask_bits=None,
-    gateway=None
-    **kwargs
+    gateway=None ** kwargs,
 ):  # noqa: E501
     """create_interface_address  # noqa: E501
 
@@ -1119,7 +1118,7 @@ def create_interface_address(
         "ip_internal",
         "ip_external",
         "mask_bits",
-        "gateway"
+        "gateway",
     ]
 
     collection_formats = {}
@@ -1247,8 +1246,7 @@ def put_update_interface_address(
     ip_internal=None,
     ip_external=None,
     mask_bits=None,
-    gateway=None
-    **kwargs
+    gateway=None ** kwargs,
 ):  # noqa: E501
     """put_update_interface_address  # noqa: E501
 
@@ -1284,14 +1282,14 @@ def put_update_interface_address(
     collection_formats = {}
 
     path_params = {"interface_id": interface_id, "address_id": address_id}
-    
+
     request_params = [
         "label",
         "description",
         "ip_internal",
         "ip_external",
         "mask_bits",
-        "gateway"
+        "gateway",
     ]
 
     query_params = []
@@ -1334,7 +1332,9 @@ def put_update_interface_address(
     )
 
 
-def delete_interface_address(api_client, interface_id, address_id, **kwargs):  # noqa: E501
+def delete_interface_address(
+    api_client, interface_id, address_id, **kwargs
+):  # noqa: E501
     """delete_interface_address  # noqa: E501
 
     Delete interface address details  # noqa: E501

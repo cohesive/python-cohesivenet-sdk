@@ -1363,13 +1363,7 @@ def get_links(api_client, **kwargs):  # noqa: E501
 
 
 def create_link(
-    api_client,
-    id=None,
-    name=None,
-    description=None,
-    conf=None,
-    policies=None,
-    **kwargs
+    api_client, id=None, name=None, description=None, conf=None, policies=None, **kwargs
 ):  # noqa: E501
     """create_link  # noqa: E501
 
@@ -1402,14 +1396,8 @@ def create_link(
     collection_formats = {}
 
     path_params = {}
-    
-    request_params = [
-        "id",
-        "name",
-        "description",
-        "conf",
-        "policies"
-    ]
+
+    request_params = ["id", "name", "description", "conf", "policies"]
 
     query_params = []
 
@@ -1449,7 +1437,6 @@ def create_link(
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 
 def get_link(api_client, link_id, **kwargs):  # noqa: E501
@@ -1564,13 +1551,8 @@ def put_update_link(
     collection_formats = {}
 
     path_params = {"link_id": link_id}
-    
-    request_params = [
-        "name",
-        "description",
-        "connected",
-        "policies"
-    ]
+
+    request_params = ["name", "description", "connected", "policies"]
 
     query_params = []
 
@@ -1758,13 +1740,7 @@ def get_link_logs(api_client, link_id, lines=None, sort=None, **kwargs):  # noqa
     )
 
 
-def create_link_tag(
-    api_client,
-    link_id,
-    key=None,
-    value=None,
-    **kwargs
-):  # noqa: E501
+def create_link_tag(api_client, link_id, key=None, value=None, **kwargs):  # noqa: E501
     """create_link_tag  # noqa: E501
 
     Create link tag # noqa: E501
@@ -1794,11 +1770,8 @@ def create_link_tag(
     collection_formats = {}
 
     path_params = {}
-    
-    request_params = [
-        "key",
-        "value"
-    ]
+
+    request_params = ["key", "value"]
 
     query_params = []
 

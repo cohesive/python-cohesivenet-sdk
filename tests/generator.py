@@ -20,7 +20,7 @@ def random_int(minimum=1, maximum=100):
 
 
 def random_string(minLength=10, maxLength=15):
-    """Generate a random string of fixed length """
+    """Generate a random string of fixed length"""
     length = random_int(minLength, maxLength)
     return "".join(random.choice(string.ascii_lowercase) for _ in range(length))
 
