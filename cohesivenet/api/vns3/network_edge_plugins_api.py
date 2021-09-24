@@ -735,10 +735,22 @@ def post_create_container_image(
         ["application/json"]
     )  # noqa: E501
 
+    if imagefile:
+        local_var_files["imagefile"] = imagefile
+    if buildfile:
+        local_var_files["buildfile"] = buildfile
+
     # HTTP header `Content-Type`
-    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
-        ["application/json"]
-    )  # noqa: E501
+    if local_var_files:
+        header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+            ["multipart/form-data"]
+        )  # noqa: E501
+        form_params = body_params
+        body_params = {}
+    else:
+        header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
     # Authentication setting
     auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501

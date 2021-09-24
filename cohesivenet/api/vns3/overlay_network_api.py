@@ -16,6 +16,7 @@ from __future__ import absolute_import
 import re  # noqa: F401
 
 from cohesivenet.api_builder import VersionRouter
+from cohesivenet.exceptions import ApiValueError
 
 
 def get_clientpack(api_client, clientpack_name, **kwargs):  # noqa: E501
@@ -394,6 +395,10 @@ def get_download_named_clientpack(api_client, name, **kwargs):  # noqa: E501
 
     path_params = {"name": name}
 
+    file_parts = name.split('.')
+    if len(file_parts) != 2 or file_parts[1] not in ['ovpn', 'zip', 'conf', 'tarball']:
+        raise ApiValueError('name must have file type suffix: ovpn, zip, conf or tarball. e.g. 102_100_100_100.conf')
+
     query_params = []
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         query_params.append((param, local_var_params[param]))  # noqa: E501
@@ -422,7 +427,7 @@ def get_download_named_clientpack(api_client, name, **kwargs):  # noqa: E501
         body={},
         post_params=form_params,
         files=local_var_files,
-        response_type="file:%s" % local_var_params["fileformat"],
+        response_type="file:%s" % file_parts[1],
         auth_settings=auth_settings,
         async_req=local_var_params.get("async_req"),
         _return_http_data_only=local_var_params.get(
