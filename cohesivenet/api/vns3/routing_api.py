@@ -23,6 +23,30 @@ class RouteConstants(object):
     RouteComparisonKeys = ["cidr", "interface", "gateway", "advertise"]
 
 
+def to_route_tuple(route, keys):
+    """to_route_tuple
+
+    Helper for comparing routes
+
+    Args:
+        route (dict): Route dict
+        keys (List[str]): list of keys to take for tuple
+
+    Returns:
+        [type]: [description]
+    """
+    t = ()
+    for key in keys:
+        _val = route.get(key)
+        if _val is not None:
+            t += (_val,)
+        elif key in ("interface", "gateway"):
+            t += ("_notset",)
+        else:
+            t += (None,)
+    return t
+
+
 def delete_route(api_client, route_id, **kwargs):  # noqa: E501
     """delete_route  # noqa: E501
 
@@ -423,29 +447,16 @@ def post_create_route_if_not_exists(
     Returns:
         [RoutesListResponse] -  dictionary of routes keyed by route Ids (ints). id -> dict
     """
-
-    def __to_route_tuple(route, keys):
-        t = ()
-        for key in keys:
-            _val = route.get(key)
-            if _val is not None:
-                t += (_val,)
-            elif key in ("interface", "gateway"):
-                t += ("_notset",)
-            else:
-                t += (None,)
-        return t
-
     routes_response = api_client.routing.get_routes().response
     route_tuples = (
         {
-            __to_route_tuple(current_route, comparison_keys): current_route
+            to_route_tuple(current_route, comparison_keys): current_route
             for current_route in routes_response.values()
         }
         if routes_response
         else {}
     )
-    new_route_tuple = __to_route_tuple(route_request, comparison_keys)
+    new_route_tuple = to_route_tuple(route_request, comparison_keys)
     if new_route_tuple in route_tuples:
         Logger.debug(
             "Route already exists. Skipping creation.",

@@ -10,6 +10,7 @@ from cohesivenet import (
     VNS3Client,
     CohesiveSDKException,
 )
+from cohesivenet.api.vns3.routing_api import to_route_tuple, RouteConstants
 from cohesivenet.macros import api_operations, state
 
 
@@ -234,3 +235,12 @@ def create_route_table(client: VNS3Client, routes, state={}):
         raise CohesiveSDKException(",".join(errors))
 
     return successes, errors
+
+
+def route_exists(client: VNS3Client, route, comparison_keys=RouteConstants.RouteComparisonKeys):
+    target_route_tuple = to_route_tuple(route, comparison_keys)
+    routes = client.routing.get_routes().response.values()
+    for existing_route in routes:
+        if to_route_tuple(existing_route, comparison_keys) == target_route_tuple:
+            return existing_route
+    return None

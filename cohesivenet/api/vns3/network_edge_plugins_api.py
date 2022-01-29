@@ -2715,6 +2715,9 @@ def put_plugin_instance_firewall_rule(
     )
 
 
+# def restart_plugin_instance()
+
+
 class NetworkEdgePluginsApiRouter(VersionRouter):
     function_library = {
         "delete_container": {"4.8.4-5.1.5": delete_container},

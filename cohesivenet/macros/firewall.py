@@ -60,12 +60,27 @@ def __construct_proposed_firewall_list(rule_args_list, state=None):
 
 
 def __firewall_resp_to_list(firewall_raw_response):
+    # Create a list ordered correctly by position. 
     return [
         rule_tuple[0].strip()
         for rule_tuple in sorted(
             firewall_raw_response.response, key=lambda r: int(r[1])
         )
     ]
+
+
+def create_policy_if_not_exists(client: VNS3Client, rules):
+    current_firewall = __firewall_resp_to_list(client.firewall.get_firewall_rules())
+
+    for ruledata in rules:
+        rule = ruledata if type(ruledata) is str else ruledata['rule']
+        if rule in current_firewall:
+            continue
+
+        position = -1 if type(ruledata) is str else ruledata.get('position', -1)
+        new_rule_data = client.firewall.post_create_firewall_rule(**{"rule": rule, "position": position})
+    return __firewall_resp_to_list(client.firewall.get_firewall_rules())
+
 
 
 def assert_rule_policy(client: VNS3Client, rules, should_fix=False):
