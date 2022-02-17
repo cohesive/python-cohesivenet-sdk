@@ -61,6 +61,10 @@ class IpsecApiData(object):
         }
     }
 
+    VNS3ConnectedSubnets = {
+        "response": [["10.0.1.0", "255.255.255.0"]]
+    }
+
     IpsecEndpointDetailNoTunnels = {
         "response": {
             "name": "EndpointC",
@@ -1060,6 +1064,7 @@ class SystemAdminApiData(object):
             "ipsec": {},
         }
     }
+
 
     SystemStatus = {
         "response": {

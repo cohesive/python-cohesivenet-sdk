@@ -104,6 +104,20 @@ class TestIPsecApi(object):
             mock_response=IpsecApiData.LinkHistoryResponse,
         )(ipsec_api.get_ipsec_link_history)
 
+    def test_get_connected_subnets(
+        self, rest_mocker, vns3_client, vns3_api_schema: dict
+    ):
+        """Test case for get_connected_subnets"""
+        generate_method_test(
+            vns3_client,
+            vns3_api_schema,
+            "get",
+            "/status/connected_subnets",
+            rest_mocker,
+            mock_request_from_schema=True,
+            mock_response=IpsecApiData.VNS3ConnectedSubnets,
+        )(ipsec_api.get_connected_subnets)
+
     def test_post_create_ipsec_endpoint(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
