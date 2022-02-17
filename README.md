@@ -45,14 +45,14 @@ import cohesivenet
 from pprint import pprint
 
 configuration = cohesivenet.Configuration(
-    host='https://[vns3-host]:8000',
+    host='[vns3-host]:8000',
     username='api',         
     password='YOUR_PASSWORD',
     verify_ssl=False) # Local cert is used by default. Can add your own cert.
 # Configure HTTP basic authorization: basicAuth
 configuration.username = 'api'
 configuration.password = 'YOUR_PASSWORD'
-configuration.host = "https://[vns3-host]:8000"
+configuration.host = "[vns3-host]:8000"
 # Create an instance of the API class
 vns3_controller = cohesivenet.VNS3Client(configuration)
 
