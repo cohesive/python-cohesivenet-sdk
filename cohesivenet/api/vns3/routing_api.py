@@ -408,7 +408,8 @@ def disable_route(api_client, route_id, **kwargs):  # noqa: E501
 
 
 def post_create_route_if_not_exists(
-    api_client, route_request, comparison_keys=RouteConstants.RouteComparisonKeys
+    api_client, route_request, comparison_keys=RouteConstants.RouteComparisonKeys,
+    routes_response=None
 ):
     """Create route if it doesn not exist for client. Compare based on keys.
 
@@ -436,7 +437,9 @@ def post_create_route_if_not_exists(
                 t += (None,)
         return t
 
-    routes_response = api_client.routing.get_routes().response
+    if not routes_response:
+        routes_response = api_client.routing.get_routes().response
+
     route_tuples = (
         {
             __to_route_tuple(current_route, comparison_keys): current_route

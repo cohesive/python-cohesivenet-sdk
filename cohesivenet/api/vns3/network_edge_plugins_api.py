@@ -671,6 +671,7 @@ def post_create_container_image(
     imagefile=None,
     buildfile=None,
     description=None,
+    version=None,
     **kwargs
 ):  # noqa: E501
     """post_create_container_image  # noqa: E501
@@ -688,6 +689,7 @@ def post_create_container_image(
     :param imagefile str: image file upload
     :param buildfile str: Dockerfile or zipped context file upload
     :param description str:
+    :param version str: optional version string to associate with image. defaults to date
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
