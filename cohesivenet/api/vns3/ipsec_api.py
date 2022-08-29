@@ -1032,7 +1032,7 @@ def put_update_ipsec_endpoint_tunnel(
 
 
 def put_update_ipsec_config(
-    api_client, ipsec_local_ipaddress=None, **kwargs
+    api_client, ipsec_local_ipaddress=None, server_async=None, **kwargs
 ):  # noqa: E501
     """put_update_ipsec_config  # noqa: E501
 
@@ -1080,6 +1080,10 @@ def put_update_ipsec_config(
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
+
+    # because async is python reserved word
+    if server_async is not None:
+        body_params["async"] = server_async
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(

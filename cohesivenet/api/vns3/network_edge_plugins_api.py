@@ -1522,6 +1522,7 @@ def get_plugin_instance(api_client, id, *args, **kwargs):  # noqa: E501
 
     :param async_req bool: execute request asynchronously
     :param int id: ID for Plugin instance (running container) (required)
+    :param bool system_data: If true, return container system data
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1540,7 +1541,11 @@ def get_plugin_instance(api_client, id, *args, **kwargs):  # noqa: E501
 
     path_params = {"id": id}
 
+    request_params = ["system_data"]
+
     query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
 
     header_params = {}
 
@@ -1950,9 +1955,11 @@ def get_plugin_instance_log_content(
 
     path_params = {"id": id, "slug": file_slug}
 
-    query_params = ["lines"]
+    request_params = ["lines"]
 
-    for param in [p for p in query_params if local_var_params.get(p) is not None]:
+    query_params = []
+
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
         query_params.append((param, local_var_params[param]))  # noqa: E501
 
     header_params = {}
@@ -2160,12 +2167,14 @@ def get_plugin_instance_config_content(
 
     local_var_params = locals()
 
-    collection_formats = {}
-
     path_params = {"id": id, "slug": file_slug}
 
-    query_params = ["version"]
-    for param in [p for p in query_params if local_var_params.get(p) is not None]:
+    request_params = ["version"]  # noqa: E501
+
+    collection_formats = {}
+
+    query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
         query_params.append((param, local_var_params[param]))  # noqa: E501
 
     header_params = {}
@@ -3167,15 +3176,16 @@ def create_plugin_export(api_client, plugin_id, **kwargs):  # noqa: E501
     path_params = {"id": plugin_id}
 
     query_params = []
+
+    body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        query_params.append((param, local_var_params[param]))  # noqa: E501
+        body_params[param] = local_var_params[param]
 
     header_params = {}
 
     form_params = []
     local_var_files = {}
 
-    body_params = None
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
@@ -3759,15 +3769,15 @@ def put_plugin_instance_user(
     path_params = {"id": instance_id}
 
     query_params = []
+
+    body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        query_params.append((param, local_var_params[param]))  # noqa: E501
+        body_params[param] = local_var_params[param]
 
     header_params = {}
-
     form_params = []
     local_var_files = {}
 
-    body_params = None
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
@@ -4033,15 +4043,16 @@ def create_plugin_instance_export(api_client, instance_id, **kwargs):  # noqa: E
     path_params = {"id": instance_id}
 
     query_params = []
+
+    body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
-        query_params.append((param, local_var_params[param]))  # noqa: E501
+        body_params[param] = local_var_params[param]
 
     header_params = {}
 
     form_params = []
     local_var_files = {}
 
-    body_params = None
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]

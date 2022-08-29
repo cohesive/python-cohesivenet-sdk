@@ -904,11 +904,13 @@ def put_update_clientpack(
     checked_out=None,
     regenerate=None,
     compression=None,
+    auth_on=None,
+    psk_on=None,
     **kwargs
 ):  # noqa: E501
-    """put_clientpack  # noqa: E501
+    """put_update_clientpack  # noqa: E501
 
-    Change properties of clientpacks; enabling or disabling, checking in or out,
+    Change properties of a clientpack; enabling or disabling, checking in or out,
     regenerating, turning on compression  # noqa: E501
 
     This method makes a synchronous HTTP request by default. To make an
@@ -920,6 +922,8 @@ def put_update_clientpack(
     :param checked_out bool: Update whether clientpacks are checked out and thus unavailable
     :param regenerate bool: Regenerate this clientpack
     :param compression str: Turn compression on or off. Can be "on" or "off" currently.
+    :param auth_on bool: [6.0-] enable auth for clientpack. Only supported for Wireguard overlay
+    :param psk_on bool: [6.0-] enable PSK for clientpack. Only supported for Wireguard overlay
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -941,6 +945,8 @@ def put_update_clientpack(
         "checked_out",
         "regenerate",
         "compression",
+        "auth_on",
+        "psk_on"
     ]  # noqa: E501
 
     collection_formats = {}
@@ -1072,9 +1078,10 @@ def put_disconnect_clientpack(
 
 
 def put_update_all_clientpacks(
-    api_client, enabled=None, checked_out=None, compression=None, **kwargs
+    api_client, enabled=None, checked_out=None, compression=None,
+    auth_on=None, psk_on=None, server_async=None, **kwargs
 ):  # noqa: E501
-    """put_update_clientpacks  # noqa: E501
+    """put_update_all_clientpacks  # noqa: E501
 
     For bulk set of the enabled (true/false) state for all clientpacks and the checked_out (true/false) state for all clientpacks.
     This enables a variety of work flows by calling these functions after key generation,
@@ -1087,6 +1094,9 @@ def put_update_all_clientpacks(
     :param enabled bool: Enable all clientpacks
     :param checked_out bool: Mark all clientpacks checked out
     :param compression str: Turn compression on or off. Can be "on" or "off" currently.
+    :param auth_on bool: [6.0-] enable auth for clientpack. Only supported for Wireguard overlay
+    :param psk_on bool: [6.0-] enable PSK for clientpack. Only supported for Wireguard overlay
+    :param server_async bool: [6.0-] perform as async task and recieve a task token from server
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -1102,7 +1112,13 @@ def put_update_all_clientpacks(
 
     local_var_params = locals()
 
-    request_params = ["enabled", "checked_out", "compression"]  # noqa: E501
+    request_params = [
+        "enabled",
+        "checked_out",
+        "compression",
+        "auth_on",
+        "psk_on",
+    ]  # noqa: E501
 
     collection_formats = {}
 
@@ -1118,6 +1134,10 @@ def put_update_all_clientpacks(
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
+
+    # because async is python reserved word
+    if server_async is not None:
+        body_params["async"] = server_async
 
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
@@ -1153,7 +1173,7 @@ def put_update_all_clientpacks(
     )
 
 
-def get_global_link_policies(api_client, **kwargs):  # noqa: E501
+def get_global_link_policies(api_client, type=None, **kwargs):  # noqa: E501
     """get_global_link_policies  # noqa: E501
 
     Get policies that apply to all Links at creation time.
@@ -1162,6 +1182,7 @@ def get_global_link_policies(api_client, **kwargs):  # noqa: E501
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.get_global_link_policies(client, async_req=True)
 
+    :param str type: openvpn or wireguard. default openvpn
     :param async_req bool: execute request asynchronously
     :param bool sorted: Sort resources
     :param _return_http_data_only: response data without head status code
@@ -1178,7 +1199,7 @@ def get_global_link_policies(api_client, **kwargs):  # noqa: E501
 
     local_var_params = locals()
 
-    request_params = []  # noqa: E501
+    request_params = ["type"]  # noqa: E501
 
     collection_formats = {}
 
@@ -1224,7 +1245,7 @@ def get_global_link_policies(api_client, **kwargs):  # noqa: E501
     )
 
 
-def put_global_link_policies(api_client, policies=None, **kwargs):  # noqa: E501
+def put_global_link_policies(api_client, policies=None, type=None, **kwargs):  # noqa: E501
     """put_global_link_policies  # noqa: E501
 
     Update policies that apply to all Links at creation time.
@@ -1233,6 +1254,7 @@ def put_global_link_policies(api_client, policies=None, **kwargs):  # noqa: E501
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.put_global_link_policies(client, policies="" async_req=True)
 
+    :param type str: openvpn or wireguard. default openvpn (starting 6.x)
     :param policies str or list[str]: newline delimited string or list of strings (lines) (required)
     :param async_req bool: execute request asynchronously
     :param bool sorted: Sort resources
@@ -1254,7 +1276,7 @@ def put_global_link_policies(api_client, policies=None, **kwargs):  # noqa: E501
 
     path_params = {}
 
-    request_params = ["policies"]
+    request_params = ["policies", "type"]
 
     query_params = []
 

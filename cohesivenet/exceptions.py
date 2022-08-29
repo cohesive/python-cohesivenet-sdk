@@ -32,7 +32,7 @@ class CohesiveSDKException(Exception):
 
 
 class ApiMethodUnsupportedError(Exception):
-    def __init__(self, method_name, version, supported_versions, *args, **kwargs):
+    def __init__(self, method_name, version, supported_versions=None, *args, **kwargs):
         self.method = method_name
         self.version = version
         self.supported_versions = supported_versions
@@ -40,18 +40,17 @@ class ApiMethodUnsupportedError(Exception):
 
     def __str__(self):
         """Custom error messages for ApiMethodUnsupportedError"""
-        return (
-            "API method %s not supported on version %s. Supported versions are %s."
-            % (self.method, self.version, self.supported_versions)
-        )
+        msg = "API method %s not supported on version %s." % (self.method, self.version)
+        return msg
 
     def __repr__(self):
-        return "%s(method=%s,version=%s,supported_versions=%s)" % (
+        msg = "%s(method=%s,version=%s%s)" % (
             self.__class__.__name__,
             self.method,
             self.version,
-            self.supported_versions,
+            ',supported_versions=%s' % self.supported_versions if self.supported_versions else ''
         )
+        return msg
 
 
 class ApiTypeError(OpenApiException, TypeError):

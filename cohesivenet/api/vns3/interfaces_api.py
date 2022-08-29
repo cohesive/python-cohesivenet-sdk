@@ -1091,10 +1091,10 @@ def create_interface_address(
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.create_interface_address(body, interface_id, **data)
 
-    :param label str:
-    :param description str:
-    :param ip_internal str:
+    :param label str: required
+    :param ip_internal str: required
     :param ip_external str:
+    :param description str:
     :param mask_bits int:
     :param gateway str:
     :param async_req bool: execute request asynchronously

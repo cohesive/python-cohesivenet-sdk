@@ -97,6 +97,10 @@ def parse_version_to_int(v):
     return int("".join([p for p in v.split(".") if p.isdigit()]))
 
 
+def raise_unsupported_error(name, vns3_version, *args, **kwargs):
+    raise ApiMethodUnsupportedError(name, vns3_version)
+
+
 def set_version_library(client, api, library):
     """Set the API library functions based on the current clients version
 
@@ -114,17 +118,24 @@ def set_version_library(client, api, library):
         client_version = client.latest_version()
 
     version_library = {}
+    unsupported = []
     for function_name, versions_funcs in library.items():
+        _supported = False
         for version_range, func in versions_funcs.items():
             if util.version_in_range(client_version, version_range):
                 version_library[function_name] = func
+                _supported = True
                 break
+        if not _supported:
+            unsupported.append(function_name)
 
     Logger.debug(
         "Setting v%s API functions %s" % (client_version, api.__class__.__name__)
     )
     for name, func in version_library.items():
         setattr(api, name, functools.partial(func, client))
+    for funcname in unsupported:
+        setattr(api, funcname, functools.partial(raise_unsupported_error, funcname, client_version))
 
 
 class VersionRouter(object):
