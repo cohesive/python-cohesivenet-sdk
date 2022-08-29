@@ -15,6 +15,7 @@ from __future__ import absolute_import
 
 import re  # noqa: F401
 from functools import partial as bind
+from collections import OrderedDict
 
 from cohesivenet.util import vapi_switch
 from cohesivenet.api_builder import VersionRouter
@@ -3186,40 +3187,43 @@ class FirewallApiRouter(VersionRouter):
     """Manage VNS3 Firewall"""
 
     function_library = {
-        "delete_firewall_fw_set": {"4.8.4-5.1.5": delete_firewall_fw_set},
+        # old firewall. interface still supported but should use new
+        "delete_firewall_fw_set": {"4.8.4-6.x.x": delete_firewall_fw_set},
         "delete_firewall_rule_by_position": {
-            "4.8.4-5.1.5": delete_firewall_rule_by_position
+            "4.8.4-6.x.x": delete_firewall_rule_by_position
         },
-        "delete_firewall_rule_by_rule": {"4.8.4-5.1.5": delete_firewall_rule_by_rule},
-        "delete_firewall_subgroup": {"4.8.4-5.1.5": delete_firewall_subgroup},
-        "get_firewall_fw_sets": {"4.8.4-5.1.5": get_firewall_fw_sets},
-        "post_create_firewall_fw_set": {"4.8.4-5.1.5": post_create_firewall_fw_set},
-        "get_firewall_rule_subgroups": {"4.8.4-5.1.5": get_firewall_rule_subgroups},
-        "post_create_firewall_subgroup": {"4.8.4-5.1.5": post_create_firewall_subgroup},
-        "put_reinitialize_fw_sets": {"4.8.4-5.1.5": put_reinitialize_fw_sets},
+        "delete_firewall_rule_by_rule": {"4.8.4-6.x.x": delete_firewall_rule_by_rule},
+        "delete_firewall_subgroup": {"4.8.4-6.x.x": delete_firewall_subgroup},
+        "get_firewall_fw_sets": {"4.8.4-6.x.x": get_firewall_fw_sets},
+        "post_create_firewall_fw_set": {"4.8.4-6.x.x": post_create_firewall_fw_set},
+        "get_firewall_rule_subgroups": {"4.8.4-6.x.x": get_firewall_rule_subgroups},
+        "post_create_firewall_subgroup": {"4.8.4-6.x.x": post_create_firewall_subgroup},
+        "put_reinitialize_fw_sets": {"4.8.4-6.x.x": put_reinitialize_fw_sets},
         "put_reinitialize_firewall_subgroups": {
-            "4.8.4-5.1.5": put_reinitialize_subgroups
+            "4.8.4-6.x.x": put_reinitialize_subgroups
         },
-        "put_firewall_action": {
-            "5.0.2-5.2.x": put_firewall_action,
-            "6.x.x-": bind(put_firewall_action, api_version=2) # same interface
-        },
+        # New firewall
+        "put_firewall_action": OrderedDict([
+            ('6.x.x-', bind(put_firewall_action, api_version=2)),
+            ("5.0.2-6.x.x", put_firewall_action)
+        ]),
 
-        "get_firewall_rules": {
-            "4.8.4-5.2.x": get_firewall_rules_v1,
-            "6.x.x-": vapi_switch('get_firewall_rules', v1=get_firewall_rules_v1, v2=get_firewall_rules_v2),
-        },
+        "get_firewall_rules": OrderedDict([
+            ("6.x.x-", vapi_switch('get_firewall_rules', v1=get_firewall_rules_v1, v2=get_firewall_rules_v2)),
+            ("4.8.4-6.x.x", get_firewall_rules_v1)
+        ]),
 
-        "post_create_firewall_rule": {
-            "4.8.4-5.2.x": post_create_firewall_rule_v1,
-            "6.x.x-": vapi_switch('post_create_firewall_rule', v1=post_create_firewall_rule_v1, v2=post_create_firewall_rule_v2),
-        },
+        "post_create_firewall_rule": OrderedDict([
+            ("6.x.x-", vapi_switch('post_create_firewall_rule', v1=post_create_firewall_rule_v1, v2=post_create_firewall_rule_v2)),
+            ("4.8.4-5.2.x", post_create_firewall_rule_v1)
+        ]),
 
-        "put_overwrite_firewall": {
-            "5.0.2-5.2.x": put_overwrite_firewall_v1,
-            "6.x.x-": vapi_switch('put_overwrite_firewall', v1=put_overwrite_firewall_v1, v2=put_overwrite_firewall_v2),
-        },
+        "put_overwrite_firewall": OrderedDict([
+            ("6.x.x-", vapi_switch('put_overwrite_firewall', v1=put_overwrite_firewall_v1, v2=put_overwrite_firewall_v2)),
+            ("5.0.2-5.2.x", put_overwrite_firewall_v1)
+        ]),
 
+        # Unique new firewall endpoints
         "put_update_firewall_rule": {
             "6.x.x-": put_update_firewall_rule,
         },
@@ -3315,50 +3319,4 @@ class FirewallApiRouter(VersionRouter):
         "delete_firewall_subtable_rule" : {
             "6.x.x-": delete_firewall_subtable_rule,
         },
-
-        # new firewall
-        # V2
-        # /v2/firewall/actions
-        # "putFirewallAction": {},
-        # /v2/firewall/rules
-        # "getFirewallRules": {},
-        # "postCreateFirewallRule": {},
-        # "putOverwriteFirewall": {},
-        # /v2/firewall/rules/{id}
-        # "putUpdateFirewallRule": {},
-        # "deleteFirewallRule": {},
-        # /v2/firewall/rules/import
-        # "importFirewallRules": {},
-        # /v2/firewall/rules/export
-        # "exportFirewallRules": {},
-        # /v2/firewall/rules-groups
-        # "getFirewallRuleGroups": {},
-        # "postCreateFirewallRuleGroup": {},
-        # /v2/firewall/rules-groups/{name}
-        # "getFirewallRuleGroup": {},
-        # "deleteFirewallRuleGroup": {},
-        # "putUpdateFirewallRuleGroup": {},
-        # /v2/firewall/rules-groups/{name}/rules
-        # "addRuleToGroup": {}, 
-        # /v2/firewall/fwsets
-        # "getFirewallFwsets": {},
-        # "postCreateFirewallFwset": {},
-        # /v2/firewall/fwsets/{name}
-        # "getFirewallFwset": {},
-        # "putUpdateFirewallFwset": {},
-        # "deleteFirewallFwset": {},
-        # /v2/firewall/fwsets/{name}/entries
-        # "addEntryToFwset": {},
-        # "deleteEntryFromFwset": {},
-        # /v2/firewall/subtables
-        # "getFirewallSubtables": {},
-        # "postCreateFirewallSubtable": {},
-        # /v2/firewall/subtables/{name},
-        # "getFirewallSubtable": {},
-        # "putUpdateFirewallSubtable": {},
-        # "deleteFirewallSubtable": {},
-        # /v2/firewall/subtables/{name}/rules
-        # "addRuleToSubtable": {},
-        # /v2/firewall/subtables/{name}/rules/{id}
-        # "deleteFirewallSubtableRule": {}
     }

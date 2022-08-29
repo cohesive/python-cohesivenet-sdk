@@ -2824,17 +2824,17 @@ class AccessApiRouter(VersionRouter):
     """Manage access to VNS3 with API tokens and admin access URLs"""
 
     function_library = {
-        "create_access_url": {"4.8.4-5.1.5": create_access_url},
-        "create_api_token": {"4.8.4-5.1.5": create_api_token},
-        "delete_access_url": {"4.8.4-5.1.5": delete_access_url},
-        "delete_access_url_by_search": {"4.8.4-5.1.5": delete_access_url_by_search},
-        "delete_api_token": {"4.8.4-5.1.5": delete_api_token},
-        "get_access_urls": {"4.8.4-5.1.5": get_access_urls},
-        "get_access_url": {"4.8.4-5.1.5": get_access_url},
-        "get_api_token": {"4.8.4-5.1.5": get_api_token},
-        "get_api_tokens": {"4.8.4-5.1.5": get_api_tokens},
-        "put_expire_access_url": {"4.8.4-5.1.5": put_expire_access_url},
-        "put_expire_api_token": {"4.8.4-5.1.5": put_expire_api_token},
+        "create_access_url": {"4.8.4-6.x.x": create_access_url},
+        "create_api_token": {"4.8.4-6.x.x": create_api_token},
+        "delete_access_url": {"4.8.4-6.x.x": delete_access_url},
+        "delete_access_url_by_search": {"4.8.4-6.x.x": delete_access_url_by_search},
+        "delete_api_token": {"4.8.4-6.x.x": delete_api_token},
+        "get_access_urls": {"4.8.4-6.x.x": get_access_urls},
+        "get_access_url": {"4.8.4-6.x.x": get_access_url},
+        "get_api_token": {"4.8.4-6.x.x": get_api_token},
+        "get_api_tokens": {"4.8.4-6.x.x": get_api_tokens},
+        "put_expire_access_url": {"4.8.4-6.x.x": put_expire_access_url},
+        "put_expire_api_token": {"4.8.4-6.x.x": put_expire_api_token},
         "put_ldap_settings": {"4.9.1-5.2.x": put_ldap_settings},
         "post_test_ldap_settings": {"4.9.1-5.2.x": post_test_ldap_settings},
         "get_ldap_settings": {"4.9.1-5.2.x": get_ldap_settings},
@@ -2864,7 +2864,7 @@ class AccessApiRouter(VersionRouter):
         "put_ldap_vpn_radius_settings": {"4.11.1-5.2.x": put_ldap_vpn_radius_settings},
         "get_ldap_vpn_radius_settings": {"4.11.1-5.2.x": get_ldap_vpn_radius_settings},
 
-        # New identity endpoints
+        # New identity endpoints (replace previous settings LDAP endpoints)
         "put_identity_vpn_settings": {
             "6.x.x-": put_identity_vpn_settings,
         },
