@@ -8,7 +8,7 @@ The SDK will make best efforts to always be backwards compatible. All SDK releas
 
 | cohesivenet==X |    VNS3 API    |     MS API     |
 |----------------|:--------------:|:--------------:|
-|  0.4.1-0.4.4   |  4.8.4-5.1.5   |   2.1.1-2.5.X  |
+|  0.4.1-1.x.x   |  4.8.4-6.0.0   |   2.1.1-2.5.X  |
 |     0.4.0      |  4.8.4-5.0.0   |   2.1.1-2.3.5  |
 |     0.3.X      |  4.8.4-4.11.3  |   2.1.1-2.3.5  |
 | 0.1.35-0.2.X   |  4.8.4-4.10.1  |   2.1.1-2.3.5  |
@@ -79,7 +79,7 @@ Sometimes its useful to be able to cache particular state on VNS3 client as it i
 ```python
 from cohesivenet.macros import vns3_connect
 
-vns3 = vns3_connect.get_client(
+vns3 = vns3_connect.get_vns3_client(
     host="10.10.10.10:8000",
     username="api",
     password="heresmypassword"

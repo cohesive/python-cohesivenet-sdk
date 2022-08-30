@@ -18,7 +18,7 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
-def delete_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
+def delete_snapshot(api_client, snapshot_name, server_async=None, **kwargs):  # noqa: E501
     """delete_snapshot  # noqa: E501
 
     Delete named snapshot  # noqa: E501
@@ -53,7 +53,12 @@ def delete_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
     form_params = []
     local_var_files = {}
 
-    body_params = None
+    body_params = {}
+
+    # because async is python reserved word
+    if server_async is not None:
+        body_params["async"] = server_async
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
@@ -372,9 +377,9 @@ def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
 
 class SnapshotsApiRouter(VersionRouter):
     function_library = {
-        "delete_snapshot": {"4.8.4-5.1.5": delete_snapshot},
-        "get_download_snapshot": {"4.8.4-5.1.5": get_download_snapshot},
-        "get_snapshots": {"4.8.4-5.1.5": get_snapshots},
-        "post_create_snapshot": {"4.8.4-5.1.5": post_create_snapshot},
-        "put_import_snapshot": {"4.8.4-5.1.5": put_import_snapshot},
+        "delete_snapshot": {"4.8.4-6.x.x": delete_snapshot},
+        "get_download_snapshot": {"4.8.4-6.x.x": get_download_snapshot},
+        "get_snapshots": {"4.8.4-6.x.x": get_snapshots},
+        "post_create_snapshot": {"4.8.4-6.x.x": post_create_snapshot},
+        "put_import_snapshot": {"4.8.4-6.x.x": put_import_snapshot},
     }

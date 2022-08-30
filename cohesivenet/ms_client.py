@@ -86,7 +86,7 @@ class MSClient(APIClient):
     def ms_version(self, version):
         prev_v = self.ms_dot_version
         if prev_v != version:
-            self.reset_api_version_sdk()
+            self.reset_vns3_version_sdk()
 
         self.add_to_state("ms_version", version)
         return self

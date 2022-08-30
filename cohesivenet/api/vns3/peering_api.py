@@ -388,9 +388,9 @@ def put_self_peering_id(api_client, id=None, **kwargs):  # noqa: E501
 
 class PeeringApiRouter(VersionRouter):
     function_library = {
-        "delete_peer": {"4.8.4-5.1.5": delete_peer},
-        "get_peering_status": {"4.8.4-5.1.5": get_peering_status},
-        "post_create_peer": {"4.8.4-5.1.5": post_create_peer},
-        "put_update_peer": {"4.8.4-5.1.5": put_update_peer},
-        "put_self_peering_id": {"4.8.4-5.1.5": put_self_peering_id},
+        "delete_peer": {"4.8.4-6.x.x": delete_peer},
+        "get_peering_status": {"4.8.4-6.x.x": get_peering_status},
+        "post_create_peer": {"4.8.4-6.x.x": post_create_peer},
+        "put_update_peer": {"4.8.4-6.x.x": put_update_peer},
+        "put_self_peering_id": {"4.8.4-6.x.x": put_self_peering_id},
     }

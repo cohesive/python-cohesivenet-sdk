@@ -167,6 +167,8 @@ def create_bgp_peer(
     add_network_distance=None,
     add_network_distance_direction=None,
     add_network_distance_hops=None,
+    hold_time=None,
+    keepalive_interval=None,
     **kwargs
 ):  # noqa: E501
     """Create BGP Peer  # noqa: E501
@@ -183,6 +185,11 @@ def create_bgp_peer(
     :param int local_asn_alias: Autonomous system number alias
     :param str access_list: List of \"in permit CIDR\" and/or \"out permit CIDR\" statements in a string delimited by \"\\n\"
     :param str bgp_password: String to be agreed upon by both peers as a simple password.
+    :param bool add_network_distance: true if should add network distance
+    :param str add_network_distance_direction: in/out
+    :param str add_network_distance_hops: distance metric
+    :param int hold_time: BGP heartbeat in seconds, after which neighbor considered down
+    :param int keepalive_interval: time seconds to send keepalive
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -206,6 +213,9 @@ def create_bgp_peer(
         "add_network_distance",
         "add_network_distance_direction",
         "add_network_distance_hops",
+        "add_network_distance_direction",
+        "hold_time",
+        "keepalive_interval"
     ]
 
     collection_formats = {}
@@ -269,6 +279,8 @@ def update_bgp_peer(
     add_network_distance=None,
     add_network_distance_direction=None,
     add_network_distance_hops=None,
+    hold_time=None,
+    keepalive_interval=None,
     **kwargs
 ):  # noqa: E501
     """update_bgp_peer  # noqa: E501
@@ -290,6 +302,8 @@ def update_bgp_peer(
     :param bool add_network_distance: Enable network distance for BGP peer
     :param str add_network_distance_direction: Add distance direction for BGP peer
     :param int add_network_distance_hops: Distance metric weight indicating distance in hops for BGP peer
+    :param int hold_time: BGP heartbeat in seconds, after which neighbor considered down
+    :param int keepalive_interval: time seconds to send keepalive
     :param _return_http_data_only: response data without head status code
                                     and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -315,6 +329,8 @@ def update_bgp_peer(
         "add_network_distance",
         "add_network_distance_direction",
         "add_network_distance_hops",
+        "hold_time",
+        "keepalive_interval"
     ]
 
     local_var_params = locals()
@@ -373,8 +389,8 @@ class BGPApiRouter(VersionRouter):
     """Manage BGP peers"""
 
     function_library = {
-        "get_bgp_peer": {"4.8.4-5.1.5": get_bgp_peer},
-        "delete_bgp_peer": {"4.8.4-5.1.5": delete_bgp_peer},
-        "create_bgp_peer": {"4.8.4-5.1.5": create_bgp_peer},
-        "update_bgp_peer": {"4.8.4-5.1.5": update_bgp_peer},
+        "get_bgp_peer": {"4.8.4-6.x.x": get_bgp_peer},
+        "delete_bgp_peer": {"4.8.4-6.x.x": delete_bgp_peer},
+        "create_bgp_peer": {"4.8.4-6.x.x": create_bgp_peer},
+        "update_bgp_peer": {"4.8.4-6.x.x": update_bgp_peer},
     }

@@ -1,6 +1,6 @@
 import functools
 
-from cohesivenet import Logger
+from cohesivenet import Logger, util
 from cohesivenet.macros import state as vns3_state
 from cohesivenet.exceptions import (
     ApiValueError,
@@ -97,6 +97,10 @@ def parse_version_to_int(v):
     return int("".join([p for p in v.split(".") if p.isdigit()]))
 
 
+def raise_unsupported_error(name, vns3_version, *args, **kwargs):
+    raise ApiMethodUnsupportedError(name, vns3_version)
+
+
 def set_version_library(client, api, library):
     """Set the API library functions based on the current clients version
 
@@ -113,25 +117,26 @@ def set_version_library(client, api, library):
     if not client_version:
         client_version = client.latest_version()
 
-    def in_range(val, min_v, max_v):
-        return val >= min_v and val <= max_v
-
     version_library = {}
-    vns3_version_int = parse_version_to_int(client_version)
+    unsupported = []
     for function_name, versions_funcs in library.items():
-        for version, func in versions_funcs.items():
-            if "-" in version:
-                min_v, max_v = [parse_version_to_int(i) for i in version.split("-")]
-                if in_range(vns3_version_int, min_v, max_v):
-                    version_library[function_name] = func
-            elif version == client_version:
+        _supported = False
+        for version_range, func in versions_funcs.items():
+            if util.version_in_range(client_version, version_range):
                 version_library[function_name] = func
+                _supported = True
+                break
+        if not _supported:
+            unsupported.append(function_name)
 
     Logger.debug(
         "Setting v%s API functions %s" % (client_version, api.__class__.__name__)
     )
+    print('Unsupported: %s' % unsupported)
     for name, func in version_library.items():
         setattr(api, name, functools.partial(func, client))
+    for funcname in unsupported:
+        setattr(api, funcname, functools.partial(raise_unsupported_error, funcname, client_version))
 
 
 class VersionRouter(object):

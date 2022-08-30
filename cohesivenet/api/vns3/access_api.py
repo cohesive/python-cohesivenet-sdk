@@ -17,8 +17,61 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
+class IdentityParams(object):
+    LDAP = [
+        "host",
+        "port",
+        "encrypt",
+        "encrypt_ldaps",
+        "encrypt_auth",
+        "encrypt_verify_ca",
+        "binddn",
+        "bindpw",
+        "encrypt_auth_cert_data",
+        "encrypt_auth_cert_filename",
+        "encrypt_auth_key_data",
+        "encrypt_auth_key_filename",
+        "encrypt_ca_cert_data",
+        "encrypt_ca_cert_filename",
+        "user_base",
+        "user_id_attribute",
+        "user_list_filter",
+        "group_base",
+        "group_id_attribute",
+        "group_list_filter",
+        "group_member_attribute",
+        "group_member_attr_format",
+        "group_search_scope",
+        "otp",
+    ]
+
+    TEST_LDAP = [
+        "encrypt_auth_cert_current",
+        "encrypt_auth_key_current",
+        "encrypt_ca_cert_current",
+        "limit"
+    ]
+
+    RADIUS = [
+        "server",
+        "auth_port",
+        "accounting_port",
+        "radius_password",
+    ]
+    OIDC = [
+        "identifier",
+        "secret",
+        "redirect_hostname",
+        "authorization_endpoint",
+        "token_endpoint",
+        "userinfo_endpoint",
+        "jwks_uri",
+        "issuer",
+    ]
+
+
 def create_access_url(
-    api_client, expires=3600, name=None, description=None, **kwargs
+    api_client, expires=3600, name=None, description=None, access=None, **kwargs
 ):  # noqa: E501
     """Create access URL  # noqa: E501
 
@@ -31,6 +84,7 @@ def create_access_url(
     :param expires int: Number of seconds before expiration
     :param name str: Optional name of access URL
     :param description str: Optional description of access URL
+    :param access str: Type of access, remote support (rs) or clientpack (cp:100_1_64_0). default: rs
     :param async_req bool: execute request asynchronously
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                                 be returned without reading/decoding response
@@ -43,7 +97,7 @@ def create_access_url(
     """
 
     local_var_params = locals()
-    request_params = ["expires", "name", "description"]
+    request_params = ["expires", "name", "description", "access"]
 
     collection_formats = {}
 
@@ -390,7 +444,7 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
     Retrieve list of users' access urls, including expired ones  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.get_access_ur_ls_with_http_info(async_req=True)
+    >>> response = await api.get_access_urls(async_req=True)
 
     :param VNS3Client api_client: (required)
     :param async_req bool: execute request asynchronously
@@ -2309,47 +2363,524 @@ def get_ldap_vpn_radius_settings(api_client, **kwargs):  # noqa: E501
     )
 
 
+def put_identity_vpn_settings(api_client, provider=None, enabled=True, **kwargs):
+    """put_identity_vpn_settings  # noqa: E501
+
+    Put set identity settings for VPN. See IdentityParams for all kwargs  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    >>> response = await api.put_identity_vpn_settings(token_id, async_req=True)
+
+    :param str provider: ldap, radius, oidc
+    :param bool enabled: Enable identity vpn
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = (
+        ["provider", "enabled"] +
+        IdentityParams.LDAP +
+        IdentityParams.RADIUS +
+        IdentityParams.OIDC
+    )
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/identity/vpn",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_identity_vpn_settings(api_client, **kwargs):  # noqa: E501
+    """get_identity_vpn_settings  # noqa: E501
+
+    Get Identity VPN configuration  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_identity_vpn_settings(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/identity/vpn",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_test_identity_vpn_settings(api_client, **kwargs):
+    """post_test_identity_vpn_settings  # noqa: E501
+
+    Test vpn identity settings. Only works for LDAP currently. # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_test_identity_vpn_settings(**data, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param bool encrypt_auth_cert_current: Use current auth cert if true (LDAP)
+    :param bool encrypt_auth_key_current: Use current auth key if true (LDAP)
+    :param bool encrypt_ca_cert_current: Use current CA cert if true (LDAP)
+    :param int limit: Number of records to return. Default = 10 (LDAP)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = ["provider"] + IdentityParams.LDAP + IdentityParams.TEST_LDAP
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/identity/vpn/test",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_identity_controller_settings(api_client, provider=None, enabled=True, **kwargs):
+    """put_identity_controller_settings  # noqa: E501
+
+    Put Set Identity settings for VNS3 Controller. See IdentityParams for all kwargs  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    >>> response = await api.put_identity_controller_settings(token_id, async_req=True)
+
+    :param str provider: ldap or oidc
+    :param bool enabled: Enable identity vpn
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = (
+        ["provider", "enabled"] +
+        IdentityParams.LDAP +
+        IdentityParams.OIDC
+    )
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/identity/controller",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def get_identity_controller_settings(api_client, **kwargs):  # noqa: E501
+    """get_identity_controller_settings  # noqa: E501
+
+    Get Identity configuration for VNS3  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.get_identity_controller_settings(async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/identity/controller",
+        "GET",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_test_identity_controller_settings(api_client, **kwargs):
+    """post_test_identity_controller_settings  # noqa: E501
+
+    Test VNS3 identity settings. Only works for LDAP currently. # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_test_identity_controller_settings(**data, async_req=True)
+
+    :param VNS3Client api_client: (required)
+    :param bool encrypt_auth_cert_current: Use current auth cert if true (LDAP)
+    :param bool encrypt_auth_key_current: Use current auth key if true (LDAP)
+    :param bool encrypt_ca_cert_current: Use current CA cert if true (LDAP)
+    :param int limit: Number of records to return. Default = 10 (LDAP)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+    local_var_params = locals()
+
+    request_params = ["provider"] + IdentityParams.LDAP + IdentityParams.TEST_LDAP
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/identity/controller/test",
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
 class AccessApiRouter(VersionRouter):
     """Manage access to VNS3 with API tokens and admin access URLs"""
 
     function_library = {
-        "create_access_url": {"4.8.4-5.1.5": create_access_url},
-        "create_api_token": {"4.8.4-5.1.5": create_api_token},
-        "delete_access_url": {"4.8.4-5.1.5": delete_access_url},
-        "delete_access_url_by_search": {"4.8.4-5.1.5": delete_access_url_by_search},
-        "delete_api_token": {"4.8.4-5.1.5": delete_api_token},
-        "get_access_urls": {"4.8.4-5.1.5": get_access_urls},
-        "get_access_url": {"4.8.4-5.1.5": get_access_url},
-        "get_api_token": {"4.8.4-5.1.5": get_api_token},
-        "get_api_tokens": {"4.8.4-5.1.5": get_api_tokens},
-        "put_expire_access_url": {"4.8.4-5.1.5": put_expire_access_url},
-        "put_expire_api_token": {"4.8.4-5.1.5": put_expire_api_token},
-        "put_ldap_settings": {"4.9.1-5.1.5": put_ldap_settings},
-        "post_test_ldap_settings": {"4.9.1-5.1.5": post_test_ldap_settings},
-        "get_ldap_settings": {"4.9.1-5.1.5": get_ldap_settings},
-        "put_enable_ldap": {"4.9.1-5.1.5": put_enable_ldap},
-        "put_upload_ldap_auth_cert": {"4.9.1-5.1.5": put_upload_ldap_auth_cert},
-        "put_upload_ldap_auth_key": {"4.9.1-5.1.5": put_upload_ldap_auth_key},
-        "put_upload_ldap_ca_cert": {"4.9.1-5.1.5": put_upload_ldap_ca_cert},
+        "create_access_url": {"4.8.4-6.x.x": create_access_url},
+        "create_api_token": {"4.8.4-6.x.x": create_api_token},
+        "delete_access_url": {"4.8.4-6.x.x": delete_access_url},
+        "delete_access_url_by_search": {"4.8.4-6.x.x": delete_access_url_by_search},
+        "delete_api_token": {"4.8.4-6.x.x": delete_api_token},
+        "get_access_urls": {"4.8.4-6.x.x": get_access_urls},
+        "get_access_url": {"4.8.4-6.x.x": get_access_url},
+        "get_api_token": {"4.8.4-6.x.x": get_api_token},
+        "get_api_tokens": {"4.8.4-6.x.x": get_api_tokens},
+        "put_expire_access_url": {"4.8.4-6.x.x": put_expire_access_url},
+        "put_expire_api_token": {"4.8.4-6.x.x": put_expire_api_token},
+        "put_ldap_settings": {"4.9.1-5.2.x": put_ldap_settings},
+        "post_test_ldap_settings": {"4.9.1-5.2.x": post_test_ldap_settings},
+        "get_ldap_settings": {"4.9.1-5.2.x": get_ldap_settings},
+        "put_enable_ldap": {"4.9.1-5.2.x": put_enable_ldap},
+        "put_upload_ldap_auth_cert": {"4.9.1-5.2.x": put_upload_ldap_auth_cert},
+        "put_upload_ldap_auth_key": {"4.9.1-5.2.x": put_upload_ldap_auth_key},
+        "put_upload_ldap_ca_cert": {"4.9.1-5.2.x": put_upload_ldap_ca_cert},
         "put_ldap_group_schema_settings": {
-            "4.9.1-5.1.5": put_ldap_group_schema_settings
+            "4.9.1-5.2.x": put_ldap_group_schema_settings
         },
         "post_test_ldap_group_schema_settings": {
-            "4.9.1-5.1.5": post_test_ldap_group_schema_settings
+            "4.9.1-5.2.x": post_test_ldap_group_schema_settings
         },
         "get_ldap_group_schema_settings": {
-            "4.9.1-5.1.5": get_ldap_group_schema_settings
+            "4.9.1-5.2.x": get_ldap_group_schema_settings
         },
-        "put_ldap_user_schema_settings": {"4.9.1-5.1.5": put_ldap_user_schema_settings},
+        "put_ldap_user_schema_settings": {"4.9.1-5.2.x": put_ldap_user_schema_settings},
         "post_test_ldap_user_schema_settings": {
-            "4.9.1-5.1.5": post_test_ldap_user_schema_settings
+            "4.9.1-5.2.x": post_test_ldap_user_schema_settings
         },
-        "get_ldap_user_schema_settings": {"4.9.1-5.1.5": get_ldap_user_schema_settings},
-        "get_ldap_vpn_schema_settings": {"4.10.1-5.1.5": get_ldap_vpn_schema_settings},
+        "get_ldap_user_schema_settings": {"4.9.1-5.2.x": get_ldap_user_schema_settings},
+        "get_ldap_vpn_schema_settings": {"4.10.1-5.2.x": get_ldap_vpn_schema_settings},
         "post_test_ldap_vpn_schema_settings": {
-            "4.10.1-5.1.5": post_test_ldap_vpn_schema_settings
+            "4.10.1-5.2.x": post_test_ldap_vpn_schema_settings
         },
-        "put_ldap_vpn_schema_settings": {"4.10.1-5.1.5": put_ldap_vpn_schema_settings},
-        "put_ldap_vpn_radius_settings": {"4.11.1-5.1.5": put_ldap_vpn_radius_settings},
-        "get_ldap_vpn_radius_settings": {"4.11.1-5.1.5": get_ldap_vpn_radius_settings},
+        "put_ldap_vpn_schema_settings": {"4.10.1-5.2.x": put_ldap_vpn_schema_settings},
+        "put_ldap_vpn_radius_settings": {"4.11.1-5.2.x": put_ldap_vpn_radius_settings},
+        "get_ldap_vpn_radius_settings": {"4.11.1-5.2.x": get_ldap_vpn_radius_settings},
+
+        # New identity endpoints (replace previous settings LDAP endpoints)
+        "put_identity_vpn_settings": {
+            "6.0.0-": put_identity_vpn_settings,
+        },
+        "get_identity_vpn_settings": {
+            "6.0.0-": get_identity_vpn_settings,
+        },
+        "post_test_identity_vpn_settings": {
+            "6.0.0-": post_test_identity_vpn_settings,
+        },
+        "put_identity_controller_settings": {
+            "6.0.0-": put_identity_controller_settings,
+        },
+        "get_identity_controller_settings": {
+            "6.0.0-": get_identity_controller_settings,
+        },
+        "post_test_identity_controller_settings": {
+            "6.0.0-": post_test_identity_controller_settings,
+        },
     }

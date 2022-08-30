@@ -824,7 +824,7 @@ def put_update_ipsec_endpoint(
     update IPsec connection  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
-    >>> response = await api.put_update_ipsec_endpoint(endpoint_id, update_ipsec_connection_request, async_req=True)
+    >>> response = await api.put_update_ipsec_endpoint(endpoint_id, **update_ipsec_connection_request, async_req=True)
 
     :param int endpoint_id: ID for IPsec endpoint (required)
     :param name str: Name for the connection.
@@ -1032,7 +1032,7 @@ def put_update_ipsec_endpoint_tunnel(
 
 
 def put_update_ipsec_config(
-    api_client, ipsec_local_ipaddress=None, **kwargs
+    api_client, ipsec_local_ipaddress=None, server_async=None, **kwargs
 ):  # noqa: E501
     """put_update_ipsec_config  # noqa: E501
 
@@ -1081,6 +1081,10 @@ def put_update_ipsec_config(
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
         body_params[param] = local_var_params[param]
 
+    # because async is python reserved word
+    if server_async is not None:
+        body_params["async"] = server_async
+
     # HTTP header `Accept`
     header_params["Accept"] = api_client.select_header_accept(
         ["application/json"]
@@ -1096,6 +1100,419 @@ def put_update_ipsec_config(
 
     return api_client.call_api(
         "/ipsec",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def post_create_ipsec_traffic_pair(
+    api_client,
+    endpoint_id,
+    remote_subnet=None,
+    local_subnet=None,
+    enabled=None,
+    ping_ipaddress=None,
+    ping_interface=None,
+    ping_interval=None,
+    description=None,
+    **kwargs
+):  # noqa: E501
+    """post_create_ipsec_traffic_pair  # noqa: E501
+
+    Create IPsec traffic pair  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.post_create_ipsec_traffic_pair(endpoint_id, remote_subnet=remote_subnet, , async_req=True)
+
+    :param int endpoint_id: ID for IPsec endpoint (required)
+    :param remote_subnet str: (required)
+    :param local_subnet str: (required)
+    :param enabled bool: 
+    :param ping_ipaddress str: Exo Ping feature - remote IP destination of ping
+    :param ping_interface str: Exo Ping feature - what network interface IP of the VNS3 controller to use as the source of ping
+    :param ping_interval int: Exo Ping feature - periodicy of the ping in seconds
+    :param description str:
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = [
+        "remote_subnet",
+        "local_subnet",
+        "enabled",
+        "ping_ipaddress",
+        "ping_interface",
+        "ping_interval",
+        "description",
+    ]
+
+    collection_formats = {}
+
+    path_params = {"endpoint_id": endpoint_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ipsec/endpoints/{endpoint_id}/traffic_pairs"
+        "POST",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def put_update_ipsec_traffic_pair(
+    api_client,
+    endpoint_id,
+    pair_id,
+    remote_subnet=None,
+    local_subnet=None,
+    enabled=None,
+    ping_ipaddress=None,
+    ping_interface=None,
+    ping_interval=None,
+    description=None,
+    **kwargs
+):  # noqa: E501
+    """put_update_ipsec_traffic_pair  # noqa: E501
+
+    update IPsec traffic pair  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.put_update_ipsec_traffic_pair(endpoint_id, **data, async_req=True)
+
+    :param int endpoint_id: ID for IPsec endpoint (required)
+    :param int pair_id: ID for IPsec traffic pair (required)
+    :param remote_subnet str:
+    :param local_subnet str:
+    :param enabled bool: 
+    :param ping_ipaddress str: Exo Ping feature - remote IP destination of ping
+    :param ping_interface str: Exo Ping feature - what network interface IP of the VNS3 controller to use as the source of ping
+    :param ping_interval int: Exo Ping feature - periodicy of the ping in seconds
+    :param description str:
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    request_params = [
+        "remote_subnet",
+        "local_subnet",
+        "enabled",
+        "ping_ipaddress",
+        "ping_interface",
+        "ping_interval",
+        "description",
+    ]
+
+    collection_formats = {}
+
+    path_params = {"endpoint_id": endpoint_id, "pair_id": pair_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = {}
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        body_params[param] = local_var_params[param]
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ipsec/endpoints/{endpoint_id}/traffic_pairs/{pair_id}",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def delete_ipsec_traffic_pair(
+    api_client, endpoint_id, pair_id, **kwargs
+):  # noqa: E501
+    """delete_ipsec_traffic_pair  # noqa: E501
+
+    Delete IPsec traffic pair  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.delete_ipsec_traffic_pair(endpoint_id, pair_id, async_req=True)
+
+    :param int endpoint_id: ID for IPsec endpoint (required)
+    :param int pair_id: ID for IPsec traffic pair (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"endpoint_id": endpoint_id, "pair_id": pair_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ipsec/endpoints/{endpoint_id}/traffic_pairs/{pair_id}",
+        "DELETE",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def disable_ipsec_traffic_pair(api_client, endpoint_id, pair_id, **kwargs):  # noqa: E501
+    """disable_ipsec_traffic_pair  # noqa: E501
+
+    Disable a traffic pair   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.disable_ipsec_traffic_pair(endpoint_id, pair_id, async_req=True)
+
+    :param int endpoint_id: ID for IPsec endpoint (required)
+    :param int pair_id: ID for IPsec traffic pair (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"endpoint_id": endpoint_id, "pair_id": pair_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ipsec/endpoints/{endpoint_id}/traffic_pairs/{pair_id}/disable",
+        "PUT",
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type="object",  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get("async_req"),
+        _return_http_data_only=local_var_params.get(
+            "_return_http_data_only"
+        ),  # noqa: E501
+        _preload_content=local_var_params.get("_preload_content", True),
+        _request_timeout=local_var_params.get("_request_timeout"),
+        collection_formats=collection_formats,
+    )
+
+
+def enable_ipsec_traffic_pair(api_client, endpoint_id, pair_id, **kwargs):  # noqa: E501
+    """enable_ipsec_traffic_pair  # noqa: E501
+
+    Enable a disabled traffic pair   # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    >>> response = await api.enable_ipsec_traffic_pair(endpoint_id, pair_id, async_req=True)
+
+    :param int endpoint_id: ID for IPsec endpoint (required)
+    :param int pair_id: ID for IPsec traffic pair (required)
+    :param async_req bool: execute request asynchronously
+    :param _return_http_data_only: response data without head status code
+                                    and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                be returned without reading/decoding response
+                                data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                                number provided, it will be total request
+                                timeout. It can also be a pair (tuple) of
+                                (connection, read) timeouts.
+    :return: APIResponse or awaitable if async
+    """
+
+    local_var_params = locals()
+
+    collection_formats = {}
+
+    path_params = {"endpoint_id": endpoint_id, "pair_id": pair_id}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+
+    local_var_files = {}
+
+    body_params = {}
+
+    # HTTP header `Accept`
+    header_params["Accept"] = api_client.select_header_accept(
+        ["application/json"]
+    )  # noqa: E501
+
+    # Authentication setting
+    auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
+
+    return api_client.call_api(
+        "/ipsec/endpoints/{endpoint_id}/traffic_pairs/{pair_id}/enable",
         "PUT",
         path_params,
         query_params,
@@ -1179,22 +1596,27 @@ def wait_for_tunnel_connected(
 class IPsecApiRouter(VersionRouter):
 
     function_library = {
-        "delete_ipsec_endpoint": {"4.8.4-5.1.5": delete_ipsec_endpoint},
-        "delete_ipsec_endpoint_tunnel": {"4.8.4-5.1.5": delete_ipsec_endpoint_tunnel},
-        "get_ipsec_details": {"4.8.4-5.1.5": get_ipsec_details},
-        "get_ipsec_endpoint": {"4.8.4-5.1.5": get_ipsec_endpoint},
-        "get_ipsec_status": {"4.8.4-5.1.5": get_ipsec_status},
-        "get_ipsec_link_history": {"4.8.4-5.1.5": get_ipsec_link_history},
-        "get_connected_subnets": {"4.8.4-5.1.5": get_connected_subnets},
-        "post_create_ipsec_endpoint": {"4.8.4-5.1.5": post_create_ipsec_endpoint},
+        "delete_ipsec_endpoint": {"4.8.4-6.x.x": delete_ipsec_endpoint},
+        "delete_ipsec_endpoint_tunnel": {"4.8.4-6.x.x": delete_ipsec_endpoint_tunnel},
+        "get_ipsec_details": {"4.8.4-6.x.x": get_ipsec_details},
+        "get_ipsec_endpoint": {"4.8.4-6.x.x": get_ipsec_endpoint},
+        "get_ipsec_status": {"4.8.4-6.x.x": get_ipsec_status},
+        "get_ipsec_link_history": {"4.8.4-6.x.x": get_ipsec_link_history},
+        "get_connected_subnets": {"4.8.4-6.x.x": get_connected_subnets},
+        "post_create_ipsec_endpoint": {"4.8.4-6.x.x": post_create_ipsec_endpoint},
         "post_create_ipsec_endpoint_tunnel": {
-            "4.8.4-5.1.5": post_create_ipsec_endpoint_tunnel
+            "4.8.4-6.x.x": post_create_ipsec_endpoint_tunnel
         },
-        "post_restart_ipsec_action": {"4.8.4-5.1.5": post_restart_ipsec_action},
-        "put_update_ipsec_endpoint": {"4.8.4-5.1.5": put_update_ipsec_endpoint},
+        "post_restart_ipsec_action": {"4.8.4-6.x.x": post_restart_ipsec_action},
+        "put_update_ipsec_endpoint": {"4.8.4-6.x.x": put_update_ipsec_endpoint},
         "put_update_ipsec_endpoint_tunnel": {
-            "4.8.4-5.1.5": put_update_ipsec_endpoint_tunnel
+            "4.8.4-6.x.x": put_update_ipsec_endpoint_tunnel
         },
-        "put_update_ipsec_config": {"4.8.4-5.1.5": put_update_ipsec_config},
-        "wait_for_tunnel_connected": {"4.8.4-5.1.5": wait_for_tunnel_connected},
+        "put_update_ipsec_config": {"4.8.4-6.x.x": put_update_ipsec_config},
+        "post_create_ipsec_traffic_pair": {"5.1.8-6.x.x": post_create_ipsec_traffic_pair},
+        "put_update_ipsec_traffic_pair": {"5.1.8-6.x.x": put_update_ipsec_traffic_pair},
+        "delete_ipsec_traffic_pair": {"5.1.8-6.x.x": delete_ipsec_traffic_pair},
+        "enable_ipsec_traffic_pair": {"5.1.8-6.x.x": enable_ipsec_traffic_pair},
+        "disable_ipsec_traffic_pair": {"5.1.8-6.x.x": disable_ipsec_traffic_pair},
+        "wait_for_tunnel_connected": {"4.8.4-6.x.x": wait_for_tunnel_connected},
     }

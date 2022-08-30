@@ -88,7 +88,7 @@ def delete_route(api_client, route_id, **kwargs):  # noqa: E501
     )
 
 
-def get_routes(api_client, **kwargs):  # noqa: E501
+def get_routes(api_client, table=None, **kwargs):  # noqa: E501
     """get_routes  # noqa: E501
 
     Describes routes that this manager has access to via its network interfaces (virtual or otherwise).
@@ -102,6 +102,7 @@ def get_routes(api_client, **kwargs):  # noqa: E501
     asynchronous HTTP request, please pass async_req=True
     >>> response = await api.get_routes(async_req=True)
 
+    :param table str: filter by table
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -121,7 +122,11 @@ def get_routes(api_client, **kwargs):  # noqa: E501
 
     path_params = {}
 
+    request_params = ["table"]
+
     query_params = []
+    for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        query_params.append((param, local_var_params[param]))  # noqa: E501
 
     header_params = {}
 
@@ -165,6 +170,7 @@ def post_create_route(
     interface=None,
     gateway=None,
     tunnel=None,
+    table=None,
     advertise=None,
     metric=None,
     **kwargs
@@ -183,6 +189,7 @@ def post_create_route(
     :param interface str: Sets the interface where this route will be advertised.
     :param gateway str: If interface is set, a specific gateway address reachable from that interface
     :param tunnel int: numerical reference for the GRE endpoint id (must provide either tunnel OR interface)
+    :param table str: Table to create route in. Default: main
     :param advertise bool: Advertise route to overlay network
     :param metric int: Weight for route
     :param async_req bool: execute request asynchronously
@@ -208,6 +215,7 @@ def post_create_route(
         "tunnel",
         "advertise",
         "metric",
+        "table"
     ]
 
     collection_formats = {}
@@ -408,7 +416,8 @@ def disable_route(api_client, route_id, **kwargs):  # noqa: E501
 
 
 def post_create_route_if_not_exists(
-    api_client, route_request, comparison_keys=RouteConstants.RouteComparisonKeys
+    api_client, route_request, comparison_keys=RouteConstants.RouteComparisonKeys,
+    routes_response=None
 ):
     """Create route if it doesn not exist for client. Compare based on keys.
 
@@ -436,7 +445,9 @@ def post_create_route_if_not_exists(
                 t += (None,)
         return t
 
-    routes_response = api_client.routing.get_routes().response
+    if not routes_response:
+        routes_response = api_client.routing.get_routes().response
+
     route_tuples = (
         {
             __to_route_tuple(current_route, comparison_keys): current_route
@@ -459,12 +470,12 @@ def post_create_route_if_not_exists(
 class RoutingApiRouter(VersionRouter):
 
     function_library = {
-        "delete_route": {"4.8.4-5.1.5": delete_route},
-        "get_routes": {"4.8.4-5.1.5": get_routes},
-        "post_create_route": {"4.8.4-5.1.5": post_create_route},
+        "delete_route": {"4.8.4-6.x.x": delete_route},
+        "get_routes": {"4.8.4-6.x.x": get_routes},
+        "post_create_route": {"4.8.4-6.x.x": post_create_route},
         "post_create_route_if_not_exists": {
-            "4.8.4-5.1.5": post_create_route_if_not_exists
+            "4.8.4-6.x.x": post_create_route_if_not_exists
         },
-        "enable_route": {"4.11.4-5.1.5": enable_route},
-        "disable_route": {"4.11.4-5.1.5": disable_route},
+        "enable_route": {"4.11.4-6.x.x": enable_route},
+        "disable_route": {"4.11.4-6.x.x": disable_route},
     }

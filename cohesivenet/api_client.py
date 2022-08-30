@@ -142,7 +142,6 @@ class APIClient(object):
     :param cookie: a cookie to include in the header when making calls
         to the API
     """
-
     BASE_PATH = None
     DEF_REQ_TIMEOUT = None
 
@@ -156,10 +155,10 @@ class APIClient(object):
         self.cookie = cookie
         # Set default User-Agent.
         self.user_agent = "OpenAPI-Generator/1.0.0/python"
-        self._base_path = "/%s" % self.BASE_PATH.strip("/") if self.BASE_PATH else ""
-        self._api_versions_cache = {}
+        self._vns3_versions_cache = {}
         self.client_side_validation = self.configuration.client_side_validation
         self.serializer = Serializer(self.configuration)
+        self.api_version = None
 
     @property
     def configuration(self):
@@ -171,7 +170,7 @@ class APIClient(object):
         if config is None:
             config = Configuration()
         self._configuration = config
-        self._api_versions_cache = {}
+        self._vns3_versions_cache = {}
         self.rest_client = rest.RESTClientObject(self.configuration)
 
     @property
@@ -183,11 +182,25 @@ class APIClient(object):
     def user_agent(self, value):
         self.default_headers["User-Agent"] = value
 
+    def set_api_version(self, version):
+        self.api_version = version
+
+    def set_api_version_use_defaults(self):
+        self.api_version = None
+
     def set_default_header(self, header_name, header_value):
         self.default_headers[header_name] = header_value
 
-    def reset_api_version_sdk(self):
-        self._api_versions_cache = {}
+    def get_base_path(self, api_version=None):
+        api_version = api_version or self.api_version
+
+        _base_path = "/%s" % self.BASE_PATH.strip("/") if self.BASE_PATH else ""
+        if api_version == 2:
+            return "%s/%s" % (_base_path, "v2")
+        return _base_path
+
+    def reset_vns3_version_sdk(self):
+        self._vns3_versions_cache = {}
         return self
 
     def __call_api(
@@ -202,6 +215,7 @@ class APIClient(object):
         files=None,
         response_type=None,
         auth_settings=None,
+        api_version=None,
         _return_http_data_only=None,  # deprecated
         collection_formats=None,
         _preload_content=True,
@@ -253,10 +267,10 @@ class APIClient(object):
 
         # request url
         if _host is None:
-            url = self.configuration.endpoint + self._base_path + resource_path
+            url = self.configuration.endpoint + self.get_base_path(api_version) + resource_path
         else:
             # use server/host defined in path or operation instead
-            url = _host + self._base_path + resource_path
+            url = _host + self.get_base_path(api_version) + resource_path
 
         # perform request and return response
         rest_response = self.request(
@@ -285,6 +299,7 @@ class APIClient(object):
         files=None,
         response_type=None,
         auth_settings=None,
+        api_version=None,
         async_req=None,
         _return_http_data_only=None,
         collection_formats=None,
@@ -340,6 +355,7 @@ class APIClient(object):
                 files,
                 response_type,
                 auth_settings,
+                api_version,
                 _return_http_data_only,
                 collection_formats,
                 _preload_content,
@@ -361,6 +377,7 @@ class APIClient(object):
                     files,
                     response_type,
                     auth_settings,
+                    api_version,
                     _return_http_data_only,
                     collection_formats,
                     _preload_content,
@@ -577,13 +594,13 @@ def prop_setter_exception(name):
 
 def prop_get_api(name, api_class):
     def _get_api(client):
-        if not hasattr(client, "_api_versions_cache"):
+        if not hasattr(client, "_vns3_versions_cache"):
             return api_class(client)
-        elif name in client._api_versions_cache:
-            return client._api_versions_cache[name]
+        elif name in client._vns3_versions_cache:
+            return client._vns3_versions_cache[name]
 
         _api = api_class(client)
-        client._api_versions_cache[name] = _api
+        client._vns3_versions_cache[name] = _api
         return _api
 
     _get_api.__name__ = "get_%s_api" % name

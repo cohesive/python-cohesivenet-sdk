@@ -262,12 +262,38 @@ def cd(newdir):
 
 
 def version_dot_to_int(version_str):
+    """version_dot_to_int
+
+    Convert version dot string to comparable int.
+    Examples:
+        6 => 60000
+        5.2 => 50200
+        5.x.13 => 59913
+
+    Args:
+        version_str (str): str
+
+    Returns:
+        int
+    """
     if type(version_str) is int:
         return version_str
 
+    if version_str == '':
+        return 0
+
+    # 5.0, 5.2.1, 4.11.3
     parts = version_str.split(".")
     version_padded = ""
+    num_parts = len(parts)
+    if num_parts < 3:
+        for _ in range(3-num_parts):
+            parts.append('0')
+
+    assert len(parts) == 3, "version_str must have maximum of 3 parts delimited by '.'"
     for part in parts:
+        if part.lower() == 'x':
+            part = '99'
         padded = "".join(["0" for _ in range(2 - len(part))]) + part
         version_padded += padded
     return int(version_padded)
@@ -293,10 +319,10 @@ def version_in_range(version_str, version_range):
         range_parts = version_range
 
     range_parts_ints = [version_dot_to_int(p) for p in range_parts]
-    if len(range_parts_ints) > 2:
-        return version in range_parts_ints
+    total_range_parts = len(range_parts_ints)
+    if total_range_parts != 2:
+        return version in [p for p in range_parts_ints if p is not None]
 
-    assert len(range_parts_ints) == 2, "Invalid version range"
     if range_parts_ints[0] == 0:
         # -Y.Y.Y means anything less than y.y.y inclusive
         return version <= range_parts_ints[1]
@@ -305,3 +331,24 @@ def version_in_range(version_str, version_range):
         return range_parts_ints[0] <= version
 
     return range_parts_ints[0] <= version <= range_parts_ints[1]
+
+
+def vapi_switch(fname, v1=None, v2=None):
+    call_v1 = v1
+    call_v2 = v2
+    assert call_v1 or call_v2, "Must provide v1 or v2 methods"
+    def vapi_call(api_client, *args, **kwargs):
+        api_version = kwargs.pop('api_version', None)
+        _api_version = api_version or api_client.api_version
+        if not _api_version:
+            if call_v2:
+                return call_v2(api_client, *args, **kwargs)
+            else:
+                return call_v1(api_client, *args, **kwargs)
+        elif _api_version == 2:
+            return call_v2(api_client, *args, **kwargs)
+        else:
+            return call_v1(api_client, *args, **kwargs)
+
+    vapi_call.__name__ = fname
+    return vapi_call
