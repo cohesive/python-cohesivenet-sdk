@@ -1,5 +1,5 @@
 VERSION = "0.4.6"
-LATEST_VNS3_VERSION = "5.1.5"
+LATEST_VNS3_VERSION = "6.0.0"
 LATEST_VNS3_API_SPEC = (
     "https://cohesive-networks.s3.amazonaws.com/apis/vns3/vns3-v%s.oasv3.json"
     % LATEST_VNS3_VERSION.replace(".", "-")

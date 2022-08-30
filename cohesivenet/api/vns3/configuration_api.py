@@ -1509,18 +1509,18 @@ class ConfigurationApiRouter(VersionRouter):
         "try_get_keyset": {"4.8.4-6.x.x": try_get_keyset},
         "wait_for_keyset": {"4.8.4-6.x.x": wait_for_keyset},
         "get_variables": {
-            "6.x.x-": get_variables
+            "6.0.0-": get_variables
         },
         "post_create_custom_variable": {
-            "6.x.x-": post_create_custom_variable
+            "6.0.0-": post_create_custom_variable
         },
         "get_variable_collections": {
-            "6.x.x-": get_variable_collections
+            "6.0.0-": get_variable_collections
         },
         "put_update_custom_variable": {
-            "6.x.x-": put_update_custom_variable
+            "6.0.0-": put_update_custom_variable
         },
         "delete_custom_variable": {
-            "6.x.x-": delete_custom_variable
+            "6.0.0-": delete_custom_variable
         }
     }

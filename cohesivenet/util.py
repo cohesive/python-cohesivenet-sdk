@@ -278,6 +278,10 @@ def version_dot_to_int(version_str):
     """
     if type(version_str) is int:
         return version_str
+
+    if version_str == '':
+        return 0
+
     # 5.0, 5.2.1, 4.11.3
     parts = version_str.split(".")
     version_padded = ""
@@ -317,7 +321,7 @@ def version_in_range(version_str, version_range):
     range_parts_ints = [version_dot_to_int(p) for p in range_parts]
     total_range_parts = len(range_parts_ints)
     if total_range_parts != 2:
-        return version in range_parts_ints
+        return version in [p for p in range_parts_ints if p is not None]
 
     if range_parts_ints[0] == 0:
         # -Y.Y.Y means anything less than y.y.y inclusive

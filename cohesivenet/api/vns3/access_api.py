@@ -2866,21 +2866,21 @@ class AccessApiRouter(VersionRouter):
 
         # New identity endpoints (replace previous settings LDAP endpoints)
         "put_identity_vpn_settings": {
-            "6.x.x-": put_identity_vpn_settings,
+            "6.0.0-": put_identity_vpn_settings,
         },
         "get_identity_vpn_settings": {
-            "6.x.x-": get_identity_vpn_settings,
+            "6.0.0-": get_identity_vpn_settings,
         },
         "post_test_identity_vpn_settings": {
-            "6.x.x-": post_test_identity_vpn_settings,
+            "6.0.0-": post_test_identity_vpn_settings,
         },
         "put_identity_controller_settings": {
-            "6.x.x-": put_identity_controller_settings,
+            "6.0.0-": put_identity_controller_settings,
         },
         "get_identity_controller_settings": {
-            "6.x.x-": get_identity_controller_settings,
+            "6.0.0-": get_identity_controller_settings,
         },
         "post_test_identity_controller_settings": {
-            "6.x.x-": post_test_identity_controller_settings,
+            "6.0.0-": post_test_identity_controller_settings,
         },
     }

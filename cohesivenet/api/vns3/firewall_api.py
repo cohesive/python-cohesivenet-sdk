@@ -3204,119 +3204,119 @@ class FirewallApiRouter(VersionRouter):
         },
         # New firewall
         "put_firewall_action": OrderedDict([
-            ('6.x.x-', bind(put_firewall_action, api_version=2)),
+            ('6.0.0-', bind(put_firewall_action, api_version=2)),
             ("5.0.2-6.x.x", put_firewall_action)
         ]),
 
         "get_firewall_rules": OrderedDict([
-            ("6.x.x-", vapi_switch('get_firewall_rules', v1=get_firewall_rules_v1, v2=get_firewall_rules_v2)),
+            ("6.0.0-", vapi_switch('get_firewall_rules', v1=get_firewall_rules_v1, v2=get_firewall_rules_v2)),
             ("4.8.4-6.x.x", get_firewall_rules_v1)
         ]),
 
         "post_create_firewall_rule": OrderedDict([
-            ("6.x.x-", vapi_switch('post_create_firewall_rule', v1=post_create_firewall_rule_v1, v2=post_create_firewall_rule_v2)),
+            ("6.0.0-", vapi_switch('post_create_firewall_rule', v1=post_create_firewall_rule_v1, v2=post_create_firewall_rule_v2)),
             ("4.8.4-5.2.x", post_create_firewall_rule_v1)
         ]),
 
         "put_overwrite_firewall": OrderedDict([
-            ("6.x.x-", vapi_switch('put_overwrite_firewall', v1=put_overwrite_firewall_v1, v2=put_overwrite_firewall_v2)),
+            ("6.0.0-", vapi_switch('put_overwrite_firewall', v1=put_overwrite_firewall_v1, v2=put_overwrite_firewall_v2)),
             ("5.0.2-5.2.x", put_overwrite_firewall_v1)
         ]),
 
         # Unique new firewall endpoints
         "put_update_firewall_rule": {
-            "6.x.x-": put_update_firewall_rule,
+            "6.0.0-": put_update_firewall_rule,
         },
 
         "delete_firewall_rule": {
-            "6.x.x-": delete_firewall_rule,
+            "6.0.0-": delete_firewall_rule,
         },
 
         "import_firewall_rules": {
-            "6.x.x-": import_firewall_rules,
+            "6.0.0-": import_firewall_rules,
         },
 
         "export_firewall_rules": {
-            "6.x.x-": export_firewall_rules,
+            "6.0.0-": export_firewall_rules,
         },
 
         "get_firewall_rule_groups": {
-            "6.x.x-": get_firewall_rule_groups,
+            "6.0.0-": get_firewall_rule_groups,
         },
 
         "post_create_firewall_rule_group": {
-            "6.x.x-": post_create_firewall_rule_group,
+            "6.0.0-": post_create_firewall_rule_group,
         },
 
         "get_firewall_rule_group" : {
-            "6.x.x-": get_firewall_rule_group,
+            "6.0.0-": get_firewall_rule_group,
         },
 
         "delete_firewall_rule_group" : {
-            "6.x.x-": delete_firewall_rule_group,
+            "6.0.0-": delete_firewall_rule_group,
         },
 
         "put_update_firewall_rule_group" : {
-            "6.x.x-": put_update_firewall_rule_group,
+            "6.0.0-": put_update_firewall_rule_group,
         },
 
         "add_rule_to_group" : {
-            "6.x.x-": add_rule_to_group,
+            "6.0.0-": add_rule_to_group,
         },
 
         "get_firewall_fwsets" : {
-            "6.x.x-": get_firewall_fwsets,
+            "6.0.0-": get_firewall_fwsets,
         },
 
         "post_create_firewall_fwset" : {
-            "6.x.x-": post_create_firewall_fwset,
+            "6.0.0-": post_create_firewall_fwset,
         },
 
         "get_firewall_fwset" : {
-            "6.x.x-": get_firewall_fwset,
+            "6.0.0-": get_firewall_fwset,
         },
 
         "put_update_firewall_fwset" : {
-            "6.x.x-": put_update_firewall_fwset,
+            "6.0.0-": put_update_firewall_fwset,
         },
 
         "delete_firewall_fwset" : {
-            "6.x.x-": delete_firewall_fwset,
+            "6.0.0-": delete_firewall_fwset,
         },
 
         "add_entry_to_fwset" : {
-            "6.x.x-": add_entry_to_fwset,
+            "6.0.0-": add_entry_to_fwset,
         },
 
         "delete_entry_from_fwset" : {
-            "6.x.x-": delete_entry_from_fwset,
+            "6.0.0-": delete_entry_from_fwset,
         },
 
         "get_firewall_subtables" : {
-            "6.x.x-": get_firewall_subtables,
+            "6.0.0-": get_firewall_subtables,
         },
 
         "post_create_firewall_subtable" : {
-            "6.x.x-": post_create_firewall_subtable,
+            "6.0.0-": post_create_firewall_subtable,
         },
 
         "get_firewall_subtable" : {
-            "6.x.x-": get_firewall_subtable,
+            "6.0.0-": get_firewall_subtable,
         },
 
         "put_update_firewall_subtable" : {
-            "6.x.x-": put_update_firewall_subtable,
+            "6.0.0-": put_update_firewall_subtable,
         },
 
         "delete_firewall_subtable" : {
-            "6.x.x-": delete_firewall_subtable,
+            "6.0.0-": delete_firewall_subtable,
         },
 
         "add_rule_to_subtable" : {
-            "6.x.x-": add_rule_to_subtable,
+            "6.0.0-": add_rule_to_subtable,
         },
 
         "delete_firewall_subtable_rule" : {
-            "6.x.x-": delete_firewall_subtable_rule,
+            "6.0.0-": delete_firewall_subtable_rule,
         },
     }

@@ -18,8 +18,9 @@ def get_vns3_client(host, username=None, password=None, api_token=None, verify=F
     Returns:
         [VNS3Client]
     """
-    basic_auth = all([username, password])
     token_auth = api_token is not None
+    username = username or 'api'
+    basic_auth = all([username, password])
     assert (
         basic_auth or token_auth
     ), "Must provide either username/password or api_token"
