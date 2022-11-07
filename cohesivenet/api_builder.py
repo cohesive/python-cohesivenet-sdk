@@ -132,7 +132,7 @@ def set_version_library(client, api, library):
     Logger.debug(
         "Setting v%s API functions %s" % (client_version, api.__class__.__name__)
     )
-    print('Unsupported: %s' % unsupported)
+    Logger.debug('Unsupported: %s' % unsupported)
     for name, func in version_library.items():
         setattr(api, name, functools.partial(func, client))
     for funcname in unsupported:
