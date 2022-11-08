@@ -43,7 +43,7 @@ def put_activate_api_key(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["username", "api_key"]
 
     collection_formats = {}
@@ -118,7 +118,7 @@ def post_create_token(api_client, username=None, api_key=None, **kwargs):  # noq
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["username", "api_key"]
 
     collection_formats = {}
@@ -193,7 +193,7 @@ def put_expire_token(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -260,7 +260,7 @@ def put_invalidate_api_key_tokens(api_client, api_key_id=None, **kwargs):  # noq
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["api_key_id"]
 
     collection_formats = {}
@@ -333,7 +333,7 @@ def get_api_keys(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -400,7 +400,7 @@ def post_create_api_key(api_client, key_name=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["key_name"]
 
     collection_formats = {}
@@ -478,7 +478,7 @@ def put_update_api_key(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["key_name", "enabled"]
 
     collection_formats = {}
@@ -552,7 +552,7 @@ def delete_api_key(api_client, key_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -618,7 +618,7 @@ def get_access_tokens(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -690,7 +690,7 @@ def post_create_access_token(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "expires", "refreshes", "user_id"]
 
     collection_formats = {}
@@ -765,7 +765,7 @@ def get_access_token(api_client, token_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -836,7 +836,7 @@ def put_update_access_token(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["expired", "refresh"]
 
     if not any([expired is not None, refresh is not None]):
@@ -915,7 +915,7 @@ def post_regenerate_access_token(api_client, token_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -987,7 +987,7 @@ def delete_access_token(api_client, token_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}

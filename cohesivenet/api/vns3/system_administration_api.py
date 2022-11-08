@@ -47,7 +47,7 @@ def get_cloud_data(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -112,7 +112,7 @@ def get_runtime_status(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -178,7 +178,7 @@ def get_system_status(api_client, timestamp=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["timestamp"]  # noqa: E501
 
@@ -248,7 +248,7 @@ def get_task_status(api_client, token=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["token"]  # noqa: E501
 
@@ -321,7 +321,7 @@ def post_generate_support_keypair(api_client, body=None, **kwargs):  # noqa: E50
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -397,7 +397,7 @@ def put_update_remote_support(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["enabled", "revoke_credential"]
 
@@ -473,7 +473,7 @@ def put_server_action(api_client, reboot=True, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["reboot"]
 
@@ -548,7 +548,7 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 

@@ -40,7 +40,7 @@ def get_license(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -106,7 +106,7 @@ def put_license_upgrade(api_client, body=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -193,7 +193,7 @@ def put_set_license_parameters(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "subnet",
@@ -277,7 +277,7 @@ def upload_license(api_client, body=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 

@@ -46,7 +46,7 @@ def get_firewall_fw_sets(api_client, name=None, verbose=None, **kwargs):  # noqa
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "verbose"]  # noqa: E501
 
@@ -120,7 +120,7 @@ def post_create_firewall_fw_set(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rules", "name", "flush"]
 
@@ -196,7 +196,7 @@ def delete_firewall_fw_set(api_client, name=None, rules=None, **kwargs):  # noqa
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "rules"]
 
@@ -272,7 +272,7 @@ def put_reinitialize_fw_sets(api_client, reinitialize=True, **kwargs):  # noqa: 
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["reinitialize"]
 
@@ -347,7 +347,7 @@ def delete_firewall_rule_by_position(api_client, position, **kwargs):  # noqa: E
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -412,7 +412,7 @@ def delete_firewall_rule_by_rule(api_client, rule=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rule"]
 
@@ -486,7 +486,7 @@ def get_firewall_rules_v1(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -556,7 +556,7 @@ def get_firewall_rules_v2(api_client, state=None, groups=None, osview=None, tabl
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ['state', 'groups', 'osview', 'tables']
 
@@ -629,7 +629,7 @@ def post_create_firewall_rule_v1(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rule", "position"]
 
@@ -713,7 +713,7 @@ def post_create_firewall_rule_v2(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rule", "comment", "rules", "position", "groups", "disabled"]
 
@@ -795,7 +795,7 @@ def post_create_firewall_subgroup(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rules", "name", "position", "flush"]
 
@@ -871,7 +871,7 @@ def delete_firewall_subgroup(api_client, rules=None, name=None, **kwargs):  # no
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "rules"]
 
@@ -950,7 +950,7 @@ def get_firewall_rule_subgroups(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "verbose"]  # noqa: E501
 
@@ -1019,7 +1019,7 @@ def put_reinitialize_subgroups(api_client, reinitialize=True, **kwargs):  # noqa
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["reinitialize"]
 
@@ -1096,7 +1096,7 @@ def put_firewall_action(api_client, action=None, **kwargs):  # noqa: E501
     """
     api_version = kwargs.pop('api_version', None)
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["action"]
 
@@ -1173,7 +1173,7 @@ def put_overwrite_firewall_v1(api_client, rules=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rules"]
 
@@ -1262,7 +1262,7 @@ def put_overwrite_firewall_v2(api_client, rules=None, **kwargs): # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rules"]
 
@@ -1342,7 +1342,7 @@ def put_update_firewall_rule(api_client, rule_id, rule=None, comment=None, group
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rule", "comment", "groups", "disabled"]
 
@@ -1422,7 +1422,7 @@ def delete_firewall_rule(api_client, rule_id, **kwargs): # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1501,7 +1501,7 @@ def import_firewall_rules(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rules", "position", "groups", "disabled"]
 
@@ -1580,7 +1580,7 @@ def export_firewall_rules(api_client, group=None, tables=None, type=None, **kwar
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ['group', 'tables', 'type']
 
@@ -1650,7 +1650,7 @@ def get_firewall_rule_groups(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -1725,7 +1725,7 @@ def post_create_firewall_rule_group(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "rule_ids", "description"]
 
@@ -1801,7 +1801,7 @@ def get_firewall_rule_group(api_client, name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -1871,7 +1871,7 @@ def delete_firewall_rule_group(api_client, name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -1946,7 +1946,7 @@ def put_update_firewall_rule_group(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "rule_ids", "description"]
 
@@ -2026,7 +2026,7 @@ def add_rule_to_group(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rule_id"]
 
@@ -2102,7 +2102,7 @@ def get_firewall_fwsets(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -2182,7 +2182,7 @@ def post_create_firewall_fwset(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "type", "description", "entries"]
 
@@ -2261,7 +2261,7 @@ def get_firewall_fwset(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2343,7 +2343,7 @@ def put_update_firewall_fwset(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "description", "entries"]
 
@@ -2420,7 +2420,7 @@ def delete_firewall_fwset(api_client, fwset_name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2497,7 +2497,7 @@ def add_entry_to_fwset(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["entry", "comment"]
 
@@ -2577,7 +2577,7 @@ def delete_entry_from_fwset(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["entry"]
 
@@ -2653,7 +2653,7 @@ def get_firewall_subtables(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -2735,7 +2735,7 @@ def post_create_firewall_subtable(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "type", "description", "rules"]
 
@@ -2814,7 +2814,7 @@ def get_firewall_subtable(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2897,7 +2897,7 @@ def put_update_firewall_subtable(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["description", "rules"]
 
@@ -2973,7 +2973,7 @@ def delete_firewall_subtable(api_client, name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -3052,7 +3052,7 @@ def add_rule_to_subtable(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["rule", "position", "comment", "disabled"]
 
@@ -3132,7 +3132,7 @@ def delete_firewall_subtable_rule(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 

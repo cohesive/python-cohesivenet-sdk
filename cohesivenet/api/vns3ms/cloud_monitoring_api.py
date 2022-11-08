@@ -41,7 +41,7 @@ def get_cloud_vlan_components(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["cloud_vlan_component_id"]
 
     collection_formats = {}
@@ -124,7 +124,7 @@ def post_create_vlan_component(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "name",
         "cloud_vlan_id",
@@ -203,7 +203,7 @@ def get_cloud_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -281,7 +281,7 @@ def put_update_vlan_component(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "cloud_vlan_id", "user_cred_id", "region", "description"]
 
     collection_formats = {}
@@ -353,7 +353,7 @@ def delete_vlan_component(api_client, component_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -418,7 +418,7 @@ def get_cloud_vlans(api_client, cloud_vlan_id=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["cloud_vlan_id"]
 
     collection_formats = {}
@@ -491,7 +491,7 @@ def post_create_cloud_vlan(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
@@ -563,7 +563,7 @@ def get_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -633,7 +633,7 @@ def put_update_cloud_vlan(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
@@ -705,7 +705,7 @@ def delete_cloud_vlan(api_client, vlan_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -770,7 +770,7 @@ def get_virtual_networks(api_client, virtual_network_id=None, **kwargs):  # noqa
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["virtual_network_id"]
 
     collection_formats = {}
@@ -840,7 +840,7 @@ def post_create_virtual_network(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "description"]
 
     collection_formats = {}
@@ -912,7 +912,7 @@ def get_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -981,7 +981,7 @@ def put_update_virtual_network(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "description"]
 
     collection_formats = {}
@@ -1053,7 +1053,7 @@ def delete_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -1120,7 +1120,7 @@ def get_export_virtual_networks(api_client):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -1188,7 +1188,7 @@ def post_import_virtual_networks(api_client, body=None):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -1259,7 +1259,7 @@ def get_vns3_topologies(api_client, vns3_topology_id=None, **kwargs):  # noqa: E
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["vns3_topology_id"]
 
     collection_formats = {}
@@ -1330,7 +1330,7 @@ def post_create_vns3_topology(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
@@ -1402,7 +1402,7 @@ def get_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -1477,7 +1477,7 @@ def put_update_vns3_topology(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "virtual_network_id", "description"]
 
     collection_formats = {}
@@ -1549,7 +1549,7 @@ def delete_vns3_topology(api_client, vns3_topology_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -1614,7 +1614,7 @@ def get_webhooks(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -1708,7 +1708,7 @@ def post_create_webhook(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "name",
         "url",
@@ -1792,7 +1792,7 @@ def get_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1887,7 +1887,7 @@ def put_update_webhook(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -1973,7 +1973,7 @@ def delete_webhook(api_client, webhook_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2038,7 +2038,7 @@ def get_alert(api_client, alert_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2103,7 +2103,7 @@ def get_alerts(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2192,7 +2192,7 @@ def post_create_alert(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -2278,7 +2278,7 @@ def delete_alert(api_client, alert_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2364,7 +2364,7 @@ def put_update_alert(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -2448,7 +2448,7 @@ def post_toggle_enable_alert(api_client, alert_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2513,7 +2513,7 @@ def post_test_alert(api_client, alert_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 

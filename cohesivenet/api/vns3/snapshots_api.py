@@ -40,7 +40,7 @@ def delete_snapshot(api_client, snapshot_name, server_async=None, **kwargs):  # 
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -110,7 +110,7 @@ def get_download_snapshot(api_client, snapshot_name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -174,7 +174,7 @@ def get_snapshots(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -240,7 +240,7 @@ def post_create_snapshot(api_client, name=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "async"]
 
@@ -322,7 +322,7 @@ def put_import_snapshot(api_client, body=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["async"]
 

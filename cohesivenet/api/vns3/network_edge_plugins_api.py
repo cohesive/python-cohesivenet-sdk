@@ -49,7 +49,7 @@ def delete_container(api_client, uuid, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -116,7 +116,7 @@ def delete_container_image(api_client, uuid, force=False, **kwargs):  # noqa: E5
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["force"]
 
@@ -187,7 +187,7 @@ def get_container_logs(api_client, uuid, lines=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["lines"]
 
@@ -256,7 +256,7 @@ def get_container_system_ips(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -321,7 +321,7 @@ def get_container_images(api_client, uuid=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["uuid"]
 
@@ -392,7 +392,7 @@ def get_running_containers(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["show_all", "uuid"]
 
@@ -461,7 +461,7 @@ def get_container_system_status(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -526,7 +526,7 @@ def post_action_container_system(api_client, action=None, **kwargs):  # noqa: E5
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["action"]
 
@@ -606,7 +606,7 @@ def post_commit_container(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "description"]
 
@@ -703,7 +703,7 @@ def post_create_container_image(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -815,7 +815,7 @@ def post_start_container(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "uuid",
@@ -900,7 +900,7 @@ def put_configure_container_system(api_client, network=None, **kwargs):  # noqa:
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["network"]
 
@@ -979,7 +979,7 @@ def put_update_container_image(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "description"]
 
@@ -1054,7 +1054,7 @@ def put_stop_container(api_client, uuid, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1122,7 +1122,7 @@ def post_export_image(api_client, uuid, name=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name"]
 
@@ -1333,7 +1333,7 @@ def get_plugins(api_client, *args, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -1401,7 +1401,7 @@ def get_plugin(api_client, id, *args, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1466,7 +1466,7 @@ def get_plugin_instances(api_client, *args, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -1535,7 +1535,7 @@ def get_plugin_instance(api_client, id, *args, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1610,7 +1610,7 @@ def post_commit_plugin_instance(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "description", "version"]
 
@@ -1701,7 +1701,7 @@ def post_create_manager_config(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "log_files",
@@ -1797,7 +1797,7 @@ def put_update_manager_config(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "log_files",
@@ -1879,7 +1879,7 @@ def get_plugin_instance_log_files(api_client, id, *args, **kwargs):  # noqa: E50
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1949,7 +1949,7 @@ def get_plugin_instance_log_content(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2020,7 +2020,7 @@ def get_plugin_instance_config_files(api_client, id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2090,7 +2090,7 @@ def revert_plugin_instance_config_file(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2165,7 +2165,7 @@ def get_plugin_instance_config_content(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     path_params = {"id": id, "slug": file_slug}
 
@@ -2239,7 +2239,7 @@ def put_plugin_instance_config_content(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["content"]
 
@@ -2314,7 +2314,7 @@ def delete_plugin_instance_config_version(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2381,7 +2381,7 @@ def get_plugin_instance_processes(api_client, id, *args, **kwargs):  # noqa: E50
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2452,7 +2452,7 @@ def run_plugin_instance_process_action(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2528,7 +2528,7 @@ def run_plugin_instance_executable_command(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2599,7 +2599,7 @@ def get_plugin_instance_firewall(api_client, id, *args, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -2679,7 +2679,7 @@ def put_plugin_instance_firewall_rule(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["preset", "host_port", "container_port", "protocol"]
 
@@ -2772,7 +2772,7 @@ def install_plugin(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -2860,7 +2860,7 @@ def get_plugin_manager_config(api_client, plugin_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2941,7 +2941,7 @@ def update_plugin(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -3032,7 +3032,7 @@ def delete_plugin(api_client, plugin_id, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -3097,7 +3097,7 @@ def get_plugin_exports(api_client, plugin_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -3167,7 +3167,7 @@ def create_plugin_export(api_client, plugin_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -3238,7 +3238,7 @@ def get_download_plugin_export(api_client, plugin_id, export_name, **kwargs):  #
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -3304,7 +3304,7 @@ def delete_plugin_export(api_client, plugin_id, export_name, **kwargs):  # noqa:
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -3369,7 +3369,7 @@ def get_plugin_catalog(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -3455,7 +3455,7 @@ def start_plugin_instance(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -3539,7 +3539,7 @@ def delete_plugin_instance(api_client, instance_id, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -3605,7 +3605,7 @@ def clear_plugin_instance_conf_file_history(api_client, instance_id, config_name
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -3672,7 +3672,7 @@ def get_plugin_instance_users(api_client, instance_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -3755,7 +3755,7 @@ def put_plugin_instance_user(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "username",
@@ -3830,7 +3830,7 @@ def delete_plugin_instance_user(api_client, instance_id, username, **kwargs):
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -3894,7 +3894,7 @@ def get_plugin_system_exports(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -3964,7 +3964,7 @@ def get_plugin_instance_exports(api_client, instance_id, **kwargs):  # noqa: E50
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -4034,7 +4034,7 @@ def create_plugin_instance_export(api_client, instance_id, **kwargs):  # noqa: E
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -4104,7 +4104,7 @@ def get_download_plugin_instance_export(api_client, instance_id, export_name, **
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -4170,7 +4170,7 @@ def delete_plugin_instance_export(api_client, instance_id, export_name, **kwargs
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 

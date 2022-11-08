@@ -43,7 +43,7 @@ def delete_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -112,7 +112,7 @@ def delete_ipsec_endpoint_tunnel(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -177,7 +177,7 @@ def get_ipsec_details(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -243,7 +243,7 @@ def get_ipsec_endpoint(api_client, endpoint_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -308,7 +308,7 @@ def get_ipsec_status(api_client, up_down_status_only=None, **kwargs):  # noqa: E
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -377,7 +377,7 @@ def get_connected_subnets(api_client, extended_output=None, **kwargs):  # noqa: 
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -452,7 +452,7 @@ def get_ipsec_link_history(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["remote", "local", "tunnelid"]  # noqa: E501
 
@@ -553,7 +553,7 @@ def post_create_ipsec_endpoint(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -663,7 +663,7 @@ def post_create_ipsec_endpoint_tunnel(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "remote_subnet",
@@ -746,7 +746,7 @@ def post_restart_ipsec_action(api_client, restart=True, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["restart"]
 
@@ -855,7 +855,7 @@ def put_update_ipsec_endpoint(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -969,7 +969,7 @@ def put_update_ipsec_endpoint_tunnel(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "remote_subnet",
@@ -1062,7 +1062,7 @@ def put_update_ipsec_config(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["ipsec_local_ipaddress"]
 
@@ -1160,7 +1160,7 @@ def post_create_ipsec_traffic_pair(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "remote_subnet",
@@ -1264,7 +1264,7 @@ def put_update_ipsec_traffic_pair(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "remote_subnet",
@@ -1351,7 +1351,7 @@ def delete_ipsec_traffic_pair(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1418,7 +1418,7 @@ def disable_ipsec_traffic_pair(api_client, endpoint_id, pair_id, **kwargs):  # n
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1487,7 +1487,7 @@ def enable_ipsec_traffic_pair(api_client, endpoint_id, pair_id, **kwargs):  # no
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 

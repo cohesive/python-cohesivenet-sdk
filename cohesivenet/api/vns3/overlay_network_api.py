@@ -43,7 +43,7 @@ def get_clientpack(api_client, clientpack_name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -110,7 +110,7 @@ def get_clientpacks(api_client, sorted=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["sorted"]  # noqa: E501
 
@@ -179,7 +179,7 @@ def get_clients_status(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -244,7 +244,7 @@ def get_connected_subnets(api_client, extended_output=None, **kwargs):  # noqa: 
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["extended_output"]  # noqa: E501
 
@@ -317,7 +317,7 @@ def get_download_clientpack(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "fileformat", "format", "fileFormat"]  # noqa: E501
 
@@ -387,7 +387,7 @@ def get_download_named_clientpack(api_client, name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -468,7 +468,7 @@ def post_checkout_next_clientpack(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["low_ip", "high_ip", "include_disabled"]
 
@@ -547,7 +547,7 @@ def post_create_clientpack_tag(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["key", "value"]  # noqa: E501
 
@@ -626,7 +626,7 @@ def delete_clientpack_tag(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["key"]  # noqa: E501
 
@@ -701,7 +701,7 @@ def post_reset_all_clients(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -767,7 +767,7 @@ def post_reset_client(api_client, name=None, disconnect=True, **kwargs):  # noqa
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "disconnect"]  # noqa: E501
 
@@ -843,7 +843,7 @@ def post_add_clientpacks(api_client, requested_ips=None, **kwargs):  # noqa: E50
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["requested_ips"]  # noqa: E501
 
@@ -937,7 +937,7 @@ def put_update_clientpack(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -1024,7 +1024,7 @@ def put_disconnect_clientpack(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["disconnect"]  # noqa: E501
 
@@ -1110,7 +1110,7 @@ def put_update_all_clientpacks(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "enabled",
@@ -1197,7 +1197,7 @@ def get_global_link_policies(api_client, type=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["type"]  # noqa: E501
 
@@ -1270,7 +1270,7 @@ def put_global_link_policies(api_client, policies=None, type=None, **kwargs):  #
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1341,7 +1341,7 @@ def get_links(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -1418,7 +1418,7 @@ def create_link(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1490,7 +1490,7 @@ def get_link(api_client, link_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -1573,7 +1573,7 @@ def put_update_link(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1645,7 +1645,7 @@ def delete_link(api_client, link_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -1719,7 +1719,7 @@ def get_link_logs(api_client, link_id, lines=None, sort=None, **kwargs):  # noqa
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["lines", "sort"]  # noqa: E501
 
@@ -1792,7 +1792,7 @@ def create_link_tag(api_client, link_id, key=None, value=None, **kwargs):  # noq
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1865,7 +1865,7 @@ def delete_link_tag(api_client, link_id, tag_key, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 

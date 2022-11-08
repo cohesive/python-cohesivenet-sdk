@@ -43,7 +43,7 @@ def get_config(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -108,7 +108,7 @@ def get_keyset(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -174,7 +174,7 @@ def get_ssl_install_status(api_client, uuid, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -244,7 +244,7 @@ def put_config(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["topology_name", "controller_name", "ntp_hosts"]
 
@@ -319,7 +319,7 @@ def put_install_ssl_keypair(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -398,7 +398,7 @@ def put_keyset(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["token", "source", "topology_name", "sealed_network"]
 
@@ -479,7 +479,7 @@ def put_update_admin_ui(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["enabled", "admin_username", "admin_password"]
 
@@ -556,7 +556,7 @@ def put_update_api_password(api_client, password=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["password"]
 
@@ -628,7 +628,7 @@ def get_ssl_certs(api_client, **kwargs):
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -694,7 +694,7 @@ def put_upload_ssl_keypair(api_client, cert=None, key=None, **kwargs):  # noqa: 
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["cert", "key"]
 
@@ -769,7 +769,7 @@ def post_send_test_ms_alert(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -841,7 +841,7 @@ def get_ms_config(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -907,7 +907,7 @@ def post_set_ms_config(api_client, ip=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["ip"]
 
@@ -984,7 +984,7 @@ def update_ms_config(api_client, ip=None, alert_enabled=True, **kwargs):  # noqa
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["ip", "alert_enabled"]
 
@@ -1133,7 +1133,7 @@ def get_variables(api_client, collections=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1206,7 +1206,7 @@ def post_create_custom_variable(api_client, name=None, value=None, description=N
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "value", "description"]
 
@@ -1282,7 +1282,7 @@ def get_variable_collections(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1355,7 +1355,7 @@ def put_update_custom_variable(api_client, name, value=None, description=None, *
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["value", "description"]
 
@@ -1434,7 +1434,7 @@ def delete_custom_variable(api_client, name, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 

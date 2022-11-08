@@ -48,7 +48,7 @@ def get_vns3_snapshots(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["vns3_controller_id", "vns3_topology_id", "snapshot_id"]
 
     collection_formats = {}
@@ -117,7 +117,7 @@ def post_create_vns3_snapshot(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["vns3_controller_id"]
 
     collection_formats = {}
@@ -189,7 +189,7 @@ def delete_vns3_snapshots(api_client, snapshot_ids=None, **kwargs):  # noqa: E50
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["snapshot_ids"]
 
     collection_formats = {}
@@ -261,7 +261,7 @@ def get_download_vns3_snapshot(api_client, snapshot_id=None, **kwargs):  # noqa:
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["snapshot_id"]  # noqa: E501
 
@@ -329,7 +329,7 @@ def get_controller_report(api_client, report_date=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["report_date"]
 
     collection_formats = {}
@@ -401,7 +401,7 @@ def get_vns3_controllers(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["vns3_controller_id", "vns3_topology_id"]  # noqa: E501
 
@@ -486,7 +486,7 @@ def post_add_vns3_controller(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "name",
@@ -565,7 +565,7 @@ def get_vns3_controller(api_client, vns3_controller_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -648,7 +648,7 @@ def put_update_vns3_controller(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "name",
         "vns3_topology_id",
@@ -727,7 +727,7 @@ def delete_vns3_controller(api_client, vns3_controller_id, **kwargs):  # noqa: E
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -792,7 +792,7 @@ def get_vns3_controller_status(api_client, vns3_controller_id, **kwargs):  # noq
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -860,7 +860,7 @@ def put_vns3_controller_api_password(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["api_password"]
 
     collection_formats = {}
@@ -942,7 +942,7 @@ def put_vns3_controller_ui(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["username", "password", "ui_enabled"]
 
     collection_formats = {}
@@ -1016,7 +1016,7 @@ def get_vns3_controller_ha_details(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -1109,7 +1109,7 @@ def put_update_vns3_controller_ha(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "ha_enabled",
         "ha_type",
@@ -1196,7 +1196,7 @@ def put_validate_vns3_controller_ha(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -1261,7 +1261,7 @@ def put_init_vns3_controller_ha(api_client, vns3_controller_id, **kwargs):  # no
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -1329,7 +1329,7 @@ def put_sync_vns3_controller_ha(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["sync_type"]
 
     collection_formats = {}
@@ -1404,7 +1404,7 @@ def put_activate_vns3_controller_ha(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["dry_run"]
 
     collection_formats = {}
@@ -1478,7 +1478,7 @@ def get_vns3_controller_ha_status(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}

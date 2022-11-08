@@ -43,7 +43,7 @@ def put_user_password(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["password", "force_refresh"]
 
     collection_formats = {}
@@ -116,7 +116,7 @@ def get_user_credentials(api_client, cred_id=None, fields=True, **kwargs):  # no
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["cred_id", "fields"]
 
     collection_formats = {}
@@ -187,7 +187,7 @@ def post_create_user_credential(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "code", "fields"]
 
     collection_formats = {}
@@ -269,7 +269,7 @@ def post_create_ec2_credential(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "access_key", "secret_key", "gov_cloud"]
 
     collection_formats = {}
@@ -351,7 +351,7 @@ def put_update_user_credential(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["name", "code", "fields"]
 
     collection_formats = {}
@@ -423,7 +423,7 @@ def delete_user_credential(api_client, credential_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}

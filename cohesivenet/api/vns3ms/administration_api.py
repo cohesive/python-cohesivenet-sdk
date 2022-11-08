@@ -39,7 +39,7 @@ def put_enable_ldap(api_client, enabled=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["enabled"]
 
     collection_formats = {}
@@ -112,7 +112,7 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -200,7 +200,7 @@ def put_ldap_settings(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "ldap_host",
         "ldap_port",
@@ -297,7 +297,7 @@ def post_validate_ldap_settings(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "ldap_host",
         "ldap_port",
@@ -376,7 +376,7 @@ def get_ldap_user_schema(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -452,7 +452,7 @@ def put_ldap_user_schema(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "ldap_user_base",
         "ldap_user_id_attribute",
@@ -541,7 +541,7 @@ def post_validate_ldap_user_schema(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "ldap_user_base",
         "ldap_user_id_attribute",
@@ -619,7 +619,7 @@ def get_ldap_group_schema(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -703,7 +703,7 @@ def put_ldap_group_schema(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "ldap_group_required",
         "ldap_group_base",
@@ -802,7 +802,7 @@ def post_validate_ldap_group_schema(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = [
         "ldap_group_base",
         "ldap_group_id_attribute",
@@ -884,7 +884,7 @@ def put_upload_ldap_auth_cert(api_client, body=None, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -956,7 +956,7 @@ def put_upload_ldap_auth_key(api_client, body=None, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1028,7 +1028,7 @@ def put_upload_ldap_ca_cert(api_client, body=None, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 

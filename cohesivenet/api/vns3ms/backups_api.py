@@ -39,7 +39,7 @@ def get_backups(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -106,7 +106,7 @@ def delete_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["backup_name"]
 
     collection_formats = {}
@@ -181,7 +181,7 @@ def get_download_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["backup_name"]  # noqa: E501
 
@@ -252,7 +252,7 @@ def post_upload_backup(api_client, body=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -324,7 +324,7 @@ def post_create_backup(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -401,7 +401,7 @@ def get_backup_job(api_client, job_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -468,7 +468,7 @@ def post_restore_backup(api_client, backup_name=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["backup_name"]
 
     collection_formats = {}
@@ -541,7 +541,7 @@ def get_snapshots_backup(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -607,7 +607,7 @@ def delete_snapshots_backup(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = []
 
     collection_formats = {}
@@ -676,7 +676,7 @@ def get_download_snapshots_backup(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -745,7 +745,7 @@ def post_upload_snapshots_backup(api_client, url=None, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["url"]
 
@@ -822,7 +822,7 @@ def get_snapshots_upload_status(api_client, job_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -889,7 +889,7 @@ def post_create_snapshots_backup(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []
 
@@ -966,7 +966,7 @@ def get_snapshots_backup_status(api_client, job_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = []  # noqa: E501
 
@@ -1033,7 +1033,7 @@ def post_restore_snapshots_backup(api_client, backup_name=None, **kwargs):  # no
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["backup_name"]
 
     collection_formats = {}

@@ -96,7 +96,7 @@ def create_access_url(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     request_params = ["expires", "name", "description", "access"]
 
     collection_formats = {}
@@ -251,7 +251,7 @@ def delete_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -320,7 +320,7 @@ def delete_access_url_by_search(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["access_url_id", "access_url"]
 
@@ -396,7 +396,7 @@ def delete_api_token(api_client, token_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
     collection_formats = {}
 
     path_params = {"token_id": token_id}
@@ -460,7 +460,7 @@ def get_access_urls(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -526,7 +526,7 @@ def get_access_url(api_client, access_url_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -592,7 +592,7 @@ def get_api_token(api_client, token_id, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -657,7 +657,7 @@ def get_api_tokens(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -726,7 +726,7 @@ def put_expire_access_url(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["expired"]
 
@@ -803,7 +803,7 @@ def put_expire_api_token(api_client, token_id, expired=True, **kwargs):  # noqa:
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["expired"]
 
@@ -898,7 +898,7 @@ def put_ldap_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "host",
@@ -1014,7 +1014,7 @@ def post_test_ldap_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "host",
@@ -1104,7 +1104,7 @@ def get_ldap_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1171,7 +1171,7 @@ def put_enable_ldap(api_client, enabled=True, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["enabled"]
 
@@ -1246,7 +1246,7 @@ def put_upload_ldap_auth_cert(api_client, body=None, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1318,7 +1318,7 @@ def put_upload_ldap_auth_key(api_client, body=None, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1390,7 +1390,7 @@ def put_upload_ldap_ca_cert(api_client, body=None, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1479,7 +1479,7 @@ def put_ldap_group_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "group_required",
@@ -1579,7 +1579,7 @@ def post_test_ldap_group_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "group_base",
@@ -1662,7 +1662,7 @@ def get_ldap_group_schema_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1732,7 +1732,7 @@ def put_ldap_user_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["user_base", "user_id_attribute", "user_list_filter"]
 
@@ -1818,7 +1818,7 @@ def post_test_ldap_user_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["user_base", "user_id_attribute", "user_list_filter", "limit"]
 
@@ -1893,7 +1893,7 @@ def get_ldap_user_schema_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -1977,7 +1977,7 @@ def put_ldap_vpn_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "vpn_auth_enabled",
@@ -2061,7 +2061,7 @@ def get_ldap_vpn_schema_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2143,7 +2143,7 @@ def post_test_ldap_vpn_schema_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "vpn_group_base",
@@ -2239,7 +2239,7 @@ def put_ldap_vpn_radius_settings(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "vpn_auth_enabled",
@@ -2320,7 +2320,7 @@ def get_ldap_vpn_radius_settings(api_client, **kwargs):  # noqa: E501
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2388,7 +2388,7 @@ def put_identity_vpn_settings(api_client, provider=None, enabled=True, **kwargs)
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = (
         ["provider", "enabled"] +
@@ -2470,7 +2470,7 @@ def get_identity_vpn_settings(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2539,7 +2539,7 @@ def post_test_identity_vpn_settings(api_client, **kwargs):
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["provider"] + IdentityParams.LDAP + IdentityParams.TEST_LDAP
 
@@ -2617,7 +2617,7 @@ def put_identity_controller_settings(api_client, provider=None, enabled=True, **
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = (
         ["provider", "enabled"] +
@@ -2698,7 +2698,7 @@ def get_identity_controller_settings(api_client, **kwargs):  # noqa: E501
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -2767,7 +2767,7 @@ def post_test_identity_controller_settings(api_client, **kwargs):
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["provider"] + IdentityParams.LDAP + IdentityParams.TEST_LDAP
 

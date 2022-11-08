@@ -45,7 +45,7 @@ def get_bgp_peer(
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = ["verbose"]  # noqa: E501
 
@@ -114,7 +114,7 @@ def delete_bgp_peer(api_client, endpoint_id, bgp_peer_id, **kwargs):  # noqa: E5
     :return: APIResponse or awaitable if async
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
@@ -202,7 +202,7 @@ def create_bgp_peer(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "ipaddress",
@@ -318,7 +318,7 @@ def update_bgp_peer(
                 returns the request thread.
     """
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     request_params = [
         "ipaddress",
@@ -333,7 +333,7 @@ def update_bgp_peer(
         "keepalive_interval"
     ]
 
-    local_var_params = locals()
+    local_var_params = dict(locals(), **kwargs)
 
     collection_formats = {}
 
