@@ -18,7 +18,9 @@ import re  # noqa: F401
 from cohesivenet.api_builder import VersionRouter
 
 
-def delete_snapshot(api_client, snapshot_name, server_async=None, **kwargs):  # noqa: E501
+def delete_snapshot(
+    api_client, snapshot_name, server_async=None, **kwargs
+):  # noqa: E501
     """delete_snapshot  # noqa: E501
 
     Delete named snapshot  # noqa: E501

@@ -279,7 +279,7 @@ def version_dot_to_int(version_str):
     if type(version_str) is int:
         return version_str
 
-    if version_str == '':
+    if version_str == "":
         return 0
 
     # 5.0, 5.2.1, 4.11.3
@@ -287,13 +287,13 @@ def version_dot_to_int(version_str):
     version_padded = ""
     num_parts = len(parts)
     if num_parts < 3:
-        for _ in range(3-num_parts):
-            parts.append('0')
+        for _ in range(3 - num_parts):
+            parts.append("0")
 
     assert len(parts) == 3, "version_str must have maximum of 3 parts delimited by '.'"
     for part in parts:
-        if part.lower() == 'x':
-            part = '99'
+        if part.lower() == "x":
+            part = "99"
         padded = "".join(["0" for _ in range(2 - len(part))]) + part
         version_padded += padded
     return int(version_padded)
@@ -337,8 +337,9 @@ def vapi_switch(fname, v1=None, v2=None):
     call_v1 = v1
     call_v2 = v2
     assert call_v1 or call_v2, "Must provide v1 or v2 methods"
+
     def vapi_call(api_client, *args, **kwargs):
-        api_version = kwargs.pop('api_version', None)
+        api_version = kwargs.pop("api_version", None)
         _api_version = api_version or api_client.api_version
         if not _api_version:
             if call_v2:

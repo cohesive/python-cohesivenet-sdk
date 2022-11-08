@@ -49,7 +49,7 @@ class IdentityParams(object):
         "encrypt_auth_cert_current",
         "encrypt_auth_key_current",
         "encrypt_ca_cert_current",
-        "limit"
+        "limit",
     ]
 
     RADIUS = [
@@ -2391,10 +2391,10 @@ def put_identity_vpn_settings(api_client, provider=None, enabled=True, **kwargs)
     local_var_params = dict(locals(), **kwargs)
 
     request_params = (
-        ["provider", "enabled"] +
-        IdentityParams.LDAP +
-        IdentityParams.RADIUS +
-        IdentityParams.OIDC
+        ["provider", "enabled"]
+        + IdentityParams.LDAP
+        + IdentityParams.RADIUS
+        + IdentityParams.OIDC
     )
 
     collection_formats = {}
@@ -2619,11 +2619,7 @@ def put_identity_controller_settings(api_client, provider=None, enabled=True, **
     """
     local_var_params = dict(locals(), **kwargs)
 
-    request_params = (
-        ["provider", "enabled"] +
-        IdentityParams.LDAP +
-        IdentityParams.OIDC
-    )
+    request_params = ["provider", "enabled"] + IdentityParams.LDAP + IdentityParams.OIDC
 
     collection_formats = {}
 
@@ -2863,7 +2859,6 @@ class AccessApiRouter(VersionRouter):
         "put_ldap_vpn_schema_settings": {"4.10.1-5.2.x": put_ldap_vpn_schema_settings},
         "put_ldap_vpn_radius_settings": {"4.11.1-5.2.x": put_ldap_vpn_radius_settings},
         "get_ldap_vpn_radius_settings": {"4.11.1-5.2.x": get_ldap_vpn_radius_settings},
-
         # New identity endpoints (replace previous settings LDAP endpoints)
         "put_identity_vpn_settings": {
             "6.0.0-": put_identity_vpn_settings,

@@ -48,7 +48,9 @@ class ApiMethodUnsupportedError(Exception):
             self.__class__.__name__,
             self.method,
             self.version,
-            ',supported_versions=%s' % self.supported_versions if self.supported_versions else ''
+            ",supported_versions=%s" % self.supported_versions
+            if self.supported_versions
+            else "",
         )
         return msg
 

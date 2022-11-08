@@ -132,11 +132,15 @@ def set_version_library(client, api, library):
     Logger.debug(
         "Setting v%s API functions %s" % (client_version, api.__class__.__name__)
     )
-    Logger.debug('Unsupported: %s' % unsupported)
+    Logger.debug("Unsupported: %s" % unsupported)
     for name, func in version_library.items():
         setattr(api, name, functools.partial(func, client))
     for funcname in unsupported:
-        setattr(api, funcname, functools.partial(raise_unsupported_error, funcname, client_version))
+        setattr(
+            api,
+            funcname,
+            functools.partial(raise_unsupported_error, funcname, client_version),
+        )
 
 
 class VersionRouter(object):

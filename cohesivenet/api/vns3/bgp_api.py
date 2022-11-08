@@ -215,7 +215,7 @@ def create_bgp_peer(
         "add_network_distance_hops",
         "add_network_distance_direction",
         "hold_time",
-        "keepalive_interval"
+        "keepalive_interval",
     ]
 
     collection_formats = {}
@@ -330,7 +330,7 @@ def update_bgp_peer(
         "add_network_distance_direction",
         "add_network_distance_hops",
         "hold_time",
-        "keepalive_interval"
+        "keepalive_interval",
     ]
 
     local_var_params = dict(locals(), **kwargs)

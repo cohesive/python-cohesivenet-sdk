@@ -142,6 +142,7 @@ class APIClient(object):
     :param cookie: a cookie to include in the header when making calls
         to the API
     """
+
     BASE_PATH = None
     DEF_REQ_TIMEOUT = None
 
@@ -267,7 +268,11 @@ class APIClient(object):
 
         # request url
         if _host is None:
-            url = self.configuration.endpoint + self.get_base_path(api_version) + resource_path
+            url = (
+                self.configuration.endpoint
+                + self.get_base_path(api_version)
+                + resource_path
+            )
         else:
             # use server/host defined in path or operation instead
             url = _host + self.get_base_path(api_version) + resource_path

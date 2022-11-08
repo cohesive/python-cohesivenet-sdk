@@ -215,7 +215,7 @@ def post_create_route(
         "tunnel",
         "advertise",
         "metric",
-        "table"
+        "table",
     ]
 
     collection_formats = {}
@@ -416,8 +416,10 @@ def disable_route(api_client, route_id, **kwargs):  # noqa: E501
 
 
 def post_create_route_if_not_exists(
-    api_client, route_request, comparison_keys=RouteConstants.RouteComparisonKeys,
-    routes_response=None
+    api_client,
+    route_request,
+    comparison_keys=RouteConstants.RouteComparisonKeys,
+    routes_response=None,
 ):
     """Create route if it doesn not exist for client. Compare based on keys.
 

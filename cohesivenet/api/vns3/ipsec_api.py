@@ -424,7 +424,6 @@ def get_connected_subnets(api_client, extended_output=None, **kwargs):  # noqa: 
     )
 
 
-
 def get_ipsec_link_history(
     api_client, remote=None, local=None, tunnelid=None, **kwargs
 ):  # noqa: E501
@@ -1142,7 +1141,7 @@ def post_create_ipsec_traffic_pair(
     :param int endpoint_id: ID for IPsec endpoint (required)
     :param remote_subnet str: (required)
     :param local_subnet str: (required)
-    :param enabled bool: 
+    :param enabled bool:
     :param ping_ipaddress str: Exo Ping feature - remote IP destination of ping
     :param ping_interface str: Exo Ping feature - what network interface IP of the VNS3 controller to use as the source of ping
     :param ping_interval int: Exo Ping feature - periodicy of the ping in seconds
@@ -1201,8 +1200,7 @@ def post_create_ipsec_traffic_pair(
     auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/ipsec/endpoints/{endpoint_id}/traffic_pairs"
-        "POST",
+        "/ipsec/endpoints/{endpoint_id}/traffic_pairs" "POST",
         path_params,
         query_params,
         header_params,
@@ -1246,7 +1244,7 @@ def put_update_ipsec_traffic_pair(
     :param int pair_id: ID for IPsec traffic pair (required)
     :param remote_subnet str:
     :param local_subnet str:
-    :param enabled bool: 
+    :param enabled bool:
     :param ping_ipaddress str: Exo Ping feature - remote IP destination of ping
     :param ping_interface str: Exo Ping feature - what network interface IP of the VNS3 controller to use as the source of ping
     :param ping_interval int: Exo Ping feature - periodicy of the ping in seconds
@@ -1325,9 +1323,7 @@ def put_update_ipsec_traffic_pair(
     )
 
 
-def delete_ipsec_traffic_pair(
-    api_client, endpoint_id, pair_id, **kwargs
-):  # noqa: E501
+def delete_ipsec_traffic_pair(api_client, endpoint_id, pair_id, **kwargs):  # noqa: E501
     """delete_ipsec_traffic_pair  # noqa: E501
 
     Delete IPsec traffic pair  # noqa: E501
@@ -1394,7 +1390,9 @@ def delete_ipsec_traffic_pair(
     )
 
 
-def disable_ipsec_traffic_pair(api_client, endpoint_id, pair_id, **kwargs):  # noqa: E501
+def disable_ipsec_traffic_pair(
+    api_client, endpoint_id, pair_id, **kwargs
+):  # noqa: E501
     """disable_ipsec_traffic_pair  # noqa: E501
 
     Disable a traffic pair   # noqa: E501
@@ -1613,7 +1611,9 @@ class IPsecApiRouter(VersionRouter):
             "4.8.4-6.x.x": put_update_ipsec_endpoint_tunnel
         },
         "put_update_ipsec_config": {"4.8.4-6.x.x": put_update_ipsec_config},
-        "post_create_ipsec_traffic_pair": {"5.1.8-6.x.x": post_create_ipsec_traffic_pair},
+        "post_create_ipsec_traffic_pair": {
+            "5.1.8-6.x.x": post_create_ipsec_traffic_pair
+        },
         "put_update_ipsec_traffic_pair": {"5.1.8-6.x.x": put_update_ipsec_traffic_pair},
         "delete_ipsec_traffic_pair": {"5.1.8-6.x.x": delete_ipsec_traffic_pair},
         "enable_ipsec_traffic_pair": {"5.1.8-6.x.x": enable_ipsec_traffic_pair},

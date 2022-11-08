@@ -395,9 +395,11 @@ def get_download_named_clientpack(api_client, name, **kwargs):  # noqa: E501
 
     path_params = {"name": name}
 
-    file_parts = name.split('.')
-    if len(file_parts) != 2 or file_parts[1] not in ['ovpn', 'zip', 'conf', 'tarball']:
-        raise ApiValueError('name must have file type suffix: ovpn, zip, conf or tarball. e.g. 102_100_100_100.conf')
+    file_parts = name.split(".")
+    if len(file_parts) != 2 or file_parts[1] not in ["ovpn", "zip", "conf", "tarball"]:
+        raise ApiValueError(
+            "name must have file type suffix: ovpn, zip, conf or tarball. e.g. 102_100_100_100.conf"
+        )
 
     query_params = []
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
@@ -946,7 +948,7 @@ def put_update_clientpack(
         "regenerate",
         "compression",
         "auth_on",
-        "psk_on"
+        "psk_on",
     ]  # noqa: E501
 
     collection_formats = {}
@@ -1078,8 +1080,14 @@ def put_disconnect_clientpack(
 
 
 def put_update_all_clientpacks(
-    api_client, enabled=None, checked_out=None, compression=None,
-    auth_on=None, psk_on=None, server_async=None, **kwargs
+    api_client,
+    enabled=None,
+    checked_out=None,
+    compression=None,
+    auth_on=None,
+    psk_on=None,
+    server_async=None,
+    **kwargs
 ):  # noqa: E501
     """put_update_all_clientpacks  # noqa: E501
 
@@ -1245,7 +1253,9 @@ def get_global_link_policies(api_client, type=None, **kwargs):  # noqa: E501
     )
 
 
-def put_global_link_policies(api_client, policies=None, type=None, **kwargs):  # noqa: E501
+def put_global_link_policies(
+    api_client, policies=None, type=None, **kwargs
+):  # noqa: E501
     """put_global_link_policies  # noqa: E501
 
     Update policies that apply to all Links at creation time.

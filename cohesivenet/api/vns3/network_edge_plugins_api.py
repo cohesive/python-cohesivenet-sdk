@@ -744,13 +744,17 @@ def post_create_container_image(
 
     # HTTP header `Content-Type`
     if local_var_files:
-        header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = api_client.select_header_content_type(  # noqa: E501
             ["multipart/form-data"]
         )  # noqa: E501
         form_params = body_params
         body_params = {}
     else:
-        header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = api_client.select_header_content_type(  # noqa: E501
             ["application/json"]
         )  # noqa: E501
 
@@ -2976,13 +2980,17 @@ def update_plugin(
 
     # HTTP header `Content-Type`
     if local_var_files:
-        header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = api_client.select_header_content_type(  # noqa: E501
             ["multipart/form-data"]
         )  # noqa: E501
         form_params = body_params
         body_params = {}
     else:
-        header_params["Content-Type"] = api_client.select_header_content_type(  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = api_client.select_header_content_type(  # noqa: E501
             ["application/json"]
         )  # noqa: E501
 
@@ -3215,7 +3223,9 @@ def create_plugin_export(api_client, plugin_id, **kwargs):  # noqa: E501
     )
 
 
-def get_download_plugin_export(api_client, plugin_id, export_name, **kwargs):  # noqa: E501
+def get_download_plugin_export(
+    api_client, plugin_id, export_name, **kwargs
+):  # noqa: E501
     """get_download_plugin_export  # noqa: E501
 
     Download plugin export file  # noqa: E501
@@ -3582,7 +3592,9 @@ def delete_plugin_instance(api_client, instance_id, **kwargs):  # noqa: E501
     )
 
 
-def clear_plugin_instance_conf_file_history(api_client, instance_id, config_name, **kwargs):  # noqa: E501
+def clear_plugin_instance_conf_file_history(
+    api_client, instance_id, config_name, **kwargs
+):  # noqa: E501
     """clear_plugin_instance_conf_file_history  # noqa: E501
 
     Clear all history for a plugin instance's config file  # noqa: E501
@@ -4081,7 +4093,10 @@ def create_plugin_instance_export(api_client, instance_id, **kwargs):  # noqa: E
         collection_formats=collection_formats,
     )
 
-def get_download_plugin_instance_export(api_client, instance_id, export_name, **kwargs):  # noqa: E501
+
+def get_download_plugin_instance_export(
+    api_client, instance_id, export_name, **kwargs
+):  # noqa: E501
     """get_download_plugin_instance_export  # noqa: E501
 
     Download plugin instance export file  # noqa: E501
@@ -4147,7 +4162,9 @@ def get_download_plugin_instance_export(api_client, instance_id, export_name, **
     )
 
 
-def delete_plugin_instance_export(api_client, instance_id, export_name, **kwargs):  # noqa: E501
+def delete_plugin_instance_export(
+    api_client, instance_id, export_name, **kwargs
+):  # noqa: E501
     """delete_plugin_instance_export  # noqa: E501
 
     Delete a plugin instance export  # noqa: E501
@@ -4278,64 +4295,28 @@ class NetworkEdgePluginsApiRouter(VersionRouter):
         "put_plugin_instance_firewall_rule": {
             "5.0.0-6.x.x": put_plugin_instance_firewall_rule
         },
-        "install_plugin": {
-            "5.2.1-6.x.x": install_plugin
-        },
-        "get_plugin_system_exports": {
-            "5.2.1-6.x.x": get_plugin_system_exports
-        },
-        "get_plugin_manager_config": {
-            "5.2.1-6.x.x": get_plugin_manager_config
-        },
-        "update_plugin": {
-            "5.2.1-6.x.x": update_plugin
-        },
-        "delete_plugin": {
-            "5.2.1-6.x.x": delete_plugin
-        },
-        "get_plugin_exports": {
-            "5.2.1-6.x.x": get_plugin_exports
-        },
-        "create_plugin_export": {
-            "5.2.1-6.x.x": create_plugin_export
-        },
-        "get_download_plugin_export": {
-            "5.2.1-6.x.x": get_download_plugin_export
-        },
-        "delete_plugin_export": {
-            "5.2.1-6.x.x": delete_plugin_export
-        },
-        "delete_plugin_instance": {
-            "5.2.1-6.x.x": delete_plugin_instance
-        },
-        "get_plugin_catalog": {
-            "5.2.1-6.x.x": get_plugin_catalog
-        },
-        "start_plugin_instance": {
-            "5.2.1-6.x.x": start_plugin_instance
-        },
-        "delete_plugin_instance": {
-            "5.2.1-6.x.x": delete_plugin_instance
-        },
+        "install_plugin": {"5.2.1-6.x.x": install_plugin},
+        "get_plugin_system_exports": {"5.2.1-6.x.x": get_plugin_system_exports},
+        "get_plugin_manager_config": {"5.2.1-6.x.x": get_plugin_manager_config},
+        "update_plugin": {"5.2.1-6.x.x": update_plugin},
+        "delete_plugin": {"5.2.1-6.x.x": delete_plugin},
+        "get_plugin_exports": {"5.2.1-6.x.x": get_plugin_exports},
+        "create_plugin_export": {"5.2.1-6.x.x": create_plugin_export},
+        "get_download_plugin_export": {"5.2.1-6.x.x": get_download_plugin_export},
+        "delete_plugin_export": {"5.2.1-6.x.x": delete_plugin_export},
+        "delete_plugin_instance": {"5.2.1-6.x.x": delete_plugin_instance},
+        "get_plugin_catalog": {"5.2.1-6.x.x": get_plugin_catalog},
+        "start_plugin_instance": {"5.2.1-6.x.x": start_plugin_instance},
+        "delete_plugin_instance": {"5.2.1-6.x.x": delete_plugin_instance},
         "clear_plugin_instance_conf_file_history": {
             "5.2.1-6.x.x": clear_plugin_instance_conf_file_history
         },
-        "put_plugin_instance_user": {
-            "5.2.1-6.x.x": put_plugin_instance_user
-        },
-        "delete_plugin_instance_user": {
-            "5.2.1-6.x.x": delete_plugin_instance_user
-        },
-        "get_plugin_instance_exports": {
-            "5.2.1-6.x.x": get_plugin_instance_exports
-        },
-        "create_plugin_instance_export": {
-            "5.2.1-6.x.x": create_plugin_instance_export
-        },
+        "put_plugin_instance_user": {"5.2.1-6.x.x": put_plugin_instance_user},
+        "delete_plugin_instance_user": {"5.2.1-6.x.x": delete_plugin_instance_user},
+        "get_plugin_instance_exports": {"5.2.1-6.x.x": get_plugin_instance_exports},
+        "create_plugin_instance_export": {"5.2.1-6.x.x": create_plugin_instance_export},
         "get_download_plugin_instance_export": {
             "5.2.1-6.x.x": get_download_plugin_instance_export
         },
-        "delete_plugin_instance_export": {
-            "5.2.1-6.x.x": delete_plugin_instance_export
-        },
+        "delete_plugin_instance_export": {"5.2.1-6.x.x": delete_plugin_instance_export},
     }
