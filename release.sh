@@ -31,15 +31,29 @@ if [ $? == 1 ] ; then
     exit 1
 fi
 
+function createTag {
+    git tag -a $gitTag -m "Release version $CurVersion. Build:$BuildCommit"
+    git push origin $gitTag
+}
+
+function retag {
+    git tag -d $gitTag
+    git push --delete origin $gitTag
+    createTag
+}
+
 if [ "$useTestRepo" = false ] ; then
     if git tag | grep -q $gitTag
     then 
         while true; do
             read -p "= Git tag for version $CurVersion already exists \
 meaning this version may have been distributed already. \
-Continue with release? [Y/N]: " yn
+Continue with release? D will delete and retag latest commit [Y/N/D]: " yn
             case $yn in
                 [Yy]* ) break;;
+                [Dd]* )
+                    retag
+                    break;;
                 [Nn]* ) exit;;
                 * ) echo "Please answer Y or N for yes or no.";;
             esac
@@ -48,8 +62,7 @@ Continue with release? [Y/N]: " yn
         git log -1  v$CurVersion
     else
         echo "= Git tag does not exist for version $CurVersion. Creating."
-        git tag -a $gitTag -m "Release version $CurVersion. Build:$BuildCommit"
-        git push origin $gitTag
+        createTag
     fi
 fi
 
