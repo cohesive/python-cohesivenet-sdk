@@ -677,7 +677,7 @@ def wait_for_api(
             urllib3.exceptions.MaxRetryError,
         ):
             Logger.debug(
-                "API connection error on API ping. Retrying in %ds." % sleep_time,
+                "API connection error on API ping. Retrying in %ss." % sleep_time,
                 host=target_host,
             )
         except ApiException as e:

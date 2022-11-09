@@ -1098,7 +1098,7 @@ def delete_virtual_network(api_client, virtual_network_id, **kwargs):  # noqa: E
     )
 
 
-def get_export_virtual_networks(api_client):  # noqa: E501
+def get_export_virtual_networks(api_client, **kwargs):  # noqa: E501
     """Export virtual networks CSV  # noqa: E501
 
     Export virtual networks CSV file   # noqa: E501
@@ -1166,7 +1166,7 @@ def get_export_virtual_networks(api_client):  # noqa: E501
     )
 
 
-def post_import_virtual_networks(api_client, body=None):  # noqa: E501
+def post_import_virtual_networks(api_client, body=None, **kwargs):  # noqa: E501
     """Import virtual networks from CSV file  # noqa: E501
 
     Import virtual networks from CSV file   # noqa: E501

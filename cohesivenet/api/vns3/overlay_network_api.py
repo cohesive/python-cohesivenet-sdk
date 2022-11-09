@@ -1126,6 +1126,7 @@ def put_update_all_clientpacks(
         "compression",
         "auth_on",
         "psk_on",
+        "async"
     ]  # noqa: E501
 
     collection_formats = {}

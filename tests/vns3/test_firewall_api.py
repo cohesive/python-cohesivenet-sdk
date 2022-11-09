@@ -26,10 +26,10 @@ from tests.vns3.stub_data import FirewallApiData
 class TestFirewallApi(object):
     """FirewallApi unit test stubs"""
 
-    def test_post_create_firewall_rule(
+    def test_post_create_firewall_rule_v1(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
     ):
-        """Test case for post_create_firewall_rule"""
+        """Test case for post_create_firewall_rule_v1"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -44,7 +44,7 @@ class TestFirewallApi(object):
                     "token": "15798987631596_5280108744805298913050300048466684878015928855",
                 }
             },
-        )(firewall_api.post_create_firewall_rule)
+        )(firewall_api.post_create_firewall_rule_v1)
 
     def test_delete_firewall_rule_by_position(
         self, rest_mocker, vns3_client, vns3_api_schema: dict
@@ -150,8 +150,8 @@ class TestFirewallApi(object):
             mock_response={"response": {"status": "finished_ok"}},
         )(firewall_api.delete_firewall_fw_set)
 
-    def test_get_firewall_rules(self, rest_mocker, vns3_client, vns3_api_schema: dict):
-        """Test case for get_firewall_rules"""
+    def test_get_firewall_rules_v1(self, rest_mocker, vns3_client, vns3_api_schema: dict):
+        """Test case for get_firewall_rules_v1"""
         generate_method_test(
             vns3_client,
             vns3_api_schema,
@@ -176,7 +176,7 @@ class TestFirewallApi(object):
                     ["FORWARD_CUST -d 10.0.1.0/24 -s 10.0.3.0/24 -j ACCEPT", 6],
                 ]
             },
-        )(firewall_api.get_firewall_rules)
+        )(firewall_api.get_firewall_rules_v1)
 
     def test_get_firewall_rule_subgroups(
         self, rest_mocker, vns3_client, vns3_api_schema: dict

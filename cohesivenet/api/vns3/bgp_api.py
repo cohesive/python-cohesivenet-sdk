@@ -333,8 +333,6 @@ def update_bgp_peer(
         "keepalive_interval",
     ]
 
-    local_var_params = dict(locals(), **kwargs)
-
     collection_formats = {}
 
     path_params = {"endpoint_id": endpoint_id, "bgp_peer_id": bgp_peer_id}
