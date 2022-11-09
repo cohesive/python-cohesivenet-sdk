@@ -174,4 +174,4 @@ solutions@cohesive.net
 
 [contact-image]: https://img.shields.io/badge/contact-support-blue.svg?style=flat-square
 [contact-url]: https://support.cohesive.net/support/home
-[python-versions-badge]: https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue
+[python-versions-badge]: https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue
