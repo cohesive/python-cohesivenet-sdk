@@ -5,7 +5,7 @@ projectroot=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd $projectroot
 source .venv/bin/activate
 CurVersion="$(cat cohesivenet/version.py | grep ^VERSION\ \= | cut -d' ' -f3 | sed 's/\"//g')"
-BuildCommit=$(git rev-parse --short HEAD)
+BuildCommit=$(git log --pretty=tformat:"%h" -n1 cohesivenet) # commit for src directory
 useTestRepo=false
 
 echo "= Release version $CurVersion to pypi"
