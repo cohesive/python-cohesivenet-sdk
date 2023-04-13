@@ -82,6 +82,7 @@ class APIResponse(io.IOBase):
             "application/octet-stream",
             "text/csv",
             "application/x-gzip",
+            "application/gzip"
         ):
             assert (
                 self._expected_response_type and "file" in self._expected_response_type

@@ -136,7 +136,7 @@ def create_peer_mesh_local_gw_routes(
             )
         )
 
-    return api_operations.__bulk_call_api(create_client_routes_funcs, parallelize=True)
+    return api_operations.bulk_call_api(create_client_routes_funcs, parallelize=True)
 
 
 def create_route_advertisements(
@@ -181,7 +181,7 @@ def create_route_advertisements(
         for index, client in enumerate(clients)
     ]
 
-    return api_operations.__bulk_call_api(bound_api_calls)
+    return api_operations.bulk_call_api(bound_api_calls)
 
 
 def create_route_table(client: VNS3Client, routes, state={}):

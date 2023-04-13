@@ -133,4 +133,4 @@ def fetch_state_attribute(
     assert attribute in StateLibrary, "Attribute %s not currently supported" % attribute
     fetch_func = StateLibrary.get(attribute)
     api_calls = [bind(fetch_func, client, bust_cache=bust_cache) for client in clients]
-    return api_op.__bulk_call_api(api_calls, parallelize=True)
+    return api_op.bulk_call_api(api_calls, parallelize=True)

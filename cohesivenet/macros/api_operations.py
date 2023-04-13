@@ -125,7 +125,7 @@ async def try_call_api_async(api_call, *args, **kwargs):
     return await force_async(try_call_api)(api_call, *args, **kwargs)
 
 
-def __bulk_call_client_sync(
+def bulk_call_client_sync(
     clients, call_client_func
 ) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
@@ -141,8 +141,11 @@ def __bulk_call_client_sync(
         [try_call_client(client, call_client_func) for client in clients]
     )
 
+# backwards compat
+__bulk_call_client_sync = bulk_call_client_sync
 
-def __bulk_call_client_parallel(
+
+def bulk_call_client_parallel(
     clients, call_client_func
 ) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
@@ -161,7 +164,11 @@ def __bulk_call_client_parallel(
     )
 
 
-def __bulk_call_client(
+# backwards compat
+__bulk_call_client_parallel = bulk_call_client_parallel
+
+
+def bulk_call_client(
     clients, call_client_func, parallelize=False
 ) -> data_types.BulkOperationResult:
     """Bulk operation for clients, call same method for all clients
@@ -174,12 +181,15 @@ def __bulk_call_client(
         data_types.BulkOperationResult
     """
     if parallelize:
-        return __bulk_call_client_parallel(clients, call_client_func)
+        return bulk_call_client_parallel(clients, call_client_func)
     else:
-        return __bulk_call_client_sync(clients, call_client_func)
+        return bulk_call_client_sync(clients, call_client_func)
+
+# backwards compat
+__bulk_call_client = bulk_call_client
 
 
-def __bulk_call_api_sync(bound_api_calls) -> data_types.BulkOperationResult:
+def bulk_call_api_sync(bound_api_calls) -> data_types.BulkOperationResult:
     """__bulk_call_api_sync Bulk operation for bound api methods, call synchronously
 
     Arguments:
@@ -190,8 +200,11 @@ def __bulk_call_api_sync(bound_api_calls) -> data_types.BulkOperationResult:
     """
     return gather_results([try_call_api(api_call) for api_call in bound_api_calls])
 
+# backwards compat
+__bulk_call_api_sync = bulk_call_api_sync
 
-def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
+
+def bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
     """__bulk_call_api_parallel Bulk operation for bound api methods, called asynchronously
 
     Arguments:
@@ -204,8 +217,11 @@ def __bulk_call_api_parallel(bound_api_calls) -> data_types.BulkOperationResult:
         run_parallel(*(try_call_api_async(api_call) for api_call in bound_api_calls))
     )
 
+# backwards compat
+__bulk_call_api_parallel = bulk_call_api_parallel
 
-def __bulk_call_api(api_calls, parallelize=False) -> data_types.BulkOperationResult:
+
+def bulk_call_api(api_calls, parallelize=False) -> data_types.BulkOperationResult:
     """Bulk operation for bound api method interface
 
     Arguments:
@@ -215,9 +231,12 @@ def __bulk_call_api(api_calls, parallelize=False) -> data_types.BulkOperationRes
         data_types.BulkOperationResult
     """
     if parallelize:
-        return __bulk_call_api_parallel(api_calls)
+        return bulk_call_api_parallel(api_calls)
     else:
-        return __bulk_call_api_sync(api_calls)
+        return bulk_call_api_sync(api_calls)
+
+# backwards compat
+__bulk_call_api = bulk_call_api
 
 
 def bulk_operation_failed(result: data_types.BulkOperationResult):

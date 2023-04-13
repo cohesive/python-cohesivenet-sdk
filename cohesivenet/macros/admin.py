@@ -26,7 +26,7 @@ def roll_api_password(
         _client.configuration.password = new_password
         return resp
 
-    return api_operations.__bulk_call_client(
+    return api_operations.bulk_call_client(
         clients, _update_password, parallelize=True
     )
 
@@ -49,7 +49,7 @@ def disable_uis(clients: List[VNS3Client]):
         time.sleep(2.0)
         return resp
 
-    return api_operations.__bulk_call_client(clients, _disable_ui)
+    return api_operations.bulk_call_client(clients, _disable_ui)
 
 
 def roll_ui_credentials(
@@ -80,6 +80,6 @@ def roll_ui_credentials(
         time.sleep(2.0)
         return resp
 
-    return api_operations.__bulk_call_client(
+    return api_operations.bulk_call_client(
         clients, _update_ui_credentials, parallelize=True
     )

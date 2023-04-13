@@ -223,7 +223,7 @@ def license_clients(clients, license_file_path) -> data_types.BulkOperationResul
     def _upload_license(_client):
         return _client.licensing.upload_license(license_file)
 
-    return api_operations.__bulk_call_client(clients, _upload_license)
+    return api_operations.bulk_call_client(clients, _upload_license)
 
 
 def accept_clients_license(
@@ -251,7 +251,7 @@ def accept_clients_license(
     def _accept_license(_client):
         return _client.licensing.put_set_license_parameters(**license_parameters)
 
-    return api_operations.__bulk_call_client(clients, _accept_license)
+    return api_operations.bulk_call_client(clients, _accept_license)
 
 
 def fetch_keysets(clients, root_host, keyset_token, wait_timeout=80.0):
@@ -271,7 +271,7 @@ def fetch_keysets(clients, root_host, keyset_token, wait_timeout=80.0):
             _client, root_host, keyset_token, wait_timeout=wait_timeout
         )
 
-    return api_operations.__bulk_call_client(clients, _fetch_keyset, parallelize=False)
+    return api_operations.bulk_call_client(clients, _fetch_keyset, parallelize=False)
 
 
 def __add_controller_states(config, infra_state, groups=None):

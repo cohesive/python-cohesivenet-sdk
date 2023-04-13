@@ -37,7 +37,7 @@ def set_peer_ids(clients, ids=None) -> data_types.BulkOperationResult:
     ]
 
     Logger.debug("Setting peer IDS: %s" % ordered_ids)
-    return api_ops.__bulk_call_api(bound_api_calls, parallelize=True)
+    return api_ops.bulk_call_api(bound_api_calls, parallelize=True)
 
 
 def _construct_peer_address_mapping(clients, address_type):
@@ -165,4 +165,4 @@ def peer_mesh(
         )
 
     Logger.debug("Creating %d-way peering mesh." % len(clients))
-    return api_ops.__bulk_call_api(run_peering_funcs, parallelize=True)
+    return api_ops.bulk_call_api(run_peering_funcs, parallelize=True)

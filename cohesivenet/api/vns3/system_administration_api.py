@@ -610,7 +610,7 @@ def _wait_for_down(api_client, retry_timeout=2, timeout=30, sleep_time=0):
     raise ApiException("API failed to go down [timeout=%sseconds]" % timeout)
 
 
-def poll_token(api_client, token, retry_timeout=1.5, timeout=120):
+def poll_task(api_client, token, retry_timeout=1.5, timeout=120):
     """Poll a task token until finished
 
     Args:
@@ -627,6 +627,10 @@ def poll_token(api_client, token, retry_timeout=1.5, timeout=120):
             return True
         time.sleep(retry_timeout)
     return False
+
+
+# backwards compat
+poll_token = poll_task
 
 
 def wait_for_api(
@@ -699,6 +703,7 @@ class SystemAdministrationApiRouter(VersionRouter):
         "get_remote_support_details": {"4.8.4-6.x.x": get_remote_support_details},
         "post_generate_support_keypair": {"4.8.4-6.x.x": post_generate_support_keypair},
         "poll_token": {"4.11.1-6.x.x": poll_token},
+        "poll_task": {"4.11.1-6.x.x": poll_task},
         "put_update_remote_support": {"4.8.4-6.x.x": put_update_remote_support},
         "put_server_action": {"4.8.4-6.x.x": put_server_action},
         "wait_for_api": {"4.8.4-6.x.x": wait_for_api},

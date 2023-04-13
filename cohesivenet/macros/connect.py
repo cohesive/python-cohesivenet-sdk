@@ -101,7 +101,7 @@ def verify_client_connectivity(
     def _ping_api(_client):
         return _client.sys_admin.get_config()
 
-    return api_operations.__bulk_call_client(clients, _ping_api)
+    return api_operations.bulk_call_client(clients, _ping_api)
 
 
 def get_ms_client(host, username=None, password=None, api_token=None, verify=False):
