@@ -106,7 +106,7 @@ operation_results = bulk_call_api(api_calls, parallelize=True)
 
 # method calls api_method_baz with each client in vns3_clients
 operation_results = bulk_call_client(vns3_clients, api_method_baz, parallelize=True)
-``
+```
 
 ## Formatting the Code
 Please regularly format the code with `make fmt`. This will ensure a consistency in code for readability
