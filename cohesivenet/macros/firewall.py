@@ -1,5 +1,96 @@
 from cohesivenet import util, Logger, VNS3Client, CohesiveSDKException
 
+def create_firewall_policies(clients, firewall_rules, state={}):
+    """Create a group of firewall rules for multiple clients.
+
+    Arguments:
+        clients {List[VNS3Client]} - List of VNS3Client instances
+        firewall_rules {List[dict]} - [{
+            'position': int,
+            'rule': str
+        }, ...]
+
+    Keyword Arguments:
+        state {dict} - State to format rules with. (can call client.state for each client)
+
+    Returns:
+        dict: A dictionary with client host_uri as keys and tuples of successes and errors lists as values
+    """
+    results = {}
+    for client in clients:
+        successes, errors = [], []
+        Logger.debug(
+            "Checking firewall policy for client.",
+            host=client.host_uri,
+            rule_count=len(firewall_rules),
+        )
+
+        # Fetch current firewall rules from the client
+        current_rules_response = client.firewall.get_firewall_rules()
+        if hasattr(current_rules_response, 'response') and current_rules_response.response:
+            current_rules = [rule['rule'].strip() for rule in current_rules_response.response if 'rule' in rule]
+        else:
+            current_rules = []
+            errors.append(f"Failed to fetch current firewall rules for {client.host_uri}")
+
+        # Format desired rules
+        desired_rules = []
+        for rule_args in firewall_rules:
+            rule, err = util.format_string(rule_args["rule"], state)
+            if err:
+                errors.append(err)
+                continue
+
+            rule_args.update(rule=rule)
+            desired_rules.append(rule_args)
+
+        # Compare desired rules with current rules
+        rules_to_add = []
+        rules_to_delete = []
+        for current_rule in current_rules:
+            if current_rule not in [r['rule'] for r in desired_rules]:
+                rules_to_delete.append(current_rule)
+
+        for desired_rule in desired_rules:
+            if desired_rule['rule'] not in current_rules:
+                rules_to_add.append(desired_rule)
+
+        # Delete rules that are not defined in firewall_rules
+        for rule_to_delete in rules_to_delete:
+            response = client.firewall.delete_firewall_rule_by_rule(rule=rule_to_delete)
+            if hasattr(response, 'status') and response.status == 200:  # Assuming 'status' attribute and success code 200
+                successes.append(f'Rule "{rule_to_delete}" deleted')
+            else:
+                errors.append(f'Error deleting rule "{rule_to_delete}"')
+
+        # Add only the rules that are not already present
+        for rule_args in rules_to_add:
+            response = client.firewall.post_create_firewall_rule(rule=rule_args['rule'], position=rule_args['position'])
+            if hasattr(response, 'status') and response.status == 200:  # Assuming 'status' attribute and success code 200
+                successes.append(f'Rule "{rule_args["rule"]}" inserted at position {rule_args["position"]}')
+            else:
+                errors.append(f'Error inserting rule "{rule_args["rule"]}" at position {rule_args["position"]}')
+
+        # Identify and delete duplicate rules
+        current_rules_response = client.firewall.get_firewall_rules()
+        if hasattr(current_rules_response, 'response') and current_rules_response.response:
+            current_rules = current_rules_response.response
+            seen_rules = set()
+            for rule in current_rules:
+                if 'rule' in rule:
+                    rule_str = rule['rule'].strip()
+                    if rule_str in seen_rules:
+                        response = client.firewall.delete_firewall_rule_by_position(position=rule['position'])
+                        if hasattr(response, 'status') and response.status == 200:  # Assuming 'status' attribute and success code 200
+                            successes.append(f'Duplicate rule "{rule_str}" at position {rule["position"]} deleted')
+                        else:
+                            errors.append(f'Error deleting duplicate rule "{rule_str}" at position {rule["position"]}')
+                    else:
+                        seen_rules.add(rule_str)
+
+        results[client.host_uri] = (successes, errors)
+
+    return results
 
 def create_firewall_policy(client: VNS3Client, firewall_rules, state={}):
     """Create group of firewall rules
