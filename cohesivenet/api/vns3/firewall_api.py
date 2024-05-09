@@ -2162,7 +2162,7 @@ def get_firewall_fwsets(api_client, **kwargs):  # noqa: E501
 
 
 def post_create_firewall_fwset(
-    api_client, name=None, type=None, entries=None, description=None, **kwargs
+    api_client, name=None, type=None, entries=None, target=None, description=None, **kwargs
 ):  # noqa: E501
     """post_create_firewall_fwset  # noqa: E501
 
@@ -2173,13 +2173,14 @@ def post_create_firewall_fwset(
     >>> response = await api.post_create_firewall_fwset("fwset1")
 
     :param name str: FWset name (required)
-    :param type str: FWset type. One of net, list, service or port (required)
+    :param type str: FWset type. One of net, list, service, port, or clientpack_tag_group (required)
     :param description:
     :param entries list[str|dict]: list of entries. can be list of strings or list of entry dicts:
         {
             entry: str,
             comment: str
         }
+    :param target str: target for clientpack_tag_group fwset type
     :param async_req bool: execute request asynchronously
     :param _return_http_data_only: response data without head status code
                                     and headers
@@ -2192,10 +2193,10 @@ def post_create_firewall_fwset(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-
+    
     local_var_params = dict(locals(), **kwargs)
 
-    request_params = ["name", "type", "description", "entries"]
+    request_params = ["name", "type", "description", "entries", "target"]
 
     collection_formats = {}
 
@@ -2210,6 +2211,8 @@ def post_create_firewall_fwset(
 
     body_params = {}
     for param in [p for p in request_params if local_var_params.get(p) is not None]:
+        if param == "entries" and local_var_params.get("type") == "clientpack_tag_group":
+            continue  # Skip entries for clientpack_tag_group type
         body_params[param] = local_var_params[param]
 
     # HTTP header `Accept`
