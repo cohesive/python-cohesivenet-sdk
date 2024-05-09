@@ -2193,7 +2193,7 @@ def post_create_firewall_fwset(
                                 (connection, read) timeouts.
     :return: APIResponse or awaitable if async
     """
-    
+
     local_var_params = dict(locals(), **kwargs)
 
     request_params = ["name", "type", "description", "entries", "target"]
@@ -2248,7 +2248,6 @@ def post_create_firewall_fwset(
         _request_timeout=local_var_params.get("_request_timeout"),
         collection_formats=collection_formats,
     )
-
 
 def get_firewall_fwset(api_client, fwset_name, **kwargs):  # noqa: E501
     """get_firewall_fwset  # noqa: E501
