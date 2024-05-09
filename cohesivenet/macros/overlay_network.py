@@ -1,6 +1,32 @@
 from cohesivenet import util, VNS3Client
 
 
+def add_clientpack_tags(client: VNS3Client, clientpack_tags):
+    """Add tags to clientpacks.
+
+    Arguments:
+        client {VNS3Client} - The client to use for API calls.
+        clientpack_tags {List[dict]} - List of tags to add to clientpacks. Each tag should be a dictionary with
+                                        'clientpack_name', 'key', and 'value' keys.
+
+    Returns:
+        dict: A dictionary with clientpack names as keys and the result of the tag addition operation as values.
+    """
+    results = {}
+    for tag_info in clientpack_tags:
+        clientpack_name = tag_info['clientpack_name']
+        key = tag_info['key']
+        value = tag_info['value']
+
+        try:
+            response = client.overlay_network.post_create_clientpack_tag(clientpack_name, key, value)
+            results[clientpack_name] = {'success': True, 'response': response}
+        except Exception as e:
+            results[clientpack_name] = {'success': False, 'error': str(e)}
+
+    return results
+
+
 def segment_overlay_clients(
     client: VNS3Client, groups=None, number_groups=None, group_ratios=None
 ):
