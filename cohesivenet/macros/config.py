@@ -63,7 +63,7 @@ def fetch_keyset_from_source(  # noqa: C901
         )
         
         if e.status == 502 or e.status == 503:
-            client.config.wait_for_keyset(360)
+            client.config.wait_for_keyset(wait_timeout)
         else:
             raise e
     except UrlLib3ConnExceptions:
