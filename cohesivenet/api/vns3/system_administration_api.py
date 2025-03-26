@@ -23,6 +23,7 @@ from cohesivenet import Logger
 from cohesivenet.api_builder import VersionRouter
 from cohesivenet.exceptions import ApiException
 from cohesivenet.api.vns3 import configuration_api as config_api
+from cohesivenet.exceptions import ApiException
 
 
 def get_cloud_data(api_client, **kwargs):  # noqa: E501
@@ -591,11 +592,9 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
     )
 
 
-def _wait_for_down(api_client, retry_timeout=2, timeout=30, sleep_time=0):
+def _wait_for_down(api_client, retry_timeout=2, timeout=600, sleep_time=5):
     import time
-
     start_time = time.time()
-
     while time.time() - start_time < timeout:
         try:
             config_api.get_config(api_client, _request_timeout=retry_timeout)
@@ -607,10 +606,20 @@ def _wait_for_down(api_client, retry_timeout=2, timeout=30, sleep_time=0):
             urllib3.exceptions.MaxRetryError,
         ):
             return True
+        
+        except ApiException as e:
+            Logger.info(f"Api exception: {e}. Continuing to check...")
+            if e.status == 503 or e.status == 502:
+                continue
+
+        except Exception as e:
+            Logger.info(f"Unhandled exception: {e}. Continuing to check...")
+            continue
+
     raise ApiException("API failed to go down [timeout=%sseconds]" % timeout)
 
 
-def poll_token(api_client, token, retry_timeout=1.5, timeout=120):
+def poll_token(api_client, token, retry_timeout=1.5, timeout=600):
     """Poll a task token until finished
 
     Args:
@@ -632,7 +641,7 @@ def poll_token(api_client, token, retry_timeout=1.5, timeout=120):
 def wait_for_api(
     api_client,
     retry_timeout=2,
-    timeout=60,
+    timeout=600,
     wait_for_reboot=False,
     assert_config=None,
     healthy_ping_count=10,
@@ -651,7 +660,6 @@ def wait_for_api(
     import time
 
     start_time = time.time()
-
     if wait_for_reboot:
         _wait_for_down(api_client, sleep_time=1, timeout=timeout)
 
@@ -681,7 +689,7 @@ def wait_for_api(
                 host=target_host,
             )
         except ApiException as e:
-            if e.status == 502:
+            if e.status == 502 or e.status == 503:
                 time.sleep(sleep_time)
             else:
                 raise e

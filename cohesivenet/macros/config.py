@@ -61,7 +61,11 @@ def fetch_keyset_from_source(  # noqa: C901
             "Failed to fetch keyset: %s" % e.get_error_message(),
             host=client.host_uri,
         )
-        raise e
+        
+        if e.status == 502 or e.status == 503:
+            client.config.wait_for_keyset(360)
+        else:
+            raise e
     except UrlLib3ConnExceptions:
         raise ApiException(
             status=HTTPStatus.SERVICE_UNAVAILABLE,
