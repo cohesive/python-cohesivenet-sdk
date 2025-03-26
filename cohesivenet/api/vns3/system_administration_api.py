@@ -592,7 +592,7 @@ def get_remote_support_details(api_client, **kwargs):  # noqa: E501
     )
 
 
-def _wait_for_down(api_client, retry_timeout=2, timeout=600, sleep_time=5):
+def _wait_for_down(api_client, retry_timeout=2, timeout=30, sleep_time=0):
     import time
     start_time = time.time()
     while time.time() - start_time < timeout:
@@ -612,14 +612,10 @@ def _wait_for_down(api_client, retry_timeout=2, timeout=600, sleep_time=5):
             if e.status == 503 or e.status == 502:
                 continue
 
-        except Exception as e:
-            Logger.info(f"Unhandled exception: {e}. Continuing to check...")
-            continue
-
     raise ApiException("API failed to go down [timeout=%sseconds]" % timeout)
 
 
-def poll_token(api_client, token, retry_timeout=1.5, timeout=600):
+def poll_token(api_client, token, retry_timeout=1.5, timeout=120):
     """Poll a task token until finished
 
     Args:
