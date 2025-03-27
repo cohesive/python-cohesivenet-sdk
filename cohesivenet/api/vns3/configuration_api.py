@@ -1105,8 +1105,20 @@ def wait_for_keyset(api_client, retry_timeout=2.0, timeout=60):
             Logger.debug(
                 "API connection error fetching keyset. Retrying.", host=target_host
             )
+            
             time.sleep(retry_timeout)
             continue
+
+        except ApiException as e:
+            Logger.debug(
+                f"API exception error fetching keyset.", host=target_host
+            )
+            #if "must be licensed" in e.get_error_message().lower():
+            if e.status == 502 or e.status == 503:
+                time.sleep(retry_timeout)
+                continue
+
+                
     raise ApiException(reason="Failed to fetch keyset. Timeout %s seconds." % timeout)
 
 
