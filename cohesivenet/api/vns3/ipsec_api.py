@@ -1200,7 +1200,8 @@ def post_create_ipsec_traffic_pair(
     auth_settings = ["ApiTokenAuth", "basicAuth"]  # noqa: E501
 
     return api_client.call_api(
-        "/ipsec/endpoints/{endpoint_id}/traffic_pairs" "POST",
+        "/ipsec/endpoints/{endpoint_id}/traffic_pairs",
+        "POST",
         path_params,
         query_params,
         header_params,
